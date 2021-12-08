@@ -1,11 +1,11 @@
 import React from "react";
-import Button from "../components/Button/Button";
+import {GreenButton, RedButton} from "../components/Button/Buttons";
 
 export default function Dashboard() {
   return (
     <>
-      <Button>Text1</Button>
-      <Button>Text2</Button>
+      <GreenButton size="30%">Text1</GreenButton>
+      <RedButton>Text2</RedButton>
     </>
   );
 }
