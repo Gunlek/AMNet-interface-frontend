@@ -6,6 +6,10 @@ export const StyledButton = styled.button`
   height: 60px;
   width: ${props=>props.size || '347px'};
   color: white;
+  font-family: "Poppins";
+  font-weight: 600;
+  font-size: 1rem;
+  text-align: center;
 `;
 
 export const StyledGreenButton = styled(StyledButton)`
