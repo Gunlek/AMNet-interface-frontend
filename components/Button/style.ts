@@ -7,7 +7,6 @@ export const StyledButton = styled.button`
   width: ${props=>props.size || '347px'};
   color: white;
   font-family: "Poppins";
-  font-weight: 600;
   font-size: 1rem;
   text-align: center;
 `;

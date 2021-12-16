@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const CampusBackground = styled.div`
-  min-height: 100vh;
+  height: 100vh;
   background-image: url("/static/images/campus.png");
   background-repeat: no-repeat;
   background-size: cover;
