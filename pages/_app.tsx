@@ -1,23 +1,14 @@
 import "../styles/globals.css";
+import Head from "next/head";
 
 function MyApp({ Component, pageProps }) {
   return <>
-    <style>
-      {`body{
-        margin: 0 0;
-        padding:0 0;
-        min-height: 100vh; 
-      }
-
-      #__next{
-        margin: 0 0;
-        padding:0 0;
-        min-height: 100vh; 
-      }
-      `}
-    </style>
-    <Component {...pageProps} />
-  </>;
+          <Head>
+            <link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
+            <link rel="alternate icon" href="/favicon.ico"/>
+          </Head>
+          <Component {...pageProps} />
+        </>
 }
 
 export default MyApp;
