@@ -20,7 +20,7 @@ export const StyledGreenCard = styled.div`
   font-size: 1.1rem;
 `;
 
-export const StyledInput = styled(StyledCard)`
+export const StyledInput = styled.input`
   background: rgba(255, 255, 255, 0.6);
   border-radius: 20px;
 `;
