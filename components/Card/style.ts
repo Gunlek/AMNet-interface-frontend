@@ -1,11 +1,12 @@
 import styled from "styled-components";
 import { StyledFlexCol, StyledFlexDiv } from "../Container/style";
 
-export const StyledCard = styled(StyledFlexDiv)`
+export const StyledCard = styled.div`
   background: rgba(255, 255, 255, 0.9);
   box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.06);
   border-radius: ${(props) => props.radius || "30px"};
-  min-height: ${(props) => props.minheight};
+  padding: 20px 0;
+  width: 100%;
 `;
 
 export const StyledGreenCard = styled.div`
@@ -45,6 +46,8 @@ export const StyledHelpSection = styled.div`
   color: ${(props) => props.color || "#FFFFFF"};
   text-align: center;
   font-size: 1.1rem;
+  width: 100%;
+  padding: 10px 0;
 `;
 
 export const StyledWhiteText = styled.div`
@@ -61,8 +64,7 @@ export const StyledBlackText = styled(StyledWhiteText)`
 `;
 
 export const StyledGreenLine = styled.div`
-  width: 95%;
+  width: 80%;
   height: 2px;
   background: #096a09;
-  margin-left: 20px;
 `;
