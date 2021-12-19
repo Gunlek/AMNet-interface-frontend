@@ -8,13 +8,6 @@ import {
 } from "../components/Card/Cards";
 import { GreenButton } from "../components/Button/Buttons";
 import {
-  StyledWhiteText,
-  StyledGreenText,
-  StyledGreenLine,
-  StyledCard,
-  StyledBlackText,
-} from "../components/Card/style";
-import {
   Col10,
   Col2,
   Col3,
@@ -24,6 +17,13 @@ import {
 } from "../components/Container/style";
 
 import styled from "styled-components";
+import {
+  BlackText,
+  GreenLine,
+  GreenText,
+  StyledCard,
+  WhiteText,
+} from "../components/Card/style";
 
 export default function Homepage() {
   return (
@@ -50,7 +50,7 @@ export default function Homepage() {
 
         <Row>
           <Col6>
-            <StyledWhiteText>
+            <WhiteText>
               L’AMNet est une association gérée par les étudiants qui a pour but
               d’administrer le réseau internet de la résidence Jacques Pagliero.
               Elle est totalement indépendante de l’administration de la
@@ -59,7 +59,7 @@ export default function Homepage() {
               qu’à payer les abonnements internet. Chaque année, 80% des
               cotisations est utilisé directement et les 20% restants servent à
               créer une trésorerie pour des investissements futurs.
-            </StyledWhiteText>
+            </WhiteText>
           </Col6>
           <Col6>
             <TeamPicture
@@ -81,12 +81,12 @@ export default function Homepage() {
             <Col10>
               <Column>
                 <div style={{ display: "flex", alignItems: "center" }}>
-                  <StyledGreenText style={{ paddingRight: "10px" }}>
+                  <GreenText style={{ paddingRight: "10px" }}>
                     Serveur Minecraft
-                  </StyledGreenText>
-                  <StyledGreenLine></StyledGreenLine>
+                  </GreenText>
+                  <GreenLine></GreenLine>
                 </div>
-                <StyledBlackText>
+                <BlackText>
                   En plus de fournir un accès internet aux résidents nous
                   offrons une multitude de services, un serveur Minecraft :{" "}
                   <span style={{ color: "#096A09" }}>minecraft.amnet.fr</span>{" "}
@@ -95,7 +95,7 @@ export default function Homepage() {
                   <br></br>
                   Si vous avez des idées de services que nous pourrions proposer
                   hésitez pas à nous contacter !
-                </StyledBlackText>
+                </BlackText>
               </Column>
             </Col10>
           </Row>

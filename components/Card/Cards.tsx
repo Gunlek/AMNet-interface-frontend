@@ -1,13 +1,19 @@
 import React from "react";
 import {
-  StyledHelpSection,
   StyledTeamPicture,
   StyledGreenCard,
   StyledCard,
-  StyledGreenText,
-  StyledBlackText,
+  GreenText,
+  BlackText,
+  StyledHelpSection,
 } from "./style";
-import { Row, StyledFlexCol, StyledFlexDiv } from "../Container/style";
+import {
+  Col4,
+  Column,
+  Row,
+  StyledFlexCol,
+  StyledFlexDiv,
+} from "../Container/style";
 
 export function HelpSection(props: { color?: string }) {
   return (
@@ -57,24 +63,24 @@ export function TeamPicture(props: { names?: string; nums?: string }) {
         </StyledFlexDiv>
         <StyledCard width="100%" radius="20px" height="30%">
           <Row>
-            <StyledFlexDiv grow="3" width="33%">
-              <StyledFlexCol>
-                <StyledBlackText>Trobotyk'ss (ML)°</StyledBlackText>
-                <StyledGreenText>47Li220</StyledGreenText>
-              </StyledFlexCol>
-            </StyledFlexDiv>
-            <StyledFlexDiv grow="3" width="33%">
-              <StyledFlexCol>
-                <StyledBlackText>Sdoosh</StyledBlackText>
-                <StyledGreenText>96Li220</StyledGreenText>
-              </StyledFlexCol>
-            </StyledFlexDiv>
-            <StyledFlexDiv grow="3" width="33%">
-              <StyledFlexCol>
-                <StyledBlackText>Nem'O</StyledBlackText>
-                <StyledGreenText>74Li220</StyledGreenText>
-              </StyledFlexCol>
-            </StyledFlexDiv>
+            <Col4>
+              <Column style={{ alignItems: "center" }}>
+                <BlackText>Trobotyk'ss (ML)°</BlackText>
+                <GreenText>47Li220</GreenText>
+              </Column>
+            </Col4>
+            <Col4>
+              <Column style={{ alignItems: "center" }}>
+                <BlackText>Sdoosh</BlackText>
+                <GreenText>96Li220</GreenText>
+              </Column>
+            </Col4>
+            <Col4>
+              <Column style={{ alignItems: "center" }}>
+                <BlackText>Nem'O</BlackText>
+                <GreenText>74Li220</GreenText>
+              </Column>
+            </Col4>
           </Row>
         </StyledCard>
       </StyledFlexCol>

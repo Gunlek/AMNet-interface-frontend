@@ -50,20 +50,20 @@ export const StyledHelpSection = styled.div`
   padding: 10px 0;
 `;
 
-export const StyledWhiteText = styled.div`
+export const WhiteText = styled.div`
   color: white;
   font-size: 1.2em;
 `;
 
-export const StyledGreenText = styled(StyledWhiteText)`
+export const GreenText = styled(WhiteText)`
   color: #096a09;
 `;
 
-export const StyledBlackText = styled(StyledWhiteText)`
+export const BlackText = styled(WhiteText)`
   color: black;
 `;
 
-export const StyledGreenLine = styled.div`
+export const GreenLine = styled.div`
   width: 80%;
   height: 2px;
   background: #096a09;

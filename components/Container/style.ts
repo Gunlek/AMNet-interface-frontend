@@ -12,8 +12,9 @@ export const StyledFlexCol = styled.div`
 `;
 
 export const Column = styled.div`
-  display: "flex";
-  flex-direction: "column";
+  display: flex;
+  flex-direction: column;
+  width: 100%;
 `;
 
 export const Row = styled.div`
