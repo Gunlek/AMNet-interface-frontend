@@ -25,20 +25,23 @@ export const Row = styled.div`
 
 export const Col = styled.div`
   display: flex;
+  flex-direction: column;
 `;
 
 export const Col10 = styled(Col)`
   flex: 10;
 `;
 
+export const Col8 = styled(Col)`
+  flex: 8;
+`;
+
 export const Col6 = styled(Col)`
   flex: 6;
-  // width: 50%;
 `;
 
 export const Col4 = styled(Col)`
   flex: 4;
-  // width: 50%;
 `;
 
 export const Col3 = styled(Col)`
