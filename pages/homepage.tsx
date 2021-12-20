@@ -5,6 +5,7 @@ import {
   HelpSection,
   RectangleLogo,
   TeamPicture,
+  TitleCard
 } from "../components/Card/Cards";
 import { GreenButton } from "../components/Button/Buttons";
 import {
@@ -16,13 +17,11 @@ import {
   Row,
 } from "../components/Container/style";
 
-import styled from "styled-components";
 import {
   BlackText,
-  GreenLine,
-  GreenText,
   StyledCard,
   WhiteText,
+  Spacer
 } from "../components/Card/style";
 
 export default function Homepage() {
@@ -33,18 +32,16 @@ export default function Homepage() {
       </Head>
       <CampusBackground
         style={{
-          padding: "0 20px",
-          display: "flex",
-          flexDirection: "column",
+          padding: "0 5%",
           justifyContent: "space-around",
         }}
       >
         <Row>
-          <Col6>
-            <RectangleLogo color="blanc"></RectangleLogo>
+          <Col6 style={{ justifyContent: "center", alignItems: "start" }}>
+            <RectangleLogo color="blanc"/>
           </Col6>
-          <Col6 style={{ justifyContent: "right", alignItems: "center" }}>
-            <GreenButton size="44%">S'inscrire / Se Connecter</GreenButton>
+          <Col6 style={{ justifyContent: "center", alignItems: "end" }}>
+            <GreenButton size="44%"><a href="./connexion">S'inscrire / Se Connecter</a></GreenButton>
           </Col6>
         </Row>
 
@@ -54,8 +51,8 @@ export default function Homepage() {
               L’AMNet est une association gérée par les étudiants qui a pour but
               d’administrer le réseau internet de la résidence Jacques Pagliero.
               Elle est totalement indépendante de l’administration de la
-              résidence ou de l’école.<br></br>
-              <br></br>Votre cotisation sert à améliorer l’installation ainsi
+              résidence ou de l’école.<br/><br/>
+              Votre cotisation sert à améliorer l’installation ainsi
               qu’à payer les abonnements internet. Chaque année, 80% des
               cotisations est utilisé directement et les 20% restants servent à
               créer une trésorerie pour des investissements futurs.
@@ -68,8 +65,9 @@ export default function Homepage() {
             />
           </Col6>
         </Row>
-        <Spacer height="50px" />
-        <StyledCard width="100%" height="20%" minheight="170px">
+
+        <Spacer height="20px" />
+        <StyledCard width="100%" height="20%" minheight="170px">   
           <Row>
             <Col2 style={{ alignItems: "center", justifyContent: "center" }}>
               <img
@@ -80,19 +78,13 @@ export default function Homepage() {
             </Col2>
             <Col10>
               <Column>
-                <div style={{ display: "flex", alignItems: "center" }}>
-                  <GreenText style={{ paddingRight: "10px" }}>
-                    Serveur Minecraft
-                  </GreenText>
-                  <GreenLine></GreenLine>
-                </div>
+                <TitleCard>Serveur Minecraft</TitleCard>
                 <BlackText>
                   En plus de fournir un accès internet aux résidents nous
                   offrons une multitude de services, un serveur Minecraft :{" "}
                   <span style={{ color: "#096A09" }}>minecraft.amnet.fr</span>{" "}
                   et d'autres que nous vous laisserons découvrir un jour ...
-                  <br></br>
-                  <br></br>
+                  <br/><br/>
                   Si vous avez des idées de services que nous pourrions proposer
                   hésitez pas à nous contacter !
                 </BlackText>
@@ -100,14 +92,11 @@ export default function Homepage() {
             </Col10>
           </Row>
         </StyledCard>
+
         <Row>
-          <HelpSection></HelpSection>
+          <HelpSection/>
         </Row>
       </CampusBackground>
     </>
   );
 }
-
-const Spacer = styled.div`
-  height: ${(props) => props.height};
-`;
