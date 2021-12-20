@@ -1,12 +1,12 @@
 import styled from "styled-components";
-import { StyledFlexCol, StyledFlexDiv } from "../Container/style";
+import { Column } from "../Container/style";
 
 export const StyledCard = styled.div`
   background: rgba(255, 255, 255, 0.9);
   box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.06);
   border-radius: ${(props) => props.radius || "30px"};
-  padding: 20px 0;
-  width: 100%;
+  padding: ${(props) => props.padding || "20px 0"};
+  width: ${(props) => props.width || "100%"};
 `;
 
 export const StyledGreenCard = styled.div`
@@ -14,7 +14,7 @@ export const StyledGreenCard = styled.div`
   border-radius: 13px 20px 20px 0px;
   color: #ffffff;
   width: 99%;
-  padding-left: 47px;
+  padding-left: 40px;
   height: 2.2rem;
   line-height: 2.2rem;
   font-size: 1.1rem;
@@ -22,10 +22,25 @@ export const StyledGreenCard = styled.div`
 
 export const StyledInput = styled.input`
   background: rgba(255, 255, 255, 0.6);
+  box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.06);
   border-radius: 20px;
+  width: 100%;
+  padding-left:20px;
+  height: 40px;
+  border: none;
 `;
 
-export const StyledRadio = styled.input`
+export const StyledSelect = styled.select`
+  background: rgba(255, 255, 255, 0.6);
+  box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.06);
+  border-radius: 20px;
+  width: 100%;
+  padding-left:20px;
+  height: 40px;
+  border: none;
+`;
+
+export const StyledCheckbox = styled.input`
   width: 34px;
   height: 34px;
   border: 4px solid #096a09;
@@ -33,7 +48,7 @@ export const StyledRadio = styled.input`
   border-radius: 9px;
 `;
 
-export const StyledTeamPicture = styled(StyledFlexCol)`
+export const StyledTeamPicture = styled(Column)`
   background-image: url("/static/images/team.png");
   background-repeat: no-repeat;
   background-size: cover;
@@ -63,8 +78,17 @@ export const BlackText = styled(WhiteText)`
   color: black;
 `;
 
+export const BlackTitle = styled(BlackText)`
+  font-size: 2.6em;
+  line-height: 80px;
+`
+
 export const GreenLine = styled.div`
   width: 80%;
-  height: 2px;
+  height: 1px;
   background: #096a09;
+`;
+
+export const Spacer = styled.div`
+  height: ${(props) => props.height};
 `;
