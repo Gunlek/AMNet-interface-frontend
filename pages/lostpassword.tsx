@@ -9,7 +9,7 @@ import {
 import { GreenButton } from "../components/Button/Buttons";
 import {
   GreenText,
-  StyledCard,
+  StyledCardCampus,
   StyledInput,
   StyledCheckbox,
   BlackText,
@@ -30,7 +30,7 @@ export default function Homepage() {
       </Head>
       <CampusBackground  style={{justifyContent:"space-between"}}>
           <Row style={{flex: "10", justifyContent:"center", alignItems:"center"}}>
-            <StyledCard width="30%" height="auto" padding="20px">
+            <StyledCardCampus width="40%" height="auto" padding="20px">
                 <Row style={{justifyContent:"center"}}>
                   <RectangleLogo/>
                 </Row>
@@ -51,7 +51,7 @@ export default function Homepage() {
                     <GreenButton>Envoyez un mail de récuperation</GreenButton>
                   </Row>
                 </form>
-            </StyledCard>
+            </StyledCardCampus>
             
           </Row>
           <Row style={{flex: "1",}}><HelpSection /></Row>
