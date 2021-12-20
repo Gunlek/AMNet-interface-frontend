@@ -4,8 +4,8 @@ import constants from "../../styles/constants";
 export const StyledButton = styled.button`
   border-radius: 90px;
   border: transparent;
-  height: 60px;
-  width: ${(props) => props.size || constants.defaultButtonWidth};
+  height: ${(props) => props.height || "60px"};
+  width: ${(props) => props.width || constants.defaultButtonWidth};
   color: white;
   font-family: "Poppins";
   font-size: 1rem;
