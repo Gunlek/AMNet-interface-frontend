@@ -9,7 +9,7 @@ import {
 import { GreenButton } from "../components/Button/Buttons";
 import {
   GreenText,
-  StyledCard,
+  StyledCardCampus,
   StyledInput,
   StyledCheckbox,
   BlackText,
@@ -17,12 +17,9 @@ import {
   StyledSelect
 } from "../components/Card/style";
 import {
-  Col2,
   Col6,
-  Col8,
   Col3,
   Row,
-  Column,
 } from "../components/Container/style";
 
 export default function Homepage() {
@@ -46,10 +43,10 @@ export default function Homepage() {
                 alignItems:"center"
               }}
             >
-            <StyledCard 
+            <StyledCardCampus 
               width="70%" 
               height="auto" 
-              padding="20px"
+              padding="30px"
             >
               <Row style={{justifyContent:"center"}}>
                 <RectangleLogo/>
@@ -61,7 +58,7 @@ export default function Homepage() {
                 </BlackTitle>
               </Row>
 
-              <Row style={{width: "100%", padddingBottom: "20px"}}>
+              <Row style={{width: "100%", paddingBottom: "20px"}}>
                 <TitleCard>
                   Inscription
                 </TitleCard>
@@ -69,11 +66,11 @@ export default function Homepage() {
 
               <form method="post">
                 <Row style={{alignItems:"center", paddingBottom:"20px"}}>
-                  <Col6 style={{marginRight:"20px"}}>
+                  <Col6 style={{paddingRight: "20px"}}>
                     <GreenText style={{paddingBottom:"5px"}}>Nom d'utilisateur</GreenText>
                     <StyledInput type="text"/>
                   </Col6>
-                  <Col6>
+                  <Col6 style={{justifyContent: "center", height: "73.8px"}}>
                     <BlackText>Votre nom d'utilisateur ne doit contenir 
                       que des lettres, des chiffres ou des espaces.
                     </BlackText>
@@ -81,11 +78,11 @@ export default function Homepage() {
                 </Row>
 
                 <Row style={{paddingBottom:"20px"}}>
-                  <Col3 style={{paddingRight:"-20px"}}>
+                  <Col3 style={{paddingRight: "10px"}}>
                     <GreenText style={{paddingBottom:"5px"}}>Prénom</GreenText>
                     <StyledInput type="text"/>
                   </Col3>
-                  <Col3 style={{marginRight:"20px"}}>
+                  <Col3 style={{paddingLeft: "10px", paddingRight: "20px"}}>
                     <GreenText style={{paddingBottom:"5px"}}>Nom</GreenText>
                     <StyledInput type="text"/>
                   </Col3>
@@ -96,7 +93,7 @@ export default function Homepage() {
                 </Row>
 
                 <Row style={{paddingBottom:"20px"}}>
-                  <Col6 style={{marginRight:"20px"}}>
+                  <Col6 style={{paddingRight: "20px"}}>
                     <GreenText style={{paddingBottom:"5px"}}>Téléphone</GreenText>
                     <StyledInput type="phone"/>
                   </Col6>
@@ -112,15 +109,15 @@ export default function Homepage() {
                 </Row>
 
                 <Row style={{paddingBottom:"20px"}}>
-                  <Col6 style={{marginRight:"20px"}}>
+                  <Col6 style={{paddingRight: "20px"}}>
                     <GreenText style={{paddingBottom:"5px"}}>Bucque</GreenText>
                     <StyledInput type="text"/>
                   </Col6>
-                  <Col3>
+                  <Col3 style={{paddingRight: "10px"}}>
                     <GreenText style={{paddingBottom:"5px"}}>Fam's</GreenText>
                     <StyledInput type="text"/>
                   </Col3>
-                  <Col3>
+                  <Col3 style={{paddingLeft: "10px"}}>
                     <GreenText style={{paddingBottom:"5px"}}>Tabagn's</GreenText>
                     <StyledSelect name="tbk">
                         <option value="li" selected>Birse</option>
@@ -136,7 +133,7 @@ export default function Homepage() {
                 </Row>
 
                 <Row style={{paddingBottom:"20px"}}>
-                  <Col6 style={{marginRight:"20px"}}>
+                  <Col6 style={{paddingRight: "20px"}}>
                     <GreenText style={{paddingBottom:"5px"}}>Mot de passe</GreenText>
                     <StyledInput type="password"/>
                   </Col6>
@@ -146,7 +143,7 @@ export default function Homepage() {
                   </Col6>
                 </Row>
 
-                <Column style={{alignItems:"start"}} >
+                <Row style={{alignItems:"start"}} >
                   <BlackText>
                     <GreenText>Réglementation</GreenText>
                     <p>
@@ -159,7 +156,7 @@ export default function Homepage() {
                       AMNet Birse est une association Loi 1901, vous devez en accepter les statuts et le réglement intérieur. La validation de ce formulaire et le réglement de la cotisation vaut pour adhésion à l'association.
                     </p>
                   </BlackText>
-                </Column>
+                </Row>
 
                 <Row style={{paddingBottom:"20px"}}>
                   <Col6 
@@ -190,9 +187,8 @@ export default function Homepage() {
                   <GreenButton>Inscription</GreenButton>
                 </Row>
               </form>
-            </StyledCard> 
+            </StyledCardCampus> 
           </Row>
-
           <Row style={{flex: "1",}}><HelpSection /></Row>
       </CampusBackground>
     </>

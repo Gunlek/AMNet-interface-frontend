@@ -6,7 +6,9 @@ import {
   GreenText,
   BlackText,
   StyledHelpSection,
-  GreenLine
+  GreenLine,
+  StyledCotisaion,
+  StyledMenu
 } from "./style";
 import {
   Col4,
@@ -46,16 +48,30 @@ export function RectangleLogo(props: { color?: string }) {
 export function TitleCard(props: { children: string }){
   return(
     <div 
-      style={{ 
-        display: "flex", 
-        alignItems: "center",
-        width:"100%" 
-      }}
+      style={{width:"100%"  }}
     >             
-      <GreenText style={{ paddingRight: "10px", flex:"3", fontSize: "1.8em" }}>
+      <GreenText 
+        style=
+        {{
+          float:"left", 
+          paddingRight: "10px", 
+          fontSize: "1.8em" 
+        }}
+      >
         {props.children}
       </GreenText>
-      <GreenLine style={{ paddingRight: "10px", flex:"9" }}/>
+      <div 
+        style=
+        {{
+          overflow:"hidden", 
+          width:"auto",
+          display: "flex",
+          alignItems: "center",
+          height:"100%",
+        }}
+      >
+        <GreenLine />
+      </div>  
     </div>
   );
 }
@@ -78,11 +94,23 @@ export function TeamPicture(props: { names?: string; nums?: string }) {
 
   return (
     <StyledTeamPicture
-      style={{ aspectRatio: "16/9", maxHeight: "50vh", justifyContent:"end"}}
+      style=
+      {{ 
+        aspectRatio: "16/8", 
+        maxHeight: "50vh", 
+        justifyContent:"end"
+      }}
     >
-      <Column style={{ width:"100%", height:"97%", justifyContent:"space-between"}}>
+      <Column 
+        style=
+        {{ 
+          width:"100%", 
+          height:"97%", 
+          justifyContent:"space-between"
+        }}
+      >
       <GreenCard year="221"/>
-      <StyledCard width="100%" radius="20px" height="30%">
+      <StyledCard width="100%" radius="30px" height="30%" padding="10px 0">
         <Row>
           <Col4>
             <Column style={{ alignItems: "center" }}>
@@ -107,4 +135,42 @@ export function TeamPicture(props: { names?: string; nums?: string }) {
       </Column>
     </StyledTeamPicture>
   );
+}
+
+export function ContributionStatus(props: {status: string}){
+  if(props.status == 'paid')
+  {
+    return(
+      <StyledCotisaion>
+        <BlackText style={{paddingRight: "10px"}}>Cotisation :</BlackText>
+        <img style={{height: "20px"}} src="/static/icons/succes.svg"/> 
+      </StyledCotisaion>
+    );
+  }
+  else(props.status == 'unpaid')
+  {
+    return(
+      <StyledCotisaion>
+        <BlackText style={{paddingRight: "10px"}}>Cotisation :</BlackText>
+        <img height={"20px"} src="/static/icons/fail.svg"/> 
+      </StyledCotisaion>
+    );
+  }
+}
+
+export function Menu(){
+  return(
+    <StyledMenu>
+      <Column style={{height: "100%"}}>
+      <Row style={{flex: "2"}}></Row>
+      <Row style={{flex: "1"}}></Row>
+      <Row style={{flex: "1"}}></Row>
+      <Row style={{flex: "1"}}></Row>
+      <Row style={{flex: "1"}}></Row>
+      <Row style={{flex: "1"}}></Row>
+      <Row style={{flex: "1"}}></Row>
+      <Row style={{flex: "2"}}></Row>
+      </Column>
+    </StyledMenu>
+  )
 }
