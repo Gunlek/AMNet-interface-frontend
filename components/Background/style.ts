@@ -13,5 +13,6 @@ export const CampusBackground = styled.div`
 export const DefaultBackground = styled.div`
   min-height: 100vh;
   background: #E5E5E5;
+  display: flex;
 `;
 
