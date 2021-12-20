@@ -9,7 +9,7 @@ import {
 import { GreenButton } from "../components/Button/Buttons";
 import {
   GreenText,
-  StyledCard,
+  StyledCardCampus,
   StyledInput,
   StyledCheckbox,
   BlackText,
@@ -30,7 +30,7 @@ export default function Homepage() {
       </Head>
       <CampusBackground  style={{justifyContent:"space-between"}}>
           <Row style={{flex: "10", justifyContent:"center", alignItems:"center"}}>
-            <StyledCard width="30%" height="auto" padding="20px">
+            <StyledCardCampus width="30%" height="auto" padding="20px">
                 <Row style={{justifyContent:"center"}}>
                   <RectangleLogo/>
                 </Row>
@@ -52,10 +52,10 @@ export default function Homepage() {
                     <GreenText style={{paddingBottom:"5px"}}>Mot de passe</GreenText>
                     <StyledInput type="password" autoFocus=""/>
                   </div>
-                  <div style={{paddingBottom:"20px"}}>
+                  <Row style={{alignItems:"Center", paddingBottom:"20px"}}>
                       <StyledCheckbox type="checkbox" />
-                      Rester connecté
-                  </div>
+                      <span style={{paddingLeft:"5px"}}>Rester connecté</span>
+                  </Row>
                   <div style={{paddingBottom:"5px"}}>
                     <a href="./lostpassword">Mot de passe / Identifiant oublié</a>
                   </div>
@@ -66,8 +66,7 @@ export default function Homepage() {
                     <GreenButton>Conexion</GreenButton>
                   </Row>
                 </form>
-            </StyledCard>
-            
+            </StyledCardCampus>
           </Row>
           <Row style={{flex: "1",}}><HelpSection /></Row>
       </CampusBackground>
