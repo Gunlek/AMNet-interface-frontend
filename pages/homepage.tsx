@@ -11,7 +11,6 @@ import { GreenButton } from "../components/Button/Buttons";
 import {
   Col10,
   Col2,
-  Col3,
   Col6,
   Column,
   Row,
@@ -19,7 +18,7 @@ import {
 
 import {
   BlackText,
-  StyledCard,
+  StyledCardCampus,
   WhiteText,
   Spacer
 } from "../components/Card/style";
@@ -36,7 +35,7 @@ export default function Homepage() {
           justifyContent: "space-around",
         }}
       >
-        <Row>
+        <Row style={{padding:"10px 0"}}>
           <Col6 style={{ justifyContent: "center", alignItems: "start" }}>
             <RectangleLogo color="blanc"/>
           </Col6>
@@ -47,7 +46,7 @@ export default function Homepage() {
 
         <Row>
           <Col6>
-            <WhiteText>
+            <WhiteText style={{paddingRight: "15px", paddingTop:"15px"}}>
               L’AMNet est une association gérée par les étudiants qui a pour but
               d’administrer le réseau internet de la résidence Jacques Pagliero.
               Elle est totalement indépendante de l’administration de la
@@ -67,7 +66,7 @@ export default function Homepage() {
         </Row>
 
         <Spacer height="20px" />
-        <StyledCard width="100%" height="20%" minheight="170px">   
+        <StyledCardCampus  minheight="170px" padding="20px 0">   
           <Row>
             <Col2 style={{ alignItems: "center", justifyContent: "center" }}>
               <img
@@ -76,7 +75,7 @@ export default function Homepage() {
                 alt="Logo Minecraft"
               />
             </Col2>
-            <Col10>
+            <Col10 style={{paddingRight:"20px"}}>
               <Column>
                 <TitleCard>Serveur Minecraft</TitleCard>
                 <BlackText>
@@ -91,7 +90,7 @@ export default function Homepage() {
               </Column>
             </Col10>
           </Row>
-        </StyledCard>
+        </StyledCardCampus>
 
         <Row>
           <HelpSection/>
