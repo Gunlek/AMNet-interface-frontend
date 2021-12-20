@@ -4,22 +4,22 @@ import { CampusBackground } from "../components/Background/style";
 import {
   HelpSection,
   RectangleLogo,
-  TeamPicture,
+  TitleCard
 } from "../components/Card/Cards";
 import { GreenButton } from "../components/Button/Buttons";
 import {
-  GreenLine,
   GreenText,
   StyledCard,
   StyledInput,
-  StyledRadio,
+  StyledCheckbox,
+  BlackText,
+  BlackTitle
 } from "../components/Card/style";
 import {
   Col2,
+  Col6,
   Col8,
   Row,
-  StyledFlexCol,
-  StyledFlexDiv,
 } from "../components/Container/style";
 
 export default function Homepage() {
@@ -28,56 +28,48 @@ export default function Homepage() {
       <Head>
         <title>Connexion &bull; AMNet</title>
       </Head>
-      <CampusBackground>
-        <Row>
-          <Col2></Col2>
-          <Col8>
-            <StyledCard width="40%" height="auto" padding="20px">
-              <StyledFlexCol>
-                <RectangleLogo></RectangleLogo>
-                <StyledFlexDiv width="100%" style={{ textAlign: "center" }}>
-                  Espace AMNet
-                </StyledFlexDiv>
-                <Row>
-                  <StyledFlexDiv width="125px">
-                    <GreenText>Connexion</GreenText>
-                  </StyledFlexDiv>
-                  <StyledFlexDiv width="calc(100% - 125px)" height="0px">
-                    <GreenLine></GreenLine>
-                  </StyledFlexDiv>
+      <CampusBackground  style={{justifyContent:"space-between"}}>
+          <Row style={{flex: "10", justifyContent:"center", alignItems:"center"}}>
+            <StyledCard width="30%" height="auto" padding="20px">
+                <Row style={{justifyContent:"center"}}>
+                  <RectangleLogo/>
                 </Row>
-                <form method="post">
-                  <div>
-                    <GreenLine>Nom d'utilisateur</GreenLine>
-                    <StyledInput />
+                <Row style={{justifyContent:"center"}}>
+                  <BlackTitle>Espace AMNet</BlackTitle>
+                </Row>
+                <Row style={{width: "100%"}}>
+                  <TitleCard>
+                    Connexion
+                  </TitleCard>
+                </Row>
+                <form method="post" style={{paddingTop:"20px"}}>
+                  <div style={{paddingBottom:"20px"}}>
+                    <GreenText style={{paddingBottom:"5px"}}>Nom d'utilisateur</GreenText>
+                    <StyledInput type="text"/>
                   </div>
 
-                  <div>
-                    <GreenLine>Mot de passe</GreenLine>
-                    <StyledInput width="100%" />
+                  <div style={{paddingBottom:"20px"}}>
+                    <GreenText style={{paddingBottom:"5px"}}>Mot de passe</GreenText>
+                    <StyledInput type="password" autoFocus=""/>
                   </div>
-                  <Row>
-                    <StyledFlexDiv>
-                      aaa<StyledRadio></StyledRadio>
-                    </StyledFlexDiv>
-                    <StyledFlexDiv>Rester connecté</StyledFlexDiv>
+                  <div style={{paddingBottom:"20px"}}>
+                      <StyledCheckbox type="checkbox" />
+                      Rester connecté
+                  </div>
+                  <div style={{paddingBottom:"5px"}}>
+                    <a href="./lostpassword">Mot de passe / Identifiant oublié</a>
+                  </div>
+                  <div style={{paddingBottom:"20px"}}>
+                    <a href="./registration"> Pas encore inscrit ? Inscrivez-vous en cliquant ici</a>
+                  </div>
+                  <Row style={{justifyContent:"center"}}>
+                    <GreenButton>Conexion</GreenButton>
                   </Row>
-                  <StyledFlexCol>
-                    <StyledFlexDiv>
-                      Mot de passe / Identifiant oublié
-                    </StyledFlexDiv>
-                    <StyledFlexDiv>
-                      Pas encore inscrit ? Inscrivez-vous en cliquant ici
-                    </StyledFlexDiv>
-                  </StyledFlexCol>
-                  <GreenButton>Conexion</GreenButton>
                 </form>
-              </StyledFlexCol>
             </StyledCard>
-            <HelpSection></HelpSection>
-          </Col8>
-          <Col2></Col2>
-        </Row>
+            
+          </Row>
+          <Row style={{flex: "1",}}><HelpSection /></Row>
       </CampusBackground>
     </>
   );
