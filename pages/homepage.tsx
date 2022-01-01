@@ -31,27 +31,41 @@ export default function Homepage() {
       </Head>
       <CampusBackground
         style={{
-          padding: "0 5%",
-          justifyContent: "space-around",
+          padding: "10px 5%",
+          justifyContent: "space-between",
         }}
       >
-        <Row style={{padding:"10px 0"}}>
+        <Row style={{paddingBottom:"10px"}}>
           <Col6 style={{ justifyContent: "center", alignItems: "start" }}>
             <RectangleLogo color="blanc"/>
           </Col6>
           <Col6 style={{ justifyContent: "center", alignItems: "end" }}>
-            <GreenButton size="44%"><a href="./connexion">S'inscrire / Se Connecter</a></GreenButton>
+            <a 
+              href="./connexion" 
+              style={{
+                width: "300px", 
+                borderRadius: "30px"
+              }}
+            >
+              <GreenButton width="100%">Se Connecter / S'inscrire</GreenButton>
+            </a>
           </Col6>
         </Row>
 
-        <Row>
+        <Row style={{marginBottom:"20px"}}>
           <Col6>
-            <WhiteText style={{paddingRight: "15px", paddingTop:"15px"}}>
-              L’AMNet est une association gérée par les étudiants qui a pour but
+            <WhiteText 
+              style={{
+                paddingRight: "20px", 
+                paddingTop:"20px", 
+                textAlign: "justify"
+              }}
+            >
+              <span style={{paddingLeft: "60px"}}>L’AMNet</span> est une association gérée par les étudiants qui a pour but
               d’administrer le réseau internet de la résidence Jacques Pagliero.
               Elle est totalement indépendante de l’administration de la
               résidence ou de l’école.<br/><br/>
-              Votre cotisation sert à améliorer l’installation ainsi
+              <span style={{paddingLeft: "60px"}}>Votre</span> cotisation sert à améliorer l’installation ainsi
               qu’à payer les abonnements internet. Chaque année, 80% des
               cotisations est utilisé directement et les 20% restants servent à
               créer une trésorerie pour des investissements futurs.
@@ -64,9 +78,7 @@ export default function Homepage() {
             />
           </Col6>
         </Row>
-
-        <Spacer height="20px" />
-        <StyledCardCampus  minheight="170px" padding="20px 0">   
+        <StyledCardCampus  padding="20px 0">   
           <Row>
             <Col2 style={{ alignItems: "center", justifyContent: "center" }}>
               <img
@@ -92,7 +104,7 @@ export default function Homepage() {
           </Row>
         </StyledCardCampus>
 
-        <Row>
+        <Row style={{paddingTop: "10px"}}>
           <HelpSection/>
         </Row>
       </CampusBackground>
