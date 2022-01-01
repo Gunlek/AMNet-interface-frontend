@@ -8,12 +8,19 @@ export const StyledButton = styled.button`
   width: ${(props) => props.width || constants.defaultButtonWidth};
   color: white;
   font-family: "Poppins";
-  font-size: 1rem;
+  font-size: 1.1em;
   text-align: center;
 `;
 
 export const StyledGreenButton = styled(StyledButton)`
   background: linear-gradient(91.71deg, #67bc45 7.99%, #096a09 94.71%);
+
+  &:hover{
+    transition: color 0.4s;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+    background: #67bc45;
+    cursor: pointer;
+  }
 `;
 
 export const StyledRedButton = styled(StyledButton)`
