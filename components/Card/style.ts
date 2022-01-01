@@ -7,6 +7,7 @@ export const StyledCard = styled.div`
   border-radius: ${(props) => props.radius || "30px"};
   padding: ${(props) => props.padding || "0"};
   width: ${(props) => props.width || "100%"};
+  height: ${(props) => props.height};
 `;
 
 export const StyledCardCampus = styled(StyledCard)`
@@ -67,7 +68,17 @@ export const StyledSelect = styled.select`
       outline: none;
       border: 1px solid #096A09;
       transition: color 0.2s;
-    }
+  }
+`;
+
+export const StyledMail = styled.a`
+  font-size: 1.1em;
+  font-family: "Poppins";
+  
+  &:hover{
+        color: ${(props) => props.color};
+        transition: color 0.2s;
+  }
 `;
 
 export const StyledCheckbox = styled.input`
@@ -92,7 +103,6 @@ export const StyledHelpSection = styled.div`
   text-align: center;
   font-size: 1.1em;
   width: 100%;
-  padding: 10px 0;
 `;
 
 export const WhiteText = styled.div`
@@ -126,9 +136,10 @@ export const Spacer = styled.div`
 
 export const StyledCotisaion = styled.div`
   background: #D1D5D2;
-  border-radius: 20px;
+  border-radius: 30px;
   line-height: 40px;
-  margin-right: 10px;
+  margin-right: 15px;
+  padding: 5px;
   width: 170px;
   display: flex;
   align-items: center;
@@ -137,4 +148,25 @@ export const StyledCotisaion = styled.div`
 
 export const StyledMenu = styled(StyledCard)`
   height: 100%;
-`
+  width: 85px;
+`;
+
+export const StyledBackIcon = styled.a`
+  display: flex;
+  justify-content: center;
+
+  height: 60px;
+  width: 60px;
+
+  &:hover{
+    background: linear-gradient(134.54deg, #67BC45 5.67%, #096A09 94.96%);
+    border-radius: 15px;
+    transition: color 0.2s;
+  }
+`;
+
+export const StyledIcon = styled.img`
+  ${StyledBackIcon}:hover & {
+    display: none;
+  }
+`;
