@@ -28,7 +28,7 @@ export default function Homepage() {
       <Head>
         <title>Connexion &bull; AMNet</title>
       </Head>
-      <CampusBackground  style={{justifyContent:"space-between"}}>
+      <CampusBackground  style={{justifyContent:"space-between", paddingTop: "30px"}}>
           <Row style={{flex: "10", justifyContent:"center", alignItems:"center"}}>
             <StyledCardCampus width="30%" height="auto" padding="20px">
                 <Row style={{justifyContent:"center"}}>
@@ -63,7 +63,7 @@ export default function Homepage() {
                     <a href="./registration"> Pas encore inscrit ? Inscrivez-vous en cliquant ici</a>
                   </div>
                   <Row style={{justifyContent:"center"}}>
-                    <GreenButton>Conexion</GreenButton>
+                    <GreenButton>Connexion</GreenButton>
                   </Row>
                 </form>
             </StyledCardCampus>
