@@ -102,7 +102,7 @@ export default function Homepage() {
                     <StyledSelect name="user_proms_select" id="user_proms_select">
                       <option value="219">219</option>
                       <option value="220">220</option>
-                      <option value="221" selected>220+1</option>
+                      <option value="2021" selected>2021</option>
                       <option value="autre">Autre</option>
                     </StyledSelect>
                   </Col6>
