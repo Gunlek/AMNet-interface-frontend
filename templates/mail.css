@@ -1,0 +1,102 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap');
+            
+* {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+}
+
+
+h1{
+    font-style: normal;
+    font-size: 2.5rem;
+    padding: 0;
+    margin: 0;
+}
+
+main {
+    padding: 0;
+    margin: 0;
+    background-color: #E5E5E5;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.lock{
+    position: absolute;
+    top: 0px; 
+    left: 10%;
+    transform: translateY(-50%);
+}
+
+.card {
+    margin-top: 50px;
+    padding: 40px 5% 32px;
+    position: relative;
+    text-align: center;
+    width: 80%;
+    background: rgba(255, 255, 255, 0.6);
+    box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.06);
+    border-radius: 30px;
+}
+
+.btn{
+    display: block;
+    border: transparent;
+    color: white;
+    width: 330px;
+    line-height:60px;
+    height: 60px;
+    background: linear-gradient(91.71deg, #67BC45 7.99%, #096A09 94.71%);
+    border-radius: 90px;
+    margin: 2rem auto;
+    text-decoration: none;
+}
+
+.btn:hover {
+    color: #e4e4e4;
+    transition: color 0.2s,
+    
+}
+
+
+.help-section{
+    padding-top: 2rem;
+    color: #096A09;
+}
+
+.username{
+    font-size: 2rem;
+    color: #096A09;
+    font-style: italic;
+    font-weight: 600; 
+}
+
+#contact{
+    text-decoration: none;
+    color: #096A09; 
+}
+
+#contact:hover{
+    text-decoration: none;
+    color: #67BC45;
+    transition: color 0.2s,
+}
+
+.logo{
+    padding-top: 2rem;
+}
+
+@media screen and (max-width: 800px){
+    h1{
+        font-size: 2rem;
+        line-height: 125%;
+        
+    }
+}
+
+
+
+
