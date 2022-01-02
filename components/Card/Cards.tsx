@@ -11,16 +11,21 @@ import {
   StyledMenu, 
   StyledMail,
   StyledBackIcon,
-  StyledIcon
 } from "./style";
 import {
   Col4,
   Column,
   Row
 } from "../Container/style";
-import "inline-svg";
-import CloseSVG from "/static/icons/faq.svg";
-
+import {GreenButton} from "../../components/Button/Buttons";
+import {SVGHome} from "../SVG/home";
+import {SVGProfil} from "../SVG/profil";
+import {SVGFaq} from "../SVG/faq";
+import {SVGIoT} from "../SVG/network";
+import {SVGMaterial} from "../SVG/material";
+import {SVGGadzflix} from "../SVG/gadzflix";
+import {SVGSettings} from "../SVG/settings";
+import {SVGUsers} from "../SVG/users";
 
 export function HelpSection(props: { color?: string }) {
   return (
@@ -32,11 +37,11 @@ export function HelpSection(props: { color?: string }) {
 }
 
 export function RectangleLogo(props: { color?: string }) {
-  if (props.color == "blanc") {
+  if (props.color == 'blanc') {
     return (
         <img
           style={{ height: "100px", aspectRatio: "19 / 9" }}
-          src="/static/logo/logoamnet2021blanc.svg"
+          src="/static/logo/white_logo.svg"
           alt="Logo AMNet"
         />
     );
@@ -44,7 +49,7 @@ export function RectangleLogo(props: { color?: string }) {
     return (
       <img
         style={{  height: "100px", aspectRatio: "19 / 9" }}
-        src="/static/logo/logoamnet2021.svg"
+        src="/static/logo/logo.svg"
         alt="Logo AMNet"
       />
     );
@@ -156,73 +161,72 @@ export function ContributionStatus(props: {status: string}){
   else(props.status == 'unpaid')
   {
     return(
-      <StyledCotisaion>
-        <BlackText style={{paddingRight: "10px"}}>Cotisation :</BlackText>
-        <img height={"20px"} src="/static/icons/fail.svg"/> 
-      </StyledCotisaion>
+      <div style={{display:"flex"}}>
+        <StyledCotisaion style={{marginRight: "15px"}}>
+          <BlackText style={{paddingRight: "10px"}}>Cotisation :</BlackText>
+          <img style={{height: "20px"}} src="/static/icons/fail.svg"/> 
+        </StyledCotisaion>
+        <GreenButton width="150px" height="50px">La payer</GreenButton>
+      </div>
+      
     );
   }
 }
 
 export function Menu(props: {page?: string}){
-  const positionning = {flex: "1", margin: "5px 0", justifyContent:"center", alignItems: "center"};
-  const sizeIcon = {width: "60%"};
-
+  const positionning = {
+    flex: "1", 
+    margin: "5px 0", 
+    justifyContent:"center", 
+    alignItems: "center"
+  };
   return(
     <StyledMenu>
-      <Column style={{height: "100%", padding:"20px 0", alignItems: "center"}}>
+      <Column 
+        style={{
+          height: "100%", 
+          padding:"20px 0", 
+          alignItems: "center"
+        }}
+      >
         <Row 
           style={{
-            flex: "2", 
+            flex: "3", 
             alignItems: "start", 
             justifyContent:"center", 
             margin: "5px 0"}}
         >
           <a href="./homepage" style={{display: "flex", justifyContent:"center"}}>
-            <img style={{width:"100%"}} src="/static/logo/logo.svg " />
+            <img style={{width:"90%"}} src="/static/logo/small_logo.svg" />
           </a>
         </Row>
         
         <Row style={positionning}>
-          <StyledBackIcon>
-            <CloseSVG />
-          </StyledBackIcon>
+           <SVGHome page={props.page}/>
         </Row>
         
         <Row style={positionning}>
-          <StyledBackIcon>
-            <StyledIcon style={sizeIcon} src="/static/icons/user.svg" />
-          </StyledBackIcon>
+            <SVGProfil page={props.page}/>
         </Row>
         
         <Row style={positionning}>
-          <StyledBackIcon>
-            <StyledIcon style={sizeIcon} src="/static/icons/faq.svg" />
-          </StyledBackIcon>
+            <SVGFaq page={props.page}/>
         </Row>
         
         <Row style={positionning}>
-          <StyledBackIcon>
-            <StyledIcon style={sizeIcon} src="/static/icons/network.svg" />
-          </StyledBackIcon>
+            <SVGIoT page={props.page}/>
         </Row>
         
         <Row style={positionning}>
-          <StyledBackIcon>
-            <StyledIcon style={sizeIcon} src="/static/icons/material.svg" />
-          </StyledBackIcon>
+            <SVGMaterial page={props.page}/>
         </Row>
         
         <Row style={positionning}>
-          <StyledBackIcon>
-            <StyledIcon style={sizeIcon} src="/static/icons/gadzflix.svg" />
-          </StyledBackIcon>
+            <SVGGadzflix/>
         </Row>
         
         <Row style={positionning}>
-          <StyledBackIcon>
-            <StyledIcon style={sizeIcon} src="/static/icons/setting.svg" />
-          </StyledBackIcon>
+            <SVGSettings page={props.page}/>        
         </Row>
 
         <Row 
@@ -234,7 +238,76 @@ export function Menu(props: {page?: string}){
             width:"60px"
           }}
         >
-          <img style={sizeIcon} src="/static/icons/log_out.svg" />
+          <img style={{height: "60%", aspectRatio: "1/1"}} src="/static/icons/log_out.svg" />
+        </Row>
+      </Column>
+    </StyledMenu>
+  )
+}
+
+export function AdminMenu(props: {page?: string}){
+  const positionning = {
+    flex: "1", 
+    margin: "5px 0", 
+    justifyContent:"center", 
+    alignItems: "center"
+  };
+  return(
+    <StyledMenu>
+      <Column 
+        style={{
+          height: "100%", 
+          padding:"20px 0", 
+          alignItems: "center"
+        }}
+      >
+        <Row 
+          style={{
+            flex: "3", 
+            alignItems: "start", 
+            justifyContent:"center", 
+            margin: "5px 0"}}
+        >
+          <a href="./homepage" style={{display: "flex", justifyContent:"center"}}>
+            <img style={{width:"90%"}} src="/static/logo/small_logo.svg" />
+          </a>
+        </Row>
+        
+        <Row style={positionning}>
+            <SVGSettings page={props.page}/>        
+        </Row>
+        
+        <Row style={positionning}>
+            <SVGUsers page={props.page}/>
+        </Row>
+        
+        <Row style={positionning}>
+            <SVGIoT page={props.page}/>
+        </Row>
+        
+        <Row style={positionning}>
+            <SVGMaterial page={props.page}/>
+        </Row>
+
+        <Row style={positionning}>
+            <SVGMaterial page={props.page}/>
+        </Row>
+
+        <Row style={positionning}>
+           <SVGHome page={props.page}/>
+        </Row>
+        
+        <Row 
+          style={{
+            flex: "3", 
+            alignItems: "end", 
+            justifyContent:"center", 
+            margin: "5px 0", 
+            width:"60px",
+            marginTop:"42px"
+          }}
+        >
+          <img style={{height: "40%", aspectRatio: "1/1"}} src="/static/icons/log_out.svg" />
         </Row>
       </Column>
     </StyledMenu>

@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { Column } from "../Container/style";
 
+
 export const StyledCard = styled.div`
   background: rgba(255, 255, 255, 0.6);
   box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.06);
@@ -138,7 +139,6 @@ export const StyledCotisaion = styled.div`
   background: #D1D5D2;
   border-radius: 30px;
   line-height: 40px;
-  margin-right: 15px;
   padding: 5px;
   width: 170px;
   display: flex;
@@ -154,6 +154,7 @@ export const StyledMenu = styled(StyledCard)`
 export const StyledBackIcon = styled.a`
   display: flex;
   justify-content: center;
+  align-items: center;
 
   height: 60px;
   width: 60px;
@@ -165,8 +166,11 @@ export const StyledBackIcon = styled.a`
   }
 `;
 
-export const StyledIcon = styled.img`
+export const StyledIcon = styled.svg`
+  fill: #000; 
+  fill-opacity: 0.2;
   ${StyledBackIcon}:hover & {
-    display: none;
+    fill: white;
+    fill-opacity: 1;
   }
 `;
