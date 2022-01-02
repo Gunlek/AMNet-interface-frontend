@@ -1,23 +1,23 @@
 import React from "react";
 import Head from "next/head";
-import { DefaultBackground } from "../components/Background/style";
-import {GreenButton} from "../components/Button/Buttons";
+import { DefaultBackground } from "../../components/Background/style";
+import {GreenButton} from "../../components/Button/Buttons";
 import { 
   Row, 
   Col6, 
   Column
-} from "../components/Container/style";
+} from "../../components/Container/style";
 import { 
   HelpSection, 
   TitleCard, 
   ContributionStatus,
   Menu
-} from "../components/Card/Cards"
+} from "../../components/Card/Cards"
 import { 
   BlackText, 
   BlackTitle, 
   StyledCard 
-} from "../components/Card/style";
+} from "../../components/Card/style";
 
 
 export default function Dashboard() {
@@ -26,7 +26,7 @@ export default function Dashboard() {
       <Head>
         <title>Mon Espace &bull; AMNet</title>
       </Head>
-      <DefaultBackground style={{padding: "2%"}}>
+      <DefaultBackground style={{padding: "1% 2%"}}>
         <div style={{width:"85px"}}>
           <Menu page="home" />
         </div>
@@ -47,7 +47,6 @@ export default function Dashboard() {
             
             <Col6 style={{flexDirection:"row", alignItems: "center", justifyContent: "end"}}>
               <ContributionStatus status="unpaid"/>
-              <GreenButton width="150px" height="50px">La payer</GreenButton>
             </Col6>
           </Row>
 
@@ -86,7 +85,9 @@ export default function Dashboard() {
                       alignItems:"end"
                     }}
                   >
-                    <GreenButton>Accéder</GreenButton>
+                    <a href="./iot">
+                      <GreenButton>Accéder</GreenButton>
+                    </a>
                   </Row>
                 </Column>
               </StyledCard>
@@ -109,7 +110,9 @@ export default function Dashboard() {
                       alignItems:"end"
                     }}
                   >
-                    <GreenButton>Accéder</GreenButton>
+                    <a href="./faq">
+                      <GreenButton>Accéder</GreenButton>
+                    </a>
                   </Row>
                 </Column>
               </StyledCard>
