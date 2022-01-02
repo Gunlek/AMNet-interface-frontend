@@ -1,6 +1,5 @@
 import styled from "styled-components";
-import { Column } from "../Container/style";
-
+import { Column, Row } from "../Container/style";
 
 export const StyledCard = styled.div`
   background: rgba(255, 255, 255, 0.6);
@@ -174,3 +173,10 @@ export const StyledIcon = styled.svg`
     fill-opacity: 1;
   }
 `;
+
+export const StyledLogOut = styled.svg`
+  ${Row}:hover & {
+    fill: #67BC45;
+  }
+`;
+

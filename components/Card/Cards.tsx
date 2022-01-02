@@ -26,6 +26,7 @@ import {SVGMaterial} from "../SVG/material";
 import {SVGGadzflix} from "../SVG/gadzflix";
 import {SVGSettings} from "../SVG/settings";
 import {SVGUsers} from "../SVG/users";
+import {SVGLogOut} from "../SVG/log_out"
 
 export function HelpSection(props: { color?: string }) {
   return (
@@ -234,11 +235,11 @@ export function Menu(props: {page?: string}){
             flex: "2", 
             alignItems: "end", 
             justifyContent:"center", 
-            margin: "5px 0", 
+            marginTop: "10px", 
             width:"60px"
           }}
         >
-          <img style={{height: "60%", aspectRatio: "1/1"}} src="/static/icons/log_out.svg" />
+          <SVGLogOut />
         </Row>
       </Column>
     </StyledMenu>
@@ -302,12 +303,11 @@ export function AdminMenu(props: {page?: string}){
             flex: "3", 
             alignItems: "end", 
             justifyContent:"center", 
-            margin: "5px 0", 
             width:"60px",
-            marginTop:"42px"
+            marginTop:"47px"
           }}
         >
-          <img style={{height: "40%", aspectRatio: "1/1"}} src="/static/icons/log_out.svg" />
+          <SVGLogOut />
         </Row>
       </Column>
     </StyledMenu>
