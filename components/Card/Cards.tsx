@@ -167,7 +167,7 @@ export function ContributionStatus(props: {status: string}){
           <BlackText style={{paddingRight: "10px"}}>Cotisation :</BlackText>
           <img style={{height: "20px"}} src="/static/icons/fail.svg"/> 
         </StyledCotisaion>
-        <GreenButton width="150px" height="50px">La payer</GreenButton>
+        <GreenButton width="175px" height="50px">La payer</GreenButton>
       </div>
       
     );
@@ -182,20 +182,23 @@ export function Menu(props: {page?: string}){
     alignItems: "center"
   };
   return(
-    <StyledMenu>
+    <StyledMenu style={{}}>
       <Column 
         style={{
           height: "100%", 
-          padding:"20px 0", 
-          alignItems: "center"
+          paddingTop:"20px",
+          paddingBottom:"10px", 
+          alignItems: "center",
         }}
       >
         <Row 
           style={{
-            flex: "3", 
+            flex: "1", 
             alignItems: "start", 
             justifyContent:"center", 
-            margin: "5px 0"}}
+            marginTop: "5px", 
+            marginBottom: "20px",
+          }}
         >
           <a href="./homepage" style={{display: "flex", justifyContent:"center"}}>
             <img style={{width:"90%"}} src="/static/logo/small_logo.svg" />
@@ -258,16 +261,18 @@ export function AdminMenu(props: {page?: string}){
       <Column 
         style={{
           height: "100%", 
-          padding:"20px 0", 
+          paddingTop:"20px",
+          paddingBottom:"10px", 
           alignItems: "center"
         }}
       >
         <Row 
           style={{
-            flex: "3", 
+            flex: "1", 
             alignItems: "start", 
             justifyContent:"center", 
-            margin: "5px 0"}}
+            marginTop: "5px", 
+            marginBottom: "20px"}}
         >
           <a href="./homepage" style={{display: "flex", justifyContent:"center"}}>
             <img style={{width:"90%"}} src="/static/logo/small_logo.svg" />
@@ -304,7 +309,7 @@ export function AdminMenu(props: {page?: string}){
             alignItems: "end", 
             justifyContent:"center", 
             width:"60px",
-            marginTop:"47px"
+            paddingTop: "20px"
           }}
         >
           <SVGLogOut />
