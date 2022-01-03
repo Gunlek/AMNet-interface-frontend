@@ -16,9 +16,9 @@ export const StyledGreenButton = styled(StyledButton)`
   background: linear-gradient(91.71deg, #67bc45 7.99%, #096a09 94.71%);
 
   &:hover{
-    transition: color 0.4s;
+    transition: color 0.2s;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
-    background: #67bc45;
+    background: #096a09;
     cursor: pointer;
   }
 `;
