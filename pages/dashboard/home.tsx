@@ -82,7 +82,8 @@ export default function Dashboard() {
                     style={{
                       height:"100%", 
                       justifyContent:"center", 
-                      alignItems:"end"
+                      alignItems:"end",
+                      marginTop: "20px"
                     }}
                   >
                     <a href="./iot">
@@ -107,7 +108,8 @@ export default function Dashboard() {
                     style={
                       {height:"100%", 
                       justifyContent:"center", 
-                      alignItems:"end"
+                      alignItems:"end",
+                      marginTop: "20px"
                     }}
                   >
                     <a href="./faq">
