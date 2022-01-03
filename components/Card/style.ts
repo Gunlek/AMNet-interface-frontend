@@ -166,17 +166,29 @@ export const StyledBackIcon = styled.a`
 `;
 
 export const StyledIcon = styled.svg`
-  fill: #000; 
+  fill: black; 
   fill-opacity: 0.2;
+
   ${StyledBackIcon}:hover & {
     fill: white;
     fill-opacity: 1;
+    transition: color 0.2s;
   }
 `;
 
+export const StyledBackLogOut = styled.a`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  height: 60px;
+  width: 60px;
+`;
+
 export const StyledLogOut = styled.svg`
-  ${Row}:hover & {
-    fill: #67BC45;
+  ${StyledBackLogOut}:hover & {
+    fill: #096a09;
+    transition: color 0.2s;
   }
 `;
 
