@@ -1,4 +1,4 @@
-import { StyledIcon, StyledBackIcon } from "../Card/style";
+import { StyledBackIcon, StyledIcon } from "./style"
 
 export  function  SVGMaterial(props: {page: string}){
     if(props.page == 'material')

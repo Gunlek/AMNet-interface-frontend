@@ -1,4 +1,4 @@
-import { StyledIcon, StyledBackIcon } from "../Card/style";
+import { StyledBackIcon, StyledIcon } from "./style"
 
 export  function  SVGSettings(props: {page: string}){
     if(props.page == 'settings')

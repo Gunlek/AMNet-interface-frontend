@@ -34,6 +34,11 @@ export const Col8 = styled(Col)`
   max-width: 66.66%;
 `;
 
+export const Col7 = styled(Col)`
+  flex: 7;
+  max-width: 58.33%;
+`;
+
 export const Col6 = styled(Col)`
   flex: 6;
   max-width: 50%;
@@ -57,4 +62,13 @@ export const Col2 = styled(Col)`
 export const Col1 = styled(Col)`
   flex: 1;
   max-width: 8.33%;
+`;
+
+export const StyledDashboard = styled.div`
+  padding-left: 2%; 
+  width: 100%; 
+  justify-content: space-beween; 
+  display: flex;
+  flex-direction: column;
+  margin-left: 85px;
 `;

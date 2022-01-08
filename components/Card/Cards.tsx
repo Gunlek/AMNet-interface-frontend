@@ -3,36 +3,21 @@ import {
   StyledTeamPicture,
   StyledGreenCard,
   StyledCard,
-  GreenText,
-  BlackText,
   StyledHelpSection,
-  GreenLine,
-  StyledCotisaion,
-  StyledMenu, 
-  StyledMail,
-  StyledBackIcon,
+  GreenLine
 } from "./style";
 import {
   Col4,
   Column,
   Row
 } from "../Container/style";
-import {GreenButton} from "../../components/Button/Buttons";
-import {SVGHome} from "../SVG/home";
-import {SVGProfil} from "../SVG/profil";
-import {SVGFaq} from "../SVG/faq";
-import {SVGIoT} from "../SVG/network";
-import {SVGMaterial} from "../SVG/material";
-import {SVGGadzflix} from "../SVG/gadzflix";
-import {SVGSettings} from "../SVG/settings";
-import {SVGUsers} from "../SVG/users";
-import {SVGLogOut} from "../SVG/log_out"
+import { GreenText, BlackText, StyledLink } from "../Text/style";
 
 export function HelpSection(props: { color?: string }) {
   return (
     <StyledHelpSection color={props.color}>
       Besoin d'assistance ?{" "}
-      <StyledMail color="#67bc45" href="mailto:contact@amnet.fr">contact@amnet.fr</StyledMail> !
+      <StyledLink hovercolor="#67bc45" href="mailto:contact@amnet.fr">contact@amnet.fr</StyledLink> !
     </StyledHelpSection>
   );
 }
@@ -40,19 +25,23 @@ export function HelpSection(props: { color?: string }) {
 export function RectangleLogo(props: { color?: string }) {
   if (props.color == 'blanc') {
     return (
+      <a target="_blank" href="https://www.google.com/search?q=the+answer+to+life%2C+the+universe+and+everything&sxsrf=AOaemvKRvpra0jq__iVMCWg_q7g361ifag%3A1641475979658&ei=i-_WYcjSJ82PlwTJ4o3IAw&ved=0ahUKEwiIxLLFnp31AhXNx4UKHUlxAzkQ4dUDCA4&uact=5&oq=the+answer+to+life%2C+the+universe+and+everything&gs_lcp=Cgdnd3Mtd2l6EAMyBAgAEEMyBggAEAcQHjIGCAAQBxAeMgYIABAHEB4yBggAEAcQHjIGCAAQBxAeMgYIABAHEB4yBggAEAcQHjIGCAAQBxAeMgYIABAHEB46BQgAEMsBSgQIQRgASgQIRhgAUABY5xhgkCNoAHACeACAAXKIAZUCkgEDMy4xmAEAoAECoAEBwAEB&sclient=gws-wiz" style={{ height: "100px", cursor: "auto" }}>
         <img
           style={{ height: "100px", aspectRatio: "19 / 9" }}
           src="/static/logo/white_logo.svg"
           alt="Logo AMNet"
         />
+      </a>
     );
   } else {
     return (
-      <img
+      <a href="../homepage" style={{ height: "100px" }}>
+        <img
         style={{  height: "100px", aspectRatio: "19 / 9" }}
         src="/static/logo/logo.svg"
         alt="Logo AMNet"
       />
+      </a>
     );
   }
 }
@@ -75,7 +64,7 @@ export function TitleCard(props: { children: string }){
       <div 
         style=
         {{
-          overflow:"hidden", 
+          flex: "1",
           width:"auto",
           display: "flex",
           alignItems: "center",
@@ -98,7 +87,7 @@ export function GreenCard(props: { year: string }) {
   );
 }
 
-export function TeamPicture(props: { names?: string; nums?: string }) {
+export function TeamPicture(props: { names: string; nums: string }) {
   var separator = /\s*(;|$)\s*/;
   var names = props.names.split(separator);
   var nums = props.nums.split(separator);
@@ -109,7 +98,7 @@ export function TeamPicture(props: { names?: string; nums?: string }) {
       style=
       {{ 
         aspectRatio: "16/8", 
-        maxHeight: "50vh", 
+        maxHeight: "45vh", 
         justifyContent:"end"
       }}
     >
@@ -122,199 +111,34 @@ export function TeamPicture(props: { names?: string; nums?: string }) {
         }}
       >
       <GreenCard year="221"/>
-      <StyledCard width="100%" radius="30px" height="90px" padding="10px 0" style={{display: "flex", alignItems:"center"}}>
-        <Row>
-          <Col4>
-            <Column style={{ alignItems: "center" }}>
-              <BlackText>Trobotyk'ss (ML)°</BlackText>
-              <GreenText>47Li220</GreenText>
-            </Column>
-          </Col4>
-          <Col4>
-            <Column style={{ alignItems: "center" }}>
-              <BlackText>Sdoosh</BlackText>
-              <GreenText>96Li220</GreenText>
-            </Column>
-          </Col4>
-          <Col4>
-            <Column style={{ alignItems: "center" }}>
-              <BlackText>Nem'O</BlackText>
-              <GreenText>74Li220</GreenText>
-            </Column>
-          </Col4>
-        </Row>
+      <StyledCard 
+        radius="30px" 
+        height="90px" 
+        style={{
+          alignItems:"center", 
+          flexDirection: "row"
+        }}
+      >
+        <Col4>
+          <Column style={{ alignItems: "center" }}>
+            <BlackText>Trobotyk'ss (ML)°</BlackText>
+            <GreenText>47Li220</GreenText>
+          </Column>
+        </Col4>
+        <Col4>
+          <Column style={{ alignItems: "center" }}>
+            <BlackText>Sdoosh</BlackText>
+            <GreenText>96Li220</GreenText>
+          </Column>
+        </Col4>
+        <Col4>
+          <Column style={{ alignItems: "center" }}>
+            <BlackText>Nem'O</BlackText>
+            <GreenText>74Li220</GreenText>
+          </Column>
+        </Col4>
       </StyledCard>
       </Column>
     </StyledTeamPicture>
   );
-}
-
-export function ContributionStatus(props: {status: string}){
-  if(props.status == 'paid')
-  {
-    return(
-      <StyledCotisaion>
-        <BlackText style={{paddingRight: "10px"}}>Cotisation :</BlackText>
-        <img style={{height: "20px"}} src="/static/icons/succes.svg"/> 
-      </StyledCotisaion>
-    );
-  }
-  else(props.status == 'unpaid')
-  {
-    return(
-      <div style={{display:"flex"}}>
-        <StyledCotisaion style={{marginRight: "15px"}}>
-          <BlackText style={{paddingRight: "10px"}}>Cotisation :</BlackText>
-          <img style={{height: "20px"}} src="/static/icons/fail.svg"/> 
-        </StyledCotisaion>
-        <GreenButton width="175px" height="50px">La payer</GreenButton>
-      </div>
-      
-    );
-  }
-}
-
-export function Menu(props: {page?: string}){
-  const positionning = {
-    flex: "1", 
-    margin: "5px 0", 
-    justifyContent:"center", 
-    alignItems: "center"
-  };
-  return(
-    <StyledMenu style={{}}>
-      <Column 
-        style={{
-          height: "100%", 
-          paddingTop:"20px",
-          paddingBottom:"10px", 
-          alignItems: "center",
-        }}
-      >
-        <Row 
-          style={{
-            flex: "1", 
-            alignItems: "start", 
-            justifyContent:"center", 
-            marginTop: "5px", 
-            marginBottom: "20px",
-          }}
-        >
-          <a href="./homepage" style={{display: "flex", justifyContent:"center"}}>
-            <img style={{width:"90%"}} src="/static/logo/small_logo.svg" />
-          </a>
-        </Row>
-        
-        <Row style={positionning}>
-           <SVGHome page={props.page}/>
-        </Row>
-        
-        <Row style={positionning}>
-            <SVGProfil page={props.page}/>
-        </Row>
-        
-        <Row style={positionning}>
-            <SVGFaq page={props.page}/>
-        </Row>
-        
-        <Row style={positionning}>
-            <SVGIoT page={props.page}/>
-        </Row>
-        
-        <Row style={positionning}>
-            <SVGMaterial page={props.page}/>
-        </Row>
-        
-        <Row style={positionning}>
-            <SVGGadzflix/>
-        </Row>
-        
-        <Row style={positionning}>
-            <SVGSettings page={props.page}/>        
-        </Row>
-
-        <Row 
-          style={{
-            flex: "2", 
-            alignItems: "end", 
-            justifyContent:"center", 
-            marginTop: "10px", 
-            width:"60px"
-          }}
-        >
-          <SVGLogOut />
-        </Row>
-      </Column>
-    </StyledMenu>
-  )
-}
-
-export function AdminMenu(props: {page?: string}){
-  const positionning = {
-    flex: "1", 
-    margin: "5px 0", 
-    justifyContent:"center", 
-    alignItems: "center"
-  };
-  return(
-    <StyledMenu>
-      <Column 
-        style={{
-          height: "100%", 
-          paddingTop:"20px",
-          paddingBottom:"10px", 
-          alignItems: "center"
-        }}
-      >
-        <Row 
-          style={{
-            flex: "1", 
-            alignItems: "start", 
-            justifyContent:"center", 
-            marginTop: "5px", 
-            marginBottom: "20px"}}
-        >
-          <a href="./homepage" style={{display: "flex", justifyContent:"center"}}>
-            <img style={{width:"90%"}} src="/static/logo/small_logo.svg" />
-          </a>
-        </Row>
-        
-        <Row style={positionning}>
-            <SVGSettings page={props.page}/>        
-        </Row>
-        
-        <Row style={positionning}>
-            <SVGUsers page={props.page}/>
-        </Row>
-        
-        <Row style={positionning}>
-            <SVGIoT page={props.page}/>
-        </Row>
-        
-        <Row style={positionning}>
-            <SVGMaterial page={props.page}/>
-        </Row>
-
-        <Row style={positionning}>
-            <SVGMaterial page={props.page}/>
-        </Row>
-
-        <Row style={positionning}>
-           <SVGHome page={props.page}/>
-        </Row>
-        
-        <Row 
-          style={{
-            flex: "3", 
-            alignItems: "end", 
-            justifyContent:"center", 
-            width:"60px",
-            paddingTop: "20px"
-          }}
-        >
-          <SVGLogOut />
-        </Row>
-      </Column>
-    </StyledMenu>
-  )
 }

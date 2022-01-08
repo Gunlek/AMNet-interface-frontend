@@ -1,4 +1,4 @@
-import { StyledLogOut, StyledBackLogOut } from "../Card/style";
+import { StyledBackLogOut, StyledLogOut } from "./style";
 
 export  const  SVGLogOut = () => ( 
     <StyledBackLogOut>   
@@ -9,7 +9,7 @@ export  const  SVGLogOut = () => (
 
             <defs>
                 <linearGradient id="mygradient" x1="13.333" y1="0" x2="13.333" y2="40" gradientUnits="userSpaceOnUse">
-                    <stop stop-color="#67BC45"/><stop offset="1" stop-color="#096A09"/>
+                    <stop stopColor="#67BC45"/><stop offset="1" stopColor="#096A09"/>
                 </linearGradient>
             </defs>
         </StyledLogOut>
