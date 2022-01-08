@@ -7,7 +7,7 @@ import {
   Col6,
   Col3,
   Column,
-  StyledDashboard
+  DashboardContainer
 } from "../../components/Container/style";
 import { HelpSection } from "../../components/Card/Cards"
 import { StyledInput, StyledSelect } from "../../components/Input/style";
@@ -29,7 +29,7 @@ export default function Dashboard() {
       <DefaultBackground>
         <Menu page="profil" />
 
-        <StyledDashboard>
+        <DashboardContainer>
           <Row style={{ margin:"1% 0"}}>
             <Column style={{justifyContent: "center"}}>
               <BlackTitle>Editer mon profil</BlackTitle>
@@ -135,7 +135,7 @@ export default function Dashboard() {
           <Row>
             <HelpSection color="#096A09"/>
           </Row>   
-        </StyledDashboard>
+        </DashboardContainer>
       </DefaultBackground>
     </>
   );

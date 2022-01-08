@@ -3,7 +3,7 @@ import Head from "next/head";
 import { DefaultBackground } from "../../components/Background/style";
 import { 
   Row, 
-  StyledDashboard
+  DashboardContainer
 } from "../../components/Container/style";
 import { HelpSection } from "../../components/Card/Cards"
 import { StyledCard } from "../../components/Card/style";
@@ -15,12 +15,12 @@ export default function Dashboard() {
   return (
     <>
       <Head>
-        <title>Mon Espace &bull; AMNet</title>
+        <title>FAQ &bull; AMNet</title>
       </Head>
       <DefaultBackground>
         <Menu page="faq" />
 
-        <StyledDashboard>
+        <DashboardContainer>
           <Row style={{flex: "1", margin:"1% 0"}}>
               <BlackTitle>FAQ</BlackTitle>
           </Row>
@@ -36,7 +36,7 @@ export default function Dashboard() {
           <Row>
             <HelpSection color="#096A09"/>
           </Row>   
-        </StyledDashboard>
+        </DashboardContainer>
       </DefaultBackground>
     </>
   );

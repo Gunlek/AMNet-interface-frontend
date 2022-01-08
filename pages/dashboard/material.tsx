@@ -5,7 +5,7 @@ import {GreenButton, SmallRedButton} from "../../components/Button/Buttons";
 import { 
   Row, 
   Column,
-  StyledDashboard
+  DashboardContainer
 } from "../../components/Container/style";
 import { HelpSection } from "../../components/Card/Cards"
 import { StyledCard } from "../../components/Card/style";
@@ -23,7 +23,7 @@ export default function Dashboard() {
       <DefaultBackground>
         <Menu page="material" />
 
-        <StyledDashboard>
+        <DashboardContainer>
           <Row style={{margin:"1% 0"}}>
             <Column style={{justifyContent: "center"}}>
               <BlackTitle>Mes demandes de matériel</BlackTitle>
@@ -72,7 +72,7 @@ export default function Dashboard() {
           <Row>
             <HelpSection color="#096A09"/>
           </Row>   
-        </StyledDashboard>
+        </DashboardContainer>
       </DefaultBackground>
     </>
   );

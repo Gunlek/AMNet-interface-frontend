@@ -64,7 +64,7 @@ export const Col1 = styled(Col)`
   max-width: 8.33%;
 `;
 
-export const StyledDashboard = styled.div`
+export const DashboardContainer = styled.div`
   padding-left: 2%; 
   width: 100%; 
   justify-content: space-beween; 

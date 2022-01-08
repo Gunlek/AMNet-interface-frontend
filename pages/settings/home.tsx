@@ -6,7 +6,7 @@ import {
   Row, 
   Col6, 
   Column,
-  StyledDashboard
+  DashboardContainer
 } from "../../components/Container/style";
 import { 
   TitleCard,
@@ -29,7 +29,7 @@ export default function Dashboard() {
       <DefaultBackground>
         <AdminMenu page="settings" />
 
-        <StyledDashboard>
+        <DashboardContainer>
           <Row style={{margin:"1% 0"}}>
               <BlackTitle>Espace d'administration</BlackTitle>
           </Row>
@@ -116,7 +116,7 @@ export default function Dashboard() {
               </StyledCard>
             </Col6>
           </Row>
-        </StyledDashboard>
+        </DashboardContainer>
       </DefaultBackground>
     </>
   );
