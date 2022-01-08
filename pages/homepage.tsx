@@ -1,27 +1,22 @@
 import React from "react";
 import Head from "next/head";
 import { CampusBackground } from "../components/Background/style";
+import { GreenButton } from "../components/Button/Buttons";
 import {
   HelpSection,
   RectangleLogo,
   TeamPicture,
   TitleCard
 } from "../components/Card/Cards";
-import { GreenButton } from "../components/Button/Buttons";
 import {
   Col10,
   Col2,
   Col6,
   Column,
-  Row,
+  Row
 } from "../components/Container/style";
-
-import {
-  BlackText,
-  StyledCardCampus,
-  WhiteText,
-  Spacer
-} from "../components/Card/style";
+import { StyledCardCampus } from "../components/Card/style";
+import { WhiteText, BlackText } from "../components/Text/style";
 
 export default function Homepage() {
   return (
@@ -29,19 +24,14 @@ export default function Homepage() {
       <Head>
         <title>Accueil &bull; AMNet</title>
       </Head>
-      <CampusBackground
-        style={{
-          padding: "10px 5%",
-          justifyContent: "space-between",
-        }}
-      >
-        <Row style={{paddingBottom:"10px"}}>
+      <CampusBackground style={{ padding: "10px 5%" }}>
+        <Row style={{marginBottom:"10px"}}>
           <Col6 style={{ justifyContent: "center", alignItems: "start" }}>
             <RectangleLogo color="blanc"/>
           </Col6>
           <Col6 style={{ justifyContent: "center", alignItems: "end" }}>
             <a 
-              href="./connexion" 
+              href="./login" 
               style={{
                 width: "300px", 
                 borderRadius: "30px"
@@ -78,7 +68,7 @@ export default function Homepage() {
             />
           </Col6>
         </Row>
-        <StyledCardCampus  padding="20px 0">   
+        <StyledCardCampus>   
           <Row>
             <Col2 style={{ alignItems: "center", justifyContent: "center" }}>
               <img
@@ -104,7 +94,7 @@ export default function Homepage() {
           </Row>
         </StyledCardCampus>
 
-        <Row style={{paddingTop: "10px"}}>
+        <Row style={{marginBottom: "10px"}}>
           <HelpSection/>
         </Row>
       </CampusBackground>
