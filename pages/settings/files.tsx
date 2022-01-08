@@ -13,7 +13,6 @@ import { BlackText, BlackTitle, GreenText, StyledLink } from "../../components/T
 import { GreenButton } from "../../components/Button/Buttons";
 import { TitleCard } from "../../components/Card/Cards";
 import { StyledInput } from "../../components/Input/style";
-import { StateInvite } from "../../components/State/States";
 
 
 export default function Dashboard() {

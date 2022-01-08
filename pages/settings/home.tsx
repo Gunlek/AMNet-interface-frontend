@@ -57,7 +57,7 @@ export default function Dashboard() {
                         <GreenText style={{marginBottom:"5px"}}>Compte Invité</GreenText>
                       </Col6>
                       <Col6 style={{alignItems: "end"}}>
-                        <StateInvite />
+                        <StateInvite state={true} />
                       </Col6>  
                     </Row>
 
