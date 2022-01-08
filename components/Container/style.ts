@@ -44,6 +44,11 @@ export const Col6 = styled(Col)`
   max-width: 50%;
 `;
 
+export const Col5 = styled(Col)`
+  flex: 5;
+  max-width: 41.66%;
+`;
+
 export const Col4 = styled(Col)`
   flex: 4;
   max-width: 33.33%;

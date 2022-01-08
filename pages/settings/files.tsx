@@ -13,6 +13,7 @@ import { BlackText, BlackTitle, GreenText, StyledLink } from "../../components/T
 import { GreenButton } from "../../components/Button/Buttons";
 import { TitleCard } from "../../components/Card/Cards";
 import { StyledInput } from "../../components/Input/style";
+import { TeamEditor } from "../../components/TeamEditor/TeamEditor";
 
 
 export default function Dashboard() {
@@ -72,7 +73,13 @@ export default function Dashboard() {
                   </Row>
               </div>
 
-              <Row style={{marginBottom:"20px"}}>
+              <Row>
+                <Col6>
+                  <TeamEditor />
+                </Col6>
+              </Row>
+
+              {/* <Row style={{marginBottom:"20px"}}>
                 <Col6>
                   <GreenText style={{marginBottom:"5px"}}>Bucques</GreenText>
                   <StyledInput type="text"/>
@@ -94,7 +101,7 @@ export default function Dashboard() {
                     La forme du texte doit être : "<span style={{color: "#096a09", fontWeight: "bold"}}>47Li220;96Li220;74Li220</span>" sans les guillemets mais avec les ; et les num's dans le même ordre que les Bucques
                   </BlackText>
                 </Col6>
-              </Row>
+              </Row> */}
 
               <Row style={{justifyContent: "center"}}>
                 <GreenButton>Mettre à jour</GreenButton>
