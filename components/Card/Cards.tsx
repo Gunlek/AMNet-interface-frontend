@@ -35,7 +35,7 @@ export function RectangleLogo(props: { color?: string }) {
     );
   } else {
     return (
-      <a href="../homepage" style={{ height: "100px" }}>
+      <a href="../" style={{ height: "100px" }}>
         <img
         style={{  height: "100px", aspectRatio: "19 / 9" }}
         src="/static/logo/logo.svg"
@@ -87,12 +87,7 @@ export function GreenCard(props: { year: string }) {
   );
 }
 
-export function TeamPicture(props: { names: string; nums: string }) {
-  var separator = /\s*(;|$)\s*/;
-  var names = props.names.split(separator);
-  var nums = props.nums.split(separator);
-  var size = Math.round(names.length / 2);
-
+export function TeamPicture(props: { }) {
   return (
     <StyledTeamPicture
       style=

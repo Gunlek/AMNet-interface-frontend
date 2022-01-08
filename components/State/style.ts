@@ -33,12 +33,8 @@ export const StyledStateInvite = styled.select`
   border: none;
 
   option {
-      outline: none;
-      border-radius: 16px;
       color: black;
       background: white;
-      box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.06);
-      border: none;
     }
 
   &:focus{

@@ -44,7 +44,7 @@ export function Menu(props: {page?: string}){
                 marginBottom: "10px",
               }}
             >
-              <a href="../homepage" style={{display: "flex", justifyContent:"center"}}>
+              <a href="../" style={{display: "flex", justifyContent:"center"}}>
                 <img style={{width:"90%"}} src="/static/logo/small_logo.svg" />
               </a>
             </Row>
@@ -125,7 +125,7 @@ export function Menu(props: {page?: string}){
                 justifyContent:"center",  
                 marginBottom: "10px"}}
             >
-              <a href="../homepage" style={{display: "flex", justifyContent:"center"}}>
+              <a href="../" style={{display: "flex", justifyContent:"center"}}>
                 <img style={{width:"90%"}} src="/static/logo/small_logo.svg" />
               </a>
             </Row>

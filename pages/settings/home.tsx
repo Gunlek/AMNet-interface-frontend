@@ -119,10 +119,12 @@ export default function Dashboard() {
 
                   <div style={{marginTop:"20px"}}>
                     <GreenText style={{marginBottom:"5px"}}>Prom's</GreenText>
-                    <input type="checkbox" /> 219
-                    <input type="checkbox" /> 220
-                    <input type="checkbox" /> 221
-                    <input type="checkbox" /> Autres
+                    <Row>
+                      <input type="checkbox" /> <BlackText style={{marginLeft:"10px", marginRight:"30px"}}>219</BlackText>
+                      <input type="checkbox" /> <BlackText style={{marginLeft:"10px", marginRight:"30px"}}>220</BlackText>
+                      <input type="checkbox" /> <BlackText style={{marginLeft:"10px", marginRight:"30px"}}>221</BlackText>
+                      <input type="checkbox" /> <BlackText style={{marginLeft:"10px"}}>Autres</BlackText>
+                    </Row>
                   </div>
 
                   <div style={{marginTop:"20px"}}>
