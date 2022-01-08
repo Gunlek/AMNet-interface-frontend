@@ -31,6 +31,7 @@ export const StyledStateInvite = styled.select`
   padding-left: 20px;
   color: white;
   border: none;
+  font-family: "Poppins";
 
   option {
       color: black;

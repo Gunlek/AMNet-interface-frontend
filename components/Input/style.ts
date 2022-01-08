@@ -10,6 +10,7 @@ export const StyledInput = styled.input`
   font-size: 1.2em;
   border: none;
   margin: 0;
+  font-family: "Poppins";
 
   &:hover{
     background: rgba(255, 255, 255, 0.8);
