@@ -21,7 +21,8 @@ import {
 import { 
   BlackTitle, 
   GreenText, 
-  BlackText 
+  BlackText, 
+  StyledLink
 } from "../components/Text/style";
 
 export default function Homepage() {
@@ -143,10 +144,10 @@ export default function Homepage() {
                   <GreenText>Réglementation</GreenText>
                   <p>
                     Consulter les statuts de l'assocation : 
-                    {" "}<a style={{ color: "#096A09" }} target="_blank" href="/static/docs/Statuts_AMNet.pdf">Statuts de l'association</a>
+                    {" "}<StyledLink color= "#096a09" hovercolor="#67bc45" target="_blank" href="/static/docs/Statuts_AMNet.pdf">Statuts de l'association</StyledLink>
                     <br/>    
                     Consultez le règlement intérieur de l'assocation : 
-                    {" "}<a style={{ color: "#096A09" }} target="_blank" href="/static/docs/Reglement_Interieur_AMNet.pdf">Règlement intérieur de l'association</a>
+                    {" "}<StyledLink color= "#096a09" hovercolor="#67bc45" target="_blank" href="/static/docs/Reglement_Interieur_AMNet.pdf">Règlement intérieur de l'association</StyledLink>
                     <br/><br/>
                     AMNet Birse est une association Loi 1901, vous devez en accepter les statuts et le réglement intérieur. La validation de ce formulaire et le réglement de la cotisation vaut pour adhésion à l'association.
                   </p>
