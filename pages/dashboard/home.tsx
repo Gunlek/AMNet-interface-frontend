@@ -5,19 +5,14 @@ import {GreenButton} from "../../components/Button/Buttons";
 import { 
   Row, 
   Col6, 
-  Column
+  Column,
+  StyledDashboard
 } from "../../components/Container/style";
-import { 
-  HelpSection, 
-  TitleCard, 
-  ContributionStatus,
-  Menu
-} from "../../components/Card/Cards"
-import { 
-  BlackText, 
-  BlackTitle, 
-  StyledCard 
-} from "../../components/Card/style";
+import { HelpSection, TitleCard } from "../../components/Card/Cards"
+import { StyledCard } from "../../components/Card/style";
+import { Menu } from "../../components/Menu/Menus";
+import { StateContribution } from "../../components/State/States";
+import { BlackTitle, BlackText } from "../../components/Text/style";
 
 
 export default function Dashboard() {
@@ -26,37 +21,21 @@ export default function Dashboard() {
       <Head>
         <title>Mon Espace &bull; AMNet</title>
       </Head>
-      <DefaultBackground style={{padding: "1% 2%"}}>
-        <div style={{width:"85px"}}>
-          <Menu page="home" />
-        </div>
+      <DefaultBackground>
+        <Menu page="home" />
 
-        <div 
-          style={{ 
-            alignItems: "center", 
-            paddingLeft:"2%", width: "100%", 
-            justifyContent:"space-around", 
-            display: "flex", 
-            flexDirection: "column"
-          }}
-        >
-          <Row style={{flex: "1", margin:"1% 0"}}>
-            <Col6 style={{justifyContent: "center"}}>
+        <StyledDashboard>
+          <Row style={{ margin:"1% 0"}}>
+            <Column style={{justifyContent: "center"}}>
               <BlackTitle>Mon Espace AMNet</BlackTitle>
-            </Col6>
+            </Column>
             
-            <Col6 style={{flexDirection:"row", alignItems: "center", justifyContent: "end"}}>
-              <ContributionStatus status="unpaid"/>
-            </Col6>
+            <Column style={{ flex: "1", alignItems: "end", justifyContent: "center"}}>
+              <StateContribution status="unpaid"/>
+            </Column>
           </Row>
 
-          <StyledCard 
-            style={{
-              flex: "3",
-              marginBottom:"2%", 
-              padding:"20px"
-            }}
-          >
+          <StyledCard style={{ flex: "3", marginBottom:"2%" }}>
             <Column style={{height:"100%"}}>
               <TitleCard>Actualité AMNet</TitleCard>
               <BlackText>
@@ -69,7 +48,7 @@ export default function Dashboard() {
 
           <Row style={{flex: "6", marginBottom:"2%"}}>
             <Col6 style={{marginRight:"1%"}}>
-              <StyledCard style={{height: "100%", padding:"20px"}}>
+              <StyledCard style={{height: "100%"}}>
                 <Column style={{height:"100%"}}>
                   <TitleCard>Objets connectés</TitleCard>
                   <BlackText>
@@ -95,7 +74,7 @@ export default function Dashboard() {
             </Col6>
 
             <Col6 style={{marginLeft:"1%"}}>
-              <StyledCard style={{height: "100%", padding:"20px"}}>
+              <StyledCard style={{height: "100%"}}>
                 <Column style={{height:"100%"}}>
                   <TitleCard>FAQ</TitleCard>
                   <BlackText>
@@ -124,7 +103,7 @@ export default function Dashboard() {
           <Row>
             <HelpSection color="#096A09"/>
           </Row>   
-        </div>
+        </StyledDashboard>
       </DefaultBackground>
     </>
   );

@@ -1,23 +1,8 @@
 import React from "react";
 import Head from "next/head";
 import { DefaultBackground } from "../../components/Background/style";
-import {GreenButton} from "../../components/Button/Buttons";
-import { 
-  Row, 
-  Col6, 
-  Column
-} from "../../components/Container/style";
-import { 
-  HelpSection, 
-  TitleCard, 
-  ContributionStatus,
-  AdminMenu
-} from "../../components/Card/Cards"
-import { 
-  BlackText, 
-  BlackTitle, 
-  StyledCard 
-} from "../../components/Card/style";
+import { StyledCard } from "../../components/Card/style";
+import { AdminMenu } from "../../components/Menu/Menus";
 
 
 export default function Dashboard() {
@@ -26,10 +11,8 @@ export default function Dashboard() {
       <Head>
         <title>Mon Espace &bull; AMNet</title>
       </Head>
-      <DefaultBackground style={{padding: "1% 2%"}}>
-        <div style={{width:"85px"}}>
-          <AdminMenu page="iot" />
-        </div>
+      <DefaultBackground>
+        <AdminMenu page="iot" />
 
       </DefaultBackground>
     </>
