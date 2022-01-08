@@ -6,7 +6,9 @@ import {
   Row, 
   Col6, 
   Column,
-  DashboardContainer
+  DashboardContainer,
+  Col4,
+  Col3
 } from "../../components/Container/style";
 import { 
   TitleCard,
@@ -99,33 +101,35 @@ export default function Dashboard() {
                 <TitleCard>Système de mail</TitleCard>
               
                 <form method="post" style={{height:"100%"}}>
-                <div style={{marginTop:"20px"}}>
-                    <GreenText style={{marginBottom:"5px"}}>Gadzarts</GreenText>
-                    <StyledSelect type="text" >
-                      <option value="yes" selected>Oui</option>
-                      <option value="no">Non</option>
-                      <option value="" >Peu importe</option>
-                    </StyledSelect>
-                  </div>
+                  <Row style={{marginTop:"20px"}}>
+                    <Col3 style={{marginRight:"1%"}}>
+                      <GreenText style={{marginBottom:"5px"}}>Cotisation payée</GreenText>
+                      <StyledSelect>
+                        <option value="yes" selected>Oui</option>
+                        <option value="no">Non</option>
+                        <option value="" >Peu importe</option>
+                      </StyledSelect>
+                    </Col3>
 
-                  <div style={{marginTop:"20px"}}>
-                    <GreenText style={{marginBottom:"5px"}}>Cotisation payée</GreenText>
-                    <StyledSelect>
-                      <option value="yes" selected>Oui</option>
-                      <option value="no">Non</option>
-                      <option value="" >Peu importe</option>
-                    </StyledSelect>
-                  </div>
+                    <Col3 style={{margin:"0 1%"}}>
+                      <GreenText style={{marginBottom:"5px"}}>Gadzarts</GreenText>
+                      <StyledSelect type="text" >
+                        <option value="yes" selected>Oui</option>
+                        <option value="no">Non</option>
+                        <option value="" >Peu importe</option>
+                      </StyledSelect>
+                    </Col3>
 
-                  <div style={{marginTop:"20px"}}>
-                    <GreenText style={{marginBottom:"5px"}}>Prom's</GreenText>
-                    <Row>
-                      <input type="checkbox" /> <BlackText style={{marginLeft:"10px", marginRight:"30px"}}>219</BlackText>
-                      <input type="checkbox" /> <BlackText style={{marginLeft:"10px", marginRight:"30px"}}>220</BlackText>
-                      <input type="checkbox" /> <BlackText style={{marginLeft:"10px", marginRight:"30px"}}>221</BlackText>
-                      <input type="checkbox" /> <BlackText style={{marginLeft:"10px"}}>Autres</BlackText>
-                    </Row>
-                  </div>
+                    <Col6 style={{marginLeft:"1%"}}>
+                      <GreenText style={{marginBottom:"5px"}}>Prom's</GreenText>
+                      <Row>
+                        <input type="checkbox" /> <BlackText style={{marginLeft:"10px", marginRight:"30px"}}>219</BlackText>
+                        <input type="checkbox" /> <BlackText style={{marginLeft:"10px", marginRight:"30px"}}>220</BlackText>
+                        <input type="checkbox" /> <BlackText style={{marginLeft:"10px", marginRight:"30px"}}>221</BlackText>
+                        <input type="checkbox" /> <BlackText style={{marginLeft:"10px"}}>Autres</BlackText>
+                      </Row>
+                    </Col6>
+                  </Row>
 
                   <div style={{marginTop:"20px"}}>
                     <GreenText style={{marginBottom:"5px"}}>Titre du Mail</GreenText>
