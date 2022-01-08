@@ -9,7 +9,7 @@ export const StyledInput = styled.input`
   height: 40px;
   font-size: 1.2em;
   border: none;
-  font-family: "Poppins";
+  margin: 0;
 
   &:hover{
     background: rgba(255, 255, 255, 0.8);
@@ -57,8 +57,7 @@ export const StyledCheckbox = styled.input`
 `;
 
 export const StyledTextArea = styled.textarea`
-  min-height: ${(props) => props.height};
-  flex: 1;
+  min-height: 100px;
   width: 100%; 
   resize: none;
   margin:0;

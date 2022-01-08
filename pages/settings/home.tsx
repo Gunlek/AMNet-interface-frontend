@@ -17,7 +17,7 @@ import {
 import { AdminMenu } from "../../components/Menu/Menus";
 import { StateInvite } from "../../components/State/States";
 import { BlackTitle, BlackText, GreenText } from "../../components/Text/style";
-import { StyledInput, StyledTextArea } from "../../components/Input/style";
+import { StyledInput, StyledSelect, StyledTextArea } from "../../components/Input/style";
 
 
 export default function Dashboard() {
@@ -63,12 +63,12 @@ export default function Dashboard() {
 
                     <div style={{marginBottom:"20px"}}>
                         <GreenText style={{marginBottom:"5px"}}>Montant de la cotisation</GreenText>
-                        <StyledInput style={{width:"100%"}}type="number"/>
+                        <StyledInput type="text" inputmode="numeric"/>
                     </div>
 
                     <div style={{marginBottom:"20px"}}>
                         <GreenText style={{marginBottom:"5px"}}>Promotion active</GreenText>
-                        <StyledInput type="number"/>
+                        <StyledInput type="text" inputmode="numeric" />
                     </div>
 
                     <Row style={{justifyContent: "center"}}>
@@ -79,34 +79,60 @@ export default function Dashboard() {
             </Col6>
           </Row>
 
-          <Row style={{flex: "1", marginBottom:"2%"}}>
-            <Col6 style={{ marginRight:"1%", }}>
+          <Row style={{ marginBottom:"2%"}}>
+            
               <StyledCard style={{height:"100%"}}>
                 <TitleCard>Message d'actualité</TitleCard>
 
-                <form method="post" style={{display:"flex", flexDirection:"column", paddingTop:"20px", height:"100%"}}>
-                  <StyledTextArea  style={{flex: "1"}}  />
+                <form method="post" style={{marginTop:"20px", height:"100%"}}>
+                  <StyledTextArea/>
                   
                   <Row style={{marginTop:"20px", justifyContent: "center"}}>
                       <GreenButton>Mettre à jour</GreenButton>
                   </Row>
                 </form>
               </StyledCard>
-            </Col6>
+            </Row>
 
-            <Col6 style={{marginLeft:"1%"}}>
+            <Row style={{marginBottom:"2%"}}>
               <StyledCard>
                 <TitleCard>Système de mail</TitleCard>
               
-                <form method="post" style={{marginTop:"20px", height:"100%"}}>
-                  <div>
+                <form method="post" style={{height:"100%"}}>
+                <div style={{marginTop:"20px"}}>
+                    <GreenText style={{marginBottom:"5px"}}>Gadzarts</GreenText>
+                    <StyledSelect type="text" >
+                      <option value="yes" selected>Oui</option>
+                      <option value="no">Non</option>
+                      <option value="" >Peu importe</option>
+                    </StyledSelect>
+                  </div>
+
+                  <div style={{marginTop:"20px"}}>
+                    <GreenText style={{marginBottom:"5px"}}>Cotisation payée</GreenText>
+                    <StyledSelect>
+                      <option value="yes" selected>Oui</option>
+                      <option value="no">Non</option>
+                      <option value="" >Peu importe</option>
+                    </StyledSelect>
+                  </div>
+
+                  <div style={{marginTop:"20px"}}>
+                    <GreenText style={{marginBottom:"5px"}}>Prom's</GreenText>
+                    <input type="checkbox" /> 219
+                    <input type="checkbox" /> 220
+                    <input type="checkbox" /> 221
+                    <input type="checkbox" /> Autres
+                  </div>
+
+                  <div style={{marginTop:"20px"}}>
                     <GreenText style={{marginBottom:"5px"}}>Titre du Mail</GreenText>
                     <StyledInput type="text" />
                   </div>
                   
-                  <div>
-                    <GreenText style={{marginTop:"20px", marginBottom:"5px"}}>Corps du Mail</GreenText>
-                    <StyledTextArea  height="200px" />
+                  <div style={{marginTop:"20px"}}>
+                    <GreenText style={{ marginBottom:"5px"}}>Corps du Mail</GreenText>
+                    <StyledTextArea />
                   </div>
                   
                   <Row style={{ marginTop:"15px", justifyContent: "center"}}>
@@ -114,7 +140,6 @@ export default function Dashboard() {
                   </Row>
                 </form>
               </StyledCard>
-            </Col6>
           </Row>
         </DashboardContainer>
       </DefaultBackground>
