@@ -15,7 +15,7 @@ export default function Dashboard() {
   return (
     <>
       <Head>
-        <title>Mon Espace &bull; AMNet</title>
+        <title>Administration &bull; AMNet</title>
       </Head>
       <DefaultBackground>
         <AdminMenu page="material" />
