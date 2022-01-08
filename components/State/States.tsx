@@ -52,12 +52,16 @@ export function StateContribution(props: {status: string}){
   }
   
   export function StateInvite(props: {state?: boolean}){
-    var [state, setState] = useState(true)
+    var [state, setState] = useState(props.state);
+
+    const handleValueChange = (elmt) => {
+      setState(elmt.target.value == "enabled");
+    }
   
     return(
-    <StyledStateInvite status={state}>
-      <option onClick={()=>{setState(true); console.log("test")}}  selected>Activé</option>
-      <option onClick={()=>{setState(false)}}>Désactiver</option>
+    <StyledStateInvite status={state} onChange={handleValueChange}>
+      <option value="enabled" selected>Activé</option>
+      <option value="disabled">Désactiver</option>
     </StyledStateInvite>
   );
   }
