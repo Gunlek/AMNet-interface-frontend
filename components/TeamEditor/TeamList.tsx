@@ -1,17 +1,27 @@
 import React from 'react';
+import { SmallRedButton } from '../Button/Buttons';
+import { Column } from '../Container/style';
+import { StyledTd, StyledTr } from '../Table/style';
+import { GreenText } from '../Text/style';
 
 export const TeamList = (props: {list: any[], setter: Function}) => {
     let listHTML = [];
     props.list.map((value, index) => {
         listHTML.push(
-            <tr key={index}>
-                <td>{value['pseudo']}</td>
-                <td>{value.id}</td>
-            </tr>
+            <StyledTr style={{ padding:"10px 0" }} key={index}>
+                <StyledTd style={{ paddingLeft:"20px", paddingRight:"10px" }} flex="5">{value['pseudo']}</StyledTd>
+                <StyledTd style={{ paddingLeft:"30px", paddingRight:"10px" }} flex="5">{value.id}</StyledTd>
+                <StyledTd style={{ paddingLeft:"10px", justifyContent: "center", alignItems:"center", minWidth:"160px"}}><SmallRedButton>Supprimer</SmallRedButton></StyledTd>
+            </StyledTr>
         );
     })
     
     return (
-        <table><tbody>{listHTML}</tbody></table>
+        <Column style={{marginTop:"20px"}}>
+            <GreenText>La Team actuelle</GreenText>
+            <table style={{width: "100%"}}> 
+                <tbody>{listHTML}</tbody>
+            </table> 
+        </Column>
     );
 };

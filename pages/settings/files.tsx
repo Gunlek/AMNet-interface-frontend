@@ -5,7 +5,8 @@ import {
   Row, 
   Col6, 
   Column,
-  DashboardContainer
+  DashboardContainer,
+  Col8
 } from "../../components/Container/style";
 import { StyledCard } from "../../components/Card/style";
 import { AdminMenu } from "../../components/Menu/Menus";
@@ -74,9 +75,9 @@ export default function Dashboard() {
               </div>
 
               <Row>
-                <Col6>
+                <Col8>
                   <TeamEditor />
-                </Col6>
+                </Col8>
               </Row>
 
               {/* <Row style={{marginBottom:"20px"}}>
@@ -103,7 +104,7 @@ export default function Dashboard() {
                 </Col6>
               </Row> */}
 
-              <Row style={{justifyContent: "center"}}>
+              <Row style={{marginTop:"20px", justifyContent: "center"}}>
                 <GreenButton>Mettre à jour</GreenButton>
               </Row>
             </form>
