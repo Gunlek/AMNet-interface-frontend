@@ -13,9 +13,12 @@ export const BlackText = styled(WhiteText)`
   color: black;
 `;
 
-export const BlackTitle = styled(BlackText)`
+export const BlackTitle = styled.h1`
+  margin: 0;
+  font-weight: normal;
   font-size: 2.6em;
   line-height: 80px;
+  color: black;
 `
 export const StyledLink = styled.a`
   color:${(props) => props.color};
