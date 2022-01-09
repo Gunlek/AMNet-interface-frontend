@@ -3,16 +3,24 @@ import Head from "next/head";
 import { DefaultBackground } from "../../components/Background/style";
 import {GreenButton, OrangeButton, RedButton, SmallGreenButton, SmallOrangeButton, SmallRedButton} from "../../components/Button/Buttons";
 import { 
-  Row, 
-  Col6, 
-  Column,
+  Row,
   DashboardContainer,
   Col4
 } from "../../components/Container/style";
 import { StyledCard } from "../../components/Card/style";
 import { AdminMenu } from "../../components/Menu/Menus";
-import { BlackText, BlackTitle } from "../../components/Text/style";
-import { StyledTable, StyledGreenTr, StyledTd, StyledTr } from "../../components/Table/style";
+import { BlackText, BlackTitle, StyledLink } from "../../components/Text/style";
+import { 
+  StyledTable, 
+  StyledGreenTr, 
+  StyledTr, 
+  StyledTd100, 
+  StyledTd200, 
+  StyledTd350, 
+  StyledTd50, 
+  StyledTd850, 
+  StyledTd250 
+} from "../../components/Table/style";
 import { StyledInput } from "../../components/Input/style";
 
 
@@ -36,57 +44,88 @@ export default function Dashboard() {
             </Row>
           </Row>
 
-          <Row style={{ marginBottom:"2%" }}>
-            <Col4 style={{ alignItems:"start" }}>
-              <GreenButton>Confirmer tous les paiements</GreenButton>
-            </Col4>
-            <Col4 style={{ alignItems:"center" }}>
-              <RedButton>Annuler tous les paiements</RedButton>
-            </Col4>
-            <Col4 style={{ alignItems:"end" }}>
-              <OrangeButton>Passer tous les washs en gadz</OrangeButton>
-            </Col4>
-          </Row>
+          <form>
+            <Row style={{marginBottom:"2%", alignItems:"center"}}>
+              <input type="checkbox" /> <BlackText style={{marginLeft:"10px", marginRight:"30px"}}>Utilisateur</BlackText>
+              <input type="checkbox" /> <BlackText style={{marginLeft:"10px", marginRight:"30px"}}>Prénom</BlackText>
+              <input type="checkbox" /> <BlackText style={{marginLeft:"10px", marginRight:"30px"}}>Nom</BlackText>
+              <input type="checkbox" /> <BlackText style={{marginLeft:"10px", marginRight:"30px"}}>Email</BlackText>
+              <input type="checkbox" /> <BlackText style={{marginLeft:"10px", marginRight:"30px"}}>Bucque</BlackText>
+              <input type="checkbox" /> <BlackText style={{marginLeft:"10px", marginRight:"30px"}}>Fam's</BlackText>
+              <input type="checkbox" /> <BlackText style={{marginLeft:"10px", marginRight:"30px"}}>Tagan's</BlackText>
+              <input type="checkbox" /> <BlackText style={{marginLeft:"10px", marginRight:"30px"}}>Prom's</BlackText>
+              <input type="checkbox" /> <BlackText style={{marginLeft:"10px", marginRight:"30px"}}>Cotisation</BlackText>
+              <input type="checkbox" /> <BlackText style={{marginLeft:"10px", marginRight:"30px"}}>Gadz</BlackText>
+              <input type="checkbox" /> <BlackText style={{marginLeft:"10px", marginRight:"30px"}}>Rang</BlackText>
+            </Row>
 
+            <Row style={{ marginBottom:"2%" }}>
+              <Col4 style={{ alignItems:"start" }}>
+                <GreenButton>Confirmer tous les paiements</GreenButton>
+              </Col4>
+              <Col4 style={{ alignItems:"center" }}>
+                <RedButton>Annuler tous les paiements</RedButton>
+              </Col4>
+              <Col4 style={{ alignItems:"end" }}>
+                <OrangeButton>Passer tous les washs en gadz</OrangeButton>
+              </Col4>
+            </Row>
+          </form>
           <StyledCard style={{ flex: "1",  marginBottom:"2%" }}>
-            <div style={{ height:"100%", width:"100%", overflowX:"auto" }}>
+            <div 
+              style={{ 
+                height:"100%", 
+                width:"100%", 
+                overflowX:"auto" 
+              }}
+            >
               <StyledTable>
-                  <StyledGreenTr style={{padding:"10px 0 10px 30px"}}>
-                    <StyledTd style={{minWidth:"50px"}} flex= "1">#</StyledTd>
-                    <StyledTd style={{minWidth:"200px"}} flex= "7">Nom d'utilisateur</StyledTd>
-                    <StyledTd style={{minWidth:"150px"}} flex= "7">Prénom</StyledTd>
-                    <StyledTd style={{minWidth:"150px"}} flex= "7">Nom</StyledTd>
-                    <StyledTd style={{minWidth:"350px"}} flex= "7">Email</StyledTd>
-                    <StyledTd style={{minWidth:"150px"}} flex= "7">Bucque</StyledTd>
-                    <StyledTd style={{minWidth:"75px"}} flex= "2">Fam's</StyledTd>
-                    <StyledTd style={{minWidth:"100px"}} flex= "2">Tabagn's</StyledTd>
-                    <StyledTd style={{minWidth:"100px"}} flex= "2">Prom's</StyledTd>
-                    <StyledTd style={{minWidth:"125px"}} flex= "2">Cotisation</StyledTd>
-                    <StyledTd style={{minWidth:"50px", marginRight:"30px"}} flex= "2">Gadz</StyledTd>
-                    <StyledTd style={{minWidth:"100px"}} flex= "2">Rang</StyledTd>
-                    <StyledTd style={{minWidth: "850px"}}><span style={{paddingLeft: "5px"}}>Action</span></StyledTd>
-                  </StyledGreenTr>
-                  <StyledTr style={{padding:"10px 0 10px 30px"}}>
-                    <StyledTd style={{minWidth:"50px"}} flex= "1">1</StyledTd>
-                    <StyledTd style={{minWidth:"200px"}} flex= "7">Gauthier</StyledTd>
-                    <StyledTd style={{minWidth:"150px"}} flex= "7">Gauthier</StyledTd>
-                    <StyledTd style={{minWidth:"150px"}} flex= "7">Pailhas</StyledTd>
-                    <StyledTd style={{minWidth:"350px"}} flex= "7">gauthier.pailhas@gmail.com</StyledTd>
-                    <StyledTd style={{minWidth:"150px"}} flex= "7">Mac Nhat's</StyledTd>
-                    <StyledTd style={{minWidth:"75px"}} flex= "2">47-102</StyledTd>
-                    <StyledTd style={{minWidth:"100px"}} flex= "2">Li</StyledTd>
-                    <StyledTd style={{minWidth:"100px"}} flex= "2">219</StyledTd>
-                    <StyledTd style={{minWidth:"125px", alignItems:"center", justifyContent:"center"}} flex= "2"><img style={{height: "20px"}} src="/static/icons/succes.svg"/> </StyledTd>
-                    <StyledTd style={{minWidth:"50px", marginRight:"30px", alignItems:"center", justifyContent:"center"}} flex= "2"><img style={{height: "20px"}} src="/static/icons/succes.svg"/></StyledTd>
-                    <StyledTd style={{minWidth:"100px"}} flex= "2">Admin</StyledTd>
-                    <StyledTd style={{display:"flex", justifyContent:"space-between", minWidth: "850px"}}>
-                 
-                      <SmallGreenButton width="250px">Confirmer le paiement</SmallGreenButton>
-                      <SmallRedButton>Supprimer</SmallRedButton>
-                      <SmallRedButton>Rétrograder</SmallRedButton>
-                      <SmallOrangeButton width="250px" >Passer en Gadz</SmallOrangeButton>
-                    </StyledTd>
-                  </StyledTr>
+                  <tbody>
+                      <StyledGreenTr style={{padding:"10px 0 10px 30px"}}>
+                      <StyledTd50>#</StyledTd50>
+                      <StyledTd250>Utilisateur</StyledTd250>
+                      <StyledTd200>Prénom</StyledTd200>
+                      <StyledTd200>Nom</StyledTd200>
+                      <StyledTd350>Email</StyledTd350>
+                      <StyledTd200>Bucque</StyledTd200>
+                      <StyledTd100>Fam's</StyledTd100>
+                      <StyledTd100>Tabagn's</StyledTd100>
+                      <StyledTd100>Prom's</StyledTd100>
+                      <StyledTd100 style={{marginRight:"20px"}}>Cotisation</StyledTd100>
+                      <StyledTd50 style={{marginRight:"20px"}}>Gadz</StyledTd50>
+                      <StyledTd100>Rang</StyledTd100>
+                      <StyledTd850><span style={{paddingLeft:"5px"}} >Action</span></StyledTd850>
+                    </StyledGreenTr>
+                    
+                    <StyledTr style={{padding:"10px 0 10px 30px"}}>
+                      <StyledTd50>1</StyledTd50>
+                      <StyledTd250><StyledLink hovercolor="#67bc45">Gauthier</StyledLink></StyledTd250>
+                      <StyledTd200>Gauthier</StyledTd200>
+                      <StyledTd200>Pailhas</StyledTd200>
+                      <StyledTd350>gauthier.pailhas@gmail.com</StyledTd350>
+                      <StyledTd200>Mac Naht's</StyledTd200>
+                      <StyledTd100>47-102</StyledTd100>
+                      <StyledTd100>Li</StyledTd100>
+                      <StyledTd100>219</StyledTd100>
+                      <StyledTd100 style={{justifyContent:"center", marginRight:"20px"}}><img style={{ height: "20px"}} src="/static/icons/succes.svg"/> </StyledTd100>
+                      <StyledTd50 style={{justifyContent:"center", marginRight:"20px"}}><img style={{height: "20px"}} src="/static/icons/succes.svg"/> </StyledTd50>
+                      <StyledTd100>Admin</StyledTd100>
+                      <StyledTd850>
+                        <form 
+                          style={{ 
+                            width:"100%", 
+                            display:"flex", 
+                            justifyContent: "space-between"
+                          }}
+                        >
+                          <SmallGreenButton width="250px">Confirmer le paiement</SmallGreenButton>
+                          <SmallOrangeButton width="250px" >Passer en Gadz</SmallOrangeButton>
+                          <SmallRedButton>Supprimer</SmallRedButton>
+                          <SmallRedButton>Rétrograder</SmallRedButton>
+                        </form>
+                      </StyledTd850>
+                    </StyledTr>
+                  </tbody>
                 </StyledTable>
               </div>
           </StyledCard>
