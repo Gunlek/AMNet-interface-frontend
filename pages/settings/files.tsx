@@ -80,8 +80,8 @@ export default function Dashboard() {
                   <TeamEditor />
                 </Col8>
                 <Col4>
-                  <BlackText style={{paddingLeft: "20px", paddingTop:"30px"}}>
-                    Les bucques de haut en bas pour les PGs de gauche à droite sur la photo
+                  <BlackText style={{paddingLeft: "20px" }}>
+                    Pour faire correspondre les bucques avec les PGs sur la photo de la page d'accueil, il faut les mettre dans l'ordre suivant : de haut en bas les bucques et de gauche à droite sur la photo
                   </BlackText>
                 </Col4>
               </Row>
