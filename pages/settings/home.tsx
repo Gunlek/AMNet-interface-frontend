@@ -21,7 +21,6 @@ import { StateInvite } from "../../components/State/States";
 import { BlackTitle, BlackText, GreenText } from "../../components/Text/style";
 import { StyledInput, StyledSelect, StyledTextArea } from "../../components/Input/style";
 
-
 export default function Dashboard() {
   return (
     <>
@@ -122,7 +121,7 @@ export default function Dashboard() {
 
                     <Col6 style={{marginLeft:"1%"}}>
                       <GreenText style={{marginBottom:"5px"}}>Prom's</GreenText>
-                      <Row>
+                      <Row style={{flex:"1", alignItems:"center"}}>
                         <input type="checkbox" /> <BlackText style={{marginLeft:"10px", marginRight:"30px"}}>219</BlackText>
                         <input type="checkbox" /> <BlackText style={{marginLeft:"10px", marginRight:"30px"}}>220</BlackText>
                         <input type="checkbox" /> <BlackText style={{marginLeft:"10px", marginRight:"30px"}}>221</BlackText>
