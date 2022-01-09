@@ -20,6 +20,7 @@ import { AdminMenu } from "../../components/Menu/Menus";
 import { StateInvite } from "../../components/State/States";
 import { BlackTitle, BlackText, GreenText } from "../../components/Text/style";
 import { StyledInput, StyledSelect, StyledTextArea } from "../../components/Input/style";
+import AutoTextArea from "../../components/Input/TextArea";
 
 export default function Dashboard() {
   return (
@@ -86,8 +87,7 @@ export default function Dashboard() {
                 <TitleCard>Message d'actualité</TitleCard>
 
                 <form method="post" style={{marginTop:"20px", height:"100%"}}>
-                  <StyledTextArea/>
-                  
+                  <AutoTextArea />
                   <Row style={{marginTop:"20px", justifyContent: "center"}}>
                       <GreenButton>Mettre à jour</GreenButton>
                   </Row>
@@ -137,7 +137,7 @@ export default function Dashboard() {
                   
                   <div style={{marginTop:"20px"}}>
                     <GreenText style={{ marginBottom:"5px"}}>Corps du Mail</GreenText>
-                    <StyledTextArea />
+                    <AutoTextArea />
                   </div>
                   
                   <Row style={{ marginTop:"15px", justifyContent: "center"}}>

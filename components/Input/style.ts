@@ -69,6 +69,11 @@ export const StyledTextArea = styled.textarea`
   border: none;
   font-size: 1.2em;
   font-family: "Poppins";
+  scrollbar-width: none;
+
+  ::-webkit-scrollbar {
+    width: 0 !important;
+  }
 
   &:hover{
     border: 2px solid #096A09;
