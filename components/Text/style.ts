@@ -26,5 +26,6 @@ export const StyledLink = styled.a`
   &:hover{
         color: ${(props) => props.hovercolor};
         transition: color 0.2s;
+        cursor: pointer;
   }
 `;
