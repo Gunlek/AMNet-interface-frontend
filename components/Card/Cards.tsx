@@ -25,7 +25,7 @@ export function HelpSection(props: { color?: string }) {
 export function RectangleLogo(props: { color?: string }) {
   if (props.color == 'blanc') {
     return (
-      <a target="_blank" href="https://www.google.com/search?q=the+answer+to+life%2C+the+universe+and+everything&sxsrf=AOaemvKRvpra0jq__iVMCWg_q7g361ifag%3A1641475979658&ei=i-_WYcjSJ82PlwTJ4o3IAw&ved=0ahUKEwiIxLLFnp31AhXNx4UKHUlxAzkQ4dUDCA4&uact=5&oq=the+answer+to+life%2C+the+universe+and+everything&gs_lcp=Cgdnd3Mtd2l6EAMyBAgAEEMyBggAEAcQHjIGCAAQBxAeMgYIABAHEB4yBggAEAcQHjIGCAAQBxAeMgYIABAHEB4yBggAEAcQHjIGCAAQBxAeMgYIABAHEB46BQgAEMsBSgQIQRgASgQIRhgAUABY5xhgkCNoAHACeACAAXKIAZUCkgEDMy4xmAEAoAECoAEBwAEB&sclient=gws-wiz" style={{ height: "100px", cursor: "auto" }}>
+      <a target="_blank" href="https://www.google.com/search?q=the+answer+to+life%2C+the+universe+and+everything&amp;sxsrf=AOaemvKRvpra0jq__iVMCWg_q7g361ifag%3A1641475979658&amp;ei=i-_WYcjSJ82PlwTJ4o3IAw&amp;ved=0ahUKEwiIxLLFnp31AhXNx4UKHUlxAzkQ4dUDCA4&amp;uact=5&amp;oq=the+answer+to+life%2C+the+universe+and+everything&amp;gs_lcp=Cgdnd3Mtd2l6EAMyBAgAEEMyBggAEAcQHjIGCAAQBxAeMgYIABAHEB4yBggAEAcQHjIGCAAQBxAeMgYIABAHEB4yBggAEAcQHjIGCAAQBxAeMgYIABAHEB46BQgAEMsBSgQIQRgASgQIRhgAUABY5xhgkCNoAHACeACAAXKIAZUCkgEDMy4xmAEAoAECoAEBwAEB&amp;sclient=gws-wiz" style={{ height: "100px", cursor: "auto" }}>
         <img
           style={{ height: "100px", aspectRatio: "19 / 9" }}
           src="/static/logo/white_logo.svg"
