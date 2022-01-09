@@ -71,7 +71,7 @@ export const Col1 = styled(Col)`
 
 export const DashboardContainer = styled.div`
   padding-left: 2%; 
-  width: 100%; 
+  width: calc(100% - 85px);
   justify-content: space-beween; 
   display: flex;
   flex-direction: column;
