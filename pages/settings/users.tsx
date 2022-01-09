@@ -6,7 +6,8 @@ import {
   Row,
   DashboardContainer,
   Col4,
-  ResponsiveRow
+  ResponsiveRow,
+  CheckboxRow
 } from "../../components/Container/style";
 import { StyledCard } from "../../components/Card/style";
 import { AdminMenu } from "../../components/Menu/Menus";
@@ -46,31 +47,26 @@ export default function Dashboard() {
           </ResponsiveRow>
 
           <form>
-            <Row style={{marginBottom:"2%", alignItems:"center"}}>
-              <input type="checkbox" /> <BlackText style={{marginLeft:"10px", marginRight:"30px"}}>Utilisateur</BlackText>
-              <input type="checkbox" /> <BlackText style={{marginLeft:"10px", marginRight:"30px"}}>Prénom</BlackText>
-              <input type="checkbox" /> <BlackText style={{marginLeft:"10px", marginRight:"30px"}}>Nom</BlackText>
-              <input type="checkbox" /> <BlackText style={{marginLeft:"10px", marginRight:"30px"}}>Email</BlackText>
-              <input type="checkbox" /> <BlackText style={{marginLeft:"10px", marginRight:"30px"}}>Bucque</BlackText>
-              <input type="checkbox" /> <BlackText style={{marginLeft:"10px", marginRight:"30px"}}>Fam's</BlackText>
-              <input type="checkbox" /> <BlackText style={{marginLeft:"10px", marginRight:"30px"}}>Tagan's</BlackText>
-              <input type="checkbox" /> <BlackText style={{marginLeft:"10px", marginRight:"30px"}}>Prom's</BlackText>
-              <input type="checkbox" /> <BlackText style={{marginLeft:"10px", marginRight:"30px"}}>Cotisation</BlackText>
-              <input type="checkbox" /> <BlackText style={{marginLeft:"10px", marginRight:"30px"}}>Gadz</BlackText>
-              <input type="checkbox" /> <BlackText style={{marginLeft:"10px", marginRight:"30px"}}>Rang</BlackText>
-            </Row>
+            <CheckboxRow style={{marginBottom:"2%", alignItems:"center"}}>
+              <Row><input type="checkbox" /> <BlackText style={{marginLeft:"10px", marginRight:"30px"}}>Utilisateur</BlackText></Row>
+              <Row><input type="checkbox" /> <BlackText style={{marginLeft:"10px", marginRight:"30px"}}>Prénom</BlackText></Row>
+              <Row><input type="checkbox" /> <BlackText style={{marginLeft:"10px", marginRight:"30px"}}>Nom</BlackText></Row>
+              <Row><input type="checkbox" /> <BlackText style={{marginLeft:"10px", marginRight:"30px"}}>Email</BlackText></Row>
+              <Row><input type="checkbox" /> <BlackText style={{marginLeft:"10px", marginRight:"30px"}}>Bucque</BlackText></Row>
+              <Row><input type="checkbox" /> <BlackText style={{marginLeft:"10px", marginRight:"30px"}}>Fam's</BlackText></Row>
+              <Row><input type="checkbox" /> <BlackText style={{marginLeft:"10px", marginRight:"30px"}}>Tagan's</BlackText></Row>
+              <Row><input type="checkbox" /> <BlackText style={{marginLeft:"10px", marginRight:"30px"}}>Prom's</BlackText></Row>
+              <Row><input type="checkbox" /> <BlackText style={{marginLeft:"10px", marginRight:"30px"}}>Cotisation</BlackText></Row>
+              <Row><input type="checkbox" /> <BlackText style={{marginLeft:"10px", marginRight:"30px"}}>Gadz</BlackText></Row>
+              <Row><input type="checkbox" /> <BlackText style={{marginLeft:"10px", marginRight:"30px"}}>Rang</BlackText></Row>
+            </CheckboxRow>
 
-            <ResponsiveRow style={{ marginBottom:"2%" }}>
-              <Col4 style={{ alignItems:"start" }}>
-                <GreenButton>Confirmer tous les paiements</GreenButton>
-              </Col4>
-              <Col4 style={{ alignItems:"center" }}>
-                <RedButton>Annuler tous les paiements</RedButton>
-              </Col4>
-              <Col4 style={{ alignItems:"end" }}>
-                <OrangeButton>Passer tous les washs en gadz</OrangeButton>
-              </Col4>
+            <ResponsiveRow style={{ marginBottom:"2%", justifyContent: "space-between" }}>
+              <GreenButton>Confirmer tous les paiements</GreenButton>
+              <RedButton>Annuler tous les paiements</RedButton>
+              <OrangeButton>Passer tous les washs en gadz</OrangeButton>
             </ResponsiveRow>
+
           </form>
           <StyledCard style={{ flex: "1",  marginBottom:"2%" }}>
             <div 

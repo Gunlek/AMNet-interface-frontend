@@ -9,7 +9,8 @@ import {
   DashboardContainer,
   Col4,
   Col3,
-  ResponsiveRow
+  ResponsiveRow,
+  CheckboxRow
 } from "../../components/Container/style";
 import { 
   TitleCard,
@@ -122,12 +123,12 @@ export default function Dashboard() {
 
                     <Col6 style={{marginLeft:"1%"}}>
                       <GreenText style={{marginBottom:"5px"}}>Prom's</GreenText>
-                      <Row style={{flex:"1", alignItems:"center"}}>
-                        <input type="checkbox" /> <BlackText style={{marginLeft:"10px", marginRight:"30px"}}>219</BlackText>
-                        <input type="checkbox" /> <BlackText style={{marginLeft:"10px", marginRight:"30px"}}>220</BlackText>
-                        <input type="checkbox" /> <BlackText style={{marginLeft:"10px", marginRight:"30px"}}>221</BlackText>
-                        <input type="checkbox" /> <BlackText style={{marginLeft:"10px"}}>Autres</BlackText>
-                      </Row>
+                      <CheckboxRow style={{flex:"1", alignItems:"center"}}>
+                        <Row><input type="checkbox" /> <BlackText style={{marginLeft:"10px", marginRight:"30px"}}>219</BlackText></Row>
+                        <Row><input type="checkbox" /> <BlackText style={{marginLeft:"10px", marginRight:"30px"}}>220</BlackText></Row>
+                        <Row><input type="checkbox" /> <BlackText style={{marginLeft:"10px", marginRight:"30px"}}>221</BlackText></Row>
+                        <Row><input type="checkbox" /> <BlackText style={{marginLeft:"10px"}}>Autres</BlackText></Row>
+                      </CheckboxRow>
                     </Col6>
                   </ResponsiveRow>
 

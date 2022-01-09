@@ -12,8 +12,10 @@ export const StyledMenu = styled(StyledCard)`
   @media screen and (max-width: 1000px){
     background: rgba(255, 255, 255, 0.9);
     flex-direction: row;
-    padding: 0 10px;
-    justify-content: center;
+    padding: 10px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill,minmax(70px, 1fr));
+    
   }  
 `;
 
@@ -23,7 +25,7 @@ export const MenuContener = styled.div`
   height: 96vh;
 
   @media screen and (max-width: 1000px){
-    height: 85px;
+    height: auto;
     width: 90%;
   }  
 `;

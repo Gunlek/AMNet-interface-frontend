@@ -12,6 +12,7 @@ import {
   Col6,
   Col3,
   Row,
+  ResponsiveRow,
 } from "../components/Container/style";
 import { 
   StyledInput, 
@@ -61,7 +62,7 @@ export default function Homepage() {
             </Row>
 
             <form method="post">
-              <Row style={{alignItems:"center", marginBottom:"20px"}}>
+              <ResponsiveRow style={{alignItems:"center", marginBottom:"20px"}}>
                 <Col6 style={{paddingRight: "20px"}}>
                   <GreenText style={{marginBottom:"5px"}}>Nom d'utilisateur</GreenText>
                   <StyledInput type="text"/>
@@ -71,9 +72,9 @@ export default function Homepage() {
                     que des lettres, des chiffres ou des espaces.
                   </BlackText>
                 </Col6>
-              </Row>
+              </ResponsiveRow>
 
-              <Row style={{marginBottom:"20px"}}>
+              <ResponsiveRow style={{marginBottom:"20px"}}>
                 <Col3 style={{paddingRight: "10px"}}>
                   <GreenText style={{marginBottom:"5px"}}>Prénom</GreenText>
                   <StyledInput type="text"/>
@@ -86,9 +87,9 @@ export default function Homepage() {
                   <GreenText style={{marginBottom:"5px"}}>Adresse e-mail</GreenText>
                   <StyledInput type="email"/>
                 </Col6>
-              </Row>
+              </ResponsiveRow>
 
-              <Row style={{marginBottom:"20px"}}>
+              <ResponsiveRow style={{marginBottom:"20px"}}>
                 <Col6 style={{paddingRight: "20px"}}>
                   <GreenText style={{marginBottom:"5px"}}>Téléphone</GreenText>
                   <StyledInput type="phone"/>
@@ -102,9 +103,9 @@ export default function Homepage() {
                     <option value="autre">Autre</option>
                   </StyledSelect>
                 </Col6>
-              </Row>
+              </ResponsiveRow>
 
-              <Row style={{marginBottom:"20px"}}>
+              <ResponsiveRow style={{marginBottom:"20px"}}>
                 <Col6 style={{paddingRight: "20px"}}>
                   <GreenText style={{marginBottom:"5px"}}>Bucque</GreenText>
                   <StyledInput type="text"/>
@@ -126,9 +127,9 @@ export default function Homepage() {
                     <option value="me">Siber's</option>
                   </StyledSelect>
                 </Col3>
-              </Row>
+              </ResponsiveRow>
 
-              <Row style={{marginBottom:"20px"}}>
+              <ResponsiveRow style={{marginBottom:"20px"}}>
                 <Col6 style={{paddingRight: "20px"}}>
                   <GreenText style={{marginBottom:"5px"}}>Mot de passe</GreenText>
                   <StyledInput type="password"/>
@@ -137,9 +138,9 @@ export default function Homepage() {
                   <GreenText style={{marginBottom:"5px"}}>Confirmez votre Mot de passe</GreenText>
                   <StyledInput type="password"/>
                 </Col6>
-              </Row>
+              </ResponsiveRow>
 
-              <Row style={{alignItems:"start"}} >
+              <ResponsiveRow style={{alignItems:"start"}} >
                 <BlackText>
                   <GreenText>Réglementation</GreenText>
                   <p>
@@ -152,9 +153,9 @@ export default function Homepage() {
                     AMNet Birse est une association Loi 1901, vous devez en accepter les statuts et le réglement intérieur. La validation de ce formulaire et le réglement de la cotisation vaut pour adhésion à l'association.
                   </p>
                 </BlackText>
-              </Row>
+              </ResponsiveRow>
 
-              <Row style={{marginBottom:"20px"}}>
+              <ResponsiveRow style={{marginBottom:"20px"}}>
                 <Col6 
                   style=
                   {{
@@ -177,7 +178,7 @@ export default function Homepage() {
                   <StyledCheckbox type="radio" defaultChecked name="accept_rules" />
                   <BlackText style={{paddingLeft:"10px"}}>Refuser les statuts et le réglement interieur</BlackText>
                 </Col6>
-              </Row>
+              </ResponsiveRow>
 
               <Row style={{justifyContent:"center"}}>
                 <GreenButton>Inscription</GreenButton>

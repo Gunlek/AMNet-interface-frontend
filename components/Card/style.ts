@@ -14,6 +14,10 @@ export const StyledCard = styled.div`
 
 export const StyledCardCampus = styled(StyledCard)`
   background: rgba(255, 255, 255, 0.9);
+
+  @media screen and (max-width: 1000px){
+    width: 90%
+  } 
 `;
 
 export const StyledGreenCard = styled.div`
@@ -32,6 +36,10 @@ export const StyledTeamPicture = styled(Column)`
   height: 100%;
   width: 100%;
   border-radius: 30px;
+
+  @media screen and (max-width: 1000px){
+    height: 50vh;
+  }
 `;
 
 export const StyledHelpSection = styled.div`

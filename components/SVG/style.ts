@@ -13,6 +13,9 @@ export const StyledBackIcon = styled.a`
     border-radius: 15px;
     transition: color 0.2s;
   }
+  @media screen and (max-width: 1000px){
+    margin: 0 5px;
+  }
 `;
 
 export const StyledIcon = styled.svg`
@@ -33,6 +36,8 @@ export const StyledBackLogOut = styled.a`
 
   height: 60px;
   width: 60px;
+  
+  
 `;
 
 export const StyledLogOut = styled.svg`

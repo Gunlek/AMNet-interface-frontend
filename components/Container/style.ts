@@ -33,6 +33,10 @@ export const Col11 = styled(Col)`
 export const Col10 = styled(Col)`
   flex: 10;
   max-width: 83.33%;
+
+  @media screen and (max-width: 1000px){
+    max-width: 100%;
+  }
 `;
 
 export const Col8 = styled(Col)`
@@ -74,14 +78,16 @@ export const Col3 = styled(Col)`
 
   @media screen and (max-width: 1000px){
     max-width: 100%;
-    margin: 0;
-    margin-bottom: 2%;
   }
 `;
 
 export const Col2 = styled(Col)`
   flex: 2;
   max-width: 16.66%;
+
+  @media screen and (max-width: 1000px){
+    max-width: 100%;
+  }
 `;
 
 export const Col1 = styled(Col)`
@@ -101,6 +107,13 @@ export const DashboardContainer = styled.div`
     width: 100%;
     margin-left: 0;
     padding-left: 0; 
-    padding-top: 85px;
+    margin-top: 180px;
   }  
 `;
+
+
+export const CheckboxRow = styled(Row)`
+  display: grid;
+  grid-template-columns: repeat(auto-fill,minmax(150px, 1fr));
+`;
+
