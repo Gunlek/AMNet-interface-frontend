@@ -32,7 +32,7 @@ export const TeamEditor = () => {
                     <StyledInput type="text" onChange={(elmt) => setId(elmt.target.value)}/>
                 </Col5>
 
-                <Col2 style={{ paddingLeft:"10px", justifyContent: "end", alignItems:"center", minWidth:"160px"}}>
+                <Col2 style={{ fontSize: "1.2em", paddingLeft:"10px", justifyContent: "end", alignItems:"center", minWidth:"160px"}}>
                     <SmallGreenButton onClick={registerNewTeamMember}>Ajouter</SmallGreenButton>
                 </Col2>
             </Row>
