@@ -47,7 +47,7 @@ export const SmallStyledGreenButton = styled(StyledButton)`
   background: #67BC45;
   border-radius: 16px;
   height: 40px;
-  width: 150px;
+  width: ${(props) => props.width || "150px"};
   font-size: 1em;
 
   &:hover{
@@ -60,5 +60,13 @@ export const SmallStyledRedButton = styled(SmallStyledGreenButton)`
 
   &:hover{
     background: #890909;
+  }
+`;
+
+export const SmallStyledOrangeButton = styled(SmallStyledGreenButton)`
+  background: #D78306;
+
+  &:hover{
+    background: #AA6B0B;
   }
 `;
