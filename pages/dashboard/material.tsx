@@ -30,7 +30,7 @@ export default function Dashboard() {
             </Column>
             
             <Column style={{flex:"1", alignItems: "end", justifyContent: "center"}}>
-              <GreenButton width="280px">+ Nouvelle demande</GreenButton>
+              <GreenButton width="280px">Nouvelle demande</GreenButton>
             </Column>
           </Row>
 
