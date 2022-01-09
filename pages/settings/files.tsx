@@ -6,7 +6,8 @@ import {
   Col6, 
   Column,
   DashboardContainer,
-  Col8
+  Col8,
+  Col4
 } from "../../components/Container/style";
 import { StyledCard } from "../../components/Card/style";
 import { AdminMenu } from "../../components/Menu/Menus";
@@ -78,6 +79,11 @@ export default function Dashboard() {
                 <Col8>
                   <TeamEditor />
                 </Col8>
+                <Col4>
+                  <BlackText style={{paddingLeft: "20px", paddingTop:"30px"}}>
+                    Les bucques de haut en bas pour les PGs de gauche à droite sur la photo
+                  </BlackText>
+                </Col4>
               </Row>
 
               {/* <Row style={{marginBottom:"20px"}}>
