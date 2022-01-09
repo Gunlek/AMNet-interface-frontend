@@ -5,7 +5,8 @@ import {GreenButton, OrangeButton, RedButton, SmallGreenButton, SmallOrangeButto
 import { 
   Row,
   DashboardContainer,
-  Col4
+  Col4,
+  ResponsiveRow
 } from "../../components/Container/style";
 import { StyledCard } from "../../components/Card/style";
 import { AdminMenu } from "../../components/Menu/Menus";
@@ -34,7 +35,7 @@ export default function Dashboard() {
         <AdminMenu page="users" />
 
         <DashboardContainer>
-          <Row style={{ margin:"1% 0" }}>
+          <ResponsiveRow style={{ margin:"1% 0" }}>
             <div>
               <BlackTitle>Liste des adhérents</BlackTitle>
             </div>
@@ -42,7 +43,7 @@ export default function Dashboard() {
               <BlackText>Rechercher</BlackText>
               <StyledInput style={{marginLeft:"20px", width:"300px"}} type="text" />
             </Row>
-          </Row>
+          </ResponsiveRow>
 
           <form>
             <Row style={{marginBottom:"2%", alignItems:"center"}}>
@@ -59,7 +60,7 @@ export default function Dashboard() {
               <input type="checkbox" /> <BlackText style={{marginLeft:"10px", marginRight:"30px"}}>Rang</BlackText>
             </Row>
 
-            <Row style={{ marginBottom:"2%" }}>
+            <ResponsiveRow style={{ marginBottom:"2%" }}>
               <Col4 style={{ alignItems:"start" }}>
                 <GreenButton>Confirmer tous les paiements</GreenButton>
               </Col4>
@@ -69,7 +70,7 @@ export default function Dashboard() {
               <Col4 style={{ alignItems:"end" }}>
                 <OrangeButton>Passer tous les washs en gadz</OrangeButton>
               </Col4>
-            </Row>
+            </ResponsiveRow>
           </form>
           <StyledCard style={{ flex: "1",  marginBottom:"2%" }}>
             <div 

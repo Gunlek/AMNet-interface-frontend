@@ -6,7 +6,8 @@ import {
   Row, 
   Col6, 
   Column,
-  DashboardContainer
+  DashboardContainer,
+  ResponsiveRow
 } from "../../components/Container/style";
 import { HelpSection, TitleCard } from "../../components/Card/Cards"
 import { StyledCard } from "../../components/Card/style";
@@ -25,7 +26,7 @@ export default function Dashboard() {
         <Menu page="home" />
 
         <DashboardContainer>
-          <Row style={{ margin:"1% 0"}}>
+          <ResponsiveRow style={{ margin:"1% 0"}}>
             <Column style={{justifyContent: "center"}}>
               <BlackTitle>Mon Espace AMNet</BlackTitle>
             </Column>
@@ -33,7 +34,7 @@ export default function Dashboard() {
             <Column style={{ flex: "1", alignItems: "end", justifyContent: "center"}}>
               <StateContribution status="unpaid"/>
             </Column>
-          </Row>
+          </ResponsiveRow>
 
           <StyledCard style={{ flex: "3", marginBottom:"2%" }}>
             <Column style={{height:"100%"}}>
@@ -46,7 +47,7 @@ export default function Dashboard() {
             </Column>
           </StyledCard>
 
-          <Row style={{flex: "6", marginBottom:"2%"}}>
+          <ResponsiveRow style={{flex: "6", marginBottom:"2%"}}>
             <Col6 style={{marginRight:"1%"}}>
               <StyledCard style={{height: "100%"}}>
                 <Column style={{height:"100%"}}>
@@ -98,7 +99,7 @@ export default function Dashboard() {
                 </Column>
               </StyledCard>
             </Col6>
-          </Row>
+          </ResponsiveRow>
 
           <Row>
             <HelpSection color="#096A09"/>

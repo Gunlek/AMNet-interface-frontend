@@ -13,6 +13,12 @@ export const Row = styled.div`
   flex-direction: row;
 `;
 
+export const ResponsiveRow = styled(Row)`
+  @media screen and (max-width: 1000px){
+    flex-direction: column;
+  } 
+`;
+
 export const Col = styled.div`
   display: flex;
   flex-direction: column;
@@ -42,6 +48,14 @@ export const Col7 = styled(Col)`
 export const Col6 = styled(Col)`
   flex: 6;
   max-width: 50%;
+
+  @media screen and (max-width: 1000px){
+    max-width: 100%;
+    margin: 0;
+    margin-bottom: 2%;
+    align-items: center;
+    justify-content: center;
+  } 
 `;
 
 export const Col5 = styled(Col)`
@@ -57,6 +71,12 @@ export const Col4 = styled(Col)`
 export const Col3 = styled(Col)`
   flex: 3;
   max-width: 25%;
+
+  @media screen and (max-width: 1000px){
+    max-width: 100%;
+    margin: 0;
+    margin-bottom: 2%;
+  }
 `;
 
 export const Col2 = styled(Col)`
@@ -76,4 +96,11 @@ export const DashboardContainer = styled.div`
   display: flex;
   flex-direction: column;
   margin-left: 85px;
+
+  @media screen and (max-width: 1000px){
+    width: 100%;
+    margin-left: 0;
+    padding-left: 0; 
+    padding-top: 85px;
+  }  
 `;

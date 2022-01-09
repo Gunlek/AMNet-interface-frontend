@@ -5,7 +5,8 @@ import { GreenButton, SmallRedButton } from "../../components/Button/Buttons";
 import { 
   Row, 
   Column,
-  DashboardContainer
+  DashboardContainer,
+  ResponsiveRow
 } from "../../components/Container/style";
 import { HelpSection } from "../../components/Card/Cards"
 import { StyledCard } from "../../components/Card/style";
@@ -36,7 +37,7 @@ export default function Dashboard() {
 
 
         <DashboardContainer>
-          <Row style={{margin:"1% 0"}}>
+          <ResponsiveRow style={{margin:"1% 0"}}>
             <Column style={{justifyContent: "center"}}>
               <BlackTitle>Mes demandes d'accès à AMNet IoT</BlackTitle>
             </Column>
@@ -46,7 +47,7 @@ export default function Dashboard() {
                 <GreenButton width="280px">Nouvelle demande</GreenButton>
               </form>
             </Column>
-          </Row>
+          </ResponsiveRow>
 
           <Column>
             <BlackText>
@@ -90,49 +91,57 @@ export default function Dashboard() {
           </Column>
 
           <StyledCard style={{ flex: "1", marginBottom:"2%" }}>
-            <StyledTable>
-              <tbody>
-                <StyledGreenTr>
-                  <StyledTd50>#</StyledTd50>
-                  <StyledTd200>Description</StyledTd200>
-                  <StyledTd200>Adresse Mac</StyledTd200>
-                  <StyledTd150><span style={{paddingLeft: "5px"}}>Etat</span></StyledTd150>
-                  <StyledTd150><span style={{paddingLeft: "5px"}}>Action</span></StyledTd150>
-                </StyledGreenTr>
-                <StyledTr>
-                  <StyledTd50>1</StyledTd50>
-                  <StyledTd200 >Test1</StyledTd200>
-                  <StyledTd200>aa:bb:cc:dd:ee:fff</StyledTd200>
-                  <StyledTd150 ><StateRequest state="accepted"/> </StyledTd150>
-                  <StyledTd150 >
-                    <form>
-                      <SmallRedButton>Supprimer</SmallRedButton>
-                    </form>
-                  </StyledTd150>
-                </StyledTr>
-                <StyledTr>
-                  <StyledTd50>2</StyledTd50>
-                  <StyledTd200>Test2</StyledTd200>
-                  <StyledTd200>aa:bb:cc:dd:ee:fff</StyledTd200>
-                  <StyledTd150><StateRequest state="denied"/> </StyledTd150>
-                  <StyledTd150>
-                    <form>
-                      <SmallRedButton>Supprimer</SmallRedButton>
-                    </form></StyledTd150>
-                </StyledTr>
-                <StyledTr>
-                  <StyledTd50>3</StyledTd50>
-                  <StyledTd200>Test3</StyledTd200>
-                  <StyledTd200>aa:bb:cc:dd:ee:fff</StyledTd200>
-                  <StyledTd150><StateRequest state="inProcess"/> </StyledTd150>
-                  <StyledTd150>
-                    <form>
-                      <SmallRedButton>Supprimer</SmallRedButton>
-                    </form>
-                  </StyledTd150>
-                </StyledTr>
-              </tbody>
-            </StyledTable>
+            <div 
+              style={{ 
+                height:"100%", 
+                width:"100%", 
+                overflowX:"auto" 
+              }}
+            >
+              <StyledTable>
+                <tbody>
+                  <StyledGreenTr>
+                    <StyledTd50>#</StyledTd50>
+                    <StyledTd200>Description</StyledTd200>
+                    <StyledTd200>Adresse Mac</StyledTd200>
+                    <StyledTd150><span style={{paddingLeft: "5px"}}>Etat</span></StyledTd150>
+                    <StyledTd150><span style={{paddingLeft: "5px"}}>Action</span></StyledTd150>
+                  </StyledGreenTr>
+                  <StyledTr>
+                    <StyledTd50>1</StyledTd50>
+                    <StyledTd200 >Test1</StyledTd200>
+                    <StyledTd200>aa:bb:cc:dd:ee:fff</StyledTd200>
+                    <StyledTd150 ><StateRequest state="accepted"/> </StyledTd150>
+                    <StyledTd150 >
+                      <form>
+                        <SmallRedButton>Supprimer</SmallRedButton>
+                      </form>
+                    </StyledTd150>
+                  </StyledTr>
+                  <StyledTr>
+                    <StyledTd50>2</StyledTd50>
+                    <StyledTd200>Test2</StyledTd200>
+                    <StyledTd200>aa:bb:cc:dd:ee:fff</StyledTd200>
+                    <StyledTd150><StateRequest state="denied"/> </StyledTd150>
+                    <StyledTd150>
+                      <form>
+                        <SmallRedButton>Supprimer</SmallRedButton>
+                      </form></StyledTd150>
+                  </StyledTr>
+                  <StyledTr>
+                    <StyledTd50>3</StyledTd50>
+                    <StyledTd200>Test3</StyledTd200>
+                    <StyledTd200>aa:bb:cc:dd:ee:fff</StyledTd200>
+                    <StyledTd150><StateRequest state="inProcess"/> </StyledTd150>
+                    <StyledTd150>
+                      <form>
+                        <SmallRedButton>Supprimer</SmallRedButton>
+                      </form>
+                    </StyledTd150>
+                  </StyledTr>
+                </tbody>
+              </StyledTable>
+            </div>
           </StyledCard>
 
           <Row>

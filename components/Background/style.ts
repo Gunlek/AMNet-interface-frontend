@@ -17,5 +17,10 @@ export const DefaultBackground = styled.div`
   padding: 1% 2%;
   background: #E8EFEA;
   display: flex;
+
+  @media screen and (max-width: 1000px){
+    flex-direction: column;
+    padding: 2.5% 5%;
+  }  
 `;
 

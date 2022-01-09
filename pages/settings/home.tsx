@@ -8,7 +8,8 @@ import {
   Column,
   DashboardContainer,
   Col4,
-  Col3
+  Col3,
+  ResponsiveRow
 } from "../../components/Container/style";
 import { 
   TitleCard,
@@ -36,7 +37,7 @@ export default function Dashboard() {
               <BlackTitle>Espace d'administration</BlackTitle>
           </Row>
 
-          <Row style={{marginBottom:"2%"}}>
+          <ResponsiveRow style={{marginBottom:"2%"}}>
             <Col6 style={{marginRight:"1%"}}>
               <StyledCard style={{height: "100%"}}>
                 <TitleCard>Etat des demandes</TitleCard>
@@ -79,7 +80,7 @@ export default function Dashboard() {
                   </form>
               </StyledCard>
             </Col6>
-          </Row>
+          </ResponsiveRow>
 
           <Row style={{ marginBottom:"2%"}}>
             
@@ -100,7 +101,7 @@ export default function Dashboard() {
                 <TitleCard>Système de mail</TitleCard>
               
                 <form method="post" style={{height:"100%"}}>
-                  <Row style={{marginTop:"20px"}}>
+                  <ResponsiveRow style={{marginTop:"20px"}}>
                     <Col3 style={{marginRight:"1%"}}>
                       <GreenText style={{marginBottom:"5px"}}>Cotisation payée</GreenText>
                       <StyledSelect>
@@ -128,7 +129,7 @@ export default function Dashboard() {
                         <input type="checkbox" /> <BlackText style={{marginLeft:"10px"}}>Autres</BlackText>
                       </Row>
                     </Col6>
-                  </Row>
+                  </ResponsiveRow>
 
                   <div style={{marginTop:"20px"}}>
                     <GreenText style={{marginBottom:"5px"}}>Titre du Mail</GreenText>

@@ -11,6 +11,10 @@ import {
 import { StyledCardCampus } from "../components/Card/style";
 import { StyledInput } from "../components/Input/style";
 import { BlackTitle, GreenText } from "../components/Text/style";
+import { render } from 'react-dom'
+import Checkbox from "../components/Input/Checkbox";
+
+
 
 export default function Homepage() {
   return (
@@ -54,9 +58,7 @@ export default function Homepage() {
                   <StyledInput type="password"/>
                 </div>
                 <Row style={{alignItems:"Center", marginBottom:"20px"}}>
-                  <label>
-                    
-                  </label>
+                  
                     <span style={{paddingLeft:"5px"}}>Rester connecté</span>
                 </Row>
                 <div style={{marginBottom:"5px"}}>
