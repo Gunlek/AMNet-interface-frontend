@@ -46,3 +46,16 @@ export const StyledLogOut = styled.svg`
     transition: fill 0.2s;
   }
 `;
+
+export const StyledPath = styled.path`
+  fill: none; 
+  stroke: black;
+  stroke-opacity: 0.2; 
+  stroke-width: 3.36px;
+
+  ${StyledBackIcon}:hover & {
+    stroke: white;
+    stroke-opacity: 1; 
+    transition: color fill 0.2s;
+  }
+`;
