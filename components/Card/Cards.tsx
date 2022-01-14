@@ -3,50 +3,50 @@ import {
   StyledTeamPicture,
   StyledGreenCard,
   StyledCard,
-  GreenText,
-  BlackText,
   StyledHelpSection,
-  GreenLine,
-  StyledCotisaion,
-  StyledMenu, 
-  StyledMail,
-  StyledBackIcon,
-  StyledIcon
+  GreenLine
 } from "./style";
 import {
   Col4,
   Column,
   Row
 } from "../Container/style";
-import "inline-svg";
-import CloseSVG from "/static/icons/faq.svg";
-
+import { GreenText, BlackText, StyledLink } from "../Text/style";
 
 export function HelpSection(props: { color?: string }) {
   return (
     <StyledHelpSection color={props.color}>
       Besoin d'assistance ?{" "}
-      <StyledMail color="#67bc45" href="mailto:contact@amnet.fr">contact@amnet.fr</StyledMail> !
+      <StyledLink hovercolor="#67bc45" href="mailto:contact@amnet.fr">contact@amnet.fr</StyledLink> !
     </StyledHelpSection>
   );
 }
 
-export function RectangleLogo(props: { color?: string }) {
-  if (props.color == "blanc") {
+export function RectangleLogo(props: { color?: string, height?: string }) {
+  const height = {
+    height: props.height ? props.height : "100px",
+    aspectRatio: "19 / 8.5"
+  };
+
+  if (props.color == 'blanc') {
     return (
+      <a target="_blank" href="https://www.google.com/search?q=the+answer+to+life%2C+the+universe+and+everything&amp;sxsrf=AOaemvKRvpra0jq__iVMCWg_q7g361ifag%3A1641475979658&amp;ei=i-_WYcjSJ82PlwTJ4o3IAw&amp;ved=0ahUKEwiIxLLFnp31AhXNx4UKHUlxAzkQ4dUDCA4&amp;uact=5&amp;oq=the+answer+to+life%2C+the+universe+and+everything&amp;gs_lcp=Cgdnd3Mtd2l6EAMyBAgAEEMyBggAEAcQHjIGCAAQBxAeMgYIABAHEB4yBggAEAcQHjIGCAAQBxAeMgYIABAHEB4yBggAEAcQHjIGCAAQBxAeMgYIABAHEB46BQgAEMsBSgQIQRgASgQIRhgAUABY5xhgkCNoAHACeACAAXKIAZUCkgEDMy4xmAEAoAECoAEBwAEB&amp;sclient=gws-wiz" style={{ height: "100px", cursor: "auto" }}>
         <img
-          style={{ height: "100px", aspectRatio: "19 / 9" }}
-          src="/static/logo/logoamnet2021blanc.svg"
+          style={{ height: "100px", aspectRatio: "19 / 8.5" }}
+          src="/static/logo/white_logo.svg"
           alt="Logo AMNet"
         />
+      </a>
     );
   } else {
     return (
-      <img
-        style={{  height: "100px", aspectRatio: "19 / 9" }}
-        src="/static/logo/logoamnet2021.svg"
+      <a href="../" style={height}>
+        <img
+        style={height}
+        src="/static/logo/logo.svg"
         alt="Logo AMNet"
       />
+      </a>
     );
   }
 }
@@ -69,7 +69,7 @@ export function TitleCard(props: { children: string }){
       <div 
         style=
         {{
-          overflow:"hidden", 
+          flex: "1",
           width:"auto",
           display: "flex",
           alignItems: "center",
@@ -92,18 +92,13 @@ export function GreenCard(props: { year: string }) {
   );
 }
 
-export function TeamPicture(props: { names?: string; nums?: string }) {
-  var separator = /\s*(;|$)\s*/;
-  var names = props.names.split(separator);
-  var nums = props.nums.split(separator);
-  var size = Math.round(names.length / 2);
-
+export function TeamPicture(props: { }) {
   return (
     <StyledTeamPicture
       style=
       {{ 
         aspectRatio: "16/8", 
-        maxHeight: "50vh", 
+        maxHeight: "45vh", 
         justifyContent:"end"
       }}
     >
@@ -116,127 +111,34 @@ export function TeamPicture(props: { names?: string; nums?: string }) {
         }}
       >
       <GreenCard year="221"/>
-      <StyledCard width="100%" radius="30px" height="90px" padding="10px 0" style={{display: "flex", alignItems:"center"}}>
-        <Row>
-          <Col4>
-            <Column style={{ alignItems: "center" }}>
-              <BlackText>Trobotyk'ss (ML)°</BlackText>
-              <GreenText>47Li220</GreenText>
-            </Column>
-          </Col4>
-          <Col4>
-            <Column style={{ alignItems: "center" }}>
-              <BlackText>Sdoosh</BlackText>
-              <GreenText>96Li220</GreenText>
-            </Column>
-          </Col4>
-          <Col4>
-            <Column style={{ alignItems: "center" }}>
-              <BlackText>Nem'O</BlackText>
-              <GreenText>74Li220</GreenText>
-            </Column>
-          </Col4>
-        </Row>
+      <StyledCard 
+        radius="30px" 
+        height="90px" 
+        style={{
+          alignItems:"center", 
+          flexDirection: "row"
+        }}
+      >
+        <Col4>
+          <Column style={{ alignItems: "center" }}>
+            <BlackText>Trobotyk'ss (ML)°</BlackText>
+            <GreenText>47Li220</GreenText>
+          </Column>
+        </Col4>
+        <Col4>
+          <Column style={{ alignItems: "center" }}>
+            <BlackText>Sdoosh</BlackText>
+            <GreenText>96Li220</GreenText>
+          </Column>
+        </Col4>
+        <Col4>
+          <Column style={{ alignItems: "center" }}>
+            <BlackText>Nem'O</BlackText>
+            <GreenText>74Li220</GreenText>
+          </Column>
+        </Col4>
       </StyledCard>
       </Column>
     </StyledTeamPicture>
   );
-}
-
-export function ContributionStatus(props: {status: string}){
-  if(props.status == 'paid')
-  {
-    return(
-      <StyledCotisaion>
-        <BlackText style={{paddingRight: "10px"}}>Cotisation :</BlackText>
-        <img style={{height: "20px"}} src="/static/icons/succes.svg"/> 
-      </StyledCotisaion>
-    );
-  }
-  else(props.status == 'unpaid')
-  {
-    return(
-      <StyledCotisaion>
-        <BlackText style={{paddingRight: "10px"}}>Cotisation :</BlackText>
-        <img height={"20px"} src="/static/icons/fail.svg"/> 
-      </StyledCotisaion>
-    );
-  }
-}
-
-export function Menu(props: {page?: string}){
-  const positionning = {flex: "1", margin: "5px 0", justifyContent:"center", alignItems: "center"};
-  const sizeIcon = {width: "60%"};
-
-  return(
-    <StyledMenu>
-      <Column style={{height: "100%", padding:"20px 0", alignItems: "center"}}>
-        <Row 
-          style={{
-            flex: "2", 
-            alignItems: "start", 
-            justifyContent:"center", 
-            margin: "5px 0"}}
-        >
-          <a href="./homepage" style={{display: "flex", justifyContent:"center"}}>
-            <img style={{width:"100%"}} src="/static/logo/logo.svg " />
-          </a>
-        </Row>
-        
-        <Row style={positionning}>
-          <StyledBackIcon>
-            <CloseSVG />
-          </StyledBackIcon>
-        </Row>
-        
-        <Row style={positionning}>
-          <StyledBackIcon>
-            <StyledIcon style={sizeIcon} src="/static/icons/user.svg" />
-          </StyledBackIcon>
-        </Row>
-        
-        <Row style={positionning}>
-          <StyledBackIcon>
-            <StyledIcon style={sizeIcon} src="/static/icons/faq.svg" />
-          </StyledBackIcon>
-        </Row>
-        
-        <Row style={positionning}>
-          <StyledBackIcon>
-            <StyledIcon style={sizeIcon} src="/static/icons/network.svg" />
-          </StyledBackIcon>
-        </Row>
-        
-        <Row style={positionning}>
-          <StyledBackIcon>
-            <StyledIcon style={sizeIcon} src="/static/icons/material.svg" />
-          </StyledBackIcon>
-        </Row>
-        
-        <Row style={positionning}>
-          <StyledBackIcon>
-            <StyledIcon style={sizeIcon} src="/static/icons/gadzflix.svg" />
-          </StyledBackIcon>
-        </Row>
-        
-        <Row style={positionning}>
-          <StyledBackIcon>
-            <StyledIcon style={sizeIcon} src="/static/icons/setting.svg" />
-          </StyledBackIcon>
-        </Row>
-
-        <Row 
-          style={{
-            flex: "2", 
-            alignItems: "end", 
-            justifyContent:"center", 
-            margin: "5px 0", 
-            width:"60px"
-          }}
-        >
-          <img style={sizeIcon} src="/static/icons/log_out.svg" />
-        </Row>
-      </Column>
-    </StyledMenu>
-  )
 }
