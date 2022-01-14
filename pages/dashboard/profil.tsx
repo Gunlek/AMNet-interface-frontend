@@ -41,7 +41,7 @@ export default function Dashboard() {
             </Column>
           </ResponsiveRow>
 
-          <form style={{width: "100%"}} method="post">
+          <form style={{width: "100%", flex:"1"}} method="post">
             <ResponsiveRow style={{alignItems:"center", marginBottom:"20px"}}>
               <Col6 style={{paddingRight: "20px"}}>
                 <GreenText style={{marginBottom:"5px"}}>Nom d'utilisateur</GreenText>
