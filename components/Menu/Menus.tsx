@@ -104,7 +104,7 @@ export function Menu(props: {page?: string}){
             <SVGHome page={props.page}/>
           </Row>
           
-          <StyledDivLogOut>
+          <StyledDivLogOut style={{flex:"3", marginTop:"10px"}}>
             <SVGLogOut />
           </StyledDivLogOut>
         </StyledMenu>
