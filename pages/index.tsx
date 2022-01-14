@@ -1,4 +1,4 @@
-import React from "react";
+import React , {useEffect, useState} from "react";
 import Head from "next/head";
 import { CampusBackground } from "../components/Background/style";
 import { GreenButton } from "../components/Button/Buttons";
@@ -19,13 +19,17 @@ import {
 import { StyledCardCampus } from "../components/Card/style";
 import { WhiteText, BlackText } from "../components/Text/style";
 
+
 export default function Homepage() {
+  
+  
+  
   return (
     <>
       <Head>
         <title>Accueil &bull; AMNet</title>
       </Head>
-      <CampusBackground style={{ padding: "10px 5%" }}>
+      <CampusBackground>
         <ResponsiveRow style={{marginBottom:"10px"}}>
           <Col6 style={{ justifyContent: "center", alignItems: "start" }}>
             <RectangleLogo color="blanc"/>
@@ -47,7 +51,7 @@ export default function Homepage() {
           <Col6>
             <WhiteText 
               style={{
-                
+                marginRight: "20px",
                 paddingTop:"20px", 
                 textAlign: "justify"
               }}
@@ -93,9 +97,7 @@ export default function Homepage() {
           </ResponsiveRow>
         </StyledCardCampus>
 
-        <Row style={{marginBottom: "10px"}}>
           <HelpSection/>
-        </Row>
       </CampusBackground>
     </>
   );

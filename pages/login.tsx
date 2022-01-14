@@ -31,16 +31,14 @@ export default function Homepage() {
           }}
         >
           <StyledCardCampus 
-            width="30%" 
+            width="35%" 
             height="auto"
-            style={{marginTop:"20px", marginBottom:"20px"}}
+            style={{ marginBottom:"20px"}}
           >
-              <Row style={{justifyContent:"center"}}>
+              <Row style={{marginBottom:"20px", marginTop:"10px", justifyContent:"center"}}>
                 <RectangleLogo/>
               </Row>
-              <Row style={{justifyContent:"center"}}>
-                <BlackTitle>Espace AMNet</BlackTitle>
-              </Row>
+              
               <Row style={{width: "100%"}}>
                 <TitleCard>
                   Connexion
@@ -74,7 +72,7 @@ export default function Homepage() {
           </StyledCardCampus>
         </Row>
     
-        <Row style={{marginBottom:"20px"}}><HelpSection /></Row>
+        <HelpSection />
       </CampusBackground>
     </>
   );
