@@ -58,7 +58,7 @@ export const StyledCheckbox = styled.input`
 `;
 
 export const StyledTextArea = styled.textarea`
-  min-height: 100px;
+  min-height: 150px;
   width: 100%; 
   resize: none;
   margin:0;
