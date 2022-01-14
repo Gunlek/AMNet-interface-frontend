@@ -42,11 +42,9 @@ export default function Dashboard() {
               <BlackTitle>Mes demandes d'accès à AMNet IoT</BlackTitle>
             </Column>
             
-            <Column style={{flex:"1", alignItems: "end", justifyContent: "center"}}>
-              <form>
-                <GreenButton width="280px">Nouvelle demande</GreenButton>
-              </form>
-            </Column>
+            <form style={{flex:"1", alignItems: "end", justifyContent: "center"}}>
+              <GreenButton width="280px">Nouvelle demande</GreenButton>
+            </form>
           </ResponsiveRow>
 
           <Column>

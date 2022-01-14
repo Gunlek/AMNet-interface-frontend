@@ -37,11 +37,9 @@ export default function Dashboard() {
               <BlackTitle>Mes demandes de matériel</BlackTitle>
             </Column>
             
-            <Column style={{flex:"1", alignItems: "end", justifyContent: "center"}}>
-              <form>
-                <GreenButton width="280px">Nouvelle demande</GreenButton>
-              </form>
-            </Column>
+            <form style={{flex:"1", alignItems: "end", justifyContent: "center"}}>
+              <GreenButton width="280px">Nouvelle demande</GreenButton>
+            </form>
           </ResponsiveRow>
 
           <Column style={{ marginBottom:"2%"}}>
