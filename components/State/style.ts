@@ -19,6 +19,10 @@ export const StyledStateContribution = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+
+  @media screen and (max-width: 1000px){
+    margin: 10px 0;
+  } 
 `;
 
 export const StyledStateInvite = styled.select`

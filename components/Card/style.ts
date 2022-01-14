@@ -16,7 +16,7 @@ export const StyledCardCampus = styled(StyledCard)`
   background: rgba(255, 255, 255, 0.9);
 
   @media screen and (max-width: 1000px){
-    width: 90%
+    width: 100%;
   } 
 `;
 

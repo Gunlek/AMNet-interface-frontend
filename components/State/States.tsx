@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { GreenButton } from "../Button/Buttons";
+import { ResponsiveRow } from "../Container/style";
 import { BlackText } from "../Text/style";
 import { 
   StyledStateContribution,
@@ -20,21 +21,18 @@ export function StateContribution(props: {status: string}){
     else(props.status == 'unpaid')
     {
       return(
-        <div style={{display:"flex"}}>
+        <ResponsiveRow>
           <StyledStateContribution style={{marginRight: "15px"}}>
             <BlackText style={{paddingRight: "10px"}}>Cotisation :</BlackText>
             <img style={{height: "20px"}} src="/static/icons/fail.svg"/> 
           </StyledStateContribution>
           <GreenButton width="175px" height="50px">La payer</GreenButton>
-        </div>
+        </ResponsiveRow>
         
       );
     }
   }
-  
-  
-  
-  
+
   export function StateRequest(props: { state: string }) {
     if(props.state == 'accepted')
     {

@@ -1,6 +1,5 @@
 import styled from "styled-components";
 
-
 export const Column = styled.div`
   display: flex;
   flex-direction: column;
@@ -107,13 +106,17 @@ export const DashboardContainer = styled.div`
     width: 100%;
     margin-left: 0;
     padding-left: 0; 
-    margin-top: 180px;
-  }  
-`;
+    margin-top: 100px;
+    padding: 0 5% 2.5%;
+  }
 
+  @media screen and (max-width: 725px){
+    margin-top: 230px;
+  } 
+
+`;
 
 export const CheckboxRow = styled(Row)`
   display: grid;
   grid-template-columns: repeat(auto-fill,minmax(150px, 1fr));
 `;
-

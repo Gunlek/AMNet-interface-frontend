@@ -13,7 +13,7 @@ import { HelpSection, TitleCard } from "../../components/Card/Cards"
 import { StyledCard } from "../../components/Card/style";
 import { Menu } from "../../components/Menu/Menus";
 import { StateContribution } from "../../components/State/States";
-import { BlackTitle, BlackText } from "../../components/Text/style";
+import { BlackTitle, BlackText, StyledLinkButton } from "../../components/Text/style";
 
 
 export default function Dashboard() {
@@ -66,9 +66,9 @@ export default function Dashboard() {
                       marginTop: "20px"
                     }}
                   >
-                    <a href="./iot">
+                    <StyledLinkButton href="./iot">
                       <GreenButton>Accéder</GreenButton>
-                    </a>
+                    </StyledLinkButton>
                   </Row>
                 </Column>
               </StyledCard>
@@ -92,9 +92,9 @@ export default function Dashboard() {
                       marginTop: "20px"
                     }}
                   >
-                    <a href="./faq">
+                    <StyledLinkButton href="./faq">
                       <GreenButton>Accéder</GreenButton>
-                    </a>
+                    </StyledLinkButton>
                   </Row>
                 </Column>
               </StyledCard>

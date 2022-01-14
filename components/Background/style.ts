@@ -10,6 +10,11 @@ export const CampusBackground = styled.div`
   flex-Direction: column;
   justify-content: space-between;
   align-items: center;
+  padding: 20px 5%;
+
+  @media screen and (max-width: 1000px){
+    padding: 2.5% 5%;
+  }  
 `;
 
 export const DefaultBackground = styled.div`
@@ -19,8 +24,7 @@ export const DefaultBackground = styled.div`
   display: flex;
 
   @media screen and (max-width: 1000px){
-    flex-direction: column;
-    padding: 2.5% 5%;
+    padding: 0;
   }  
 `;
 

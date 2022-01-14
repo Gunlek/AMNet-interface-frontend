@@ -16,6 +16,10 @@ export const StyledButton = styled.button`
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
     cursor: pointer;
   }
+
+  @media screen and (max-width: 420px){
+    width: 100%;
+  }  
 `;
 
 export const StyledGreenButton = styled(StyledButton)`
