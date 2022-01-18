@@ -9,7 +9,7 @@ export  function  SVGFaq(props: {page: string}){
                 style={{
                     height: "60px", 
                     width: "60px", 
-                    background:"linear-gradient(134.54deg, #67BC45 5.67%, #096A09 94.96%)", 
+                    background:"linear-gradient(135deg, #67BC45 5.67%, #096A09 94.96%)", 
                     borderRadius: "15px", 
                     display: "flex",
                     justifyContent: "center",
