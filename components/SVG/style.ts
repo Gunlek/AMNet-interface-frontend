@@ -4,7 +4,7 @@ export const StyledBackIcon = styled.a`
   display: flex;
   justify-content: center;
   align-items: center;
-
+  
   height: 60px;
   width: 60px;
 
@@ -19,13 +19,12 @@ export const StyledBackIcon = styled.a`
 `;
 
 export const StyledIcon = styled.svg`
-  fill: black; 
-  fill-opacity: 0.2;
+  fill: #C5C7C6;
 
   ${StyledBackIcon}:hover & {
     fill: white;
     fill-opacity: 1;
-    transition: color fill 0.2s;
+    transition: 0.2s;
   }
 `;
 
@@ -57,5 +56,21 @@ export const StyledPath = styled.path`
     stroke: white;
     stroke-opacity: 1; 
     transition: color fill 0.2s;
+  }
+`;
+
+export const StyledLinkGitHub = styled.a`
+  justify-content: center; 
+  display: flex;
+  align-items: center; 
+  margin-left: 7.5px;
+`;
+
+export const StyledGitHub = styled.path`
+  fill: #096a09; 
+
+  ${StyledLinkGitHub}:hover &{
+    transition: fill 0.2s;
+    fill: #67bc45;
   }
 `;
