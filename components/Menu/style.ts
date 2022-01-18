@@ -3,7 +3,7 @@ import { StyledCard } from "../Card/style";
 import { Row } from "../Container/style";
 
 export const StyledMenu = styled(StyledCard)`
-  height: 100%;
+  height: 96%;
   padding: 0px;
   padding-Top:20px;
   padding-bottom:10px; 
@@ -28,7 +28,9 @@ export const StyledMenu = styled(StyledCard)`
 export const MenuContener = styled.div`
   width: 85px;
   position: fixed; 
-  height: 96vh;
+  height:100vh;
+  display: flex;
+  align-items: center;
 
   @media screen and (max-width: 1000px){
     height: auto;
