@@ -42,10 +42,10 @@ export const GreenTitle = styled.h2`
 
 export const StyledLink = styled.a`
   color:${(props) => props.color};
-
+  transition: color 0.3s;
+  
   &:hover{
     color: ${(props) => props.hovercolor || "#67bc45"};
-    transition: color 0.2s;
     cursor: pointer;
   }
 `;
