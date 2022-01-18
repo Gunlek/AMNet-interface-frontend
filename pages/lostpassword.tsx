@@ -2,6 +2,7 @@ import React from "react";
 import Head from "next/head";
 import { CampusBackground } from "../components/Background/style";
 import {
+  Footer,
   HelpSection,
   RectangleLogo,
   TitleCard
@@ -9,9 +10,7 @@ import {
 import { GreenButton } from "../components/Button/Buttons";
 import {  StyledCardCampus} from "../components/Card/style";
 import {
-  Col2,
-  Col6,
-  Col8,
+  Column,
   Row,
 } from "../components/Container/style";
 import { StyledInput } from "../components/Input/style";
@@ -57,7 +56,10 @@ export default function Homepage() {
           </StyledCardCampus>
         </Row>
 
-        <HelpSection />
+        <Column style={{width:"111.1%"}}>
+          <HelpSection/>
+          <Footer page="campus"/>
+        </Column>
       </CampusBackground>
     </>
   );

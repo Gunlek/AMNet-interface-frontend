@@ -8,7 +8,7 @@ import {
   DashboardContainer,
   ResponsiveRow
 } from "../../components/Container/style";
-import { HelpSection } from "../../components/Card/Cards"
+import { Footer, HelpSection } from "../../components/Card/Cards"
 import { StyledCard } from "../../components/Card/style";
 import { Menu } from "../../components/Menu/Menus";
 import { 
@@ -21,8 +21,10 @@ import {
 } from "../../components/Table/style";
 import { BlackTitle, BlackText } from "../../components/Text/style";
 import { StateRequest } from "../../components/State/States";
+import useMediaQuery from "../../components/MediaQueries/MediaQuery";
 
 export default function Dashboard() {
+  const minWidth1000 = useMediaQuery('(min-width:1000px)');
   return (
     <>
       <Head>
@@ -32,12 +34,12 @@ export default function Dashboard() {
         <Menu page="material" />
 
         <DashboardContainer>
-          <ResponsiveRow style={{margin:"1% 0"}}>
+          <ResponsiveRow style={{margin: minWidth1000 ? "1% 0" : "4% 0", alignItems:"center"}}>
             <Column style={{justifyContent: "center"}}>
               <BlackTitle>Mes demandes de matériel</BlackTitle>
             </Column>
             
-            <form style={{flex:"1", alignItems: "end", justifyContent: "center"}}>
+            <form style={{flex:"1", alignItems: "end", justifyContent: "center", marginTop: minWidth1000 ? "0" : "4%"}}>
               <GreenButton width="280px">Nouvelle demande</GreenButton>
             </form>
           </ResponsiveRow>
@@ -48,7 +50,7 @@ export default function Dashboard() {
             </BlackText>           
           </Column>
 
-          <StyledCard style={{ flex: "1", marginBottom:"2%" }}>
+          <StyledCard style={{ flex: "1", marginBottom: minWidth1000 ? "2%" : "4%" }}>
             <div 
                 style={{ 
                   height:"100%", 
@@ -99,9 +101,8 @@ export default function Dashboard() {
             </div>
           </StyledCard>
 
-          <Row>
-            <HelpSection color="#096A09"/>
-          </Row>   
+          <HelpSection color="#096A09"/>
+          <Footer />
         </DashboardContainer>
       </DefaultBackground>
     </>

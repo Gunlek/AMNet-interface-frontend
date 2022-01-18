@@ -2,16 +2,16 @@ import React from "react";
 import Head from "next/head";
 import { CampusBackground } from "../components/Background/style";
 import { GreenButton } from "../components/Button/Buttons";
-import { Row } from "../components/Container/style";
+import { Column, Row } from "../components/Container/style";
 import {
+  Footer,
   HelpSection,
   RectangleLogo,
   TitleCard,
 } from "../components/Card/Cards";
 import { StyledCardCampus } from "../components/Card/style";
 import { StyledInput } from "../components/Input/style";
-import { BlackTitle, GreenText } from "../components/Text/style";
-import { render } from 'react-dom'
+import { BlackTitle, GreenText, StyledLink } from "../components/Text/style";
 import Checkbox from "../components/Input/Checkbox";
 
 
@@ -60,10 +60,10 @@ export default function Homepage() {
                     <span style={{paddingLeft:"5px"}}>Rester connecté</span>
                 </Row>
                 <div style={{marginBottom:"5px"}}>
-                  <a href="./lostpassword">Mot de passe / Identifiant oublié</a>
+                  <StyledLink hovercolor="#096A09" href="./lostpassword">Mot de passe / Identifiant oublié</StyledLink>
                 </div>
                 <div style={{marginBottom:"20px"}}>
-                  <a href="./signup"> Pas encore inscrit ? Inscrivez-vous en cliquant ici</a>
+                  <StyledLink hovercolor="#096A09" href="./signup"> Pas encore inscrit ? Inscrivez-vous en cliquant ici</StyledLink>
                 </div>
                 <Row style={{justifyContent:"center"}}>
                   <GreenButton>Connexion</GreenButton>
@@ -72,7 +72,10 @@ export default function Homepage() {
           </StyledCardCampus>
         </Row>
     
-        <HelpSection />
+        <Column style={{width:"111.1%"}}>
+          <HelpSection/>
+          <Footer page="campus"/>
+        </Column>
       </CampusBackground>
     </>
   );

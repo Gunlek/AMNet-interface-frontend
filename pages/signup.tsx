@@ -3,6 +3,7 @@ import Head from "next/head";
 import { CampusBackground } from "../components/Background/style";
 import { GreenButton } from "../components/Button/Buttons";
 import {
+  Footer,
   HelpSection,
   RectangleLogo,
   TitleCard
@@ -13,6 +14,7 @@ import {
   Col3,
   Row,
   ResponsiveRow,
+  Column,
 } from "../components/Container/style";
 import { 
   StyledInput, 
@@ -25,10 +27,15 @@ import {
   BlackText, 
   StyledLink
 } from "../components/Text/style";
+import useMediaQuery from "../components/MediaQueries/MediaQuery";
+
+
 
 export default function Homepage() {
+  const minWidth1000 = useMediaQuery('(min-width:1000px)');
   return (
     <>
+    
       <Head>
         <title>Inscirption &bull; AMNet</title>
       </Head>
@@ -46,7 +53,7 @@ export default function Homepage() {
             style={{marginBottom:"20px"}}
           >
             <Row style={{marginBottom:"20px", marginTop:"10px", justifyContent:"center"}}>
-              <RectangleLogo height="125px"/>
+              <RectangleLogo height={minWidth1000 ? "125px" : "100px"}/>
             </Row>
 
             <Row style={{width: "100%", marginBottom: "20px"}}>
@@ -57,11 +64,19 @@ export default function Homepage() {
 
             <form method="post">
               <ResponsiveRow style={{alignItems:"center", marginBottom:"20px"}}>
-                <Col6 style={{paddingRight: "20px"}}>
-                  <GreenText style={{marginBottom:"5px"}}>Nom d'utilisateur</GreenText>
+                <Col6 style={{paddingRight: minWidth1000 ? "10px" : "0px", width:"100%"}}>
+                  <GreenText style={{marginBottom:"5px", paddingLeft:"5px"}}>Nom d'utilisateur</GreenText>
                   <StyledInput type="text"/>
-                </Col6>
-                <Col6 style={{justifyContent: "end", height: "74px"}}>
+                </Col6> 
+                <Col6 
+                  style={{
+                    justifyContent: "end", 
+                    height: minWidth1000 ? "75px" : "auto", 
+                    alignItems:  minWidth1000 ? "start" : "center", 
+                    marginTop: minWidth1000 ? "0" : "20px",
+                    paddingLeft: minWidth1000 ? "10px" : "0",
+                  }}
+                >
                   <BlackText>Votre nom d'utilisateur ne doit contenir 
                     que des lettres, des chiffres ou des espaces.
                   </BlackText>
@@ -69,27 +84,27 @@ export default function Homepage() {
               </ResponsiveRow>
 
               <ResponsiveRow style={{marginBottom:"20px"}}>
-                <Col3 style={{paddingRight: "10px"}}>
-                  <GreenText style={{marginBottom:"5px"}}>Prénom</GreenText>
+                <Col3 style={{paddingRight: minWidth1000 ? "10px" : "0", marginBottom: minWidth1000 ? "0" : "20px"}}>
+                  <GreenText style={{marginBottom:"5px", paddingLeft:"5px"}}>Prénom</GreenText>
                   <StyledInput type="text"/>
                 </Col3>
-                <Col3 style={{paddingLeft: "10px", paddingRight: "20px"}}>
-                  <GreenText style={{marginBottom:"5px"}}>Nom</GreenText>
+                <Col3 style={{paddingLeft: minWidth1000 ? "10px" : "0", paddingRight: minWidth1000 ? "10px" : "0", marginBottom: minWidth1000 ? "0" : "20px"}}>
+                  <GreenText style={{marginBottom:"5px", paddingLeft:"5px"}}>Nom</GreenText>
                   <StyledInput type="text"/>
                 </Col3>
-                <Col6>
-                  <GreenText style={{marginBottom:"5px"}}>Adresse e-mail</GreenText>
+                <Col6 style={{paddingLeft: minWidth1000 ? "10px" : "0"}}>
+                  <GreenText style={{marginBottom:"5px", paddingLeft:"5px"}}>Adresse e-mail</GreenText>
                   <StyledInput type="email"/>
                 </Col6>
               </ResponsiveRow>
 
               <ResponsiveRow style={{marginBottom:"20px"}}>
-                <Col6 style={{paddingRight: "20px"}}>
-                  <GreenText style={{marginBottom:"5px"}}>Téléphone</GreenText>
+                <Col6 style={{paddingRight: minWidth1000 ? "10px" : "0", marginBottom: minWidth1000 ? "0" : "20px"}}>
+                  <GreenText style={{marginBottom:"5px", paddingLeft:"5px"}}>Téléphone</GreenText>
                   <StyledInput type="phone"/>
                 </Col6>
-                <Col6>
-                  <GreenText style={{marginBottom:"5px"}}>Promotion</GreenText>
+                <Col6 style={{paddingLeft: minWidth1000 ? "10px" : "0"}}>
+                  <GreenText style={{marginBottom:"5px", paddingLeft:"5px"}}>Promotion</GreenText>
                   <StyledSelect name="user_proms_select" id="user_proms_select">
                     <option value="219">219</option>
                     <option value="220">220</option>
@@ -100,18 +115,18 @@ export default function Homepage() {
               </ResponsiveRow>
 
               <ResponsiveRow style={{marginBottom:"20px"}}>
-                <Col6 style={{paddingRight: "20px"}}>
-                  <GreenText style={{marginBottom:"5px"}}>Bucque</GreenText>
+                <Col6 style={{paddingRight: minWidth1000 ? "10px" : "0", marginBottom: minWidth1000 ? "0" : "20px"}}>
+                  <GreenText style={{marginBottom:"5px", paddingLeft:"5px"}}>Bucque</GreenText>
                   <StyledInput type="text"/>
                 </Col6>
-                <Col3 style={{paddingRight: "10px"}}>
-                  <GreenText style={{marginBottom:"5px"}}>Fam's</GreenText>
+                <Col3 style={{paddingLeft: minWidth1000 ? "10px" : "0", paddingRight: minWidth1000 ? "10px" : "0", marginBottom: minWidth1000 ? "0" : "20px"}}>
+                  <GreenText style={{marginBottom:"5px", paddingLeft:"5px"}}>Fam's</GreenText>
                   <StyledInput type="text"/>
                 </Col3>
-                <Col3 style={{paddingLeft: "10px"}}>
-                  <GreenText style={{marginBottom:"5px"}}>Tabagn's</GreenText>
+                <Col3 style={{paddingLeft: minWidth1000 ? "10px" : "0"}}>
+                  <GreenText style={{marginBottom:"5px", paddingLeft:"5px"}}>Tabagn's</GreenText>
                   <StyledSelect name="tbk">
-                    <option value="li" selected>Birse</option>
+                    <option value="li">Birse</option>
                     <option value="an">Boquette</option>
                     <option value="bo">Bordel's</option>
                     <option value="ch">Chalon's</option>
@@ -124,12 +139,12 @@ export default function Homepage() {
               </ResponsiveRow>
 
               <ResponsiveRow style={{marginBottom:"20px"}}>
-                <Col6 style={{paddingRight: "20px"}}>
-                  <GreenText style={{marginBottom:"5px"}}>Mot de passe</GreenText>
+                <Col6 style={{paddingRight: minWidth1000 ? "10px" : "0",  marginBottom: minWidth1000 ? "0" : "20px"}}>
+                  <GreenText style={{marginBottom:"5px", paddingLeft:"5px"}}>Mot de passe</GreenText>
                   <StyledInput type="password"/>
                 </Col6>
-                <Col6>
-                  <GreenText style={{marginBottom:"5px"}}>Confirmez votre Mot de passe</GreenText>
+                <Col6 style={{paddingLeft: minWidth1000 ? "10px" : "0"}}>
+                  <GreenText style={{marginBottom:"5px", paddingLeft:"5px"}}>Confirmez votre Mot de passe</GreenText>
                   <StyledInput type="password"/>
                 </Col6>
               </ResponsiveRow>
@@ -137,25 +152,25 @@ export default function Homepage() {
               <ResponsiveRow style={{alignItems:"start"}} >
                 <BlackText>
                   <GreenText>Réglementation</GreenText>
-                  <p>
-                    Consulter les statuts de l'assocation : 
-                    {" "}<StyledLink color= "#096a09" hovercolor="#67bc45" target="_blank" href="/static/docs/Statuts_AMNet.pdf">Statuts de l'association</StyledLink>
+                  <p style={{marginTop:"5px"}}>
+                    Consultez <StyledLink color= "#096a09" target="_blank" href="/static/docs/Statuts_AMNet.pdf">les Statuts de l'association</StyledLink>
                     <br/>    
-                    Consultez le règlement intérieur de l'assocation : 
-                    {" "}<StyledLink color= "#096a09" hovercolor="#67bc45" target="_blank" href="/static/docs/Reglement_Interieur_AMNet.pdf">Règlement intérieur de l'association</StyledLink>
-                    <br/><br/>
+                    Consultez <StyledLink color= "#096a09" target="_blank" href="/static/docs/Reglement_Interieur_AMNet.pdf">le Règlement intérieur de l'association</StyledLink>
+                    <br/>
+                    <br/>
                     AMNet Birse est une association Loi 1901, vous devez en accepter les statuts et le réglement intérieur. La validation de ce formulaire et le réglement de la cotisation vaut pour adhésion à l'association.
                   </p>
                 </BlackText>
               </ResponsiveRow>
 
-              <ResponsiveRow style={{marginBottom:"20px"}}>
+              <ResponsiveRow style={{marginBottom:"20px", alignItems: "start"}}>
                 <Col6 
                   style=
                   {{
                     flexDirection:"row", 
                     justifyContent:"center", 
-                    alignItems: "center"
+                    alignItems: "center",
+                    marginBottom: minWidth1000 ? "0" : "10px"
                   }}
                 >
                   <StyledCheckbox type="radio" name="accept_rules"/>
@@ -181,7 +196,10 @@ export default function Homepage() {
           </StyledCardCampus>
         </Row>
 
-        <HelpSection />
+        <Column style={{width:"111.1%"}}>
+          <HelpSection/>
+          <Footer page="campus"/>
+        </Column>
       </CampusBackground>
     </>
   );

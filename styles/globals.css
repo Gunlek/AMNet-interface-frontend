@@ -31,12 +31,17 @@
 
 html,
 body {
-  
   padding: 0;
   margin: 0;
   font-family: "Poppins",-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-  min-height: 100vh; 
+}
+
+@media screen and (max-width: 1000px){
+  html, 
+  body{
+    font-size:12px;
+  }
 }
 
 #__next{

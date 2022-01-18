@@ -5,7 +5,7 @@ import {
   Row, 
   DashboardContainer
 } from "../../components/Container/style";
-import { HelpSection } from "../../components/Card/Cards"
+import { Footer, HelpSection } from "../../components/Card/Cards"
 import { StyledCard } from "../../components/Card/style";
 import { Menu } from "../../components/Menu/Menus";
 import { BlackTitle } from "../../components/Text/style";
@@ -33,9 +33,8 @@ export default function Dashboard() {
           >
           </StyledCard>
 
-          <Row>
-            <HelpSection color="#096A09"/>
-          </Row>   
+          <HelpSection color="#096A09"/>
+          <Footer /> 
         </DashboardContainer>
       </DefaultBackground>
     </>

@@ -3,6 +3,7 @@ import Head from "next/head";
 import { CampusBackground } from "../components/Background/style";
 import { GreenButton } from "../components/Button/Buttons";
 import {
+  Footer,
   HelpSection,
   RectangleLogo,
   TeamPicture,
@@ -18,11 +19,14 @@ import {
 } from "../components/Container/style";
 import { StyledCardCampus } from "../components/Card/style";
 import { WhiteText, BlackText } from "../components/Text/style";
+import useMediaQuery from "../components/MediaQueries/MediaQuery";
+
 
 
 export default function Homepage() {
-  
-  
+  const minWidth1000 = useMediaQuery('(min-width:1000px)');
+
+  console.log(minWidth1000)
   
   return (
     <>
@@ -30,15 +34,15 @@ export default function Homepage() {
         <title>Accueil &bull; AMNet</title>
       </Head>
       <CampusBackground>
-        <ResponsiveRow style={{marginBottom:"10px"}}>
-          <Col6 style={{ justifyContent: "center", alignItems: "start" }}>
+        <ResponsiveRow style={{marginBottom: minWidth1000 ? "10px" : "0"}}>
+          <Col6 style={{ justifyContent: minWidth1000 ? "start" : "center", alignItems: minWidth1000 ? "start" : "center"}}>
             <RectangleLogo color="blanc"/>
           </Col6>
-          <Col6 style={{ justifyContent: "center", alignItems: "end" }}>
+          <Col6 style={{ justifyContent: "center", alignItems: minWidth1000 ? "end" : "center", marginTop: minWidth1000 ? "0" : "20px" }}>
             <a 
               href="./login" 
               style={{
-                width: "300px", 
+                width: minWidth1000 ? "300px" : "250px", 
                 borderRadius: "30px"
               }}
             >
@@ -51,7 +55,8 @@ export default function Homepage() {
           <Col6>
             <WhiteText 
               style={{
-                marginRight: "20px",
+                marginRight: minWidth1000 ? "20px" : "0",
+                marginBottom: minWidth1000 ? "0" : "20px",
                 paddingTop:"20px", 
                 textAlign: "justify"
               }}
@@ -67,11 +72,15 @@ export default function Homepage() {
             </WhiteText>
           </Col6>
           <Col6>
-            <TeamPicture/>
+            <TeamPicture 
+              names="Trobotyk'ss (ML)°;Sdoosh;Nem'O" 
+              nums="47Li220;96Li220;74Li220" 
+              promotion="220"
+            />
           </Col6>
         </ResponsiveRow>
 
-        <StyledCardCampus>   
+        <StyledCardCampus style={{marginBottom: minWidth1000 ? "0" : "20px"}}>   
           <ResponsiveRow>
             <Col2 style={{ alignItems: "center", justifyContent: "center" }}>
               <img
@@ -80,7 +89,7 @@ export default function Homepage() {
                 alt="Logo Minecraft"
               />
             </Col2>
-            <Col10 style={{paddingRight:"20px"}}>
+            <Col10>
               <Column>
                 <TitleCard>Serveur Minecraft</TitleCard>
                 <BlackText>
@@ -97,7 +106,10 @@ export default function Homepage() {
           </ResponsiveRow>
         </StyledCardCampus>
 
+        <Column style={{width:"111.1%"}}>
           <HelpSection/>
+          <Footer page="campus"/>
+        </Column>
       </CampusBackground>
     </>
   );
