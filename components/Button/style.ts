@@ -16,14 +16,11 @@ export const StyledButton = styled.button`
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
     cursor: pointer;
   }
-
-  @media screen and (max-width: 420px){
-    width: 100%;
-  }  
 `;
 
 export const StyledGreenButton = styled(StyledButton)`
-  background: linear-gradient(91.71deg, #67bc45 7.99%, #096a09 94.71%);
+  background: linear-gradient(90deg, #67bc45 7.99%, #096a09 94.71%);
+  
 
   &:hover{
     background: #096a09;
@@ -31,7 +28,7 @@ export const StyledGreenButton = styled(StyledButton)`
 `;
 
 export const StyledRedButton = styled(StyledButton)`
-  background: linear-gradient(91.71deg, #f23232 7.99%, #890909 94.71%);
+  background: linear-gradient(90deg, #f23232 7.99%, #890909 94.71%);
 
   &:hover{
     background: #890909;
@@ -39,7 +36,7 @@ export const StyledRedButton = styled(StyledButton)`
 `;
 
 export const StyledOrangeButton = styled(StyledButton)`
-  background: linear-gradient(91.71deg, #FF9900 7.99%, #AA6B0B 94.71%);
+  background: linear-gradient(90deg, #FF9900 7.99%, #AA6B0B 94.71%);
 
   &:hover{
     background: #AA6B0B;
