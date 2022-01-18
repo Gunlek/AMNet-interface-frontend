@@ -61,24 +61,39 @@ export default function Dashboard() {
               <Row><input type="checkbox" /> <BlackText style={{marginLeft:"10px", marginRight:"30px"}}>Rang</BlackText></Row>
             </CheckboxRow>
 
-            <ResponsiveRow style={{ marginBottom:"2%", justifyContent: "space-between" }}>
-              <GreenButton>Confirmer tous les paiements</GreenButton>
-              <RedButton>Annuler tous les paiements</RedButton>
-              <OrangeButton>Passer tous les washs en gadz</OrangeButton>
-            </ResponsiveRow>
+            <div 
+              style={{ 
+                marginBottom:"2%", 
+                display: "grid",
+                gridTemplateColumns: "repeat(auto-fill,minmax(300px, 1fr))",
+                gridAutoRows: "minmax(70px, auto)",
+                border : "none",
+                justifyItems: "center",
+                alignItems: "center" 
+              }}
+            >
+              <GreenButton width="280px">Confirmer le paiement</GreenButton>
+              <RedButton width="280px">Annuler le paiement</RedButton>
+              <OrangeButton width="280px">Passer les washs en gadz</OrangeButton>
+              <OrangeButton width="280px">Passer en Gadz</OrangeButton>
+              <RedButton width="280px">Supprimer</RedButton>
+            </div>
 
           </form>
           <StyledCard style={{ flex: "1",  marginBottom:"2%" }}>
             <div 
               style={{ 
-                height:"100%", 
+                height:"100%",
+                maxHeight:"60vh", 
                 width:"100%", 
-                overflowX:"auto" 
+                overflowX:"auto", 
+                overflowY:"auto"
               }}
             >
               <StyledTable>
                   <tbody>
                       <StyledGreenTr style={{padding:"10px 0 10px 30px"}}>
+                      <StyledTd50><input type="checkbox" /></StyledTd50>
                       <StyledTd50>#</StyledTd50>
                       <StyledTd250>Utilisateur</StyledTd250>
                       <StyledTd200>Prénom</StyledTd200>
@@ -91,10 +106,10 @@ export default function Dashboard() {
                       <StyledTd100 style={{marginRight:"20px"}}>Cotisation</StyledTd100>
                       <StyledTd50 style={{marginRight:"20px"}}>Gadz</StyledTd50>
                       <StyledTd100>Rang</StyledTd100>
-                      <StyledTd850><span style={{paddingLeft:"5px"}} >Action</span></StyledTd850>
                     </StyledGreenTr>
                     
                     <StyledTr style={{padding:"10px 0 10px 30px"}}>
+                      <StyledTd50><input type="checkbox" /></StyledTd50>
                       <StyledTd50>1</StyledTd50>
                       <StyledTd250><StyledLink hovercolor="#67bc45">Gauthier</StyledLink></StyledTd250>
                       <StyledTd200>Gauthier</StyledTd200>
@@ -107,21 +122,8 @@ export default function Dashboard() {
                       <StyledTd100 style={{justifyContent:"center", marginRight:"20px"}}><img style={{ height: "20px"}} src="/static/icons/succes.svg"/> </StyledTd100>
                       <StyledTd50 style={{justifyContent:"center", marginRight:"20px"}}><img style={{height: "20px"}} src="/static/icons/succes.svg"/> </StyledTd50>
                       <StyledTd100>Admin</StyledTd100>
-                      <StyledTd850>
-                        <form 
-                          style={{ 
-                            width:"100%", 
-                            display:"flex", 
-                            justifyContent: "space-between"
-                          }}
-                        >
-                          <SmallGreenButton width="250px">Confirmer le paiement</SmallGreenButton>
-                          <SmallOrangeButton width="250px" >Passer en Gadz</SmallOrangeButton>
-                          <SmallRedButton>Supprimer</SmallRedButton>
-                          <SmallRedButton>Rétrograder</SmallRedButton>
-                        </form>
-                      </StyledTd850>
                     </StyledTr>
+                    
                   </tbody>
                 </StyledTable>
               </div>
