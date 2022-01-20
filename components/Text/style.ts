@@ -41,8 +41,10 @@ export const GreenTitle = styled.h2`
 `;
 
 export const StyledLink = styled.a`
+  font-size:1.2em;
   color:${(props) => props.color};
   transition: color 0.3s;
+
   
   &:hover{
     color: ${(props) => props.hovercolor || "#67bc45"};

@@ -21,7 +21,7 @@ export function HelpSection(props: { color?: string }) {
   return (
     <StyledHelpSection color={props.color}>
       Besoin d'assistance ?{" "}
-      <StyledLink href="mailto:contact@amnet.fr">contact@amnet.fr</StyledLink> !
+      <StyledLink color={props.color} style={{fontSize: "1em"}} href="mailto:contact@amnet.fr">contact@amnet.fr</StyledLink> !
     </StyledHelpSection>
   );
 }
@@ -69,7 +69,7 @@ export function RectangleLogo(props: { color?: string, height?: string }) {
 
 export function TitleCard(props: { children: string }){
   return(
-    <div style={{width:"100%", display:"flex"}}>             
+    <div style={{width:"100%", display:"flex", marginBottom:"1rem"}}>             
       <GreenTitle>
         {props.children}
       </GreenTitle>
