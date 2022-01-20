@@ -10,7 +10,7 @@ export const StyledButton = styled.button`
   font-family: "Poppins";
   font-size: 1.2em;
   text-align: center;
-  transition: 0.75s;
+  transition: 0.5s linear;
   background: linear-gradient(90deg, var(--c1, #f6d365), var(--c2, #fda085) 51%, var(--c1, #f6d365)) var(--x, 0)/ 200%;
 
   &:hover{
@@ -42,10 +42,8 @@ export const SmallStyledButton = styled(StyledButton)`
   width: ${(props) => props.width || "150px"};
   font-size: 1em;
   background: none;
-  transition: background-color 0.3s;
-`
-
-  
+  transition: background-color 0.3s ease-out;
+`  
 
 export const SmallStyledGreenButton = styled(SmallStyledButton)`
   background-color: #67BC45;
