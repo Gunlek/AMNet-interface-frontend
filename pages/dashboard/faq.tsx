@@ -9,9 +9,11 @@ import { Footer, HelpSection } from "../../components/Card/Cards"
 import { StyledCard } from "../../components/Card/style";
 import { Menu } from "../../components/Menu/Menus";
 import { BlackTitle } from "../../components/Text/style";
+import useMediaQuery from "../../components/MediaQueries/MediaQuery";
 
 
 export default function Dashboard() {
+  const minWidth1000 = useMediaQuery('(min-width:1000px)');
   return (
     <>
       <Head>
@@ -21,7 +23,7 @@ export default function Dashboard() {
         <Menu page="faq" />
 
         <DashboardContainer>
-          <Row style={{flex: "1", margin:"1% 0"}}>
+          <Row style={{flex: "1", margin: minWidth1000 ? "1% 0" : "4% 0", justifyContent: minWidth1000 ? "start" : "center"}}>
               <BlackTitle>FAQ</BlackTitle>
           </Row>
 

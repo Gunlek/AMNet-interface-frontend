@@ -25,11 +25,12 @@ export default function Dashboard() {
       <Head>
         <title>Mon Espace &bull; AMNet</title>
       </Head>
+      
       <DefaultBackground>
         <Menu page="home" />
 
         <DashboardContainer>
-          <ResponsiveRow style={{ margin: "1% 0" }}>
+          <ResponsiveRow style={{ margin: minWidth1000 ? "1% 0" : "4% 0", justifyContent: minWidth1000 ? "start" : "center" }}>
             <Column style={{justifyContent: "center"}}>
               <BlackTitle>Mon Espace AMNet</BlackTitle>
             </Column>

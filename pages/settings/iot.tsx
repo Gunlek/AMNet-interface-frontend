@@ -16,9 +16,11 @@ import {
 } from "../../components/Table/style";
 import { SmallGreenButton, SmallRedButton } from "../../components/Button/Buttons";
 import { StateRequest } from "../../components/State/States";
+import useMediaQuery from "../../components/MediaQueries/MediaQuery";
 
 
 export default function Dashboard() {
+  const minWidth1000 = useMediaQuery('(min-width:1000px)');
   return (
     <>
       <Head>
@@ -28,7 +30,7 @@ export default function Dashboard() {
         <AdminMenu page="iot" />
 
         <DashboardContainer>
-          <Row style={{margin:"1% 0"}}>
+          <Row style={{margin: minWidth1000 ? "1% 0" : "4% 0", justifyContent: minWidth1000 ? "start" : "center"}}>
             <BlackTitle>Demandes d'accès à AMNet IoT </BlackTitle>
           </Row>
 
