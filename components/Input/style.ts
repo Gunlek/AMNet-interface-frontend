@@ -15,14 +15,13 @@ export const StyledInput = styled.input`
   &:hover{
     background: rgba(255, 255, 255, 0.8);
     border: 2px solid #096A09;
-    transition: color 0.2s;
+    outline: none;
   }
 
   &:focus{
     background: rgba(255, 255, 255, 0.8);
     outline: none;
     border: 2px solid #096A09;
-    transition: color 0.2s;
   }
 `;
 
@@ -39,22 +38,13 @@ export const StyledSelect = styled.select`
 
   &:hover{
     border: 2px solid #096A09;
-    transition: color 0.2s;
+    outline: none;
   }
 
   &:focus{
-      outline: none;
-      border: 2px solid #096A09;
-      transition: color 0.2s;
+    outline: none;
+    border: 2px solid #096A09;
   }
-`;
-
-export const StyledCheckbox = styled.input`
-  width: 34px;
-  height: 34px;
-  border: 4px solid #096a09;
-  box-sizing: border-box;
-  border-radius: 9px;
 `;
 
 export const StyledTextArea = styled.textarea`
@@ -69,7 +59,7 @@ export const StyledTextArea = styled.textarea`
   border: none;
   font-size: 1.2em;
   font-family: "Poppins";
-  scrollbar-width: none;
+  scrollbar-width: none !important;
 
   ::-webkit-scrollbar {
     width: 0 !important;
@@ -77,12 +67,16 @@ export const StyledTextArea = styled.textarea`
 
   &:hover{
     border: 2px solid #096A09;
-    transition: color 0.2s;
   }
 
   &:focus{
       outline: none;
       border: 2px solid #096A09;
-      transition: color 0.2s;
   }
+`;
+
+export const StyledLabel = styled.label`
+  display: flex; 
+  align-items: center;
+  width: 100px;
 `;

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Head from "next/head";
 import { DefaultBackground } from "../../components/Background/style";
 import {GreenButton, OrangeButton, RedButton, SmallGreenButton, SmallOrangeButton, SmallRedButton} from "../../components/Button/Buttons";
@@ -23,10 +23,61 @@ import {
   StyledTd850, 
   StyledTd250 
 } from "../../components/Table/style";
-import { StyledInput } from "../../components/Input/style";
+import { StyledInput, StyledLabel } from "../../components/Input/style";
+import Checkbox from "../../components/Input/Checkbox";
+import useMediaQuery from "../../components/MediaQueries/MediaQuery";
 
 
 export default function Dashboard() {
+  const minWidth1700 = useMediaQuery('(min-width:1700px)');
+  const minWidth1000 = useMediaQuery('(min-width:1000px)');
+
+  var [Userchecked, setUserChecked] = useState(false);
+  var [Fnamechecked, setFnameChecked] = useState(false);
+  var [LNamechecked, setLNameChecked] = useState(false);
+  var [Mailchecked, setMailChecked] = useState(false);
+  var [SNamechecked, setSnameChecked] = useState(false);
+  var [Familychecked, setFamilyChecked] = useState(false);
+  var [Campuschecked, setCampusChecked] = useState(false);
+  var [Promotionchecked, setPromotionChecked] = useState(false);
+  var [Contribitionchecked, setContributionChecked] = useState(false);
+  var [Gadzchecked, setGadzChecked] = useState(false);
+  var [Rankchecked, setRankChecked] = useState(false);
+
+  const handleUserCheckboxChange = (elmt) => {
+    setUserChecked(elmt.target.checked);
+  }
+  const handleFNameCheckboxChange = (elmt) => {
+    setFnameChecked(elmt.target.checked);
+  }
+  const handleLNameCheckboxChange = (elmt) => {
+    setLNameChecked(elmt.target.checked);
+  }
+  const handleMailCheckboxChange = (elmt) => {
+    setMailChecked(elmt.target.checked);
+  }
+  const handleSNameCheckboxChange = (elmt) => {
+    setSnameChecked(elmt.target.checked);
+  }
+  const handleFamilyCheckboxChange = (elmt) => {
+    setFamilyChecked(elmt.target.checked);
+  }
+  const handleCampusCheckboxChange = (elmt) => {
+    setCampusChecked(elmt.target.checked);
+  }
+  const handlePromotionCheckboxChange = (elmt) => {
+    setPromotionChecked(elmt.target.checked);
+  }
+  const handleContribitionCheckboxChange = (elmt) => {
+    setContributionChecked(elmt.target.checked);
+  }
+  const handleGdzCheckboxChange = (elmt) => {
+    setGadzChecked(elmt.target.checked);
+  }
+  const handleRankCheckboxChange = (elmt) => {
+    setRankChecked(elmt.target.checked);
+  }
+
   return (
     <>
       <Head>
@@ -36,47 +87,47 @@ export default function Dashboard() {
         <AdminMenu page="users" />
 
         <DashboardContainer>
-          <ResponsiveRow style={{ margin:"1% 0" }}>
+          <ResponsiveRow style={{ margin: minWidth1000 ? "1% 0" : "4% 0"  }}>
             <div>
               <BlackTitle>Liste des adhérents</BlackTitle>
             </div>
-            <Row style={{flex:"1", alignItems:"center", justifyContent: "end"}}>
-              <BlackText>Rechercher</BlackText>
+            <ResponsiveRow style={{flex:"1", alignItems:"center", justifyContent: "end",marginTop: minWidth1000 ? "0" : "4%", }}>
+              <BlackText style={{marginBottom: minWidth1000 ? "0" : "2%"}}>Rechercher</BlackText>
               <StyledInput style={{marginLeft:"20px", width:"300px"}} type="text" />
-            </Row>
+            </ResponsiveRow>
           </ResponsiveRow>
 
           <form>
-            <CheckboxRow style={{marginBottom:"2%", alignItems:"center"}}>
-              <Row><input type="checkbox" /> <BlackText style={{marginLeft:"10px", marginRight:"30px"}}>Utilisateur</BlackText></Row>
-              <Row><input type="checkbox" /> <BlackText style={{marginLeft:"10px", marginRight:"30px"}}>Prénom</BlackText></Row>
-              <Row><input type="checkbox" /> <BlackText style={{marginLeft:"10px", marginRight:"30px"}}>Nom</BlackText></Row>
-              <Row><input type="checkbox" /> <BlackText style={{marginLeft:"10px", marginRight:"30px"}}>Email</BlackText></Row>
-              <Row><input type="checkbox" /> <BlackText style={{marginLeft:"10px", marginRight:"30px"}}>Bucque</BlackText></Row>
-              <Row><input type="checkbox" /> <BlackText style={{marginLeft:"10px", marginRight:"30px"}}>Fam's</BlackText></Row>
-              <Row><input type="checkbox" /> <BlackText style={{marginLeft:"10px", marginRight:"30px"}}>Tagan's</BlackText></Row>
-              <Row><input type="checkbox" /> <BlackText style={{marginLeft:"10px", marginRight:"30px"}}>Prom's</BlackText></Row>
-              <Row><input type="checkbox" /> <BlackText style={{marginLeft:"10px", marginRight:"30px"}}>Cotisation</BlackText></Row>
-              <Row><input type="checkbox" /> <BlackText style={{marginLeft:"10px", marginRight:"30px"}}>Gadz</BlackText></Row>
-              <Row><input type="checkbox" /> <BlackText style={{marginLeft:"10px", marginRight:"30px"}}>Rang</BlackText></Row>
+            <CheckboxRow style={{marginBottom: minWidth1000 ? "2%" : "4%", alignItems:"center"}}>
+              <StyledLabel><Checkbox checked={Userchecked} onChange={handleUserCheckboxChange}/><BlackText style={{marginLeft:"10px", marginRight:"30px"}}>Utilisateur</BlackText></StyledLabel>
+              <StyledLabel><Checkbox checked={Fnamechecked} onChange={handleFNameCheckboxChange}/><BlackText style={{marginLeft:"10px", marginRight:"30px"}}>Prénom</BlackText></StyledLabel>
+              <StyledLabel><Checkbox checked={LNamechecked} onChange={handleLNameCheckboxChange}/><BlackText style={{marginLeft:"10px", marginRight:"30px"}}>Nom</BlackText></StyledLabel>
+              <StyledLabel><Checkbox checked={Mailchecked} onChange={handleMailCheckboxChange}/><BlackText style={{marginLeft:"10px", marginRight:"30px"}}>Email</BlackText></StyledLabel>
+              <StyledLabel><Checkbox checked={SNamechecked} onChange={handleSNameCheckboxChange}/><BlackText style={{marginLeft:"10px", marginRight:"30px"}}>Bucque</BlackText></StyledLabel>
+              <StyledLabel><Checkbox checked={Familychecked} onChange={handleFamilyCheckboxChange}/><BlackText style={{marginLeft:"10px", marginRight:"30px"}}>Fam's</BlackText></StyledLabel>
+              <StyledLabel><Checkbox checked={Campuschecked} onChange={handleCampusCheckboxChange}/><BlackText style={{marginLeft:"10px", marginRight:"30px"}}>Tagan's</BlackText></StyledLabel>
+              <StyledLabel><Checkbox checked={Promotionchecked} onChange={handlePromotionCheckboxChange}/><BlackText style={{marginLeft:"10px", marginRight:"30px"}}>Prom's</BlackText></StyledLabel>
+              <StyledLabel><Checkbox checked={Contribitionchecked} onChange={handleContribitionCheckboxChange}/><BlackText style={{marginLeft:"10px", marginRight:"30px"}}>Cotisation</BlackText></StyledLabel>
+              <StyledLabel><Checkbox checked={Gadzchecked} onChange={handleGdzCheckboxChange}/><BlackText style={{marginLeft:"10px", marginRight:"30px"}}>Gadz</BlackText></StyledLabel>
+              <StyledLabel><Checkbox checked={Rankchecked} onChange={handleRankCheckboxChange}/><BlackText style={{marginLeft:"10px", marginRight:"30px"}}>Rang</BlackText></StyledLabel>
             </CheckboxRow>
 
             <div 
               style={{ 
-                marginBottom:"2%", 
+                marginBottom: minWidth1000 ? "2%" : "4%", 
                 display: "grid",
-                gridTemplateColumns: "repeat(auto-fill,minmax(300px, 1fr))",
+                gridTemplateColumns: minWidth1700? "repeat(auto-fill,minmax(425px, 1fr))" : "repeat(auto-fill,minmax(340px, 1fr))",
                 gridAutoRows: "minmax(70px, auto)",
                 border : "none",
                 justifyItems: "center",
-                alignItems: "center" 
+                alignItems: "center",
+                gap: "20px 0"
               }}
             >
-              <GreenButton width="280px">Confirmer le paiement</GreenButton>
-              <RedButton width="280px">Annuler le paiement</RedButton>
-              <OrangeButton width="280px">Passer les washs en gadz</OrangeButton>
-              <OrangeButton width="280px">Passer en Gadz</OrangeButton>
-              <RedButton width="280px">Supprimer</RedButton>
+              <GreenButton width="300px">Confirmer le paiement</GreenButton>
+              <RedButton width="300px">Annuler le paiement</RedButton>
+              <OrangeButton width="300px">Passer en Gadz</OrangeButton>
+              <RedButton width="300px">Supprimer</RedButton>
             </div>
 
           </form>
@@ -93,7 +144,7 @@ export default function Dashboard() {
               <StyledTable>
                   <tbody>
                       <StyledGreenTr style={{padding:"10px 0 10px 30px"}}>
-                      <StyledTd50><input type="checkbox" /></StyledTd50>
+                      <StyledTd50><StyledLabel><Checkbox color="white" checked={Rankchecked} onChange={handleRankCheckboxChange}/></StyledLabel></StyledTd50>
                       <StyledTd50>#</StyledTd50>
                       <StyledTd250>Utilisateur</StyledTd250>
                       <StyledTd200>Prénom</StyledTd200>
@@ -109,7 +160,7 @@ export default function Dashboard() {
                     </StyledGreenTr>
                     
                     <StyledTr style={{padding:"10px 0 10px 30px"}}>
-                      <StyledTd50><input type="checkbox" /></StyledTd50>
+                      <StyledTd50><StyledLabel><Checkbox checked={Rankchecked} onChange={handleRankCheckboxChange}/></StyledLabel></StyledTd50>
                       <StyledTd50>1</StyledTd50>
                       <StyledTd250><StyledLink hovercolor="#67bc45">Gauthier</StyledLink></StyledTd250>
                       <StyledTd200>Gauthier</StyledTd200>

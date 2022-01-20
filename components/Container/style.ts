@@ -110,5 +110,7 @@ export const DashboardContainer = styled.div`
 
 export const CheckboxRow = styled(Row)`
   display: grid;
-  grid-template-columns: repeat(auto-fill,minmax(150px, 1fr));
+  grid-template-columns: repeat(auto-fill,minmax(${(props) => props.width || "150px"}, 1fr));
+  align-items: center;
+  gap: 15px 0;
 `;
