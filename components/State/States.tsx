@@ -1,18 +1,17 @@
 import React, { useState } from "react";
 import { GreenButton } from "../Button/Buttons";
 import { Row } from "../Container/style";
-import useMediaQuery from "../MediaQueries/MediaQuery";
 import { BlackText } from "../Text/style";
 import { 
   StyledStateContribution,
   StyledStateInvite, 
   StyledStateRequest 
 } from "./style";
-
+import Modal, {ModalLogic} from "../Card/Modal";
 
 export function StateContribution(props: {status: string}){
-  const minWidth1000 = useMediaQuery('(min-width: 1000px)')
-  
+  const {reveal, toggle} = ModalLogic();
+
   if(props.status == 'paid')
   {
     return(
@@ -25,12 +24,13 @@ export function StateContribution(props: {status: string}){
   else(props.status == 'unpaid')
   {
     return(
-      <Row style={{alignItems: "baseline", justifyContent:"space-between"}}>
+      <Row style={{alignItems: "baseline", justifyContent:"center"}}>
         <StyledStateContribution style={{marginRight: "15px"}}>
           <BlackText style={{paddingRight: "10px"}}>Cotisation :</BlackText>
           <img style={{height: "20px"}} src="/static/icons/fail.svg"/> 
         </StyledStateContribution>
-        <GreenButton width={minWidth1000 ? "175px" : "150px"} height="50px">La payer</GreenButton>
+        <GreenButton width="150px" height="50px" onClick={toggle}>Payer</GreenButton>
+        <Modal reveal={reveal} hide={toggle}/>
       </Row>
       
     );
@@ -55,15 +55,15 @@ export function StateContribution(props: {status: string}){
   
   export function StateInvite(props: {state?: boolean}){
     var [state, setState] = useState(props.state);
-
+  
     const handleValueChange = (elmt) => {
       setState(elmt.target.value == "enabled");
     }
   
     return(
-    <StyledStateInvite status={state} onChange={handleValueChange}>
-      <option value="enabled" selected>Activé</option>
-      <option value="disabled">Désactivé</option>
-    </StyledStateInvite>
-  );
+      <StyledStateInvite status={state} onChange={handleValueChange}>
+        <option value="enabled" >Activé</option>
+        <option value="disabled">Désactivé</option>
+      </StyledStateInvite>
+    );
   }
