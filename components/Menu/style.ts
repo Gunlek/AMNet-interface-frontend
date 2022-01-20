@@ -13,16 +13,9 @@ export const StyledMenu = styled(StyledCard)`
     background: rgba(255, 255, 255, 0.9);
     flex-direction: row;
     padding: 10px;
-  } 
-  
-  @media screen and (max-width: 800px){
-    background: rgba(255, 255, 255, 0.9);
-    display: grid;
-    grid-template-columns: repeat(auto-fill,minmax(70px, 1fr));
-    justify-items: center;
     border-top-left-radius: 0px;
     border-top-right-radius: 0px;
-  }
+  } 
 `;
 
 export const MenuContener = styled.div`
@@ -35,6 +28,7 @@ export const MenuContener = styled.div`
   @media screen and (max-width: 1000px){
     height: auto;
     width:100%;
+    position: absolute;
   }  
 `;
 
@@ -57,6 +51,7 @@ export const StyledDivLogOut = styled(Row)`
 
   @media screen and (max-width: 1000px){
     flex-direction: column;
+    flex: 1;
   }
 `
 

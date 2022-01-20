@@ -1,6 +1,6 @@
 import { Column, Row } from "../Container/style";
 import { SVGFaq } from "../SVG/faq";
-import { SVGFiles } from "../SVG/files";
+import SVGEdition from "../SVG/edition";
 import { SVGGadzflix } from "../SVG/gadzflix";
 import { SVGHome } from "../SVG/home";
 import { SVGLogOut } from "../SVG/log_out";
@@ -10,17 +10,54 @@ import { SVGProfil } from "../SVG/profil";
 import { SVGSettings } from "../SVG/settings";
 import { SVGUsers } from "../SVG/users";
 import { MenuContener, StyledDivLogo, StyledDivLogOut, StyledImg, StyledMenu } from "./style";
+import SVGBurgerMenu from "../SVG/burgermenu";
+import useMediaQuery from "../MediaQueries/MediaQuery";
+import { useState } from "react";
 
 export function Menu(props: {page?: string}){
+    const minWidth750 = useMediaQuery('(min-width:750px)');
+    var[open, SetOpen] = useState(false);
+    
+    function handleChange(){
+      SetOpen(!open);
+    }
+
     const positionning = {
       flex: "1", 
       margin: "5px 0", 
       justifyContent:"center", 
       alignItems: "center"
     };
+
+    const positionning2 = {
+      flex: "1", 
+      margin: "5px 0", 
+      justifyContent:"center", 
+      alignItems: "center",
+      display: (minWidth750 || open) ? "flex" : "none"
+    };
+
+    const MenuStyle = (!minWidth750 && open) ? {
+        display: "grid",
+        gridTemplateColumns: "repeat(auto-fill,minmax(70px, 1fr))",
+        justifyItems: "center",
+    } : {};
+  
     return(
       <MenuContener>
-        <StyledMenu >
+        <StyledMenu style={MenuStyle}>
+          <Row 
+            style={{
+              flex: "1", 
+              margin: "5px 0", 
+              justifyContent:"center", 
+              alignItems: "center",
+              display: minWidth750 ? "none" : "flex"
+            }}
+          >
+            <SVGBurgerMenu onClick={handleChange}/>
+          </Row>
+
           <StyledDivLogo>
             <a href="../" style={{display: "flex", justifyContent:"center"}}>
               <StyledImg src="/static/logo/small_logo.svg" />
@@ -31,27 +68,27 @@ export function Menu(props: {page?: string}){
             <SVGHome page={props.page}/>
           </Row>
           
-          <Row style={positionning}>
+          <Row style={positionning2}>
               <SVGProfil page={props.page}/>
           </Row>
           
-          <Row style={positionning}>
+          <Row style={positionning2}>
               <SVGFaq page={props.page}/>
           </Row>
           
-          <Row style={positionning}>
+          <Row style={positionning2}>
               <SVGIoT page={props.page}/>
           </Row>
           
-          <Row style={positionning}>
+          <Row style={positionning2}>
               <SVGMaterial page={props.page}/>
           </Row>
           
-          <Row style={positionning}>
+          <Row style={positionning2}>
               <SVGGadzflix/>
           </Row>
           
-          <Row style={positionning}>
+          <Row style={positionning2}>
               <SVGSettings page={props.page}/>        
           </Row>
 
@@ -64,16 +101,49 @@ export function Menu(props: {page?: string}){
   }
   
   export function AdminMenu(props: {page?: string}){
+    const minWidth750 = useMediaQuery('(min-width:750px)');
+    var[open, SetOpen] = useState(false);
+    
+    function handleChange(){
+      SetOpen(!open);
+    }
+
     const positionning = {
       flex: "1", 
       margin: "5px 0", 
       justifyContent:"center", 
       alignItems: "center"
     };
-    
+
+    const positionning2 = {
+      flex: "1", 
+      margin: "5px 0", 
+      justifyContent:"center", 
+      alignItems: "center",
+      display: (minWidth750 || open) ? "flex" : "none"
+    };
+
+    const MenuStyle = (!minWidth750 && open) ? {
+        display: "grid",
+        gridTemplateColumns: "repeat(auto-fill,minmax(70px, 1fr))",
+        justifyItems: "center",
+    } : {};
+
     return(
       <MenuContener>
-        <StyledMenu>
+        <StyledMenu style={MenuStyle}>
+          <Row 
+            style={{
+              flex: "1", 
+              margin: "5px 0", 
+              justifyContent:"center", 
+              alignItems: "center",
+              display: minWidth750 ? "none" : "flex"
+            }}
+          >
+            <SVGBurgerMenu onClick={handleChange}/>
+          </Row>
+
           <StyledDivLogo>
               <a href="../" style={{display: "flex", justifyContent:"center"}}>
                 <StyledImg src="/static/logo/small_logo.svg" />
@@ -84,27 +154,27 @@ export function Menu(props: {page?: string}){
               <SVGSettings page={props.page}/>        
           </Row>
           
-          <Row style={positionning}>
+          <Row style={positionning2}>
               <SVGUsers page={props.page}/>
           </Row>
           
-          <Row style={positionning}>
+          <Row style={positionning2}>
               <SVGIoT page={props.page}/>
           </Row>
           
-          <Row style={positionning}>
+          <Row style={positionning2}>
               <SVGMaterial page={props.page}/>
           </Row>
 
-          <Row style={positionning}>
-              <SVGFiles page={props.page}/>
+          <Row style={positionning2}>
+              <SVGEdition page={props.page}/>
           </Row>
 
-          <Row style={positionning}>
+          <Row style={positionning2}>
             <SVGHome page={props.page}/>
           </Row>
           
-          <StyledDivLogOut style={{flex:"3", marginTop:"10px"}}>
+          <StyledDivLogOut style={{flex:minWidth750 ? "3": "1", marginTop:minWidth750 ? "10px" : "0"}}>
             <SVGLogOut />
           </StyledDivLogOut>
         </StyledMenu>
