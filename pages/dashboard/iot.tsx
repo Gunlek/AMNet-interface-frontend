@@ -58,7 +58,7 @@ export default function Dashboard() {
                 }}
               >
                 Cette page est utile <span style={{ color: "#096a09", fontWeight: "bold"}}>uniquement</span>  pour les appareils qui ne peuvent <span style={{ color: "#096a09", fontWeight: "bold"}}>pas se connecter à AMNet Wi-Fi</span>. C'est à dire les objets connectés, comme les enceintes, les chromecasts ou les consoles de jeux.<br/>
-                Cependant nous vous conseillons vivement de brancher votre console en Ethernet (Filaire)° car vous aurez un débit plus élevé, un ping plus faible et une meilleure stabilité. Si vous branchez votre appareil en Ethernet cette page ne vous ait pas utile. Apres avoir branché votre appareil en Ethernet une page devrait s'ouvrir dans votre navigateur web pour que vous puissiez rentrer vos identifiants AMNet et obtenir un accès à Internet, si ce n'est pas le cas cliquez sur ce lien du <span style={{ fontWeight: "bold"}}><StyledLink color= "#096a09" hovercolor="#67bc45" href="https://portail.amnet.fr:8003/index.php?zone=lan_birse" target="_blank" >Portail captif</StyledLink></span>
+                Cependant nous vous conseillons vivement de brancher votre console en Ethernet (Filaire)° car vous aurez un débit plus élevé, un ping plus faible et une meilleure stabilité. Si vous branchez votre appareil en Ethernet cette page ne vous est pas utile. Apres avoir branché votre appareil en Ethernet une page devrait s'ouvrir dans votre navigateur web pour que vous puissiez rentrer vos identifiants AMNet et obtenir un accès à Internet. Si ce n'est pas le cas, cliquez sur ce lien pour accéder au <StyledLink color= "#096a09" hovercolor="#67bc45" style={{fontSize:"1em", fontWeight: "bold"}}href="https://portail.amnet.fr:8003/index.php?zone=lan_birse" target="_blank" >Portail de connexion</StyledLink>
                 <br/><br/>
                 <span style={{color: "#096a09", fontWeight: "bold"}}>La démarche</span> pour pouvoir se connecter à AMNet IoT est la suivante :
               </p>
@@ -70,20 +70,14 @@ export default function Dashboard() {
                   marginBottom:"2%"
                 }}
               >
-                  <li style={{color: "#096a09"}}>
-                    <span style={{color: "black"}}>
+                  <li>
                       Renseigner l'adresse physique (aussi appelée adresse MAC) de votre appareil, ainsi qu'une photo où l'on distingue clairement l'objet et l'adresse mac qui lui est associée
-                    </span>
                   </li>
-                  <li style={{color: "#096a09"}}>
-                    <span style={{color: "black"}}>
-                      Attendre qu'un administrateur valide votre demande (2-3 jours, depassé ce laps de temps envoyez un mail à <StyledLink color= "#096a09" hovercolor="#67bc45" href="mailto:contact@amnet.fr">contact@amnet.fr</StyledLink>)
-                    </span>
+                  <li>
+                      Attendre qu'un administrateur valide votre demande (2-3 jours, depassé ce laps de temps envoyez un mail à <StyledLink style={{fontSize:"1em", fontWeight: "bold"}} color= "#096a09" hovercolor="#67bc45" href="mailto:contact@amnet.fr">contact@amnet.fr</StyledLink>)
                   </li>
-                  <li style={{color: "#096a09"}}>
-                    <span style={{color: "black"}}>
+                  <li>
                       Une fois la demande validée vous pourrez connecter votre appareil au réseau Wi-Fi : <span style={{color: "#096a09", fontWeight: "bold"}}>AMNet IoT</span>
-                    </span>
                   </li>
               </ul>
             </BlackText>
