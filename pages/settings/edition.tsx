@@ -7,7 +7,8 @@ import {
   Column,
   DashboardContainer,
   Col8,
-  Col4
+  Col4,
+  ResponsiveRow
 } from "../../components/Container/style";
 import { StyledCard } from "../../components/Card/style";
 import { AdminMenu } from "../../components/Menu/Menus";
@@ -16,19 +17,21 @@ import { GreenButton } from "../../components/Button/Buttons";
 import { TitleCard } from "../../components/Card/Cards";
 import { StyledInput } from "../../components/Input/style";
 import { TeamEditor } from "../../components/TeamEditor/TeamEditor";
+import useMediaQuery from "../../components/MediaQueries/MediaQuery";
 
 
 export default function Dashboard() {
+  const minWidth1000 = useMediaQuery('(min-width:1000px)');
   return (
     <>
       <Head>
         <title>Administration &bull; AMNet</title>
       </Head>
       <DefaultBackground>
-        <AdminMenu page="file" />
+        <AdminMenu page="edition" />
 
         <DashboardContainer>
-          <Row style={{margin:"1% 0"}}>
+          <Row style={{margin: minWidth1000 ? "1% 0" : "4% 0", justifyContent: minWidth1000 ? "start" : "center"}}>
               <BlackTitle>Edition</BlackTitle>
           </Row>
 
@@ -37,23 +40,23 @@ export default function Dashboard() {
             <form method="post" style={{marginTop:"20px", height:"100%"}}>
               <div style={{marginBottom:"20px"}}>
                   <GreenText style={{marginBottom:"5px"}}>Réglement Intérieur</GreenText>
-                  <Row>
-                    <div style={{width:"400px"}}>
+                  <ResponsiveRow>
+                    <div style={{width:"400px", marginBottom:minWidth1000? "0" : "20px"}}>
                       <StyledLink style={{fontSize: "1.2em"}} color= "black" hovercolor="#67bc45" target="_blank" href="/static/docs/Reglement_Interieur_AMNet.pdf">Voir le Réglement Intérieur actuel</StyledLink>
                       </div>
                     <input type="file"/>
-                  </Row>
+                  </ResponsiveRow>
                   
               </div>
 
               <div style={{marginBottom:"20px"}}>
                   <GreenText style={{marginBottom:"5px"}}>Status</GreenText>
-                  <Row>
-                    <div style={{width:"400px"}}>
+                  <ResponsiveRow>
+                    <div style={{width:"400px", marginBottom:minWidth1000? "0" : "20px"}}>
                     <StyledLink style={{fontSize: "1.2em"}} color= "black" hovercolor="#67bc45" target="_blank" href="/static/docs/Statuts_AMNet.pdf">Voir les statuts actuels</StyledLink>
                     </div>
                   <input type="file"/>
-                  </Row>
+                  </ResponsiveRow>
               </div>
 
               <Row style={{justifyContent: "center"}}>
@@ -67,24 +70,19 @@ export default function Dashboard() {
             <form method="post" style={{marginTop:"20px", height:"100%"}}>
               <div style={{marginBottom:"20px"}}>
                   <GreenText style={{marginBottom:"5px"}}>Photo de l'AMNet</GreenText>
-                  <Row>
-                    <div style={{width:"400px"}}>
+                  <ResponsiveRow>
+                    <div style={{width:"400px", marginBottom:minWidth1000? "0" : "20px"}}>
                       <StyledLink style={{fontSize: "1.2em"}} color= "black" hovercolor="#67bc45" target="_blank" href="/static/images/team.png">Voir la photo actuelle</StyledLink>
                     </div>
                     <input type="file"/>
-                  </Row>
+                  </ResponsiveRow>
               </div>
 
-              <Row>
-                <Col8>
+              
+                <Column style={{flex:"1", maxWidth: minWidth1000? "66.66%" : "100%"}}>
                   <TeamEditor />
-                </Col8>
-                <Col4>
-                  <BlackText style={{paddingLeft: "20px" }}>
-                    Pour faire correspondre les bucques avec les PGs sur la photo de la page d'accueil, il faut les mettre dans l'ordre suivant : de haut en bas les bucques et de gauche à droite sur la photo
-                  </BlackText>
-                </Col4>
-              </Row>
+                </Column>
+              
 
               {/* <Row style={{marginBottom:"20px"}}>
                 <Col6>

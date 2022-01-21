@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Head from "next/head";
 import { DefaultBackground } from "../../components/Background/style";
 import {GreenButton} from "../../components/Button/Buttons";
@@ -10,7 +10,7 @@ import {
   DashboardContainer,
   ResponsiveRow
 } from "../../components/Container/style";
-import { HelpSection } from "../../components/Card/Cards"
+import { Footer, HelpSection } from "../../components/Card/Cards"
 import { StyledInput, StyledSelect } from "../../components/Input/style";
 import { Menu } from "../../components/Menu/Menus";
 import { StateContribution } from "../../components/State/States";
@@ -19,9 +19,16 @@ import {
   GreenText, 
   BlackText 
 } from "../../components/Text/style";
+import useMediaQuery from "../../components/MediaQueries/MediaQuery";
 
 
 export default function Dashboard() {
+  const minWidth1000 = useMediaQuery('(min-width:1000px)');
+  var [isGadz, setGadz] = useState(false);
+
+  const handleValueChange = (elmt) => {
+    setGadz(elmt.target.value == "219" || elmt.target.value == "220");
+  }
   return (
     <>
       <Head>
@@ -31,7 +38,7 @@ export default function Dashboard() {
         <Menu page="profil" />
 
         <DashboardContainer>
-          <ResponsiveRow style={{ margin:"1% 0"}}>
+          <ResponsiveRow style={{ margin: minWidth1000 ? "1% 0" : "4% 0", justifyContent: minWidth1000 ? "start" : "center" }}>
             <Column style={{justifyContent: "center"}}>
               <BlackTitle>Editer mon profil</BlackTitle>
             </Column>
@@ -41,13 +48,21 @@ export default function Dashboard() {
             </Column>
           </ResponsiveRow>
 
-          <form style={{width: "100%", flex:"1"}} method="post">
+          <form style={{width: "100%", flex:"1", display:"flex", flexDirection:"column"}} method="post">
             <ResponsiveRow style={{alignItems:"center", marginBottom:"20px"}}>
-              <Col6 style={{paddingRight: "20px"}}>
-                <GreenText style={{marginBottom:"5px"}}>Nom d'utilisateur</GreenText>
+              <Col6 style={{paddingRight: minWidth1000 ? "10px" : "0px", width:"100%"}}>
+                <GreenText style={{marginBottom: "5px"}}>Nom d'utilisateur</GreenText>
                 <StyledInput type="text"/>
-              </Col6>
-              <Col6 style={{justifyContent: "end", height: "74px"}}>
+              </Col6> 
+              <Col6 
+                style={{
+                  justifyContent: "end", 
+                  height: minWidth1000 ? "75px" : "auto", 
+                  alignItems:  minWidth1000 ? "start" : "center", 
+                  marginTop: minWidth1000 ? "0" : "20px",
+                  paddingLeft: minWidth1000 ? "10px" : "0",
+                }}
+              >
                 <BlackText>Votre nom d'utilisateur ne doit contenir 
                   que des lettres, des chiffres ou des espaces.
                 </BlackText>
@@ -55,28 +70,28 @@ export default function Dashboard() {
             </ResponsiveRow>
 
             <ResponsiveRow style={{marginBottom:"20px"}}>
-              <Col3 style={{paddingRight: "10px"}}>
-                <GreenText style={{marginBottom:"5px"}}>Prénom</GreenText>
+              <Col3 style={{paddingRight: minWidth1000 ? "10px" : "0", marginBottom: minWidth1000 ? "0" : "20px"}}>
+                <GreenText style={{marginBottom: "5px"}}>Prénom</GreenText>
                 <StyledInput type="text"/>
               </Col3>
-              <Col3 style={{paddingLeft: "10px", paddingRight: "20px"}}>
-                <GreenText style={{marginBottom:"5px"}}>Nom</GreenText>
+              <Col3 style={{paddingLeft: minWidth1000 ? "10px" : "0", paddingRight: minWidth1000 ? "10px" : "0", marginBottom: minWidth1000 ? "0" : "20px"}}>
+                <GreenText style={{marginBottom: "5px"}}>Nom</GreenText>
                 <StyledInput type="text"/>
               </Col3>
-              <Col6>
-                <GreenText style={{marginBottom:"5px"}}>Adresse e-mail</GreenText>
+              <Col6 style={{paddingLeft: minWidth1000 ? "10px" : "0"}}>
+                <GreenText style={{marginBottom: "5px"}}>Adresse e-mail</GreenText>
                 <StyledInput type="email"/>
               </Col6>
             </ResponsiveRow>
 
             <ResponsiveRow style={{marginBottom:"20px"}}>
-              <Col6 style={{paddingRight: "20px"}}>
-                <GreenText style={{marginBottom:"5px"}}>Téléphone</GreenText>
+              <Col6 style={{paddingRight: minWidth1000 ? "10px" : "0", marginBottom: minWidth1000 ? "0" : "20px"}}>
+                <GreenText style={{marginBottom: "5px"}}>Téléphone</GreenText>
                 <StyledInput type="phone"/>
               </Col6>
-              <Col6>
-                <GreenText style={{marginBottom:"5px"}}>Promotion</GreenText>
-                <StyledSelect name="user_proms_select" id="user_proms_select">
+              <Col6 style={{paddingLeft: minWidth1000 ? "10px" : "0"}}>
+                <GreenText style={{marginBottom: "5px"}}>Promotion</GreenText>
+                <StyledSelect onChange={handleValueChange}>
                   <option value="219">219</option>
                   <option value="220">220</option>
                   <option value="2021" selected>2021</option>
@@ -85,55 +100,54 @@ export default function Dashboard() {
               </Col6>
             </ResponsiveRow>
 
-            <ResponsiveRow style={{marginBottom:"20px"}}>
-              <Col6 style={{paddingRight: "20px"}}>
-                <GreenText style={{marginBottom:"5px"}}>Bucque</GreenText>
+            <ResponsiveRow style={{marginBottom:"20px", display: isGadz? "flex": "none"}}>
+              <Col6 style={{paddingRight: minWidth1000 ? "10px" : "0", marginBottom: minWidth1000 ? "0" : "20px"}}>
+                <GreenText style={{marginBottom: "5px"}}>Bucque</GreenText>
                 <StyledInput type="text"/>
               </Col6>
-              <Col3 style={{paddingRight: "10px"}}>
-                <GreenText style={{marginBottom:"5px"}}>Fam's</GreenText>
+              <Col3 style={{paddingLeft: minWidth1000 ? "10px" : "0", paddingRight: minWidth1000 ? "10px" : "0", marginBottom: minWidth1000 ? "0" : "20px"}}>
+                <GreenText style={{marginBottom: "5px"}}>Fam's</GreenText>
                 <StyledInput type="text"/>
               </Col3>
-              <Col3 style={{paddingLeft: "10px"}}>
-                <GreenText style={{marginBottom:"5px"}}>Tabagn's</GreenText>
+              <Col3 style={{paddingLeft: minWidth1000 ? "10px" : "0"}}>
+                <GreenText style={{marginBottom: "5px"}}>Tabagn's</GreenText>
                 <StyledSelect name="tbk">
-                    <option value="li" selected>Birse</option>
-                    <option value="an">Boquette</option>
-                    <option value="bo">Bordel's</option>
-                    <option value="ch">Chalon's</option>
-                    <option value="cl">Clun's</option>
-                    <option value="kin">KIN</option>
-                    <option value="pa">P3</option>
-                    <option value="me">Siber's</option>
+                  <option value="li">Birse</option>
+                  <option value="an">Boquette</option>
+                  <option value="bo">Bordel's</option>
+                  <option value="ch">Chalon's</option>
+                  <option value="cl">Clun's</option>
+                  <option value="kin">KIN</option>
+                  <option value="pa">P3</option>
+                  <option value="me">Siber's</option>
                 </StyledSelect>
               </Col3>
             </ResponsiveRow>
 
             <ResponsiveRow style={{marginBottom:"20px"}}>
-              <Col6 style={{paddingRight: "20px"}}>
-                <GreenText style={{marginBottom:"5px"}}>Mot de passe</GreenText>
+              <Col6 style={{paddingRight: minWidth1000 ? "10px" : "0",  marginBottom: minWidth1000 ? "0" : "20px"}}>
+                <GreenText style={{marginBottom: "5px"}}>Mot de passe</GreenText>
                 <StyledInput type="password"/>
               </Col6>
-              <Col6>
-                <GreenText style={{marginBottom:"5px"}}>Confirmez votre Mot de passe</GreenText>
+              <Col6 style={{paddingLeft: minWidth1000 ? "10px" : "0"}}>
+                <GreenText style={{marginBottom: "5px"}}>Confirmez votre Mot de passe</GreenText>
                 <StyledInput type="password"/>
-              </Col6>
-            </ResponsiveRow>           
-
-            <ResponsiveRow>
-              <Col6 style={{paddingRight: "20px"}}>
-                <GreenText style={{marginBottom:"5px"}}>Identifiants gadzariques</GreenText>
-                <StyledInput type="text"/>
-              </Col6>
-              <Col6 style={{alignItems: "end", justifyContent: "end"}}>
-                <GreenButton>Editer mon profil</GreenButton>
               </Col6>
             </ResponsiveRow>
-          </form>
+
+            <ResponsiveRow style={{marginBottom: "20px", flex:"1"}}>
+              <Col6 style={{paddingRight: minWidth1000 ? "10px" : "0", marginBottom: minWidth1000 ? "0" : "20px"}}>
+                <GreenText style={{marginBottom: "5px"}}>Identifiants gadzariques</GreenText>
+                <StyledInput type="text"/>
+              </Col6>
+              <Col6 style={{alignItems: minWidth1000 ? "end" : "center", paddingLeft: minWidth1000 ? "10px" : "0", justifyContent: "end"}}>
+                <GreenButton>Editer mon profil</GreenButton>
+              </Col6>
+            </ResponsiveRow>     
+          </form>   
  
-          <Row>
-            <HelpSection color="#096A09"/>
-          </Row>   
+          <HelpSection color="#096A09"/>
+          <Footer />
         </DashboardContainer>
       </DefaultBackground>
     </>

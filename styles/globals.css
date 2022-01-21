@@ -31,18 +31,26 @@
 
 html,
 body {
-  
   padding: 0;
   margin: 0;
   font-family: "Poppins",-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-  min-height: 100vh; 
+  background-color: #E8EFEA;
+}
+
+@media screen and (max-width: 1000px){
+  html, 
+  body{
+    font-size:13px;
+  }
 }
 
 #__next{
   margin: 0;
   padding: 0;
-  min-height: 100vh; 
+  flex:1;
+  display: flex;
+  flex-Direction: column;
 }
 
 a {

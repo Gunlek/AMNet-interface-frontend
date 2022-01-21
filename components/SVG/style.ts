@@ -4,28 +4,78 @@ export const StyledBackIcon = styled.a`
   display: flex;
   justify-content: center;
   align-items: center;
-
   height: 60px;
   width: 60px;
+  
+  z-index: 1;
+  position: relative;
 
-  &:hover{
-    background: linear-gradient(134.54deg, #67BC45 5.67%, #096A09 94.96%);
+  &::before{
+    position: absolute;
+    content: "";
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: linear-gradient(135deg, #67BC45 5.67%, #096A09 94.96%);
+    z-index: -1;
+    transition: opacity 0.3s linear;
+    opacity: 0;
     border-radius: 15px;
-    transition: color 0.2s;
   }
+
+  &:hover::before{
+    opacity: 1;
+  }
+
+  @media screen and (max-width: 1000px){
+    margin: 0 5px;
+  }
+`;
+
+export const StyledBackBurger = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60px;
+  width: 60px;
+  
+  z-index: 1;
+  position: relative;
+
+  &::before{
+    position: absolute;
+    content: "";
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: linear-gradient(135deg, #67BC45 5.67%, #096A09 94.96%);
+    z-index: -1;
+    transition: opacity 0.3s linear;
+    opacity: 0;
+    border-radius: 15px;
+  }
+
+  &:hover::before{
+    opacity: 1;
+  }
+
   @media screen and (max-width: 1000px){
     margin: 0 5px;
   }
 `;
 
 export const StyledIcon = styled.svg`
-  fill: black; 
-  fill-opacity: 0.2;
+  fill: #C5C7C6;
+  transition: fill 0.3s linear;
 
   ${StyledBackIcon}:hover & {
-    fill: white;
-    fill-opacity: 1;
-    transition: color fill 0.2s;
+    fill: white;    
+  }
+
+  ${StyledBackBurger}:hover & {
+    fill: white;    
   }
 `;
 
@@ -36,26 +86,27 @@ export const StyledBackLogOut = styled.a`
 
   height: 60px;
   width: 60px;
-  
-  
 `;
 
 export const StyledLogOut = styled.svg`
+  transition: all 1s ease-out;
   ${StyledBackLogOut}:hover & {
-    fill: #096a09;
-    transition: fill 0.2s;
+    fill: #096a09;  
   }
 `;
 
-export const StyledPath = styled.path`
-  fill: none; 
-  stroke: black;
-  stroke-opacity: 0.2; 
-  stroke-width: 3.36px;
+export const StyledLinkGitHub = styled.a`
+  justify-content: center; 
+  display: flex;
+  align-items: center; 
+  margin-left: 7.5px;
+`;
 
-  ${StyledBackIcon}:hover & {
-    stroke: white;
-    stroke-opacity: 1; 
-    transition: color fill 0.2s;
+export const StyledGitHub = styled.path`
+  fill: #096a09; 
+  transition: fill 0.3s;
+
+  ${StyledLinkGitHub}:hover &{
+    fill: #67bc45;
   }
 `;

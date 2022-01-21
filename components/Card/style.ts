@@ -32,14 +32,15 @@ export const StyledGreenCard = styled.div`
 export const StyledTeamPicture = styled(Column)`
   background-image: url("/static/images/team.png");
   background-repeat: no-repeat;
+  background-position: 50% 0%;
   background-size: cover;
-  height: 100%;
-  width: 100%;
-  border-radius: 30px;
+  height: 45vh;
 
+  border-radius: 30px;
+  
   @media screen and (max-width: 1000px){
-    height: 50vh;
-  }
+    height: 400px;
+  } 
 `;
 
 export const StyledHelpSection = styled.div`
@@ -54,4 +55,32 @@ export const GreenLine = styled.div`
   border: 1px solid #096A09;
   height: 0px;
   background: #096a09;
+`;
+
+export const StyledFooter = styled.footer`
+  display:flex;
+  justify-content: end;
+  align-items: center;
+  margin:0;
+  margin-right: -2%;
+  padding-right: 5px;
+  margin-top: 10px;
+  padding-top:5px;
+  padding-bottom:5px;
+
+  @media screen and (max-width: 1000px){
+    text-align: center;
+    padding-top:10px;
+    padding-bottom:10px;
+  } 
+`;
+
+export const StyledCampusFooter = styled(StyledFooter)`
+  background: rgba(255, 255, 255, 0.9);
+  width: 100%;
+
+  @media screen and (max-width: 1000px){
+    padding-right: 10px;
+    padding-left:10px;
+  } 
 `;

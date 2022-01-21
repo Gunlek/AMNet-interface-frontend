@@ -3,7 +3,7 @@ import { StyledCard } from "../Card/style";
 import { Row } from "../Container/style";
 
 export const StyledMenu = styled(StyledCard)`
-  height: 100%;
+  height: 96%;
   padding: 0px;
   padding-Top:20px;
   padding-bottom:10px; 
@@ -13,26 +13,22 @@ export const StyledMenu = styled(StyledCard)`
     background: rgba(255, 255, 255, 0.9);
     flex-direction: row;
     padding: 10px;
-  } 
-  
-  @media screen and (max-width: 800px){
-    background: rgba(255, 255, 255, 0.9);
-    display: grid;
-    grid-template-columns: repeat(auto-fill,minmax(70px, 1fr));
-    justify-items: center;
     border-top-left-radius: 0px;
     border-top-right-radius: 0px;
-  }
+  } 
 `;
 
 export const MenuContener = styled.div`
   width: 85px;
   position: fixed; 
-  height: 96vh;
+  height:100vh;
+  display: flex;
+  align-items: center;
 
   @media screen and (max-width: 1000px){
     height: auto;
     width:100%;
+    position: absolute;
   }  
 `;
 
@@ -55,6 +51,7 @@ export const StyledDivLogOut = styled(Row)`
 
   @media screen and (max-width: 1000px){
     flex-direction: column;
+    flex: 1;
   }
 `
 

@@ -10,67 +10,61 @@ export const StyledButton = styled.button`
   font-family: "Poppins";
   font-size: 1.2em;
   text-align: center;
+  transition: 0.5s linear;
+  background: linear-gradient(90deg, var(--c1, #f6d365), var(--c2, #fda085) 51%, var(--c1, #f6d365)) var(--x, 0)/ 200%;
 
   &:hover{
-    transition: color 0.2s;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
     cursor: pointer;
+    --x: 100%;
   }
-
-  @media screen and (max-width: 420px){
-    width: 100%;
-  }  
 `;
 
 export const StyledGreenButton = styled(StyledButton)`
-  background: linear-gradient(91.71deg, #67bc45 7.99%, #096a09 94.71%);
-
-  &:hover{
-    background: #096a09;
-  }
+  --c1: #67bc45;
+  --c2: #096a09;
 `;
 
 export const StyledRedButton = styled(StyledButton)`
-  background: linear-gradient(91.71deg, #f23232 7.99%, #890909 94.71%);
-
-  &:hover{
-    background: #890909;
-  }
+  --c1: #f23232;
+  --c2: #890909;
 `;
 
 export const StyledOrangeButton = styled(StyledButton)`
-  background: linear-gradient(91.71deg, #FF9900 7.99%, #AA6B0B 94.71%);
-
-  &:hover{
-    background: #AA6B0B;
-}
+  --c1: #FF9900;
+  --c2: #AA6B0B;
 `;
 
 
-export const SmallStyledGreenButton = styled(StyledButton)`
-  background: #67BC45;
+export const SmallStyledButton = styled(StyledButton)`
   border-radius: 16px;
   height: 40px;
   width: ${(props) => props.width || "150px"};
   font-size: 1em;
+  background: none;
+  transition: background-color 0.3s ease-out;
+`  
 
+export const SmallStyledGreenButton = styled(SmallStyledButton)`
+  background-color: #67BC45;
+  
   &:hover{
-    background: #096a09;
+    background-color: #096a09;
   }
 `;
 
-export const SmallStyledRedButton = styled(SmallStyledGreenButton)`
-  background: #F23232;
+export const SmallStyledRedButton = styled(SmallStyledButton)`
+  background-color: #F23232;
 
   &:hover{
-    background: #890909;
+    background-color: #890909;
   }
 `;
 
-export const SmallStyledOrangeButton = styled(SmallStyledGreenButton)`
-  background: #D78306;
+export const SmallStyledOrangeButton = styled(SmallStyledButton)`
+  background-color: #D78306;
 
   &:hover{
-    background: #AA6B0B;
+    background-color: #AA6B0B;
   }
 `;

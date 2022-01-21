@@ -9,24 +9,28 @@ import {
   DashboardContainer,
   ResponsiveRow
 } from "../../components/Container/style";
-import { HelpSection, TitleCard } from "../../components/Card/Cards"
+import { Footer, HelpSection, TitleCard } from "../../components/Card/Cards"
 import { StyledCard } from "../../components/Card/style";
 import { Menu } from "../../components/Menu/Menus";
 import { StateContribution } from "../../components/State/States";
 import { BlackTitle, BlackText, StyledLinkButton } from "../../components/Text/style";
+import useMediaQuery from "../../components/MediaQueries/MediaQuery";
 
 
 export default function Dashboard() {
+  const minWidth1000 = useMediaQuery('(min-width:1000px)');
+
   return (
     <>
       <Head>
         <title>Mon Espace &bull; AMNet</title>
       </Head>
+      
       <DefaultBackground>
         <Menu page="home" />
 
         <DashboardContainer>
-          <ResponsiveRow style={{ margin:"1% 0"}}>
+          <ResponsiveRow style={{ margin: minWidth1000 ? "1% 0" : "4% 0", justifyContent: minWidth1000 ? "start" : "center" }}>
             <Column style={{justifyContent: "center"}}>
               <BlackTitle>Mon Espace AMNet</BlackTitle>
             </Column>
@@ -36,7 +40,7 @@ export default function Dashboard() {
             </Column>
           </ResponsiveRow>
 
-          <StyledCard style={{ flex: "3", marginBottom:"2%" }}>
+          <StyledCard style={{ flex: "3", marginBottom: minWidth1000 ? "2%" : "4%" }}>
             <Column style={{height:"100%"}}>
               <TitleCard>Actualité AMNet</TitleCard>
               <BlackText>
@@ -47,8 +51,8 @@ export default function Dashboard() {
             </Column>
           </StyledCard>
 
-          <ResponsiveRow style={{flex: "6", marginBottom:"2%"}}>
-            <Col6 style={{marginRight:"1%"}}>
+          <ResponsiveRow style={{flex: "6", marginBottom: minWidth1000 ? "2%" : "4%"}}>
+            <Col6 style={{marginRight: minWidth1000 ? "1%" : "0", marginBottom: minWidth1000 ? "0" : "4%"}}>
               <StyledCard style={{height: "100%"}}>
                 <Column style={{height:"100%"}}>
                   <TitleCard>Objets connectés</TitleCard>
@@ -60,13 +64,13 @@ export default function Dashboard() {
                   
                   <Row 
                     style={{
-                      height:"100%", 
+                      flex:"1", 
                       justifyContent:"center", 
                       alignItems:"end",
                       marginTop: "20px"
                     }}
                   >
-                    <StyledLinkButton href="./iot">
+                    <StyledLinkButton href="./iot" style={{borderRadius:"90px"}}>
                       <GreenButton>Accéder</GreenButton>
                     </StyledLinkButton>
                   </Row>
@@ -74,7 +78,7 @@ export default function Dashboard() {
               </StyledCard>
             </Col6>
 
-            <Col6 style={{marginLeft:"1%"}}>
+            <Col6 style={{marginLeft: minWidth1000 ? "1%" : "0"}}>
               <StyledCard style={{height: "100%"}}>
                 <Column style={{height:"100%"}}>
                   <TitleCard>FAQ</TitleCard>
@@ -86,13 +90,14 @@ export default function Dashboard() {
 
                   <Row 
                     style={
-                      {height:"100%", 
+                      {
+                      flex:"1", 
                       justifyContent:"center", 
                       alignItems:"end",
                       marginTop: "20px"
                     }}
                   >
-                    <StyledLinkButton href="./faq">
+                    <StyledLinkButton href="./faq" style={{borderRadius:"90px"}}>
                       <GreenButton>Accéder</GreenButton>
                     </StyledLinkButton>
                   </Row>
@@ -101,9 +106,8 @@ export default function Dashboard() {
             </Col6>
           </ResponsiveRow>
 
-          <Row>
-            <HelpSection color="#096A09"/>
-          </Row>   
+          <HelpSection color="#096A09"/> 
+          <Footer /> 
         </DashboardContainer>
       </DefaultBackground>
     </>

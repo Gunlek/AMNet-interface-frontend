@@ -21,18 +21,34 @@ export const BlackTitle = styled.h1`
   color: black;
 
   @media screen and (max-width: 1000px){
-    font-size: 1.8em;
+    font-size: 2em;
     line-height: 40px;
     text-align: center;
   }
-`
-export const StyledLink = styled.a`
-  color:${(props) => props.color};
+`;
 
+export const GreenTitle = styled.h2`
+  margin: 0;
+  font-weight: normal;
+  font-size: 1.8em;
+  color: #096a09;
+  padding-right: 10px; 
+
+  @media screen and (max-width: 1000px){
+    font-size: 1.6em;
+    text-align: center;
+  }
+`;
+
+export const StyledLink = styled.a`
+  font-size:1.2em;
+  color:${(props) => props.color};
+  transition: color 0.3s;
+
+  
   &:hover{
-        color: ${(props) => props.hovercolor};
-        transition: color 0.2s;
-        cursor: pointer;
+    color: ${(props) => props.hovercolor || "#67bc45"};
+    cursor: pointer;
   }
 `;
 
@@ -43,4 +59,4 @@ export const StyledLinkButton = styled.a`
     align-items: center;
     justify-content: center;
   }
-`
+`;

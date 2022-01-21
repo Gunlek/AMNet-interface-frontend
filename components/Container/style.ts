@@ -54,10 +54,6 @@ export const Col6 = styled(Col)`
 
   @media screen and (max-width: 1000px){
     max-width: 100%;
-    margin: 0;
-    margin-bottom: 2%;
-    align-items: center;
-    justify-content: center;
   } 
 `;
 
@@ -101,22 +97,20 @@ export const DashboardContainer = styled.div`
   display: flex;
   flex-direction: column;
   margin-left: 85px;
+  margin-top: 1%;
 
   @media screen and (max-width: 1000px){
     width: 100%;
     margin-left: 0;
     padding-left: 0; 
-    margin-top: 100px;
+    margin-top: 85px;
     padding: 0 5% 2.5%;
   }
-
-  @media screen and (max-width: 725px){
-    margin-top: 230px;
-  } 
-
 `;
 
 export const CheckboxRow = styled(Row)`
   display: grid;
-  grid-template-columns: repeat(auto-fill,minmax(150px, 1fr));
+  grid-template-columns: repeat(auto-fill,minmax(${(props) => props.width || "150px"}, 1fr));
+  align-items: center;
+  gap: 15px 0;
 `;

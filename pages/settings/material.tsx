@@ -19,9 +19,11 @@ import {
   StyledTr 
 } from "../../components/Table/style";
 import { BlackTitle, StyledLink } from "../../components/Text/style";
+import useMediaQuery from "../../components/MediaQueries/MediaQuery";
 
 
 export default function Dashboard() {
+  const minWidth1000 = useMediaQuery('(min-width:1000px)');
   return (
     <>
       <Head>
@@ -31,7 +33,7 @@ export default function Dashboard() {
         <AdminMenu page="material" />
 
         <DashboardContainer>
-          <Row style={{margin:"1% 0"}}>
+          <Row style={{margin: minWidth1000 ? "1% 0" : "4% 0", justifyContent: minWidth1000 ? "start" : "center"}}>
             <BlackTitle>Demandes de matériel </BlackTitle>
           </Row>
 
