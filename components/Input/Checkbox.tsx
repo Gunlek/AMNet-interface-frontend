@@ -44,7 +44,7 @@ const StyledCheckbox = styled.div`
   
     left: -2.5px;
     z-index: -1;
-    background:  ${props => (props.color ? 'rgba(255, 255, 255, 0.9)' : 'linear-gradient(135deg, #67BC45 5.67%, #096A09 94.96%)')};
+    background:  ${props => (props.color ? 'white' : 'linear-gradient(135deg, #67BC45 5.67%, #096A09 94.96%)')};
     transition: opacity 0.3s;
     opacity: ${props => (props.checked ? '1' : '0')};
     border-radius: 9px;
