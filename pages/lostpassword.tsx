@@ -4,7 +4,6 @@ import { CampusBackground, CampusGlobalStyle } from "../components/Background/st
 import {
   Footer,
   HelpSection,
-  RectangleLogo,
   TitleCard
 } from "../components/Card/Cards";
 import { GreenButton } from "../components/Button/Buttons";
@@ -15,6 +14,7 @@ import {
 } from "../components/Container/style";
 import { StyledInput } from "../components/Input/style";
 import { GreenText } from "../components/Text/style";
+import RectangleLogo from "../components/Card/RectangleLogo";
 
 export default function Homepage() {
   return (

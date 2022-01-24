@@ -5,7 +5,6 @@ import { GreenButton } from "../components/Button/Buttons";
 import {
   Footer,
   HelpSection,
-  RectangleLogo,
   TitleCard
 } from "../components/Card/Cards";
 import { StyledCardCampus } from "../components/Card/style";
@@ -27,6 +26,7 @@ import {
 } from "../components/Text/style";
 import useMediaQuery from "../components/MediaQueries/MediaQuery";
 import Radio from "../components/Input/Radio";
+import RectangleLogo from "../components/Card/RectangleLogo";
 
 export default function Homepage() {
   const minWidth1000 = useMediaQuery('(min-width:1000px)');
@@ -114,7 +114,7 @@ export default function Homepage() {
               <ResponsiveRow style={{ marginBottom: "20px" }}>
                 <Col6 style={{ paddingRight: minWidth1000 ? "10px" : "0", marginBottom: minWidth1000 ? "0" : "20px" }}>
                   <GreenText style={{ marginBottom: "5px" }}>Téléphone</GreenText>
-                  <StyledInput type="phone" />
+                  <StyledInput type="tel"/>
                 </Col6>
                 <Col6 style={{ paddingLeft: minWidth1000 ? "10px" : "0" }}>
                   <GreenText style={{ marginBottom: "5px" }}>Promotion</GreenText>
@@ -177,9 +177,9 @@ export default function Homepage() {
                 <GreenText>Réglementation</GreenText>
                 <BlackText>
                   <p style={{ marginTop: "5px" }}>
-                    Consultez <StyledLink style={{fontSize: "1em"}} color="#096a09" target="_blank" href="/static/docs/Statuts_AMNet.pdf">les Statuts de l'association</StyledLink>
+                    Consultez <StyledLink color="#096a09" target="_blank" href="/static/docs/Statuts_AMNet.pdf">les Statuts de l'association</StyledLink>
                     <br />
-                    Consultez <StyledLink style={{fontSize: "1em"}} color="#096a09" target="_blank" href="/static/docs/Reglement_Interieur_AMNet.pdf">le Règlement intérieur de l'association</StyledLink>
+                    Consultez <StyledLink color="#096a09" target="_blank" href="/static/docs/Reglement_Interieur_AMNet.pdf">le Règlement intérieur de l'association</StyledLink>
                     <br />
                     <br />
                     AMNet Birse est une association Loi 1901, vous devez en accepter les statuts et le réglement intérieur. La validation de ce formulaire et le réglement de la cotisation vaut pour adhésion à l'association.

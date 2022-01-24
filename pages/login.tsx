@@ -6,13 +6,13 @@ import { Column, Row } from "../components/Container/style";
 import {
   Footer,
   HelpSection,
-  RectangleLogo,
   TitleCard,
 } from "../components/Card/Cards";
 import { StyledCardCampus } from "../components/Card/style";
 import { StyledInput } from "../components/Input/style";
 import { BlackText, GreenText, StyledLink } from "../components/Text/style";
 import Checkbox from "../components/Input/Checkbox";
+import RectangleLogo from "../components/Card/RectangleLogo";
 
 export default function Homepage() {
   var [checked, setChecked] = useState(false);
@@ -50,7 +50,7 @@ export default function Homepage() {
               </TitleCard>
             </Row>
 
-            <form method="post" style={{ marginTop: "20px" }}>
+            <form method="post">
               <div style={{ marginBottom: "20px" }}>
                 <GreenText style={{ marginBottom: "5px" }}>Nom d'utilisateur</GreenText>
                 <StyledInput type="text" />

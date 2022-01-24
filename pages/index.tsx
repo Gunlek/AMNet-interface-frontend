@@ -5,8 +5,6 @@ import { GreenButton } from "../components/Button/Buttons";
 import {
   Footer,
   HelpSection,
-  RectangleLogo,
-  TeamPicture,
   TitleCard
 } from "../components/Card/Cards";
 import {
@@ -19,6 +17,8 @@ import {
 import { StyledCardCampus } from "../components/Card/style";
 import { WhiteText, BlackText } from "../components/Text/style";
 import useMediaQuery from "../components/MediaQueries/MediaQuery";
+import RectangleLogo from "../components/Card/RectangleLogo";
+import TeamPicture from "../components/Card/TeamPicture";
 
 export default function Homepage() {
   const minWidth1000 = useMediaQuery('(min-width:1000px)');
@@ -88,7 +88,7 @@ export default function Homepage() {
             <Col10>
               <Column>
                 <TitleCard>Serveur Minecraft</TitleCard>
-                <BlackText>
+                <BlackText style={{ textAlign: "justify" }}>
                   En plus de fournir un accès internet aux résidents nous
                   offrons une multitude de services, un serveur Minecraft :{" "}
                   <span style={{ color: "#096A09" }}>minecraft.amnet.fr</span>{" "}
@@ -101,9 +101,9 @@ export default function Homepage() {
             </Col10>
           </ResponsiveRow>
         </StyledCardCampus>
-        
-        <HelpSection />
-      </CampusBackground> 
+
+        <HelpSection style={{marginTop: minWidth1000? "20px" : "0"}}/>
+      </CampusBackground>
       <Footer page="campus" />
     </>
   );
