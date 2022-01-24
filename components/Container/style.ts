@@ -103,7 +103,7 @@ export const DashboardContainer = styled.div`
     width: 100%;
     margin-left: 0;
     padding-left: 0; 
-    margin-top: 85px;
+    margin-top: 95px;
     padding: 0 5% 2.5%;
   }
 `;
