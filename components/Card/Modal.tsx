@@ -22,7 +22,7 @@ export default function(props: {reveal: boolean, hide: any})  {
     const minWidth1000 = useMediaQuery('(min-width: 1000px)')
 
     return props.reveal ?(
-    <React.Fragment>
+    <>
         <div 
             onClick={props.hide} 
             style={{
@@ -54,6 +54,6 @@ export default function(props: {reveal: boolean, hide: any})  {
             </BlackText>
             <GreenButton width={minWidth1000 ? "500px" : "100%"}>Cliquez pour procéder au paiement (35€)</GreenButton>
         </StyledCard>
-    </React.Fragment>
+    </>
     )  : null;
 } 
