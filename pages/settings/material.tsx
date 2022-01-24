@@ -2,14 +2,9 @@ import React, { useState } from "react";
 import Head from "next/head";
 import { DefaultBackground } from "../../components/Background/style";
 import { SmallGreenButton, SmallRedButton} from "../../components/Button/Buttons";
-import { 
-  Row, 
-  DashboardContainer,
-  Column,
-  Col6
-} from "../../components/Container/style";
+import { Row, DashboardContainer } from "../../components/Container/style";
 import { StyledCard } from "../../components/Card/style";
-import { AdminMenu } from "../../components/Menu/Menus";
+import AdminMenu from "../../components/Menu/AdminMenu";
 import { StateRequest } from "../../components/Status/Status";
 import { 
   StyledTable, 
@@ -18,12 +13,11 @@ import {
   StyledTd150, 
   StyledTd200, 
   StyledTd500, 
-  StyledTr, 
-  StyledTd350
+  StyledTr
 } from "../../components/Table/style";
-import { BlackText, BlackTitle, StyledLink } from "../../components/Text/style";
+import { BlackTitle, StyledLink } from "../../components/Text/style";
 import useMediaQuery from "../../components/MediaQueries/MediaQuery";
-import { RequestTab } from "../../components/Card/RequestTab";
+import RequestTab from "../../components/Card/RequestTab";
 
 export default function Dashboard() {
   const minWidth1000 = useMediaQuery('(min-width:1000px)');

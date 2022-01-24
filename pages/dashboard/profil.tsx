@@ -3,7 +3,6 @@ import Head from "next/head";
 import { DefaultBackground } from "../../components/Background/style";
 import {GreenButton} from "../../components/Button/Buttons";
 import { 
-  Row, 
   Col6,
   Col3,
   Column,
@@ -12,7 +11,7 @@ import {
 } from "../../components/Container/style";
 import { Footer, HelpSection } from "../../components/Card/Cards"
 import { StyledInput, StyledSelect } from "../../components/Input/style";
-import { Menu } from "../../components/Menu/Menus";
+import UserMenu  from "../../components/Menu/UserMenu";
 import { StateContribution } from "../../components/Status/Status";
 import { 
   BlackTitle,
@@ -38,7 +37,7 @@ export default function Dashboard() {
         <title>Mon Profil &bull; AMNet</title>
       </Head>
       <DefaultBackground>
-        <Menu page="profil" />
+        <UserMenu page="profil" />
 
         <DashboardContainer>
           <ResponsiveRow style={{ margin: minWidth1000 ? "1% 0" : "4% 0", justifyContent: minWidth1000 ? "start" : "center" }}>

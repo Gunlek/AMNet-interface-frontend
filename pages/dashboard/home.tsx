@@ -11,7 +11,7 @@ import {
 } from "../../components/Container/style";
 import { Footer, HelpSection, TitleCard } from "../../components/Card/Cards"
 import { StyledCard } from "../../components/Card/style";
-import { Menu } from "../../components/Menu/Menus";
+import UserMenu from "../../components/Menu/UserMenu";
 import { StateContribution } from "../../components/Status/Status";
 import { BlackTitle, BlackText, StyledLinkButton } from "../../components/Text/style";
 import useMediaQuery from "../../components/MediaQueries/MediaQuery";
@@ -27,7 +27,7 @@ export default function Dashboard() {
       </Head>
       
       <DefaultBackground>
-        <Menu page="home" />
+        <UserMenu page="home" />
 
         <DashboardContainer>
           <ResponsiveRow style={{ margin: minWidth1000 ? "1% 0" : "4% 0", justifyContent: minWidth1000 ? "start" : "center" }}>

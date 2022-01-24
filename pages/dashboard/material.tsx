@@ -10,7 +10,7 @@ import {
 } from "../../components/Container/style";
 import { Footer, HelpSection } from "../../components/Card/Cards"
 import { StyledCard } from "../../components/Card/style";
-import { Menu } from "../../components/Menu/Menus";
+import UserMenu from "../../components/Menu/UserMenu";
 import { 
   StyledTable, 
   StyledGreenTr, 
@@ -31,7 +31,7 @@ export default function Dashboard() {
         <title>Mon Espace &bull; AMNet</title>
       </Head>
       <DefaultBackground>
-        <Menu page="material" />
+        <UserMenu page="material" />
 
         <DashboardContainer>
           <ResponsiveRow style={{margin: minWidth1000 ? "1% 0" : "4% 0", alignItems:"center"}}>

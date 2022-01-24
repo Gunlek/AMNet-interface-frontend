@@ -3,19 +3,15 @@ import Head from "next/head";
 import { DefaultBackground } from "../../components/Background/style";
 import {
   Row,
-  Col6,
   Column,
   DashboardContainer,
-  Col8,
-  Col4,
   ResponsiveRow
 } from "../../components/Container/style";
 import { StyledCard } from "../../components/Card/style";
-import { AdminMenu } from "../../components/Menu/Menus";
-import { BlackText, BlackTitle, GreenText, StyledLink } from "../../components/Text/style";
+import AdminMenu from "../../components/Menu/AdminMenu";
+import { BlackTitle, GreenText, StyledLink } from "../../components/Text/style";
 import { GreenButton } from "../../components/Button/Buttons";
 import { TitleCard } from "../../components/Card/Cards";
-import { StyledInput } from "../../components/Input/style";
 import { TeamEditor } from "../../components/TeamEditor/TeamEditor";
 import useMediaQuery from "../../components/MediaQueries/MediaQuery";
 

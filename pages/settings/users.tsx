@@ -1,16 +1,14 @@
 import React, { useState } from "react";
 import Head from "next/head";
 import { DefaultBackground } from "../../components/Background/style";
-import { GreenButton, OrangeButton, RedButton, SmallGreenButton, SmallOrangeButton, SmallRedButton } from "../../components/Button/Buttons";
+import { GreenButton, OrangeButton, RedButton } from "../../components/Button/Buttons";
 import {
-  Row,
   DashboardContainer,
-  Col4,
   ResponsiveRow,
   CheckboxRow
 } from "../../components/Container/style";
 import { StyledCard } from "../../components/Card/style";
-import { AdminMenu } from "../../components/Menu/Menus";
+import AdminMenu from "../../components/Menu/AdminMenu";
 import { BlackText, BlackTitle, StyledLink } from "../../components/Text/style";
 import {
   StyledTable,
@@ -66,14 +64,14 @@ export default function Dashboard() {
             </div>
             <ResponsiveRow style={{ flex: "1", alignItems: "center", justifyContent: "end", marginTop: minWidth1000 ? "0" : "4%", }}>
               <BlackText style={{ marginBottom: minWidth1000 ? "0" : "2%" }}>Rechercher</BlackText>
-              <StyledInput style={{ marginLeft: "20px", width: "300px" }} type="text" />
+              <StyledInput style={{ marginLeft: minWidth1000 ? "20px" : "0", width: minWidth1000? "300px" : "100%" }} type="text" />
             </ResponsiveRow>
           </ResponsiveRow>
 
           <form>  
             <CheckboxRow 
               justify="center" 
-              width="300px" 
+              width="175px" 
               style={{ 
                 marginBottom: minWidth1000 ? "2%" : "4%", 
                 alignItems: "center" 
@@ -81,47 +79,47 @@ export default function Dashboard() {
             >
               <StyledLabel>
                 <Checkbox  id="User" checked={Checked["User"]}  onChange={handleCheckboxChange} />
-                <BlackText style={{ marginLeft: "10px", marginRight: "30px" }}>Utilisateur</BlackText>
+                <BlackText style={{ marginLeft: "10px" }}>Utilisateur</BlackText>
               </StyledLabel>
               <StyledLabel>
                 <Checkbox id="FirstName" checked={Checked["FirstName"]} onChange={handleCheckboxChange} />
-                <BlackText style={{ marginLeft: "10px", marginRight: "30px" }}>Prénom</BlackText>
+                <BlackText style={{ marginLeft: "10px" }}>Prénom</BlackText>
               </StyledLabel>
               <StyledLabel>
                 <Checkbox id="LastName" checked={Checked["LastName"]} onChange={handleCheckboxChange} />
-                <BlackText style={{ marginLeft: "10px", marginRight: "30px" }}>Nom</BlackText>
+                <BlackText style={{ marginLeft: "10px" }}>Nom</BlackText>
               </StyledLabel>
               <StyledLabel>
                 <Checkbox id="Mail" checked={Checked["Mail"]}  onChange={handleCheckboxChange} />
-                <BlackText style={{ marginLeft: "10px", marginRight: "30px" }}>Email</BlackText>
+                <BlackText style={{ marginLeft: "10px" }}>Email</BlackText>
               </StyledLabel>
               <StyledLabel>
                 <Checkbox id="Surname" checked={Checked["Surname"]} onChange={handleCheckboxChange} />
-                <BlackText style={{ marginLeft: "10px", marginRight: "30px" }}>Bucque</BlackText>
+                <BlackText style={{ marginLeft: "10px" }}>Bucque</BlackText>
               </StyledLabel>
               <StyledLabel>
                 <Checkbox id="Family" checked={Checked["Family"]} onChange={handleCheckboxChange} />
-                <BlackText style={{ marginLeft: "10px", marginRight: "30px" }}>Fam's</BlackText>
+                <BlackText style={{ marginLeft: "10px" }}>Fam's</BlackText>
               </StyledLabel>
               <StyledLabel>
                 <Checkbox id="Campus" checked={Checked["Campus"]} onChange={handleCheckboxChange} />
-                <BlackText style={{ marginLeft: "10px", marginRight: "30px" }}>Tagan's</BlackText>
+                <BlackText style={{ marginLeft: "10px" }}>Tagan's</BlackText>
                 </StyledLabel>
               <StyledLabel>
                 <Checkbox id="Promotion" checked={Checked["Promotion"]} onChange={handleCheckboxChange} />
-                <BlackText style={{ marginLeft: "10px", marginRight: "30px" }}>Prom's</BlackText>
+                <BlackText style={{ marginLeft: "10px" }}>Prom's</BlackText>
               </StyledLabel>
               <StyledLabel>
                 <Checkbox id="Contribution" checked={Checked["Contribution"]} onChange={handleCheckboxChange} />
-                <BlackText style={{ marginLeft: "10px", marginRight: "30px" }}>Cotisation</BlackText>
+                <BlackText style={{ marginLeft: "10px" }}>Cotisation</BlackText>
               </StyledLabel>
               <StyledLabel>
                 <Checkbox id="Gadz" checked={Checked["Gadz"]} onChange={handleCheckboxChange} />
-                <BlackText style={{ marginLeft: "10px", marginRight: "30px" }}>Gadz</BlackText>
+                <BlackText style={{ marginLeft: "10px" }}>Gadz</BlackText>
               </StyledLabel>
               <StyledLabel>
                 <Checkbox id="Rank" checked={Checked["Rank"]} onChange={handleCheckboxChange} />
-                <BlackText style={{ marginLeft: "10px", marginRight: "30px" }}>Rang</BlackText>
+                <BlackText style={{ marginLeft: "10px" }}>Rang</BlackText>
               </StyledLabel>
             </CheckboxRow>
             

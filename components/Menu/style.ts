@@ -56,12 +56,3 @@ export const StyledDivLogOut = styled(Row)`
     flex: 1;
   }
 `
-
-export const StyledImg = styled.img`
-  width: 76.5px;
-
-  @media screen and (max-width: 1000px){
-    height: 65px;
-    width:auto
-  }
-`

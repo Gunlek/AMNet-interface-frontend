@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Head from "next/head";
 import { DefaultBackground } from "../../components/Background/style";
 import { StyledCard } from "../../components/Card/style";
-import { AdminMenu } from "../../components/Menu/Menus";
+import AdminMenu from "../../components/Menu/AdminMenu";
 import { DashboardContainer, Row } from "../../components/Container/style";
 import { BlackTitle, StyledLink } from "../../components/Text/style";
 import { 
@@ -17,7 +17,7 @@ import {
 import { SmallGreenButton, SmallRedButton } from "../../components/Button/Buttons";
 import { StateRequest } from "../../components/Status/Status";
 import useMediaQuery from "../../components/MediaQueries/MediaQuery";
-import { RequestTab } from "../../components/Card/RequestTab";
+import RequestTab from "../../components/Card/RequestTab";
 
 
 

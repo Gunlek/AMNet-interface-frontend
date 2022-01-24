@@ -4,7 +4,7 @@ import { DefaultBackground } from "../../components/Background/style";
 import { GreenButton } from "../../components/Button/Buttons";
 import { TitleCard } from "../../components/Card/Cards"
 import { StyledCard } from "../../components/Card/style";
-import { AdminMenu } from "../../components/Menu/Menus";
+import AdminMenu from "../../components/Menu/AdminMenu";
 import { StateIntegration, StateInvite } from "../../components/Status/Status";
 import AutoTextArea from "../../components/Input/TextArea";
 import useMediaQuery from "../../components/MediaQueries/MediaQuery";

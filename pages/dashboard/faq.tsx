@@ -7,7 +7,7 @@ import {
 } from "../../components/Container/style";
 import { Footer, HelpSection } from "../../components/Card/Cards"
 import { StyledCard } from "../../components/Card/style";
-import { Menu } from "../../components/Menu/Menus";
+import UserMenu from "../../components/Menu/UserMenu";
 import { BlackTitle } from "../../components/Text/style";
 import useMediaQuery from "../../components/MediaQueries/MediaQuery";
 
@@ -20,7 +20,7 @@ export default function Dashboard() {
         <title>FAQ &bull; AMNet</title>
       </Head>
       <DefaultBackground>
-        <Menu page="faq" />
+        <UserMenu page="faq" />
 
         <DashboardContainer>
           <Row style={{flex: "1", margin: minWidth1000 ? "1% 0" : "4% 0", justifyContent: minWidth1000 ? "start" : "center"}}>
