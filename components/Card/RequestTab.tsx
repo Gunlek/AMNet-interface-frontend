@@ -2,7 +2,7 @@ import { Row } from "../Container/style";
 import useMediaQuery from "../MediaQueries/MediaQuery";
 import { StyledTabColumn } from "./style";
 
-export function RequestTab(props: { status: string, TabChange: Function }){
+export default function RequestTab(props: { status: string, TabChange: Function }){
     const minWidth1000 = useMediaQuery('(min-width:1000px)');
     const inProcess = (props.status == "inProcess");
     const accepted = (props.status == "accepted");

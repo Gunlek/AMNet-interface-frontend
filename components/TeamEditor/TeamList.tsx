@@ -26,3 +26,5 @@ export const TeamList = (props: {list: any[], setter: Function}) => {
         </Column>
     );
 };
+
+export default TeamList
