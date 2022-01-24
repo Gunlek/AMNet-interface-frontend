@@ -83,31 +83,6 @@ export default function Dashboard() {
                 <TeamEditor />
               </Column>
 
-
-              {/* <Row style={{marginBottom:"20px"}}>
-                <Col6>
-                  <GreenText style={{marginBottom:"5px"}}>Bucques</GreenText>
-                  <StyledInput type="text"/>
-                </Col6>
-                <Col6 style={{justifyContent:"center", marginLeft:"20px"}}>
-                  <BlackText>
-                    La forme du texte doit être : "<span style={{color: "#096a09", fontWeight: "bold"}}>Trobotyk'ss(ML)°;Sdoosh;Nem'O</span>" sans les guillemets mais avec les ;
-                  </BlackText>
-                </Col6>
-              </Row>
-  
-              <Row style={{marginBottom:"20px"}}>
-                <Col6>
-                  <GreenText style={{marginBottom:"5px"}}>Num's</GreenText>
-                  <StyledInput type="text"/>
-                </Col6>
-                <Col6 style={{justifyContent:"center", marginLeft:"20px"}}>
-                  <BlackText>
-                    La forme du texte doit être : "<span style={{color: "#096a09", fontWeight: "bold"}}>47Li220;96Li220;74Li220</span>" sans les guillemets mais avec les ; et les num's dans le même ordre que les Bucques
-                  </BlackText>
-                </Col6>
-              </Row> */}
-
               <Row style={{ marginTop: "20px", justifyContent: "center" }}>
                 <GreenButton>Mettre à jour</GreenButton>
               </Row>
