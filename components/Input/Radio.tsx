@@ -43,10 +43,10 @@ const StyledRadio = styled.div`
     }
 `
 
-const Radio = ({ checked, ...props }) => (
+const Radio = (props: any) => (
     <RadioContainer>
-        <HiddenRadio checked={checked} {...props} />
-        <StyledRadio checked={checked} />
+        <HiddenRadio checked={props.checked} {...props} />
+        <StyledRadio checked={props.checked} />
     </RadioContainer>
 )
 
