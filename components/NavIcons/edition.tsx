@@ -1,6 +1,6 @@
 import { StyledBackIcon, StyledIcon } from "./style"
 
-export default function SVGEdition(props: { page: string }) {
+export default function Edition(props: { page: string }) {
     if (props.page == 'edition') {
         return (
             <div

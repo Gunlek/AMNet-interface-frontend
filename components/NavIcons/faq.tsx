@@ -1,7 +1,7 @@
 import { StyledBackIcon, StyledIcon } from "./style"
 
 
-export  function  SVGFaq(props: {page: string}){
+export default function Faq(props: {page: string}){
     if(props.page == 'faq')
     {
         return(

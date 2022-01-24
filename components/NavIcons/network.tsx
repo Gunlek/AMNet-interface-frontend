@@ -1,6 +1,6 @@
 import { StyledBackIcon, StyledIcon } from "./style"
 
-export  function  SVGIoT(props: {page: string}){
+export default function IoT(props: {page: string}){
     if(props.page == 'iot')
     {
         return(

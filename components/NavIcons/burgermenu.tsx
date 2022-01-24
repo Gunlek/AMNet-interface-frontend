@@ -1,6 +1,6 @@
-import { StyledBackBurger, StyledIcon } from "./style"
+import { StyledBackBurger } from "./style"
 
-export default function  SVGBurgerMenu(props: {onClick?: Function, open: boolean}){
+export default function BurgerMenu(props: {onClick?: Function, open: boolean}){
     return(
         <StyledBackBurger opacity={props.open? "1" : "0"} onClick={props.onClick}>
             <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 8.996 8.996" fill={props.open? "white" : "#C5C7C6"}>

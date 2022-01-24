@@ -1,6 +1,6 @@
 import { StyledBackLogOut, StyledLogOut } from "./style";
 
-export  const  SVGLogOut = (props : {id?: string}) => ( 
+export const LogOut = (props : {id?: string}) => ( 
     <StyledBackLogOut> 
         <StyledLogOut width="40" height="40" fill={"url(#mygradient"+props.id+")"} xmlns="http://www.w3.org/2000/svg">
             <path d="M25 21.667c-.922 0-1.667.746-1.667 1.666V30c0 .918-.746 1.667-1.666 1.667h-5v-25a3.36 3.36 0 0 0-2.27-3.169l-.494-.165h7.764c.92 0 1.666.749 1.666 1.667v5a1.666 1.666 0 1 0 3.334 0V5c0-2.757-2.244-5-5-5H3.75c-.063 0-.117.028-.178.037C3.492.03 3.415 0 3.333 0A3.337 3.337 0 0 0 0 3.333v30a3.36 3.36 0 0 0 2.27 3.169l10.03 3.343c.34.105.678.155 1.033.155a3.337 3.337 0 0 0 3.334-3.333V35h5c2.756 0 5-2.243 5-5v-6.667c0-.92-.745-1.666-1.667-1.666Z" />
@@ -16,4 +16,4 @@ export  const  SVGLogOut = (props : {id?: string}) => (
     </StyledBackLogOut>        
 );
 
-  
+export default LogOut;

@@ -9,7 +9,7 @@ import {
   StyledLink, 
   GreenTitle 
 } from "../Text/style";
-import GitHub from "../SVG/github";
+import GitHub from "../NavIcons/github";
 
 export function HelpSection(props: { color?: string, style?: any }) {
   return (
