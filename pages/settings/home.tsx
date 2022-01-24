@@ -5,7 +5,7 @@ import { GreenButton } from "../../components/Button/Buttons";
 import { TitleCard } from "../../components/Card/Cards"
 import { StyledCard } from "../../components/Card/style";
 import { AdminMenu } from "../../components/Menu/Menus";
-import { StateInvite } from "../../components/State/States";
+import { StateIntegration, StateInvite } from "../../components/Status/Status";
 import AutoTextArea from "../../components/Input/TextArea";
 import useMediaQuery from "../../components/MediaQueries/MediaQuery";
 import Checkbox from "../../components/Input/Checkbox";
@@ -22,25 +22,18 @@ import {
 
 export default function Dashboard() {
   const minWidth1000 = useMediaQuery('(min-width:1000px)');
-  var [checked1, setChecked1] = useState(false);
-  var [checked2, setChecked2] = useState(false);
-  var [checked3, setChecked3] = useState(false);
-  var [checked4, setChecked4] = useState(false);
+  
+  const [Checked, setChecked] = useState({
+    "OldPromotion": false,  
+    "ActivePromotion": false, 
+    "NewPromotion": false,
+    "Other": false,
+  });
 
-  const handleCheckboxChange1 = (elmt) => {
-    setChecked1(elmt.target.checked);
-  }
-
-  const handleCheckboxChange2 = (elmt) => {
-    setChecked2(elmt.target.checked);
-  }
-
-  const handleCheckboxChange3 = (elmt) => {
-    setChecked3(elmt.target.checked);
-  }
-
-  const handleCheckboxChange4 = (elmt) => {
-    setChecked4(elmt.target.checked);
+  const handleCheckboxChange = (elmt) =>{
+    const NewChecked = {...Checked};
+    NewChecked[elmt.currentTarget.id] = !NewChecked[elmt.currentTarget.id];
+    setChecked(NewChecked)
   }
 
   return (
@@ -83,14 +76,23 @@ export default function Dashboard() {
                     </Col6>
                   </Row>
 
+                  <Row style={{ marginBottom: "20px" }}>
+                    <Col6>
+                      <GreenText style={{ marginBottom: "5px" }}>Usinage</GreenText>
+                    </Col6>
+                    <Col6 style={{ alignItems: "end" }}>
+                      <StateIntegration state={true} />
+                    </Col6>
+                  </Row>
+
                   <div style={{ marginBottom: "20px" }}>
                     <GreenText style={{ marginBottom: "5px" }}>Montant de la cotisation</GreenText>
-                    <StyledInput type="text" inputmode="numeric" />
+                    <StyledInput type="number"/>
                   </div>
 
                   <div style={{ marginBottom: "20px" }}>
                     <GreenText style={{ marginBottom: "5px" }}>Promotion active</GreenText>
-                    <StyledInput type="text" inputmode="numeric" />
+                    <StyledInput type="number"/>
                   </div>
 
                   <Row style={{ justifyContent: "center" }}>
@@ -141,21 +143,21 @@ export default function Dashboard() {
 
                   <Col6 style={{ marginLeft: minWidth1000 ? "1%" : "0" }}>
                     <GreenText style={{ marginBottom: "5px" }}>Prom's</GreenText>
-                    <CheckboxRow width="100px" style={{ flex: "1", alignItems: "center" }}>
+                    <CheckboxRow style={{ flex: "1", alignItems: "center" }}>
                       <StyledLabel>
-                        <Checkbox checked={checked1} onChange={handleCheckboxChange1} />
+                        <Checkbox id="OldPromotion" checked={Checked["OldPromotion"]} onChange={handleCheckboxChange} />
                         <span style={{ marginLeft: "10px" }}><BlackText>2021</BlackText></span>
                       </StyledLabel>
                       <StyledLabel>
-                        <Checkbox checked={checked2} onChange={handleCheckboxChange2} />
+                        <Checkbox id="ActivePromtion" checked={Checked["ActivePromtion"]} onChange={handleCheckboxChange} />
                         <span style={{ marginLeft: "10px" }}><BlackText>220</BlackText></span>
                       </StyledLabel>
                       <StyledLabel>
-                        <Checkbox checked={checked3} onChange={handleCheckboxChange3} />
+                        <Checkbox id="NewPromotion" checked={Checked["NewPromotion"]} onChange={handleCheckboxChange} />
                         <span style={{ marginLeft: "10px" }}><BlackText>219</BlackText></span>
                       </StyledLabel>
                       <StyledLabel>
-                        <Checkbox checked={checked4} onChange={handleCheckboxChange4} />
+                        <Checkbox id="Other" checked={Checked["Other"]} onChange={handleCheckboxChange} />
                         <span style={{ marginLeft: "10px" }}><BlackText>Autres</BlackText></span>
                       </StyledLabel>
                     </CheckboxRow>
