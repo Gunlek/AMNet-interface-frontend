@@ -48,9 +48,11 @@ export const StyledDivLogOut = styled(Row)`
   align-items: end; 
   justify-content: center; 
   width: 60px;
+  display: ${(props) => props.display};
 
   @media screen and (max-width: 1000px){
     flex-direction: column;
+    align-items: center; 
     flex: 1;
   }
 `
@@ -59,6 +61,7 @@ export const StyledImg = styled.img`
   width: 76.5px;
 
   @media screen and (max-width: 1000px){
-    width: 65px;
+    height: 65px;
+    width:auto
   }
 `
