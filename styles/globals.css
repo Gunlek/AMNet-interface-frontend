@@ -45,10 +45,21 @@ body {
   user-select: none; /* Propriété standard */
 }
 
-input[type="text"]::selection, textarea::selection, table::selection{
+input[type="text"], textarea, td, a{
+  -moz-user-select: text; /* Firefox */
+  -webkit-user-select: text; /* Chrome, Safari, Opéra depuis la version 15 */
+  -ms-user-select: text; /* Internet explorer depuis la version 10 et Edge */
+  user-select: text; /* Propriété standard */
+}
+
+input[type="text"]::selection, 
+textarea::selection, 
+td::selection,
+a::selection{
   background-color: #67BC45;
   color: white;
 }
+
 @media screen and (max-width: 1000px){
   html, 
   body{
