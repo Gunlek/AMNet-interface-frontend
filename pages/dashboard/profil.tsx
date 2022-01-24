@@ -13,7 +13,7 @@ import {
 import { Footer, HelpSection } from "../../components/Card/Cards"
 import { StyledInput, StyledSelect } from "../../components/Input/style";
 import { Menu } from "../../components/Menu/Menus";
-import { StateContribution } from "../../components/State/States";
+import { StateContribution } from "../../components/Status/Status";
 import { 
   BlackTitle,
   GreenText, 
@@ -25,9 +25,12 @@ import useMediaQuery from "../../components/MediaQueries/MediaQuery";
 export default function Dashboard() {
   const minWidth1000 = useMediaQuery('(min-width:1000px)');
   var [isGadz, setGadz] = useState(false);
+  var [isOther, setOther] = useState(false);
+
 
   const handleValueChange = (elmt) => {
     setGadz(elmt.target.value == "219" || elmt.target.value == "220");
+    setOther(elmt.target.value == "other");
   }
   return (
     <>
@@ -43,7 +46,7 @@ export default function Dashboard() {
               <BlackTitle>Editer mon profil</BlackTitle>
             </Column>
             
-            <Column style={{ flex: "1", alignItems: "end", justifyContent: "center"}}>
+            <Column style={{ flex: "1", alignItems: minWidth1000 ? "end" : "center", justifyContent: "center"}}>
               <StateContribution status="unpaid"/>
             </Column>
           </ResponsiveRow>
@@ -74,7 +77,13 @@ export default function Dashboard() {
                 <GreenText style={{marginBottom: "5px"}}>Prénom</GreenText>
                 <StyledInput type="text"/>
               </Col3>
-              <Col3 style={{paddingLeft: minWidth1000 ? "10px" : "0", paddingRight: minWidth1000 ? "10px" : "0", marginBottom: minWidth1000 ? "0" : "20px"}}>
+              <Col3 
+                style={{
+                  paddingLeft: minWidth1000 ? "10px" : "0", 
+                  paddingRight: minWidth1000 ? "10px" : "0", 
+                  marginBottom: minWidth1000 ? "0" : "20px"
+                }}
+              >
                 <GreenText style={{marginBottom: "5px"}}>Nom</GreenText>
                 <StyledInput type="text"/>
               </Col3>
@@ -91,12 +100,23 @@ export default function Dashboard() {
               </Col6>
               <Col6 style={{paddingLeft: minWidth1000 ? "10px" : "0"}}>
                 <GreenText style={{marginBottom: "5px"}}>Promotion</GreenText>
-                <StyledSelect onChange={handleValueChange}>
+                <StyledSelect style={{display: isOther? "none" : "inline"}} onChange={handleValueChange}>
                   <option value="219">219</option>
                   <option value="220">220</option>
                   <option value="2021" selected>2021</option>
-                  <option value="autre">Autre</option>
+                  <option value="other">Autre</option>
                 </StyledSelect>
+                <StyledInput 
+                    ref={
+                      PromotionInput => {
+                        if (PromotionInput && isOther){
+                          PromotionInput.focus();
+                        }
+                      }
+                    } 
+                    style={{display: isOther? "inline" : "none"}} 
+                    type="text" 
+                  />
               </Col6>
             </ResponsiveRow>
 
@@ -105,7 +125,13 @@ export default function Dashboard() {
                 <GreenText style={{marginBottom: "5px"}}>Bucque</GreenText>
                 <StyledInput type="text"/>
               </Col6>
-              <Col3 style={{paddingLeft: minWidth1000 ? "10px" : "0", paddingRight: minWidth1000 ? "10px" : "0", marginBottom: minWidth1000 ? "0" : "20px"}}>
+              <Col3 
+                style={{
+                  paddingLeft: minWidth1000 ? "10px" : "0", 
+                  paddingRight: minWidth1000 ? "10px" : "0", 
+                  marginBottom: minWidth1000 ? "0" : "20px"
+                }}
+              >
                 <GreenText style={{marginBottom: "5px"}}>Fam's</GreenText>
                 <StyledInput type="text"/>
               </Col3>
@@ -136,11 +162,24 @@ export default function Dashboard() {
             </ResponsiveRow>
 
             <ResponsiveRow style={{marginBottom: "20px", flex:"1"}}>
-              <Col6 style={{paddingRight: minWidth1000 ? "10px" : "0", marginBottom: minWidth1000 ? "0" : "20px"}}>
+              <Col6 
+                style={{
+                  paddingRight: minWidth1000 ? "10px" : "0", 
+                  marginBottom: minWidth1000 ? "0" : "20px", 
+                  display: isGadz? "flex": "none"
+                }}
+              >
                 <GreenText style={{marginBottom: "5px"}}>Identifiants gadzariques</GreenText>
-                <StyledInput type="text"/>
+                <StyledInput readonly type="text"/>
               </Col6>
-              <Col6 style={{alignItems: minWidth1000 ? "end" : "center", paddingLeft: minWidth1000 ? "10px" : "0", justifyContent: "end"}}>
+              <Col6 
+                style={{
+                  alignItems: minWidth1000 ? "end" : "center", 
+                  paddingLeft: minWidth1000 ? "10px" : "0", 
+                  justifyContent: "end", 
+                  maxWidth: isGadz? "50%": "100%"
+                }}
+              >
                 <GreenButton>Editer mon profil</GreenButton>
               </Col6>
             </ResponsiveRow>     
