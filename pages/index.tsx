@@ -15,7 +15,7 @@ import {
   ResponsiveRow
 } from "../components/Container/style";
 import { StyledCardCampus } from "../components/Card/style";
-import { WhiteText, BlackText } from "../components/Text/style";
+import { WhiteP, BlackP } from "../components/Text/style";
 import useMediaQuery from "../components/MediaQueries/MediaQuery";
 import RectangleLogo from "../components/Card/RectangleLogo";
 import TeamPicture from "../components/Card/TeamPicture";
@@ -48,26 +48,27 @@ export default function Homepage() {
         </ResponsiveRow>
 
         <ResponsiveRow style={{ marginBottom: "20px" }}>
-          <Col6>
-            <WhiteText
-              style={{
-                marginRight: minWidth1000 ? "20px" : "0",
-                marginBottom: minWidth1000 ? "0" : "20px",
-                paddingTop: "20px",
-                textAlign: "justify"
-              }}
-            >
-              <span style={{ paddingLeft: "60px" }}>L’AMNet</span> est une association gérée par les étudiants qui a pour but
+          <Col6
+            style={{
+              marginRight: minWidth1000 ? "1%" : "0",
+              marginBottom: minWidth1000 ? "0" : "20px",
+              paddingTop: "20px"
+            }}
+          >
+            <WhiteP style={{marginBottom: "1.2rem"}}>    
+              <span style={{ paddingLeft: "4rem" }}>L’AMNet</span> est une association gérée par les étudiants qui a pour but
               d’administrer le réseau internet de la résidence Jacques Pagliero.
               Elle est totalement indépendante de l’administration de la
-              résidence ou de l’école.<br /><br />
-              <span style={{ paddingLeft: "60px" }}>Votre</span> cotisation sert à améliorer l’installation ainsi
+              résidence ou de l’école.
+            </WhiteP>
+            <WhiteP>
+              <span style={{ paddingLeft: "4rem" }}>Votre</span> cotisation sert à améliorer l’installation ainsi
               qu’à payer les abonnements internet. Chaque année, 80% des
               cotisations est utilisé directement et les 20% restants servent à
               créer une trésorerie pour des investissements futurs.
-            </WhiteText>
+            </WhiteP>
           </Col6>
-          <Col6>
+          <Col6 style={{marginLeft: minWidth1000 ? "1%" : "0" }}>
             <TeamPicture
               names="Trobotyk'ss (ML)°;Sdoosh;Nem'O"
               nums="47Li220;96Li220;74Li220"
@@ -78,7 +79,13 @@ export default function Homepage() {
 
         <StyledCardCampus style={{ marginBottom: minWidth1000 ? "0" : "20px" }}>
           <ResponsiveRow>
-            <Col2 style={{ alignItems: "center", justifyContent: "center" }}>
+            <Col2 
+              style={{ 
+                alignItems: "center", 
+                justifyContent: "center",
+                marginBottom: minWidth1000 ? "0" : "10px"
+              }}
+            >
               <img
                 style={{ height: "80%", aspectRatio: "1 / 1" }}
                 src="/static/logo/mc_logo.png"
@@ -86,18 +93,17 @@ export default function Homepage() {
               />
             </Col2>
             <Col10>
-              <Column>
-                <TitleCard>Serveur Minecraft</TitleCard>
-                <BlackText style={{ textAlign: "justify" }}>
-                  En plus de fournir un accès internet aux résidents nous
-                  offrons une multitude de services, un serveur Minecraft :{" "}
-                  <span style={{ color: "#096A09" }}>minecraft.amnet.fr</span>{" "}
-                  et d'autres que nous vous laisserons découvrir un jour ...
-                  <br /><br />
-                  Si vous avez des idées de services que nous pourrions proposer
-                  hésitez pas à nous contacter !
-                </BlackText>
-              </Column>
+              <TitleCard>Serveur Minecraft</TitleCard>
+              <BlackP style={{marginBottom: "1.2rem"}}>
+                En plus de fournir un accès internet aux résidents nous
+                offrons une multitude de services, un serveur Minecraft :{" "}
+                <span style={{ color: "#096A09" }}>minecraft.amnet.fr</span>{" "}
+                et d'autres que nous vous laisserons découvrir un jour ...
+              </BlackP>
+              <BlackP>
+                Si vous avez des idées de services que nous pourrions proposer
+                hésitez pas à nous contacter !
+              </BlackP>
             </Col10>
           </ResponsiveRow>
         </StyledCardCampus>

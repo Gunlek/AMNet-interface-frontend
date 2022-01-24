@@ -40,6 +40,29 @@ export const GreenTitle = styled.h2`
   }
 `;
 
+export const WhiteP = styled.p`
+  color: white;
+  text-align: justify;
+  font-size: 1.2rem;
+  padding: 0;
+  margin: 0;
+`;
+
+export const BlackP = styled(WhiteP)`
+  color: black;
+`
+
+export const BlackUl = styled.ul`
+  list-style-type: none;
+  list-style-image: url("");
+  color: black;
+  text-align: justify;
+  font-size: 1.2rem;
+  padding: 0;
+  margin: 0;
+  margin-left: 2.4rem;
+`;
+
 export const StyledLink = styled.a`
   font-size: 1.2rem;
   color:${(props) => props.color};
