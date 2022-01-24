@@ -34,8 +34,7 @@ export const StyledTeamPicture = styled(Column)`
   background-repeat: no-repeat;
   background-position: 50% 0%;
   background-size: cover;
-  height: 45vh;
-
+  aspect-ratio: 16 / 9;
   border-radius: 30px;
   
   @media screen and (max-width: 1000px){
@@ -83,4 +82,23 @@ export const StyledCampusFooter = styled(StyledFooter)`
     padding-right: 10px;
     padding-left:10px;
   } 
+`;
+
+export const StyledTabColumn = styled(Column)`
+  color: ${(props) => props.focus ? "black" : "rgba(0, 0, 0, 0.3)"};
+  font-size: 1.2em;
+  text-align: center;
+  line-height: 40px;
+  transition: 0.3s;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &:hover{
+    background-color: ${(props) => !props.focus && "rgba(0, 0, 0, 0.1)"};
+    color: black;
+    cursor: ${(props) => !props.focus && "pointer"};
+  }
 `;

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Head from "next/head";
 import { DefaultBackground } from "../../components/Background/style";
 import { StyledCard } from "../../components/Card/style";
@@ -15,12 +15,20 @@ import {
   StyledTr 
 } from "../../components/Table/style";
 import { SmallGreenButton, SmallRedButton } from "../../components/Button/Buttons";
-import { StateRequest } from "../../components/State/States";
+import { StateRequest } from "../../components/Status/Status";
 import useMediaQuery from "../../components/MediaQueries/MediaQuery";
+import { RequestTab } from "../../components/Card/RequestTab";
+
 
 
 export default function Dashboard() {
   const minWidth1000 = useMediaQuery('(min-width:1000px)');
+  const [Tab, setTab] = useState("inProcess");
+
+  const handleTabChange = (elmt) => {
+    setTab(elmt.currentTarget.id);
+  }
+
   return (
     <>
       <Head>
@@ -33,6 +41,8 @@ export default function Dashboard() {
           <Row style={{margin: minWidth1000 ? "1% 0" : "4% 0", justifyContent: minWidth1000 ? "start" : "center"}}>
             <BlackTitle>Demandes d'accès à AMNet IoT </BlackTitle>
           </Row>
+
+          <RequestTab status={Tab} TabChange={handleTabChange}/>
 
           <StyledCard style={{ flex: "1", marginBottom:"2%" }}>
             <div style={{ height:"100%", width:"100%", overflowX:"auto" }}>
@@ -50,11 +60,11 @@ export default function Dashboard() {
                   <StyledTr style={{padding:"10px 0 10px 30px"}}>
                     <StyledTd50>1</StyledTd50>
                     <StyledTd150>
-                      <StyledLink hovercolor="#67bc45">Gauthier</StyledLink>
+                      <StyledLink style={{fontSize:"1em"}} hovercolor="#67bc45">Gauthier</StyledLink>
                     </StyledTd150>
                     <StyledTd200>Test1</StyledTd200>
                     <StyledTd200>aa:bb:cc:dd:ee:fff</StyledTd200>
-                    <StyledTd150><StyledLink hovercolor="#67bc45">Preuve Image</StyledLink></StyledTd150>
+                    <StyledTd150><StyledLink style={{fontSize:"1em"}} hovercolor="#67bc45">Preuve Image</StyledLink></StyledTd150>
                     <StyledTd150 style={{marginRight:"20px"}}><StateRequest state={"inProcess"}/></StyledTd150>
                     <StyledTd500>
                       <form 
