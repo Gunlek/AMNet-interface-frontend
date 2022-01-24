@@ -37,33 +37,47 @@ export function StateContribution(props: {status: string}){
   }
 }
 
-  export function StateRequest(props: { state: string }) {
-    if(props.state == 'accepted')
-    {
-      return <StyledStateRequest background="#67BC45">Acceptée</StyledStateRequest>
-    }
-    if(props.state == 'denied')
-    {
-      return <StyledStateRequest background="#F23232">Refusée</StyledStateRequest>
-    }
-    if(props.state == 'inProcess')
-    {
-      return <StyledStateRequest background="#FF9900">En cours</StyledStateRequest>
-    }
-  
+export function StateRequest(props: { state: string }) {
+  if(props.state == 'accepted')
+  {
+    return <StyledStateRequest background="#67BC45">Acceptée</StyledStateRequest>
   }
-  
-  export function StateInvite(props: {state?: boolean}){
-    var [state, setState] = useState(props.state);
-  
-    const handleValueChange = (elmt) => {
-      setState(elmt.target.value == "enabled");
-    }
-  
-    return(
-      <StyledStateInvite status={state} onChange={handleValueChange}>
-        <option value="enabled" >Activé</option>
-        <option value="disabled">Désactivé</option>
-      </StyledStateInvite>
-    );
+  if(props.state == 'denied')
+  {
+    return <StyledStateRequest background="#F23232">Refusée</StyledStateRequest>
   }
+  if(props.state == 'inProcess')
+  {
+    return <StyledStateRequest background="#FF9900">En cours</StyledStateRequest>
+  }
+}
+  
+export function StateInvite(props: {state?: boolean}){
+  var [state, setState] = useState(props.state);
+
+  const handleValueChange = (elmt) => {
+    setState(elmt.target.value == "enabled");
+  }
+
+  return(
+    <StyledStateInvite status={state} onChange={handleValueChange}>
+      <option value="enabled" >Activé</option>
+      <option value="disabled">Désactivé</option>
+    </StyledStateInvite>
+  );
+}
+
+export function StateIntegration(props: {state?: boolean}){
+  var [state, setState] = useState(props.state);
+
+  const handleValueChange = (elmt) => {
+    setState(elmt.target.value == "enabled");
+  }
+
+  return(
+    <StyledStateInvite status={state} onChange={handleValueChange}>
+      <option value="enabled" >Ayat's</option>
+      <option value="disabled">Fini</option>
+    </StyledStateInvite>
+  );
+}
