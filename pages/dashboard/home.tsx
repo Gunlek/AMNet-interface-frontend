@@ -12,7 +12,7 @@ import {
 import { Footer, HelpSection, TitleCard } from "../../components/Card/Cards"
 import { StyledCard } from "../../components/Card/style";
 import { Menu } from "../../components/Menu/Menus";
-import { StateContribution } from "../../components/State/States";
+import { StateContribution } from "../../components/Status/Status";
 import { BlackTitle, BlackText, StyledLinkButton } from "../../components/Text/style";
 import useMediaQuery from "../../components/MediaQueries/MediaQuery";
 
@@ -35,8 +35,8 @@ export default function Dashboard() {
               <BlackTitle>Mon Espace AMNet</BlackTitle>
             </Column>
             
-            <Column style={{ flex: "1", alignItems: "end", justifyContent: "center"}}>
-              <StateContribution status="unpaid"/>
+            <Column style={{ flex: "1", alignItems: minWidth1000 ? "end" : "center", justifyContent: "center"}}>
+              <StateContribution status="paid"/>
             </Column>
           </ResponsiveRow>
 
@@ -59,7 +59,7 @@ export default function Dashboard() {
                   <BlackText>
                     Faites vos demandes d'ajouts spécifiques 
                     (Objets connectés (IoT), consoles, etc...) 
-                    depuis cette page spécifique
+                    depuis cette page
                   </BlackText>
                   
                   <Row 

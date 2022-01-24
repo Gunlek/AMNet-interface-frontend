@@ -24,7 +24,7 @@ import {
   BlackText, 
   StyledLink 
 } from "../../components/Text/style";
-import { StateRequest } from "../../components/State/States";
+import { StateRequest } from "../../components/Status/Status";
 import useMediaQuery from "../../components/MediaQueries/MediaQuery";
 
 export default function Dashboard() {
