@@ -8,7 +8,7 @@ export const StyledInput = styled.input`
   padding-left:20px;
   height: 40px;
   font-size: 1.2em;
-  border: none;
+  border: 2px transparent;
   margin: 0;
   font-family: "Poppins";
 
@@ -32,7 +32,7 @@ export const StyledSelect = styled.select`
   width: ${(props) => props.width || "100%"};
   padding-left: 20px;
   height: 40px;
-  border: none;
+  border: 2px transparent;
   font-size: 1.2em;
   font-family: "Poppins";
 
@@ -56,7 +56,7 @@ export const StyledTextArea = styled.textarea`
   background: rgba(255, 255, 255, 0.6);
   box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.06);
   border-radius: 15px;
-  border: none;
+  border: 2px transparent;
   font-size: 1.2em;
   font-family: "Poppins";
   scrollbar-width: none !important;
@@ -78,5 +78,9 @@ export const StyledTextArea = styled.textarea`
 export const StyledLabel = styled.label`
   display: flex; 
   align-items: center;
-  
+  width: 150px;  
+
+  @media screen and (max-width: 1000px){
+    width: 100px;
+  } 
 `;
