@@ -78,5 +78,5 @@ export const StyledTextArea = styled.textarea`
 export const StyledLabel = styled.label`
   display: flex; 
   align-items: center;
-  width: 100px;
+  
 `;
