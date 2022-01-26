@@ -18,6 +18,39 @@ import {
   BlackUl
 } from "../../components/Text/style";
 import useMediaQuery from "../../components/MediaQueries/MediaQuery";
+import { IoTUserTable } from "../../components/Table/User";
+
+const Iot = [
+  {
+      "acces_id": 1,
+      "access_description": "Chromecast",
+      "access_mac": "AABBCCDDEEFF",
+      "access_proof": "photoProof-1621263399914.jpg",
+      "acces_state": "pending", 
+  },
+  {
+      "acces_id": 2,
+      "access_description": "Chromecast",
+      "access_mac": "AABBCCDDEEFF",
+      "access_proof": "photoProof-1621263399914.jpg",
+      "acces_user": 1,
+      "acces_state": "active",
+  },
+  {
+      "acces_id": 3,
+      "access_description": "Chromecast",
+      "access_mac": "AABBCCDDEEFF",
+      "access_proof": "photoProof-1621263399914.jpg",
+      "acces_state": "declined",
+  },
+  {
+    "acces_id": 1,
+    "access_description": "Chromecast",
+    "access_mac": "AABBCCDDEEFF",
+    "access_proof": "photoProof-1621263399914.jpg",
+    "acces_state": "pending", 
+  }
+]
 
 export default function Dashboard() {
   const minWidth1000 = useMediaQuery('(min-width:1000px)');
@@ -69,7 +102,7 @@ export default function Dashboard() {
                 overflowX: "auto"
               }}
             >
-              
+              <IoTUserTable RequestTable={Iot}/>              
             </div>
           </StyledCard>
 
