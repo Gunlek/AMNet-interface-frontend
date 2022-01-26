@@ -16,7 +16,7 @@ import { TeamEditor } from "../../components/TeamEditor/TeamEditor";
 import useMediaQuery from "../../components/MediaQueries/MediaQuery";
 
 
-export default function Dashboard() {
+export default function Edition() {
   const minWidth1000 = useMediaQuery('(min-width:1000px)');
   return (
     <>

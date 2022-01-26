@@ -1,10 +1,7 @@
 import React from "react";
 import Head from "next/head";
 import { DefaultBackground } from "../../components/Background/style";
-import { 
-  Row, 
-  DashboardContainer
-} from "../../components/Container/style";
+import { Row, DashboardContainer } from "../../components/Container/style";
 import { Footer, HelpSection } from "../../components/Card/Cards"
 import { StyledCard } from "../../components/Card/style";
 import UserMenu from "../../components/Menu/UserMenu";
@@ -12,7 +9,7 @@ import { BlackTitle } from "../../components/Text/style";
 import useMediaQuery from "../../components/MediaQueries/MediaQuery";
 
 
-export default function Dashboard() {
+export default function FAQ() {
   const minWidth1000 = useMediaQuery('(min-width:1000px)');
   return (
     <>

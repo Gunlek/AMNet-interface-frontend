@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Head from "next/head";
 import { CampusBackground, CampusGlobalStyle } from "../components/Background/style";
 import { GreenButton } from "../components/Button/Buttons";
-import { Column, Row } from "../components/Container/style";
+import { Row } from "../components/Container/style";
 import {
   Footer,
   HelpSection,
@@ -14,7 +14,7 @@ import { BlackText, GreenText, StyledLink } from "../components/Text/style";
 import Checkbox from "../components/Input/Checkbox";
 import RectangleLogo from "../components/Card/RectangleLogo";
 
-export default function Homepage() {
+export default function Login() {
   var [checked, setChecked] = useState(false);
 
   const handleCheckboxChange = (elmt) => {

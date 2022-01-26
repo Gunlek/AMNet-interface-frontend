@@ -21,7 +21,7 @@ import {
 import useMediaQuery from "../../components/MediaQueries/MediaQuery";
 
 
-export default function Dashboard() {
+export default function Profil() {
   const minWidth1000 = useMediaQuery('(min-width:1000px)');
   var [isGadz, setGadz] = useState(false);
   var [isOther, setOther] = useState(false);
@@ -42,7 +42,7 @@ export default function Dashboard() {
         <DashboardContainer>
           <ResponsiveRow style={{ margin: minWidth1000 ? "1% 0" : "4% 0", justifyContent: minWidth1000 ? "start" : "center" }}>
             <Column style={{justifyContent: "center"}}>
-              <BlackTitle>Editer mon profil</BlackTitle>
+              <BlackTitle>Editer mon Profil</BlackTitle>
             </Column>
             
             <Column style={{ flex: "1", alignItems: minWidth1000 ? "end" : "center", justifyContent: "center"}}>

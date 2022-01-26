@@ -20,7 +20,7 @@ import {
   CheckboxRow
 } from "../../components/Container/style";
 
-export default function Dashboard() {
+export default function Settings() {
   const minWidth1000 = useMediaQuery('(min-width:1000px)');
   
   const [Checked, setChecked] = useState({

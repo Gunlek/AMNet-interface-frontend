@@ -22,7 +22,7 @@ import Checkbox from "../../components/Input/Checkbox";
 import useMediaQuery from "../../components/MediaQueries/MediaQuery";
 
 
-export default function Dashboard() {
+export default function Users() {
   const minWidth1700 = useMediaQuery('(min-width:1700px)');
   const minWidth1000 = useMediaQuery('(min-width:1000px)');
 

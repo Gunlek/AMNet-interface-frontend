@@ -52,7 +52,7 @@ const Iot = [
   }
 ]
 
-export default function Dashboard() {
+export default function IoT() {
   const minWidth1000 = useMediaQuery('(min-width:1000px)');
   const [Tab, setTab] = useState("pending");
 

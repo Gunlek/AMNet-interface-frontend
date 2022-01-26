@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useState } from "react";
 import Head from "next/head";
 import { CampusBackground, CampusGlobalStyle } from "../components/Background/style";
 import { GreenButton } from "../components/Button/Buttons";
@@ -29,7 +29,7 @@ import useMediaQuery from "../components/MediaQueries/MediaQuery";
 import Radio from "../components/Input/Radio";
 import RectangleLogo from "../components/Card/RectangleLogo";
 
-export default function Homepage() {
+export default function SignUp() {
   const minWidth1000 = useMediaQuery('(min-width:1000px)');
   var [isGadz, setGadz] = useState(false);
   var [isOther, setOther] = useState(false);

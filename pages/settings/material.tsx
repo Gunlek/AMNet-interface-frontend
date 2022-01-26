@@ -9,7 +9,7 @@ import useMediaQuery from "../../components/MediaQueries/MediaQuery";
 import RequestTab from "../../components/Card/RequestTab";
 import { MaterialAdminTable } from "../../components/Table/Admin";
 
-const Material = [
+const material = [
   {
       "material_id": 1,
       "material_user": 1,
@@ -36,7 +36,7 @@ const Material = [
   }
 ]
 
-export default function Dashboard() {
+export default function Material() {
   const minWidth1000 = useMediaQuery('(min-width:1000px)');
   const [Tab, setTab] = useState("pending");
 
@@ -61,7 +61,7 @@ export default function Dashboard() {
 
           <StyledCard style={{ flex: "1", marginBottom: minWidth1000 ? "2%" : "4%" }}>
             <div style={{ height:"100%", width:"100%", overflowX:"auto" }}>
-              <MaterialAdminTable status={Tab} RequestTable={Material}/>
+              <MaterialAdminTable status={Tab} RequestTable={material}/>
             </div>
           </StyledCard>
         </DashboardContainer>
