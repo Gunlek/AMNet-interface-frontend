@@ -14,11 +14,8 @@ import {
   StyledTable,
   StyledGreenTr,
   StyledTr,
-  StyledTd100,
-  StyledTd200,
-  StyledTd350,
-  StyledTd50,
-  StyledTd250
+  StyledTd,
+  StyledTh
 } from "../../components/Table/style";
 import { StyledInput, StyledLabel } from "../../components/Input/style";
 import Checkbox from "../../components/Input/Checkbox";
@@ -155,40 +152,51 @@ export default function Dashboard() {
               }}
             >
               <StyledTable>
-                <tbody>
-                  <StyledGreenTr style={{ padding: "10px 0 10px 30px" }}>
-                  <StyledTd50><StyledLabel><Checkbox color="white" id="Rank" checked={Checked["Rank"]} onChange={handleCheckboxChange}/></StyledLabel></StyledTd50>
-
-                    <StyledTd50>#</StyledTd50>
-                    <StyledTd250>Utilisateur</StyledTd250>
-                    <StyledTd200>Prénom</StyledTd200>
-                    <StyledTd200>Nom</StyledTd200>
-                    <StyledTd350>Email</StyledTd350>
-                    <StyledTd200>Bucque</StyledTd200>
-                    <StyledTd100>Fam's</StyledTd100>
-                    <StyledTd100>Tabagn's</StyledTd100>
-                    <StyledTd100>Prom's</StyledTd100>
-                    <StyledTd100 style={{ marginRight: "20px" }}>Cotisation</StyledTd100>
-                    <StyledTd50 style={{ marginRight: "20px" }}>Gadz</StyledTd50>
-                    <StyledTd100>Rang</StyledTd100>
+                <thead>
+                <StyledGreenTr>
+                    <StyledTh>
+                      <StyledLabel width="25px">
+                        <Checkbox color="white" id="Rank" checked={Checked["Rank"]} onChange={handleCheckboxChange}/>
+                      </StyledLabel>
+                    </StyledTh>
+                    <StyledTh>#</StyledTh>
+                    <StyledTh>Utilisateur</StyledTh>
+                    <StyledTh>Prénom</StyledTh>
+                    <StyledTh>Nom</StyledTh>
+                    <StyledTh>Email</StyledTh>
+                    <StyledTh>Bucque</StyledTh>
+                    <StyledTh>Fam's</StyledTh>
+                    <StyledTh>Tabagn's</StyledTh>
+                    <StyledTh>Prom's</StyledTh>
+                    <StyledTh>Cotisation</StyledTh>
+                    <StyledTh>Gadz</StyledTh>
+                    <StyledTh>Rang</StyledTh>
                   </StyledGreenTr>
-
-                  <StyledTr style={{ padding: "10px 0 10px 30px" }}>
-                  <StyledTd50><StyledLabel><Checkbox id="Rank" checked={Checked["Rank"]} onChange={handleCheckboxChange}/></StyledLabel></StyledTd50>
-                    <StyledTd50>1</StyledTd50>
-                    <StyledTd250><StyledLink hovercolor="#67bc45">Gauthier</StyledLink></StyledTd250>
-                    <StyledTd200>Gauthier</StyledTd200>
-                    <StyledTd200>Pailhas</StyledTd200>
-                    <StyledTd350>gauthier.pailhas@gmail.com</StyledTd350>
-                    <StyledTd200>Mac Naht's</StyledTd200>
-                    <StyledTd100>47-102</StyledTd100>
-                    <StyledTd100>Li</StyledTd100>
-                    <StyledTd100>219</StyledTd100>
-                    <StyledTd100 style={{ justifyContent: "center", marginRight: "20px" }}><img style={{ height: "20px" }} src="/static/icons/succes.svg" /> </StyledTd100>
-                    <StyledTd50 style={{ justifyContent: "center", marginRight: "20px" }}><img style={{ height: "20px" }} src="/static/icons/succes.svg" /> </StyledTd50>
-                    <StyledTd100>Admin</StyledTd100>
+                </thead>
+                <tbody>
+                <StyledTr style={{ padding: "10px 0 10px 30px" }}>
+                    <StyledTd>
+                      <StyledLabel width="25px">
+                        <Checkbox id="Rank" checked={Checked["Rank"]} onChange={handleCheckboxChange}/>
+                      </StyledLabel>
+                    </StyledTd>
+                    <StyledTd>1</StyledTd>
+                    <StyledTd>Gauthier</StyledTd>
+                    <StyledTd>Gauthier</StyledTd>
+                    <StyledTd>Pailhas</StyledTd>
+                    <StyledTd>gauthier.pailhas@gmail.com</StyledTd>
+                    <StyledTd>Mac Nhat'ss</StyledTd>
+                    <StyledTd>47-102</StyledTd>
+                    <StyledTd>Li</StyledTd>
+                    <StyledTd>219</StyledTd>
+                    <StyledTd>
+                      <img style={{ height: "20px", marginLeft: "35px" }} src="/static/icons/succes.svg"/>
+                    </StyledTd>
+                    <StyledTd>
+                      <img style={{ height: "20px", marginLeft: "15px" }} src="/static/icons/succes.svg"/>
+                    </StyledTd>
+                    <StyledTd>Admin</StyledTd>
                   </StyledTr>
-
                 </tbody>
               </StyledTable>
             </div>
