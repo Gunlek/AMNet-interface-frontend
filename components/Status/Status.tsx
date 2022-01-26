@@ -38,15 +38,15 @@ export function StateContribution(props: {status: string}){
 }
 
 export function StateRequest(props: { state: string }) {
-  if(props.state == 'accepted')
+  if(props.state == 'active')
   {
     return <StyledStateRequest background="#67BC45">Acceptée</StyledStateRequest>
   }
-  if(props.state == 'denied')
+  if(props.state == 'declined')
   {
     return <StyledStateRequest background="#F23232">Refusée</StyledStateRequest>
   }
-  if(props.state == 'inProcess')
+  if(props.state == 'pending')
   {
     return <StyledStateRequest background="#FF9900">En cours</StyledStateRequest>
   }

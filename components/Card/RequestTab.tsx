@@ -4,9 +4,9 @@ import { StyledTabColumn } from "./style";
 
 export default function RequestTab(props: { status: string, TabChange: Function }){
     const minWidth1000 = useMediaQuery('(min-width:1000px)');
-    const inProcess = (props.status == "inProcess");
-    const accepted = (props.status == "accepted");
-    const denied = (props.status == "denied");
+    const inProcess = (props.status == "pending");
+    const accepted = (props.status == "active");
+    const denied = (props.status == "declined");
   
     return(
     <Row 
@@ -17,7 +17,7 @@ export default function RequestTab(props: { status: string, TabChange: Function 
         }}
     >
         <StyledTabColumn
-        id="inProcess"
+        id="pending"
         onClick={props.TabChange}
         focus={inProcess}
         style={{
@@ -37,7 +37,7 @@ export default function RequestTab(props: { status: string, TabChange: Function 
         />
         </StyledTabColumn>
         <StyledTabColumn 
-        id="accepted"
+        id="active"
         onClick={props.TabChange}
         focus={accepted}
         style={{
@@ -57,7 +57,7 @@ export default function RequestTab(props: { status: string, TabChange: Function 
         />
         </StyledTabColumn>
         <StyledTabColumn
-        id="denied"
+        id="declined"
         focus={denied}
         onClick={props.TabChange} 
         style={{
