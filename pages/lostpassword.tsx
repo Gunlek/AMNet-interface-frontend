@@ -33,14 +33,13 @@ export default function Homepage() {
         >
           <StyledCardCampus
             width="45%"
-            height="auto"
             style={{ marginBottom: "20px" }}
           >
             <Row style={{ marginBottom: "20px", marginTop: "10px", justifyContent: "center" }}>
               <RectangleLogo />
             </Row>
 
-            <Row style={{ width: "100%" }}>
+            <Row>
               <TitleCard>
                 Mot de passe oublié
               </TitleCard>

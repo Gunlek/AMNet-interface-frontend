@@ -42,10 +42,8 @@ export default function Homepage() {
   var [acceptRules, setacceptRules] = useState(false);
 
   const handleRadioChange = (elmt) => {
-    setacceptRules(elmt.target.value == "accept");
+    setacceptRules(!acceptRules);
   }
-  
-
   
   return (
     <>
@@ -63,14 +61,13 @@ export default function Homepage() {
         >
           <StyledCardCampus
             width="75%"
-            height="auto"
             style={{ marginBottom: "20px" }}
           >
             <Row style={{ marginBottom: "20px", marginTop: "10px", justifyContent: "center" }}>
               <RectangleLogo height={minWidth1000 ? "125px" : "100px"} />
             </Row>
 
-            <Row style={{ width: "100%", marginBottom: "20px" }}>
+            <Row style={{ marginBottom: "20px" }}>
               <TitleCard>
                 Inscription
               </TitleCard>
@@ -176,7 +173,7 @@ export default function Homepage() {
 
               <Column style={{ alignItems: "start", marginBottom: "20px" }} >
                 <GreenText>Réglementation</GreenText>
-                <BlackP style={{ marginTop: "5px", marginBottom: "20px" }}>
+                <BlackP style={{ marginTop: "5px", marginBottom: "1.2rem" }}>
                     Consultez <StyledLink color="#096a09" target="_blank" href="/static/docs/Statuts_AMNet.pdf">les Statuts de l'association</StyledLink>
                     <br />
                     Consultez <StyledLink color="#096a09" target="_blank" href="/static/docs/Reglement_Interieur_AMNet.pdf">le Règlement intérieur de l'association</StyledLink>
@@ -197,10 +194,9 @@ export default function Homepage() {
                   }}
                 >
                   <label style={{ display: "flex", alignItems: "center" }}>
-                    <Radio name="accept_rules" value="accept" checked={acceptRules} onChange={handleRadioChange} />
+                    <Radio name="accept_rules" checked={acceptRules} onChange={handleRadioChange} />
                     <BlackText style={{ paddingLeft: "10px" }}>Accepter les Statuts et le Réglement interieur</BlackText>
                   </label>
-
                 </Col6>
                 <Col6
                   style=
@@ -211,10 +207,9 @@ export default function Homepage() {
                   }}
                 >
                   <label style={{ display: "flex", alignItems: "center" }}>
-                    <Radio defaultChecked name="accept_rules" value="denied" checked={!acceptRules} onChange={handleRadioChange} />
+                    <Radio name="accept_rules" checked={!acceptRules} onChange={handleRadioChange} />
                     <BlackText style={{ paddingLeft: "10px" }}>Refuser les Statuts et le Réglement interieur</BlackText>
                   </label>
-
                 </Col6>
               </ResponsiveRow>
 
