@@ -22,7 +22,8 @@ import {
 import {
   GreenText,
   BlackText,
-  StyledLink
+  StyledLink,
+  BlackP
 } from "../components/Text/style";
 import useMediaQuery from "../components/MediaQueries/MediaQuery";
 import Radio from "../components/Input/Radio";
@@ -173,18 +174,16 @@ export default function Homepage() {
                 </Col6>
               </ResponsiveRow>
 
-              <Column style={{ alignItems: "start" }} >
+              <Column style={{ alignItems: "start", marginBottom: "20px" }} >
                 <GreenText>Réglementation</GreenText>
-                <BlackText>
-                  <p style={{ marginTop: "5px" }}>
+                <BlackP style={{ marginTop: "5px", marginBottom: "20px" }}>
                     Consultez <StyledLink color="#096a09" target="_blank" href="/static/docs/Statuts_AMNet.pdf">les Statuts de l'association</StyledLink>
                     <br />
                     Consultez <StyledLink color="#096a09" target="_blank" href="/static/docs/Reglement_Interieur_AMNet.pdf">le Règlement intérieur de l'association</StyledLink>
-                    <br />
-                    <br />
+                  </BlackP>
+                  <BlackP>
                     AMNet Birse est une association Loi 1901, vous devez en accepter les statuts et le réglement intérieur. La validation de ce formulaire et le réglement de la cotisation vaut pour adhésion à l'association.
-                  </p>
-                </BlackText>
+                  </BlackP>
               </Column>
 
               <ResponsiveRow style={{ marginBottom: "20px", alignItems: "start" }}>
