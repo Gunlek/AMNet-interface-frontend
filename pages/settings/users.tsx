@@ -5,46 +5,400 @@ import { GreenButton, OrangeButton, RedButton } from "../../components/Button/Bu
 import {
   DashboardContainer,
   ResponsiveRow,
-  CheckboxRow
 } from "../../components/Container/style";
 import { StyledCard } from "../../components/Card/style";
 import AdminMenu from "../../components/Menu/AdminMenu";
-import { BlackText, BlackTitle, StyledLink } from "../../components/Text/style";
-import {
-  StyledTable,
-  StyledGreenTr,
-  StyledTr,
-  StyledTd,
-  StyledTh
-} from "../../components/Table/style";
-import { StyledInput, StyledLabel } from "../../components/Input/style";
-import Checkbox from "../../components/Input/Checkbox";
+import { BlackText, BlackTitle } from "../../components/Text/style";
+import { StyledInput } from "../../components/Input/style";
 import useMediaQuery from "../../components/MediaQueries/MediaQuery";
+import { UsersTable } from "../../components/Table/Users";
 
+const data = [
+  {
+    
+'user_name': "hardwins",   
+    
+'user_firstname': "fabien",   
+    
+'user_lastname': "aubret",   
+    
+'user_email': "fabien.aubret@gmail.com",   
+    
+'user_phone': "0606060606",   
+    
+'user_bucque': "hardwins",   
+    
+'user_fams': "58",   
+    
+'user_campus': "Li",   
+    
+'user_pomotion': "218",   
+    
+'user_rank': "admin",   
+    
+'user_is_gadz': 0,   
+    
+'user_pay_status': 0  
+
+  },
+  {
+    
+    'user_name': "hardwins",   
+        
+    'user_firstname': "fabien",   
+        
+    'user_lastname': "aubret",   
+        
+    'user_email': "fabien.aubret@gmail.com",   
+        
+    'user_phone': "0606060606",   
+        
+    'user_bucque': "hardwins",   
+        
+    'user_fams': "58",   
+        
+    'user_campus': "Li",   
+        
+    'user_pomotion': "218",   
+        
+    'user_rank': "admin",   
+        
+    'user_is_gadz': 1,   
+        
+    'user_pay_status': 1  
+    
+      },
+      {
+    
+        'user_name': "hardwins",   
+            
+        'user_firstname': "fabien",   
+            
+        'user_lastname': "aubret",   
+            
+        'user_email': "fabien.aubret@gmail.com",   
+            
+        'user_phone': "0606060606",   
+            
+        'user_bucque': "hardwins",   
+            
+        'user_fams': "58",   
+            
+        'user_campus': "Li",   
+            
+        'user_pomotion': "218",   
+            
+        'user_rank': "admin",   
+            
+        'user_is_gadz': 0,   
+            
+        'user_pay_status': 0  
+        
+          },
+          {
+    
+            'user_name': "hardwins",   
+                
+            'user_firstname': "fabien",   
+                
+            'user_lastname': "aubret",   
+                
+            'user_email': "fabien.aubret@gmail.com",   
+                
+            'user_phone': "0606060606",   
+                
+            'user_bucque': "hardwins",   
+                
+            'user_fams': "58",   
+                
+            'user_campus': "Li",   
+                
+            'user_pomotion': "218",   
+                
+            'user_rank': "admin",   
+                
+            'user_is_gadz': 1,   
+                
+            'user_pay_status': 1  
+            
+              },
+              {
+    
+                'user_name': "hardwins",   
+                    
+                'user_firstname': "fabien",   
+                    
+                'user_lastname': "aubret",   
+                    
+                'user_email': "fabien.aubret@gmail.com",   
+                    
+                'user_phone': "0606060606",   
+                    
+                'user_bucque': "hardwins",   
+                    
+                'user_fams': "58",   
+                    
+                'user_campus': "Li",   
+                    
+                'user_pomotion': "218",   
+                    
+                'user_rank': "admin",   
+                    
+                'user_is_gadz': 0,   
+                    
+                'user_pay_status': 0  
+                
+                  },
+                  {
+    
+                    'user_name': "hardwins",   
+                        
+                    'user_firstname': "fabien",   
+                        
+                    'user_lastname': "aubret",   
+                        
+                    'user_email': "fabien.aubret@gmail.com",   
+                        
+                    'user_phone': "0606060606",   
+                        
+                    'user_bucque': "hardwins",   
+                        
+                    'user_fams': "58",   
+                        
+                    'user_campus': "Li",   
+                        
+                    'user_pomotion': "218",   
+                        
+                    'user_rank': "admin",   
+                        
+                    'user_is_gadz': 0,   
+                        
+                    'user_pay_status': 0  
+                    
+                      },
+                      {
+    
+                        'user_name': "hardwins",   
+                            
+                        'user_firstname': "fabien",   
+                            
+                        'user_lastname': "aubret",   
+                            
+                        'user_email': "fabien.aubret@gmail.com",   
+                            
+                        'user_phone': "0606060606",   
+                            
+                        'user_bucque': "hardwins",   
+                            
+                        'user_fams': "58",   
+                            
+                        'user_campus': "Li",   
+                            
+                        'user_pomotion': "218",   
+                            
+                        'user_rank': "admin",   
+                            
+                        'user_is_gadz': 0,   
+                            
+                        'user_pay_status': 0  
+                        
+                          },
+                          {
+    
+                            'user_name': "hardwins",   
+                                
+                            'user_firstname': "fabien",   
+                                
+                            'user_lastname': "aubret",   
+                                
+                            'user_email': "fabien.aubret@gmail.com",   
+                                
+                            'user_phone': "0606060606",   
+                                
+                            'user_bucque': "hardwins",   
+                                
+                            'user_fams': "58",   
+                                
+                            'user_campus': "Li",   
+                                
+                            'user_pomotion': "218",   
+                                
+                            'user_rank': "admin",   
+                                
+                            'user_is_gadz': 0,   
+                                
+                            'user_pay_status': 0  
+                            
+                              },
+                              {
+    
+                                'user_name': "hardwins",   
+                                    
+                                'user_firstname': "fabien",   
+                                    
+                                'user_lastname': "aubret",   
+                                    
+                                'user_email': "fabien.aubret@gmail.com",   
+                                    
+                                'user_phone': "0606060606",   
+                                    
+                                'user_bucque': "hardwins",   
+                                    
+                                'user_fams': "58",   
+                                    
+                                'user_campus': "Li",   
+                                    
+                                'user_pomotion': "218",   
+                                    
+                                'user_rank': "admin",   
+                                    
+                                'user_is_gadz': 0,   
+                                    
+                                'user_pay_status': 0  
+                                
+                                  },
+                                  {
+    
+                                    'user_name': "hardwins",   
+                                        
+                                    'user_firstname': "fabien",   
+                                        
+                                    'user_lastname': "aubret",   
+                                        
+                                    'user_email': "fabien.aubret@gmail.com",   
+                                        
+                                    'user_phone': "0606060606",   
+                                        
+                                    'user_bucque': "hardwins",   
+                                        
+                                    'user_fams': "58",   
+                                        
+                                    'user_campus': "Li",   
+                                        
+                                    'user_pomotion': "218",   
+                                        
+                                    'user_rank': "admin",   
+                                        
+                                    'user_is_gadz': 0,   
+                                        
+                                    'user_pay_status': 0  
+                                    
+                                      },
+                                      {
+    
+                                        'user_name': "hardwins",   
+                                            
+                                        'user_firstname': "fabien",   
+                                            
+                                        'user_lastname': "aubret",   
+                                            
+                                        'user_email': "fabien.aubret@gmail.com",   
+                                            
+                                        'user_phone': "0606060606",   
+                                            
+                                        'user_bucque': "hardwins",   
+                                            
+                                        'user_fams': "58",   
+                                            
+                                        'user_campus': "Li",   
+                                            
+                                        'user_pomotion': "218",   
+                                            
+                                        'user_rank': "admin",   
+                                            
+                                        'user_is_gadz': 0,   
+                                            
+                                        'user_pay_status': 0  
+                                        
+                                          },
+                                          {
+    
+                                            'user_name': "hardwins",   
+                                                
+                                            'user_firstname': "fabien",   
+                                                
+                                            'user_lastname': "aubret",   
+                                                
+                                            'user_email': "fabien.aubret@gmail.com",   
+                                                
+                                            'user_phone': "0606060606",   
+                                                
+                                            'user_bucque': "hardwins",   
+                                                
+                                            'user_fams': "58",   
+                                                
+                                            'user_campus': "Li",   
+                                                
+                                            'user_pomotion': "218",   
+                                                
+                                            'user_rank': "admin",   
+                                                
+                                            'user_is_gadz': 0,   
+                                                
+                                            'user_pay_status': 0  
+                                            
+                                              },
+                                              {
+    
+                                                'user_name': "hardwins",   
+                                                    
+                                                'user_firstname': "fabien",   
+                                                    
+                                                'user_lastname': "aubret",   
+                                                    
+                                                'user_email': "fabien.aubret@gmail.com",   
+                                                    
+                                                'user_phone': "0606060606",   
+                                                    
+                                                'user_bucque': "hardwins",   
+                                                    
+                                                'user_fams': "58",   
+                                                    
+                                                'user_campus': "Li",   
+                                                    
+                                                'user_pomotion': "218",   
+                                                    
+                                                'user_rank': "admin",   
+                                                    
+                                                'user_is_gadz': 0,   
+                                                    
+                                                'user_pay_status': 0  
+                                                
+                                                  },
+                                                  {
+    
+                                                    'user_name': "hardwins",   
+                                                        
+                                                    'user_firstname': "fabien",   
+                                                        
+                                                    'user_lastname': "aubret",   
+                                                        
+                                                    'user_email': "fabien.aubret@gmail.com",   
+                                                        
+                                                    'user_phone': "0606060606",   
+                                                        
+                                                    'user_bucque': "hardwins",   
+                                                        
+                                                    'user_fams': "58",   
+                                                        
+                                                    'user_campus': "Li",   
+                                                        
+                                                    'user_pomotion': "218",   
+                                                        
+                                                    'user_rank': "admin",   
+                                                        
+                                                    'user_is_gadz': 0,   
+                                                        
+                                                    'user_pay_status': 0  
+                                                    
+                                                      },
+  
+]
 
 export default function Users() {
   const minWidth1700 = useMediaQuery('(min-width:1700px)');
   const minWidth1000 = useMediaQuery('(min-width:1000px)');
-
-  const [Checked, setChecked] = useState({
-    "User": true,  
-    "FirstName": true, 
-    "LastName": true,
-    "Mail": true,
-    "Surname": false,
-    "Family": false,
-    "Campus": false,
-    "Promotion": false,
-    "Contribution": true,
-    "Gadz": false,
-    "Rank": false
-  });
-
-  const handleCheckboxChange = (elmt) =>{
-    const NewChecked = {...Checked};
-    NewChecked[elmt.currentTarget.id] = !NewChecked[elmt.currentTarget.id];
-    setChecked(NewChecked)
-  }
+  const [Checkboxs, Table] = UsersTable({data})
 
   return (
     <>
@@ -65,64 +419,9 @@ export default function Users() {
             </ResponsiveRow>
           </ResponsiveRow>
 
-          <form>  
-            <CheckboxRow 
-              justify="center" 
-              width="175px" 
-              style={{ 
-                marginBottom: minWidth1000 ? "2%" : "4%", 
-                alignItems: "center" 
-              }}
-            >
-              <StyledLabel>
-                <Checkbox  id="User" checked={Checked["User"]}  onChange={handleCheckboxChange} />
-                <BlackText style={{ marginLeft: "10px" }}>Utilisateur</BlackText>
-              </StyledLabel>
-              <StyledLabel>
-                <Checkbox id="FirstName" checked={Checked["FirstName"]} onChange={handleCheckboxChange} />
-                <BlackText style={{ marginLeft: "10px" }}>Prénom</BlackText>
-              </StyledLabel>
-              <StyledLabel>
-                <Checkbox id="LastName" checked={Checked["LastName"]} onChange={handleCheckboxChange} />
-                <BlackText style={{ marginLeft: "10px" }}>Nom</BlackText>
-              </StyledLabel>
-              <StyledLabel>
-                <Checkbox id="Mail" checked={Checked["Mail"]}  onChange={handleCheckboxChange} />
-                <BlackText style={{ marginLeft: "10px" }}>Email</BlackText>
-              </StyledLabel>
-              <StyledLabel>
-                <Checkbox id="Surname" checked={Checked["Surname"]} onChange={handleCheckboxChange} />
-                <BlackText style={{ marginLeft: "10px" }}>Bucque</BlackText>
-              </StyledLabel>
-              <StyledLabel>
-                <Checkbox id="Family" checked={Checked["Family"]} onChange={handleCheckboxChange} />
-                <BlackText style={{ marginLeft: "10px" }}>Fam's</BlackText>
-              </StyledLabel>
-              <StyledLabel>
-                <Checkbox id="Campus" checked={Checked["Campus"]} onChange={handleCheckboxChange} />
-                <BlackText style={{ marginLeft: "10px" }}>Tagan's</BlackText>
-                </StyledLabel>
-              <StyledLabel>
-                <Checkbox id="Promotion" checked={Checked["Promotion"]} onChange={handleCheckboxChange} />
-                <BlackText style={{ marginLeft: "10px" }}>Prom's</BlackText>
-              </StyledLabel>
-              <StyledLabel>
-                <Checkbox id="Contribution" checked={Checked["Contribution"]} onChange={handleCheckboxChange} />
-                <BlackText style={{ marginLeft: "10px" }}>Cotisation</BlackText>
-              </StyledLabel>
-              <StyledLabel>
-                <Checkbox id="Gadz" checked={Checked["Gadz"]} onChange={handleCheckboxChange} />
-                <BlackText style={{ marginLeft: "10px" }}>Gadz</BlackText>
-              </StyledLabel>
-              <StyledLabel>
-                <Checkbox id="Rank" checked={Checked["Rank"]} onChange={handleCheckboxChange} />
-                <BlackText style={{ marginLeft: "10px" }}>Rang</BlackText>
-              </StyledLabel>
-            </CheckboxRow>
-            
-            
+          {Checkboxs}
 
-            <div
+          <div
               style={{
                 marginBottom: minWidth1000 ? "2%" : "4%",
                 display: "grid",
@@ -140,65 +439,17 @@ export default function Users() {
               <RedButton width="300px">Supprimer</RedButton>
             </div>
 
-          </form>
           <StyledCard style={{ flex: "1", marginBottom: "2%" }}>
             <div
               style={{
                 height: "100%",
-                maxHeight: "60vh",
+                maxHeight: "58vh",
                 width: "100%",
-                overflowX: "auto",
-                overflowY: "auto"
+                overflow: "auto",
+                position: "sticky"
               }}
             >
-              <StyledTable>
-                <thead>
-                <StyledGreenTr>
-                    <StyledTh>
-                      <StyledLabel width="25px">
-                        <Checkbox color="white" id="Rank" checked={Checked["Rank"]} onChange={handleCheckboxChange}/>
-                      </StyledLabel>
-                    </StyledTh>
-                    <StyledTh>#</StyledTh>
-                    <StyledTh>Utilisateur</StyledTh>
-                    <StyledTh>Prénom</StyledTh>
-                    <StyledTh>Nom</StyledTh>
-                    <StyledTh>Email</StyledTh>
-                    <StyledTh>Bucque</StyledTh>
-                    <StyledTh>Fam's</StyledTh>
-                    <StyledTh>Tabagn's</StyledTh>
-                    <StyledTh>Prom's</StyledTh>
-                    <StyledTh>Cotisation</StyledTh>
-                    <StyledTh>Gadz</StyledTh>
-                    <StyledTh>Rang</StyledTh>
-                  </StyledGreenTr>
-                </thead>
-                <tbody>
-                <StyledTr style={{ padding: "10px 0 10px 30px" }}>
-                    <StyledTd>
-                      <StyledLabel width="25px">
-                        <Checkbox id="Rank" checked={Checked["Rank"]} onChange={handleCheckboxChange}/>
-                      </StyledLabel>
-                    </StyledTd>
-                    <StyledTd>1</StyledTd>
-                    <StyledTd>Gauthier</StyledTd>
-                    <StyledTd>Gauthier</StyledTd>
-                    <StyledTd>Pailhas</StyledTd>
-                    <StyledTd>gauthier.pailhas@gmail.com</StyledTd>
-                    <StyledTd>Mac Nhat'ss</StyledTd>
-                    <StyledTd>47-102</StyledTd>
-                    <StyledTd>Li</StyledTd>
-                    <StyledTd>219</StyledTd>
-                    <StyledTd>
-                      <img style={{ height: "20px", marginLeft: "35px" }} src="/static/icons/succes.svg"/>
-                    </StyledTd>
-                    <StyledTd>
-                      <img style={{ height: "20px", marginLeft: "15px" }} src="/static/icons/succes.svg"/>
-                    </StyledTd>
-                    <StyledTd>Admin</StyledTd>
-                  </StyledTr>
-                </tbody>
-              </StyledTable>
+            {Table}
             </div>
           </StyledCard>
         </DashboardContainer>
