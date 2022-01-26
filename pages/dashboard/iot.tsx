@@ -22,42 +22,42 @@ import { IoTUserTable } from "../../components/Table/User";
 
 const Iot = [
   {
-      "acces_id": 1,
-      "access_description": "Chromecast",
-      "access_mac": "AABBCCDDEEFF",
-      "access_proof": "photoProof-1621263399914.jpg",
-      "acces_state": "pending", 
+    "acces_id": 1,
+    "access_description": "Chromecast",
+    "access_mac": "AABBCCDDEEFF",
+    "access_proof": "photoProof-1621263399914.jpg",
+    "acces_state": "pending",
   },
   {
-      "acces_id": 2,
-      "access_description": "Chromecast",
-      "access_mac": "AABBCCDDEEFF",
-      "access_proof": "photoProof-1621263399914.jpg",
-      "acces_user": 1,
-      "acces_state": "active",
+    "acces_id": 2,
+    "access_description": "Chromecast",
+    "access_mac": "AABBCCDDEEFF",
+    "access_proof": "photoProof-1621263399914.jpg",
+    "acces_user": 1,
+    "acces_state": "active",
   },
   {
-      "acces_id": 3,
-      "access_description": "Chromecast",
-      "access_mac": "AABBCCDDEEFF",
-      "access_proof": "photoProof-1621263399914.jpg",
-      "acces_state": "declined",
+    "acces_id": 3,
+    "access_description": "Chromecast",
+    "access_mac": "AABBCCDDEEFF",
+    "access_proof": "photoProof-1621263399914.jpg",
+    "acces_state": "declined",
   },
   {
     "acces_id": 1,
     "access_description": "Chromecast",
     "access_mac": "AABBCCDDEEFF",
     "access_proof": "photoProof-1621263399914.jpg",
-    "acces_state": "pending", 
+    "acces_state": "pending",
   }
 ]
 
-export default function Dashboard() {
+export default function UserIoT() {
   const minWidth1000 = useMediaQuery('(min-width:1000px)');
   return (
     <>
       <Head>
-        <title>Mon Espace &bull; AMNet</title>
+        <title>Mes demandes &bull; AMNet</title>
       </Head>
       <DefaultBackground>
         <UserMenu page="iot" />
@@ -102,7 +102,7 @@ export default function Dashboard() {
                 overflowX: "auto"
               }}
             >
-              <IoTUserTable RequestTable={Iot}/>              
+              <IoTUserTable RequestTable={Iot} />
             </div>
           </StyledCard>
 
