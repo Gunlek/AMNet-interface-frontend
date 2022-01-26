@@ -75,7 +75,7 @@ export function IoTAdminTable(props: { RequestTable: any[], status: string }) {
                     <StyledTh scope="col"><span style={{ paddingLeft: "5px" }}>Actions</span></StyledTh>
                 </StyledGreenTr>
             </thead>
-            <tbody style={{transition: "all 0.3s linear"}}>{listHTML}</tbody>
+            <tbody>{listHTML}</tbody>
         </StyledTable>
     );
 };

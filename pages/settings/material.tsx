@@ -7,7 +7,7 @@ import AdminMenu from "../../components/Menu/AdminMenu";
 import { BlackTitle } from "../../components/Text/style";
 import useMediaQuery from "../../components/MediaQueries/MediaQuery";
 import RequestTab from "../../components/Card/RequestTab";
-import { MaterialAdminTable } from "../../components/Table/AdminTable";
+import { MaterialAdminTable } from "../../components/Table/Admin";
 
 const Material = [
   {

@@ -7,7 +7,7 @@ import { DashboardContainer, Row } from "../../components/Container/style";
 import { BlackTitle } from "../../components/Text/style";
 import useMediaQuery from "../../components/MediaQueries/MediaQuery";
 import RequestTab from "../../components/Card/RequestTab";
-import { IoTAdminTable } from "../../components/Table/AdminTable";
+import { IoTAdminTable } from "../../components/Table/Admin";
 
 const Iot = [
   {
