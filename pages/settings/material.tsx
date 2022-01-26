@@ -36,7 +36,7 @@ const material = [
   }
 ]
 
-export default function Material() {
+export default function AdminMaterial() {
   const minWidth1000 = useMediaQuery('(min-width:1000px)');
   const [Tab, setTab] = useState("pending");
 
