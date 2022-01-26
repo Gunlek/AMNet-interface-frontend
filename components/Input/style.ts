@@ -78,9 +78,9 @@ export const StyledTextArea = styled.textarea`
 export const StyledLabel = styled.label`
   display: flex; 
   align-items: center;
-  width: 150px;  
+  width: ${(props) => props.width || "150px"}; 
 
   @media screen and (max-width: 1000px){
-    width: 100px;
+    width: ${(props) => props.width || "100px"}; 
   } 
 `;
