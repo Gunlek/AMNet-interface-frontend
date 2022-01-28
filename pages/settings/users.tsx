@@ -1,15 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import Head from "next/head";
 import { DefaultBackground } from "../../components/Background/style";
 import { GreenButton, OrangeButton, RedButton } from "../../components/Button/Buttons";
-import {
-  DashboardContainer,
-  ResponsiveRow,
-} from "../../components/Container/style";
+import { DashboardContainer, ResponsiveRow } from "../../components/Container/style";
 import { StyledCard } from "../../components/Card/style";
 import AdminMenu from "../../components/Menu/AdminMenu";
-import { BlackText, BlackTitle } from "../../components/Text/style";
-import { StyledInput } from "../../components/Input/style";
+import { BlackTitle } from "../../components/Text/style";
 import useMediaQuery from "../../components/MediaQueries/MediaQuery";
 import { UsersTable } from "../../components/Table/Users";
 
@@ -151,25 +147,25 @@ const data = [
                   },
                   {
     
-                    'user_name': "hardwins",   
+                    'user_name': "argilla",   
                         
-                    'user_firstname': "fabien",   
+                    'user_firstname': "gauthier",   
                         
-                    'user_lastname': "aubret",   
+                    'user_lastname': "pailhas",   
                         
-                    'user_email': "fabien.aubret@gmail.com",   
+                    'user_email': "gauthier.pailhas@gmail.com",   
                         
-                    'user_phone': "0606060606",   
+                    'user_phone': "07070707",   
                         
-                    'user_bucque': "hardwins",   
+                    'user_bucque': "mac nhats",   
                         
-                    'user_fams': "58",   
+                    'user_fams': "47-102",   
                         
                     'user_campus': "Li",   
                         
-                    'user_pomotion': "218",   
+                    'user_pomotion': "219",   
                         
-                    'user_rank': "admin",   
+                    'user_rank': "user",   
                         
                     'user_is_gadz': 0,   
                         
@@ -398,7 +394,7 @@ const data = [
 export default function Users() {
   const minWidth1700 = useMediaQuery('(min-width:1700px)');
   const minWidth1000 = useMediaQuery('(min-width:1000px)');
-  const [Checkboxs, Table] = UsersTable({data})
+  const [Filter, Checkboxs, Table] = UsersTable(data)
 
   return (
     <>
@@ -414,8 +410,7 @@ export default function Users() {
               <BlackTitle>Liste des adhérents</BlackTitle>
             </div>
             <ResponsiveRow style={{ flex: "1", alignItems: "center", justifyContent: "end", marginTop: minWidth1000 ? "0" : "4%", }}>
-              <BlackText style={{ marginBottom: minWidth1000 ? "0" : "2%" }}>Rechercher</BlackText>
-              <StyledInput style={{ marginLeft: minWidth1000 ? "20px" : "0", width: minWidth1000? "300px" : "100%" }} type="text" />
+              {Filter}
             </ResponsiveRow>
           </ResponsiveRow>
 
@@ -443,7 +438,7 @@ export default function Users() {
             <div
               style={{
                 height: "100%",
-                maxHeight: "58vh",
+                maxHeight: "60vh",
                 width: "100%",
                 overflow: "auto",
                 position: "sticky"
