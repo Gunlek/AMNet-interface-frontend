@@ -1,9 +1,8 @@
-import React, { useState } from 'react'
-import styled from 'styled-components'
-import { useTable } from 'react-table'
+import React from 'react'
+import { useTable, useFilters, useGlobalFilter, useAsyncDebounce, useRowSelect, useSortBy } from 'react-table'
 import { CheckboxRow } from '../Container/style';
 import Checkbox from '../Input/Checkbox';
-import { StyledLabel } from '../Input/style';
+import { StyledInput, StyledLabel } from '../Input/style';
 import { BlackText } from '../Text/style';
 import useMediaQuery from '../MediaQueries/MediaQuery';
 import {
@@ -14,58 +13,54 @@ import {
   StyledTd
 } from './style';
 
-export function UsersTable({ data }) {
+function GlobalFilter({ globalFilter, setGlobalFilter }) {
+  const minWidth1000 = useMediaQuery('(min-width:1000px)');
+  const [value, setValue] = React.useState(globalFilter)
+  const onChange = useAsyncDebounce(value => {
+    setGlobalFilter(value || undefined)
+  }, 200)
+
+  return (
+    <>
+      <BlackText style={{ marginBottom: minWidth1000 ? "0" : "2%" }}>Rechercher</BlackText>
+      <StyledInput value={value || ""}
+        spellcheck="false"
+        onChange={e => { setValue(e.target.value); onChange(e.target.value); }}
+        style={{ marginLeft: minWidth1000 ? "20px" : "0", width: minWidth1000 ? "300px" : "100%" }}
+        type="text"
+      />
+    </>
+  )
+}
+
+const IndeterminateCheckbox = React.forwardRef(
+  ({ ...rest }) => {
+    return (
+      <StyledLabel width="25px">
+        <Checkbox {...rest} />
+      </StyledLabel>
+    )
+  }
+)
+
+
+
+export function UsersTable(data: any[]) {
   const minWidth1000 = useMediaQuery('(min-width:1000px)');
   const columns = React.useMemo(
     () => [
-      {
-        Header: 'Utilisateur',
-        accessor: 'user_name',
-      },
-      {
-        Header: 'Prénom',
-        accessor: 'user_firstname',
-      },
-      {
-        Header: 'Nom',
-        accessor: 'user_lastname',
-      },
-      {
-        Header: 'Mail',
-        accessor: 'user_email',
-      },
-      {
-        Header: 'Cotisation',
-        accessor: 'user_pay_status',
-      },
-      {
-        Header: 'Téléphone',
-        accessor: 'user_phone',
-      },
-      {
-        Header: 'Bucque',
-        accessor: 'user_bucque',
-      },
-      {
-        Header: 'Fam\'s',
-        accessor: 'user_fams',
-      },
-      {
-        Header: 'Campus',
-        accessor: 'user_campus',
-      },
-      {
-        Header: 'Promotion',
-        accessor: 'user_pomotion',
-      },
-      {
-        Header: 'Rank',
-        accessor: 'user_rank',
-      },
-      {
-        Header: 'Gadz',
-        accessor: 'user_is_gadz',
-      }
+      { Header: 'Utilisateur', accessor: 'user_name' },
+      { Header: 'Prénom', accessor: 'user_firstname' },
+      { Header: 'Nom', accessor: 'user_lastname' },
+      { Header: 'Mail', accessor: 'user_email' },
+      { Header: 'Cotisation', accessor: 'user_pay_status' },
+      { Header: 'Téléphone', accessor: 'user_phone' },
+      { Header: 'Bucque', accessor: 'user_bucque' },
+      { Header: 'Fam\'s', accessor: 'user_fams' },
+      { Header: 'Campus', accessor: 'user_campus' },
+      { Header: 'Promotion', accessor: 'user_pomotion' },
+      { Header: 'Rank', accessor: 'user_rank' },
+      { Header: 'Gadz', accessor: 'user_is_gadz' }
     ]
     ,
     []
@@ -79,6 +74,10 @@ export function UsersTable({ data }) {
     rows,
     prepareRow,
     allColumns,
+    state: { selectedRowIds },
+    setGlobalFilter,
+    state,
+    selectedFlatRows,
   } = useTable({
     columns,
     data,
@@ -94,11 +93,38 @@ export function UsersTable({ data }) {
         'user_is_gadz'
       ]
     }
-  })
-
-
+  },
+    useFilters,
+    useGlobalFilter,
+    useSortBy,
+    useRowSelect,
+    hooks => {
+      hooks.visibleColumns.push(columns => [
+        // Let's make a column for selection
+        {
+          id: 'selection',
+          // The header can use the table's getToggleAllRowsSelectedProps method
+          // to render a checkbox
+          Header: ({ getToggleAllRowsSelectedProps }) => (
+            <div>
+              <IndeterminateCheckbox color="white" {...getToggleAllRowsSelectedProps()} />
+            </div>
+          ),
+          // The cell can use the individual row's getToggleRowSelectedProps method
+          // to the render a checkbox
+          Cell: ({ row }) => (
+            <div>
+              <IndeterminateCheckbox {...row.getToggleRowSelectedProps()} />
+            </div>
+          ),
+        },
+        ...columns,
+      ])
+    }
+  )
 
   return [
+    <GlobalFilter globalFilter={state.globalFilter} setGlobalFilter={setGlobalFilter} />,
     <CheckboxRow
       justify="center"
       width="175px"
@@ -107,25 +133,34 @@ export function UsersTable({ data }) {
         alignItems: "center"
       }}
     >
-      {allColumns.map(column => (
+      {allColumns.slice(1).map(column => (
         <StyledLabel key={column.id}>
           <Checkbox {...column.getToggleHiddenProps()} />{' '}
           <BlackText style={{ marginLeft: "10px" }}>{column.render('Header')}</BlackText>
         </StyledLabel>
       ))}
     </CheckboxRow>,
-
     <StyledTable {...getTableProps()}>
       <thead>
         {headerGroups.map(headerGroup => (
           <StyledGreenTr {...headerGroup.getHeaderGroupProps()}>
-            <StyledTh>
-              <StyledLabel width="25px">
-                <Checkbox color="white" />
-              </StyledLabel>
-            </StyledTh>
-            {headerGroup.headers.map(column => (
-              <StyledTh {...column.getHeaderProps()}>{column.render('Header')}</StyledTh>
+
+            {headerGroup.headers.map((column, index) => (
+              <StyledTh {...column.getHeaderProps(column.getSortByToggleProps())}>
+                <div style={{ display: "flex" }}>
+                  {column.render('Header')}
+                  <span
+                    style={{
+                      display: "inline-block",
+                      marginLeft: "10px",
+                      width: "20px"
+                    }}
+                  >
+                    {(index == 0) && Object.keys(selectedRowIds).length}
+                    {!(index == 0) && column.isSorted ? column.isSortedDesc ? '▼' : '▲' : ''}
+                  </span>
+                </div>
+              </StyledTh>
             ))}
           </StyledGreenTr>
         ))}
@@ -135,13 +170,8 @@ export function UsersTable({ data }) {
           prepareRow(row)
           return (
             <StyledTr key={index} {...row.getRowProps()}>
-              <StyledTd>
-                <StyledLabel id={index} width="25px">
-                  <Checkbox />
-                </StyledLabel>
-              </StyledTd>
               {row.cells.map((cell) => {
-               
+
                 if (cell.column['id'] == 'user_pay_status') {
                   return (
                     <StyledTd {...cell.getCellProps()}>
