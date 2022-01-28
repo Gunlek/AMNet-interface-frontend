@@ -27,22 +27,16 @@ const AutoTextArea = (props: TextareaHTMLAttributes<HTMLTextAreaElement>) => {
 		}
 	};
 
-	return (
-		<div
+	return (	
+		<StyledTextArea
+			{...props}
+			ref={textAreaRef}
+			rows={1}
 			style={{
-                width:"100%",
+				height: textAreaHeight,
 			}}
-		>
-			<StyledTextArea
-				{...props}
-				ref={textAreaRef}
-				rows={1}
-				style={{
-					height: textAreaHeight,
-				}}
-				onChange={onChangeHandler}
-			/>
-		</div>
+			onChange={onChangeHandler}
+		/>
 	);
 };
 
