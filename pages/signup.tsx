@@ -39,12 +39,15 @@ export default function SignUp() {
     setOther(elmt.target.value == "other");
   }
 
+  function CancelChange() {
+    setOther(!isOther);
+  }
   var [acceptRules, setacceptRules] = useState(false);
 
   const handleRadioChange = (elmt) => {
     setacceptRules(!acceptRules);
   }
-  
+
   return (
     <>
       <Head>
@@ -112,27 +115,20 @@ export default function SignUp() {
               <ResponsiveRow style={{ marginBottom: "20px" }}>
                 <Col6 style={{ paddingRight: minWidth1000 ? "10px" : "0", marginBottom: minWidth1000 ? "0" : "20px" }}>
                   <GreenText style={{ marginBottom: "5px" }}>Téléphone</GreenText>
-                  <StyledInput type="tel"/>
+                  <StyledInput type="tel" />
                 </Col6>
                 <Col6 style={{ paddingLeft: minWidth1000 ? "10px" : "0" }}>
                   <GreenText style={{ marginBottom: "5px" }}>Promotion</GreenText>
-                  <StyledSelect style={{display: isOther? "none" : "inline"}} onChange={handleValueChange}>
+                  <StyledSelect style={{ display: isOther ? "none" : "inline" }} onChange={handleValueChange}>
                     <option value="219">219</option>
                     <option value="220">220</option>
                     <option value="2021" selected>2021</option>
                     <option value="other">Autre</option>
                   </StyledSelect>
-                  <StyledInput 
-                    ref={
-                      PromotionInput => {
-                        if (PromotionInput && isOther){
-                          PromotionInput.focus();
-                        }
-                      }
-                    } 
-                    style={{display: isOther? "inline" : "none"}} 
-                    type="text" 
-                  />
+                  <div style={{ display: isOther ? "flex" : "none", alignItems: "center" }} >
+                    <StyledInput ref={PromotionInput => { (PromotionInput && isOther) && PromotionInput.focus() }} type="text" />
+                    <img style={{ marginLeft: "20px", width: "35px", cursor: "pointer" }} onClick={CancelChange} src="static/icons/cancel.svg"></img>
+                  </div>
                 </Col6>
               </ResponsiveRow>
 
@@ -174,13 +170,13 @@ export default function SignUp() {
               <Column style={{ alignItems: "start", marginBottom: "20px" }} >
                 <GreenText>Réglementation</GreenText>
                 <BlackP style={{ marginTop: "5px", marginBottom: "1.2rem" }}>
-                    Consultez <StyledLink color="#096a09" target="_blank" href="/static/docs/Statuts_AMNet.pdf">les Statuts de l'association</StyledLink>
-                    <br />
-                    Consultez <StyledLink color="#096a09" target="_blank" href="/static/docs/Reglement_Interieur_AMNet.pdf">le Règlement intérieur de l'association</StyledLink>
-                  </BlackP>
-                  <BlackP>
-                    AMNet Birse est une association Loi 1901, vous devez en accepter les statuts et le réglement intérieur. La validation de ce formulaire et le réglement de la cotisation vaut pour adhésion à l'association.
-                  </BlackP>
+                  Consultez <StyledLink color="#096a09" target="_blank" href="/static/docs/Statuts_AMNet.pdf">les Statuts de l'association</StyledLink>
+                  <br />
+                  Consultez <StyledLink color="#096a09" target="_blank" href="/static/docs/Reglement_Interieur_AMNet.pdf">le Règlement intérieur de l'association</StyledLink>
+                </BlackP>
+                <BlackP>
+                  AMNet Birse est une association Loi 1901, vous devez en accepter les statuts et le réglement intérieur. La validation de ce formulaire et le réglement de la cotisation vaut pour adhésion à l'association.
+                </BlackP>
               </Column>
 
               <ResponsiveRow style={{ marginBottom: "20px", alignItems: "start" }}>
@@ -219,9 +215,9 @@ export default function SignUp() {
             </form>
           </StyledCardCampus>
         </Row>
-        
+
         <HelpSection />
-      </CampusBackground> 
+      </CampusBackground>
       <Footer page="campus" />
     </>
   );
