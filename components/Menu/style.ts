@@ -10,7 +10,7 @@ export const StyledMenu = styled(StyledCard)`
   align-items: center;
 
   @media screen and (max-width: 1000px){
-    background: rgba(255, 255, 255, 0.9);
+    background: white;
     flex-direction: row;
     padding: 10px;
     border-top-left-radius: 0px;
