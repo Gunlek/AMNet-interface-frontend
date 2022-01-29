@@ -13,6 +13,7 @@ import UserMenu from "../../components/Menu/UserMenu";
 import { BlackTitle, BlackText } from "../../components/Text/style";
 import useMediaQuery from "../../components/MediaQueries/MediaQuery";
 import { MaterialUserTable } from "../../components/Table/User";
+import { ModalLogic, MaterialModal } from "../../components/Card/Modals";
 
 const material = [
   {
@@ -37,6 +38,8 @@ const material = [
 
 export default function UserMaterial() {
   const minWidth1000 = useMediaQuery('(min-width:1000px)');
+  const {reveal, toggle} = ModalLogic();
+
   return (
     <>
       <Head>
@@ -51,9 +54,17 @@ export default function UserMaterial() {
               <BlackTitle>Mes demandes de matériel</BlackTitle>
             </Column>
 
-            <form style={{ flex: "1", alignItems: "end", justifyContent: "center", marginTop: minWidth1000 ? "0" : "4%" }}>
-              <GreenButton width="280px">Nouvelle demande</GreenButton>
-            </form>
+            <div 
+              style={{ 
+                flex: "1", 
+                alignItems: "end", 
+                justifyContent: "center", 
+                marginTop: minWidth1000 ? "0" : "4%" 
+              }}
+            >
+              <GreenButton width="280px" onClick={toggle}>Nouvelle demande</GreenButton>
+              <MaterialModal reveal={reveal} hide={toggle}/>
+            </div>
           </ResponsiveRow>
 
           <Column style={{ marginBottom: "2%" }}>

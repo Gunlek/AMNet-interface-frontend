@@ -77,7 +77,7 @@ export const StyledFooter = styled.footer`
 export const StyledCampusFooter = styled(StyledFooter)`
   background: rgba(255, 255, 255, 0.9);
   width: 100%;
-
+  
   @media screen and (max-width: 1000px){
     padding-right: 10px;
     padding-left:10px;
@@ -102,3 +102,40 @@ export const StyledTabColumn = styled(Column)`
     cursor: ${(props) => !props.focus && "pointer"};
   }
 `;
+
+export const StyledImg = styled.img`
+  border-radius: 8px;
+  margin-left: 20px;
+  width: 35px;
+  cursor: pointer;
+
+  &:hover{
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.4);
+  }
+`
+
+export const StyledBackgroundModal = styled.div`
+  background: rgba(0, 0, 0, 0.5); 
+  position: fixed; 
+  height: 100%; 
+  width: 100%; 
+  left: 0; 
+  top: 0;  
+  z-index: 1;
+  transition: all 0.3s linear;
+  display: ${props => (props.reveal ? "block" : "none")};
+`;
+
+export const StyledModal = styled(StyledCardCampus)`
+  width: ${props => (props.width ? props.width : "90%")}; 
+  align-items: center; 
+  justify-content: center;
+  padding: 30px; 
+  position: fixed; 
+  top: 50%; 
+  left: 50%;  
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  transition: all 0.3s linear;
+  display: ${props => (props.reveal ? "block" : "none")};
+`

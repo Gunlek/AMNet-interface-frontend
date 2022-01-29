@@ -19,6 +19,7 @@ import {
 } from "../../components/Text/style";
 import useMediaQuery from "../../components/MediaQueries/MediaQuery";
 import { IoTUserTable } from "../../components/Table/User";
+import { ModalLogic, IoTModal } from "../../components/Card/Modals";
 
 const Iot = [
   {
@@ -53,7 +54,9 @@ const Iot = [
 ]
 
 export default function UserIoT() {
-  const minWidth1000 = useMediaQuery('(min-width:1000px)');
+  const minWidth1000 = useMediaQuery('(min-width:1000px)')
+  const {reveal, toggle} = ModalLogic();
+
   return (
     <>
       <Head>
@@ -68,9 +71,17 @@ export default function UserIoT() {
               <BlackTitle>Mes demandes d'accès à AMNet IoT</BlackTitle>
             </Column>
 
-            <form style={{ flex: "1", alignItems: "end", justifyContent: "center", marginTop: minWidth1000 ? "0" : "4%" }}>
-              <GreenButton width="280px">Nouvelle demande</GreenButton>
-            </form>
+            <div 
+              style={{ 
+                flex: "1", 
+                alignItems: "end", 
+                justifyContent: "center", 
+                marginTop: minWidth1000 ? "0" : "4%" 
+              }}
+            >
+              <GreenButton width="280px" onClick={toggle}>Nouvelle demande</GreenButton>
+              <IoTModal reveal={reveal} hide={toggle}/>
+            </div>
           </ResponsiveRow>
 
           <BlackP style={{ marginBottom: "2%" }}>

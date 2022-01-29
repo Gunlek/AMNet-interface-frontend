@@ -7,7 +7,7 @@ import {
   StyledStateInvite, 
   StyledStateRequest 
 } from "./style";
-import Modal, {ModalLogic} from "../Card/Modal";
+import { ContributionModal, ModalLogic } from "../Card/Modals";
 
 export function StateContribution(props: {status: string}){
   const {reveal, toggle} = ModalLogic();
@@ -30,7 +30,7 @@ export function StateContribution(props: {status: string}){
           <img style={{height: "20px"}} src="/static/icons/fail.svg"/> 
         </StyledStateContribution>
         <GreenButton width="150px" height="50px" onClick={toggle}>Payer</GreenButton>
-        <Modal reveal={reveal} hide={toggle}/>
+        <ContributionModal reveal={reveal} hide={toggle}/>
       </Row>
       
     );
