@@ -12,6 +12,11 @@ export const StyledTable = styled.table`
 export const StyledTr = styled.tr`
   border-bottom: 2px solid rgba(0, 0, 0, 0.1);
   color: black;
+  transition: 0.3s linear;
+
+  &:hover{
+    background: rgba(0, 0, 0, 0.1);
+  }
 `;
 
 export const StyledGreenTr = styled.tr`
@@ -22,6 +27,8 @@ export const StyledGreenTr = styled.tr`
 export const StyledTd = styled.td`
   padding : 15px 25px;
   white-space: nowrap;
+  
+ 
   
   &:first-child {
     padding-left: 20px;
