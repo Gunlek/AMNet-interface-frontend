@@ -32,7 +32,7 @@ export default function Homepage() {
       <CampusBackground>
         <ResponsiveRow style={{ marginBottom: minWidth1000 ? "10px" : "0" }}>
           <Col6 style={{ justifyContent: minWidth1000 ? "start" : "center", alignItems: minWidth1000 ? "start" : "center" }}>
-            <RectangleLogo color="blanc" />
+            <RectangleLogo color="white" />
           </Col6>
           <Col6 style={{ justifyContent: "center", alignItems: minWidth1000 ? "end" : "center", marginTop: minWidth1000 ? "0" : "20px" }}>
             <a
