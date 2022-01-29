@@ -7,7 +7,7 @@ import {
   HelpSection,
   TitleCard
 } from "../components/Card/Cards";
-import { StyledCardCampus } from "../components/Card/style";
+import { StyledCardCampus, StyledImg } from "../components/Card/style";
 import {
   Col6,
   Col3,
@@ -127,7 +127,7 @@ export default function SignUp() {
                   </StyledSelect>
                   <div style={{ display: isOther ? "flex" : "none", alignItems: "center" }} >
                     <StyledInput ref={PromotionInput => { (PromotionInput && isOther) && PromotionInput.focus() }} type="text" />
-                    <img style={{ marginLeft: "20px", width: "35px", cursor: "pointer" }} onClick={CancelChange} src="static/icons/cancel.svg"></img>
+                    <StyledImg onClick={CancelChange} src="static/icons/cancel.svg"/>
                   </div>
                 </Col6>
               </ResponsiveRow>
