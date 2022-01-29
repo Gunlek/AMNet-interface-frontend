@@ -14,6 +14,7 @@ import { GreenButton } from "../../components/Button/Buttons";
 import { TitleCard } from "../../components/Card/Cards";
 import { TeamEditor } from "../../components/TeamEditor/TeamEditor";
 import useMediaQuery from "../../components/MediaQueries/MediaQuery";
+import FileUploader from "../../components/Input/FileUploader";
 
 
 export default function Edition() {
@@ -40,7 +41,7 @@ export default function Edition() {
                   <div style={{ width: minWidth1000 ? "400px" : "auto", marginBottom: minWidth1000 ? "0" : "20px" }}>
                     <StyledLink style={{ fontSize: "1.2em" }} color="black" hovercolor="#67bc45" target="_blank" href="/static/docs/Reglement_Interieur_AMNet.pdf">Voir le Réglement Intérieur actuel</StyledLink>
                   </div>
-                  <input style={{fontFamily: "Poppins"}} type="file" />
+                  <FileUploader/>
                 </ResponsiveRow>
 
               </div>
