@@ -21,13 +21,13 @@ export function HelpSection(props: { color?: string, style?: any }) {
   );
 }
 
-export function TitleCard(props: { children: string }){
+export function TitleCard(props: { children: string, hideLine?: boolean }){
   return(
     <div style={{width:"100%", display:"flex", marginBottom:"0.5rem"}}>             
-      <GreenTitle>
+      <GreenTitle hideLine={props.hideLine}>
         {props.children}
       </GreenTitle>
-      <Row style={{ flex: "1", alignItems: "center" }}>
+      <Row style={{ flex: "1", alignItems: "center", display: props.hideLine && "none" }}>
         <GreenLine />
       </Row>  
     </div>
@@ -48,14 +48,14 @@ export function Footer(props: { page?: string }) {
   if(props.page == "campus"){
     return (
       <StyledCampusFooter>
-        Projet développé et maintenu par Hard Win's 58Li218, Squall's 4Li218 et Mac Nhat's 47-102Li219 &bull; Version 2.0.1 <GitHub />
+        Projet développé et maintenu par Hard Win'∫ 58Li218, Squall'∫ 4Li218 et Mac Nhat'∫ 47-102Li219 &bull; Version 2.0.1 <GitHub />
       </StyledCampusFooter>
     );
   }
   else{
     return (
       <StyledFooter>
-        Projet développé et maintenu par Hard Win's 58Li218, Squall's 4Li218 et Mac Nhat's 47-102Li219 &bull; Version 2.0.1 <GitHub />
+        Projet développé et maintenu par Hard Win'∫ 58Li218, Squall'∫ 4Li218 et Mac Nhat'∫ 47-102Li219 &bull; Version 2.0.1 <GitHub />
       </StyledFooter>
     );
   }
