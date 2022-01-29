@@ -43,12 +43,11 @@ const IndeterminateCheckbox = React.forwardRef(
   }
 )
 
-
-
 export function UsersTable(data: any[]) {
   const minWidth1000 = useMediaQuery('(min-width:1000px)');
   const columns = React.useMemo(
     () => [
+      { Header: '#', accessor: (row, i) => i+1 },
       { Header: 'Utilisateur', accessor: 'user_name' },
       { Header: 'Prénom', accessor: 'user_firstname' },
       { Header: 'Nom', accessor: 'user_lastname' },
@@ -60,7 +59,8 @@ export function UsersTable(data: any[]) {
       { Header: 'Campus', accessor: 'user_campus' },
       { Header: 'Promotion', accessor: 'user_pomotion' },
       { Header: 'Rank', accessor: 'user_rank' },
-      { Header: 'Gadz', accessor: 'user_is_gadz' }
+      { Header: 'Gadz', accessor: 'user_is_gadz' },
+      { Header: 'Id', accessor: 'user_id' }
     ]
     ,
     []
@@ -90,14 +90,15 @@ export function UsersTable(data: any[]) {
         'user_campus',
         'user_pomotion',
         'user_rank',
-        'user_is_gadz'
+        'user_is_gadz',
+        'user_id'
       ]
     }
   },
     useFilters,
     useGlobalFilter,
     useSortBy,
-    useRowSelect,
+    useRowSelect, 
     hooks => {
       hooks.visibleColumns.push(columns => [
         // Let's make a column for selection
@@ -133,7 +134,7 @@ export function UsersTable(data: any[]) {
         alignItems: "center"
       }}
     >
-      {allColumns.slice(1).map(column => (
+      {allColumns.slice(2, -1).map(column => (
         <StyledLabel key={column.id}>
           <Checkbox {...column.getToggleHiddenProps()} />{' '}
           <BlackText style={{ marginLeft: "10px" }}>{column.render('Header')}</BlackText>
@@ -200,8 +201,6 @@ export function UsersTable(data: any[]) {
       </tbody>
     </StyledTable>
   ]
-
-
 }
 
 
