@@ -36,7 +36,7 @@ export default function Login() {
           }}
         >
           <StyledCardCampus
-            width="35%"
+            width="auto"
             style={{ marginBottom: "20px" }}
           >
             <Row style={{ marginBottom: "20px", marginTop: "10px", justifyContent: "center" }}>
