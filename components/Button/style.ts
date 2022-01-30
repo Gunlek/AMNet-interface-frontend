@@ -10,7 +10,7 @@ export const StyledButton = styled.button`
   font-family: "Poppins";
   font-size: 1.2em;
   text-align: center;
-  transition: 0.5s linear, font-size 0s, color 0s, border-radius 0s, font-family 0s ;
+  transition: 0.5s linear, font-size 0s, color 0s, border-radius 0s, font-family 0s, box-shadow 0.3s;
   background: linear-gradient(90deg, var(--c1, #f6d365), var(--c2, #fda085) 51%, var(--c1, #f6d365)) var(--x, 0)/ 200%;
 
   &:hover{ 
