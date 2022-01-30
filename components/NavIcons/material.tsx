@@ -1,6 +1,6 @@
 import { StyledBackIcon, StyledIcon } from "./style"
 
-export  function  SVGMaterial(props: {page: string}){
+export default function Material(props: {page: string}){
     if(props.page == 'material')
     {
         return(

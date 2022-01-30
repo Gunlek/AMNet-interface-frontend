@@ -4,7 +4,7 @@ import { Col2, Col5, Column, ResponsiveRow, Row } from '../Container/style';
 import { StyledInput } from '../Input/style';
 import useMediaQuery from '../MediaQueries/MediaQuery';
 import { BlackText, GreenText } from '../Text/style';
-import { TeamList } from './TeamList';
+import TeamList from './TeamList';
 
 export const TeamEditor = () => {
     const minWidth1000 = useMediaQuery('(min-width:1000px)');
@@ -68,3 +68,5 @@ export const TeamEditor = () => {
         </>
     );
 }
+
+export default TeamEditor

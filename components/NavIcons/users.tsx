@@ -1,6 +1,6 @@
 import { StyledBackIcon, StyledIcon } from "./style"
 
-export  function  SVGUsers(props: {page: string}){
+export default function Users(props: {page: string}){
     if(props.page == 'users')
     {
         return(

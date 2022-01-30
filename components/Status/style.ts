@@ -12,7 +12,7 @@ export const StyledStateRequest = styled.div`
 
 export const StyledStateContribution = styled.div`
   background: #D1D5D2;
-  border-radius: 30px;
+  border-radius: 20px;
   line-height: 40px;
   padding: 5px;
   width: 170px;

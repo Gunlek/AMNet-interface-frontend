@@ -2,19 +2,19 @@ import React, { useState } from "react";
 import Head from "next/head";
 import { CampusBackground, CampusGlobalStyle } from "../components/Background/style";
 import { GreenButton } from "../components/Button/Buttons";
-import { Column, Row } from "../components/Container/style";
+import { Row } from "../components/Container/style";
 import {
   Footer,
   HelpSection,
-  RectangleLogo,
   TitleCard,
 } from "../components/Card/Cards";
 import { StyledCardCampus } from "../components/Card/style";
 import { StyledInput } from "../components/Input/style";
 import { BlackText, GreenText, StyledLink } from "../components/Text/style";
 import Checkbox from "../components/Input/Checkbox";
+import RectangleLogo from "../components/Card/RectangleLogo";
 
-export default function Homepage() {
+export default function Login() {
   var [checked, setChecked] = useState(false);
 
   const handleCheckboxChange = (elmt) => {
@@ -36,21 +36,20 @@ export default function Homepage() {
           }}
         >
           <StyledCardCampus
-            width="35%"
-            height="auto"
+            width="auto"
             style={{ marginBottom: "20px" }}
           >
             <Row style={{ marginBottom: "20px", marginTop: "10px", justifyContent: "center" }}>
               <RectangleLogo />
             </Row>
 
-            <Row style={{ width: "100%" }}>
+            <Row>
               <TitleCard>
                 Connexion
               </TitleCard>
             </Row>
 
-            <form method="post" style={{ marginTop: "20px" }}>
+            <form method="post">
               <div style={{ marginBottom: "20px" }}>
                 <GreenText style={{ marginBottom: "5px" }}>Nom d'utilisateur</GreenText>
                 <StyledInput type="text" />

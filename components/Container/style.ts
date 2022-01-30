@@ -103,14 +103,18 @@ export const DashboardContainer = styled.div`
     width: 100%;
     margin-left: 0;
     padding-left: 0; 
-    margin-top: 85px;
+    margin-top: 95px;
     padding: 0 5% 2.5%;
   }
 `;
 
 export const CheckboxRow = styled(Row)`
   display: grid;
-  grid-template-columns: repeat(auto-fill,minmax(${(props) => props.width || "150px"}, 1fr));
+  grid-template-columns: repeat(auto-fill,minmax(${(props) => props.width || "125px"}, 1fr));
   align-items: center;
   gap: 15px 0;
+
+  @media screen and (max-width: 1000px){
+    justify-items: ${(props) => props.justify};
+  } 
 `;

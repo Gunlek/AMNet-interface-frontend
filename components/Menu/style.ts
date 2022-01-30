@@ -10,7 +10,7 @@ export const StyledMenu = styled(StyledCard)`
   align-items: center;
 
   @media screen and (max-width: 1000px){
-    background: rgba(255, 255, 255, 0.9);
+    background: white;
     flex-direction: row;
     padding: 10px;
     border-top-left-radius: 0px;
@@ -48,17 +48,11 @@ export const StyledDivLogOut = styled(Row)`
   align-items: end; 
   justify-content: center; 
   width: 60px;
+  display: ${(props) => props.display};
 
   @media screen and (max-width: 1000px){
     flex-direction: column;
+    align-items: center; 
     flex: 1;
-  }
-`
-
-export const StyledImg = styled.img`
-  width: 76.5px;
-
-  @media screen and (max-width: 1000px){
-    width: 65px;
   }
 `

@@ -1,107 +1,91 @@
 import React from "react";
 import Head from "next/head";
 import { DefaultBackground } from "../../components/Background/style";
-import {GreenButton, SmallRedButton} from "../../components/Button/Buttons";
-import { 
-  Row, 
+import { GreenButton } from "../../components/Button/Buttons";
+import {
   Column,
   DashboardContainer,
   ResponsiveRow
 } from "../../components/Container/style";
 import { Footer, HelpSection } from "../../components/Card/Cards"
 import { StyledCard } from "../../components/Card/style";
-import { Menu } from "../../components/Menu/Menus";
-import { 
-  StyledTable, 
-  StyledGreenTr, 
-  StyledTr, 
-  StyledTd150, 
-  StyledTd200, 
-  StyledTd50 
-} from "../../components/Table/style";
+import UserMenu from "../../components/Menu/UserMenu";
 import { BlackTitle, BlackText } from "../../components/Text/style";
-import { StateRequest } from "../../components/State/States";
 import useMediaQuery from "../../components/MediaQueries/MediaQuery";
+import { MaterialUserTable } from "../../components/Table/User";
+import { ModalLogic, MaterialModal } from "../../components/Card/Modals";
 
-export default function Dashboard() {
+const material = [
+  {
+    "material_id": 1,
+    "material_user": 1,
+    "material_description": "Ordinateur portable",
+    "material_state": "declined",
+  },
+  {
+    "material_id": 2,
+    "material_user": 4,
+    "material_description": "Ordinateur portable",
+    "material_state": "pending",
+  },
+  {
+    "material_id": 1,
+    "material_user": 5,
+    "material_description": "Ordinateur portable",
+    "material_state": "active",
+  }
+]
+
+export default function UserMaterial() {
   const minWidth1000 = useMediaQuery('(min-width:1000px)');
+  const {reveal, toggle} = ModalLogic();
+
   return (
     <>
       <Head>
-        <title>Mon Espace &bull; AMNet</title>
+        <title>Mes demandes &bull; AMNet</title>
       </Head>
       <DefaultBackground>
-        <Menu page="material" />
+        <UserMenu page="material" />
 
         <DashboardContainer>
-          <ResponsiveRow style={{margin: minWidth1000 ? "1% 0" : "4% 0", alignItems:"center"}}>
-            <Column style={{justifyContent: "center"}}>
+          <ResponsiveRow style={{ margin: minWidth1000 ? "1% 0" : "4% 0", alignItems: "center" }}>
+            <Column style={{ justifyContent: "center" }}>
               <BlackTitle>Mes demandes de matériel</BlackTitle>
             </Column>
-            
-            <form style={{flex:"1", alignItems: "end", justifyContent: "center", marginTop: minWidth1000 ? "0" : "4%"}}>
-              <GreenButton width="280px">Nouvelle demande</GreenButton>
-            </form>
+
+            <div 
+              style={{ 
+                flex: "1", 
+                alignItems: "end", 
+                justifyContent: "center", 
+                marginTop: minWidth1000 ? "0" : "4%" 
+              }}
+            >
+              <GreenButton width="280px" onClick={toggle}>Nouvelle demande</GreenButton>
+              <MaterialModal reveal={reveal} hide={toggle}/>
+            </div>
           </ResponsiveRow>
 
-          <Column style={{ marginBottom:"2%"}}>
+          <Column style={{ marginBottom: "2%" }}>
             <BlackText>
-            <span style={{ color: "#096a09", fontWeight: "bold"}}>Cette page</span> vous permettra de faire une demande de matériel comme un cable ethernet, un écran ou tout autre materiel à notre disposition
-            </BlackText>           
+              <span style={{ color: "#096a09", fontWeight: "bold" }}>Cette page</span> vous permettra de faire une demande de matériel comme un cable ethernet, un écran ou tout autre materiel à notre disposition
+            </BlackText>
           </Column>
 
           <StyledCard style={{ flex: "1", marginBottom: minWidth1000 ? "2%" : "4%" }}>
-            <div 
-                style={{ 
-                  height:"100%", 
-                  width:"100%", 
-                  overflowX:"auto" 
-                }}
-              >
-              <StyledTable>
-                <tbody>
-                  <StyledGreenTr>
-                    <StyledTd50>#</StyledTd50>
-                    <StyledTd200>Description</StyledTd200>
-                    <StyledTd150><span style={{paddingLeft: "5px"}}>Etat</span></StyledTd150>
-                    <StyledTd150><span style={{paddingLeft: "5px"}}>Action</span></StyledTd150>
-                  </StyledGreenTr>
-                  <StyledTr>
-                    <StyledTd50>1</StyledTd50>
-                    <StyledTd200>Test1</StyledTd200>
-                    <StyledTd150><StateRequest state="accepted"/> </StyledTd150>
-                    <StyledTd150>
-                      <form>
-                        <SmallRedButton>Supprimer</SmallRedButton>
-                      </form>
-                    </StyledTd150>
-                  </StyledTr>
-                  <StyledTr>
-                    <StyledTd50>2</StyledTd50>
-                    <StyledTd200>Test2</StyledTd200>
-                    <StyledTd150><StateRequest state="denied"/> </StyledTd150>
-                    <StyledTd150>
-                      <form>
-                        <SmallRedButton>Supprimer</SmallRedButton>
-                      </form>
-                    </StyledTd150>
-                  </StyledTr>
-                  <StyledTr>
-                    <StyledTd50>3</StyledTd50>
-                    <StyledTd200>Test3</StyledTd200>
-                    <StyledTd150><StateRequest state="inProcess"/> </StyledTd150>
-                    <StyledTd150>
-                      <form>
-                        <SmallRedButton>Supprimer</SmallRedButton>
-                      </form>
-                    </StyledTd150>
-                  </StyledTr>
-                </tbody>
-              </StyledTable>
+            <div
+              style={{
+                height: "100%",
+                width: "100%",
+                overflowX: "auto"
+              }}
+            >
+              <MaterialUserTable RequestTable={material} />
             </div>
           </StyledCard>
 
-          <HelpSection color="#096A09"/>
+          <HelpSection color="#096A09" />
           <Footer />
         </DashboardContainer>
       </DefaultBackground>

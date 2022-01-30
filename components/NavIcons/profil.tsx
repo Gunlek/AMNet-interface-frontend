@@ -1,6 +1,6 @@
 import { StyledBackIcon, StyledIcon } from "./style"
 
-export  function  SVGProfil(props: {page: string}){
+export default function Profil(props: {page: string}){
     if(props.page == 'profil')
     {
         return(

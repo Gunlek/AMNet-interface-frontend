@@ -34,8 +34,7 @@ export const StyledTeamPicture = styled(Column)`
   background-repeat: no-repeat;
   background-position: 50% 0%;
   background-size: cover;
-  height: 45vh;
-
+  aspect-ratio: 16 / 9;
   border-radius: 30px;
   
   @media screen and (max-width: 1000px){
@@ -78,9 +77,65 @@ export const StyledFooter = styled.footer`
 export const StyledCampusFooter = styled(StyledFooter)`
   background: rgba(255, 255, 255, 0.9);
   width: 100%;
-
+  
   @media screen and (max-width: 1000px){
     padding-right: 10px;
     padding-left:10px;
   } 
 `;
+
+export const StyledTabColumn = styled(Column)`
+  color: ${(props) => props.focus ? "black" : "rgba(0, 0, 0, 0.3)"};
+  font-size: 1.2em;
+  text-align: center;
+  line-height: 40px;
+  transition: 0.3s;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &:hover{
+    background-color: ${(props) => !props.focus && "rgba(0, 0, 0, 0.1)"};
+    color: black;
+    cursor: ${(props) => !props.focus && "pointer"};
+  }
+`;
+
+export const StyledImg = styled.img`
+  border-radius: 8px;
+  margin-left: 20px;
+  width: 35px;
+  cursor: pointer;
+
+  &:hover{
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.4);
+  }
+`
+
+export const StyledBackgroundModal = styled.div`
+  background: rgba(0, 0, 0, 0.5); 
+  position: fixed; 
+  height: 100%; 
+  width: 100%; 
+  left: 0; 
+  top: 0;  
+  z-index: 1;
+  transition: all 0.3s linear;
+  display: ${props => (props.reveal ? "block" : "none")};
+`;
+
+export const StyledModal = styled(StyledCardCampus)`
+  width: ${props => (props.width ? props.width : "90%")}; 
+  align-items: center; 
+  justify-content: center;
+  padding: 30px; 
+  position: fixed; 
+  top: 50%; 
+  left: 50%;  
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  transition: all 0.3s linear;
+  display: ${props => (props.reveal ? "block" : "none")};
+`

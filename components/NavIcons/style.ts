@@ -53,12 +53,8 @@ export const StyledBackBurger = styled.div`
     background: linear-gradient(135deg, #67BC45 5.67%, #096A09 94.96%);
     z-index: -1;
     transition: opacity 0.3s linear;
-    opacity: 0;
+    opacity: ${(props) => props.opacity || "0"};
     border-radius: 15px;
-  }
-
-  &:hover::before{
-    opacity: 1;
   }
 
   @media screen and (max-width: 1000px){

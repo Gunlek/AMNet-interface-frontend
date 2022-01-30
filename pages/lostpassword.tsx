@@ -4,19 +4,16 @@ import { CampusBackground, CampusGlobalStyle } from "../components/Background/st
 import {
   Footer,
   HelpSection,
-  RectangleLogo,
   TitleCard
 } from "../components/Card/Cards";
 import { GreenButton } from "../components/Button/Buttons";
 import { StyledCardCampus } from "../components/Card/style";
-import {
-  Column,
-  Row,
-} from "../components/Container/style";
+import { Row } from "../components/Container/style";
 import { StyledInput } from "../components/Input/style";
 import { GreenText } from "../components/Text/style";
+import RectangleLogo from "../components/Card/RectangleLogo";
 
-export default function Homepage() {
+export default function LostPassword() {
   return (
     <>
       <Head>
@@ -33,14 +30,13 @@ export default function Homepage() {
         >
           <StyledCardCampus
             width="45%"
-            height="auto"
             style={{ marginBottom: "20px" }}
           >
             <Row style={{ marginBottom: "20px", marginTop: "10px", justifyContent: "center" }}>
               <RectangleLogo />
             </Row>
 
-            <Row style={{ width: "100%" }}>
+            <Row>
               <TitleCard>
                 Mot de passe oublié
               </TitleCard>
