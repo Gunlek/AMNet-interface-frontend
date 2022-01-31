@@ -6,9 +6,9 @@ import {
     StyledTr, 
     StyledTd, 
     StyledFlexTd, 
-    StyledTable, 
-    StyledGreenTr, 
-    StyledTh 
+    StyledTable,
+    StyledTh, 
+    StyledHeadTr
 } from "./style";
 
 export function IoTUserTable(props: { RequestTable: any[] }) {
@@ -36,14 +36,14 @@ export function IoTUserTable(props: { RequestTable: any[] }) {
     return (
         <StyledTable>
             <thead>
-                <StyledGreenTr>
+                <StyledHeadTr>
                     <StyledTh scope="col">#</StyledTh>
                     <StyledTh scope="col">Description</StyledTh>
                     <StyledTh scope="col">Adresse Mac</StyledTh>
                     <StyledTh scope="col">Preuve Image</StyledTh>
                     <StyledTh scope="col"><span style={{ paddingLeft: "5px" }}>Etat</span></StyledTh>
-                    <StyledTh scope="col"><span style={{ paddingLeft: "5px" }}>Actions</span></StyledTh>
-                </StyledGreenTr>
+                    <StyledTh scope="col"><span style={{ paddingLeft: "5px" }}>Action</span></StyledTh>
+                </StyledHeadTr>
             </thead>
             <tbody>{listHTML}</tbody>
         </StyledTable>
@@ -72,12 +72,12 @@ export function MaterialUserTable(props: { RequestTable: any[] }) {
     return (
         <StyledTable>
             <thead>
-                <StyledGreenTr>
+                <StyledHeadTr>
                     <StyledTh scope="col">#</StyledTh>
                     <StyledTh scope="col">Description</StyledTh>
                     <StyledTh scope="col"><span style={{ paddingLeft: "5px" }}>Etat</span></StyledTh>
-                    <StyledTh scope="col"><span style={{ paddingLeft: "5px" }}>Actions</span></StyledTh>
-                </StyledGreenTr>
+                    <StyledTh scope="col"><span style={{ paddingLeft: "5px" }}>Action</span></StyledTh>
+                </StyledHeadTr>
             </thead>
             <tbody>{listHTML}</tbody>
         </StyledTable>

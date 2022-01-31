@@ -53,20 +53,17 @@ export const BlackP = styled(WhiteP)`
 `
 
 export const BlackUl = styled.ul`
-  list-style-type: none;
   color: black;
   text-align: justify;
   font-size: 1.2rem;
-  padding: 0;
   margin: 0;
-
-  li::before{
-    content:url("/static/icons/bullet_losange.svg");
-    position: relative; 
+  padding:0;
+  
+  li{
+    list-style-type: none;
     margin-left: 20px;
-    margin-right: 10px;
-    display: inline-block;
-    transform: rotate(180deg);
+    background: url("/static/icons/bullet_losange.svg") no-repeat 0 0.25rem;
+    padding-left: 30px;
   }
 `;
 

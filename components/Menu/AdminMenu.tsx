@@ -3,7 +3,7 @@ import EditionIcon from "../NavIcons/edition";
 import HomeIcon from "../NavIcons/home";
 import LogOutIcon from "../NavIcons/log_out";
 import MaterialIcon from "../NavIcons/material";
-import IoTIcon from "../NavIcons/network";
+import IoTIcon from "../NavIcons/iot";
 import SettingsIcon from "../NavIcons/settings";
 import UsersIcon from "../NavIcons/users";
 import BurgerMenu from "../NavIcons/burgermenu";
