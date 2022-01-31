@@ -32,10 +32,11 @@ export const Col11 = styled(Col)`
 export const Col10 = styled(Col)`
   flex: 10;
   max-width: 83.33%;
+`;
 
-  @media screen and (max-width: 1000px){
-    max-width: 100%;
-  }
+export const Col9 = styled(Col)`
+  flex: 9;
+  max-width: 75%;
 `;
 
 export const Col8 = styled(Col)`
@@ -46,6 +47,10 @@ export const Col8 = styled(Col)`
 export const Col7 = styled(Col)`
   flex: 7;
   max-width: 58.33%;
+
+  @media screen and (max-width: 1000px){
+    max-width: 100%;
+  }
 `;
 
 export const Col6 = styled(Col)`
@@ -60,6 +65,10 @@ export const Col6 = styled(Col)`
 export const Col5 = styled(Col)`
   flex: 5;
   max-width: 41.66%;
+
+  @media screen and (max-width: 1000px){
+    max-width: 100%;
+  }
 `;
 
 export const Col4 = styled(Col)`
