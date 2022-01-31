@@ -4,7 +4,7 @@ import GadzflixIcon from "../NavIcons/gadzflix";
 import HomeIcon from "../NavIcons/home";
 import LogOutIcon from "../NavIcons/log_out";
 import MaterialIcon from "../NavIcons/material";
-import IoTIcon from "../NavIcons/network";
+import IoTIcon from "../NavIcons/iot";
 import ProfilIcon from "../NavIcons/profil";
 import SettingsIcon from "../NavIcons/settings";
 import BurgerMenu from "../NavIcons/burgermenu";
