@@ -7,10 +7,11 @@ import { BlackText } from '../Text/style';
 import useMediaQuery from '../MediaQueries/MediaQuery';
 import {
   StyledTable,
-  StyledGreenTr,
   StyledTh,
   StyledTr,
-  StyledTd
+  StyledTd,
+  StyledUsersTr,
+  StyledHeadTr
 } from './style';
 
 function GlobalFilter({ globalFilter, setGlobalFilter }) {
@@ -144,7 +145,7 @@ export function UsersTable(data: any[]) {
     <StyledTable {...getTableProps()}>
       <thead>
         {headerGroups.map(headerGroup => (
-          <StyledGreenTr {...headerGroup.getHeaderGroupProps()}>
+          <StyledHeadTr {...headerGroup.getHeaderGroupProps()}>
 
             {headerGroup.headers.map((column, index) => (
               <StyledTh {...column.getHeaderProps(column.getSortByToggleProps())}>
@@ -163,14 +164,14 @@ export function UsersTable(data: any[]) {
                 </div>
               </StyledTh>
             ))}
-          </StyledGreenTr>
+          </StyledHeadTr>
         ))}
       </thead>
       <tbody {...getTableBodyProps()}>
         {rows.map((row, index) => {
           prepareRow(row)
           return (
-            <StyledTr key={index} {...row.getRowProps()}>
+            <StyledUsersTr key={index} {...row.getRowProps()}>
               {row.cells.map((cell) => {
 
                 if (cell.column['id'] == 'user_pay_status') {
@@ -195,7 +196,7 @@ export function UsersTable(data: any[]) {
                   )
                 }
               })}
-            </StyledTr>
+            </StyledUsersTr>
           )
         })}
       </tbody>

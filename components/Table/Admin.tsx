@@ -4,7 +4,7 @@ import { StateRequest } from "../Status/Status";
 import { StyledLink } from "../Text/style";
 import { 
     StyledFlexTd, 
-    StyledGreenTr, 
+    StyledHeadTr, 
     StyledTable, 
     StyledTd, 
     StyledTh, 
@@ -64,7 +64,7 @@ export function IoTAdminTable(props: { RequestTable: any[], status: string }) {
     return (
         <StyledTable>
             <thead>
-                <StyledGreenTr>
+                <StyledHeadTr>
                     <StyledTh scope="col">#</StyledTh>
                     <StyledTh scope="col">Utilisateur</StyledTh>
                     <StyledTh scope="col">Cotisation</StyledTh>
@@ -73,7 +73,7 @@ export function IoTAdminTable(props: { RequestTable: any[], status: string }) {
                     <StyledTh scope="col">Preuve Image</StyledTh>
                     <StyledTh scope="col"><span style={{ paddingLeft: "5px" }}>Etat</span></StyledTh>
                     <StyledTh scope="col"><span style={{ paddingLeft: "5px" }}>Actions</span></StyledTh>
-                </StyledGreenTr>
+                </StyledHeadTr>
             </thead>
             <tbody>{listHTML}</tbody>
         </StyledTable>
@@ -119,14 +119,14 @@ export function MaterialAdminTable(props: { RequestTable: any[], status: string 
     return (
         <StyledTable style={{ width: "100%" }}>
             <thead>
-                <StyledGreenTr style={{ padding: "10px 0 10px 30px" }}>
+                <StyledHeadTr>
                     <StyledTh scope="col">#</StyledTh>
                     <StyledTh scope="col">Utilisateur</StyledTh>
                     <StyledTh scope="col">Cotisation</StyledTh>
                     <StyledTh scope="col">Description</StyledTh>
                     <StyledTh scope="col"><span style={{ paddingLeft: "5px" }}>Etat</span></StyledTh>
                     <StyledTh scope="col"><span style={{ paddingLeft: "5px" }}>Actions</span></StyledTh>
-                </StyledGreenTr>
+                </StyledHeadTr>
             </thead>
             <tbody>{listHTML}</tbody>
         </StyledTable>
