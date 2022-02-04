@@ -7,10 +7,9 @@ export const StyledInput = styled.input`
   width: ${(props) => props.width || "100%"};
   padding-left:20px;
   height: 40px;
-  font-size: 1.2em;
-  border: 2px transparent;
+  font-size: 1.2rem;
+  border: 2px solid transparent;
   margin: 0;
-  font-family: "Poppins";
 
   &:hover{
     background: rgba(255, 255, 255, 0.8);
@@ -32,9 +31,8 @@ export const StyledSelect = styled.select`
   width: ${(props) => props.width || "100%"};
   padding-left: 20px;
   height: 40px;
-  border: 2px transparent;
-  font-size: 1.2em;
-  font-family: "Poppins";
+  border: 2px solid transparent;
+  font-size: 1.2rem;
 
   &:hover{
     border: 2px solid #096A09;
@@ -56,9 +54,8 @@ export const StyledTextArea = styled.textarea`
   background: rgba(255, 255, 255, 0.6);
   box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.06);
   border-radius: 15px;
-  border: 2px transparent;
-  font-size: 1.2em;
-  font-family: "Poppins";
+  border: 2px solid transparent;
+  font-size: 1.2rem;
   scrollbar-width: none !important;
 
   ::-webkit-scrollbar {
@@ -73,6 +70,13 @@ export const StyledTextArea = styled.textarea`
       outline: none;
       border: 2px solid #096A09;
   }
+`;
+
+export const StyledInputLabel = styled.label`
+  width: fit-content;
+  margin-bottom: 5px;
+  font-size: 1.2rem;
+  color: #096a09;
 `;
 
 export const StyledLabel = styled.label`
