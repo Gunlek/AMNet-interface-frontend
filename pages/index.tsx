@@ -10,14 +10,9 @@ import {
 import {
   Col10,
   Col2,
-  Col3,
-  Col4,
   Col5,
   Col6,
   Col7,
-  Col8,
-  Col9,
-  Column,
   ResponsiveRow,
   Row
 } from "../components/Container/style";
@@ -38,7 +33,7 @@ export default function Homepage() {
       </Head>
       <CampusGlobalStyle />
       <CampusBackground>
-        <ResponsiveRow style={{ marginBottom: minWidth1000 ? "20px" : "0" }}>
+        <ResponsiveRow style={{ margin: minWidth1000 ? "20px 0" : "0" }}>
           <Col6 style={{ justifyContent: minWidth1000 ? "start" : "center", alignItems: minWidth1000 ? "start" : "center" }}>
             <RectangleLogo color="white" />
           </Col6>
@@ -55,12 +50,12 @@ export default function Homepage() {
           </Col6>
         </ResponsiveRow>
 
-        <ResponsiveRow style={{ marginBottom: "20px", flex: "1" }}>
+        <ResponsiveRow style={{ marginBottom: "20px", flex: "2" }}>
           <Col7
             style={{
               marginRight: minWidth1000 ? "15px" : "0",
               marginBottom: minWidth1000 ? "0" : "20px",
-              paddingTop: "20px",
+              paddingTop: "30px",
               justifyContent: "space-between"
             }}
           >
@@ -136,8 +131,9 @@ export default function Homepage() {
             </StyledCardCampus> 
           </Col5>
         </ResponsiveRow>
-
+        <Row style={{flex:"1", alignItems:"end"}}>
         <HelpSection style={{marginBottom: "20px"}}/>
+        </Row>
       </CampusBackground>
     </>
   );
