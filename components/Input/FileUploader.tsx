@@ -31,6 +31,7 @@ const FileUploader = props => {
                 Choisir un fichier
             </SmallGreenButton>
             <input
+                {...props}
                 type="file"
                 ref={hiddenFileInput}
                 onChange={handleChange}

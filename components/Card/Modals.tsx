@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { GreenButton } from "../Button/Buttons";
 import { Row } from "../Container/style";
 import FileUploader from "../Input/FileUploader";
-import { StyledInput } from "../Input/style";
+import { StyledInput, StyledInputLabel } from "../Input/style";
 import useMediaQuery from "../MediaQueries/MediaQuery";
 import { BlackText, GreenText, StyledLink } from "../Text/style";
 import { TitleCard } from "./Cards";
@@ -49,16 +49,20 @@ export function IoTModal(props: { reveal: boolean, hide: any }) {
             <StyledModal width={minWidth1000 ? "900px" : undefined} reveal={props.reveal}>
                 <TitleCard hideLine={!minWidth1000}>Demande d'accès pour un objet connecté</TitleCard>
                 <div style={{ marginBottom: "20px" }}>
-                    <GreenText style={{ marginBottom: "5px" }}>Adresse Physique</GreenText>
-                    <StyledInput  placeholder="Par exemple: 5E:FF:56:A2:AF:15"/>
+                    <StyledInputLabel htmlFor="mac_adress_equipment">Adresse Physique</StyledInputLabel>
+                    <StyledInput  id="mac_adress_equipment" placeholder="Par exemple: 5E:FF:56:A2:AF:15"/>
                 </div>
                 <div style={{ marginBottom: "20px" }}>
-                    <GreenText style={{ marginBottom: "5px" }}>Description</GreenText>
-                    <StyledInput placeholder="Par exemple: Chromecast"/>
+                    <StyledInputLabel htmlFor="description_equipment">Description</StyledInputLabel>
+                    <StyledInput id="description_equipment" placeholder="Par exemple: Chromecast"/>
                 </div>
                 <div style={{ marginBottom: "30px" }}>
-                    <GreenText style={{ marginBottom: "5px" }}>Photographie de l'objet avec Adresse Physique visible</GreenText>
-                    <FileUploader/>
+                    <StyledInputLabel 
+                        style={{ display: "block"}} 
+                        htmlFor="picture_equipment"
+                    >
+                        Photographie de l'objet avec Adresse Physique visible</StyledInputLabel>
+                    <FileUploader id="picture_equipment"/>
                 </div>
                 <Row style={{ justifyContent: "center" }}>
                     <GreenButton width="350px">Envoyer la demande</GreenButton>
@@ -77,8 +81,8 @@ export function MaterialModal(props: { reveal: boolean, hide: any }) {
             <StyledModal width={minWidth1000 ? "800px" : undefined} reveal={props.reveal}>
                 <TitleCard>Demande de matériel</TitleCard>
                 <div style={{ marginBottom: "30px" }}>
-                    <GreenText style={{ marginBottom: "5px" }}>Description</GreenText>
-                    <StyledInput placeholder="Par exemple: 1 écran"/>
+                    <StyledInputLabel htmlFor="description_equipment">Description</StyledInputLabel>
+                    <StyledInput id="description_equipment" placeholder="Par exemple: 1 écran"/>
                 </div>
                 <Row style={{ justifyContent: "center" }}>
                     <GreenButton width="350px">Envoyer la demande</GreenButton>
