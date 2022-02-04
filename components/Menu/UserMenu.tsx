@@ -73,10 +73,6 @@ export default function UserMenu(props: { page: string }) {
         </Row>
 
         <Row style={positionning}>
-          <FAQIcon page={props.page} />
-        </Row>
-
-        <Row style={positionning}>
           <IoTIcon page={props.page} />
         </Row>
 
@@ -86,6 +82,10 @@ export default function UserMenu(props: { page: string }) {
 
         <Row style={positionning}>
           <GadzflixIcon />
+        </Row>
+
+        <Row style={positionning}>
+          <FAQIcon page={props.page} />
         </Row>
 
         <Row style={positionning}>
