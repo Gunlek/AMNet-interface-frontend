@@ -7,8 +7,7 @@ export const StyledButton = styled.button`
   height: ${(props) => props.height || "60px"};
   width: ${(props) => props.width || constants.defaultButtonWidth};
   color: white;
-  font-family: "Poppins";
-  font-size: 1.2em;
+  font-size: 1.2rem;
   text-align: center;
   transition: 0.5s linear, font-size 0s, color 0s, border-radius 0s, font-family 0s, box-shadow 0.3s;
   background: linear-gradient(90deg, var(--c1, #f6d365), var(--c2, #fda085) 51%, var(--c1, #f6d365)) var(--x, 0)/ 200%;
@@ -40,7 +39,7 @@ export const SmallStyledButton = styled(StyledButton)`
   border-radius: 16px;
   height: 40px;
   width: ${(props) => props.width || "150px"};
-  font-size: 1em;
+  font-size: 1rem;
   background: none;
   transition: background-color 0.3s ease-out;
 `  
