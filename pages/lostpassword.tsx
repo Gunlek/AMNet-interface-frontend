@@ -9,8 +9,7 @@ import {
 import { GreenButton } from "../components/Button/Buttons";
 import { StyledCardCampus } from "../components/Card/style";
 import { Row } from "../components/Container/style";
-import { StyledInput } from "../components/Input/style";
-import { GreenText } from "../components/Text/style";
+import { StyledInput, StyledInputLabel } from "../components/Input/style";
 import RectangleLogo from "../components/Card/RectangleLogo";
 
 export default function LostPassword() {
@@ -25,26 +24,21 @@ export default function LostPassword() {
           style={{
             flex: "1",
             justifyContent: "center",
-            alignItems: "center"
+            alignItems: "center",
+            margin: "20px 0"
           }}
         >
-          <StyledCardCampus
-            width="45%"
-            style={{ marginBottom: "20px" }}
-          >
+          <StyledCardCampus width="45%">
             <Row style={{ marginBottom: "20px", marginTop: "10px", justifyContent: "center" }}>
               <RectangleLogo />
             </Row>
 
-            <Row>
-              <TitleCard>
-                Mot de passe oublié
-              </TitleCard>
-            </Row>
-            <form method="post" style={{ paddingTop: "20px" }}>
-              <div style={{ paddingBottom: "20px" }}>
-                <GreenText style={{ paddingBottom: "5px" }}>Adresse e-mail associée au compte</GreenText>
-                <StyledInput type="email" />
+            <TitleCard>Mot de passe oublié</TitleCard> 
+
+            <form method="post">
+              <div style={{ marginBottom: "20px" }}>
+                <StyledInputLabel htmlFor="user_mail">Adresse e-mail associée au compte</StyledInputLabel>
+                <StyledInput id="user_mail" type="email" />
               </div>
               <Row style={{ justifyContent: "center" }}>
                 <GreenButton>Envoyez un mail de récuperation</GreenButton>

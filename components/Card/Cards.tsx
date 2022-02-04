@@ -23,14 +23,12 @@ export function HelpSection(props: { color?: string, style?: any }) {
 
 export function TitleCard(props: { children: string, hideLine?: boolean }){
   return(
-    <div style={{width:"100%", display:"flex", marginBottom:"0.5rem"}}>             
+    <Row style={{ marginBottom:"0.5rem", alignItems: "center"}}>             
       <GreenTitle hideLine={props.hideLine}>
         {props.children}
       </GreenTitle>
-      <Row style={{ flex: "1", alignItems: "center", display: props.hideLine && "none" }}>
-        <GreenLine />
-      </Row>  
-    </div>
+      <GreenLine display={props.hideLine && "none"} />
+    </Row>
   );
 }
 

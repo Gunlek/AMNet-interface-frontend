@@ -10,11 +10,12 @@ export default function RectangleLogo(props: { color?: string, height?: string }
   
     if (props.color == 'white') {
       return (
-        <a href="./" 
+        <a target="_blank" href="https://www.google.com/search?q=the+answer+to+life%2C+the+universe+and+everything" 
           style={{ 
             width: minWidth1000? "auto": "80%",
             marginTop: minWidth1000? "0": "4%", 
-            height: minWidth1000? "100px": "auto"   
+            height: minWidth1000? "100px": "auto",
+            cursor: "auto"
           }}
         >
           <img
@@ -30,7 +31,7 @@ export default function RectangleLogo(props: { color?: string, height?: string }
       );
     } else {
       return (
-        <a href="../" style={height}>
+        <a href="./" style={height}>
           <img
           style={height}
           src="/static/logo/logo.svg"

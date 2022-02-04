@@ -27,23 +27,22 @@
 *{
   scrollbar-width: thin;
   scrollbar-color: #C4C4C433 none;
+  -moz-user-select: none; /* Firefox */
+  -webkit-user-select: none; /* Chrome, Safari, Opéra depuis la version 15 */
+  -ms-user-select: none; /* Internet explorer depuis la version 10 et Edge */
+  user-select: none; /* Propriété standard */
+  font-family: "Poppins",-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
 
 html,
 body {
   padding: 0;
   margin: 0;
-  font-family: "Poppins",-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  
   background-color: #E8EFEA;
 }
 
-*{
-  -moz-user-select: none; /* Firefox */
-  -webkit-user-select: none; /* Chrome, Safari, Opéra depuis la version 15 */
-  -ms-user-select: none; /* Internet explorer depuis la version 10 et Edge */
-  user-select: none; /* Propriété standard */
-}
 
 input[type="text"], textarea, td, a{
   -moz-user-select: text; /* Firefox */
@@ -52,10 +51,7 @@ input[type="text"], textarea, td, a{
   user-select: text; /* Propriété standard */
 }
 
-input[type="text"]::selection, 
-textarea::selection, 
-td::selection,
-a::selection{
+::selection{
   background-color: #67BC45;
   color: white;
 }

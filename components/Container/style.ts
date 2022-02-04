@@ -27,21 +27,37 @@ export const Col = styled.div`
 export const Col11 = styled(Col)`
   flex: 11;
   max-width: 91.66%;
+
+  @media screen and (max-width: 1000px){
+    max-width: 100%;
+  }
 `;
 
 export const Col10 = styled(Col)`
   flex: 10;
   max-width: 83.33%;
+
+  @media screen and (max-width: 1000px){
+    max-width: 100%;
+  }
 `;
 
 export const Col9 = styled(Col)`
   flex: 9;
   max-width: 75%;
+
+  @media screen and (max-width: 1000px){
+    max-width: 100%;
+  }
 `;
 
 export const Col8 = styled(Col)`
   flex: 8;
   max-width: 66.66%;
+
+  @media screen and (max-width: 1000px){
+    max-width: 100%;
+  }
 `;
 
 export const Col7 = styled(Col)`
@@ -74,6 +90,10 @@ export const Col5 = styled(Col)`
 export const Col4 = styled(Col)`
   flex: 4;
   max-width: 33.33%;
+
+  @media screen and (max-width: 1000px){
+    max-width: 100%;
+  }
 `;
 
 export const Col3 = styled(Col)`
@@ -97,6 +117,10 @@ export const Col2 = styled(Col)`
 export const Col1 = styled(Col)`
   flex: 1;
   max-width: 8.33%;
+
+  @media screen and (max-width: 1000px){
+    max-width: 100%;
+  }
 `;
 
 export const DashboardContainer = styled.div`

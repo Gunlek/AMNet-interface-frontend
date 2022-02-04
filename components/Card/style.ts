@@ -50,10 +50,11 @@ export const StyledHelpSection = styled.div`
 `;
 
 export const GreenLine = styled.div`
-  width: 100%;
+  flex:1;
   border: 1px solid #096A09;
   height: 0px;
   background: #096a09;
+  display: ${(props) => props.display || "block"};
 `;
 
 export const StyledFooter = styled.footer`
@@ -122,8 +123,6 @@ export const StyledBackgroundModal = styled.div`
   left: 0; 
   top: 0;  
   z-index: 1;
-  transition: all 0.3s linear;
-  display: ${props => (props.reveal ? "block" : "none")};
 `;
 
 export const StyledModal = styled(StyledCardCampus)`
@@ -136,6 +135,4 @@ export const StyledModal = styled(StyledCardCampus)`
   left: 50%;  
   transform: translate(-50%, -50%);
   z-index: 2;
-  transition: all 0.3s linear;
-  display: ${props => (props.reveal ? "block" : "none")};
 `

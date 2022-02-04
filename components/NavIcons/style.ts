@@ -78,14 +78,11 @@ export const StyledIcon = styled.svg`
 export const StyledBackLogOut = styled.a`
   display: flex;
   justify-content: center;
-  align-items: center;
-
-  height: 60px;
+  align-items: end;
   width: 60px;
 `;
 
 export const StyledLogOut = styled.svg`
-  transition: all 1s ease-out;
   ${StyledBackLogOut}:hover & {
     fill: #096a09;  
   }

@@ -9,7 +9,7 @@ import {
   TitleCard,
 } from "../components/Card/Cards";
 import { StyledCardCampus } from "../components/Card/style";
-import { StyledInput } from "../components/Input/style";
+import { StyledInput, StyledInputLabel } from "../components/Input/style";
 import { BlackText, GreenText, StyledLink } from "../components/Text/style";
 import Checkbox from "../components/Input/Checkbox";
 import RectangleLogo from "../components/Card/RectangleLogo";
@@ -32,32 +32,26 @@ export default function Login() {
           style={{
             flex: "1",
             justifyContent: "center",
-            alignItems: "center"
+            alignItems: "center",
+            margin: "20px 0"
           }}
         >
-          <StyledCardCampus
-            width="auto"
-            style={{ marginBottom: "20px" }}
-          >
+          <StyledCardCampus width="auto" >
             <Row style={{ marginBottom: "20px", marginTop: "10px", justifyContent: "center" }}>
               <RectangleLogo />
             </Row>
 
-            <Row>
-              <TitleCard>
-                Connexion
-              </TitleCard>
-            </Row>
+            <TitleCard>Connexion</TitleCard>
 
             <form method="post">
               <div style={{ marginBottom: "20px" }}>
-                <GreenText style={{ marginBottom: "5px" }}>Nom d'utilisateur</GreenText>
-                <StyledInput type="text" />
+                <StyledInputLabel htmlFor="user_name">Nom d'utilisateur</StyledInputLabel>
+                <StyledInput id="user_name" type="text" />
               </div>
 
               <div style={{ marginBottom: "20px" }}>
-                <GreenText style={{ marginBottom: "5px" }}>Mot de passe</GreenText>
-                <StyledInput type="password" />
+                <StyledInputLabel htmlFor="user_password">Mot de passe</StyledInputLabel>
+                <StyledInput id="user_password" type="password" />
               </div>
 
               <label style={{ display: "flex", alignItems: "Center", marginBottom: "20px" }}>

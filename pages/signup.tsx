@@ -17,6 +17,7 @@ import {
 } from "../components/Container/style";
 import {
   StyledInput,
+  StyledInputLabel,
   StyledSelect
 } from "../components/Input/style";
 import {
@@ -44,7 +45,7 @@ export default function SignUp() {
   }
   var [acceptRules, setacceptRules] = useState(false);
 
-  const handleRadioChange = (elmt) => {
+  function handleRadioChange(){
     setacceptRules(!acceptRules);
   }
 
@@ -59,28 +60,22 @@ export default function SignUp() {
           style={{
             flex: 1,
             justifyContent: "center",
-            alignItems: "center"
+            alignItems: "center",
+            margin: "20px 0"
           }}
         >
-          <StyledCardCampus
-            width="75%"
-            style={{ marginBottom: "20px" }}
-          >
+          <StyledCardCampus width="75%">
             <Row style={{ marginBottom: "20px", marginTop: "10px", justifyContent: "center" }}>
               <RectangleLogo height={minWidth1000 ? "125px" : "100px"} />
             </Row>
 
-            <Row style={{ marginBottom: "20px" }}>
-              <TitleCard>
-                Inscription
-              </TitleCard>
-            </Row>
+            <TitleCard>Inscription</TitleCard>
 
             <form method="post">
               <ResponsiveRow style={{ alignItems: "center", marginBottom: "20px" }}>
                 <Col6 style={{ paddingRight: minWidth1000 ? "10px" : "0px", width: "100%" }}>
-                  <GreenText style={{ marginBottom: "5px" }}>Nom d'utilisateur</GreenText>
-                  <StyledInput type="text" />
+                  <StyledInputLabel htmlFor="user_name">Nom d'utilisateur</StyledInputLabel>
+                  <StyledInput id="user_name" type="text" />
                 </Col6>
                 <Col6
                   style={{
@@ -99,34 +94,34 @@ export default function SignUp() {
 
               <ResponsiveRow style={{ marginBottom: "20px" }}>
                 <Col3 style={{ paddingRight: minWidth1000 ? "10px" : "0", marginBottom: minWidth1000 ? "0" : "20px" }}>
-                  <GreenText style={{ marginBottom: "5px" }}>Prénom</GreenText>
-                  <StyledInput type="text" />
+                  <StyledInputLabel htmlFor="user_firstname">Prénom</StyledInputLabel>
+                  <StyledInput id="user_firstname" type="text" />
                 </Col3>
                 <Col3 style={{ paddingLeft: minWidth1000 ? "10px" : "0", paddingRight: minWidth1000 ? "10px" : "0", marginBottom: minWidth1000 ? "0" : "20px" }}>
-                  <GreenText style={{ marginBottom: "5px" }}>Nom</GreenText>
-                  <StyledInput type="text" />
+                  <StyledInputLabel htmlFor="user_lastname">Nom</StyledInputLabel>
+                  <StyledInput id="user_lastname" type="text" />
                 </Col3>
                 <Col6 style={{ paddingLeft: minWidth1000 ? "10px" : "0" }}>
-                  <GreenText style={{ marginBottom: "5px" }}>Adresse e-mail</GreenText>
-                  <StyledInput type="email" />
+                  <StyledInputLabel htmlFor="user_email">Adresse e-mail</StyledInputLabel>
+                  <StyledInput id="user_email" type="email" />
                 </Col6>
               </ResponsiveRow>
 
               <ResponsiveRow style={{ marginBottom: "20px" }}>
                 <Col6 style={{ paddingRight: minWidth1000 ? "10px" : "0", marginBottom: minWidth1000 ? "0" : "20px" }}>
-                  <GreenText style={{ marginBottom: "5px" }}>Téléphone</GreenText>
-                  <StyledInput type="tel" />
+                  <StyledInputLabel htmlFor="user_phone">Téléphone</StyledInputLabel>
+                  <StyledInput id="user_phone" type="tel" />
                 </Col6>
                 <Col6 style={{ paddingLeft: minWidth1000 ? "10px" : "0" }}>
-                  <GreenText style={{ marginBottom: "5px" }}>Promotion</GreenText>
-                  <StyledSelect style={{ display: isOther ? "none" : "inline" }} onChange={handleValueChange}>
+                  <StyledInputLabel htmlFor="user_promotion">Promotion</StyledInputLabel>
+                  <StyledSelect id="user_promotion" style={{ display: isOther ? "none" : "inline" }} onChange={handleValueChange}>
                     <option value="219">219</option>
                     <option value="220">220</option>
                     <option value="2021" selected>2021</option>
                     <option value="other">Autre</option>
                   </StyledSelect>
                   <div style={{ display: isOther ? "flex" : "none", alignItems: "center" }} >
-                    <StyledInput ref={PromotionInput => { (PromotionInput && isOther) && PromotionInput.focus() }} type="text" />
+                    <StyledInput id="user_promotion2" ref={PromotionInput => { (PromotionInput && isOther) && PromotionInput.focus() }} type="text" />
                     <StyledImg onClick={CancelChange} src="static/icons/cancel.svg"/>
                   </div>
                 </Col6>
@@ -134,36 +129,36 @@ export default function SignUp() {
 
               <ResponsiveRow style={{ marginBottom: "20px", display: isGadz ? "flex" : "none" }}>
                 <Col6 style={{ paddingRight: minWidth1000 ? "10px" : "0", marginBottom: minWidth1000 ? "0" : "20px" }}>
-                  <GreenText style={{ marginBottom: "5px" }}>Bucque</GreenText>
-                  <StyledInput type="text" />
+                  <StyledInputLabel htmlFor="user_surname">Bucque</StyledInputLabel>
+                  <StyledInput id="user_surname" type="text" />
                 </Col6>
                 <Col3 style={{ paddingLeft: minWidth1000 ? "10px" : "0", paddingRight: minWidth1000 ? "10px" : "0", marginBottom: minWidth1000 ? "0" : "20px" }}>
-                  <GreenText style={{ marginBottom: "5px" }}>Fam's</GreenText>
-                  <StyledInput type="text" />
+                  <StyledInputLabel htmlFor="user_fams">Fam's</StyledInputLabel>
+                  <StyledInput id="user_fams" type="text" />
                 </Col3>
                 <Col3 style={{ paddingLeft: minWidth1000 ? "10px" : "0" }}>
-                  <GreenText style={{ marginBottom: "5px" }}>Tabagn's</GreenText>
-                  <StyledSelect name="tbk">
-                    <option value="li">Birse</option>
-                    <option value="an">Boquette</option>
-                    <option value="bo">Bordel's</option>
-                    <option value="ch">Chalon's</option>
-                    <option value="cl">Clun's</option>
-                    <option value="kin">KIN</option>
-                    <option value="pa">P3</option>
-                    <option value="me">Siber's</option>
+                  <StyledInputLabel htmlFor="user_campus">Tabagn's</StyledInputLabel>
+                  <StyledSelect id="user_campus">
+                    <option value="Li">Birse</option>
+                    <option value="An">Boquette</option>
+                    <option value="Bo">Bordel's</option>
+                    <option value="Ch">Chalon's</option>
+                    <option value="Cl">Clun's</option>
+                    <option value="KIN">KIN</option>
+                    <option value="Pa">P3</option>
+                    <option value="Me">Siber's</option>
                   </StyledSelect>
                 </Col3>
               </ResponsiveRow>
 
               <ResponsiveRow style={{ marginBottom: "20px" }}>
                 <Col6 style={{ paddingRight: minWidth1000 ? "10px" : "0", marginBottom: minWidth1000 ? "0" : "20px" }}>
-                  <GreenText style={{ marginBottom: "5px" }}>Mot de passe</GreenText>
-                  <StyledInput type="password" />
+                  <StyledInputLabel htmlFor="user_password">Mot de passe</StyledInputLabel>
+                  <StyledInput id="user_password" type="password" />
                 </Col6>
                 <Col6 style={{ paddingLeft: minWidth1000 ? "10px" : "0" }}>
-                  <GreenText style={{ marginBottom: "5px" }}>Confirmez votre Mot de passe</GreenText>
-                  <StyledInput type="password" />
+                  <StyledInputLabel htmlFor="user_password2">Confirmez votre Mot de passe</StyledInputLabel>
+                  <StyledInput id="user_password2" type="password" />
                 </Col6>
               </ResponsiveRow>
 
@@ -189,8 +184,8 @@ export default function SignUp() {
                     marginBottom: minWidth1000 ? "0" : "10px"
                   }}
                 >
-                  <label style={{ display: "flex", alignItems: "center" }}>
-                    <Radio name="accept_rules" checked={acceptRules} onChange={handleRadioChange} />
+                  <label htmlFor="accept_rules" style={{ display: "flex", alignItems: "center" }}>
+                    <Radio name="rules" id="accept_rules" checked={acceptRules} onChange={handleRadioChange} />
                     <BlackText style={{ paddingLeft: "10px" }}>Accepter les Statuts et le Réglement interieur</BlackText>
                   </label>
                 </Col6>
@@ -202,8 +197,8 @@ export default function SignUp() {
                     alignItems: "center"
                   }}
                 >
-                  <label style={{ display: "flex", alignItems: "center" }}>
-                    <Radio name="accept_rules" checked={!acceptRules} onChange={handleRadioChange} />
+                  <label htmlFor="denied_rules" style={{ display: "flex", alignItems: "center" }}>
+                    <Radio name="rules" id="denied_rules" checked={!acceptRules} onChange={handleRadioChange} />
                     <BlackText style={{ paddingLeft: "10px" }}>Refuser les Statuts et le Réglement interieur</BlackText>
                   </label>
                 </Col6>
