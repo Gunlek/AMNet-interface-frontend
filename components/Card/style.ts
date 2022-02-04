@@ -123,10 +123,12 @@ export const StyledBackgroundModal = styled.div`
   left: 0; 
   top: 0;  
   z-index: 1;
+  display: ${props => (props.reveal ? "block" : "none")}; 
 `;
 
 export const StyledModal = styled(StyledCardCampus)`
-  width: ${props => (props.width ? props.width : "90%")}; 
+  width: ${props => (props.width ? props.width : "90%")};
+  display: ${props => (props.reveal ? "block" : "none")};  
   align-items: center; 
   justify-content: center;
   padding: 30px; 

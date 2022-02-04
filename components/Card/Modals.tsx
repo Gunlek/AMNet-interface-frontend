@@ -4,9 +4,9 @@ import { Row } from "../Container/style";
 import FileUploader from "../Input/FileUploader";
 import { StyledInput } from "../Input/style";
 import useMediaQuery from "../MediaQueries/MediaQuery";
-import { BlackText, GreenText, GreenTitle, StyledLink } from "../Text/style";
+import { BlackText, GreenText, StyledLink } from "../Text/style";
 import { TitleCard } from "./Cards";
-import { StyledBackgroundModal, StyledCard, StyledModal } from "./style";
+import { StyledBackgroundModal, StyledModal } from "./style";
 
 export const ModalLogic = () => {
     var [reveal, setreveal] = useState(false);
@@ -23,16 +23,16 @@ export const ModalLogic = () => {
 
 export function ContributionModal(props: { reveal: boolean, hide: any }) {
     const minWidth1000 = useMediaQuery('(min-width: 1000px)')
-
-    return (
+    
+    return(
         <>
-            <StyledBackgroundModal onClick={props.hide} reveal={props.reveal} />
+            <StyledBackgroundModal onClick={props.hide} reveal={props.reveal}/>
             <StyledModal width={minWidth1000 ? "600px" : undefined} reveal={props.reveal}>
                 <TitleCard>Cotisation</TitleCard>
                 <BlackText style={{ marginBottom: "30px", textAlign: "justify" }}>
                     Le paiement de la cotisation s'effectue en utilisant Lydia. Il vous sera proposé d'utiliser votre compte Lydia pour régler votre cotisation. Si vous n'êtes pas titulaire d'un compte Lydia, il vous sera possible de réaliser le paiement en utilisant votre carte bancaire.
                     <br /><br />
-                    En cas de problème lors du paiement, n'hésitez pas à nous en informer à  <StyledLink color="#096a09" style={{ fontSize: "1em" }} href="mailto:contact@amnet.fr">contact@amnet.fr</StyledLink>
+                    En cas de problème lors du paiement, n'hésitez pas à nous en informer à  <StyledLink color="#096a09"href="mailto:contact@amnet.fr">contact@amnet.fr</StyledLink>
                 </BlackText>
                 <GreenButton width="100%">Cliquez pour procéder au paiement (35€)</GreenButton>
             </StyledModal>
@@ -43,7 +43,7 @@ export function ContributionModal(props: { reveal: boolean, hide: any }) {
 export function IoTModal(props: { reveal: boolean, hide: any }) {
     const minWidth1000 = useMediaQuery('(min-width: 1000px)')
 
-    return (
+    return(
         <>
             <StyledBackgroundModal onClick={props.hide} reveal={props.reveal} />
             <StyledModal width={minWidth1000 ? "900px" : undefined} reveal={props.reveal}>
@@ -71,7 +71,7 @@ export function IoTModal(props: { reveal: boolean, hide: any }) {
 export function MaterialModal(props: { reveal: boolean, hide: any }) {
     const minWidth1000 = useMediaQuery('(min-width: 1000px)')
 
-    return (
+    return(
         <>
             <StyledBackgroundModal onClick={props.hide} reveal={props.reveal} />
             <StyledModal width={minWidth1000 ? "800px" : undefined} reveal={props.reveal}>
