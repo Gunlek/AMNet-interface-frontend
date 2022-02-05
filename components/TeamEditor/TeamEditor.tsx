@@ -20,6 +20,14 @@ export const TeamEditor = () => {
             pseudo: pseudo,
             id: id
         }));
+        
+    }
+
+    const deleteTeamMember = (e, index) => {
+        e.preventDefault();
+        let Newteam = team.slice(0);
+        Newteam.splice(index, 1);
+        setTeam(Newteam);
     }
 
     return (
@@ -63,8 +71,7 @@ export const TeamEditor = () => {
                     <SmallGreenButton onClick={registerNewTeamMember}>Ajouter</SmallGreenButton>
                 </Col2>
             </ResponsiveRow>
-
-            <TeamList list={team} setter={setTeam} />
+            <TeamList list={team} setter={deleteTeamMember} />
         </>
     );
 }
