@@ -48,15 +48,15 @@ export function IoTModal(props: { reveal: boolean, hide: any }) {
             <StyledBackgroundModal onClick={props.hide} reveal={props.reveal} />
             <StyledModal width={minWidth1000 ? "900px" : undefined} reveal={props.reveal}>
                 <TitleCard hideLine={!minWidth1000}>Demande d'accès pour un objet connecté</TitleCard>
-                <div style={{ marginBottom: "20px" }}>
+                <div style={{ marginBottom: "20px", width: "100%" }}>
                     <StyledInputLabel htmlFor="mac_adress_equipment">Adresse Physique</StyledInputLabel>
                     <StyledInput  id="mac_adress_equipment" placeholder="Par exemple: 5E:FF:56:A2:AF:15"/>
                 </div>
-                <div style={{ marginBottom: "20px" }}>
+                <div style={{ marginBottom: "20px", width: "100%" }}>
                     <StyledInputLabel htmlFor="description_equipment">Description</StyledInputLabel>
                     <StyledInput id="description_equipment" placeholder="Par exemple: Chromecast"/>
                 </div>
-                <div style={{ marginBottom: "30px" }}>
+                <div style={{ marginBottom: "30px", width: "100%" }}>
                     <StyledInputLabel 
                         style={{ display: "block"}} 
                         htmlFor="picture_equipment"
@@ -80,7 +80,7 @@ export function MaterialModal(props: { reveal: boolean, hide: any }) {
             <StyledBackgroundModal onClick={props.hide} reveal={props.reveal} />
             <StyledModal width={minWidth1000 ? "800px" : undefined} reveal={props.reveal}>
                 <TitleCard>Demande de matériel</TitleCard>
-                <div style={{ marginBottom: "30px" }}>
+                <div style={{ marginBottom: "30px", width: "100%" }}>
                     <StyledInputLabel htmlFor="description_equipment">Description</StyledInputLabel>
                     <StyledInput id="description_equipment" placeholder="Par exemple: 1 écran"/>
                 </div>

@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import { Column } from "../Container/style";
 
 export const StyledCard = styled.div`
@@ -122,19 +122,23 @@ export const StyledBackgroundModal = styled.div`
   width: 100%; 
   left: 0; 
   top: 0;  
-  z-index: 1;
-  display: ${props => (props.reveal ? "block" : "none")}; 
+  transition: all 0.4s linear;
+  z-index: ${props => (props.reveal ? "1" : "-1")};
+  opacity: ${props => (props.reveal ? "1" : "0")};
 `;
+
+
 
 export const StyledModal = styled(StyledCardCampus)`
   width: ${props => (props.width ? props.width : "90%")};
-  display: ${props => (props.reveal ? "block" : "none")};  
   align-items: center; 
   justify-content: center;
   padding: 30px; 
   position: fixed; 
   top: 50%; 
   left: 50%;  
+  transition: all 0.4s linear;
   transform: translate(-50%, -50%);
-  z-index: 2;
+  z-index: ${props => (props.reveal ? "2" : "-1")};
+  opacity: ${props => (props.reveal ? "1" : "0")};
 `
