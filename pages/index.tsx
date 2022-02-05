@@ -38,14 +38,8 @@ export default function Homepage() {
             <RectangleLogo color="white" />
           </Col6>
           <Col6 style={{ justifyContent: "center", alignItems: minWidth1000 ? "end" : "center", marginTop: minWidth1000 ? "0" : "20px" }}>
-            <a
-              href="./login"
-              style={{
-                width: minWidth1000 ? "300px" : "250px",
-                borderRadius: "30px"
-              }}
-            >
-              <GreenButton width="100%">Se Connecter / S'inscrire</GreenButton>
+            <a href="./login" style={{ borderRadius: "30px" }}>
+              <GreenButton width={minWidth1000 ? "300px" : "250px"}>Se Connecter / S'inscrire</GreenButton>
             </a>
           </Col6>
         </ResponsiveRow>
