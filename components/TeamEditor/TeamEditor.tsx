@@ -32,12 +32,11 @@ export const TeamEditor = () => {
 
     return (
         <>
-            <Row style={{marginBottom:"20px"}}>
-                <BlackText>
+            <BlackText style={{marginBottom:"20px"}}>
                 Pour faire correspondre les bucques avec les PGs sur la photo de la page d'accueil, il faut les mettre dans l'ordre suivant : de haut en bas les bucques et de gauche à droite sur la photo
-                </BlackText>
-            </Row>
-            <ResponsiveRow>
+            </BlackText>
+
+            <ResponsiveRow style={{marginBottom:"20px"}}>
                 <Col5 
                     style={{ 
                         paddingRight: minWidth1000? "10px" : "0", 
@@ -71,7 +70,11 @@ export const TeamEditor = () => {
                     <SmallGreenButton onClick={registerNewTeamMember}>Ajouter</SmallGreenButton>
                 </Col2>
             </ResponsiveRow>
-            <TeamList list={team} setter={deleteTeamMember} />
+
+            <Column>
+                <GreenText>La Team actuelle</GreenText>
+                <TeamList list={team} setter={deleteTeamMember} />
+            </Column>
         </>
     );
 }
