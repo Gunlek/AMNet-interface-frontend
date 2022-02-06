@@ -77,7 +77,7 @@ export default function Edition() {
 
 
               <Column style={{ flex: "1", maxWidth: minWidth1000 ? "66.66%" : "100%" }}>
-                <TeamEditor />
+                <TeamEditor names="Trobotyk'ss (ML)°;Sdoosh;Nem'O" nums="47Li220;96Li220;74Li220"/>
               </Column>
 
               <Row style={{ marginTop: "20px", justifyContent: "center" }}>
