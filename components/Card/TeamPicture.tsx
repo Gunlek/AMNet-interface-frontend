@@ -4,33 +4,29 @@ import { GreenCard } from "./Cards";
 import { StyledTeamPicture, StyledCardCampus } from "./style";
 
 export default function TeamPicture(props: { promotion: string, names: string, nums: string}) {
-    var separator = /\s*(;|$)\s*/;
-    var names = props.names.split(separator);
-    var nums = props.nums.split(separator);
-    var size = Math.round(names.length / 2);
+    const names = props.names.split(";");
+    const nums = props.nums.split(";");
   
     const Flex = {
-      flex: (12 / size).toString(),
+      flex: (12 / names.length).toString(),
       alignItems: "center",
       textAlign: "center"
     };
   
     let Team = [];
-    var i = 0;
     
-    for (var pas = 0; pas < size; pas++){
+    names.map((value, index) => {
       Team.push(
-        <Column key={pas} style={Flex}>
+        <Column key={index} style={Flex}>
           <BlackText>
-            {names[i]}
+            {value}
           </BlackText>
           <GreenText>
-            {nums[i]}
+            {nums[index]}
           </GreenText>
         </Column>
       )
-      i = i+2;
-    }
+    })
   
     return (
       <StyledTeamPicture style={{ paddingTop:"15px", justifyContent:"space-between" }}>
