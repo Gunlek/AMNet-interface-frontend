@@ -116,7 +116,7 @@ export default function UserIoT() {
                 overflowX: "auto"
               }}
             >
-              <IoTUserTable RequestTable={Iot} />
+              <IoTUserTable requests={Iot} />
             </div>
           </StyledCard>
 

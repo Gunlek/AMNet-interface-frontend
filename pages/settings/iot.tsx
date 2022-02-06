@@ -55,7 +55,7 @@ const Iot = [
 export default function AdminIoT() {
   const minWidth1000 = useMediaQuery('(min-width:1000px)');
   const [Tab, setTab] = useState("pending");
-
+  
   const handleTabChange = (elmt) => {
     setTab(elmt.currentTarget.id);
   }
@@ -76,8 +76,14 @@ export default function AdminIoT() {
           <RequestTab status={Tab} TabChange={handleTabChange}/>
 
           <StyledCard style={{ flex: "1", marginBottom:"2%" }}>
-            <div style={{ height:"100%", width:"100%", overflowX:"auto" }}>
-              <IoTAdminTable status={Tab} RequestTable={Iot} />
+            <div 
+              style={{ 
+                height:"100%", 
+                width:"100%", 
+                overflowX:"auto",
+              }}
+            >
+              <IoTAdminTable status={Tab} requests={Iot} />
             </div>
           </StyledCard>
         </DashboardContainer>

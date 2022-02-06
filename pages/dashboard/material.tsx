@@ -82,7 +82,7 @@ export default function UserMaterial() {
                 overflowX: "auto"
               }}
             >
-              <MaterialUserTable RequestTable={material} />
+              <MaterialUserTable requests={material} />
             </div>
           </StyledCard>
 
