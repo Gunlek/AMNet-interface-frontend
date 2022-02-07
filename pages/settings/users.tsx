@@ -394,8 +394,8 @@ const data = [
 export default function Users() {
   const minWidth1700 = useMediaQuery('(min-width:1700px)');
   const minWidth1000 = useMediaQuery('(min-width:1000px)');
-  const [Filter, Checkboxs, Table] = UsersTable(data)
-
+  const [Filter, Checkboxs, SelectedRows, Table] = UsersTable(data)
+  
   return (
     <>
       <Head>
@@ -433,13 +433,17 @@ export default function Users() {
               <OrangeButton width="300px">Passer en Gadz</OrangeButton>
               <RedButton width="300px">Supprimer</RedButton>
             </div>
-
-          <StyledCard style={{ flex: "1", marginBottom: "2%" }}>
+ 
+          <StyledCard 
+            style={{ 
+              flex: "1 0 0", 
+              marginBottom: "2%", 
+              minHeight: minWidth1000? "0" : "600px" 
+            }}
+          >
             <div
               style={{
-                height: "100%",
-                maxHeight: "60vh",
-                width: "100%",
+                height:"100%",
                 overflow: "auto",
                 position: "sticky"
               }}
