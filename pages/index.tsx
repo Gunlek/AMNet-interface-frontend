@@ -53,8 +53,8 @@ export default function Homepage() {
               justifyContent: "space-between"
             }}
           >
-            <div style={{ marginBottom:"30px" }}>
-              <WhiteP style={{marginBottom: "1.2rem"}}>    
+            <div style={{ marginBottom: "30px" }}>
+              <WhiteP style={{ marginBottom: "1.2rem" }}>
                 <span style={{ paddingLeft: "4rem" }}>L’AMNet</span> est une association gérée par les étudiants qui a pour but
                 d’administrer le réseau internet de la résidence Jacques Pagliero des Arts et Métiers du campus de Lille.
                 Elle est totalement indépendante de l’administration de la résidence ou de l’école.
@@ -69,22 +69,22 @@ export default function Homepage() {
 
             <StyledCardCampus style={{ marginBottom: minWidth1000 ? "0" : "20px" }}>
               <ResponsiveRow>
-                <Col2 
-                  style={{ 
-                    alignItems: "center", 
+                <Col2
+                  style={{
+                    alignItems: "center",
                     justifyContent: "center",
                     marginBottom: minWidth1000 ? "0" : "10px"
                   }}
                 >
                   <img
-                    style={{ width: minWidth1000? "90%" : "auto", height: minWidth1000? "auto" : "80%", aspectRatio: "1 / 1" }}
+                    style={{ width: minWidth1000 ? "90%" : "auto", height: minWidth1000 ? "auto" : "80%", aspectRatio: "1 / 1" }}
                     src="/static/logo/mc_logo.png"
                     alt="Logo Minecraft"
                   />
                 </Col2>
-                <Col10 style={{marginLeft:"2%"}}>
+                <Col10 style={{ marginLeft: "2%" }}>
                   <TitleCard>Serveur Minecraft</TitleCard>
-                  <BlackP style={{marginBottom: "1.2rem"}}>
+                  <BlackP style={{ marginBottom: "1.2rem" }}>
                     En plus de fournir un accès internet aux résidents nous
                     offrons une multitude de services, un serveur Minecraft :{" "}
                     <span style={{ color: "#096A09" }}>minecraft.amnet.fr</span>{" "}
@@ -99,34 +99,30 @@ export default function Homepage() {
             </StyledCardCampus>
           </Col7>
 
-          <Col5 style={{marginLeft: minWidth1000 ? "15px" : "0", justifyContent: "space-between" }}>
-              <TeamPicture
-                names="Trobotyk'ss (ML)°;Sdoosh;Nem'O"
-                nums="47Li220;96Li220;74Li220"
-                promotion="220"
-              />
+          <Col5 style={{ marginLeft: minWidth1000 ? "15px" : "0", justifyContent: "space-between" }}>
+            <TeamPicture/>
 
-            <StyledCardCampus style={{marginTop: "30px"}}>
+            <StyledCardCampus style={{ marginTop: "30px" }}>
               <TitleCard>A propos</TitleCard>
-              <Row style={{ marginBottom: "1.2rem"}}>
+              <Row style={{ marginBottom: "1.2rem" }}>
                 <BlackP
                   style={{
-                    textAlign: minWidth1000? undefined : "center",
+                    textAlign: minWidth1000 ? undefined : "center",
                     marginRight: "20px"
                   }}
                 >
-                  Projet développé et maintenu par Hard Win'∫ 58Li218, Squall'∫ 4Li218 et Mac Nhat'∫ 47-102Li219 &bull; Version 2.0.1 
+                  Projet développé et maintenu par Hard Win'∫ 58Li218, Squall'∫ 4Li218 et Mac Nhat'∫ 47-102Li219 &bull; Version 2.0.1
                 </BlackP>
-                <GitHub height="30px" margin="0"/>
+                <GitHub height="30px" margin="0" />
               </Row>
-              <BlackText style={{textAlign: "right"}}>
-                Design et UI pensés avec l'aide de Cou'∫<span style={{marginLeft:"1.5px"}}>'</span>tal 141Li219
+              <BlackText style={{ textAlign: "right" }}>
+                Design et UI pensés avec l'aide de Cou'∫<span style={{ marginLeft: "1.5px" }}>'</span>tal 141Li219
               </BlackText>
-            </StyledCardCampus> 
+            </StyledCardCampus>
           </Col5>
         </ResponsiveRow>
-        <Row style={{flex:"1", alignItems:"end"}}>
-        <HelpSection style={{marginBottom: "20px"}}/>
+        <Row style={{ flex: "1", alignItems: "end" }}>
+          <HelpSection style={{ marginBottom: "20px" }} />
         </Row>
       </CampusBackground>
     </>

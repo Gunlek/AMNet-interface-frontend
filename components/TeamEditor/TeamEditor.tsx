@@ -6,20 +6,24 @@ import useMediaQuery from '../MediaQueries/MediaQuery';
 import { BlackText, GreenText } from '../Text/style';
 import TeamList from './TeamList';
 
-export const TeamEditor = (props: { names: string, nums: string }) => {
+export const TeamEditor = () => {
     const minWidth1000 = useMediaQuery('(min-width:1000px)');
-    const names = props.names.split(";");
-    const nums = props.nums.split(";");
-    let originalTeam = [];
+    const accutalTeam = [
+        {
+          'pseudo': "Trobotyk'ss (ML)°",
+          id: "47Li220"
+        },
+        {
+          'pseudo': "Sdoosh",
+          id: "96Li220"
+        },
+        {
+          'pseudo': "Nem'O",
+          id: "74Li220"
+        }
+    ];
 
-    names.map((value, index) => {
-        originalTeam.push({
-            pseudo: value,
-            id: nums[index]
-        })
-    });
-
-    let [team, setTeam] = useState(originalTeam);
+    let [team, setTeam] = useState(accutalTeam);
     let [pseudo, setPseudo] = useState("");
     let [id, setId] = useState("");
 
