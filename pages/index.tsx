@@ -3,7 +3,6 @@ import Head from "next/head";
 import { CampusBackground, CampusGlobalStyle } from "../components/Background/style";
 import { GreenButton } from "../components/Button/Buttons";
 import {
-  Footer,
   HelpSection,
   TitleCard
 } from "../components/Card/Cards";
@@ -23,6 +22,19 @@ import RectangleLogo from "../components/Card/RectangleLogo";
 import TeamPicture from "../components/Card/TeamPicture";
 import GitHub from "../components/NavIcons/github";
 
+const accutalTeam = [
+  {
+    'pseudo': "Trobotyk'ss (ML)°",
+    id: "47Li220"
+  },
+  {
+    'pseudo': "Sdoosh",
+    id: "96Li220"
+  },
+  {
+    'pseudo': "Nem'O",
+    id: "74Li220"
+  }];
 export default function Homepage() {
   const minWidth1000 = useMediaQuery('(min-width:1000px)');
 
@@ -100,7 +112,7 @@ export default function Homepage() {
           </Col7>
 
           <Col5 style={{ marginLeft: minWidth1000 ? "15px" : "0", justifyContent: "space-between" }}>
-            <TeamPicture/>
+            <TeamPicture Team={accutalTeam}/>
 
             <StyledCardCampus style={{ marginTop: "30px" }}>
               <TitleCard>A propos</TitleCard>

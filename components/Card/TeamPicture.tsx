@@ -3,31 +3,17 @@ import { BlackText, GreenText } from "../Text/style";
 import { GreenCard } from "./Cards";
 import { StyledTeamPicture, StyledCardCampus } from "./style";
 
-export default function TeamPicture() {
-  const accutalTeam = [
-    {
-      'pseudo': "Trobotyk'ss (ML)°",
-      id: "47Li220"
-    },
-    {
-      'pseudo': "Sdoosh",
-      id: "96Li220"
-    },
-    {
-      'pseudo': "Nem'O",
-      id: "74Li220"
-    }];
-
+export default function TeamPicture(props: {Team: any}) {
   const promotion="220"
 
   const Flex = {
-    flex: (12 / accutalTeam.length).toString(),
+    flex: (12 / props.Team.length).toString(),
     textAlign: "center"
   };
 
   let Team = [];
   
-  accutalTeam.map((value, index) => {
+  props.Team.map((value, index) => {
     Team.push(
       <Column key={index} style={Flex}>
         <BlackText>
