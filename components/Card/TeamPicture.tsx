@@ -3,7 +3,7 @@ import { BlackText, GreenText } from "../Text/style";
 import { GreenCard } from "./Cards";
 import { StyledTeamPicture, StyledCardCampus } from "./style";
 
-export default function TeamPicture(props: {Team: any}) {
+export default function TeamPicture(props: {Team: any, background?: string}) {
   const promotion="220"
 
   const Flex = {
@@ -27,7 +27,13 @@ export default function TeamPicture(props: {Team: any}) {
   });
 
   return (
-    <StyledTeamPicture style={{ paddingTop:"15px", justifyContent:"space-between" }}>
+    <StyledTeamPicture 
+      background={props.background} 
+      style={{ 
+        paddingTop:"15px", 
+        justifyContent:"space-between" 
+      }}
+    >
       <GreenCard promotion={promotion}/>
       <StyledCardCampus style={{ alignItems:"center", flexDirection: "row" }}>
         {Team}
