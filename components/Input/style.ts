@@ -46,12 +46,8 @@ export const StyledTextArea = styled.textarea`
   border-radius: 15px;
   border: 2px solid transparent;
   font-size: 1.2rem;
-  scrollbar-width: none !important;
-
-  ::-webkit-scrollbar {
-    width: 0 !important;
-  }
-
+  overflow: hidden;
+ 
   &:hover, &:focus{
     background: rgba(255, 255, 255, 0.8);
     border: 2px solid #096A09;
@@ -61,6 +57,7 @@ export const StyledTextArea = styled.textarea`
 
 export const StyledInputLabel = styled.label`
   width: fit-content;
+  display: block;
   margin-bottom: 5px;
   font-size: 1.2rem;
   color: #096a09;
