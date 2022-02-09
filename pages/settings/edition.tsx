@@ -3,9 +3,9 @@ import Head from "next/head";
 import { DefaultBackground } from "../../components/Background/style";
 import {
   Row,
-  Column,
   DashboardContainer,
-  ResponsiveRow
+  ResponsiveRow,
+  Col6
 } from "../../components/Container/style";
 import { StyledCard } from "../../components/Card/style";
 import AdminMenu from "../../components/Menu/AdminMenu";
@@ -15,10 +15,13 @@ import { TitleCard } from "../../components/Card/Cards";
 import { TeamEditor } from "../../components/TeamEditor/TeamEditor";
 import useMediaQuery from "../../components/MediaQueries/MediaQuery";
 import FileUploader from "../../components/Input/FileUploader";
+import TeamPicture from "../../components/Card/TeamPicture";
 
 
 export default function Edition() {
   const minWidth1000 = useMediaQuery('(min-width:1000px)');
+  const [Team, teamEditor] = TeamEditor()
+  
   return (
     <>
       <Head>
@@ -39,7 +42,7 @@ export default function Edition() {
                 <GreenText style={{ marginBottom: "5px" }}>Réglement Intérieur</GreenText>
                 <ResponsiveRow>
                   <div style={{ width: minWidth1000 ? "400px" : "auto", marginBottom: minWidth1000 ? "0" : "20px" }}>
-                    <StyledLink style={{ fontSize: "1.2em" }} color="black" hovercolor="#67bc45" target="_blank" href="/static/docs/Reglement_Interieur_AMNet.pdf">Voir le Réglement Intérieur actuel</StyledLink>
+                    <StyledLink color="black" hovercolor="#67bc45" target="_blank" href="/static/docs/Reglement_Interieur_AMNet.pdf">Voir le Réglement Intérieur actuel</StyledLink>
                   </div>
                   <FileUploader/>
                 </ResponsiveRow>
@@ -50,9 +53,9 @@ export default function Edition() {
                 <GreenText style={{ marginBottom: "5px" }}>Status</GreenText>
                 <ResponsiveRow>
                   <div style={{ width: minWidth1000 ? "400px" : "auto", marginBottom: minWidth1000 ? "0" : "20px" }}>
-                    <StyledLink style={{ fontSize: "1.2em" }} color="black" hovercolor="#67bc45" target="_blank" href="/static/docs/Statuts_AMNet.pdf">Voir les statuts actuels</StyledLink>
+                    <StyledLink color="black" hovercolor="#67bc45" target="_blank" href="/static/docs/Statuts_AMNet.pdf">Voir les statuts actuels</StyledLink>
                   </div>
-                  <input style={{fontFamily: "Poppins"}} type="file" />
+                  <FileUploader/>
                 </ResponsiveRow>
               </div>
 
@@ -65,20 +68,28 @@ export default function Edition() {
           <StyledCard style={{ marginBottom: "2%" }}>
             <TitleCard>Page d'accueil</TitleCard>
             <form method="post" style={{ marginTop: "20px", height: "100%" }}>
-              <div style={{ marginBottom: "20px" }}>
-                <GreenText style={{ marginBottom: "5px" }}>Photo de l'AMNet</GreenText>
-                <ResponsiveRow>
-                  <div style={{ width: minWidth1000 ? "400px" : "auto", marginBottom: minWidth1000 ? "0" : "20px" }}>
-                    <StyledLink style={{ fontSize: "1.2em" }} color="black" hovercolor="#67bc45" target="_blank" href="/static/images/team.png">Voir la photo actuelle</StyledLink>
+              <ResponsiveRow>
+                <Col6 style={{marginRight: minWidth1000 ? "1%" : "0"}}>
+                  <GreenText style={{ marginBottom: "5px" }}>Photo de l'AMNet</GreenText>
+                  <ResponsiveRow style={{marginBottom: "20px"}}>
+                    <div style={{ width: minWidth1000 ? "400px" : "auto", marginBottom: minWidth1000 ? "0" : "20px" }}>
+                      <StyledLink style={{ fontSize: "1.2em" }} color="black" hovercolor="#67bc45" target="_blank" href="/static/images/team.png">Voir la photo actuelle</StyledLink>
+                    </div>
+                    <FileUploader/>
+                  </ResponsiveRow>
+
+                  <div>
+                    {teamEditor}
                   </div>
-                  <input style={{fontFamily: "Poppins"}} type="file" />
-                </ResponsiveRow>
-              </div>
+                </Col6>
 
-
-              <Column style={{ flex: "1", maxWidth: minWidth1000 ? "66.66%" : "100%" }}>
-                <TeamEditor/>
-              </Column>
+                <Col6 style={{marginLeft: minWidth1000 ? "1%" : "0", marginTop: minWidth1000? "0" : "20px"}}>
+                  <GreenText style={{marginBottom: "5px"}}>Apercu de la Photo avec les bucques</GreenText>
+                  <div style={{ outline: "3px solid #096a09", borderRadius: "33px" }}>
+                    <TeamPicture Team={Team}/>
+                  </div>
+                </Col6>
+              </ResponsiveRow>
 
               <Row style={{ marginTop: "20px", justifyContent: "center" }}>
                 <GreenButton>Mettre à jour</GreenButton>
