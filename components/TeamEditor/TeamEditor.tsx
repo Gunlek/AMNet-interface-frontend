@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { SmallGreenButton } from '../Button/Buttons';
-import { Col2, Col5, Column, ResponsiveRow, Row } from '../Container/style';
+import { Col2, Col5, Col6, Column, ResponsiveRow, Row } from '../Container/style';
 import { StyledInput } from '../Input/style';
 import useMediaQuery from '../MediaQueries/MediaQuery';
-import { BlackText, GreenText } from '../Text/style';
+import { GreenText } from '../Text/style';
 import TeamList from './TeamList';
 
 export const TeamEditor = () => {
@@ -37,19 +37,13 @@ export const TeamEditor = () => {
 
     }
 
-    const deleteTeamMember = (e, index) => {
-        e.preventDefault();
-        let Newteam = team.slice(0);
-        Newteam.splice(index, 1);
-        setTeam(Newteam);
+    function SetterTeam(NewTeam){
+        setTeam(NewTeam)
     }
 
-    return (
+    return[
+        team,
         <>
-            <BlackText style={{ marginBottom: "20px" }}>
-                Pour faire correspondre les bucques avec les PGs sur la photo de la page d'accueil, il faut les mettre dans l'ordre suivant : de haut en bas les bucques et de gauche à droite sur la photo
-            </BlackText>
-
             <ResponsiveRow style={{ marginBottom: "20px" }}>
                 <Col5
                     style={{
@@ -75,7 +69,6 @@ export const TeamEditor = () => {
 
                 <Col2
                     style={{
-                        fontSize: "1.2em",
                         paddingLeft: minWidth1000 ? "10px" : "0",
                         justifyContent: "end", alignItems: "center",
                         minWidth: "160px"
@@ -87,10 +80,10 @@ export const TeamEditor = () => {
 
             <Column>
                 <GreenText>La Team actuelle</GreenText>
-                <TeamList list={team} setter={deleteTeamMember} />
+                <TeamList list={team} setter={SetterTeam} />
             </Column>
         </>
-    );
+    ];
 }
 
 export default TeamEditor
