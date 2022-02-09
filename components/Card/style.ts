@@ -30,7 +30,7 @@ export const StyledGreenCard = styled.div`
 `;
 
 export const StyledTeamPicture = styled(Column)`
-  background-image: url("/static/images/team.png");
+  background-image: url(${props => props.background? props.background : "/static/images/team.png"});
   background-repeat: no-repeat;
   background-position: 50% 0%;
   background-size: cover;
@@ -54,7 +54,8 @@ export const GreenLine = styled.div`
   border: 1px solid #096A09;
   height: 0px;
   background: #096a09;
-  display: ${(props) => props.display || "block"};
+  display: ${(props) => props.hideLine? "none" : "block"};
+  margin-left: ${(props) => props.hideLine? "0" : "10px"};
 `;
 
 export const StyledFooter = styled.footer`
