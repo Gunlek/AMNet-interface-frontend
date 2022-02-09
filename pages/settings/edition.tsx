@@ -78,9 +78,7 @@ export default function Edition() {
                     <FileUploader/>
                   </ResponsiveRow>
 
-                  <div>
-                    {teamEditor}
-                  </div>
+                  {teamEditor}
                 </Col6>
 
                 <Col6 style={{marginLeft: minWidth1000 ? "1%" : "0", marginTop: minWidth1000? "0" : "20px"}}>
