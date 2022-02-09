@@ -78,10 +78,8 @@ export const TeamEditor = () => {
                 </Col2>
             </ResponsiveRow>
 
-            <Column>
-                <GreenText>La Team actuelle</GreenText>
-                <TeamList list={team} setter={SetterTeam} />
-            </Column>
+            <GreenText>La Team actuelle</GreenText>
+            <TeamList list={team} setter={SetterTeam} />
         </>
     ];
 }
