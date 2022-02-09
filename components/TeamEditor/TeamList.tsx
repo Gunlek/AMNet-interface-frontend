@@ -14,8 +14,8 @@ export const TeamList = (props: { list: any[], setter?: Function }) => {
         Newteam.splice(index, 1);
         props.setter(Newteam);
     }
+
     const columns = useMemo(() => [ { accessor: 'pseudo' }, { accessor: 'id' } ], [] )
-  
     const getRowId = useCallback(row => {
       return row.id
     }, [])
@@ -44,25 +44,25 @@ export const TeamList = (props: { list: any[], setter?: Function }) => {
     }
   
     return (
-        <div style={{overflowX: "auto"}}> 
-            <DndProvider backend={HTML5Backend}>
-                <StyledTable {...getTableProps()}>
-                    <tbody {...getTableBodyProps()}>
-                        {rows.map((row, index) =>
-                            prepareRow(row) || (
-                                <Row
-                                    deleteTeamMember={deleteTeamMember}
-                                    index={index}
-                                    row={row}
-                                    moveRow={moveRow}
-                                    {...row.getRowProps()}
-                                />
-                            )
-                        )}
-                    </tbody>
-                </StyledTable>
-            </DndProvider>
-        </div>
+      <div style={{overflowX: "auto"}}> 
+        <DndProvider backend={HTML5Backend}>
+          <StyledTable {...getTableProps()}>
+            <tbody {...getTableBodyProps()}>
+              {rows.map((row, index) =>
+                prepareRow(row) || (
+                  <Row
+                    deleteTeamMember={deleteTeamMember}
+                    index={index}
+                    row={row}
+                    moveRow={moveRow}
+                    {...row.getRowProps()}
+                  />
+                )
+              )}
+            </tbody>
+          </StyledTable>
+        </DndProvider>
+      </div>
     )
   }
   
@@ -132,13 +132,40 @@ export const TeamList = (props: { list: any[], setter?: Function }) => {
   
     return (
         <StyledTr ref={dropRef} style={{ opacity }}>
-            <StyledTd ref={dragRef} {...row.cells[1].getCellProps()} style={{ width: "41.66%", userSelect:"none" }}>
+            <StyledTd
+              colspan="2" 
+              ref={dragRef} 
+              style={{ 
+                width: "83.32%", 
+                userSelect:"none", 
+                cursor: "pointer",
+                paddingLeft: "0" 
+              }}
+            >
+              <div 
+                {...row.cells[0].getCellProps()} 
+                style={{
+                  width:"50%",  
+                  display: "inline-block", 
+                  paddingLeft: "20px"
+                }}
+              >
                 {row.cells[0].render('Cell')}
-            </StyledTd>
-            <StyledTd {...row.cells[1].getCellProps()} style={{ width: "41.66%", paddingLeft: "35px", userSelect:"none" }}>
+              </div>
+
+              <div
+                {...row.cells[1].getCellProps()}  
+                style={{
+                  width:"50%", 
+                  display: "inline-block", 
+                  paddingLeft: "20px"
+                }}
+              >
                 {row.cells[1].render('Cell')}
+              </div>   
             </StyledTd>
-            <StyledTd>
+            
+            <StyledTd style={{ paddingLeft: "0" }}>
                 <SmallRedButton onClick={(elmt) => deleteTeamMember(elmt, index)}>Supprimer</SmallRedButton>
             </StyledTd>
         </StyledTr>
