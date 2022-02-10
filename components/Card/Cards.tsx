@@ -15,7 +15,7 @@ export function HelpSection(props: { color?: string, style?: any }) {
   return (
     <StyledHelpSection style={props.style} color={props.color}>
       Besoin d'assistance ?{" "}
-      <StyledLink color={props.color} href="./faq">FAQ</StyledLink>{" "}ou{" "}
+      <StyledLink color={props.color} href={props.color ? "../dashboard/faq" : "./faq"}>FAQ</StyledLink>{" "}ou{" "}
       <StyledLink color={props.color} href="mailto:contact@amnet.fr">contact@amnet.fr</StyledLink>
     </StyledHelpSection>
   );
