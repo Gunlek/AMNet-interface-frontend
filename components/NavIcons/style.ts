@@ -27,6 +27,26 @@ export const StyledBackIcon = styled.a`
   &:hover::before{
     opacity: 1;
   }
+  
+  &::after{
+    display: block;
+    position: absolute;
+    content:  ${(props) => props.content && '"'+props.content+'"'};
+    top: 100%;
+    left: 100%;
+    z-index: -1;
+    transition: opacity 0.3s linear;
+    opacity: 0;
+    border-radius: 15px;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.9);
+    width: max-content;
+    pointer-events: none;
+  }
+
+  &:hover::after{
+    opacity: 1;
+  }
 
   @media screen and (max-width: 1000px){
     margin: 0 5px;
