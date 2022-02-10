@@ -1,6 +1,6 @@
 import { Row } from "../Container/style";
 import EditionIcon from "../NavIcons/edition";
-import HomeIcon from "../NavIcons/home";
+import IndexIcon from "../NavIcons";
 import LogOutIcon from "../NavIcons/log_out";
 import MaterialIcon from "../NavIcons/material";
 import IoTIcon from "../NavIcons/iot";
@@ -72,11 +72,11 @@ export default function AdminMenu(props: { page: string }) {
         </Row>
 
         <Row style={positionning}>
-          <IoTIcon page={props.page} />
+          <IoTIcon page={props.page} location="settings" />
         </Row>
 
         <Row style={positionning}>
-          <MaterialIcon page={props.page} />
+          <MaterialIcon page={props.page} location="settings" />
         </Row>
 
         <Row style={positionning}>
@@ -84,7 +84,7 @@ export default function AdminMenu(props: { page: string }) {
         </Row>
 
         <Row style={positionning}>
-          <HomeIcon page={props.page} />
+          <IndexIcon page={props.page} />
         </Row>
 
         <StyledDivLogOut
