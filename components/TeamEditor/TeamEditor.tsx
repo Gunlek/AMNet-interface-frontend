@@ -44,39 +44,41 @@ export const TeamEditor = () => {
     return[
         team,
         <>
-            <ResponsiveRow style={{ marginBottom: "20px" }}>
-                <Col5
-                    style={{
-                        paddingRight: minWidth1000 ? "10px" : "0",
-                        marginBottom: minWidth1000 ? "0" : "20px",
-                        maxWidth: minWidth1000 ? "41.66%" : "100%"
-                    }}
-                >
-                    <GreenText style={{ marginBottom: "5px", paddingLeft: "5px" }}>Bucque</GreenText>
-                    <StyledInput type="text" onChange={(elmt) => setPseudo(elmt.target.value)} />
-                </Col5>
-                <Col5
-                    style={{
-                        paddingLeft: minWidth1000 ? "10px" : "0",
-                        paddingRight: minWidth1000 ? "10px" : "0",
-                        marginBottom: minWidth1000 ? "0" : "20px",
-                        maxWidth: minWidth1000 ? "41.66%" : "100%"
-                    }}
-                >
-                    <GreenText style={{ marginBottom: "5px", paddingLeft: "5px" }}>Num's</GreenText>
-                    <StyledInput type="text" onChange={(elmt) => setId(elmt.target.value)} />
-                </Col5>
+            <form> 
+                <ResponsiveRow style={{ marginBottom: "20px" }}>
+                    <Col5
+                        style={{
+                            paddingRight: minWidth1000 ? "10px" : "0",
+                            marginBottom: minWidth1000 ? "0" : "20px",
+                            maxWidth: minWidth1000 ? "41.66%" : "100%"
+                        }}
+                    >
+                        <GreenText style={{ marginBottom: "5px", paddingLeft: "5px" }}>Bucque</GreenText>
+                        <StyledInput type="text" onChange={(elmt) => setPseudo(elmt.target.value)} />
+                    </Col5>
+                    <Col5
+                        style={{
+                            paddingLeft: minWidth1000 ? "10px" : "0",
+                            paddingRight: minWidth1000 ? "10px" : "0",
+                            marginBottom: minWidth1000 ? "0" : "20px",
+                            maxWidth: minWidth1000 ? "41.66%" : "100%"
+                        }}
+                    >
+                        <GreenText style={{ marginBottom: "5px", paddingLeft: "5px" }}>Num's</GreenText>
+                        <StyledInput type="text" onChange={(elmt) => setId(elmt.target.value)} />
+                    </Col5>
 
-                <Col2
-                    style={{
-                        paddingLeft: minWidth1000 ? "10px" : "0",
-                        justifyContent: "end", alignItems: "center",
-                        minWidth: "160px"
-                    }}
-                >
-                    <SmallGreenButton onClick={registerNewTeamMember}>Ajouter</SmallGreenButton>
-                </Col2>
-            </ResponsiveRow>
+                    <Col2
+                        style={{
+                            paddingLeft: minWidth1000 ? "10px" : "0",
+                            justifyContent: "end", alignItems: "center",
+                            minWidth: "160px"
+                        }}
+                    >
+                        <SmallGreenButton type="submit" onClick={registerNewTeamMember}>Ajouter</SmallGreenButton>
+                    </Col2>
+                </ResponsiveRow>
+            </form>
 
             <GreenText>La Team actuelle</GreenText>
             <TeamList list={team} setter={SetterTeam} />

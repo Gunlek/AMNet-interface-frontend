@@ -46,7 +46,6 @@ export default function Edition() {
                   </div>
                   <FileUploader/>
                 </ResponsiveRow>
-
               </div>
 
               <div style={{ marginBottom: "20px" }}>
@@ -67,8 +66,7 @@ export default function Edition() {
 
           <StyledCard style={{ marginBottom: "2%" }}>
             <TitleCard>Page d'accueil</TitleCard>
-            <form method="post" style={{ marginTop: "20px", height: "100%" }}>
-              <ResponsiveRow>
+              <ResponsiveRow style={{ marginTop: "20px"}}>
                 <Col6 style={{marginRight: minWidth1000 ? "1%" : "0"}}>
                   <GreenText style={{ marginBottom: "5px" }}>Photo de l'AMNet</GreenText>
                   <ResponsiveRow style={{marginBottom: "20px"}}>
@@ -91,8 +89,7 @@ export default function Edition() {
 
               <Row style={{ marginTop: "20px", justifyContent: "center" }}>
                 <GreenButton>Mettre à jour</GreenButton>
-              </Row>
-            </form>
+              </Row> 
           </StyledCard>
         </DashboardContainer>
       </DefaultBackground>
