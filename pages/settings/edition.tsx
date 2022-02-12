@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Head from "next/head";
 import { DefaultBackground } from "../../components/Background/style";
 import {
@@ -9,7 +9,7 @@ import {
 } from "../../components/Container/style";
 import { StyledCard } from "../../components/Card/style";
 import AdminMenu from "../../components/Menu/AdminMenu";
-import { BlackTitle, GreenText, StyledLink } from "../../components/Text/style";
+import { BlackText, BlackTitle, GreenText, StyledLink } from "../../components/Text/style";
 import { GreenButton } from "../../components/Button/Buttons";
 import { TitleCard } from "../../components/Card/Cards";
 import { TeamEditor } from "../../components/TeamEditor/TeamEditor";
@@ -21,6 +21,13 @@ import TeamPicture from "../../components/Card/TeamPicture";
 export default function Edition() {
   const minWidth1000 = useMediaQuery('(min-width:1000px)');
   const [Team, teamEditor] = TeamEditor()
+  const [ TabFile, setTabFile ] = useState([null, null, null]);
+
+  function SetFile( index: string, file: any){
+    let NemTabFile = TabFile.slice(0);
+    NemTabFile[index] = file;
+    setTabFile(NemTabFile);
+  }
   
   return (
     <>
@@ -44,7 +51,18 @@ export default function Edition() {
                   <div style={{ width: minWidth1000 ? "400px" : "auto", marginBottom: minWidth1000 ? "0" : "20px" }}>
                     <StyledLink color="black" hovercolor="#67bc45" target="_blank" href="/static/docs/Reglement_Interieur_AMNet.pdf">Voir le Réglement Intérieur actuel</StyledLink>
                   </div>
-                  <FileUploader/>
+                  <ResponsiveRow 
+                    style={{
+                      width: minWidth1000 ? "auto" : undefined, 
+                      justifyContent: !minWidth1000 && "center", 
+                      alignItems: "center"
+                    }}
+                  >
+                    <FileUploader index="0" setfile={SetFile} accept=".pdf"/>
+                    <BlackText style={{marginLeft: "10px", marginTop: !minWidth1000 && "10px"}}>
+                      {TabFile[0] && TabFile[0]["name"]}
+                    </BlackText>
+                  </ResponsiveRow>
                 </ResponsiveRow>
               </div>
 
@@ -54,7 +72,18 @@ export default function Edition() {
                   <div style={{ width: minWidth1000 ? "400px" : "auto", marginBottom: minWidth1000 ? "0" : "20px" }}>
                     <StyledLink color="black" hovercolor="#67bc45" target="_blank" href="/static/docs/Statuts_AMNet.pdf">Voir les statuts actuels</StyledLink>
                   </div>
-                  <FileUploader/>
+                  <ResponsiveRow 
+                    style={{
+                      width: minWidth1000 ? "auto" : undefined, 
+                      justifyContent: !minWidth1000 && "center", 
+                      alignItems: "center"
+                    }}
+                  >
+                    <FileUploader index="1" setfile={SetFile} accept=".pdf"/>
+                    <BlackText style={{marginLeft: "10px", marginTop: !minWidth1000 && "10px"}}>
+                      {TabFile[1] && TabFile[1]["name"]}
+                    </BlackText>
+                  </ResponsiveRow>
                 </ResponsiveRow>
               </div>
 
@@ -73,7 +102,12 @@ export default function Edition() {
                     <div style={{ width: minWidth1000 ? "400px" : "auto", marginBottom: minWidth1000 ? "0" : "20px" }}>
                       <StyledLink style={{ fontSize: "1.2em" }} color="black" hovercolor="#67bc45" target="_blank" href="/static/images/team.png">Voir la photo actuelle</StyledLink>
                     </div>
-                    <FileUploader/>
+                    <ResponsiveRow style={{ alignItems: "center" }}>
+                      <FileUploader index="2" setfile={SetFile} accept=".jpeg, .jpg, .png, .svg"/>
+                      <BlackText style={{marginLeft: "10px", marginTop: !minWidth1000 && "10px"}}>
+                        {TabFile[2] && TabFile[2]["name"]}
+                      </BlackText>
+                  </ResponsiveRow>
                   </ResponsiveRow>
 
                   {teamEditor}
@@ -81,9 +115,11 @@ export default function Edition() {
 
                 <Col6 style={{marginLeft: minWidth1000 ? "1%" : "0", marginTop: minWidth1000? "0" : "20px"}}>
                   <GreenText style={{marginBottom: "5px"}}>Apercu de la Photo avec les bucques</GreenText>
-                  <div style={{ outline: "3px solid #096a09", borderRadius: "33px" }}>
-                    <TeamPicture Team={Team}/>
-                  </div>
+                    <TeamPicture 
+                      outline="3px solid #096a09" 
+                      background={TabFile[2] && URL.createObjectURL(TabFile[2])} 
+                      Team={Team}
+                    />
                 </Col6>
               </ResponsiveRow>
 
