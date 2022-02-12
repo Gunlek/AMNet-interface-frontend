@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { SmallGreenButton } from '../Button/Buttons';
 import { Col2, Col5, Col6, Column, ResponsiveRow, Row } from '../Container/style';
-import { StyledInput } from '../Input/style';
+import { StyledInput, StyledInputLabel } from '../Input/style';
 import useMediaQuery from '../MediaQueries/MediaQuery';
 import { GreenText } from '../Text/style';
 import TeamList from './TeamList';
@@ -10,15 +10,15 @@ export const TeamEditor = () => {
     const minWidth1000 = useMediaQuery('(min-width:1000px)');
     const accutalTeam = [
         {
-          'pseudo': "Trobotyk'ss (ML)°",
+          pseudo: "Trobotyk'ss (ML)°",
           id: "47Li220"
         },
         {
-          'pseudo': "Sdoosh",
+          pseudo: "Sdoosh",
           id: "96Li220"
         },
         {
-          'pseudo': "Nem'O",
+          pseudo: "Nem'O",
           id: "74Li220"
         }
     ];
@@ -29,11 +29,12 @@ export const TeamEditor = () => {
 
     const registerNewTeamMember = (e) => {
         e.preventDefault();
-
+        
+        if(!(pseudo==="" || id==="")){
         setTeam(team.concat({
             pseudo: pseudo,
             id: id
-        }));
+        }));}
 
     }
 
@@ -53,8 +54,8 @@ export const TeamEditor = () => {
                             maxWidth: minWidth1000 ? "41.66%" : "100%"
                         }}
                     >
-                        <GreenText style={{ marginBottom: "5px", paddingLeft: "5px" }}>Bucque</GreenText>
-                        <StyledInput type="text" onChange={(elmt) => setPseudo(elmt.target.value)} />
+                        <StyledInputLabel htmlFor="surname" style={{ paddingLeft: "5px" }}>Bucque</StyledInputLabel>
+                        <StyledInput id="surname" type="text" onChange={(elmt) => setPseudo(elmt.target.value)} />
                     </Col5>
                     <Col5
                         style={{
@@ -64,8 +65,8 @@ export const TeamEditor = () => {
                             maxWidth: minWidth1000 ? "41.66%" : "100%"
                         }}
                     >
-                        <GreenText style={{ marginBottom: "5px", paddingLeft: "5px" }}>Num's</GreenText>
-                        <StyledInput type="text" onChange={(elmt) => setId(elmt.target.value)} />
+                        <StyledInputLabel htmlFor="num" style={{ paddingLeft: "5px" }}>Num's</StyledInputLabel>
+                        <StyledInput id="num" type="text" onChange={(elmt) => setId(elmt.target.value)} />
                     </Col5>
 
                     <Col2
