@@ -31,6 +31,7 @@ export const StyledGreenCard = styled.div`
 
 export const StyledTeamPicture = styled(Column)`
   background-image: url(${props => props.background? props.background : "/static/images/team.png"});
+  outline: ${props => props.outline };
   background-repeat: no-repeat;
   background-position: 50% 0%;
   background-size: cover;
@@ -62,7 +63,7 @@ export const StyledFooter = styled.footer`
   display:flex;
   justify-content: end;
   align-items: center;
-  margin:0;
+  margin: 0;
   margin-right: -2%;
   padding-right: 5px;
   margin-top: 10px;
