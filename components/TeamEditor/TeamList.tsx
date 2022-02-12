@@ -5,6 +5,7 @@ import { useTable } from 'react-table'
 import { DndProvider, useDrag, useDrop } from 'react-dnd'
 import update from 'immutability-helper'
 import { HTML5Backend } from "react-dnd-html5-backend";
+import useMediaQuery from '../MediaQueries/MediaQuery';
 
 
 export const TeamList = (props: { list: any[], setter?: Function }) => {
@@ -71,6 +72,7 @@ export const TeamList = (props: { list: any[], setter?: Function }) => {
   const Row = ({ row, index, moveRow, deleteTeamMember }) => {
     const dropRef = useRef(null)
     const dragRef = useRef(null)
+    const minWidth1000 = useMediaQuery('(min-width:1000px)');
   
     const [, drop] = useDrop({
       accept: DND_ITEM_TYPE,
@@ -146,7 +148,7 @@ export const TeamList = (props: { list: any[], setter?: Function }) => {
                 {...row.cells[0].getCellProps()} 
                 style={{
                   width:"50%",  
-                  display: "inline-block", 
+                  display: minWidth1000? "inline-block" : "block", 
                   paddingLeft: "20px"
                 }}
               >
@@ -157,7 +159,7 @@ export const TeamList = (props: { list: any[], setter?: Function }) => {
                 {...row.cells[1].getCellProps()}  
                 style={{
                   width:"50%", 
-                  display: "inline-block", 
+                  display: minWidth1000? "inline-block" : "block", 
                   paddingLeft: "20px"
                 }}
               >
