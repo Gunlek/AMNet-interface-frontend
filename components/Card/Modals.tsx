@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { GreenButton } from "../Button/Buttons";
-import { Row } from "../Container/style";
+import { ResponsiveRow, Row } from "../Container/style";
 import FileUploader from "../Input/FileUploader";
 import { StyledInput, StyledInputLabel } from "../Input/style";
 import useMediaQuery from "../MediaQueries/MediaQuery";
@@ -42,6 +42,11 @@ export function ContributionModal(props: { reveal: boolean, hide: any }) {
 
 export function IoTModal(props: { reveal: boolean, hide: any }) {
     const minWidth1000 = useMediaQuery('(min-width: 1000px)')
+    const [ File, setFile ] = useState();
+
+  function Setfile( file: any){
+    setFile(file);
+  }
 
     return(
         <>
@@ -62,7 +67,12 @@ export function IoTModal(props: { reveal: boolean, hide: any }) {
                         htmlFor="picture_equipment"
                     >
                         Photographie de l'objet avec Adresse Physique visible</StyledInputLabel>
-                    <FileUploader id="picture_equipment"/>
+                    <ResponsiveRow style={{alignItems: "center"}}>
+                        <FileUploader id="picture_equipment" setfile={Setfile} accept=".jpeg, .jpg, .png, .svg"/>
+                        <BlackText style={{marginLeft: "10px", marginTop: !minWidth1000 && "10px"}}>
+                        {File && File["name"]}
+                        </BlackText>
+                    </ResponsiveRow>
                 </div>
                 <Row style={{ justifyContent: "center" }}>
                     <GreenButton width="350px">Envoyer la demande</GreenButton>
