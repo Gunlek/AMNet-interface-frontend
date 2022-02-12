@@ -18,6 +18,7 @@ import {
 
 export default function AdminMenu(props: { page: string }) {
   const minWidth750 = useMediaQuery('(min-width:750px)');
+  const minWidth1000 = useMediaQuery('(min-width:1000px)');
   const [open, SetOpen] = useState(false);
 
   function handleChange() {
@@ -89,7 +90,7 @@ export default function AdminMenu(props: { page: string }) {
 
         <StyledDivLogOut
           style={{
-            flex: minWidth750 ? "3" : "1",
+            flex: minWidth1000 ? "3" : "1",
             marginTop: minWidth750 ? "10px" : "0"
           }}
           display={minWidth750 ? "flex" : "none"}>
