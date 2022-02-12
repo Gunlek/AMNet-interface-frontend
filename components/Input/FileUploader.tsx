@@ -1,14 +1,7 @@
 import React from 'react'
-import styled from 'styled-components'
 import { GreenButton, SmallGreenButton } from '../Button/Buttons'
 
-const HiddenFile = styled.input.attrs({ type: 'file' })`
-
-  width: 200px;
-`;
-
-
-const FileUploader = props => {
+const FileUploader = (props: {accept?: string, id?: string, index?: string, setfile?: Function }) => {
     // Create a reference to the hidden file input element
     const hiddenFileInput = React.useRef(null);
 
@@ -22,7 +15,8 @@ const FileUploader = props => {
     // to handle the user-selected file 
     const handleChange = event => {
         const fileUploaded = event.target.files[0];
-        props.handleFile(fileUploaded);
+        if(props.index){ props.setfile(props.index, fileUploaded);}
+        else {props.setfile(fileUploaded);}
     };
 
     return (
@@ -31,7 +25,8 @@ const FileUploader = props => {
                 Choisir un fichier
             </SmallGreenButton>
             <input
-                {...props}
+                accept={props.accept}
+                id={props.id}
                 type="file"
                 ref={hiddenFileInput}
                 onChange={handleChange}
