@@ -8,6 +8,7 @@ export const StyledMenu = styled(StyledCard)`
   padding-Top:20px;
   padding-bottom:10px; 
   align-items: center;
+  z-index:2;
 
   @media screen and (max-width: 1000px){
     background: white;
