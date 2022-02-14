@@ -141,7 +141,8 @@ export const TeamList = (props: { list: any[], setter?: Function }) => {
                 width: "83.32%", 
                 userSelect:"none", 
                 cursor: "pointer",
-                paddingLeft: "0" 
+                paddingLeft: "0", 
+                paddingRight: minWidth1000? "0" : "10px" 
               }}
             >
               <div 
@@ -167,7 +168,7 @@ export const TeamList = (props: { list: any[], setter?: Function }) => {
               </div>   
             </StyledTd>
             
-            <StyledTd style={{ paddingLeft: "0" }}>
+            <StyledTd style={{ paddingLeft: minWidth1000? "0" : "10px" }}>
                 <SmallRedButton onClick={(elmt) => deleteTeamMember(elmt, index)}>Supprimer</SmallRedButton>
             </StyledTd>
         </StyledTr>
