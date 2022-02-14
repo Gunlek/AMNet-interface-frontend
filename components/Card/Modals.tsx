@@ -6,7 +6,7 @@ import { StyledInput, StyledInputLabel } from "../Input/style";
 import useMediaQuery from "../MediaQueries/MediaQuery";
 import { BlackText, GreenText, StyledLink } from "../Text/style";
 import { TitleCard } from "./Cards";
-import { StyledBackgroundModal, StyledModal } from "./style";
+import { StyledBackgroundModal, StyledImg, StyledModal } from "./style";
 
 export const ModalLogic = () => {
     var [reveal, setreveal] = useState(false);
@@ -42,11 +42,17 @@ export function ContributionModal(props: { reveal: boolean, hide: any }) {
 
 export function IoTModal(props: { reveal: boolean, hide: any }) {
     const minWidth1000 = useMediaQuery('(min-width: 1000px)')
-    const [ File, setFile ] = useState();
+    const [ File, setFile ] = useState(null);
 
-  function Setfile( file: any){
-    setFile(file);
-  }
+    function Setfile( id: string, file: any){
+        setFile(file);
+    }
+
+    function DeleteFile(){
+        const input = document.getElementById("picture_equipment") as HTMLInputElement;
+        input.value = null;
+        setFile(null);
+    }
 
     return(
         <>
@@ -69,9 +75,24 @@ export function IoTModal(props: { reveal: boolean, hide: any }) {
                         Photographie de l'objet avec Adresse Physique visible</StyledInputLabel>
                     <ResponsiveRow style={{alignItems: "center"}}>
                         <FileUploader id="picture_equipment" setfile={Setfile} accept=".jpeg, .jpg, .png, .svg"/>
-                        <BlackText style={{marginLeft: "10px", marginTop: !minWidth1000 && "10px"}}>
-                        {File && File["name"]}
-                        </BlackText>
+                        <div 
+                            style={{
+                                marginLeft: minWidth1000 && "10px", 
+                                marginTop: !minWidth1000 && "10px",
+                                display: File ? "flex" : "none",
+                                alignItems: "center"
+                            }}
+                        >
+                            <StyledLink
+                                color="black"  
+                                hovercolor="#67bc45" 
+                                target="_blank" 
+                                href={File && URL.createObjectURL(File)}
+                            >
+                                {File && File["name"]}
+                            </StyledLink>
+                            <StyledImg width="1.2rem" onClick={() => DeleteFile()} src="/static/icons/fail.svg"/>
+                        </div>
                     </ResponsiveRow>
                 </div>
                 <Row style={{ justifyContent: "center" }}>
