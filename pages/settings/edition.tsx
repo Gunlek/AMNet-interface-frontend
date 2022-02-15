@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Head from "next/head";
 import { DefaultBackground } from "../../components/Background/style";
 import {
@@ -23,6 +23,14 @@ export default function Edition() {
   const [Team, teamEditor] = TeamEditor()
   const [ TabFile, setTabFile ] = useState([null, null, null]);
   
+  useEffect(() => { 
+    const input0 = document.getElementById("0") as HTMLInputElement;
+    const input1 = document.getElementById("1") as HTMLInputElement;
+    const input2 = document.getElementById("2") as HTMLInputElement;
+    input0.value = null;
+    input1.value = null;
+    input2.value = null;
+  }, []);
 
   function SetFile( index: string, file: any){
     let NemTabFile = TabFile.slice(0);
@@ -60,7 +68,7 @@ export default function Edition() {
                   <div style={{ width: minWidth1000 ? "400px" : "auto", marginBottom: minWidth1000 ? "0" : "20px" }}>
                     <StyledLink 
                       color="black" 
-                      hovercolor="#67bc45" 
+                      hovercolor="#2E8A21"
                       target="_blank" 
                       href="/static/docs/Reglement_Interieur_AMNet.pdf"
                     >
@@ -84,8 +92,8 @@ export default function Edition() {
                         }}
                       >
                         <StyledLink
-                          color="black" 
-                          hovercolor="#67bc45" 
+                          color="black"
+                          hovercolor="#2E8A21" 
                           target="_blank" 
                           href={TabFile[0] && URL.createObjectURL(TabFile[0])}
                         >
@@ -104,7 +112,7 @@ export default function Edition() {
                   <div style={{ width: minWidth1000 ? "400px" : "auto", marginBottom: minWidth1000 ? "0" : "20px" }}>
                     <StyledLink 
                       color="black" 
-                      hovercolor="#67bc45" 
+                      hovercolor="#2E8A21"
                       target="_blank" 
                       href="/static/docs/Statuts_AMNet.pdf"
                     >
@@ -128,8 +136,8 @@ export default function Edition() {
                         }}
                       >
                         <StyledLink
-                          color="black"  
-                          hovercolor="#67bc45" 
+                          color="black" 
+                          hovercolor="#2E8A21" 
                           target="_blank" 
                           href={TabFile[1] && URL.createObjectURL(TabFile[1])}
                         >
@@ -156,7 +164,7 @@ export default function Edition() {
                     <div style={{ width: minWidth1000 ? "400px" : "auto", marginBottom: minWidth1000 ? "0" : "20px" }}>
                       <StyledLink 
                         color="black" 
-                        hovercolor="#67bc45" 
+                        hovercolor="#2E8A21"
                         target="_blank" 
                         href="/static/images/team.png"
                       >
@@ -175,7 +183,7 @@ export default function Edition() {
                       >
                         <StyledLink
                           color="black" 
-                          hovercolor="#67bc45" 
+                          hovercolor="#2E8A21" 
                           target="_blank" 
                           href={TabFile[2] && URL.createObjectURL(TabFile[2])}
                         >
