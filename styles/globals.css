@@ -6,22 +6,22 @@
 }
 
 ::-webkit-scrollbar {
-  width: 10px;
-  height: 10px;
+  width: 8px;
+  height: 8px;
 }
 
 /* Track */
 ::-webkit-scrollbar-track {
-  -webkit-border-radius: 10px;
-  border-radius: 10px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  -webkit-border-radius: 10px;
-  border-radius: 10px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
   background: #C4C4C433;
-  -webkit-box-shadow: inset 0 0 4px rgba(0,0,0,0.4); 
+  -webkit-box-shadow: inset 0 0 4px  rgba(0,0,0,0.2); 
 }
 
 *{
@@ -31,15 +31,14 @@
   -webkit-user-select: none; /* Chrome, Safari, Opéra depuis la version 15 */
   -ms-user-select: none; /* Internet explorer depuis la version 10 et Edge */
   user-select: none; /* Propriété standard */
-  font-family: "Poppins",-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: "Poppins", sans-serif;
+  box-sizing: border-box;
 }
 
 html,
 body {
   padding: 0;
   margin: 0;
-  
   background-color: #E8EFEA;
 }
 
@@ -52,7 +51,7 @@ input[type="text"], textarea, td, a{
 }
 
 ::selection{
-  background-color: #67BC45;
+  background-color: #2E8A21;
   color: white;
 }
 
@@ -88,6 +87,4 @@ a {
   text-decoration: none;
 }
 
-* {
-  box-sizing: border-box;
-}
+

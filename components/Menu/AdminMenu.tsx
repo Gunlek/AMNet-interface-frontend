@@ -1,6 +1,6 @@
 import { Row } from "../Container/style";
 import EditionIcon from "../NavIcons/edition";
-import HomeIcon from "../NavIcons/home";
+import IndexIcon from "../NavIcons";
 import LogOutIcon from "../NavIcons/log_out";
 import MaterialIcon from "../NavIcons/material";
 import IoTIcon from "../NavIcons/iot";
@@ -18,6 +18,7 @@ import {
 
 export default function AdminMenu(props: { page: string }) {
   const minWidth750 = useMediaQuery('(min-width:750px)');
+  const minWidth1000 = useMediaQuery('(min-width:1000px)');
   const [open, SetOpen] = useState(false);
 
   function handleChange() {
@@ -72,11 +73,11 @@ export default function AdminMenu(props: { page: string }) {
         </Row>
 
         <Row style={positionning}>
-          <IoTIcon page={props.page} />
+          <IoTIcon page={props.page} location="settings" />
         </Row>
 
         <Row style={positionning}>
-          <MaterialIcon page={props.page} />
+          <MaterialIcon page={props.page} location="settings" />
         </Row>
 
         <Row style={positionning}>
@@ -84,12 +85,12 @@ export default function AdminMenu(props: { page: string }) {
         </Row>
 
         <Row style={positionning}>
-          <HomeIcon page={props.page} />
+          <IndexIcon page={props.page} />
         </Row>
 
         <StyledDivLogOut
           style={{
-            flex: minWidth750 ? "3" : "1",
+            flex: minWidth1000 ? "3" : "1",
             marginTop: minWidth750 ? "10px" : "0"
           }}
           display={minWidth750 ? "flex" : "none"}>

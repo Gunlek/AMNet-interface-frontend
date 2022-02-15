@@ -122,7 +122,7 @@ export default function SignUp() {
                   </StyledSelect>
                   <div style={{ display: isOther ? "flex" : "none", alignItems: "center" }} >
                     <StyledInput id="user_promotion2" ref={PromotionInput => { (PromotionInput && isOther) && PromotionInput.focus() }} type="text" />
-                    <StyledImg onClick={CancelChange} src="static/icons/cancel.svg"/>
+                    <StyledImg width="35px" marginLeft="20px" shadow="1" onClick={CancelChange} src="/static/icons/cancel.svg"/>
                   </div>
                 </Col6>
               </ResponsiveRow>

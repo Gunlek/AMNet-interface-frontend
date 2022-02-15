@@ -1,7 +1,7 @@
 import { Row } from "../Container/style";
 import FAQIcon from "../NavIcons/faq";
 import GadzflixIcon from "../NavIcons/gadzflix";
-import HomeIcon from "../NavIcons/home";
+import IndexIcon from "../NavIcons";
 import LogOutIcon from "../NavIcons/log_out";
 import MaterialIcon from "../NavIcons/material";
 import IoTIcon from "../NavIcons/iot";
@@ -65,7 +65,7 @@ export default function UserMenu(props: { page: string }) {
         </StyledDivLogOut>
 
         <Row style={positionning}>
-          <HomeIcon page={props.page} />
+          <IndexIcon page={props.page} />
         </Row>
 
         <Row style={positionning}>
@@ -73,19 +73,19 @@ export default function UserMenu(props: { page: string }) {
         </Row>
 
         <Row style={positionning}>
-          <FAQIcon page={props.page} />
+          <IoTIcon page={props.page} location="dashboard" />
         </Row>
 
         <Row style={positionning}>
-          <IoTIcon page={props.page} />
-        </Row>
-
-        <Row style={positionning}>
-          <MaterialIcon page={props.page} />
+          <MaterialIcon page={props.page} location="dashboard" />
         </Row>
 
         <Row style={positionning}>
           <GadzflixIcon />
+        </Row>
+
+        <Row style={positionning}>
+          <FAQIcon page={props.page} />
         </Row>
 
         <Row style={positionning}>

@@ -24,6 +24,7 @@ export const StyledTd = styled.td`
 
   &:first-child {
     padding-left: 20px;
+    padding-right:0;
   }
   
   &:last-child {
@@ -32,7 +33,7 @@ export const StyledTd = styled.td`
 `;
 
 export const StyledUsersTr = styled(StyledTr)`
-  &:nth-child(2n+1){
+  &:nth-child(2n){
     ${StyledTd} {
       background: rgba(0, 0, 0, 0.075);
     }
@@ -83,6 +84,7 @@ export const StyledTh = styled.th`
     padding-left: 20px;
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
+    padding-right:0;
   }
 
   &:last-child {

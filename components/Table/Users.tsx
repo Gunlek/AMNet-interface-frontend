@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { forwardRef, useEffect, useMemo, useRef, useState } from 'react'
 import { useTable, useFilters, useGlobalFilter, useAsyncDebounce, useRowSelect, useSortBy } from 'react-table'
 import { CheckboxRow } from '../Container/style';
 import Checkbox from '../Input/Checkbox';
@@ -8,15 +8,57 @@ import useMediaQuery from '../MediaQueries/MediaQuery';
 import {
   StyledTable,
   StyledTh,
-  StyledTr,
   StyledTd,
   StyledUsersTr,
   StyledHeadTr
 } from './style';
 
+interface Props {
+  indeterminate?: boolean;
+  name: string;
+}
+
+const useCombinedRefs = (...refs): React.MutableRefObject<any> => {
+  const targetRef = React.useRef();
+
+  React.useEffect(() => {
+    refs.forEach(ref => {
+      if (!ref) return;
+
+      if (typeof ref === 'function') {
+        ref(targetRef.current);
+      } else {
+        ref.current = targetRef.current;
+      }
+    });
+  }, [refs]);
+
+  return targetRef;
+};
+
+const IndeterminateCheckbox = forwardRef<HTMLInputElement, Props>(
+  ({ indeterminate, ...rest }, ref: React.Ref<HTMLInputElement>) => {
+    const defaultRef = React.useRef(null);
+    const combinedRef = useCombinedRefs(ref, defaultRef);
+
+    useEffect(() => {
+      if (combinedRef?.current) {
+        combinedRef.current.indeterminate = indeterminate ?? false;
+      }
+    }, [combinedRef, indeterminate]);
+
+    return (
+      <StyledLabel width="25px">
+        <Checkbox  refs={combinedRef} {...rest}/>
+      </StyledLabel>
+      
+    );
+  }
+);
+
 function GlobalFilter({ globalFilter, setGlobalFilter }) {
   const minWidth1000 = useMediaQuery('(min-width:1000px)');
-  const [value, setValue] = React.useState(globalFilter)
+  const [value, setValue] = useState(globalFilter)
   const onChange = useAsyncDebounce(value => {
     setGlobalFilter(value || undefined)
   }, 200)
@@ -34,19 +76,9 @@ function GlobalFilter({ globalFilter, setGlobalFilter }) {
   )
 }
 
-const IndeterminateCheckbox = React.forwardRef(
-  ({ ...rest }) => {
-    return (
-      <StyledLabel width="25px">
-        <Checkbox {...rest} />
-      </StyledLabel>
-    )
-  }
-)
-
 export function UsersTable(data: any[]) {
   const minWidth1000 = useMediaQuery('(min-width:1000px)');
-  const columns = React.useMemo(
+  const columns = useMemo(
     () => [
       { Header: '#', accessor: (row, i) => i+1 },
       { Header: 'Utilisateur', accessor: 'user_name' },
@@ -105,6 +137,9 @@ export function UsersTable(data: any[]) {
         // Let's make a column for selection
         {
           id: 'selection',
+          minWidth: 35,
+          width: 35,
+          maxWidth: 35,
           // The header can use the table's getToggleAllRowsSelectedProps method
           // to render a checkbox
           Header: ({ getToggleAllRowsSelectedProps }) => (
@@ -124,12 +159,12 @@ export function UsersTable(data: any[]) {
       ])
     }
   )
-
+      
   return [
     <GlobalFilter globalFilter={state.globalFilter} setGlobalFilter={setGlobalFilter} />,
     <CheckboxRow
       justify="center"
-      width="175px"
+      width="150px"
       style={{
         marginBottom: minWidth1000 ? "2%" : "4%",
         alignItems: "center"
@@ -142,8 +177,11 @@ export function UsersTable(data: any[]) {
         </StyledLabel>
       ))}
     </CheckboxRow>,
+    selectedFlatRows.map(
+      d => d.original["user_id"]
+    ),
     <StyledTable {...getTableProps()}>
-      <thead>
+      <thead style={{position: "sticky", top: "0", zIndex: "2"}}>
         {headerGroups.map(headerGroup => (
           <StyledHeadTr {...headerGroup.getHeaderGroupProps()}>
 

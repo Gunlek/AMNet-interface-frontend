@@ -32,7 +32,6 @@ export const GreenTitle = styled.h2`
   font-weight: normal;
   font-size: 1.8rem;
   color: #096a09;
-  padding-right: ${(props) => !props.hideLine && "10px"}; 
 
   @media screen and (max-width: 1000px){
     font-size: 1.6rem;

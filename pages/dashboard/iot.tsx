@@ -101,7 +101,7 @@ export default function UserIoT() {
               Renseigner l'adresse physique (aussi appelée adresse MAC) de votre appareil, ainsi qu'une photo où l'on distingue clairement l'objet et l'adresse mac qui lui est associée
             </li>
             <li>
-              Attendre qu'un administrateur valide votre demande (2-3 jours, depassé ce laps de temps envoyez un mail à <StyledLink style={{ fontSize: "1em", fontWeight: "bold" }} color="#096a09" hovercolor="#67bc45" href="mailto:contact@amnet.fr">contact@amnet.fr</StyledLink>)
+              Attendre qu'un administrateur valide votre demande (2-3 jours, depassé ce laps de temps envoyez un mail à <StyledLink style={{ fontWeight: "bold" }} color="#096a09" hovercolor="#67bc45" href="mailto:contact@amnet.fr">contact@amnet.fr</StyledLink>)
             </li>
             <li>
               Une fois la demande validée vous pourrez connecter votre appareil au réseau Wi-Fi :{" "}<span style={{ color: "#096a09", fontWeight: "bold" }}>AMNet IoT</span>
@@ -116,7 +116,7 @@ export default function UserIoT() {
                 overflowX: "auto"
               }}
             >
-              <IoTUserTable RequestTable={Iot} />
+              <IoTUserTable requests={Iot} />
             </div>
           </StyledCard>
 

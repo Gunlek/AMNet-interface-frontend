@@ -11,10 +11,10 @@ import {
     StyledHeadTr
 } from "./style";
 
-export function IoTUserTable(props: { RequestTable: any[] }) {
+export function IoTUserTable(props: { requests: any[] }) {
     let listHTML = [];
 
-    props.RequestTable.map((value, index) => { 
+    props.requests.map((value, index) => { 
         listHTML.push(
             <StyledTr key={index}>
                 <StyledTd>{index+1}</StyledTd>
@@ -51,10 +51,10 @@ export function IoTUserTable(props: { RequestTable: any[] }) {
 };
 
 
-export function MaterialUserTable(props: { RequestTable: any[] }) {
+export function MaterialUserTable(props: { requests: any[] }) {
     let listHTML = [];
 
-    props.RequestTable.map((value, index) => { 
+    props.requests.map((value, index) => { 
         listHTML.push(
             <StyledTr key={index}>
                 <StyledTd>{index+1}</StyledTd>

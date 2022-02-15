@@ -61,7 +61,7 @@ export default function AdminMaterial() {
 
           <StyledCard style={{ flex: "1", marginBottom: minWidth1000 ? "2%" : "4%" }}>
             <div style={{ height:"100%", width:"100%", overflowX:"auto" }}>
-              <MaterialAdminTable status={Tab} RequestTable={material}/>
+              <MaterialAdminTable status={Tab} requests={material}/>
             </div>
           </StyledCard>
         </DashboardContainer>

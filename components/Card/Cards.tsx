@@ -15,8 +15,8 @@ export function HelpSection(props: { color?: string, style?: any }) {
   return (
     <StyledHelpSection style={props.style} color={props.color}>
       Besoin d'assistance ?{" "}
-      <StyledLink color={props.color} href="./faq">FAQ</StyledLink>{" "}ou{" "}
-      <StyledLink color={props.color} href="mailto:contact@amnet.fr">contact@amnet.fr</StyledLink> !
+      <StyledLink color={props.color} href={props.color ? "../dashboard/faq" : "./faq"}>FAQ</StyledLink>{" "}ou{" "}
+      <StyledLink color={props.color} href="mailto:contact@amnet.fr">contact@amnet.fr</StyledLink>
     </StyledHelpSection>
   );
 }
@@ -24,10 +24,10 @@ export function HelpSection(props: { color?: string, style?: any }) {
 export function TitleCard(props: { children: string, hideLine?: boolean }){
   return(
     <Row style={{ marginBottom:"0.5rem", alignItems: "center"}}>             
-      <GreenTitle hideLine={props.hideLine}>
+      <GreenTitle >
         {props.children}
       </GreenTitle>
-      <GreenLine display={props.hideLine && "none"} />
+      <GreenLine hideLine={props.hideLine}/>
     </Row>
   );
 }

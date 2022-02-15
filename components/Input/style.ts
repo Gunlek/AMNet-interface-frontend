@@ -11,16 +11,10 @@ export const StyledInput = styled.input`
   border: 2px solid transparent;
   margin: 0;
 
-  &:hover{
+  &:hover, &:focus{
     background: rgba(255, 255, 255, 0.8);
     border: 2px solid #096A09;
     outline: none;
-  }
-
-  &:focus{
-    background: rgba(255, 255, 255, 0.8);
-    outline: none;
-    border: 2px solid #096A09;
   }
 `;
 
@@ -34,14 +28,10 @@ export const StyledSelect = styled.select`
   border: 2px solid transparent;
   font-size: 1.2rem;
 
-  &:hover{
+  &:hover, &:focus{
+    background: rgba(255, 255, 255, 0.8);
     border: 2px solid #096A09;
     outline: none;
-  }
-
-  &:focus{
-    outline: none;
-    border: 2px solid #096A09;
   }
 `;
 
@@ -56,24 +46,18 @@ export const StyledTextArea = styled.textarea`
   border-radius: 15px;
   border: 2px solid transparent;
   font-size: 1.2rem;
-  scrollbar-width: none !important;
-
-  ::-webkit-scrollbar {
-    width: 0 !important;
-  }
-
-  &:hover{
+  overflow: hidden;
+ 
+  &:hover, &:focus{
+    background: rgba(255, 255, 255, 0.8);
     border: 2px solid #096A09;
-  }
-
-  &:focus{
-      outline: none;
-      border: 2px solid #096A09;
+    outline: none;
   }
 `;
 
 export const StyledInputLabel = styled.label`
   width: fit-content;
+  display: block;
   margin-bottom: 5px;
   font-size: 1.2rem;
   color: #096a09;

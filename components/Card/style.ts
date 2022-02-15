@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import { Column } from "../Container/style";
 
 export const StyledCard = styled.div`
@@ -30,7 +30,8 @@ export const StyledGreenCard = styled.div`
 `;
 
 export const StyledTeamPicture = styled(Column)`
-  background-image: url("/static/images/team.png");
+  background-image: url(${props => props.background? props.background : "/static/images/team.png"});
+  outline: ${props => props.outline };
   background-repeat: no-repeat;
   background-position: 50% 0%;
   background-size: cover;
@@ -54,14 +55,15 @@ export const GreenLine = styled.div`
   border: 1px solid #096A09;
   height: 0px;
   background: #096a09;
-  display: ${(props) => props.display || "block"};
+  display: ${(props) => props.hideLine? "none" : "block"};
+  margin-left: ${(props) => props.hideLine? "0" : "10px"};
 `;
 
 export const StyledFooter = styled.footer`
   display:flex;
   justify-content: end;
   align-items: center;
-  margin:0;
+  margin: 0;
   margin-right: -2%;
   padding-right: 5px;
   margin-top: 10px;
@@ -106,12 +108,14 @@ export const StyledTabColumn = styled(Column)`
 
 export const StyledImg = styled.img`
   border-radius: 8px;
-  margin-left: 20px;
-  width: 35px;
+  transition: 0.3s;
+  margin-left: ${(props) => props.marginLeft || "10px"};
+  width: ${(props) => props.width || "1rem"};
   cursor: pointer;
 
   &:hover{
-    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.4);
+    box-shadow: ${(props) => props.shadow && "0px 2px 10px rgba(0, 0, 0, 0.4)"};
+    filter: ${(props) => !props.shadow && "drop-shadow(-1px 1.5px 2px rgba(0, 0, 0, 0.4))"};
   }
 `
 
@@ -122,17 +126,23 @@ export const StyledBackgroundModal = styled.div`
   width: 100%; 
   left: 0; 
   top: 0;  
-  z-index: 1;
+  transition: all 0.4s linear;
+  z-index: ${props => (props.reveal ? "1" : "-1")};
+  opacity: ${props => (props.reveal ? "1" : "0")};
 `;
 
+
+
 export const StyledModal = styled(StyledCardCampus)`
-  width: ${props => (props.width ? props.width : "90%")}; 
+  width: ${props => (props.width ? props.width : "90%")};
   align-items: center; 
   justify-content: center;
   padding: 30px; 
   position: fixed; 
   top: 50%; 
   left: 50%;  
+  transition: all 0.4s linear;
   transform: translate(-50%, -50%);
-  z-index: 2;
+  z-index: ${props => (props.reveal ? "2" : "-1")};
+  opacity: ${props => (props.reveal ? "1" : "0")};
 `

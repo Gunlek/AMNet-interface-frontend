@@ -3,41 +3,42 @@ import { BlackText, GreenText } from "../Text/style";
 import { GreenCard } from "./Cards";
 import { StyledTeamPicture, StyledCardCampus } from "./style";
 
-export default function TeamPicture(props: { promotion: string, names: string, nums: string}) {
-    var separator = /\s*(;|$)\s*/;
-    var names = props.names.split(separator);
-    var nums = props.nums.split(separator);
-    var size = Math.round(names.length / 2);
+export default function TeamPicture(props: {Team: any, background?: string, outline?: string}) {
+  const promotion="220"
+
+  const Flex = {
+    flex: (12 / props.Team.length).toString(),
+    textAlign: "center"
+  };
+
+  let Team = [];
   
-    const Flex = {
-      flex: (12 / size).toString(),
-      alignItems: "center",
-      textAlign: "center"
-    };
-  
-    let Team = [];
-    var i = 0;
-    
-    for (var pas = 0; pas < size; pas++){
-      Team.push(
-        <Column key={pas} style={Flex}>
-          <BlackText>
-            {names[i]}
-          </BlackText>
-          <GreenText>
-            {nums[i]}
-          </GreenText>
-        </Column>
-      )
-      i = i+2;
-    }
-  
-    return (
-      <StyledTeamPicture style={{ paddingTop:"15px", justifyContent:"space-between" }}>
-        <GreenCard promotion={props.promotion}/>
-        <StyledCardCampus style={{ alignItems:"center", flexDirection: "row" }}>
-          {Team}
-        </StyledCardCampus> 
-      </StyledTeamPicture>
-    );
-  }
+  props.Team.map((value, index) => {
+    Team.push(
+      <Column key={index} style={Flex}>
+        <BlackText>
+          {value['pseudo']}
+        </BlackText>
+        <GreenText>
+          {value.id}
+        </GreenText>
+      </Column>
+    )
+  });
+
+  return (
+    <StyledTeamPicture 
+      background={props.background} 
+      outline={props.outline}
+      style={{ 
+        paddingTop:"15px", 
+        justifyContent:"space-between" 
+      }}
+    >
+      <GreenCard promotion={promotion}/>
+      <StyledCardCampus style={{ alignItems:"center", flexDirection: "row" }}>
+        {Team}
+      </StyledCardCampus> 
+    </StyledTeamPicture>
+  );
+}

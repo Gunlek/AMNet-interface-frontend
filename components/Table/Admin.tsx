@@ -21,11 +21,11 @@ function Buttons(props: { status: string, id?: string }) {
     )
 }
 
-export function IoTAdminTable(props: { RequestTable: any[], status: string }) {
+export function IoTAdminTable(props: { requests: any[], status: string }) {
     let listHTML = [];
     var index = 1
 
-    props.RequestTable.map((value) => {
+    props.requests.map((value) => {
         if (value['acces_state'] == props.status) {
             listHTML.push(
                 <StyledTr key={index}>
@@ -52,7 +52,7 @@ export function IoTAdminTable(props: { RequestTable: any[], status: string }) {
                                 justifyContent:"space-between"
                             }}
                         >
-                        <Buttons status={value['acces_state']} />
+                            <Buttons status={value['acces_state']} />
                         </div>  
                     </StyledTd>
                 </StyledTr>
@@ -80,11 +80,11 @@ export function IoTAdminTable(props: { RequestTable: any[], status: string }) {
     );
 };
 
-export function MaterialAdminTable(props: { RequestTable: any[], status: string }) {
+export function MaterialAdminTable(props: { requests: any[], status: string }) {
     let listHTML = [];
     var index = 1
 
-    props.RequestTable.map((value) => {
+    props.requests.map((value) => {
         if (value['material_state'] == props.status) {
             listHTML.push(
                 <StyledTr key={index} style={{ padding: "10px 0 10px 30px" }}>
@@ -107,7 +107,7 @@ export function MaterialAdminTable(props: { RequestTable: any[], status: string 
                                 justifyContent:"space-between"
                             }}
                         >
-                        <Buttons status={value['material_state']} />
+                            <Buttons status={value['material_state']} />
                         </div> 
                     </StyledTd>
                 </StyledTr>

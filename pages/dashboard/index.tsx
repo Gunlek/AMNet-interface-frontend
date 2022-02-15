@@ -27,7 +27,7 @@ export default function Dashboard() {
       </Head>
       
       <DefaultBackground>
-        <UserMenu page="home" />
+        <UserMenu page="index" />
 
         <DashboardContainer>
           <ResponsiveRow style={{ margin: minWidth1000 ? "1% 0" : "4% 0", justifyContent: minWidth1000 ? "start" : "center" }}>
