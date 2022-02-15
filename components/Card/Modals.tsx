@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { GreenButton } from "../Button/Buttons";
 import { ResponsiveRow, Row } from "../Container/style";
 import FileUploader from "../Input/FileUploader";
@@ -43,6 +43,11 @@ export function ContributionModal(props: { reveal: boolean, hide: any }) {
 export function IoTModal(props: { reveal: boolean, hide: any }) {
     const minWidth1000 = useMediaQuery('(min-width: 1000px)')
     const [ File, setFile ] = useState(null);
+    
+    useEffect(() => { 
+        const input = document.getElementById("picture_equipment") as HTMLInputElement;
+        input.value = null;
+      }, []);
 
     function Setfile( id: string, file: any){
         setFile(file);
@@ -85,7 +90,7 @@ export function IoTModal(props: { reveal: boolean, hide: any }) {
                         >
                             <StyledLink
                                 color="black"  
-                                hovercolor="#67bc45" 
+                                hovercolor="#2E8A21" 
                                 target="_blank" 
                                 href={File && URL.createObjectURL(File)}
                             >
