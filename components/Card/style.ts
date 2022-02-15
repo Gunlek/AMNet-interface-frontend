@@ -108,12 +108,14 @@ export const StyledTabColumn = styled(Column)`
 
 export const StyledImg = styled.img`
   border-radius: 8px;
+  transition: 0.3s;
   margin-left: ${(props) => props.marginLeft || "10px"};
   width: ${(props) => props.width || "1rem"};
   cursor: pointer;
 
   &:hover{
     box-shadow: ${(props) => props.shadow && "0px 2px 10px rgba(0, 0, 0, 0.4)"};
+    filter: ${(props) => !props.shadow && "drop-shadow(-1px 1.5px 2px rgba(0, 0, 0, 0.4))"};
   }
 `
 
