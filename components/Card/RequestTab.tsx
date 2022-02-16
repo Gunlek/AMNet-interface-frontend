@@ -12,6 +12,7 @@ export default function RequestTab(props: { status: string, TabChange: Function 
     <Row 
         style={{
         marginBottom: minWidth1000 ? "2%" : "4%", 
+        justifyContent: !minWidth1000 && "center",
         borderBottom: "2px solid rgba(0, 0, 0, 0.2)", 
         height: "46px"
         }}
