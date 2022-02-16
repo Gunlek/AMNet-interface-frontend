@@ -37,18 +37,18 @@ export function StateContribution(props: {status: string}){
   }
 }
 
-export function StateRequest(props: { state: string }) {
+export function StateRequest(props: { state: string, center?: boolean }) {
   if(props.state == 'active')
   {
-    return <StyledStateRequest background="#67BC45">Acceptée</StyledStateRequest>
+    return <StyledStateRequest center={props.center} background="#67BC45">Acceptée</StyledStateRequest>
   }
   if(props.state == 'declined')
   {
-    return <StyledStateRequest background="#F23232">Refusée</StyledStateRequest>
+    return <StyledStateRequest center={props.center} background="#F23232">Refusée</StyledStateRequest>
   }
   if(props.state == 'pending')
   {
-    return <StyledStateRequest background="#FF9900">En cours</StyledStateRequest>
+    return <StyledStateRequest center={props.center} background="#FF9900">En cours</StyledStateRequest>
   }
 }
   

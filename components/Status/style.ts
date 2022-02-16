@@ -8,6 +8,7 @@ export const StyledStateRequest = styled.div`
   line-height: 40px;
   color: white;
   text-align: center;
+  margin: ${(props) => props.center && "0 auto"};
 `
 
 export const StyledStateContribution = styled.div`
