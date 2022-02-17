@@ -11,8 +11,9 @@ import {
     StyledTh, 
     StyledTr 
 } from "./style";
+import {MobileLine} from "./MobileLine";
 
-function Buttons(props: { status: string, id?: string }) {
+export const Buttons = (props: { status: string, id?: string }) => {
     return (
         <>
             {(props.status != "active") && <SmallGreenButton>Accorder</SmallGreenButton>}
@@ -60,52 +61,7 @@ export function IoTAdminTable(props: { requests: any[], status: string }) {
                     </StyledTd>
                 </StyledTr>
                 :
-                <React.Fragment key={index}> 
-                    <StyledHeadTr>
-                        <StyledTh>Equipement {index}</StyledTh>
-                        <StyledTh style={{textAlign: "center"}}>{value['access_description']}</StyledTh>
-                    </StyledHeadTr>
-                    <StyledTr>
-                        <StyledTd>Utilisateur</StyledTd>
-                        <StyledTd style={{textAlign: "center"}}>{value['user_name']}</StyledTd>
-                    </StyledTr>
-                    <StyledTr>
-                        <StyledTd>Cotisation</StyledTd>
-                        <StyledTd style={{textAlign: "center"}}>
-                            <img style={{ height: "20px" }} src={value['user_pay_status'] ? "/static/icons/succes.svg" : "/static/icons/fail.svg"} />
-                        </StyledTd>
-                    </StyledTr>
-                    <StyledTr>
-                        <StyledTd>Adresse Mac</StyledTd>
-                        <StyledTd style={{textAlign: "center"}}>{value['access_mac']}</StyledTd>
-                    </StyledTr>
-                    <StyledTr>
-                        <StyledTd>Preuve</StyledTd>
-                        <StyledTd style={{textAlign: "center"}}> 
-                            <StyledLink color="#096a09" hovercolor="#67bc45">Image</StyledLink>
-                        </StyledTd>
-                    </StyledTr>
-                    <StyledTr>
-                        <StyledTd>Etat</StyledTd>
-                        <StyledTd><StateRequest center={true} state={value['acces_state']} /></StyledTd>
-                    </StyledTr>
-                    <StyledTr>
-                        <StyledTd>Actions</StyledTd>
-                        <StyledTd style={{textAlign: "center"}}>
-                            <div 
-                                style={{ 
-                                    height: (props.status == "pending") ? "160px" : "100px", 
-                                    display: "flex", 
-                                    alignItems: "center",
-                                    justifyContent:"space-between",
-                                    flexDirection: "column"
-                                }}
-                            >
-                                <Buttons status={value['acces_state']} />
-                            </div>  
-                        </StyledTd>   
-                    </StyledTr>
-                </React.Fragment>
+                <MobileLine index={index} value={value} status={props.status} />
             );
             index++
         }
