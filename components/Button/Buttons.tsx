@@ -8,7 +8,7 @@ import {
   SmallStyledOrangeButton
 } from "./style";
 
-type ButtonProps = { children: React.ReactNode; width?: string, height?: string, onClick?: Function, type?: string };
+type ButtonProps = { children: React.ReactNode; width?: string, height?: string, onClick?: Function, type?: string, fontSize?: string };
 
 export function GreenButton(props: ButtonProps) {
   return(
@@ -30,6 +30,7 @@ export function SmallGreenButton(props: ButtonProps) {
       width={props.width} 
       height={props.height} 
       onClick={props.onClick}
+      fontSize={props.fontSize}
     >
       {props.children}
     </SmallStyledGreenButton>
@@ -55,6 +56,7 @@ export function SmallRedButton(props: ButtonProps) {
       width={props.width} 
       height={props.height} 
       onClick={props.onClick}
+      fontSize={props.fontSize}
     >
       {props.children}
     </SmallStyledRedButton>
@@ -81,6 +83,7 @@ export function SmallOrangeButton(props: ButtonProps) {
       width={props.width} 
       height={props.height} 
       onClick={props.onClick}
+      fontSize={props.fontSize}
     >
       {props.children}
     </SmallStyledOrangeButton>

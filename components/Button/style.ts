@@ -39,7 +39,7 @@ export const SmallStyledButton = styled(StyledButton)`
   border-radius: 16px;
   height: 40px;
   width: ${(props) => props.width || "150px"};
-  font-size: 1.2rem;
+  font-size: ${(props) => props.fontSize || "1.2rem"};
   background: none;
   transition: background-color 0.3s ease-out;
 `  
