@@ -1,12 +1,12 @@
 import styled from "styled-components";
 
 export const StyledStateRequest = styled.div`
-  background: ${(props) => props.background || "#FF9900"};
   border-radius: 16px;
   height: 40px;
   width: 150px;
   line-height: 40px;
-  color: white;
+  color: ${(props) => props.color || "#FF9900"};
+  outline: 2px solid ${(props) => props.color || "#FF9900"};
   text-align: center;
   margin: ${(props) => props.center && "0 auto"};
 `
