@@ -7,3 +7,5 @@ statics/uploads
 yarn.lock
 
 mysql
+
+.idea
