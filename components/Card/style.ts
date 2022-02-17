@@ -107,15 +107,17 @@ export const StyledTabColumn = styled(Column)`
 `;
 
 export const StyledImg = styled.img`
-  border-radius: 8px;
+  border-radius: ${(props) => props.shadow ? "8px" : "50%"};
   transition: 0.3s;
   margin-left: ${(props) => props.marginLeft || "10px"};
-  width: ${(props) => props.width || "1rem"};
+  width: ${(props) => props.width || "1.4rem"};
+  padding: ${(props) => props.padding || "0.2rem"};
   cursor: pointer;
 
   &:hover{
+    background: ${(props) => !props.shadow && "rgba(0, 0, 0, 0.1)"};
     box-shadow: ${(props) => props.shadow && "0px 2px 10px rgba(0, 0, 0, 0.4)"};
-    filter: ${(props) => !props.shadow && "drop-shadow(-1px 1.5px 2px rgba(0, 0, 0, 0.4))"};
+    
   }
 `
 
