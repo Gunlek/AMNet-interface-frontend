@@ -8,6 +8,7 @@ import { BlackTitle } from "../../components/Text/style";
 import useMediaQuery from "../../components/MediaQueries/MediaQuery";
 import RequestTab from "../../components/Card/RequestTab";
 import { IoTAdminTable } from "../../components/Table/Admin";
+import { Footer } from "../../components/Card/Cards";
 
 const Iot = [
   {
@@ -86,6 +87,8 @@ export default function AdminIoT() {
               <IoTAdminTable status={Tab} requests={Iot} />
             </div>
           </StyledCard>
+
+          <Footer />
         </DashboardContainer>
       </DefaultBackground>
     </>

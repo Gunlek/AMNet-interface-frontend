@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Head from "next/head";
 import { DefaultBackground } from "../../components/Background/style";
 import { GreenButton } from "../../components/Button/Buttons";
-import { TitleCard } from "../../components/Card/Cards"
+import { Footer, TitleCard } from "../../components/Card/Cards"
 import { StyledCard } from "../../components/Card/style";
 import AdminMenu from "../../components/Menu/AdminMenu";
 import { StateIntegration, StateInvite } from "../../components/Status/Status";
@@ -184,6 +184,8 @@ export default function Settings() {
               </form>
             </StyledCard>
           </Row>
+
+          <Footer />
         </DashboardContainer>
       </DefaultBackground>
     </>

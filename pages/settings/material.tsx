@@ -8,6 +8,7 @@ import { BlackTitle } from "../../components/Text/style";
 import useMediaQuery from "../../components/MediaQueries/MediaQuery";
 import RequestTab from "../../components/Card/RequestTab";
 import { MaterialAdminTable } from "../../components/Table/Admin";
+import { Footer } from "../../components/Card/Cards";
 
 const material = [
   {
@@ -64,8 +65,9 @@ export default function AdminMaterial() {
               <MaterialAdminTable status={Tab} requests={material}/>
             </div>
           </StyledCard>
-        </DashboardContainer>
 
+          <Footer />
+        </DashboardContainer>
       </DefaultBackground>
     </>
   );
