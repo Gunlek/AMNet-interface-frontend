@@ -34,7 +34,7 @@ const FileUploader = (props: {accept?: string, id?: string, setfile?: Function }
 
     return (
         <>
-            <SmallGreenButton width="175px" onClick={handleClick}>
+            <SmallGreenButton width="175px" onClick={handleClick} fontSize="1rem">
                 Choisir un fichier
             </SmallGreenButton>
             <HiddenFile
