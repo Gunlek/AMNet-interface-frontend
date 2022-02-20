@@ -12,6 +12,7 @@ import {
     StyledTr 
 } from "./style";
 import {MobileLine} from "./MobileLine";
+import { ProoveModal } from "../Card/Modals";
 
 export const Buttons = (props: { status: string, id?: string }) => {
     return (
@@ -25,13 +26,12 @@ export const Buttons = (props: { status: string, id?: string }) => {
 
 export function IoTAdminTable(props: { requests: any[], status: string }) {
     let listHTML = [];
-    var index = 1
+    var index = 1;
     const minWidth1000 = useMediaQuery('(min-width:1000px)');
-    
+
     props.requests.map((value) => {
         if (value['acces_state'] == props.status) {
             listHTML.push(minWidth1000?
-                
                 <StyledTr key={index}>
                     <StyledTd>{index}</StyledTd>
                     <StyledTd>
@@ -43,7 +43,7 @@ export function IoTAdminTable(props: { requests: any[], status: string }) {
                     <StyledFlexTd>{value['access_description']}</StyledFlexTd>
                     <StyledTd>{value['access_mac']}</StyledTd>
                     <StyledTd>
-                        <StyledLink color="#096a09" hovercolor="#67bc45">Preuve Image</StyledLink>
+                        <ProoveModal request={value} link="/static/images/campus.png" />
                     </StyledTd>
                     <StyledTd>
                         <StateRequest state={value['acces_state']} />
@@ -61,7 +61,7 @@ export function IoTAdminTable(props: { requests: any[], status: string }) {
                     </StyledTd>
                 </StyledTr>
                 :
-                <MobileLine index={index} value={value} status={props.status} />
+                <MobileLine key={index} index={index} value={value} status={props.status} isLast={false}/>
             );
             index++
         }
@@ -76,7 +76,7 @@ export function IoTAdminTable(props: { requests: any[], status: string }) {
                     <StyledTh scope="col">Cotisation</StyledTh>
                     <StyledTh scope="col">Description</StyledTh>
                     <StyledTh scope="col">Adresse Mac</StyledTh>
-                    <StyledTh scope="col">Preuve Image</StyledTh>
+                    <StyledTh scope="col">Preuve</StyledTh>
                     <StyledTh scope="col"><span style={{ paddingLeft: "5px" }}>Etat</span></StyledTh>
                     <StyledTh scope="col"><span style={{ paddingLeft: "5px" }}>Actions</span></StyledTh>
                 </StyledHeadTr>
@@ -84,7 +84,7 @@ export function IoTAdminTable(props: { requests: any[], status: string }) {
             <tbody>{listHTML}</tbody>
         </StyledTable>
         :
-        <StyledTable>
+        <StyledTable style={{ tableLayout: "fixed" }}>
             <tbody>{listHTML}</tbody>
         </StyledTable>
     );
