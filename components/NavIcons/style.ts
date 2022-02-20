@@ -6,7 +6,7 @@ export const StyledBackIcon = styled.a`
   align-items: center;
   height: 60px;
   width: 60px;
-  z-index: 1;
+  z-index: 3;
   position: relative;
 
   &::before{
