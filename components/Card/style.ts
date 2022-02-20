@@ -98,11 +98,20 @@ export const StyledTabColumn = styled(Column)`
   display: flex;
   flex-direction: column;
   align-items: center;
-
+  
   &:hover{
     background-color: ${(props) => !props.focus && "rgba(0, 0, 0, 0.1)"};
     color: black;
     cursor: ${(props) => !props.focus && "pointer"};
+  }
+
+  &:after{
+    transform: translateY(50%);
+    content: "";
+    width: 100%;
+    background: ${(props) => props.afterBackground};;
+    height: 4px;
+    transition: 0.3s;
   }
 `;
 
@@ -124,7 +133,7 @@ export const StyledImg = styled.img`
 export const StyledBackgroundModal = styled.div`
   background: rgba(0, 0, 0, 0.5); 
   position: fixed; 
-  height: 100%; 
+  height: 150%; 
   width: 100%; 
   left: 0; 
   top: 0;  
