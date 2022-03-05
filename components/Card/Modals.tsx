@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { BodyWithModal } from "../Background/style";
 import { GreenButton } from "../Button/Buttons";
 import { Col4, Col8, ResponsiveRow, Row } from "../Container/style";
 import FileUploader from "../Input/FileUploader";
@@ -7,12 +8,13 @@ import useMediaQuery from "../MediaQueries/MediaQuery";
 import { StateRequest } from "../Status/Status";
 import { Buttons } from "../Table/Admin";
 import { StyledHeadTr, StyledTable, StyledTd, StyledTh, StyledTr } from "../Table/style";
-import { BlackText, GreenText, StyledLink } from "../Text/style";
+import { BlackText, StyledLink } from "../Text/style";
 import { TitleCard } from "./Cards";
 import { StyledBackgroundModal, StyledImg, StyledModal } from "./style";
 
 export const ModalLogic = () => {
-    var [reveal, setreveal] = useState(false);
+    const [reveal, setreveal] = useState(false);
+
 
     function toggle() {
         setreveal(!reveal);
@@ -29,6 +31,7 @@ export function ContributionModal(props: { reveal: boolean, hide: any }) {
 
     return (
         <>
+            <BodyWithModal reveal={props.reveal} />
             <StyledBackgroundModal onClick={props.hide} reveal={props.reveal} />
             <StyledModal width={minWidth1000 ? "600px" : undefined} reveal={props.reveal}>
                 <TitleCard>Cotisation</TitleCard>
@@ -64,6 +67,7 @@ export function IoTModal(props: { reveal: boolean, hide: any }) {
 
     return (
         <>
+            <BodyWithModal reveal={props.reveal} />
             <StyledBackgroundModal onClick={props.hide} reveal={props.reveal} />
             <StyledModal width={minWidth1000 ? "900px" : undefined} reveal={props.reveal}>
                 <TitleCard hideLine={!minWidth1000}>Demande d'accès pour un objet connecté</TitleCard>
@@ -116,6 +120,7 @@ export function MaterialModal(props: { reveal: boolean, hide: any }) {
 
     return (
         <>
+            <BodyWithModal reveal={props.reveal} />
             <StyledBackgroundModal onClick={props.hide} reveal={props.reveal} />
             <StyledModal width={minWidth1000 ? "800px" : undefined} reveal={props.reveal}>
                 <TitleCard>Demande de matériel</TitleCard>
@@ -133,27 +138,28 @@ export function MaterialModal(props: { reveal: boolean, hide: any }) {
 
 export function ProoveModal(props: { request: any, link: string }) {
     const minWidth1000 = useMediaQuery('(min-width: 1200px)')
-    const {reveal, toggle} = ModalLogic()
+    const { reveal, toggle } = ModalLogic()
 
     return (
         <>
+            <BodyWithModal reveal={reveal} />
             <StyledLink onClick={toggle}>Image</StyledLink>
             <StyledBackgroundModal onClick={toggle} reveal={reveal} />
-            <StyledModal 
-                width={minWidth1000 ? "1200px" : undefined} 
-                reveal={reveal} 
-                style={{ 
-                    maxHeight: "90vh", 
-                    padding: minWidth1000 ? "30px" : "20px", 
-                    paddingRight: minWidth1000 ? "17.5px" : "7.5px" 
+            <StyledModal
+                width={minWidth1000 ? "1200px" : undefined}
+                reveal={reveal}
+                style={{
+                    maxHeight: "90vh",
+                    padding: minWidth1000 ? "30px" : "20px",
+                    paddingRight: minWidth1000 ? "17.5px" : "7.5px"
                 }}
             >
-                <div 
-                    style={{ 
-                        width: "100%", 
-                        overflow: "auto", 
-                        paddingRight: "12.5px" 
-                    }} 
+                <div
+                    style={{
+                        width: "100%",
+                        overflow: "auto",
+                        paddingRight: "12.5px"
+                    }}
                 >
                     <TitleCard hideLine={!minWidth1000}>Demande d'accès pour un objet connecté</TitleCard>
                     <ResponsiveRow>
@@ -164,7 +170,7 @@ export function ProoveModal(props: { request: any, link: string }) {
                             <StyledTable>
                                 <StyledHeadTr>
                                     <StyledTh>Equipement</StyledTh>
-                                    <StyledTh style={{textAlign: "center"}}>{props.request['access_description']}</StyledTh>
+                                    <StyledTh style={{ textAlign: "center" }}>{props.request['access_description']}</StyledTh>
                                 </StyledHeadTr>
                                 <StyledTr>
                                     <StyledTd>Utilisateur</StyledTd>
