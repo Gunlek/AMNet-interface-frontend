@@ -30,8 +30,8 @@ export const StyledGreenCard = styled.div`
 `;
 
 export const StyledTeamPicture = styled(Column)`
-  background-image: url(${props => props.background? props.background : "/static/images/team.png"});
-  outline: ${props => props.outline };
+  background-image: url(${props => props.background || "/static/images/team.png"});
+  outline: ${props => props.outline};
   background-repeat: no-repeat;
   background-position: 50% 0%;
   background-size: cover;
@@ -55,8 +55,8 @@ export const GreenLine = styled.div`
   border: 1px solid #096A09;
   height: 0px;
   background: #096a09;
-  display: ${(props) => props.hideLine? "none" : "block"};
-  margin-left: ${(props) => props.hideLine? "0" : "10px"};
+  display: ${(props) => props.hideLine ? "none" : "block"};
+  margin-left: ${(props) => props.hideLine ? "0" : "10px"};
 `;
 
 export const StyledFooter = styled.footer`
@@ -126,7 +126,6 @@ export const StyledImg = styled.img`
   &:hover{
     background: ${(props) => !props.shadow && "rgba(0, 0, 0, 0.1)"};
     box-shadow: ${(props) => props.shadow && "0px 2px 10px rgba(0, 0, 0, 0.4)"};
-    
   }
 `
 
@@ -138,14 +137,12 @@ export const StyledBackgroundModal = styled.div`
   left: 0; 
   top: 0;  
   transition: all 0.4s linear;
-  z-index: ${props => (props.reveal ? "3" : "-1")};
-  opacity: ${props => (props.reveal ? "1" : "0")};
+  z-index: ${props => props.reveal ? "3" : "-1"};
+  opacity: ${props => props.reveal ? "1" : "0"};
 `;
 
-
-
 export const StyledModal = styled(StyledCardCampus)`
-  width: ${props => (props.width ? props.width : "90%")};
+  width: ${props => props.width || "90%"};
   align-items: center; 
   justify-content: center;
   padding: 30px; 
