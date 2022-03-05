@@ -97,7 +97,13 @@ export default function SignUp() {
                   <StyledInputLabel htmlFor="user_firstname">Prénom</StyledInputLabel>
                   <StyledInput id="user_firstname" type="text" />
                 </Col3>
-                <Col3 style={{ paddingLeft: minWidth1000 ? "10px" : "0", paddingRight: minWidth1000 ? "10px" : "0", marginBottom: minWidth1000 ? "0" : "20px" }}>
+                <Col3 
+                  style={{ 
+                    paddingLeft: minWidth1000 ? "10px" : "0", 
+                    paddingRight: minWidth1000 ? "10px" : "0", 
+                    marginBottom: minWidth1000 ? "0" : "20px" 
+                  }}
+                >
                   <StyledInputLabel htmlFor="user_lastname">Nom</StyledInputLabel>
                   <StyledInput id="user_lastname" type="text" />
                 </Col3>
@@ -114,25 +120,53 @@ export default function SignUp() {
                 </Col6>
                 <Col6 style={{ paddingLeft: minWidth1000 ? "10px" : "0" }}>
                   <StyledInputLabel htmlFor="user_promotion">Promotion</StyledInputLabel>
-                  <StyledSelect id="user_promotion" style={{ display: isOther ? "none" : "inline" }} onChange={handleValueChange}>
+                  <StyledSelect 
+                    id="user_promotion" 
+                    style={{ display: isOther ? "none" : "inline" }} 
+                    onChange={handleValueChange}
+                  >
                     <option value="219">219</option>
                     <option value="220">220</option>
                     <option value="2021" selected>2021</option>
                     <option value="other">Autre</option>
                   </StyledSelect>
                   <div style={{ display: isOther ? "flex" : "none", alignItems: "center" }} >
-                    <StyledInput id="user_promotion2" ref={PromotionInput => { (PromotionInput && isOther) && PromotionInput.focus() }} type="text" />
-                    <StyledImg padding="0" width="35px" marginLeft="20px" shadow="1" onClick={CancelChange} src="/static/icons/cancel.svg"/>
+                    <StyledInput 
+                      id="user_promotion2" 
+                      ref={PromotionInput => { (PromotionInput && isOther) && PromotionInput.focus() }} 
+                      type="text" 
+                    />
+                    <StyledImg 
+                      padding="0" 
+                      width="35px" 
+                      marginLeft="20px" 
+                      shadow="1" 
+                      onClick={CancelChange} 
+                      src="/static/icons/cancel.svg"
+                    />
                   </div>
                 </Col6>
               </ResponsiveRow>
 
-              <ResponsiveRow style={{ marginBottom: "20px", display: isGadz ? "flex" : "none" }}>
+              <ResponsiveRow 
+                style={{ 
+                  marginBottom: isGadz? "20px" : "0", 
+                  height: isGadz ? minWidth1000? "73px" : "244.6px" : "0px", 
+                  transition: "0.3s linear",
+                  overflowY: "hidden" 
+                }}
+              >
                 <Col6 style={{ paddingRight: minWidth1000 ? "10px" : "0", marginBottom: minWidth1000 ? "0" : "20px" }}>
                   <StyledInputLabel htmlFor="user_surname">Bucque</StyledInputLabel>
                   <StyledInput id="user_surname" type="text" />
                 </Col6>
-                <Col3 style={{ paddingLeft: minWidth1000 ? "10px" : "0", paddingRight: minWidth1000 ? "10px" : "0", marginBottom: minWidth1000 ? "0" : "20px" }}>
+                <Col3 
+                  style={{ 
+                    paddingLeft: minWidth1000 ? "10px" : "0", 
+                    paddingRight: minWidth1000 ? "10px" : "0", 
+                    marginBottom: minWidth1000 ? "0" : "20px" 
+                  }}
+                >
                   <StyledInputLabel htmlFor="user_fams">Fam's</StyledInputLabel>
                   <StyledInput id="user_fams" type="text" />
                 </Col3>
