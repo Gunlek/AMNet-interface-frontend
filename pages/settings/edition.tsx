@@ -11,7 +11,7 @@ import { StyledCard, StyledImg } from "../../components/Card/style";
 import AdminMenu from "../../components/Menu/AdminMenu";
 import { BlackText, BlackTitle, GreenText, StyledLink } from "../../components/Text/style";
 import { GreenButton } from "../../components/Button/Buttons";
-import { TitleCard } from "../../components/Card/Cards";
+import { Footer, TitleCard } from "../../components/Card/Cards";
 import { TeamEditor } from "../../components/TeamEditor/TeamEditor";
 import useMediaQuery from "../../components/MediaQueries/MediaQuery";
 import FileUploader from "../../components/Input/FileUploader";
@@ -100,7 +100,7 @@ export default function Edition() {
                           {TabFile[0] && TabFile[0]["name"]}
                         </StyledLink>
                         
-                        <StyledImg width="1.2rem" onClick={() => DeleteFile("0")} src="/static/icons/fail.svg"/>
+                        <StyledImg onClick={() => DeleteFile("0")} src="/static/icons/fail.svg"/>
                       </div>
                   </ResponsiveRow>
                 </ResponsiveRow>
@@ -143,7 +143,7 @@ export default function Edition() {
                         >
                           {TabFile[1] && TabFile[1]["name"]}
                         </StyledLink>
-                        <StyledImg width="1.2rem" onClick={() => DeleteFile("1")} src="/static/icons/fail.svg"/>
+                        <StyledImg onClick={() => DeleteFile("1")} src="/static/icons/fail.svg"/>
                       </div>
                   </ResponsiveRow>
                 </ResponsiveRow>
@@ -189,7 +189,7 @@ export default function Edition() {
                         >
                           {TabFile[2] && TabFile[2]["name"]}
                         </StyledLink>
-                        <StyledImg width="1.2rem" onClick={() => DeleteFile("2")} src="/static/icons/fail.svg"/>
+                        <StyledImg onClick={() => DeleteFile("2")} src="/static/icons/fail.svg"/>
                       </BlackText>
                     </ResponsiveRow>
                   </ResponsiveRow>
@@ -210,6 +210,7 @@ export default function Edition() {
                 <GreenButton>Mettre à jour</GreenButton>
               </Row> 
           </StyledCard>
+          <Footer />
         </DashboardContainer>
       </DefaultBackground>
     </>

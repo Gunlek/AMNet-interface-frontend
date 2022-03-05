@@ -6,7 +6,7 @@ export const StyledBackIcon = styled.a`
   align-items: center;
   height: 60px;
   width: 60px;
-  z-index: 1;
+  z-index: 3;
   position: relative;
 
   &::before{
@@ -30,8 +30,9 @@ export const StyledBackIcon = styled.a`
   &::after{
     position: absolute;
     content:  ${(props) => props.content && '"'+props.content+'"'};
-    top: 80%;
-    left: 110%;
+    top: 50%;
+    left: 125%;
+    transform: translateY(-50%);
     transition: opacity 0.3s linear;
     opacity: 0;
     border-radius: 15px;

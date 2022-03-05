@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Head from "next/head";
 import { DefaultBackground } from "../../components/Background/style";
 import { GreenButton } from "../../components/Button/Buttons";
-import { TitleCard } from "../../components/Card/Cards"
+import { Footer, TitleCard } from "../../components/Card/Cards"
 import { StyledCard } from "../../components/Card/style";
 import AdminMenu from "../../components/Menu/AdminMenu";
 import { StateIntegration, StateInvite } from "../../components/Status/Status";
@@ -90,12 +90,12 @@ export default function Settings() {
 
                   <div style={{ marginBottom: "20px" }}>
                     <StyledInputLabel htmlFor="AmountContribution">Montant de la cotisation</StyledInputLabel>
-                    <StyledInput id="AmountContribution" type="number"/>
+                    <StyledInput id="AmountContribution" type="number" />
                   </div>
 
                   <div style={{ marginBottom: "20px" }}>
                     <StyledInputLabel htmlFor="SetActivePromotion">Promotion active</StyledInputLabel>
-                    <StyledInput id="SetActivePromotion" type="number"/>
+                    <StyledInput id="SetActivePromotion" type="number" />
                   </div>
 
                   <Row style={{ justifyContent: "center" }}>
@@ -125,8 +125,14 @@ export default function Settings() {
               <TitleCard>Système de mail</TitleCard>
 
               <form method="post" style={{ flex: "1" }}>
-                <ResponsiveRow style={{ marginTop: "20px", marginBottom: "20px" }}>
-                  <Col4 style={{ paddingRight: "10px", marginBottom: minWidth1000 ? "0" : "20px" }}>
+                <ResponsiveRow
+                  style={{
+                    marginTop: "20px",
+                    marginBottom: "20px",
+                    flexDirection: !minWidth1000 && "column-reverse"
+                  }}
+                >
+                  <Col4 style={{ paddingRight: "10px" }}>
                     <StyledInputLabel htmlFor="MailTitle">Titre du Mail</StyledInputLabel>
                     <StyledInput id="MailTitle" type="text" />
                   </Col4>
@@ -144,9 +150,9 @@ export default function Settings() {
                     </CheckboxRow>
                   </Col2>
 
-                  <Col6 style={{ marginLeft: minWidth1000 ? "1%" : "0" }}>
+                  <Col6 style={{ marginLeft: minWidth1000 ? "1%" : "0", marginBottom: minWidth1000 ? "0" : "20px" }}>
                     <GreenText style={{ marginBottom: "5px" }}>Prom's</GreenText>
-                    <CheckboxRow width={minWidth1000? "140px": "125px" } style={{ flex: "1", alignItems: "center" }}>
+                    <CheckboxRow width={minWidth1000 ? "140px" : "125px"} style={{ flex: "1", alignItems: "center" }}>
                       <StyledLabel style={{ width: "fit-content" }}>
                         <Checkbox id="NewPromotion" checked={Checked["NewPromotion"]} onChange={handleCheckboxChange} />
                         <BlackText style={{ marginLeft: "10px" }}>2021</BlackText>
@@ -178,6 +184,8 @@ export default function Settings() {
               </form>
             </StyledCard>
           </Row>
+
+          <Footer />
         </DashboardContainer>
       </DefaultBackground>
     </>

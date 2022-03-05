@@ -30,8 +30,8 @@ export const StyledGreenCard = styled.div`
 `;
 
 export const StyledTeamPicture = styled(Column)`
-  background-image: url(${props => props.background? props.background : "/static/images/team.png"});
-  outline: ${props => props.outline };
+  background-image: url(${props => props.background || "/static/images/team.png"});
+  outline: ${props => props.outline};
   background-repeat: no-repeat;
   background-position: 50% 0%;
   background-size: cover;
@@ -55,8 +55,8 @@ export const GreenLine = styled.div`
   border: 1px solid #096A09;
   height: 0px;
   background: #096a09;
-  display: ${(props) => props.hideLine? "none" : "block"};
-  margin-left: ${(props) => props.hideLine? "0" : "10px"};
+  display: ${(props) => props.hideLine ? "none" : "block"};
+  margin-left: ${(props) => props.hideLine ? "0" : "10px"};
 `;
 
 export const StyledFooter = styled.footer`
@@ -98,43 +98,51 @@ export const StyledTabColumn = styled(Column)`
   display: flex;
   flex-direction: column;
   align-items: center;
-
+  
   &:hover{
     background-color: ${(props) => !props.focus && "rgba(0, 0, 0, 0.1)"};
     color: black;
     cursor: ${(props) => !props.focus && "pointer"};
   }
+
+  &:after{
+    transform: translateY(50%);
+    content: "";
+    width: 100%;
+    background: ${(props) => props.afterBackground};;
+    height: 4px;
+    transition: 0.3s;
+  }
 `;
 
 export const StyledImg = styled.img`
-  border-radius: 8px;
+  border-radius: ${(props) => props.shadow ? "8px" : "50%"};
   transition: 0.3s;
   margin-left: ${(props) => props.marginLeft || "10px"};
-  width: ${(props) => props.width || "1rem"};
+  width: ${(props) => props.width || "1.4rem"};
+  padding: ${(props) => props.padding || "0.2rem"};
   cursor: pointer;
 
   &:hover{
+    background: ${(props) => !props.shadow && "rgba(0, 0, 0, 0.1)"};
     box-shadow: ${(props) => props.shadow && "0px 2px 10px rgba(0, 0, 0, 0.4)"};
-    filter: ${(props) => !props.shadow && "drop-shadow(-1px 1.5px 2px rgba(0, 0, 0, 0.4))"};
   }
 `
 
 export const StyledBackgroundModal = styled.div`
   background: rgba(0, 0, 0, 0.5); 
   position: fixed; 
-  height: 100%; 
+  height: 150%; 
   width: 100%; 
   left: 0; 
   top: 0;  
   transition: all 0.4s linear;
-  z-index: ${props => (props.reveal ? "1" : "-1")};
-  opacity: ${props => (props.reveal ? "1" : "0")};
+  z-index: ${props => props.reveal ? "3" : "-1"};
+  opacity: ${props => props.reveal ? "1" : "0"};
 `;
 
-
-
 export const StyledModal = styled(StyledCardCampus)`
-  width: ${props => (props.width ? props.width : "90%")};
+  width: ${props => props.width || "90%"};
   align-items: center; 
   justify-content: center;
   padding: 30px; 
@@ -143,6 +151,6 @@ export const StyledModal = styled(StyledCardCampus)`
   left: 50%;  
   transition: all 0.4s linear;
   transform: translate(-50%, -50%);
-  z-index: ${props => (props.reveal ? "2" : "-1")};
+  z-index: ${props => (props.reveal ? "4" : "-1")};
   opacity: ${props => (props.reveal ? "1" : "0")};
 `

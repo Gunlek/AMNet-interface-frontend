@@ -1,5 +1,7 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { SmallRedButton } from "../Button/Buttons";
+import { Row } from "../Container/style";
+import useMediaQuery from "../MediaQueries/MediaQuery";
 import { StateRequest } from "../Status/Status";
 import { StyledLink } from "../Text/style";
 import { 
@@ -13,15 +15,17 @@ import {
 
 export function IoTUserTable(props: { requests: any[] }) {
     let listHTML = [];
-
+    const minWidth1000 = useMediaQuery('(min-width:1000px)');
+    
     props.requests.map((value, index) => { 
-        listHTML.push(
+        
+        listHTML.push( minWidth1000?
             <StyledTr key={index}>
                 <StyledTd>{index+1}</StyledTd>
                 <StyledFlexTd>{value['access_description']}</StyledFlexTd>
                 <StyledTd>{value['access_mac']}</StyledTd>
                 <StyledTd>
-                    <StyledLink color="#096a09" hovercolor="#67bc45">Preuve Image</StyledLink>
+                    <StyledLink color="#096a09" hovercolor="#67bc45">Image</StyledLink>
                 </StyledTd>
                 <StyledTd>
                     <StateRequest state={value['acces_state']} />
@@ -29,22 +33,51 @@ export function IoTUserTable(props: { requests: any[] }) {
                 <StyledTd>
                     <SmallRedButton>Supprimer</SmallRedButton>  
                 </StyledTd>
-            </StyledTr>
-        );  
+            </StyledTr> 
+            :
+            <React.Fragment key={index}> 
+                <StyledHeadTr>
+                    <StyledTh>Equipement {index+1} </StyledTh>
+                    <StyledTh style={{textAlign: "center"}}>{value['access_description']}</StyledTh>
+                </StyledHeadTr>
+                <StyledTr>
+                    <StyledTd>Adresse Mac </StyledTd>
+                    <StyledTd style={{textAlign: "center"}}>{value['access_mac']}</StyledTd>
+                </StyledTr>
+                <StyledTr>
+                    <StyledTd>Preuve</StyledTd>
+                    <StyledTd style={{textAlign: "center"}}> 
+                        <StyledLink color="#096a09" hovercolor="#67bc45">Image</StyledLink>
+                    </StyledTd>
+                </StyledTr>
+                <StyledTr>
+                    <StyledTd>Etat</StyledTd>
+                    <StyledTd><StateRequest center={true} state={value['acces_state']} /></StyledTd>
+                </StyledTr>
+                <StyledTr>
+                    <StyledTd>Action</StyledTd>
+                    <StyledTd style={{textAlign: "center"}}><SmallRedButton>Supprimer</SmallRedButton></StyledTd>   
+                </StyledTr>
+            </React.Fragment>
+        ); 
     })
-
-    return (
+    
+    return (minWidth1000?
         <StyledTable>
             <thead>
                 <StyledHeadTr>
                     <StyledTh scope="col">#</StyledTh>
                     <StyledTh scope="col">Description</StyledTh>
                     <StyledTh scope="col">Adresse Mac</StyledTh>
-                    <StyledTh scope="col">Preuve Image</StyledTh>
+                    <StyledTh scope="col">Preuve</StyledTh>
                     <StyledTh scope="col"><span style={{ paddingLeft: "5px" }}>Etat</span></StyledTh>
                     <StyledTh scope="col"><span style={{ paddingLeft: "5px" }}>Action</span></StyledTh>
                 </StyledHeadTr>
             </thead>
+            <tbody>{listHTML}</tbody>
+        </StyledTable>
+        :
+        <StyledTable>
             <tbody>{listHTML}</tbody>
         </StyledTable>
     );
@@ -53,9 +86,10 @@ export function IoTUserTable(props: { requests: any[] }) {
 
 export function MaterialUserTable(props: { requests: any[] }) {
     let listHTML = [];
+    const minWidth1000 = useMediaQuery('(min-width:1000px)');
 
     props.requests.map((value, index) => { 
-        listHTML.push(
+        listHTML.push(minWidth1000 ?
             <StyledTr key={index}>
                 <StyledTd>{index+1}</StyledTd>
                 <StyledFlexTd>{value['material_description']}</StyledFlexTd>
@@ -66,10 +100,25 @@ export function MaterialUserTable(props: { requests: any[] }) {
                     <SmallRedButton>Supprimer</SmallRedButton>  
                 </StyledTd>
             </StyledTr>
+            :
+            <React.Fragment key={index}> 
+                <StyledHeadTr>
+                    <StyledTh>Demande {index+1} </StyledTh>
+                    <StyledTh style={{textAlign: "center"}}>{value['material_description']}</StyledTh>
+                </StyledHeadTr>
+                <StyledTr>
+                    <StyledTd>Etat</StyledTd>
+                    <StyledTd><StateRequest center={true} state={value['material_state']} /></StyledTd>
+                </StyledTr>
+                <StyledTr>
+                    <StyledTd>Action</StyledTd>
+                    <StyledTd style={{textAlign: "center"}}><SmallRedButton>Supprimer</SmallRedButton></StyledTd>   
+                </StyledTr>
+            </React.Fragment>
         );  
     })
 
-    return (
+    return (minWidth1000 ?
         <StyledTable>
             <thead>
                 <StyledHeadTr>
@@ -79,6 +128,10 @@ export function MaterialUserTable(props: { requests: any[] }) {
                     <StyledTh scope="col"><span style={{ paddingLeft: "5px" }}>Action</span></StyledTh>
                 </StyledHeadTr>
             </thead>
+            <tbody>{listHTML}</tbody>
+        </StyledTable>
+        :
+        <StyledTable>
             <tbody>{listHTML}</tbody>
         </StyledTable>
     );

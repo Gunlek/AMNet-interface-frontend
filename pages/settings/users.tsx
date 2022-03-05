@@ -8,6 +8,7 @@ import AdminMenu from "../../components/Menu/AdminMenu";
 import { BlackTitle } from "../../components/Text/style";
 import useMediaQuery from "../../components/MediaQueries/MediaQuery";
 import { UsersTable } from "../../components/Table/Users";
+import { Footer } from "../../components/Card/Cards";
 
 const data = [
   {
@@ -451,6 +452,8 @@ export default function Users() {
             {Table}
             </div>
           </StyledCard>
+
+          <Footer />
         </DashboardContainer>
       </DefaultBackground>
     </>

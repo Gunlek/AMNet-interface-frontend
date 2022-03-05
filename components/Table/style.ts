@@ -90,5 +90,6 @@ export const StyledTh = styled.th`
   &:last-child {
     border-top-right-radius: 10px;
     border-bottom-right-radius: 10px;
+    padding-right:0;
   }
 `;

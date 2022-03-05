@@ -13,7 +13,7 @@ export const StyledInput = styled.input`
 
   &:hover, &:focus{
     background: rgba(255, 255, 255, 0.8);
-    border: 2px solid #096A09;
+    border: 2px solid ${(props) => props.hoverBorder || "#096A09"};
     outline: none;
   }
 `;
