@@ -42,6 +42,10 @@ export const SmallStyledButton = styled(StyledButton)`
   font-size: ${(props) => props.fontSize || "1.2rem"};
   background: none;
   transition: background-color 0.3s ease-out;
+
+  @media screen and (max-width: 1000px){
+    width: ${(props) => props.width || "140px"};
+  }
 `  
 
 export const SmallStyledGreenButton = styled(SmallStyledButton)`

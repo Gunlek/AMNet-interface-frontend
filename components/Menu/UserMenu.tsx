@@ -10,15 +10,16 @@ import SettingsIcon from "../NavIcons/settings";
 import BurgerMenu from "../NavIcons/burgermenu";
 import useMediaQuery from "../MediaQueries/MediaQuery";
 import { useState } from "react";
-import { 
-  MenuContener, 
-  StyledDivLogo, 
+import {
+  MenuContener,
+  StyledDivLogo,
   StyledDivLogOut,
-  StyledMenu 
+  StyledMenu
 } from "./style";
 
 export default function UserMenu(props: { page: string }) {
-  const minWidth750 = useMediaQuery('(min-width:750px)');
+  const minWidth800 = useMediaQuery('(min-width:800px)');
+  const minWidth1000 = useMediaQuery('(min-width:1000px)');
   var [open, SetOpen] = useState(false);
 
   function handleChange() {
@@ -27,28 +28,24 @@ export default function UserMenu(props: { page: string }) {
 
   const positionning = {
     flex: "1",
-    margin: "5px 0",
+    margin: (minWidth800) ? "5px 0" : "0",
     justifyContent: "center",
     alignItems: "center",
-    display: (minWidth750 || open) ? "flex" : "none"
+    height: !minWidth800 ? open ? "90px" : "0" : "auto",
+    overflow: !minWidth800 ? "hidden" : undefined,
+    transition: "height 0.25s linear"
   };
-
-  const MenuStyle = (!minWidth750 && open) ? {
-    display: "grid",
-    gridTemplateColumns: "1fr 1fr 1fr",
-    justifyItems: "center",
-  } : {};
 
   return (
     <MenuContener>
-      <StyledMenu style={MenuStyle}>
+      <StyledMenu>
         <Row
           style={{
             flex: "1",
             margin: "5px 0",
             justifyContent: "center",
             alignItems: "center",
-            display: minWidth750 ? "none" : "flex"
+            display: minWidth800 ? "none" : "flex"
           }}
         >
           <BurgerMenu open={open} onClick={handleChange} />
@@ -60,7 +57,7 @@ export default function UserMenu(props: { page: string }) {
           </a>
         </StyledDivLogo>
 
-        <StyledDivLogOut display={minWidth750 ? "none" : "flex"}>
+        <StyledDivLogOut display={minWidth800 ? "none" : "flex"}>
           <LogOutIcon id="1" />
         </StyledDivLogOut>
 
@@ -92,7 +89,7 @@ export default function UserMenu(props: { page: string }) {
           <SettingsIcon page={props.page} />
         </Row>
 
-        <StyledDivLogOut display={minWidth750 ? "flex" : "none"}>
+        <StyledDivLogOut display={minWidth800 ? "flex" : "none"}>
           <LogOutIcon id="2" />
         </StyledDivLogOut>
       </StyledMenu>

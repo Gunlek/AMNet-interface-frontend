@@ -2,81 +2,76 @@ import React, { useState } from "react";
 import { GreenButton } from "../Button/Buttons";
 import { Row } from "../Container/style";
 import { BlackText } from "../Text/style";
-import { 
+import {
   StyledStateContribution,
-  StyledStateInvite, 
-  StyledStateRequest 
+  StyledStateInvite,
+  StyledStateRequest
 } from "./style";
 import { ContributionModal, ModalLogic } from "../Card/Modals";
 
-export function StateContribution(props: {status: string}){
-  const {reveal, toggle} = ModalLogic();
-
-  if(props.status == 'paid')
-  {
-    return(
+export function StateContribution(props: { status: string }) {
+  if (props.status == 'paid') {
+    return (
       <StyledStateContribution>
-        <BlackText style={{paddingRight: "10px"}}>Cotisation :</BlackText>
-        <img style={{height: "20px"}} src="/static/icons/succes.svg"/> 
+        <BlackText style={{ paddingRight: "10px" }}>Cotisation :</BlackText>
+        <img style={{ height: "20px" }} src="/static/icons/succes.svg" />
       </StyledStateContribution>
     );
   }
-  else(props.status == 'unpaid')
+  else if(props.status == 'unpaid')
   {
-    return(
-      <Row style={{alignItems: "baseline", justifyContent:"center"}}>
-        <StyledStateContribution style={{marginRight: "15px"}}>
-          <BlackText style={{paddingRight: "10px"}}>Cotisation :</BlackText>
-          <img style={{height: "20px"}} src="/static/icons/fail.svg"/> 
+    const { reveal, toggle } = ModalLogic();
+
+    return (
+      <Row style={{ alignItems: "baseline", justifyContent: "center" }}>
+        <StyledStateContribution style={{ marginRight: "15px" }}>
+          <BlackText style={{ paddingRight: "10px" }}>Cotisation :</BlackText>
+          <img style={{ height: "20px" }} src="/static/icons/fail.svg" />
         </StyledStateContribution>
         <GreenButton width="150px" height="50px" onClick={toggle}>Payer</GreenButton>
-        <ContributionModal reveal={reveal} hide={toggle}/>
+        <ContributionModal reveal={reveal} hide={toggle} />
       </Row>
-      
     );
   }
 }
 
 export function StateRequest(props: { state: string, center?: boolean }) {
-  if(props.state == 'active')
-  {
+  if (props.state == 'active') {
     return <StyledStateRequest center={props.center} color="#67BC45">Acceptée</StyledStateRequest>
   }
-  if(props.state == 'declined')
-  {
+  if (props.state == 'declined') {
     return <StyledStateRequest center={props.center} color="#F23232">Refusée</StyledStateRequest>
   }
-  if(props.state == 'pending')
-  {
+  if (props.state == 'pending') {
     return <StyledStateRequest center={props.center} color="#FF9900">En cours</StyledStateRequest>
   }
 }
-  
-export function StateInvite(props: {state?: boolean}){
+
+export function StateInvite(props: { state?: boolean }) {
   var [state, setState] = useState(props.state);
 
   const handleValueChange = (elmt) => {
     setState(elmt.target.value == "enabled");
   }
 
-  return(
+  return (
     <StyledStateInvite status={state} onChange={handleValueChange}>
-      <option value="enabled" >Activé</option>
+      <option value="enabled">Activé</option>
       <option value="disabled">Désactivé</option>
     </StyledStateInvite>
   );
 }
 
-export function StateIntegration(props: {state?: boolean}){
+export function StateIntegration(props: { state?: boolean }) {
   var [state, setState] = useState(props.state);
 
   const handleValueChange = (elmt) => {
     setState(elmt.target.value == "enabled");
   }
 
-  return(
+  return (
     <StyledStateInvite status={state} onChange={handleValueChange}>
-      <option value="enabled" >Ayat's</option>
+      <option value="enabled">Ayat's</option>
       <option value="disabled">Fini</option>
     </StyledStateInvite>
   );
