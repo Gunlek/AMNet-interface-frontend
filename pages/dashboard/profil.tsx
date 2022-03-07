@@ -134,7 +134,7 @@ export default function Profil() {
                 marginBottom: isGadz ? "20px" : "0",
                 height: isGadz ? minWidth1000 ? "73px" : "244.6px" : "0px",
                 transition: "0.3s linear",
-                overflowY: "hidden"
+                overflowY: isGadz ? undefined : "hidden"
               }}
             >
               <Col6 style={{ paddingRight: minWidth1000 ? "10px" : "0", marginBottom: minWidth1000 ? "0" : "20px" }}>
@@ -181,10 +181,11 @@ export default function Profil() {
               <Col6
                 style={{
                   paddingRight: minWidth1000 ? "10px" : "0",
-                  marginBottom: minWidth1000 ? "0" : "20px",
-                  height: isGadz ? minWidth1000 ? "73px" : "244.6px" : "0px",
+                  marginBottom: (isGadz && !minWidth1000) ? "20px" : "0",
+                  height: isGadz ? "73px" : "0",
                   transition: "0.3s linear",
-                  overflowY: "hidden"
+                  overflowY: isGadz ? undefined : "hidden",
+                  flex: (isGadz && !minWidth1000) ? undefined : "none",
                 }}
               >
                 <GreenText style={{ marginBottom: "5px" }}>Identifiants gadzariques</GreenText>
@@ -194,8 +195,7 @@ export default function Profil() {
                 style={{
                   alignItems: minWidth1000 ? "end" : "center",
                   paddingLeft: minWidth1000 ? "10px" : "0",
-                  justifyContent: "end",
-                  maxWidth: isGadz ? "50%" : "100%"
+                  justifyContent: "end"
                 }}
               >
                 <GreenButton>Editer mon profil</GreenButton>
