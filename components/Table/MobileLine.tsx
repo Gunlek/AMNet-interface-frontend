@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { Buttons } from "./Admin";
 import { ProoveModal } from "../Card/Modals";
 
-export const MobileLine = ({ index, value, status, isLast }: {
+export const MobileLine = ({ index, value, status }: {
     index: number,
     value: {
         access_id: string,
@@ -16,8 +16,7 @@ export const MobileLine = ({ index, value, status, isLast }: {
         user_pay_status: number,
         user_name: string
     },
-    status: string,
-    isLast: boolean
+    status: string
 }) => {
 
     const [scrolled, setScrolled] = useState(false);
@@ -88,7 +87,7 @@ export const MobileLine = ({ index, value, status, isLast }: {
                     </div>
                 </td>
             </tr>
-            <tr style={{ display: isLast ? "none" : undefined }}>
+            <tr>
                 <td style={{ padding: "0" }}>
                     <div 
                         style={{ 
