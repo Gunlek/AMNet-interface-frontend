@@ -31,7 +31,7 @@ export default function AdminMenu(props: { page: string }) {
     justifyContent: "center",
     alignItems: "center",
     height: !minWidth1000 ? open ? "90px" : "0" : "auto",
-    overflow: "hidden",
+    overflow: !minWidth800 ? "hidden" : undefined,
     transition: "height 0.25s linear"
   };
 
