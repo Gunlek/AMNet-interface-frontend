@@ -9,6 +9,10 @@ export const StyledStateRequest = styled.div`
   outline: 2px solid ${(props) => props.color || "#FF9900"};
   text-align: center;
   margin: ${(props) => props.center && "0 auto"};
+
+  @media screen and (max-width: 1000px){
+    width: 140px;
+  }
 `
 
 export const StyledStateContribution = styled.div`
@@ -37,6 +41,7 @@ export const StyledStateInvite = styled.select`
   color: white;
   border: none;
   font-family: "Poppins";
+  transition: 0.2s;
 
   option {
       color: black;
