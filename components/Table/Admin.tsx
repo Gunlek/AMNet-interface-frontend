@@ -61,7 +61,7 @@ export function IoTAdminTable(props: { requests: any[], status: string }) {
                     </StyledTd>
                 </StyledTr>
                 :
-                <MobileLine key={index} index={index} value={value} status={props.status} isLast={false}/>
+                <MobileLine key={index} index={index} value={value} status={props.status}/>
             );
             index++
         }
