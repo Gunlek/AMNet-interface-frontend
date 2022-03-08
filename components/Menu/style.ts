@@ -35,7 +35,8 @@ export const MenuContener = styled.div`
   @media screen and (max-width: 1000px){
     height: auto;
     width:100%;
-    position: absolute;
+    transition: transform 0.3s;
+    transform: ${(props) => props.sticky? 'translateY(0)' : 'translateY(-100%)' };
   }  
 `;
 

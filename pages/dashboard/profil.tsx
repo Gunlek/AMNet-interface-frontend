@@ -137,9 +137,14 @@ export default function Profil() {
                 overflowY: isGadz ? undefined : "hidden"
               }}
             >
-              <Col6 style={{ paddingRight: minWidth1000 ? "10px" : "0", marginBottom: minWidth1000 ? "0" : "20px" }}>
-                <StyledInputLabel htmlFor="user_surname">Bucque</StyledInputLabel>
-                <StyledInput id="user_surname" type="text" />
+              <Col6 
+                style={{ 
+                  paddingRight: minWidth1000 ? "10px" : "0", 
+                  marginBottom: minWidth1000 ? "0" : "20px"
+                }}
+              >
+                <StyledInputLabel htmlFor="user_bucque">Bucque</StyledInputLabel>
+                <StyledInput id="user_bucque" type="text" />
               </Col6>
               <Col3
                 style={{
@@ -185,7 +190,7 @@ export default function Profil() {
                   height: isGadz ? "73px" : "0",
                   transition: "0.3s linear",
                   overflowY: isGadz ? undefined : "hidden",
-                  flex: (isGadz && !minWidth1000) ? undefined : "none",
+                  flex: (!isGadz && !minWidth1000) ? "none" : undefined  
                 }}
               >
                 <GreenText style={{ marginBottom: "5px" }}>Identifiants gadzariques</GreenText>

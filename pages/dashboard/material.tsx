@@ -21,18 +21,21 @@ const material = [
     "material_user": 1,
     "material_description": "Ordinateur portable",
     "material_state": "declined",
+    "material_reason": "Je veux un pc pour faire de la CAO"
   },
   {
     "material_id": 2,
     "material_user": 4,
     "material_description": "Ordinateur portable",
     "material_state": "pending",
+    "material_reason": "Je veux un pc pour faire de la CAO Je veux un pc pour faire de la CAO"
   },
   {
     "material_id": 1,
     "material_user": 5,
     "material_description": "Ordinateur portable",
     "material_state": "active",
+    "material_reason": "Je veux un pc pour faire de la CAO Je veux un pc pour faire de la CAO Je veux un pc pour faire de la CAO Je veux un pc pour faire de la CAO"
   }
 ]
 

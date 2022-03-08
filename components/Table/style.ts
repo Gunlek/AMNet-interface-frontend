@@ -75,6 +75,7 @@ export const StyledFlexTd = styled(StyledTd)`
 export const StyledTh = styled.th`
   font-weight: normal;
   text-align: start;
+  white-space: nowrap;
   padding : 15px 25px;
   background: #096A09;
   color: white;

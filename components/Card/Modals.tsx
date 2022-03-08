@@ -3,7 +3,7 @@ import { BodyWithModal } from "../Background/style";
 import { GreenButton } from "../Button/Buttons";
 import { Col4, Col8, ResponsiveRow, Row } from "../Container/style";
 import FileUploader from "../Input/FileUploader";
-import { StyledInput, StyledInputLabel } from "../Input/style";
+import { StyledInput, StyledInputLabel, StyledTextArea } from "../Input/style";
 import useMediaQuery from "../MediaQueries/MediaQuery";
 import { StateRequest } from "../Status/Status";
 import { Buttons } from "../Table/Admin";
@@ -124,9 +124,13 @@ export function MaterialModal(props: { reveal: boolean, hide: any }) {
             <StyledBackgroundModal onClick={props.hide} reveal={props.reveal} />
             <StyledModal width={minWidth1000 ? "800px" : undefined} reveal={props.reveal}>
                 <TitleCard>Demande de matériel</TitleCard>
-                <div style={{ marginBottom: "30px", width: "100%" }}>
+                <div style={{ marginBottom: "20px", width: "100%" }}>
                     <StyledInputLabel htmlFor="description_equipment">Description</StyledInputLabel>
                     <StyledInput id="description_equipment" placeholder="Par exemple: 1 écran" />
+                </div>
+                <div style={{ marginBottom: "30px", width: "100%" }}>
+                    <StyledInputLabel htmlFor="reason_equipment">Détails</StyledInputLabel>
+                    <StyledTextArea id="reason_equipment" placeholder="Par exemple: Je souhaite avoir un second écran pour faire de la CAO" />
                 </div>
                 <Row style={{ justifyContent: "center" }}>
                     <GreenButton width="350px">Envoyer la demande</GreenButton>

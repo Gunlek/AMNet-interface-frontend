@@ -17,7 +17,8 @@ const material = [
       "material_description": "Ordinateur portable",
       "material_state": "declined",
       "user_pay_status": 1,
-      "user_name": "Greg"
+      "user_name": "Greg",
+      "material_reason": "Je veux"
   },
   {
       "material_id": 2,
@@ -25,7 +26,8 @@ const material = [
       "material_description": "Ordinateur portable",
       "material_state": "pending",
       "user_pay_status": 1,
-      "user_name": "Greg"
+      "user_name": "Greg",
+      "material_reason": "Je veux un pc pour faire de la CAO Je veux un pc pour faire de la CAO"
   },
   {
       "material_id": 1,
@@ -33,7 +35,8 @@ const material = [
       "material_description": "Ordinateur portable",
       "material_state": "active",
       "user_pay_status": 1,
-      "user_name": "Greg"
+      "user_name": "Greg",
+      "material_reason": "Je veux un pc pour faire de la CAO Je veux un pc pour faire de la CAO Je veux un pc pour faire de la CAO Je veux un pc pour faire de la CAO"
   }
 ]
 

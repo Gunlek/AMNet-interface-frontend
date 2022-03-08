@@ -157,8 +157,8 @@ export default function SignUp() {
                 }}
               >
                 <Col6 style={{ paddingRight: minWidth1000 ? "10px" : "0", marginBottom: minWidth1000 ? "0" : "20px" }}>
-                  <StyledInputLabel htmlFor="user_surname">Bucque</StyledInputLabel>
-                  <StyledInput id="user_surname" type="text" />
+                  <StyledInputLabel htmlFor="user_bucque">Bucque</StyledInputLabel>
+                  <StyledInput id="user_bucque" type="text" />
                 </Col6>
                 <Col3 
                   style={{ 
