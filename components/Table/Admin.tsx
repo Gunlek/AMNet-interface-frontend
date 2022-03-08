@@ -3,15 +3,15 @@ import { SmallGreenButton, SmallRedButton } from "../Button/Buttons";
 import useMediaQuery from "../MediaQueries/MediaQuery";
 import { StateRequest } from "../Status/Status";
 import { StyledLink } from "../Text/style";
-import { 
-    StyledFlexTd, 
-    StyledHeadTr, 
-    StyledTable, 
-    StyledTd, 
-    StyledTh, 
-    StyledTr 
+import {
+    StyledFlexTd,
+    StyledHeadTr,
+    StyledTable,
+    StyledTd,
+    StyledTh,
+    StyledTr
 } from "./style";
-import {MobileLine} from "./MobileLine";
+import { MobileLine } from "./MobileLine";
 import { ProoveModal } from "../Card/Modals";
 
 export const Buttons = (props: { status: string, id?: string }) => {
@@ -31,7 +31,7 @@ export function IoTAdminTable(props: { requests: any[], status: string }) {
 
     props.requests.map((value) => {
         if (value['acces_state'] == props.status) {
-            listHTML.push(minWidth1000?
+            listHTML.push(minWidth1000 ?
                 <StyledTr key={index}>
                     <StyledTd>{index}</StyledTd>
                     <StyledTd>
@@ -49,25 +49,25 @@ export function IoTAdminTable(props: { requests: any[], status: string }) {
                         <StateRequest state={value['acces_state']} />
                     </StyledTd>
                     <StyledTd>
-                        <div 
-                            style={{ 
-                                width: (props.status == "pending") ? "500px" : "325px", 
-                                display: "flex", 
-                                justifyContent:"space-between",
+                        <div
+                            style={{
+                                width: (props.status == "pending") ? "500px" : "325px",
+                                display: "flex",
+                                justifyContent: "space-between",
                             }}
                         >
                             <Buttons status={value['acces_state']} />
-                        </div>  
+                        </div>
                     </StyledTd>
                 </StyledTr>
                 :
-                <MobileLine key={index} index={index} value={value} status={props.status}/>
+                <MobileLine key={index} index={index} value={value} status={props.status} />
             );
             index++
         }
     })
 
-    return (minWidth1000?
+    return (minWidth1000 ?
         <StyledTable>
             <thead>
                 <StyledHeadTr>
@@ -106,37 +106,42 @@ export function MaterialAdminTable(props: { requests: any[], status: string }) {
                     <StyledTd>
                         <img style={{ height: "20px", marginLeft: "40px" }} src={value['user_pay_status'] ? "/static/icons/succes.svg" : "/static/icons/fail.svg"} />
                     </StyledTd>
-                    <StyledFlexTd>{value['material_description']}</StyledFlexTd>
+                    <StyledTd>{value['material_description']}</StyledTd>
+                    <StyledFlexTd style={{ whiteSpace: "normal" }}><div style={{ width: "300px", maxWidth: "max-content" }}>{value['material_reason']}</div></StyledFlexTd>
                     <StyledTd>
                         <StateRequest state={value['material_state']} />
                     </StyledTd>
                     <StyledTd>
-                        <div 
-                            style={{ 
-                                width: (props.status == "pending") ? "500px" : "325px", 
-                                display: "flex", 
-                                justifyContent:"space-between"
+                        <div
+                            style={{
+                                width: (props.status == "pending") ? "500px" : "325px",
+                                display: "flex",
+                                justifyContent: "space-between"
                             }}
                         >
                             <Buttons status={value['material_state']} />
-                        </div> 
+                        </div>
                     </StyledTd>
                 </StyledTr>
                 :
-                <React.Fragment key={index}> 
+                <React.Fragment key={index}>
                     <StyledHeadTr>
                         <StyledTh>Equipement {index}</StyledTh>
-                        <StyledTh style={{textAlign: "center"}}>{value['material_description']}</StyledTh>
+                        <StyledTh style={{ textAlign: "center" }}>{value['material_description']}</StyledTh>
                     </StyledHeadTr>
                     <StyledTr>
                         <StyledTd>Utilisateur</StyledTd>
-                        <StyledTd style={{textAlign: "center"}}>{value['user_name']}</StyledTd>
+                        <StyledTd style={{ textAlign: "center" }}>{value['user_name']}</StyledTd>
                     </StyledTr>
                     <StyledTr>
                         <StyledTd>Cotisation</StyledTd>
-                        <StyledTd style={{textAlign: "center"}}>
+                        <StyledTd style={{ textAlign: "center" }}>
                             <img style={{ height: "20px" }} src={value['user_pay_status'] ? "/static/icons/succes.svg" : "/static/icons/fail.svg"} />
                         </StyledTd>
+                    </StyledTr>
+                    <StyledTr>
+                        <StyledTd>Détails</StyledTd>
+                        <StyledTd style={{ textAlign: "center", whiteSpace: "normal" }}>{value['material_reason']}</StyledTd>
                     </StyledTr>
                     <StyledTr>
                         <StyledTd>Etat</StyledTd>
@@ -144,19 +149,19 @@ export function MaterialAdminTable(props: { requests: any[], status: string }) {
                     </StyledTr>
                     <StyledTr>
                         <StyledTd>Actions</StyledTd>
-                        <StyledTd style={{textAlign: "center"}}>
-                            <div 
-                                style={{ 
-                                    height: (props.status == "pending") ? "160px" : "100px", 
-                                    display: "flex", 
+                        <StyledTd style={{ textAlign: "center" }}>
+                            <div
+                                style={{
+                                    height: (props.status == "pending") ? "160px" : "100px",
+                                    display: "flex",
                                     alignItems: "center",
-                                    justifyContent:"space-between",
+                                    justifyContent: "space-between",
                                     flexDirection: "column"
                                 }}
                             >
                                 <Buttons status={value['material_state']} />
-                            </div>  
-                        </StyledTd>   
+                            </div>
+                        </StyledTd>
                     </StyledTr>
                 </React.Fragment>
 
@@ -165,7 +170,7 @@ export function MaterialAdminTable(props: { requests: any[], status: string }) {
         }
     })
 
-    return (minWidth1000?
+    return (minWidth1000 ?
         <StyledTable style={{ width: "100%" }}>
             <thead>
                 <StyledHeadTr>
@@ -173,6 +178,7 @@ export function MaterialAdminTable(props: { requests: any[], status: string }) {
                     <StyledTh scope="col">Utilisateur</StyledTh>
                     <StyledTh scope="col">Cotisation</StyledTh>
                     <StyledTh scope="col">Description</StyledTh>
+                    <StyledTh scope="col">Détails</StyledTh>
                     <StyledTh scope="col"><span style={{ paddingLeft: "5px" }}>Etat</span></StyledTh>
                     <StyledTh scope="col"><span style={{ paddingLeft: "5px" }}>Actions</span></StyledTh>
                 </StyledHeadTr>
