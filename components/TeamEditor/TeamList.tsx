@@ -150,7 +150,7 @@ export const TeamList = (props: { list: any[], setter?: Function }) => {
                 style={{
                   width:"50%",  
                   display: minWidth1000? "inline-block" : "block", 
-                  paddingLeft: "20px"
+                  paddingLeft: minWidth1000? "20px" : "0"
                 }}
               >
                 {row.cells[0].render('Cell')}
@@ -161,7 +161,7 @@ export const TeamList = (props: { list: any[], setter?: Function }) => {
                 style={{
                   width:"50%", 
                   display: minWidth1000? "inline-block" : "block", 
-                  paddingLeft: "20px"
+                  paddingLeft: minWidth1000? "20px" : "0"
                 }}
               >
                 {row.cells[1].render('Cell')}
