@@ -9,6 +9,7 @@ import UsersIcon from "../NavIcons/users";
 import BurgerMenu from "../NavIcons/burgermenu";
 import useMediaQuery from "../MediaQueries/MediaQuery";
 import { useState } from "react";
+import useScrollingUp from "./scroll";
 import {
   MenuContener,
   StyledDivLogo,
@@ -19,6 +20,7 @@ import {
 export default function AdminMenu(props: { page: string }) {
   const minWidth800 = useMediaQuery('(min-width:800px)');
   const minWidth1000 = useMediaQuery('(min-width:1000px)');
+  const scrolled = useScrollingUp()
   const [open, SetOpen] = useState(false);
 
   function handleChange() {
@@ -36,7 +38,7 @@ export default function AdminMenu(props: { page: string }) {
   };
 
   return (
-    <MenuContener>
+    <MenuContener sticky={scrolled}>
       <StyledMenu>
         <Row
           style={{
