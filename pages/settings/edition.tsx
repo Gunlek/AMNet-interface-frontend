@@ -161,7 +161,7 @@ export default function Edition() {
                 <Col6 style={{marginRight: minWidth1000 ? "1%" : "0"}}>
                   <GreenText style={{ marginBottom: "5px" }}>Photo de l'AMNet</GreenText>
                   <ResponsiveRow style={{marginBottom: "20px"}}>
-                    <div style={{ width: minWidth1000 ? "400px" : "auto", marginBottom: minWidth1000 ? "0" : "20px" }}>
+                    <div style={{ width: minWidth1000 ? "300px" : "auto", marginBottom: minWidth1000 ? "0" : "20px" }}>
                       <StyledLink 
                         color="black" 
                         hovercolor="#2E8A21"
