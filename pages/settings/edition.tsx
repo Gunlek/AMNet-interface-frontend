@@ -171,7 +171,7 @@ export default function Edition() {
                         Voir la photo actuelle
                       </StyledLink>
                     </div>
-                    <ResponsiveRow style={{ alignItems: "center" }}>
+                    <ResponsiveRow style={{ alignItems: "center", width: "auto" }}>
                       <FileUploader id="2" setfile={SetFile} accept=".jpeg, .jpg, .png, .svg"/>
                       <BlackText 
                         style={{
