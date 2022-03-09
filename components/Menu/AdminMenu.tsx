@@ -20,7 +20,7 @@ import {
 export default function AdminMenu(props: { page: string }) {
   const minWidth800 = useMediaQuery('(min-width:800px)');
   const minWidth1000 = useMediaQuery('(min-width:1000px)');
-  const scrolled = useScrollingUp()
+  const [scroll, scrolled] = useScrollingUp()
   const [open, SetOpen] = useState(false);
 
   function handleChange() {
@@ -38,7 +38,7 @@ export default function AdminMenu(props: { page: string }) {
   };
 
   return (
-    <MenuContener sticky={scrolled}>
+    <MenuContener scroll={scroll} sticky={scrolled}>
       <StyledMenu>
         <Row
           style={{

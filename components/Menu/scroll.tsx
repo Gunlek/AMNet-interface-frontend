@@ -1,33 +1,32 @@
 import { useEffect, useState } from 'react'
 
- export function on(obj, ...args) {
-    obj.addEventListener(...args)
-  }
-  
-  export function off(obj, ...args) {
-    obj.removeEventListener(...args)
-  }
-
 const useScrollingUp = () => {
-  let prevScroll
+  let prevScroll: number
   //if it is SSR then check you are now on the client and window object is available
   if (process.browser) {
     prevScroll = window.pageYOffset
   }
+
   const [scrollingUp, setScrollingUp] = useState(true)
+  const [scroll, setScroll] = useState(0)
+
   const handleScroll = () => {
     const currScroll = window.pageYOffset
-    const isScrolled = prevScroll > currScroll
-    setScrollingUp(isScrolled)
+    setScroll(currScroll)
+    setScrollingUp(prevScroll > currScroll)
     prevScroll = currScroll
+    
   }
+
   useEffect(() => {
-    on(window, 'scroll', handleScroll, { passive: true })
+    window.addEventListener('scroll', handleScroll, { passive: true })
+
     return () => {
-      off(window, 'scroll', handleScroll, { passive: true })
+      window.removeEventListener('scroll', handleScroll)
     }
   }, [])
-  return scrollingUp
+
+  return [scroll, scrollingUp]
 }
 
 export default useScrollingUp

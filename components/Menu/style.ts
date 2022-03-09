@@ -31,12 +31,13 @@ export const MenuContener = styled.div`
   height:100vh;
   display: flex;
   align-items: center;
-
+  
   @media screen and (max-width: 1000px){
+    z-index:2;
     height: auto;
-    width:100%;
-    transition: transform 0.3s;
-    transform: ${(props) => props.sticky? 'translateY(0)' : 'translateY(-100%)' };
+    width: 100%;
+    transition: transform ${(props) => (props.scroll > 100) ? "0.4s" : "0s"};
+    transform: ${(props) => (props.scroll > 100) ? props.sticky? 'translateY(0)' : 'translateY(-100%)' : props.sticky? 'translateY(0)' : 'translateY(-'+props.scroll+'%)'};
   }  
 `;
 
