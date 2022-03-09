@@ -21,9 +21,9 @@ import {
 
 export default function UserMenu(props: { page: string }) {
   const minWidth800 = useMediaQuery('(min-width:800px)');
-  const scrolled = useScrollingUp()
+  const [scroll, scrolled] = useScrollingUp()
   var [open, SetOpen] = useState(false);
-
+  console.log(scroll)
   function handleChange() {
     SetOpen(!open);
   }
@@ -39,7 +39,7 @@ export default function UserMenu(props: { page: string }) {
   };
 
   return (
-    <MenuContener sticky={scrolled}>
+    <MenuContener scroll={scroll} sticky={scrolled}>
       <StyledMenu>
         <Row
           style={{

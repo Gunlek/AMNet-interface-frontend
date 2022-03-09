@@ -172,38 +172,40 @@ export function ProoveModal(props: { request: any, link: string }) {
                         </Col8>
                         <Col4 style={{ paddingLeft: minWidth1000 ? "1%" : "0", overflow: "auto" }}>
                             <StyledTable>
-                                <StyledHeadTr>
-                                    <StyledTh>Equipement</StyledTh>
-                                    <StyledTh style={{ textAlign: "center" }}>{props.request['access_description']}</StyledTh>
-                                </StyledHeadTr>
-                                <StyledTr>
-                                    <StyledTd>Utilisateur</StyledTd>
-                                    <StyledTd style={{ textAlign: "center" }}>{props.request['user_name']}</StyledTd>
-                                </StyledTr>
-                                <StyledTr>
-                                    <StyledTd>Adresse Mac</StyledTd>
-                                    <StyledTd style={{ textAlign: "center" }}>{props.request['access_mac']}</StyledTd>
-                                </StyledTr>
-                                <StyledTr>
-                                    <StyledTd>Etat</StyledTd>
-                                    <StyledTd><StateRequest center={true} state={props.request['acces_state']} /></StyledTd>
-                                </StyledTr>
-                                <StyledTr>
-                                    <StyledTd>Actions</StyledTd>
-                                    <StyledTd style={{ textAlign: "center" }}>
-                                        <div
-                                            style={{
-                                                height: (props.request['acces_state'] == "pending") ? "160px" : "100px",
-                                                display: "flex",
-                                                alignItems: "center",
-                                                justifyContent: "space-between",
-                                                flexDirection: "column"
-                                            }}
-                                        >
-                                            <Buttons status={props.request['acces_state']} />
-                                        </div>
-                                    </StyledTd>
-                                </StyledTr>
+                                <tbody>
+                                    <StyledHeadTr>
+                                        <StyledTh>Equipement</StyledTh>
+                                        <StyledTh style={{ textAlign: "center" }}>{props.request['access_description']}</StyledTh>
+                                    </StyledHeadTr>
+                                    <StyledTr>
+                                        <StyledTd>Utilisateur</StyledTd>
+                                        <StyledTd style={{ textAlign: "center" }}>{props.request['user_name']}</StyledTd>
+                                    </StyledTr>
+                                    <StyledTr>
+                                        <StyledTd>Adresse Mac</StyledTd>
+                                        <StyledTd style={{ textAlign: "center" }}>{props.request['access_mac']}</StyledTd>
+                                    </StyledTr>
+                                    <StyledTr>
+                                        <StyledTd>Etat</StyledTd>
+                                        <StyledTd><StateRequest center={true} state={props.request['acces_state']} /></StyledTd>
+                                    </StyledTr>
+                                    <StyledTr>
+                                        <StyledTd>Actions</StyledTd>
+                                        <StyledTd style={{ textAlign: "center" }}>
+                                            <div
+                                                style={{
+                                                    height: (props.request['acces_state'] == "pending") ? "160px" : "100px",
+                                                    display: "flex",
+                                                    alignItems: "center",
+                                                    justifyContent: "space-between",
+                                                    flexDirection: "column"
+                                                }}
+                                            >
+                                                <Buttons status={props.request['acces_state']} />
+                                            </div>
+                                        </StyledTd>
+                                    </StyledTr>
+                                </tbody>
                             </StyledTable>
                         </Col4>
                     </ResponsiveRow>
