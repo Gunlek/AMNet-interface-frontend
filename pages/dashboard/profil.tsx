@@ -29,8 +29,8 @@ export default function Profil() {
 
 
   const handleValueChange = (elmt) => {
-    setGadz(elmt.target.value == "219" || elmt.target.value == "220");
-    setOther(elmt.target.value == "other");
+    setGadz(elmt.target.value == "OldPromotion" || elmt.target.value == "ActivePromotion");
+    setOther(elmt.target.value == "Other");
   }
 
   function CancelChange() {
@@ -105,11 +105,16 @@ export default function Profil() {
               </Col6>
               <Col6 style={{ paddingLeft: minWidth1000 ? "10px" : "0" }}>
                 <StyledInputLabel htmlFor="user_promotion">Promotion</StyledInputLabel>
-                <StyledSelect id="user_promotion" style={{ display: isOther ? "none" : "inline" }} onChange={handleValueChange}>
-                  <option value="219">219</option>
-                  <option value="220">220</option>
-                  <option value="2021" selected>2021</option>
-                  <option value="other">Autre</option>
+                <StyledSelect
+                  defaultValue="NewPromotion"
+                  id="user_promotion"
+                  style={{ display: isOther ? "none" : "inline" }}
+                  onChange={handleValueChange}
+                >
+                  <option value="OldPromotion">219</option>
+                  <option value="ActivePromotion">220</option>
+                  <option value="NewPromotion">2021</option>
+                  <option value="Other">Autre</option>
                 </StyledSelect>
                 <div style={{ display: isOther ? "flex" : "none", alignItems: "center" }} >
                   <StyledInput
@@ -137,9 +142,9 @@ export default function Profil() {
                 overflowY: isGadz ? undefined : "hidden"
               }}
             >
-              <Col6 
-                style={{ 
-                  paddingRight: minWidth1000 ? "10px" : "0", 
+              <Col6
+                style={{
+                  paddingRight: minWidth1000 ? "10px" : "0",
                   marginBottom: minWidth1000 ? "0" : "20px"
                 }}
               >
@@ -159,14 +164,14 @@ export default function Profil() {
               <Col3 style={{ paddingLeft: minWidth1000 ? "10px" : "0" }}>
                 <StyledInputLabel htmlFor="user_campus">Tabagn's</StyledInputLabel>
                 <StyledSelect id="user_campus" name="tbk">
-                  <option value="li">Birse</option>
-                  <option value="an">Boquette</option>
-                  <option value="bo">Bordel's</option>
-                  <option value="ch">Chalon's</option>
-                  <option value="cl">Clun's</option>
-                  <option value="kin">KIN</option>
-                  <option value="pa">P3</option>
-                  <option value="me">Siber's</option>
+                  <option value="Li">Birse</option>
+                  <option value="An">Boquette</option>
+                  <option value="Bo">Bordel's</option>
+                  <option value="Ch">Chalon's</option>
+                  <option value="Cl">Clun's</option>
+                  <option value="KIN">KIN</option>
+                  <option value="Pa">P3</option>
+                  <option value="Me">Siber's</option>
                 </StyledSelect>
               </Col3>
             </ResponsiveRow>
@@ -190,7 +195,7 @@ export default function Profil() {
                   height: isGadz ? "73px" : "0",
                   transition: "0.3s linear",
                   overflowY: isGadz ? undefined : "hidden",
-                  flex: (!isGadz && !minWidth1000) ? "none" : undefined  
+                  flex: (!isGadz && !minWidth1000) ? "none" : undefined
                 }}
               >
                 <GreenText style={{ marginBottom: "5px" }}>Identifiants gadzariques</GreenText>
