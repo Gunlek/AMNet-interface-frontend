@@ -1,9 +1,9 @@
 import React, { forwardRef, useEffect, useMemo, useRef, useState } from 'react'
 import { useTable, useFilters, useGlobalFilter, useAsyncDebounce, useRowSelect, useSortBy } from 'react-table'
-import { CheckboxRow } from '../Container/style';
+import { CheckboxRow, Row } from '../Container/style';
 import Checkbox from '../Input/Checkbox';
 import { StyledInput, StyledLabel } from '../Input/style';
-import { BlackText } from '../Text/style';
+import { BlackText, WhiteText } from '../Text/style';
 import useMediaQuery from '../MediaQueries/MediaQuery';
 import {
   StyledTable,
@@ -152,7 +152,7 @@ export function UsersTable(data: any[]) {
           // to the render a checkbox
           Cell: ({ row }) => (
             <div>
-              <IndeterminateCheckbox tableUsers={true} {...row.getToggleRowSelectedProps()} />
+              <IndeterminateCheckbox {...row.getToggleRowSelectedProps()} />
             </div>
           ),
         },
@@ -186,6 +186,7 @@ export function UsersTable(data: any[]) {
         <thead style={{ position: "sticky", top: "0", zIndex: "2" }}>
           {headerGroups.map(headerGroup => (
             <StyledHeadTr {...headerGroup.getHeaderGroupProps()}>
+
               {headerGroup.headers.map((column, index) => (
                 <StyledTh {...column.getHeaderProps(column.getSortByToggleProps())}>
                   <div style={{ display: "flex" }}>
@@ -241,15 +242,40 @@ export function UsersTable(data: any[]) {
       </StyledTable>
       :
       <>
-        
+        <Row style={{ 
+            marginBottom: "20px", 
+            justifyContent: "space-between",   
+            position: "sticky",
+            zIndex: "2", 
+            top: "0", 
+            borderRadius: "10px",
+            background: "#096A09",
+            color: "white",
+            padding: "15px 20px"
+          }}
+        >
+          <label
+            style={{
+              width: "55px",
+              display: "flex",
+              justifyContent: "space-between",
+              fontSize: "1.2rem",
+            }}
+          >
+            {Object.keys(selectedRowIds).length}
+            {headerGroups[0].headers[0].render('Header')}
+          </label>
+          <WhiteText style={{ paddingRight: "10px" }}>Tout sélectionner</WhiteText>
+        </Row>
+
         {rows.map((row, index) => {
           prepareRow(row)
-          
+
           return (
-            <UsersMobileLine key={index} columnsNumber={14-state.hiddenColumns.length} row={row}/>
+            <UsersMobileLine key={index} columnsNumber={14 - state.hiddenColumns.length} row={row} />
           )
         })}
-      </>   
+      </>
   ]
 }
 

@@ -13,11 +13,13 @@ export const UsersMobileLine = ({ row, columnsNumber }: {
 
             <div
                 style={{
-                    height: scrolled ? (columnsNumber * 55 + 10).toString() + "px" : "55px",
+                    height: scrolled ? (columnsNumber * 55 + 10).toString() + "px" : "56px",
                     transition: "0.3s linear",
                     overflowY: "hidden",
                     overflowX: scrolled ? "auto" : "hidden",
-                    marginBottom: scrolled ? "10px" : "0"
+                    marginBottom: scrolled ? "10px" : "0",
+                    borderRadius: "10px",
+                    border:  "2px solid #096A09"
                 }}
             >
                 <StyledTable style={{ tableLayout: !scrolled && "fixed" }}>
@@ -25,18 +27,18 @@ export const UsersMobileLine = ({ row, columnsNumber }: {
                         {row.cells.map((cell, index) => {
                             if (cell.column['id'] == 'user_name') {
                                 return (
-                                    <StyledHeadTr  {...cell.getCellProps()} onClick={() => setScrolled(!scrolled)}>
-                                        <StyledTh>
+                                    <StyledTr {...cell.getCellProps()} onClick={() => setScrolled(!scrolled)}>
+                                        <StyledTd>
                                             <div style={{ width: "140px", display: "flex", justifyContent: "space-between" }}>
-                                                <label style={{width: "55px", display: "flex", justifyContent: "space-between"}}>
+                                                <label style={{ width: "55px", display: "flex", justifyContent: "space-between" }}>
                                                     {row.cells[1].render('Cell')}
                                                     {row.cells[0].render('Cell')}
                                                 </label>
                                                 {cell.column.render('Header')}
                                             </div>
-                                        </StyledTh>
-                                        <StyledTh style={{ textAlign: "center" }}>{cell.render('Cell')}</StyledTh>
-                                    </StyledHeadTr>
+                                        </StyledTd>
+                                        <StyledTd style={{ textAlign: "center" }}>{cell.render('Cell')}</StyledTd>
+                                    </StyledTr>
                                 )
                             }
 
