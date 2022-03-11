@@ -9,13 +9,15 @@ const useScrollingUp = () => {
 
   const [scrollingUp, setScrollingUp] = useState(true)
   const [scroll, setScroll] = useState(0)
+  const [top, setTop] = useState(true)
 
   const handleScroll = () => {
     const currScroll = window.pageYOffset
     setScroll(currScroll)
     setScrollingUp(prevScroll > currScroll)
     prevScroll = currScroll
-    
+    if(currScroll > 100) setTop(false)
+    if(currScroll == 0) setTop(true)
   }
 
   useEffect(() => {
@@ -26,7 +28,7 @@ const useScrollingUp = () => {
     }
   }, [])
 
-  return [scroll, scrollingUp]
+  return [scroll, scrollingUp, top]
 }
 
 export default useScrollingUp
