@@ -6,6 +6,7 @@ import { DndProvider, useDrag, useDrop } from 'react-dnd'
 import update from 'immutability-helper'
 import { HTML5Backend } from "react-dnd-html5-backend";
 import useMediaQuery from '../MediaQueries/MediaQuery';
+import { Column } from '../Container/style';
 
 
 export const TeamList = (props: { list: any[], setter?: Function }) => {
@@ -133,10 +134,10 @@ const Row = ({ row, index, moveRow, deleteTeamMember }) => {
   drag(dragRef)
 
   return (
-    <StyledTr ref={dropRef} style={{ opacity }}>
+    <StyledTr ref={minWidth1000 ? dropRef : undefined} style={{ opacity }}>
       <StyledTd
         colspan="2"
-        ref={dragRef}
+        ref={minWidth1000 ? dragRef : undefined}
         style={{
           width: "83.32%",
           userSelect: "none",
@@ -148,22 +149,41 @@ const Row = ({ row, index, moveRow, deleteTeamMember }) => {
         <div
           {...row.cells[0].getCellProps()}
           style={{
-            width: "50%",
+            width: minWidth1000 ? "50%" : "",
             display: minWidth1000 ? "inline-block" : "block",
             paddingLeft: minWidth1000 ? "20px" : "0"
           }}
         >
+          <img 
+            src="/static/icons/arrow.svg" 
+            onClick={(e) => moveRow(index, index-1)}
+            style={{ 
+              width: "15px", 
+              transform: "rotate(180deg)", 
+              display: minWidth1000 ? "none" : undefined, 
+              marginRight: "10px" 
+            }} 
+          />
           {row.cells[0].render('Cell')}
         </div>
 
         <div
           {...row.cells[1].getCellProps()}
           style={{
-            width: "50%",
+            width: minWidth1000 ? "50%" : "auto",
             display: minWidth1000 ? "inline-block" : "block",
             paddingLeft: minWidth1000 ? "20px" : "0"
           }}
         >
+          <img 
+            src="/static/icons/arrow.svg" 
+            onClick={(e) => moveRow(index, index+1)}
+            style={{ 
+              width: "15px", 
+              display: minWidth1000 ? "none" : undefined, 
+              marginRight: "10px" 
+            }} 
+          />
           {row.cells[1].render('Cell')}
         </div>
       </StyledTd>
