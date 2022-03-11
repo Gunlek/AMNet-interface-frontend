@@ -85,9 +85,9 @@ export function IoTAdminTable(props: { requests: any[], status: string }) {
             <tbody>{listHTML}</tbody>
         </StyledTable>
         :
-        <StyledTable style={{ tableLayout: "fixed" }}>
-            <tbody>{listHTML}</tbody>
-        </StyledTable>
+        <>
+            {listHTML}
+        </>
     );
 };
 
@@ -147,9 +147,9 @@ export function MaterialAdminTable(props: { requests: any[], status: string }) {
             <tbody>{listHTML}</tbody>
         </StyledTable>
         :
-        <StyledTable style={{ tableLayout: "fixed" }}>
-            <tbody>{listHTML}</tbody>
-        </StyledTable>
+        <>
+            {listHTML}
+        </>
     );
 
 };
