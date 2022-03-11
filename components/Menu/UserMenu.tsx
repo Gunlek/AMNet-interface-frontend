@@ -9,7 +9,7 @@ import ProfilIcon from "../NavIcons/profil";
 import SettingsIcon from "../NavIcons/settings";
 import BurgerMenu from "../NavIcons/burgermenu";
 import useMediaQuery from "../MediaQueries/MediaQuery";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import useScrollingUp from "./scroll";
 import {
   MenuContener,
@@ -21,25 +21,29 @@ import {
 
 export default function UserMenu(props: { page: string }) {
   const minWidth800 = useMediaQuery('(min-width:800px)');
-  const [scroll, scrolled] = useScrollingUp()
+  const [scroll, scrolled, top] = useScrollingUp()
   var [open, SetOpen] = useState(false);
-  console.log(scroll)
+
   function handleChange() {
     SetOpen(!open);
   }
+
+  useEffect(() => {
+    if(!scrolled) if(open) handleChange()
+  }, [scrolled])
 
   const positionning = {
     flex: "1",
     margin: (minWidth800) ? "5px 0" : "0",
     justifyContent: "center",
     alignItems: "center",
-    height: !minWidth800 ? open ? "90px" : "0" : "auto",
+    height: !minWidth800 ? open ? "95px" : "0" : "auto",
     overflow: !minWidth800 ? "hidden" : undefined,
     transition: "height 0.25s linear"
   };
 
   return (
-    <MenuContener scroll={scroll} sticky={scrolled}>
+    <MenuContener top={top} scroll={scroll} sticky={scrolled}>
       <StyledMenu>
         <Row
           style={{

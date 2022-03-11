@@ -37,7 +37,7 @@ export const StyledBackIcon = styled.a`
     opacity: 0;
     border-radius: 15px;
     padding: 10px;
-    background: rgba(255, 255, 255, 0.9);
+    background: white;
     width: max-content;
     pointer-events: none;
     box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.06);

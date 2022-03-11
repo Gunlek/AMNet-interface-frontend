@@ -36,8 +36,9 @@ export const MenuContener = styled.div`
     z-index:2;
     height: auto;
     width: 100%;
-    transition: transform ${(props) => (props.scroll > 100) ? "0.4s" : "0s"};
-    transform: ${(props) => (props.scroll > 100) ? props.sticky? 'translateY(0)' : 'translateY(-100%)' : props.sticky? 'translateY(0)' : 'translateY(-'+props.scroll+'%)'};
+    position: ${(props) => props.top ? "absolute" : "fixed"};
+    ${(props) => (props.scroll < 115 && props.scroll > 100 ) ? undefined : "transition : transform 0.4s" };
+    transform: ${(props) => ((!props.top) && !props.sticky)? 'translateY(-100%)' : 'translateY(0)'};
   }  
 `;
 
