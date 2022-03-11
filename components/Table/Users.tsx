@@ -12,6 +12,7 @@ import {
   StyledUsersTr,
   StyledHeadTr
 } from './style';
+import UsersMobileLine from './MobileLine/Users';
 
 interface Props {
   indeterminate?: boolean;
@@ -49,9 +50,9 @@ const IndeterminateCheckbox = forwardRef<HTMLInputElement, Props>(
 
     return (
       <StyledLabel width="25px">
-        <Checkbox  refs={combinedRef} {...rest}/>
+        <Checkbox refs={combinedRef} {...rest} />
       </StyledLabel>
-      
+
     );
   }
 );
@@ -80,7 +81,7 @@ export function UsersTable(data: any[]) {
   const minWidth1000 = useMediaQuery('(min-width:1000px)');
   const columns = useMemo(
     () => [
-      { Header: '#', accessor: (row, i) => i+1 },
+      { Header: '#', accessor: (row, i) => i + 1 },
       { Header: 'Utilisateur', accessor: 'user_name' },
       { Header: 'Prénom', accessor: 'user_firstname' },
       { Header: 'Nom', accessor: 'user_lastname' },
@@ -131,7 +132,7 @@ export function UsersTable(data: any[]) {
     useFilters,
     useGlobalFilter,
     useSortBy,
-    useRowSelect, 
+    useRowSelect,
     hooks => {
       hooks.visibleColumns.push(columns => [
         // Let's make a column for selection
@@ -151,7 +152,7 @@ export function UsersTable(data: any[]) {
           // to the render a checkbox
           Cell: ({ row }) => (
             <div>
-              <IndeterminateCheckbox {...row.getToggleRowSelectedProps()} />
+              <IndeterminateCheckbox tableUsers={true} {...row.getToggleRowSelectedProps()} />
             </div>
           ),
         },
@@ -159,7 +160,7 @@ export function UsersTable(data: any[]) {
       ])
     }
   )
-      
+
   return [
     <GlobalFilter globalFilter={state.globalFilter} setGlobalFilter={setGlobalFilter} />,
     <CheckboxRow
@@ -180,66 +181,78 @@ export function UsersTable(data: any[]) {
     selectedFlatRows.map(
       d => d.original["user_id"]
     ),
-    <StyledTable {...getTableProps()}>
-      <thead style={{position: "sticky", top: "0", zIndex: "2"}}>
-        {headerGroups.map(headerGroup => (
-          <StyledHeadTr {...headerGroup.getHeaderGroupProps()}>
-
-            {headerGroup.headers.map((column, index) => (
-              <StyledTh {...column.getHeaderProps(column.getSortByToggleProps())}>
-                <div style={{ display: "flex" }}>
-                  {column.render('Header')}
-                  <span
-                    style={{
-                      display: "inline-block",
-                      marginLeft: "10px",
-                      width: "20px"
-                    }}
-                  >
-                    {(index == 0) && Object.keys(selectedRowIds).length}
-                    {!(index == 0) && column.isSorted ? column.isSortedDesc ? '▼' : '▲' : ''}
-                  </span>
-                </div>
-              </StyledTh>
-            ))}
-          </StyledHeadTr>
-        ))}
-      </thead>
-      <tbody {...getTableBodyProps()}>
+    minWidth1000 ?
+      <StyledTable {...getTableProps()}>
+        <thead style={{ position: "sticky", top: "0", zIndex: "2" }}>
+          {headerGroups.map(headerGroup => (
+            <StyledHeadTr {...headerGroup.getHeaderGroupProps()}>
+              {headerGroup.headers.map((column, index) => (
+                <StyledTh {...column.getHeaderProps(column.getSortByToggleProps())}>
+                  <div style={{ display: "flex" }}>
+                    {column.render('Header')}
+                    <span
+                      style={{
+                        display: "inline-block",
+                        marginLeft: "10px",
+                        width: "20px"
+                      }}
+                    >
+                      {(index == 0) && Object.keys(selectedRowIds).length}
+                      {!(index == 0) && column.isSorted ? column.isSortedDesc ? '▼' : '▲' : ''}
+                    </span>
+                  </div>
+                </StyledTh>
+              ))}
+            </StyledHeadTr>
+          ))}
+        </thead>
+        <tbody {...getTableBodyProps()}>
+          {rows.map((row, index) => {
+            prepareRow(row)
+            return (
+              <StyledUsersTr key={index} {...row.getRowProps()}>
+                {row.cells.map((cell) => {
+                  if (cell.column['id'] == 'user_pay_status') {
+                    return (
+                      <StyledTd {...cell.getCellProps()}>
+                        <img style={{ height: "20px", marginLeft: "40px" }} src={cell.value ? "/static/icons/succes.svg" : "/static/icons/fail.svg"} />
+                      </StyledTd>
+                    )
+                  }
+                  else if (cell.column['id'] == 'user_is_gadz') {
+                    return (
+                      <StyledTd {...cell.getCellProps()}>
+                        <img style={{ height: "20px", marginLeft: "12.5px" }} src={cell.value ? "/static/icons/succes.svg" : "/static/icons/fail.svg"} />
+                      </StyledTd>
+                    )
+                  }
+                  else {
+                    return (
+                      <StyledTd {...cell.getCellProps()}>
+                        {cell.render('Cell')}
+                      </StyledTd>
+                    )
+                  }
+                })}
+              </StyledUsersTr>
+            )
+          })}
+        </tbody>
+      </StyledTable>
+      :
+      <>
+        
         {rows.map((row, index) => {
           prepareRow(row)
+          
           return (
-            <StyledUsersTr key={index} {...row.getRowProps()}>
-              {row.cells.map((cell) => {
-
-                if (cell.column['id'] == 'user_pay_status') {
-                  return (
-                    <StyledTd {...cell.getCellProps()}>
-                      <img style={{ height: "20px", marginLeft: "40px" }} src={cell.value ? "/static/icons/succes.svg" : "/static/icons/fail.svg"} />
-                    </StyledTd>
-                  )
-                }
-                else if (cell.column['id'] == 'user_is_gadz') {
-                  return (
-                    <StyledTd {...cell.getCellProps()}>
-                      <img style={{ height: "20px", marginLeft: "12.5px" }} src={cell.value ? "/static/icons/succes.svg" : "/static/icons/fail.svg"} />
-                    </StyledTd>
-                  )
-                }
-                else {
-                  return (
-                    <StyledTd {...cell.getCellProps()}>
-                      {cell.render('Cell')}
-                    </StyledTd>
-                  )
-                }
-              })}
-            </StyledUsersTr>
+            <UsersMobileLine key={index} columnsNumber={14-state.hiddenColumns.length} row={row}/>
           )
         })}
-      </tbody>
-    </StyledTable>
+      </>   
   ]
 }
+
+
 
 

@@ -1,18 +1,16 @@
-import { StyledHeadTr, StyledTable, StyledTd, StyledTh, StyledTr } from "./style";
-import { StateRequest } from "../Status/Status";
+import { StyledHeadTr, StyledTable, StyledTd, StyledTh, StyledTr } from "../style";
+import { StateRequest } from "../../Status/Status";
 import React, { useState } from "react";
-import { Buttons } from "./Admin";
-import { ProoveModal } from "../Card/Modals";
+import { Buttons } from "../Admin";
+import { ProoveModal } from "../../Card/Modals";
 
-export const MobileLine = ({ index, value, status }: {
+export const MaterialMobileLine = ({ index, value, status }: {
     index: number,
     value: {
-        access_id: string,
-        access_description: string,
-        access_mac: string,
-        access_proof: string,
-        access_user: number,
-        access_state: string,
+        material_id: string,
+        material_description: string,
+        material_reason: string,
+        material_state: string,
         user_pay_status: number,
         user_name: string
     },
@@ -25,13 +23,13 @@ export const MobileLine = ({ index, value, status }: {
         <>
             <StyledHeadTr onClick={() => setScrolled(!scrolled)}>
                 <StyledTh style={{ width: "130px" }}>Equipement {index}</StyledTh>
-                <StyledTh style={{ textAlign: "center" }}>{value['access_description']}</StyledTh>
+                <StyledTh style={{ textAlign: "center" }}>{value['material_description']}</StyledTh>
             </StyledHeadTr>
             <tr>
                 <td colSpan={2} style={{ padding: "0" }}>
                     <div
                         style={{
-                            height: scrolled ? "485px" : "0px",
+                            height: scrolled ? status=="pending" ? "479.4px" : "419px" : "0px",
                             transition: "0.3s linear",
                             overflowY: "hidden",
                             overflowX: "auto"
@@ -53,18 +51,24 @@ export const MobileLine = ({ index, value, status }: {
                                     </StyledTd>
                                 </StyledTr>
                                 <StyledTr>
-                                    <StyledTd>Adresse Mac</StyledTd>
-                                    <StyledTd style={{ textAlign: "center" }}>{value['access_mac']}</StyledTd>
-                                </StyledTr>
-                                <StyledTr>
-                                    <StyledTd>Preuve</StyledTd>
+                                    <StyledTd>Détails</StyledTd>
                                     <StyledTd style={{ textAlign: "center", whiteSpace: "normal" }}>
-                                        <ProoveModal request={value} link="/static/images/campus.png" />
+                                        <div 
+                                            style={{ 
+                                                height:"70px", 
+                                                overflow: "auto", 
+                                                display: "flex", 
+                                                justifyContent: "center", 
+                                                alignItems: "center" 
+                                            }}
+                                        >
+                                            {value['material_reason']}
+                                        </div>
                                     </StyledTd>
                                 </StyledTr>
                                 <StyledTr>
                                     <StyledTd>Etat</StyledTd>
-                                    <StyledTd><StateRequest center={true} state={value['acces_state']} /></StyledTd>
+                                    <StyledTd><StateRequest center={true} state={value['material_state']} /></StyledTd>
                                 </StyledTr>
                                 <StyledTr>
                                     <StyledTd>Actions</StyledTd>
@@ -78,7 +82,7 @@ export const MobileLine = ({ index, value, status }: {
                                                 flexDirection: "column"
                                             }}
                                         >
-                                            <Buttons status={value['acces_state']} />
+                                            <Buttons status={value['material_state']} />
                                         </div>
                                     </StyledTd>
                                 </StyledTr>
@@ -89,15 +93,18 @@ export const MobileLine = ({ index, value, status }: {
             </tr>
             <tr>
                 <td style={{ padding: "0" }}>
-                    <div 
-                        style={{ 
-                            height: scrolled ? "0" : "30px", 
-                            transition: "0.3s linear", 
-                            overflow: "hidden" 
+                    <div
+                        style={{
+                            height: scrolled ? "0" : "30px",
+                            transition: "0.3s linear",
+                            overflow: "hidden"
                         }}
                     />
                 </td>
             </tr>
         </>
+
     );
 }
+
+export default MaterialMobileLine
