@@ -272,7 +272,12 @@ export function UsersTable(data: any[]) {
           prepareRow(row)
 
           return (
-            <UsersMobileLine key={index} columnsNumber={14 - state.hiddenColumns.length} row={row} />
+            <UsersMobileLine 
+              key={index} 
+              row={row}
+              columnsNumber={14 - state.hiddenColumns.length} 
+              isLast={index == (rows.length-1)}  
+            />
           )
         })}
       </>

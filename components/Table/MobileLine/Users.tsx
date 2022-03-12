@@ -1,9 +1,10 @@
 import { StyledHeadTr, StyledTable, StyledTd, StyledTh, StyledTr } from "../style";
 import React, { useState } from "react";
 
-export const UsersMobileLine = ({ row, columnsNumber }: {
+export const UsersMobileLine = ({ row, columnsNumber, isLast }: {
     columnsNumber: number,
-    row: any
+    row: any,
+    isLast: boolean
 }) => {
 
     const [scrolled, setScrolled] = useState(false);
@@ -17,7 +18,7 @@ export const UsersMobileLine = ({ row, columnsNumber }: {
                     transition: "0.3s linear",
                     overflowY: "hidden",
                     overflowX: scrolled ? "auto" : "hidden",
-                    marginBottom: "30px",
+                    marginBottom: isLast? "0" : "30px",
                     borderRadius: "10px",
                     border:  "2px solid #096A09"
                 }}
