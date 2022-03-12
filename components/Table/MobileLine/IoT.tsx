@@ -25,10 +25,11 @@ export const IoTMobileLine = ({ index, value, status }: {
         <>
             <div
                 style={{
-                    height: scrolled ? "485px" : "55px",
+                    height: scrolled ? status == "pending" ? "539px" : "479px" : "53px",
                     transition: "0.3s linear",
                     overflowY: "hidden",
-                    overflowX: "auto"
+                    overflowX: "auto",
+                    marginBottom: scrolled ? "0px" : "30px"
                 }}
             >
                 <StyledTable style={{ tableLayout: "fixed" }}>
@@ -85,14 +86,6 @@ export const IoTMobileLine = ({ index, value, status }: {
                     </tbody>
                 </StyledTable>
             </div>
-
-            <div
-                style={{
-                    height: scrolled ? "0" : "30px",
-                    transition: "0.3s linear",
-                    overflow: "hidden"
-                }}
-            />
         </>
     );
 }
