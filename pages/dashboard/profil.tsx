@@ -101,7 +101,7 @@ export default function Profil() {
             <ResponsiveRow style={{ marginBottom: "20px" }}>
               <Col6 style={{ paddingRight: minWidth1000 ? "10px" : "0", marginBottom: minWidth1000 ? "0" : "20px" }}>
                 <StyledInputLabel htmlFor="user_phone">Téléphone</StyledInputLabel>
-                <StyledInput id="user_phone" type="phone" />
+                <StyledInput id="user_phone" type="tel" />
               </Col6>
               <Col6 style={{ paddingLeft: minWidth1000 ? "10px" : "0" }}>
                 <StyledInputLabel htmlFor="user_promotion">Promotion</StyledInputLabel>

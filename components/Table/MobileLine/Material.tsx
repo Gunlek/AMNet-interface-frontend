@@ -23,17 +23,18 @@ export const MaterialMobileLine = ({ index, value, status }: {
         <>
             <div
                 style={{
-                    height: scrolled ? status == "pending" ? "479.4px" : "419px" : "55px",
+                    height: scrolled ? status == "pending" ? "530px" : "470px" : "53px",
                     transition: "0.3s linear",
                     overflowY: "hidden",
-                    overflowX: "auto"
+                    overflowX: "auto",
+                    marginBottom: scrolled ? "0" : "30px"
                 }}
             >
                 <StyledTable style={{ tableLayout: "fixed" }}>
                     <thead>
                         <StyledHeadTr onClick={() => setScrolled(!scrolled)}>
                             <StyledTh style={{ width: "130px" }}>Equipement {index}</StyledTh>
-                            <StyledTh style={{ textAlign: "center" }}>{value['material_description']}</StyledTh>
+                            <StyledTh style={{ textAlign: "center", paddingRight: "10px" }}>{value['material_description']}</StyledTh>
                         </StyledHeadTr>
                     </thead>
                     <tbody>
@@ -57,9 +58,6 @@ export const MaterialMobileLine = ({ index, value, status }: {
                                     style={{
                                         height: "70px",
                                         overflow: "auto",
-                                        display: "flex",
-                                        justifyContent: "center",
-                                        alignItems: "center"
                                     }}
                                 >
                                     {value['material_reason']}
@@ -89,15 +87,6 @@ export const MaterialMobileLine = ({ index, value, status }: {
                     </tbody>
                 </StyledTable>
             </div>
-
-
-            <div
-                style={{
-                    height: scrolled ? "0" : "30px",
-                    transition: "0.3s linear",
-                    overflow: "hidden"
-                }}
-            />
         </>
 
     );
