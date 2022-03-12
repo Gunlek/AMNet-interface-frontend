@@ -17,7 +17,7 @@ const useScrollingUp = () => {
     setScrollingUp(prevScroll > currScroll)
     prevScroll = currScroll
     if(currScroll > 100) setTop(false)
-    if(currScroll == 0) setTop(true)
+    if(currScroll < 3) setTop(true)
   }
 
   useEffect(() => {
