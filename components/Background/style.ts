@@ -28,9 +28,11 @@ export const CampusGlobalStyle = createGlobalStyle`
 
 export const BodyWithModal = createGlobalStyle` 
   body{
-    height: ${(props) => props.reveal && '100vh'};
-    overflow-y: ${(props) => props.reveal && 'hidden'}; 
-    position: ${(props) => props.reveal && 'fixed'};
+    @media screen and (max-width: 1000px){
+      height: ${(props) => props.reveal && '100vh'};
+      overflow-y: ${(props) => props.reveal && 'hidden'}; 
+      position: ${(props) => props.reveal && 'fixed'};
+    }
 }`
 
 export const DefaultBackground = styled.div`
