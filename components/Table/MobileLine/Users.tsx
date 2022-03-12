@@ -17,7 +17,7 @@ export const UsersMobileLine = ({ row, columnsNumber }: {
                     transition: "0.3s linear",
                     overflowY: "hidden",
                     overflowX: scrolled ? "auto" : "hidden",
-                    marginBottom: scrolled ? "10px" : "0",
+                    marginBottom: "30px",
                     borderRadius: "10px",
                     border:  "2px solid #096A09"
                 }}
@@ -82,16 +82,6 @@ export const UsersMobileLine = ({ row, columnsNumber }: {
                     </tbody>
                 </StyledTable>
             </div>
-
-
-            <div
-                style={{
-                    height: scrolled ? "0" : "30px",
-                    transition: "0.3s linear",
-                    overflow: "hidden"
-                }}
-            />
-
         </>
     );
 }

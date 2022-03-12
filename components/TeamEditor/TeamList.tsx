@@ -58,6 +58,7 @@ export const TeamList = (props: { list: any[], setter?: Function }) => {
                   row={row}
                   moveRow={moveRow}
                   {...row.getRowProps()}
+                  lastIndex={rows.length-1}
                 />
               )
             )}
@@ -70,7 +71,7 @@ export const TeamList = (props: { list: any[], setter?: Function }) => {
 
 const DND_ITEM_TYPE = 'row'
 
-const Row = ({ row, index, moveRow, deleteTeamMember }) => {
+const Row = ({ row, index, moveRow, deleteTeamMember, lastIndex }) => {
   const dropRef = useRef(null)
   const dragRef = useRef(null)
   const minWidth1000 = useMediaQuery('(min-width:1000px)');
@@ -127,71 +128,111 @@ const Row = ({ row, index, moveRow, deleteTeamMember }) => {
     }),
   })
 
+  var newIndexDown = 0
+  var newIndexUp = 0
+  if(index == 0){
+    newIndexUp  = lastIndex
+  }
+  else{
+    newIndexUp = index-1
+  }
+
+  if(index == lastIndex){
+    newIndexDown = 0
+  }
+  else{
+    newIndexDown = index+1
+  }
 
   const opacity = isDragging ? 0 : 1
 
   preview(drop(dropRef))
   drag(dragRef)
 
-  return (
-    <StyledTr ref={minWidth1000 ? dropRef : undefined} style={{ opacity }}>
+  return (minWidth1000 ?
+    <StyledTr ref={dropRef} style={{ opacity }}>
       <StyledTd
         colspan="2"
-        ref={minWidth1000 ? dragRef : undefined}
+        ref={dragRef}
         style={{
           width: "83.32%",
           userSelect: "none",
           cursor: "pointer",
           paddingLeft: "0",
-          paddingRight: minWidth1000 ? "0" : "10px"
         }}
       >
         <div
           {...row.cells[0].getCellProps()}
           style={{
-            width: minWidth1000 ? "50%" : "",
-            display: minWidth1000 ? "inline-block" : "block",
-            paddingLeft: minWidth1000 ? "20px" : "0"
+            width: "50%",
+            display: "inline-block",
+            paddingLeft: "20px"
           }}
         >
-          <img 
-            src="/static/icons/arrow.svg" 
-            onClick={(e) => moveRow(index, index-1)}
-            style={{ 
-              width: "15px", 
-              transform: "rotate(180deg)", 
-              display: minWidth1000 ? "none" : undefined, 
-              marginRight: "10px" 
-            }} 
-          />
           {row.cells[0].render('Cell')}
         </div>
 
         <div
           {...row.cells[1].getCellProps()}
           style={{
-            width: minWidth1000 ? "50%" : "auto",
-            display: minWidth1000 ? "inline-block" : "block",
-            paddingLeft: minWidth1000 ? "20px" : "0"
+            width: "50%",
+            display: "inline-block",
+            paddingLeft: "20px"
           }}
         >
-          <img 
-            src="/static/icons/arrow.svg" 
-            onClick={(e) => moveRow(index, index+1)}
-            style={{ 
-              width: "15px", 
-              display: minWidth1000 ? "none" : undefined, 
-              marginRight: "10px" 
-            }} 
-          />
           {row.cells[1].render('Cell')}
         </div>
       </StyledTd>
 
-      <StyledTd style={{ paddingLeft: minWidth1000 ? "0" : "10px" }}>
+      <StyledTd>
         <SmallRedButton onClick={(elmt) => deleteTeamMember(elmt, index)}>Supprimer</SmallRedButton>
       </StyledTd>
     </StyledTr>
+    :
+    <>
+      <StyledTr>
+        <StyledTd style={{ paddingLeft: "0" }}>
+          <div style={{ display: "flex" }}>
+            <div style={{ display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
+              <svg 
+                onClick={(e) => moveRow(index, newIndexUp)}
+                fill= "rgba(0, 0, 0, 0.2)"
+                style={{
+                  width: "40px",
+                  transform: "rotate(180deg)",
+                  display: "block",
+                  marginTop: "7.5px"
+                }}
+                xmlns="http://www.w3.org/2000/svg" 
+                viewBox="0 0 9.02 5.62"
+              >
+                <path d="M.91,0l3.6,3.62L8.11,0,9,1.18,4.51,5.62,0,1.13Z" />
+              </svg>
+
+              <svg 
+                onClick={(e) => moveRow(index, newIndexDown)}
+                fill= "rgba(0, 0, 0, 0.2)"
+                style={{
+                  width: "40px",
+                  display: "block",
+                  marginBottom: "7.5px"
+                }} 
+                xmlns="http://www.w3.org/2000/svg" 
+                viewBox="0 0 9.02 5.62"
+              >
+                <path d="M.91,0l3.6,3.62L8.11,0,9,1.18,4.51,5.62,0,1.13Z" />
+              </svg>
+            </div>
+
+            <div style={{ display: "flex", flexDirection: "column", flex: "1", alignItems: "center" }}>
+              <div  {...row.cells[0].getCellProps()}>{row.cells[0].render('Cell')}</div>
+              <div  {...row.cells[1].getCellProps()} style={{ marginBottom: "15px" }}>{row.cells[1].render('Cell')}</div>
+              <SmallRedButton onClick={(elmt) => deleteTeamMember(elmt, index)}>Supprimer</SmallRedButton>
+            </div>
+          </div>
+        </StyledTd>
+      </StyledTr>
+    </>
   )
 }
 
