@@ -161,3 +161,13 @@ export const StyledGitHub = styled.path`
     fill: #67bc45;
   }
 `;
+
+export const StyledBackArrow = styled.div`
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: ${(props) => "translateY("+props.translate+")"} ;
+`
