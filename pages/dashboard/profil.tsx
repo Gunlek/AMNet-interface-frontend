@@ -108,7 +108,7 @@ export default function Profil() {
               <StyledInput id="user_phone" type="tel" />
             </Col6>
             <Col6 style={{ paddingLeft: minWidth1000 ? "10px" : "0" }}>
-              <StyledInputLabel htmlFor="user_promotion">Promotion</StyledInputLabel>
+              <StyledInputLabel htmlFor={isOther ? "user_promotion2" : "user_promotion"}>Promotion</StyledInputLabel>
               <StyledSelect
                 defaultValue="NewPromotion"
                 id="user_promotion"

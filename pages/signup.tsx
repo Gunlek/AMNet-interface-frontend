@@ -126,7 +126,7 @@ export default function SignUp() {
                 <StyledInput id="user_phone" type="tel" />
               </Col6>
               <Col6 style={{ paddingLeft: minWidth1000 ? "10px" : "0" }}>
-                <StyledInputLabel htmlFor="user_promotion">Promotion</StyledInputLabel>
+                <StyledInputLabel htmlFor={isOther ? "user_promotion2" : "user_promotion"}>Promotion</StyledInputLabel>
                 <StyledSelect
                   id="user_promotion"
                   style={{ display: isOther ? "none" : "inline" }}
@@ -205,11 +205,11 @@ export default function SignUp() {
 
             <Column style={{ alignItems: "start", marginBottom: "20px" }} >
               <GreenText>Réglementation</GreenText>
-              <BlackP style={{ marginTop: "5px", marginBottom: "1.2rem" }}>
+              <BlackText style={{ marginTop: "5px", marginBottom: "1.2rem" }}>
                 Consultez <StyledLink color="#096a09" target="_blank" href="/static/docs/Statuts_AMNet.pdf">les Statuts de l'association</StyledLink>
                 <br />
                 Consultez <StyledLink color="#096a09" target="_blank" href="/static/docs/Reglement_Interieur_AMNet.pdf">le Règlement intérieur de l'association</StyledLink>
-              </BlackP>
+              </BlackText>
               <BlackP>
                 AMNet Birse est une association Loi 1901, vous devez en accepter les statuts et le réglement intérieur. La validation de ce formulaire et le réglement de la cotisation (35€) vaut pour adhésion à l'association.
               </BlackP>
