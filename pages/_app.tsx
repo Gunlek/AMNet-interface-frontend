@@ -14,6 +14,7 @@ function MyApp({ Component, pageProps }) {
             <meta name="msapplication-TileColor" content="#da532c"/>
             <meta name="msapplication-config" content="/favicons/browserconfig.xml"/>
             <meta name="theme-color" content="#ffffff"/>
+            <meta name="viewport" content="width=device-width, user-scalable=no"/>
           </Head>
           <Component {...pageProps} />
         </>

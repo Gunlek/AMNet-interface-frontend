@@ -16,6 +16,10 @@ export const StyledInput = styled.input`
     border: 2px solid ${(props) => props.hoverBorder || "#096A09"};
     outline: none;
   }
+
+  @media screen and (max-width: 1000px){
+    font-size: 16px;
+  }
 `;
 
 export const StyledSelect = styled.select`
@@ -32,6 +36,10 @@ export const StyledSelect = styled.select`
     background: rgba(255, 255, 255, 0.8);
     border: 2px solid #096A09;
     outline: none;
+  }
+
+  @media screen and (max-width: 1000px){
+    font-size: 16px;
   }
 `;
 
@@ -52,6 +60,10 @@ export const StyledTextArea = styled.textarea`
     background: rgba(255, 255, 255, 0.8);
     border: 2px solid #096A09;
     outline: none;
+  }
+
+  @media screen and (max-width: 1000px){
+    font-size: 16px;
   }
 `;
 
