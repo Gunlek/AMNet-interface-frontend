@@ -1,18 +1,8 @@
 import styled, { createGlobalStyle } from "styled-components";
 
-export const CampusBackground = styled.div`
-  flex:1;
-  display: flex;
-  flex-Direction: column;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 5%;
-`;
-
 export const CampusGlobalStyle = createGlobalStyle` 
   body{
-    display: flex;
-    flex-Direction: column;
+    padding: 0;
     background-image: url("/static/images/campus.png");
     background-color: #c1c1c1;
     background-repeat: no-repeat;
@@ -24,7 +14,19 @@ export const CampusGlobalStyle = createGlobalStyle`
       background-attachment: scroll;
       background-position-x: 60%;
     }
-}`
+  }
+
+  #__next{
+      margin: 0;
+      padding: 0 5%;
+      width: 100%;
+      flex:1;
+      display: flex;
+      flex-Direction: column;
+      justify-content: space-between;
+      align-items: center; 
+    }
+`
 
 export const BodyWithModal = createGlobalStyle` 
   body{
@@ -34,15 +36,3 @@ export const BodyWithModal = createGlobalStyle`
       position: ${(props) => props.reveal && 'fixed'};
     }
 }`
-
-export const DefaultBackground = styled.div`
-  min-height: 100vh;
-  padding: 0 2%;
-  display: flex;
-
-  @media screen and (max-width: 1000px){
-    padding: 0;
-  }  
-`;
-
-

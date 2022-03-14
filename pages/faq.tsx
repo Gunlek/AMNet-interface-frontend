@@ -1,9 +1,9 @@
 import React from "react";
 import Head from "next/head";
-import { CampusBackground, CampusGlobalStyle } from "../components/Background/style";
+import { CampusGlobalStyle } from "../components/Background/style";
 import { Footer, HelpSection, TitleCard } from "../components/Card/Cards";
 import { StyledCardCampus } from "../components/Card/style";
-import { Col10, Col2, Col6, ResponsiveRow, Row } from "../components/Container/style";
+import { Col6, ResponsiveRow } from "../components/Container/style";
 import RectangleLogo from "../components/Card/RectangleLogo";
 import { GreenButton } from "../components/Button/Buttons";
 import { BlackP } from "../components/Text/style";
@@ -17,7 +17,6 @@ export default function FAQ() {
         <title>FAQ &bull; AMNet</title>
       </Head>
       <CampusGlobalStyle />
-      <CampusBackground>
         <ResponsiveRow style={{ marginBottom: "2%" }}>
           <Col6 style={{ justifyContent: minWidth1000 ? "start" : "center", alignItems: minWidth1000 ? "start" : "center" }}>
             <RectangleLogo color="white" />
@@ -79,7 +78,6 @@ export default function FAQ() {
         </StyledCardCampus>
 
         <HelpSection/>
-      </CampusBackground>
       <Footer page="campus" />
     </>
   );

@@ -1,6 +1,6 @@
 import React from "react";
 import Head from "next/head";
-import { CampusBackground, CampusGlobalStyle } from "../components/Background/style";
+import { CampusGlobalStyle } from "../components/Background/style";
 import {
   Footer,
   HelpSection,
@@ -19,36 +19,34 @@ export default function LostPassword() {
         <title>Mot de passe oublié &bull; AMNet</title>
       </Head>
       <CampusGlobalStyle />
-      <CampusBackground>
-        <Row
-          style={{
-            flex: "1",
-            justifyContent: "center",
-            alignItems: "center",
-            margin: "20px 0"
-          }}
-        >
-          <StyledCardCampus width="45%">
-            <Row style={{ marginBottom: "20px", marginTop: "10px", justifyContent: "center" }}>
-              <RectangleLogo />
+      <Row
+        style={{
+          flex: "1",
+          justifyContent: "center",
+          alignItems: "center",
+          margin: "20px 0"
+        }}
+      >
+        <StyledCardCampus width="45%">
+          <Row style={{ marginBottom: "20px", marginTop: "10px", justifyContent: "center" }}>
+            <RectangleLogo />
+          </Row>
+
+          <TitleCard>Mot de passe oublié</TitleCard>
+
+          <form method="post">
+            <div style={{ marginBottom: "20px" }}>
+              <StyledInputLabel htmlFor="user_mail">Adresse e-mail associée au compte</StyledInputLabel>
+              <StyledInput id="user_mail" type="email" />
+            </div>
+            <Row style={{ justifyContent: "center" }}>
+              <GreenButton>Envoyez un mail de récuperation</GreenButton>
             </Row>
+          </form>
+        </StyledCardCampus>
+      </Row>
 
-            <TitleCard>Mot de passe oublié</TitleCard> 
-
-            <form method="post">
-              <div style={{ marginBottom: "20px" }}>
-                <StyledInputLabel htmlFor="user_mail">Adresse e-mail associée au compte</StyledInputLabel>
-                <StyledInput id="user_mail" type="email" />
-              </div>
-              <Row style={{ justifyContent: "center" }}>
-                <GreenButton>Envoyez un mail de récuperation</GreenButton>
-              </Row>
-            </form>
-          </StyledCardCampus>
-        </Row>
-        
-        <HelpSection />
-      </CampusBackground> 
+      <HelpSection />
       <Footer page="campus" />
     </>
   );
