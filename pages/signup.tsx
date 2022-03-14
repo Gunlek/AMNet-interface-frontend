@@ -126,7 +126,7 @@ export default function SignUp() {
                 <StyledInput id="user_phone" type="tel" />
               </Col6>
               <Col6 style={{ paddingLeft: minWidth1000 ? "10px" : "0" }}>
-                <StyledInputLabel htmlFor="user_promotion">Promotion</StyledInputLabel>
+                <StyledInputLabel htmlFor={isOther ? "user_promotion2" : "user_promotion"}>Promotion</StyledInputLabel>
                 <StyledSelect
                   id="user_promotion"
                   style={{ display: isOther ? "none" : "inline" }}
