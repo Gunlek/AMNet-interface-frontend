@@ -13,10 +13,11 @@ import { StyledInput, StyledInputLabel } from "../components/Input/style";
 import { BlackText, GreenText, StyledLink } from "../components/Text/style";
 import Checkbox from "../components/Input/Checkbox";
 import RectangleLogo from "../components/Card/RectangleLogo";
+import useMediaQuery from "../components/MediaQueries/MediaQuery";
 
 export default function Login() {
-  var [checked, setChecked] = useState(false);
-
+  const [checked, setChecked] = useState(false);
+  const minWidth1000 = useMediaQuery('(min-width:1000px)');
   const handleCheckboxChange = (elmt) => {
     setChecked(elmt.target.checked);
   }
@@ -32,7 +33,8 @@ export default function Login() {
           flex: "1",
           justifyContent: "center",
           alignItems: "center",
-          margin: "20px 0"
+          margin: "20px 0",
+          width: !minWidth1000 && "90%"
         }}
       >
         <StyledCardCampus width="auto" >

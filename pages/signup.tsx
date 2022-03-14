@@ -66,7 +66,8 @@ export default function SignUp() {
           flex: 1,
           justifyContent: "center",
           alignItems: "center",
-          margin: "20px 0"
+          margin: "20px 0",
+          width: !minWidth1000 && "90%"
         }}
       >
         <StyledCardCampus width="75%">

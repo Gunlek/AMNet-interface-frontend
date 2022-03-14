@@ -43,7 +43,7 @@ export default function Homepage() {
       <Head>
         <title>Accueil &bull; AMNet</title>
       </Head>
-      <CampusGlobalStyle />
+      <CampusGlobalStyle padding="0 5%"/>
 
       <ResponsiveRow style={{ margin: minWidth1000 ? "20px 0" : "0" }}>
         <Col6 style={{ justifyContent: minWidth1000 ? "start" : "center", alignItems: minWidth1000 ? "start" : "center" }}>

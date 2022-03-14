@@ -17,14 +17,9 @@ export const CampusGlobalStyle = createGlobalStyle`
   }
 
   #__next{
-      margin: 0;
-      padding: 0 5%;
-      width: 100%;
-      flex:1;
-      display: flex;
-      flex-Direction: column;
       justify-content: space-between;
       align-items: center; 
+      padding: ${(props) => props.padding};
     }
 `
 
