@@ -99,7 +99,7 @@ export default function Homepage() {
                   <BlackP style={{ marginBottom: "1.2rem" }}>
                     En plus de fournir un accès internet aux résidents nous
                     offrons une multitude de services, un serveur Minecraft :{" "}
-                    <span style={{ color: "#096A09" }}>minecraft.amnet.fr</span>{" "}
+                    <span style={{ color: "#096A09", userSelect: "text" }}>minecraft.amnet.fr</span>{" "}
                     et d'autres que nous vous laisserons découvrir un jour ...
                   </BlackP>
                   <BlackP>
