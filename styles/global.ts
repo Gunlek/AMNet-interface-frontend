@@ -81,9 +81,6 @@ export const GlobalStyle = createGlobalStyle`
     }
 
     #__next{
-        margin: 0;
-        padding: 0;
-        flex:1;
         display: flex;
         flex-Direction: column;
         width: 100%;
