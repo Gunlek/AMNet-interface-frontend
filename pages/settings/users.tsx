@@ -1,6 +1,5 @@
 import React from "react";
 import Head from "next/head";
-import { DefaultBackground } from "../../components/Background/style";
 import { GreenButton, OrangeButton, RedButton } from "../../components/Button/Buttons";
 import { DashboardContainer, ResponsiveRow } from "../../components/Container/style";
 import { StyledCard } from "../../components/Card/style";
@@ -402,7 +401,6 @@ export default function Users() {
       <Head>
         <title>Administration &bull; AMNet</title>
       </Head>
-      <DefaultBackground>
         <AdminMenu page="users" />
 
         <DashboardContainer>
@@ -455,7 +453,6 @@ export default function Users() {
 
           <Footer />
         </DashboardContainer>
-      </DefaultBackground>
     </>
   );
 }

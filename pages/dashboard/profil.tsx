@@ -1,6 +1,5 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Head from "next/head";
-import { DefaultBackground } from "../../components/Background/style";
 import { GreenButton } from "../../components/Button/Buttons";
 import {
   Col6,
@@ -33,190 +32,193 @@ export default function Profil() {
     setOther(elmt.target.value == "Other");
   }
 
-  function CancelChange() {
+  const CancelChange = () => {
     setOther(!isOther);
   }
+
+  useEffect(() => {
+    const test = document.getElementById("user_promotion2") as HTMLInputElement
+    if (isOther) test.focus()
+  }, [isOther])
 
   return (
     <>
       <Head>
         <title>Mon Profil &bull; AMNet</title>
       </Head>
-      <DefaultBackground>
-        <UserMenu page="profil" />
+      <UserMenu page="profil" />
 
-        <DashboardContainer>
-          <ResponsiveRow style={{ margin: minWidth1000 ? "1% 0" : "4% 0", justifyContent: minWidth1000 ? "start" : "center" }}>
-            <Column style={{ justifyContent: "center" }}>
-              <BlackTitle>Editer mon Profil</BlackTitle>
-            </Column>
+      <DashboardContainer>
+        <ResponsiveRow style={{ margin: minWidth1000 ? "1% 0" : "4% 0", justifyContent: minWidth1000 ? "start" : "center" }}>
+          <Column style={{ justifyContent: "center" }}>
+            <BlackTitle>Editer mon Profil</BlackTitle>
+          </Column>
 
-            <Column style={{ flex: "1", alignItems: minWidth1000 ? "end" : "center", justifyContent: "center" }}>
-              <StateContribution status="unpaid" />
-            </Column>
-          </ResponsiveRow>
+          <Column style={{ flex: "1", alignItems: minWidth1000 ? "end" : "center", justifyContent: "center" }}>
+            <StateContribution status="unpaid" />
+          </Column>
+        </ResponsiveRow>
 
-          <form style={{ width: "100%", flex: "1", display: "flex", flexDirection: "column" }} method="post">
-            <ResponsiveRow style={{ alignItems: "center", marginBottom: "20px" }}>
-              <Col6 style={{ paddingRight: minWidth1000 ? "10px" : "0px", width: "100%" }}>
-                <StyledInputLabel htmlFor="user_name">Nom d'utilisateur</StyledInputLabel>
-                <StyledInput id="user_name" type="text" />
-              </Col6>
-              <Col6
-                style={{
-                  justifyContent: "end",
-                  height: minWidth1000 ? "75px" : "auto",
-                  alignItems: minWidth1000 ? "start" : "center",
-                  marginTop: minWidth1000 ? "0" : "20px",
-                  paddingLeft: minWidth1000 ? "10px" : "0",
-                }}
-              >
-                <BlackText>Votre nom d'utilisateur ne doit contenir
-                  que des lettres, des chiffres ou des espaces.
-                </BlackText>
-              </Col6>
-            </ResponsiveRow>
-
-            <ResponsiveRow style={{ marginBottom: "20px" }}>
-              <Col3 style={{ paddingRight: minWidth1000 ? "10px" : "0", marginBottom: minWidth1000 ? "0" : "20px" }}>
-                <StyledInputLabel htmlFor="user_firstname">Prénom</StyledInputLabel>
-                <StyledInput id="user_firstname" type="text" />
-              </Col3>
-              <Col3
-                style={{
-                  paddingLeft: minWidth1000 ? "10px" : "0",
-                  paddingRight: minWidth1000 ? "10px" : "0",
-                  marginBottom: minWidth1000 ? "0" : "20px"
-                }}
-              >
-                <StyledInputLabel htmlFor="user_lastname">Nom</StyledInputLabel>
-                <StyledInput id="user_lastname" type="text" />
-              </Col3>
-              <Col6 style={{ paddingLeft: minWidth1000 ? "10px" : "0" }}>
-                <StyledInputLabel htmlFor="user_email">Adresse e-mail</StyledInputLabel>
-                <StyledInput id="user_email" type="email" />
-              </Col6>
-            </ResponsiveRow>
-
-            <ResponsiveRow style={{ marginBottom: "20px" }}>
-              <Col6 style={{ paddingRight: minWidth1000 ? "10px" : "0", marginBottom: minWidth1000 ? "0" : "20px" }}>
-                <StyledInputLabel htmlFor="user_phone">Téléphone</StyledInputLabel>
-                <StyledInput id="user_phone" type="tel" />
-              </Col6>
-              <Col6 style={{ paddingLeft: minWidth1000 ? "10px" : "0" }}>
-                <StyledInputLabel htmlFor="user_promotion">Promotion</StyledInputLabel>
-                <StyledSelect
-                  defaultValue="NewPromotion"
-                  id="user_promotion"
-                  style={{ display: isOther ? "none" : "inline" }}
-                  onChange={handleValueChange}
-                >
-                  <option value="OldPromotion">219</option>
-                  <option value="ActivePromotion">220</option>
-                  <option value="NewPromotion">2021</option>
-                  <option value="Other">Autre</option>
-                </StyledSelect>
-                <div style={{ display: isOther ? "flex" : "none", alignItems: "center" }} >
-                  <StyledInput
-                    id="user_promotion2"
-                    ref={PromotionInput => { (PromotionInput && isOther) && PromotionInput.focus() }}
-                    type="text"
-                  />
-                  <StyledImg
-                    padding="0"
-                    width="35px"
-                    marginLeft="20px"
-                    shadow="1"
-                    onClick={CancelChange}
-                    src="/static/icons/cancel.svg"
-                  />
-                </div>
-              </Col6>
-            </ResponsiveRow>
-
-            <ResponsiveRow
+        <form style={{ width: "100%", flex: "1", display: "flex", flexDirection: "column" }} method="post">
+          <ResponsiveRow style={{ alignItems: "center", marginBottom: "20px" }}>
+            <Col6 style={{ paddingRight: minWidth1000 ? "10px" : "0px", width: "100%" }}>
+              <StyledInputLabel htmlFor="user_name">Nom d'utilisateur</StyledInputLabel>
+              <StyledInput id="user_name" type="text" />
+            </Col6>
+            <Col6
               style={{
-                marginBottom: isGadz ? "20px" : "0",
-                height: isGadz ? minWidth1000 ? "73px" : "244.6px" : "0px",
-                transition: "0.3s linear",
-                overflowY: isGadz ? undefined : "hidden"
+                justifyContent: "end",
+                height: minWidth1000 ? "75px" : "auto",
+                alignItems: minWidth1000 ? "start" : "center",
+                marginTop: minWidth1000 ? "0" : "20px",
+                paddingLeft: minWidth1000 ? "10px" : "0",
               }}
             >
-              <Col6
-                style={{
-                  paddingRight: minWidth1000 ? "10px" : "0",
-                  marginBottom: minWidth1000 ? "0" : "20px"
-                }}
-              >
-                <StyledInputLabel htmlFor="user_bucque">Bucque</StyledInputLabel>
-                <StyledInput id="user_bucque" type="text" />
-              </Col6>
-              <Col3
-                style={{
-                  paddingLeft: minWidth1000 ? "10px" : "0",
-                  paddingRight: minWidth1000 ? "10px" : "0",
-                  marginBottom: minWidth1000 ? "0" : "20px"
-                }}
-              >
-                <StyledInputLabel htmlFor="user_fams">Fam's</StyledInputLabel>
-                <StyledInput id="user_fams" type="text" />
-              </Col3>
-              <Col3 style={{ paddingLeft: minWidth1000 ? "10px" : "0" }}>
-                <StyledInputLabel htmlFor="user_campus">Tabagn's</StyledInputLabel>
-                <StyledSelect id="user_campus" name="tbk">
-                  <option value="Li">Birse</option>
-                  <option value="An">Boquette</option>
-                  <option value="Bo">Bordel's</option>
-                  <option value="Ch">Chalon's</option>
-                  <option value="Cl">Clun's</option>
-                  <option value="KIN">KIN</option>
-                  <option value="Pa">P3</option>
-                  <option value="Me">Siber's</option>
-                </StyledSelect>
-              </Col3>
-            </ResponsiveRow>
+              <BlackText style={{ textAlign: minWidth1000 ? "start" : "justify" }}>
+                Votre nom d'utilisateur ne doit contenir
+                que des lettres, des chiffres ou des espaces.
+              </BlackText>
+            </Col6>
+          </ResponsiveRow>
 
-            <ResponsiveRow style={{ marginBottom: "20px" }}>
-              <Col6 style={{ paddingRight: minWidth1000 ? "10px" : "0", marginBottom: minWidth1000 ? "0" : "20px" }}>
-                <StyledInputLabel htmlFor="user_password">Mot de passe</StyledInputLabel>
-                <StyledInput id="user_password" type="password" />
-              </Col6>
-              <Col6 style={{ paddingLeft: minWidth1000 ? "10px" : "0" }}>
-                <StyledInputLabel htmlFor="user_password2">Confirmez votre Mot de passe</StyledInputLabel>
-                <StyledInput id="user_password2" type="password" />
-              </Col6>
-            </ResponsiveRow>
+          <ResponsiveRow style={{ marginBottom: "20px" }}>
+            <Col3 style={{ paddingRight: minWidth1000 ? "10px" : "0", marginBottom: minWidth1000 ? "0" : "20px" }}>
+              <StyledInputLabel htmlFor="user_firstname">Prénom</StyledInputLabel>
+              <StyledInput id="user_firstname" type="text" />
+            </Col3>
+            <Col3
+              style={{
+                paddingLeft: minWidth1000 ? "10px" : "0",
+                paddingRight: minWidth1000 ? "10px" : "0",
+                marginBottom: minWidth1000 ? "0" : "20px"
+              }}
+            >
+              <StyledInputLabel htmlFor="user_lastname">Nom</StyledInputLabel>
+              <StyledInput id="user_lastname" type="text" />
+            </Col3>
+            <Col6 style={{ paddingLeft: minWidth1000 ? "10px" : "0" }}>
+              <StyledInputLabel htmlFor="user_email">Adresse e-mail</StyledInputLabel>
+              <StyledInput id="user_email" type="email" />
+            </Col6>
+          </ResponsiveRow>
 
-            <ResponsiveRow style={{ marginBottom: "20px", flex: "1" }}>
-              <Col6
-                style={{
-                  paddingRight: minWidth1000 ? "10px" : "0",
-                  marginBottom: (isGadz && !minWidth1000) ? "20px" : "0",
-                  height: isGadz ? "73px" : "0",
-                  transition: "0.3s linear",
-                  overflowY: isGadz ? undefined : "hidden",
-                  flex: (!isGadz && !minWidth1000) ? "none" : undefined
-                }}
+          <ResponsiveRow style={{ marginBottom: "20px" }}>
+            <Col6 style={{ paddingRight: minWidth1000 ? "10px" : "0", marginBottom: minWidth1000 ? "0" : "20px" }}>
+              <StyledInputLabel htmlFor="user_phone">Téléphone</StyledInputLabel>
+              <StyledInput id="user_phone" type="tel" />
+            </Col6>
+            <Col6 style={{ paddingLeft: minWidth1000 ? "10px" : "0" }}>
+              <StyledInputLabel htmlFor="user_promotion">Promotion</StyledInputLabel>
+              <StyledSelect
+                defaultValue="NewPromotion"
+                id="user_promotion"
+                style={{ display: isOther ? "none" : "inline" }}
+                onChange={handleValueChange}
               >
-                <GreenText style={{ marginBottom: "5px" }}>Identifiants gadzariques</GreenText>
-                <StyledInput hoverBorder="transparent" readOnly value="Mac Nhat'sss 47-102Li219" type="text" />
-              </Col6>
-              <Col6
-                style={{
-                  alignItems: minWidth1000 ? "end" : "center",
-                  paddingLeft: minWidth1000 ? "10px" : "0",
-                  justifyContent: "end"
-                }}
-              >
-                <GreenButton>Editer mon profil</GreenButton>
-              </Col6>
-            </ResponsiveRow>
-          </form>
+                <option value="OldPromotion">219</option>
+                <option value="ActivePromotion">220</option>
+                <option value="NewPromotion">2021</option>
+                <option value="Other">Autre</option>
+              </StyledSelect>
+              <div style={{ display: isOther ? "flex" : "none", alignItems: "center" }} >
+                <StyledInput
+                  id="user_promotion2"
+                  type="text"
+                />
+                <StyledImg
+                  padding="0"
+                  width="35px"
+                  marginLeft="20px"
+                  shadow="1"
+                  onClick={CancelChange}
+                  src="/static/icons/cancel.svg"
+                />
+              </div>
+            </Col6>
+          </ResponsiveRow>
 
-          <HelpSection color="#096A09" />
-          <Footer />
-        </DashboardContainer>
-      </DefaultBackground>
+          <ResponsiveRow
+            style={{
+              marginBottom: isGadz ? "20px" : "0",
+              height: isGadz ? minWidth1000 ? "73px" : "244.6px" : "0px",
+              transition: "0.3s linear",
+              overflowY: isGadz ? undefined : "hidden"
+            }}
+          >
+            <Col6
+              style={{
+                paddingRight: minWidth1000 ? "10px" : "0",
+                marginBottom: minWidth1000 ? "0" : "20px"
+              }}
+            >
+              <StyledInputLabel htmlFor="user_bucque">Bucque</StyledInputLabel>
+              <StyledInput id="user_bucque" type="text" />
+            </Col6>
+            <Col3
+              style={{
+                paddingLeft: minWidth1000 ? "10px" : "0",
+                paddingRight: minWidth1000 ? "10px" : "0",
+                marginBottom: minWidth1000 ? "0" : "20px"
+              }}
+            >
+              <StyledInputLabel htmlFor="user_fams">Fam's</StyledInputLabel>
+              <StyledInput id="user_fams" type="text" />
+            </Col3>
+            <Col3 style={{ paddingLeft: minWidth1000 ? "10px" : "0" }}>
+              <StyledInputLabel htmlFor="user_campus">Tabagn's</StyledInputLabel>
+              <StyledSelect id="user_campus" name="tbk">
+                <option value="Li">Birse</option>
+                <option value="An">Boquette</option>
+                <option value="Bo">Bordel's</option>
+                <option value="Ch">Chalon's</option>
+                <option value="Cl">Clun's</option>
+                <option value="KIN">KIN</option>
+                <option value="Pa">P3</option>
+                <option value="Me">Siber's</option>
+              </StyledSelect>
+            </Col3>
+          </ResponsiveRow>
+
+          <ResponsiveRow style={{ marginBottom: "20px" }}>
+            <Col6 style={{ paddingRight: minWidth1000 ? "10px" : "0", marginBottom: minWidth1000 ? "0" : "20px" }}>
+              <StyledInputLabel htmlFor="user_password">Mot de passe</StyledInputLabel>
+              <StyledInput id="user_password" type="password" />
+            </Col6>
+            <Col6 style={{ paddingLeft: minWidth1000 ? "10px" : "0" }}>
+              <StyledInputLabel htmlFor="user_password2">Confirmez votre Mot de passe</StyledInputLabel>
+              <StyledInput id="user_password2" type="password" />
+            </Col6>
+          </ResponsiveRow>
+
+          <ResponsiveRow style={{ marginBottom: "20px", flex: "1" }}>
+            <Col6
+              style={{
+                paddingRight: minWidth1000 ? "10px" : "0",
+                marginBottom: (isGadz && !minWidth1000) ? "20px" : "0",
+                height: isGadz ? "73px" : "0",
+                transition: "0.3s linear",
+                overflowY: isGadz ? undefined : "hidden",
+                flex: (!isGadz && !minWidth1000) ? "none" : undefined
+              }}
+            >
+              <GreenText style={{ marginBottom: "5px" }}>Identifiants gadzariques</GreenText>
+              <StyledInput hoverBorder="transparent" readOnly value="Mac Nhat'sss 47-102Li219" type="text" />
+            </Col6>
+            <Col6
+              style={{
+                alignItems: minWidth1000 ? "end" : "center",
+                paddingLeft: minWidth1000 ? "10px" : "0",
+                justifyContent: "end"
+              }}
+            >
+              <GreenButton>Editer mon profil</GreenButton>
+            </Col6>
+          </ResponsiveRow>
+        </form>
+
+        <HelpSection color="#096A09" />
+        <Footer />
+      </DashboardContainer>
     </>
   );
 }
