@@ -33,7 +33,7 @@ export default function AdminMenu(props: { page: string }) {
 
   const positionning = {
     flex: "1",
-    margin: (minWidth800) ? "5px 0" : "0",
+    minHeight: (minWidth800) ? "70px" : undefined,
     justifyContent: "center",
     alignItems: "center",
     height: !minWidth1000 ? open ? "95px" : "0" : "auto",
@@ -42,7 +42,7 @@ export default function AdminMenu(props: { page: string }) {
   };
 
   return (
-    <MenuContener top={top} scroll={scroll} sticky={scrolled}>
+    <MenuContener timeTransform={open? "0.6s" : "0.3s"} top={top} scroll={scroll} sticky={scrolled}>
       <StyledMenu>
         <Row
           style={{
