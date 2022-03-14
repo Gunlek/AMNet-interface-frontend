@@ -6,7 +6,7 @@ const RadioContainer = styled.div`
     vertical-align: middle;
 `
 
-const HiddenRadio = styled.input.attrs({ type: 'Radio' })`
+const HiddenCheckbox = styled.input.attrs({ type: 'checkbox' })`
     border: 0;
     clip: rect(0 0 0 0);
     clip-path: inset(50%);
@@ -18,7 +18,7 @@ const HiddenRadio = styled.input.attrs({ type: 'Radio' })`
     width: 1px;
 `
 
-const StyledRadio = styled.div`
+const StyledCheckbox = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
@@ -43,11 +43,11 @@ const StyledRadio = styled.div`
     }
 `
 
-const Radio = (props: any) => (
+const RoundCheckbox = (props: any) => (
     <RadioContainer>
-        <HiddenRadio checked={props.checked} {...props} />
-        <StyledRadio checked={props.checked} />
+        <HiddenCheckbox checked={props.checked} {...props} />
+        <StyledCheckbox checked={props.checked} />
     </RadioContainer>
 )
 
-export default Radio
+export default RoundCheckbox

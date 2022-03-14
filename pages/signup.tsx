@@ -27,13 +27,16 @@ import {
   BlackP
 } from "../components/Text/style";
 import useMediaQuery from "../components/MediaQueries/MediaQuery";
-import Radio from "../components/Input/Radio";
+import Radio from "../components/Input/RoundCheckbox";
 import RectangleLogo from "../components/Card/RectangleLogo";
+import Checkbox from "../components/Input/Checkbox";
+import RoundCheckbox from "../components/Input/RoundCheckbox";
 
 export default function SignUp() {
   const minWidth1000 = useMediaQuery('(min-width:1000px)');
-  var [isGadz, setGadz] = useState(false);
-  var [isOther, setOther] = useState(false);
+  const [isGadz, setGadz] = useState(false);
+  const [isOther, setOther] = useState(false);
+  const [acceptRules, setacceptRules] = useState(false);
 
   const handleValueChange = (elmt) => {
     setGadz(elmt.target.value == "OldPromotion" || elmt.target.value == "ActivePromotion");
@@ -43,7 +46,6 @@ export default function SignUp() {
   function CancelChange() {
     setOther(!isOther);
   }
-  var [acceptRules, setacceptRules] = useState(false);
 
   function handleRadioChange() {
     setacceptRules(!acceptRules);
@@ -200,44 +202,21 @@ export default function SignUp() {
               <Column style={{ alignItems: "start", marginBottom: "20px" }} >
                 <GreenText>Réglementation</GreenText>
                 <BlackP style={{ marginTop: "5px", marginBottom: "1.2rem" }}>
-                  Consultez <StyledLink color="#096a09" target="_blank" href="/static/docs/Statuts_AMNet.pdf">les Statuts de l'association</StyledLink>
-                  <br />
                   Consultez <StyledLink color="#096a09" target="_blank" href="/static/docs/Reglement_Interieur_AMNet.pdf">le Règlement intérieur de l'association</StyledLink>
+                  <br/>
+                  Consultez <StyledLink color="#096a09" target="_blank" href="/static/docs/Statuts_AMNet.pdf">les Statuts de l'association</StyledLink>
                 </BlackP>
                 <BlackP>
-                  AMNet Birse est une association Loi 1901, vous devez en accepter les statuts et le réglement intérieur. La validation de ce formulaire et le réglement de la cotisation vaut pour adhésion à l'association.
+                  AMNet Birse est une association Loi 1901, vous devez en accepter les statuts et le réglement intérieur. La validation de ce formulaire et le réglement de la cotisation (35€) vaut pour adhésion à l'association.
                 </BlackP>
               </Column>
 
-              <ResponsiveRow style={{ marginBottom: "20px", alignItems: "start" }}>
-                <Col6
-                  style=
-                  {{
-                    flexDirection: "row",
-                    justifyContent: "center",
-                    alignItems: "center",
-                    marginBottom: minWidth1000 ? "0" : "10px"
-                  }}
-                >
-                  <label htmlFor="accept_rules" style={{ display: "flex", alignItems: "center" }}>
-                    <Radio name="rules" id="accept_rules" checked={acceptRules} onChange={handleRadioChange} />
-                    <BlackText style={{ paddingLeft: "10px" }}>Accepter les Statuts et le Réglement interieur</BlackText>
-                  </label>
-                </Col6>
-                <Col6
-                  style=
-                  {{
-                    flexDirection: "row",
-                    justifyContent: "center",
-                    alignItems: "center"
-                  }}
-                >
-                  <label htmlFor="denied_rules" style={{ display: "flex", alignItems: "center" }}>
-                    <Radio name="rules" id="denied_rules" checked={!acceptRules} onChange={handleRadioChange} />
-                    <BlackText style={{ paddingLeft: "10px" }}>Refuser les Statuts et le Réglement interieur</BlackText>
-                  </label>
-                </Col6>
-              </ResponsiveRow>
+              <Row style={{ marginBottom: "20px", justifyContent: "center" }}>
+                <label htmlFor="accept_rules" style={{ display: "flex", alignItems: minWidth1000 ?"end" : "center" }} >
+                  <RoundCheckbox id="accept_rules" checked={acceptRules} onChange={handleRadioChange} />
+                  <BlackText style={{ paddingLeft: "10px" }}>Accepter les Statuts et le Réglement interieur</BlackText>
+                </label>
+              </Row>
 
               <Row style={{ justifyContent: "center" }}>
                 <GreenButton>Inscription</GreenButton>
