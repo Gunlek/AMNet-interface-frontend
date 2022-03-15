@@ -10,6 +10,10 @@ export const Row = styled.div`
   display: flex;
   width: 100%;
   flex-direction: row;
+
+  @media screen and (max-width: 1000px){
+    width: ${(props) => props.mobileWidth};
+  } 
 `;
 
 export const ResponsiveRow = styled(Row)`
@@ -72,9 +76,14 @@ export const Col7 = styled(Col)`
 export const Col6 = styled(Col)`
   flex: 6;
   max-width: 50%;
+  padding-left: ${(props) => props.paddingLeft};
+  padding-right: ${(props) => props.paddingRight};
 
   @media screen and (max-width: 1000px){
     max-width: 100%;
+    padding-left: 0;
+    padding-right: 0;
+    margin-bottom: ${(props) => props.MobileMarginBottom};
   } 
 `;
 
@@ -99,9 +108,14 @@ export const Col4 = styled(Col)`
 export const Col3 = styled(Col)`
   flex: 3;
   max-width: 25%;
+  padding-left: ${(props) => props.paddingLeft};
+  padding-right: ${(props) => props.paddingRight};
 
   @media screen and (max-width: 1000px){
     max-width: 100%;
+    padding-left: 0;
+    padding-right: 0;
+    margin-bottom: ${(props) => props.MobileMarginBottom};
   }
 `;
 

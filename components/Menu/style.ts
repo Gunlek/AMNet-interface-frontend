@@ -56,15 +56,16 @@ export const StyledDivLogo = styled(Row)`
 `;
 
 export const StyledDivLogOut = styled(Row)`
-  flex: 2;
+  flex: ${(props) => props.flex || "2"};
+  margin-top: ${(props) => props.marginTop};
   align-items: end; 
   justify-content: center; 
   width: 60px;
-  display: ${(props) => props.display};
 
   @media screen and (max-width: 1000px){
     flex-direction: column;
     align-items: center; 
     flex: 1;
+    margin-top: 0;
   }
 `
