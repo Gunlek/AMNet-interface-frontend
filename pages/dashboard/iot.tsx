@@ -55,6 +55,7 @@ const Iot = [
 export default function UserIoT() {
   const minWidth1000 = useMediaQuery('(min-width:1000px)')
   const { reveal, toggle } = ModalLogic();
+  const empty = (Iot.length === 0);
 
   return (
     <>
@@ -82,7 +83,7 @@ export default function UserIoT() {
           </div>
         </ResponsiveRow>
 
-        <BlackP style={{ marginBottom: "2%" }}>
+        <BlackP style={{ marginBottom: minWidth1000 ? "2%" : "4%" }}>
           Bien qu'il soit préférable de connecter vos appareils incompatibles avec AMNet Wi-Fi en filaire aux prises ethernet de votre logement, certains appareils ne proposent pas cette option.
           <br /><br />
           Cette page vous permet de créer une demande d'accès au réseau Wi-Fi : <span style={{ color: "#096a09", fontWeight: "bold" }}>AMNet IoT</span>, conçu pour supporter la connexion de Chromecast, Google Home, Xbox, Playstation et autres appareils qui ne disposent pas d'une connexion filaire et qui sont incompatibles avec AMNet Wi-Fi.
@@ -106,12 +107,21 @@ export default function UserIoT() {
           </li>
         </BlackUl>
 
-        <StyledCard style={{ flex: "1", marginBottom: minWidth1000 ? "2%" : "4%" }}>
+        <StyledCard
+          style={{
+            flex: "1",
+            marginBottom: empty ? undefined : minWidth1000 ? "2%" : "4%",
+            background: empty ? "none" : undefined,
+            padding: empty ? "0" : undefined,
+            boxShadow: empty ? "none" : undefined
+          }}
+        >
           <div
             style={{
               height: "100%",
               width: "100%",
-              overflowX: "auto"
+              overflowX: "auto",
+              display: empty ? "none" : "block"
             }}
           >
             <IoTUserTable requests={Iot} />
