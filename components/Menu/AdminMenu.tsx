@@ -38,15 +38,6 @@ export default function AdminMenu(props: { page: string }) {
     alignItems: "center",
   };
 
-  const Mobilepositionning = {
-    flex: "1",
-    justifyContent: "center",
-    alignItems: "center",
-    height: open ? "95px" : "0",
-    overflow: "hidden",
-    transition: "height 0.25s linear"
-  };
-
   return (
     <MediaContextProvider>
       <Media at="sm">
@@ -73,29 +64,43 @@ export default function AdminMenu(props: { page: string }) {
               <LogOutIcon />
             </StyledDivLogOut>
 
-            <Row style={Mobilepositionning}>
-              <SettingsIcon page={props.page} />
-            </Row>
+            <div
+              style={{
+                display: "grid",
+                gridTemplateColumns: "1fr 1fr 1fr",
+                gridColumnStart: "1",
+                gridColumnEnd: "4",
+                height: open ? "200px" : "0",
+                overflow: "hidden",
+                transition: "all 0.3s linear",
+                paddingBottom: open ? "10px" : "0",
+                gridAutoRows: "95px"
+              }}
+            >
+              <Row style={positionning}>
+                <SettingsIcon page={props.page} />
+              </Row>
 
-            <Row style={Mobilepositionning}>
-              <UsersIcon page={props.page} />
-            </Row>
+              <Row style={positionning}>
+                <UsersIcon page={props.page} />
+              </Row>
 
-            <Row style={Mobilepositionning}>
-              <IoTIcon page={props.page} location="settings" />
-            </Row>
+              <Row style={positionning}>
+                <IoTIcon page={props.page} location="settings" />
+              </Row>
 
-            <Row style={Mobilepositionning}>
-              <MaterialIcon page={props.page} location="settings" />
-            </Row>
+              <Row style={positionning}>
+                <MaterialIcon page={props.page} location="settings" />
+              </Row>
 
-            <Row style={Mobilepositionning}>
-              <EditionIcon page={props.page} />
-            </Row>
+              <Row style={positionning}>
+                <EditionIcon page={props.page} />
+              </Row>
 
-            <Row style={Mobilepositionning}>
-              <IndexIcon page={props.page} />
-            </Row>
+              <Row style={positionning}>
+                <IndexIcon page={props.page} />
+              </Row>
+            </div>
           </StyledMenu>
         </MenuContener>
       </Media>

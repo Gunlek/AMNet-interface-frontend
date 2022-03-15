@@ -6,7 +6,7 @@ export const StyledMenu = styled(StyledCard)`
   height: 96%;
   padding: 0px;
   padding-Top:20px;
-  padding-bottom:10px; 
+  padding-bottom:10px;
   align-items: center;
   z-index:2;
 
@@ -21,21 +21,20 @@ export const StyledMenu = styled(StyledCard)`
   
   @media screen and (max-width: 800px){
     display: grid;
-    grid-Template-Columns: 1fr 1fr 1fr;
-    justify-items: center;
+    grid-template-columns: 1fr 1fr 1fr;
     padding-bottom: 10px;
   } 
 `;
 
 export const MenuContener = styled.div`
   width: 85px;
-  position: fixed; 
+  position: fixed;
   height:100vh;
   display: flex;
   align-items: center;
   
   @media screen and (max-width: 1000px){
-    z-index:2;
+    z-index: 2;
     height: auto;
     width: 100%;
     position: ${(props) => props.top ? "absolute" : "fixed"};
@@ -61,6 +60,7 @@ export const StyledDivLogOut = styled(Row)`
   align-items: end; 
   justify-content: center; 
   width: 60px;
+  justify-self: center;
 
   @media screen and (max-width: 1000px){
     flex-direction: column;
