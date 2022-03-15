@@ -14,7 +14,6 @@ import RectangleLogo from "../components/Card/RectangleLogo";
 import useMediaQuery from "../components/MediaQueries/MediaQuery";
 
 export default function LostPassword() {
-  const minWidth1000 = useMediaQuery('(min-width:1000px)');
   return (
     <>
       <Head>
@@ -22,12 +21,12 @@ export default function LostPassword() {
       </Head>
       <CampusGlobalStyle />
       <Row
+        mobileWidth="90%"
         style={{
           flex: "1",
           justifyContent: "center",
           alignItems: "center",
-          margin: "20px 0",
-          width: !minWidth1000 && "90%"
+          margin: "20px 0"
         }}
       >
         <StyledCardCampus width="45%">
