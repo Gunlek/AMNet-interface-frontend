@@ -138,12 +138,22 @@ export const StyledBackLogOut = styled.a`
   justify-content: center;
   align-items: end;
   width: 60px;
+  height: 60px;
+
+  @media screen and (max-width: 1000px){
+    align-items: center;
+  }
 `;
 
 export const StyledLogOut = styled.svg`
-  ${StyledBackLogOut}:hover & {
-    fill: #096a09;  
-  }
+    position: absolute;
+    opacity: 1;
+    transition: opacity 0.3s;
+
+    ${StyledBackLogOut}:hover & {
+      opacity: 0;  
+    }
+  
 `;
 
 export const StyledLinkGitHub = styled.a`
