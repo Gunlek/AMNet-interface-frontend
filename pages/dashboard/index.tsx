@@ -28,7 +28,7 @@ export default function Dashboard() {
       <UserMenu page="index" />
 
       <DashboardContainer>
-        <ResponsiveRow style={{ margin: minWidth1000 ? "1% 0" : "4% 0", justifyContent: minWidth1000 ? "start" : "center" }}>
+        <ResponsiveRow style={{ margin: "15px 0", justifyContent: minWidth1000 ? "start" : "center" }}>
           <Column style={{ justifyContent: "center" }}>
             <BlackTitle>Mon Espace AMNet</BlackTitle>
           </Column>

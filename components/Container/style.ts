@@ -10,9 +10,11 @@ export const Row = styled.div`
   display: flex;
   width: 100%;
   flex-direction: row;
+  margin: ${(props) => props.margin};
 
   @media screen and (max-width: 1000px){
     width: ${(props) => props.mobileWidth};
+    margin: ${(props) => props.mobileMargin};
   } 
 `;
 
