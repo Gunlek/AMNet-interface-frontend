@@ -37,7 +37,8 @@ const accutalTeam = [
   }];
 export default function Homepage() {
   const minWidth1000 = useMediaQuery('(min-width:1000px)');
-
+  const minWidth500 = useMediaQuery('(min-width:500px)');
+  
   return (
     <>
       <Head>
