@@ -58,10 +58,8 @@ export default function Homepage() {
       </ResponsiveRow>
 
       <ResponsiveRow style={{ marginBottom: "20px", flex: "2" }}>
-        <Col7
+        <Col7 paddingRight="15px" MobileMarginBottom="20px"
           style={{
-            marginRight: minWidth1000 ? "15px" : "0",
-            marginBottom: minWidth1000 ? "0" : "20px",
             paddingTop: "30px",
             justifyContent: "space-between"
           }}

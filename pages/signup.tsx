@@ -80,7 +80,7 @@ export default function SignUp() {
 
           <form method="post">
             <ResponsiveRow style={{ alignItems: "center", marginBottom: "20px" }}>
-              <Col6 paddingRight="10px" style={{ width: "100%" }}>
+              <Col6 MobileMarginBottom="20px" paddingRight="10px" style={{ width: "100%" }}>
                 <StyledInputLabel htmlFor="user_name">Nom d'utilisateur</StyledInputLabel>
                 <StyledInput id="user_name" type="text" />
               </Col6>
@@ -89,8 +89,7 @@ export default function SignUp() {
                 style={{
                   justifyContent: "end",
                   height: minWidth1000 ? "75px" : "auto",
-                  alignItems: minWidth1000 ? "start" : "center",
-                  marginTop: minWidth1000 ? "0" : "20px",
+                  alignItems: minWidth1000 ? "start" : "center"
                 }}
               >
                 <BlackText style={{ textAlign: minWidth1000 ? "start" : "justify" }}>
