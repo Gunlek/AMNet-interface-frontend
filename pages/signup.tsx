@@ -40,7 +40,6 @@ export default function SignUp() {
   const handleValueChange = (elmt) => {
     setGadz(elmt.target.value == "OldPromotion" || elmt.target.value == "ActivePromotion");
     setOther(elmt.target.value == "Other");
-    if (elmt.target.value == "Other") elmt.target.value = "NewPromotion"
   }
 
   const CancelChange = () => {
@@ -63,12 +62,12 @@ export default function SignUp() {
       </Head>
       <CampusGlobalStyle />
       <Row
-        mobileWidth="90%"
         style={{
           flex: 1,
           justifyContent: "center",
           alignItems: "center",
-          margin: "20px 0"
+          margin: "20px 0",
+          width: !minWidth1000 && "90%"
         }}
       >
         <StyledCardCampus width="75%">
@@ -80,16 +79,17 @@ export default function SignUp() {
 
           <form method="post">
             <ResponsiveRow style={{ alignItems: "center", marginBottom: "20px" }}>
-              <Col6 MobileMarginBottom="20px" paddingRight="10px" style={{ width: "100%" }}>
+              <Col6 style={{ paddingRight: minWidth1000 ? "10px" : "0px", width: "100%" }}>
                 <StyledInputLabel htmlFor="user_name">Nom d'utilisateur</StyledInputLabel>
                 <StyledInput id="user_name" type="text" />
               </Col6>
               <Col6
-                paddingLeft="10px"
                 style={{
                   justifyContent: "end",
                   height: minWidth1000 ? "75px" : "auto",
-                  alignItems: minWidth1000 ? "start" : "center"
+                  alignItems: minWidth1000 ? "start" : "center",
+                  marginTop: minWidth1000 ? "0" : "20px",
+                  paddingLeft: minWidth1000 ? "10px" : "0",
                 }}
               >
                 <BlackText style={{ textAlign: minWidth1000 ? "start" : "justify" }}>
@@ -100,30 +100,32 @@ export default function SignUp() {
             </ResponsiveRow>
 
             <ResponsiveRow style={{ marginBottom: "20px" }}>
-              <Col3 paddingRight="10px" MobileMarginBottom="20px">
+              <Col3 style={{ paddingRight: minWidth1000 ? "10px" : "0", marginBottom: minWidth1000 ? "0" : "20px" }}>
                 <StyledInputLabel htmlFor="user_firstname">Prénom</StyledInputLabel>
                 <StyledInput id="user_firstname" type="text" />
               </Col3>
               <Col3
-                paddingRight="10px"
-                paddingLeft="10px"
-                MobileMarginBottom="20px"
+                style={{
+                  paddingLeft: minWidth1000 ? "10px" : "0",
+                  paddingRight: minWidth1000 ? "10px" : "0",
+                  marginBottom: minWidth1000 ? "0" : "20px"
+                }}
               >
                 <StyledInputLabel htmlFor="user_lastname">Nom</StyledInputLabel>
                 <StyledInput id="user_lastname" type="text" />
               </Col3>
-              <Col6 paddingLeft="10px">
+              <Col6 style={{ paddingLeft: minWidth1000 ? "10px" : "0" }}>
                 <StyledInputLabel htmlFor="user_email">Adresse e-mail</StyledInputLabel>
                 <StyledInput id="user_email" type="email" />
               </Col6>
             </ResponsiveRow>
 
             <ResponsiveRow style={{ marginBottom: "20px" }}>
-              <Col6 paddingRight="10px" MobileMarginBottom="20px">
+              <Col6 style={{ paddingRight: minWidth1000 ? "10px" : "0", marginBottom: minWidth1000 ? "0" : "20px" }}>
                 <StyledInputLabel htmlFor="user_phone">Téléphone</StyledInputLabel>
                 <StyledInput id="user_phone" type="tel" />
               </Col6>
-              <Col6 paddingLeft="10px">
+              <Col6 style={{ paddingLeft: minWidth1000 ? "10px" : "0" }}>
                 <StyledInputLabel htmlFor={isOther ? "user_promotion2" : "user_promotion"}>Promotion</StyledInputLabel>
                 <StyledSelect
                   id="user_promotion"
@@ -161,20 +163,21 @@ export default function SignUp() {
                 overflowY: "hidden"
               }}
             >
-              <Col6 paddingRight="10px" MobileMarginBottom="20px">
+              <Col6 style={{ paddingRight: minWidth1000 ? "10px" : "0", marginBottom: minWidth1000 ? "0" : "20px" }}>
                 <StyledInputLabel htmlFor="user_bucque">Bucque</StyledInputLabel>
                 <StyledInput id="user_bucque" type="text" />
               </Col6>
               <Col3
-                paddingRight="10px"
-                paddingLeft="10px"
-                MobileMarginBottom="20px"
-
+                style={{
+                  paddingLeft: minWidth1000 ? "10px" : "0",
+                  paddingRight: minWidth1000 ? "10px" : "0",
+                  marginBottom: minWidth1000 ? "0" : "20px"
+                }}
               >
                 <StyledInputLabel htmlFor="user_fams">Fam's</StyledInputLabel>
                 <StyledInput id="user_fams" type="text" />
               </Col3>
-              <Col3 paddingLeft="10px">
+              <Col3 style={{ paddingLeft: minWidth1000 ? "10px" : "0" }}>
                 <StyledInputLabel htmlFor="user_campus">Tabagn's</StyledInputLabel>
                 <StyledSelect id="user_campus">
                   <option value="Li">Birse</option>
@@ -190,11 +193,11 @@ export default function SignUp() {
             </ResponsiveRow>
 
             <ResponsiveRow style={{ marginBottom: "20px" }}>
-              <Col6 paddingRight="10px" MobileMarginBottom="20px">
+              <Col6 style={{ paddingRight: minWidth1000 ? "10px" : "0", marginBottom: minWidth1000 ? "0" : "20px" }}>
                 <StyledInputLabel htmlFor="user_password">Mot de passe</StyledInputLabel>
                 <StyledInput id="user_password" type="password" />
               </Col6>
-              <Col6 paddingLeft="10px">
+              <Col6 style={{ paddingLeft: minWidth1000 ? "10px" : "0" }}>
                 <StyledInputLabel htmlFor="user_password2">Confirmez votre Mot de passe</StyledInputLabel>
                 <StyledInput id="user_password2" type="password" />
               </Col6>
@@ -208,7 +211,7 @@ export default function SignUp() {
                 Consultez <StyledLink color="#096a09" target="_blank" href="/static/docs/Reglement_Interieur_AMNet.pdf">le Règlement intérieur de l'association</StyledLink>
               </BlackText>
               <BlackP>
-                AMNet Birse est une association Loi 1901, vous devez en accepter les statuts et le réglement intérieur. La validation de ce formulaire et le réglement de la cotisation annuelle (35€) vaut pour adhésion à l'association.
+                AMNet Birse est une association Loi 1901, vous devez en accepter les statuts et le réglement intérieur. La validation de ce formulaire et le réglement de la cotisation (35€) vaut pour adhésion à l'association.
               </BlackP>
             </Column>
 

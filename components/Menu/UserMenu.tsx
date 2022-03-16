@@ -8,6 +8,7 @@ import IoTIcon from "../NavIcons/iot";
 import ProfilIcon from "../NavIcons/profil";
 import SettingsIcon from "../NavIcons/settings";
 import BurgerMenu from "../NavIcons/burgermenu";
+import useMediaQuery from "../MediaQueries/MediaQuery";
 import { useEffect, useState } from "react";
 import useScrollingUp from "./scroll";
 import {
@@ -16,14 +17,14 @@ import {
   StyledDivLogOut,
   StyledMenu
 } from "./style";
-import { MediaContextProvider, Media } from "../MediaQueries/MediaSSR";
 
 
 export default function UserMenu(props: { page: string }) {
+  const minWidth800 = useMediaQuery('(min-width:801px)');
   const [scroll, scrolled, top] = useScrollingUp()
   const [open, SetOpen] = useState(false);
 
-  function handleChange() {
+  const handleChange = () => {
     SetOpen(!open);
   }
 
@@ -33,127 +34,76 @@ export default function UserMenu(props: { page: string }) {
 
   const positionning = {
     flex: "1",
-    minHeight: "70px",
+    minHeight: (minWidth800) ? "70px" : undefined,
     justifyContent: "center",
     alignItems: "center",
+    height: !minWidth800 ? open ? "95px" : "0" : "auto",
+    overflow: !minWidth800 ? "hidden" : undefined,
+    transition: "height 0.25s linear"
   };
 
   return (
-    <MediaContextProvider>
-      <Media at="sm">
-        <MenuContener timeTransform={open ? "0.6s" : "0.3s"} top={top} scroll={scroll} sticky={scrolled}>
-          <StyledMenu>
-            <Row
-              style={{
-                flex: "1",
-                margin: "5px 0",
-                justifyContent: "center",
-                alignItems: "center"
-              }}
-            >
-              <BurgerMenu open={open} onClick={handleChange} />
-            </Row>
+    <MenuContener timeTransform={open ? "0.6s" : "0.3s"} top={top} scroll={scroll} sticky={scrolled}>
+      <StyledMenu>
+        {!minWidth800 &&
+          <Row
+            style={{
+              flex: "1",
+              margin: "5px 0",
+              justifyContent: "center",
+              alignItems: "center"
+            }}
+          >
+            <BurgerMenu open={open} onClick={handleChange} />
+          </Row>
+        }
 
-            <StyledDivLogo>
-              <a href="../" style={{ display: "flex", justifyContent: "center" }}>
-                <img width="75px" src="/static/logo/small_logo.svg" />
-              </a>
-            </StyledDivLogo>
+        <StyledDivLogo>
+          <a href="../" style={{ display: "flex", justifyContent: "center" }}>
+            <img width="75px" src="/static/logo/small_logo.svg" />
+          </a>
+        </StyledDivLogo>
 
-            <StyledDivLogOut>
-              <LogOutIcon />
-            </StyledDivLogOut>
+        {!minWidth800 &&
+          <StyledDivLogOut>
+            <LogOutIcon />
+          </StyledDivLogOut>
+        }
 
+        <Row style={positionning}>
+          <IndexIcon page={props.page} />
+        </Row>
 
-            <div 
-              style={{
-                display: "grid",
-                gridTemplateColumns: "1fr 1fr 1fr",
-                gridAutoRows: "95px",
-                gridColumnStart: "1",
-                gridColumnEnd: "4",
-                height: open ? "295px" : "0",
-                overflow: "hidden",
-                transition: "all 0.3s linear",
-                paddingBottom: open ? "10px" : "0"                
-             }}
-            >
-              <Row style={positionning}>
-                <IndexIcon page={props.page} />
-              </Row>
+        <Row style={positionning}>
+          <ProfilIcon page={props.page} />
+        </Row>
 
-              <Row style={positionning}>
-                <ProfilIcon page={props.page} />
-              </Row>
+        <Row style={positionning}>
+          <IoTIcon page={props.page} location="dashboard" />
+        </Row>
 
-              <Row style={positionning}>
-                <IoTIcon page={props.page} location="dashboard" />
-              </Row>
+        <Row style={positionning}>
+          <MaterialIcon page={props.page} location="dashboard" />
+        </Row>
 
-              <Row style={positionning}>
-                <MaterialIcon page={props.page} location="dashboard" />
-              </Row>
+        <Row style={positionning}>
+          <GadzflixIcon />
+        </Row>
 
-              <Row style={positionning}>
-                <GadzflixIcon />
-              </Row>
+        <Row style={positionning}>
+          <FAQIcon page={props.page} />
+        </Row>
 
-              <Row style={positionning}>
-                <FAQIcon page={props.page} />
-              </Row>
+        <Row style={positionning}>
+          <SettingsIcon page={props.page} />
+        </Row>
 
-              <Row style={positionning}>
-                <SettingsIcon page={props.page} />
-              </Row>
-            </div>
-          </StyledMenu>
-        </MenuContener>
-      </Media>
-
-      <Media greaterThan="sm">
-        <MenuContener timeTransform="0.3s" top={top} scroll={scroll} sticky={scrolled}>
-          <StyledMenu>
-            <StyledDivLogo>
-              <a href="../" style={{ display: "flex", justifyContent: "center" }}>
-                <img width="75px" src="/static/logo/small_logo.svg" />
-              </a>
-            </StyledDivLogo>
-
-            <Row style={positionning}>
-              <IndexIcon page={props.page} />
-            </Row>
-
-            <Row style={positionning}>
-              <ProfilIcon page={props.page} />
-            </Row>
-
-            <Row style={positionning}>
-              <IoTIcon page={props.page} location="dashboard" />
-            </Row>
-
-            <Row style={positionning}>
-              <MaterialIcon page={props.page} location="dashboard" />
-            </Row>
-
-            <Row style={positionning}>
-              <GadzflixIcon />
-            </Row>
-
-            <Row style={positionning}>
-              <FAQIcon page={props.page} />
-            </Row>
-
-            <Row style={positionning}>
-              <SettingsIcon page={props.page} />
-            </Row>
-
-            <StyledDivLogOut>
-              <LogOutIcon />
-            </StyledDivLogOut>
-
-          </StyledMenu>
-        </MenuContener>
-      </Media>
-    </MediaContextProvider>
+        {minWidth800 &&
+          <StyledDivLogOut>
+            <LogOutIcon />
+          </StyledDivLogOut>
+        }
+      </StyledMenu>
+    </MenuContener>
   )
 }
