@@ -37,8 +37,7 @@ const accutalTeam = [
   }];
 export default function Homepage() {
   const minWidth1000 = useMediaQuery('(min-width:1000px)');
-  const minWidth500 = useMediaQuery('(min-width:500px)');
-  
+
   return (
     <>
       <Head>
@@ -58,8 +57,10 @@ export default function Homepage() {
       </ResponsiveRow>
 
       <ResponsiveRow style={{ marginBottom: "20px", flex: "2" }}>
-        <Col7 paddingRight="15px" MobileMarginBottom="20px"
+        <Col7
           style={{
+            marginRight: minWidth1000 ? "15px" : "0",
+            marginBottom: minWidth1000 ? "0" : "20px",
             paddingTop: "30px",
             justifyContent: "space-between"
           }}

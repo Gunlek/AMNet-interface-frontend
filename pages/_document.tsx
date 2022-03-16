@@ -1,6 +1,5 @@
-import Document, { DocumentContext, DocumentInitialProps, Head, Html, Main, NextScript } from "next/document";
+import Document, { DocumentContext, DocumentInitialProps } from "next/document";
 import { ServerStyleSheet } from "styled-components";
-import mediaStyles from "../components/MediaQueries/MediaSSR";
 
 export default class MyDocument extends Document {
   static async getInitialProps(
@@ -29,23 +28,6 @@ export default class MyDocument extends Document {
     } finally {
       sheet.seal();
     }
-  }
-
-  render() {
-    return (
-      <Html>
-        <Head>
-          <style
-            type="text/css"
-            dangerouslySetInnerHTML={{ __html: mediaStyles }}
-          />
-        </Head>
-        <body>
-          <Main />
-          <NextScript />
-        </body>
-      </Html>
-    )
   }
   
 }

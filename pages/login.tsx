@@ -17,7 +17,7 @@ import useMediaQuery from "../components/MediaQueries/MediaQuery";
 
 export default function Login() {
   const [checked, setChecked] = useState(false);
-  
+  const minWidth1000 = useMediaQuery('(min-width:1000px)');
   const handleCheckboxChange = (elmt) => {
     setChecked(elmt.target.checked);
   }
@@ -29,12 +29,12 @@ export default function Login() {
       </Head>
       <CampusGlobalStyle />
       <Row
-        mobileWidth="90%"
         style={{
           flex: "1",
           justifyContent: "center",
           alignItems: "center",
-          margin: "20px 0"
+          margin: "20px 0",
+          width: !minWidth1000 && "90%"
         }}
       >
         <StyledCardCampus width="auto" >
