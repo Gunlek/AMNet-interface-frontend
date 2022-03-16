@@ -9,7 +9,8 @@ export const CampusGlobalStyle = createGlobalStyle`
     background-size: cover;
     background-attachment: fixed;
     min-height: 100vh;
-
+    scrollbar-color: auto;
+    
     @media screen and (max-width: 1000px){
       background-attachment: scroll;
       background-position-x: 60%;

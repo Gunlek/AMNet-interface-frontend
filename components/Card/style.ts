@@ -10,11 +10,13 @@ export const StyledCard = styled.div`
   height: ${(props) => props.height};
   display: flex;
   flex-direction: column;
+  scrollbar-color: #C4C4C4 rgba(255, 255, 255, 0.6);
 `;
 
 export const StyledCardCampus = styled(StyledCard)`
   background: rgba(255, 255, 255, 0.9);
-
+  scrollbar-color: #C4C4C4 rgba(255, 255, 255, 0.9);
+  
   @media screen and (max-width: 1000px){
     width: 100%;
   } 
