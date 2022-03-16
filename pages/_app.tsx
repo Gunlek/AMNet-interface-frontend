@@ -1,6 +1,7 @@
 import Head from "next/head";
 import 'regenerator-runtime/runtime'
 import { GlobalStyle } from "../styles/global";
+import "../styles/globals.css";
 
 function MyApp({ Component, pageProps }) {
   return <>
