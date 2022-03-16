@@ -3,7 +3,7 @@ import styled, { createGlobalStyle } from "styled-components";
 export const CampusGlobalStyle = createGlobalStyle` 
   body{
     padding: 0;
-    background-image: url("/static/images/campus.png");
+    background-image: url("/static/images/campus.jpg");
     background-color: #c1c1c1;
     background-repeat: no-repeat;
     background-size: cover;
