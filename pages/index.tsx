@@ -46,12 +46,12 @@ export default function Homepage() {
       <CampusGlobalStyle padding="0 5%"/>
 
       <Row margin="20px 0" mobileMargin="30px 0" direction="column">
-        <Col6 mobileMarginBottom="30px" justify="center" align="start" mobileAlign="center">
+        <Col6 mobileMarginBottom="30px" justify="center" mobileAlign="center">
           <RectangleLogo color="white" />
         </Col6>
         <Col6 align="end" mobileAlign="center" justify="center">
           <a href="./login" style={{ borderRadius: "30px" }}>
-            <GreenButton width={"300px"}>Se Connecter / S'inscrire</GreenButton>
+            <GreenButton width="300px">Se Connecter / S'inscrire</GreenButton>
           </a>
         </Col6>
       </Row>
