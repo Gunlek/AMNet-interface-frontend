@@ -46,12 +46,12 @@ export default function Settings() {
       <AdminMenu page="settings" />
 
       <DashboardContainer>
-        <Row style={{ margin: minWidth1000 ? "1% 0" : "4% 0", justifyContent: minWidth1000 ? "start" : "center" }}>
+        <Row margin="1% 0" mobileMargin="20px 0" mobileJustify="center">
           <BlackTitle>Espace d'administration</BlackTitle>
         </Row>
 
-        <ResponsiveRow style={{ marginBottom: minWidth1000 ? "2%" : "4%" }}>
-          <Col6 style={{ marginRight: minWidth1000 ? "1%" : "0", marginBottom: minWidth1000 ? "0" : "4%" }}>
+        <ResponsiveRow marginBottom="2%" mobileMarginBottom="30px">
+          <Col6 paddingRight="1%" mobileMarginBottom="30px">
             <StyledCard style={{ flex: "1" }}>
               <TitleCard>Etat des demandes</TitleCard>
               <BlackText>
@@ -64,7 +64,7 @@ export default function Settings() {
             </StyledCard>
           </Col6>
 
-          <Col6 style={{ marginLeft: minWidth1000 ? "1%" : "0" }}>
+          <Col6 paddingLeft="1%">
             <StyledCard>
               <TitleCard>Paramètres</TitleCard>
               <form method="post" style={{ marginTop: "20px", height: "100%" }}>
@@ -104,8 +104,7 @@ export default function Settings() {
           </Col6>
         </ResponsiveRow>
 
-        <Row style={{ marginBottom: minWidth1000 ? "2%" : "4%" }}>
-
+        <Row marginBottom="2%" mobileMarginBottom="30px">
           <StyledCard style={{ height: "100%" }}>
             <TitleCard>Message d'actualité</TitleCard>
 
@@ -118,7 +117,7 @@ export default function Settings() {
           </StyledCard>
         </Row>
 
-        <Row style={{ marginBottom: minWidth1000 ? "2%" : "4%" }}>
+        <Row marginBottom="2%" mobileMarginBottom="30px">
           <StyledCard>
             <TitleCard>Système de mail</TitleCard>
 
@@ -134,7 +133,7 @@ export default function Settings() {
                   <StyledInputLabel htmlFor="MailTitle">Titre du Mail</StyledInputLabel>
                   <StyledInput id="MailTitle" type="text" />
                 </Col4>
-                <Col2 style={{ paddingLeft: minWidth1000 ? "10px" : "0", marginBottom: minWidth1000 ? "0" : "20px" }}>
+                <Col2 paddingLeft="10px" mobileMarginBottom="30px">
                   <GreenText style={{ marginBottom: "5px" }}>Cotisation payée</GreenText>
                   <CheckboxRow width={minWidth1000 ? "85px" : "125px"} style={{ flex: "1", alignItems: "center" }}>
                     <StyledLabel style={{ width: "fit-content" }}>
@@ -148,7 +147,7 @@ export default function Settings() {
                   </CheckboxRow>
                 </Col2>
 
-                <Col6 style={{ marginLeft: minWidth1000 ? "1%" : "0", marginBottom: minWidth1000 ? "0" : "20px" }}>
+                <Col6 paddingLeft="1%" mobileMarginBottom="30px">
                   <GreenText style={{ marginBottom: "5px" }}>Prom's</GreenText>
                   <CheckboxRow width={minWidth1000 ? "140px" : "125px"} style={{ flex: "1", alignItems: "center" }}>
                     <StyledLabel style={{ width: "fit-content" }}>

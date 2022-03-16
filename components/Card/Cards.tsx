@@ -11,9 +11,14 @@ import {
 } from "../Text/style";
 import GitHub from "../NavIcons/github";
 
-export function HelpSection(props: { color?: string, style?: any }) {
+export function HelpSection(props: { color?: string, marginBottom?: string, mobileMarginBottom?: string, padding?: string }) {
   return (
-    <StyledHelpSection style={props.style} color={props.color}>
+    <StyledHelpSection 
+      marginBottom={props.marginBottom} 
+      mobileMarginBottom={props.mobileMarginBottom} 
+      color={props.color} 
+      padding={props.padding}
+    >
       Besoin d'assistance ?{" "}
       <StyledLink color={props.color} href={props.color ? "../dashboard/faq" : "./faq"}>FAQ</StyledLink>{" "}ou{" "}
       <StyledLink color={props.color} href="mailto:contact@amnet.fr">contact@amnet.fr</StyledLink>

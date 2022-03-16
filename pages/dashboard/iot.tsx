@@ -65,8 +65,8 @@ export default function UserIoT() {
       <UserMenu page="iot" />
 
       <DashboardContainer>
-        <ResponsiveRow style={{ margin: minWidth1000 ? "1% 0" : "4% 0", alignItems: "center" }}>
-          <Column style={{ justifyContent: "center" }}>
+        <ResponsiveRow margin="1% 0" mobileMargin="20px 0" style={{ alignItems: "center" }}>
+          <Column mobileMarginBottom="30px" style={{ justifyContent: "center" }}>
             <BlackTitle>Mes demandes d'accès à AMNet IoT</BlackTitle>
           </Column>
 
@@ -74,8 +74,7 @@ export default function UserIoT() {
             style={{
               flex: "1",
               alignItems: "end",
-              justifyContent: "center",
-              marginTop: minWidth1000 ? "0" : "4%"
+              justifyContent: "center"
             }}
           >
             <GreenButton width="280px" onClick={toggle}>Nouvelle demande</GreenButton>
@@ -83,7 +82,7 @@ export default function UserIoT() {
           </div>
         </ResponsiveRow>
 
-        <BlackP style={{ marginBottom: minWidth1000 ? "2%" : "4%" }}>
+        <BlackP mobileMarginBottom="30px" marginBottom="2%">
           Bien qu'il soit préférable de connecter vos appareils incompatibles avec AMNet Wi-Fi en filaire aux prises ethernet de votre logement, certains appareils ne proposent pas cette option.
           <br /><br />
           Cette page vous permet de créer une demande d'accès au réseau Wi-Fi : <span style={{ color: "#096a09", fontWeight: "bold" }}>AMNet IoT</span>, conçu pour supporter la connexion de Chromecast, Google Home, Xbox, Playstation et autres appareils qui ne disposent pas d'une connexion filaire et qui sont incompatibles avec AMNet Wi-Fi.
@@ -95,7 +94,7 @@ export default function UserIoT() {
           <span style={{ color: "#096a09", fontWeight: "bold" }}>La démarche</span> pour pouvoir se connecter à AMNet IoT est la suivante :
         </BlackText>
 
-        <BlackUl style={{ marginBottom: "2%" }}>
+        <BlackUl mobileMarginBottom="30px" marginBottom="2%">
           <li>
             Renseigner l'adresse physique (aussi appelée adresse MAC) de votre appareil, ainsi qu'une photo où l'on distingue clairement l'objet et l'adresse mac qui lui est associée
           </li>
@@ -108,9 +107,9 @@ export default function UserIoT() {
         </BlackUl>
 
         <StyledCard
+          mobileMarginBottom={empty ? "0" : "30px"} marginBottom={empty ? "0" : "2%"}
           style={{
             flex: "1",
-            marginBottom: empty ? undefined : minWidth1000 ? "2%" : "4%",
             background: empty ? "none" : undefined,
             padding: empty ? "0" : undefined,
             boxShadow: empty ? "none" : undefined

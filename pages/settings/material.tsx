@@ -55,13 +55,13 @@ export default function AdminMaterial() {
       <AdminMenu page="material" />
 
       <DashboardContainer>
-        <Row style={{ margin: minWidth1000 ? "1% 0" : "4% 0", justifyContent: minWidth1000 ? "start" : "center" }}>
+        <Row margin="1% 0" mobileMargin="20px 0" mobileJustify="center">
           <BlackTitle>Demandes de matériel </BlackTitle>
         </Row>
 
         <RequestTab status={Tab} TabChange={handleTabChange} />
 
-        <StyledCard style={{ flex: "1", marginBottom: minWidth1000 ? "2%" : "4%" }}>
+        <StyledCard marginBottom="2%" mobileMarginBottom="30px" style={{ flex: "1" }}>
           <div style={{ height: "100%", width: "100%", overflowX: "auto" }}>
             <MaterialAdminTable status={Tab} requests={material} />
           </div>

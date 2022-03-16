@@ -50,8 +50,8 @@ export default function UserMaterial() {
       <UserMenu page="material" />
 
       <DashboardContainer>
-        <ResponsiveRow style={{ margin: minWidth1000 ? "1% 0" : "4% 0", alignItems: "center" }}>
-          <Column style={{ justifyContent: "center" }}>
+        <ResponsiveRow  margin="1% 0" mobileMargin="20px 0" style={{ alignItems: "center" }}>
+          <Column mobileMargin="30px" style={{ justifyContent: "center" }}>
             <BlackTitle>Mes demandes de matériel</BlackTitle>
           </Column>
 
@@ -59,8 +59,7 @@ export default function UserMaterial() {
             style={{
               flex: "1",
               alignItems: "end",
-              justifyContent: "center",
-              marginTop: minWidth1000 ? "0" : "4%"
+              justifyContent: "center"
             }}
           >
             <GreenButton width="280px" onClick={toggle}>Nouvelle demande</GreenButton>
@@ -68,14 +67,14 @@ export default function UserMaterial() {
           </div>
         </ResponsiveRow>
 
-        <Column style={{ marginBottom: "2%" }}>
+        <Column mobileMargin="30px" marginBottom="2%">
           <BlackP>
             Pour compléter votre installation, vous pouvez avoir besoin d'un écran, d'un cable ethernet ou de matériel informatique.
             <br /><span style={{ color: "#096a09", fontWeight: "bold" }}>Cette page</span> page est là pour vous permettre de formuler vos besoins dans la limite de nos stocks. Nous reviendrons vers vous dès que votre demande aura été étudiée !
           </BlackP>
         </Column>
 
-        <StyledCard style={{ flex: "1", marginBottom: minWidth1000 ? "2%" : "4%" }}>
+        <StyledCard mobileMargin="30px" marginBottom="2%" style={{ flex: "1" }}>
           <div
             style={{
               height: "100%",

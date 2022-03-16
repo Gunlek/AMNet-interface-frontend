@@ -28,17 +28,17 @@ export default function Dashboard() {
       <UserMenu page="index" />
 
       <DashboardContainer>
-        <ResponsiveRow style={{ margin: "15px 0", justifyContent: minWidth1000 ? "start" : "center" }}>
-          <Column style={{ justifyContent: "center" }}>
+        <ResponsiveRow margin="1% 0" mobileMargin="20px 0">
+          <Column mobileMarginBottom="20px"  style={{ justifyContent: "center" }}>
             <BlackTitle>Mon Espace AMNet</BlackTitle>
           </Column>
 
-          <Column style={{ flex: "1", alignItems: minWidth1000 ? "end" : "center", justifyContent: "center" }}>
+          <Column align="end" mobileAlign="center" style={{ flex: "1", justifyContent: "center" }}>
             <StateContribution status="paid" />
           </Column>
         </ResponsiveRow>
 
-        <StyledCard style={{ flex: "3", marginBottom: minWidth1000 ? "2%" : "4%" }}>
+        <StyledCard marginBottom="2%" mobileMarginBottom="30px" style={{ flex: "3" }}>
           <Column style={{ height: "100%" }}>
             <TitleCard>Actualité AMNet</TitleCard>
             <BlackText>
@@ -49,8 +49,8 @@ export default function Dashboard() {
           </Column>
         </StyledCard>
 
-        <ResponsiveRow style={{ flex: "6", marginBottom: minWidth1000 ? "2%" : "4%" }}>
-          <Col6 style={{ marginRight: minWidth1000 ? "1%" : "0", marginBottom: minWidth1000 ? "0" : "4%" }}>
+        <ResponsiveRow marginBottom="2%" mobileMarginBottom="30px" style={{ flex: "6" }}>
+          <Col6 paddingRight="1%" mobileMarginBottom="30px">
             <StyledCard style={{ height: "100%" }}>
               <Column style={{ height: "100%" }}>
                 <TitleCard>Objets connectés</TitleCard>
@@ -76,7 +76,7 @@ export default function Dashboard() {
             </StyledCard>
           </Col6>
 
-          <Col6 style={{ marginLeft: minWidth1000 ? "1%" : "0" }}>
+          <Col6 paddingLeft="1%">
             <StyledCard style={{ height: "100%" }}>
               <Column style={{ height: "100%" }}>
                 <TitleCard>FAQ</TitleCard>

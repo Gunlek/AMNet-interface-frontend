@@ -80,7 +80,7 @@ export default function SignUp() {
 
           <form method="post">
             <ResponsiveRow style={{ alignItems: "center", marginBottom: "20px" }}>
-              <Col6 MobileMarginBottom="20px" paddingRight="10px" style={{ width: "100%" }}>
+              <Col6 mobileMarginBottom="20px" paddingRight="10px" style={{ width: "100%" }}>
                 <StyledInputLabel htmlFor="user_name">Nom d'utilisateur</StyledInputLabel>
                 <StyledInput id="user_name" type="text" />
               </Col6>
@@ -100,14 +100,14 @@ export default function SignUp() {
             </ResponsiveRow>
 
             <ResponsiveRow style={{ marginBottom: "20px" }}>
-              <Col3 paddingRight="10px" MobileMarginBottom="20px">
+              <Col3 paddingRight="10px" mobileMarginBottom="20px">
                 <StyledInputLabel htmlFor="user_firstname">Prénom</StyledInputLabel>
                 <StyledInput id="user_firstname" type="text" />
               </Col3>
               <Col3
                 paddingRight="10px"
                 paddingLeft="10px"
-                MobileMarginBottom="20px"
+                mobileMarginBottom="20px"
               >
                 <StyledInputLabel htmlFor="user_lastname">Nom</StyledInputLabel>
                 <StyledInput id="user_lastname" type="text" />
@@ -119,7 +119,7 @@ export default function SignUp() {
             </ResponsiveRow>
 
             <ResponsiveRow style={{ marginBottom: "20px" }}>
-              <Col6 paddingRight="10px" MobileMarginBottom="20px">
+              <Col6 paddingRight="10px" mobileMarginBottom="20px">
                 <StyledInputLabel htmlFor="user_phone">Téléphone</StyledInputLabel>
                 <StyledInput id="user_phone" type="tel" />
               </Col6>
@@ -161,14 +161,14 @@ export default function SignUp() {
                 overflowY: "hidden"
               }}
             >
-              <Col6 paddingRight="10px" MobileMarginBottom="20px">
+              <Col6 paddingRight="10px" mobileMarginBottom="20px">
                 <StyledInputLabel htmlFor="user_bucque">Bucque</StyledInputLabel>
                 <StyledInput id="user_bucque" type="text" />
               </Col6>
               <Col3
                 paddingRight="10px"
                 paddingLeft="10px"
-                MobileMarginBottom="20px"
+                mobileMarginBottom="20px"
 
               >
                 <StyledInputLabel htmlFor="user_fams">Fam's</StyledInputLabel>
@@ -190,7 +190,7 @@ export default function SignUp() {
             </ResponsiveRow>
 
             <ResponsiveRow style={{ marginBottom: "20px" }}>
-              <Col6 paddingRight="10px" MobileMarginBottom="20px">
+              <Col6 paddingRight="10px" mobileMarginBottom="20px">
                 <StyledInputLabel htmlFor="user_password">Mot de passe</StyledInputLabel>
                 <StyledInput id="user_password" type="password" />
               </Col6>
@@ -222,7 +222,9 @@ export default function SignUp() {
                 }}
               >
                 <RoundCheckbox id="accept_rules" checked={acceptRules} onChange={handleRadioChange} />
-                <BlackText style={{ paddingLeft: "10px" }}>Accepter les Statuts et le Réglement interieur</BlackText>
+                <BlackText style={{ paddingLeft: "10px", textAlign: minWidth1000 ? undefined : "center", }}>
+                  Accepter les Statuts et le Réglement interieur
+                </BlackText>
               </label>
             </Row>
 
@@ -233,7 +235,7 @@ export default function SignUp() {
         </StyledCardCampus>
       </Row>
 
-      <HelpSection />
+      <HelpSection padding="0 5%"/>
       <Footer page="campus" />
     </>
   );

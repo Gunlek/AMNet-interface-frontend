@@ -48,7 +48,7 @@ export default function LostPassword() {
         </StyledCardCampus>
       </Row>
 
-      <HelpSection />
+      <HelpSection padding="0 5%"/>
       <Footer page="campus" />
     </>
   );

@@ -50,29 +50,27 @@ export default function Profil() {
       <UserMenu page="profil" />
 
       <DashboardContainer>
-        <ResponsiveRow margin="1% 0" mobileMargin="4% 0" style={{ justifyContent: minWidth1000 ? "start" : "center" }}>
-          <Column style={{ justifyContent: "center" }}>
+        <ResponsiveRow margin="1% 0" mobileMargin="20px 0" mobileJustify="center">
+          <Column mobileMarginBottom="20px" style={{ justifyContent: "center" }}>
             <BlackTitle>Editer mon Profil</BlackTitle>
           </Column>
 
-          <Column style={{ flex: "1", alignItems: minWidth1000 ? "end" : "center", justifyContent: "center" }}>
+          <Column align="end" mobileAlign="center" style={{ flex: "1", justifyContent:"center" }}>
             <StateContribution status="unpaid" />
           </Column>
         </ResponsiveRow>
 
         <form style={{ width: "100%", flex: "1", display: "flex", flexDirection: "column" }} method="post">
           <ResponsiveRow style={{ alignItems: "center", marginBottom: "20px" }}>
-            <Col6 paddingRight="10px" style={{ width: "100%" }}>
+            <Col6 mobileMarginBottom="20px" paddingRight="10px" style={{ width: "100%" }}>
               <StyledInputLabel htmlFor="user_name">Nom d'utilisateur</StyledInputLabel>
               <StyledInput id="user_name" type="text" />
             </Col6>
             <Col6
-              paddingLeft="10px"
+              paddingLeft="10px" align="start" mobileAlign="center"
               style={{
                 justifyContent: "end",
-                height: minWidth1000 ? "75px" : "auto",
-                alignItems: minWidth1000 ? "start" : "center",
-                marginTop: minWidth1000 ? "0" : "20px"
+                height: minWidth1000 ? "75px" : "auto"
               }}
             >
               <BlackText style={{ textAlign: minWidth1000 ? "start" : "justify" }}>
@@ -83,11 +81,11 @@ export default function Profil() {
           </ResponsiveRow>
 
           <ResponsiveRow style={{ marginBottom: "20px" }}>
-            <Col3 paddingRight="10px" MobileMarginBottom="20px">
+            <Col3 paddingRight="10px" mobileMarginBottom="20px">
               <StyledInputLabel htmlFor="user_firstname">Prénom</StyledInputLabel>
               <StyledInput id="user_firstname" type="text" />
             </Col3>
-            <Col3 paddingLeft="10px" paddingRight="10px" MobileMarginBottom="20px">
+            <Col3 paddingLeft="10px" paddingRight="10px" mobileMarginBottom="20px">
               <StyledInputLabel htmlFor="user_lastname">Nom</StyledInputLabel>
               <StyledInput id="user_lastname" type="text" />
             </Col3>
@@ -98,7 +96,7 @@ export default function Profil() {
           </ResponsiveRow>
 
           <ResponsiveRow style={{ marginBottom: "20px" }}>
-            <Col6 paddingRight="10px" MobileMarginBottom="20px">
+            <Col6 paddingRight="10px" mobileMarginBottom="20px">
               <StyledInputLabel htmlFor="user_phone">Téléphone</StyledInputLabel>
               <StyledInput id="user_phone" type="tel" />
             </Col6>
@@ -140,11 +138,11 @@ export default function Profil() {
               overflowY: isGadz ? undefined : "hidden"
             }}
           >
-            <Col6 paddingRight="10px" MobileMarginBottom="20px">
+            <Col6 paddingRight="10px" mobileMarginBottom="20px">
               <StyledInputLabel htmlFor="user_bucque">Bucque</StyledInputLabel>
               <StyledInput id="user_bucque" type="text" />
             </Col6>
-            <Col3 paddingRight="10px" paddingLeft="10px" MobileMarginBottom="20px">
+            <Col3 paddingRight="10px" paddingLeft="10px" mobileMarginBottom="20px">
               <StyledInputLabel htmlFor="user_fams">Fam's</StyledInputLabel>
               <StyledInput id="user_fams" type="text" />
             </Col3>
@@ -164,7 +162,7 @@ export default function Profil() {
           </ResponsiveRow>
 
           <ResponsiveRow style={{ marginBottom: "20px" }}>
-            <Col6 paddingRight="10px" MobileMarginBottom="20px">
+            <Col6 paddingRight="10px" mobileMarginBottom="20px">
               <StyledInputLabel htmlFor="user_password">Mot de passe</StyledInputLabel>
               <StyledInput id="user_password" type="password" />
             </Col6>
@@ -176,8 +174,8 @@ export default function Profil() {
 
           <ResponsiveRow style={{ marginBottom: "20px", flex: "1" }}>
             <Col6 paddingRight="10px"
+              mobileMarginBottom={isGadz ? "20px" : "0"}
               style={{
-                marginBottom: (isGadz && !minWidth1000) ? "20px" : "0",
                 height: isGadz ? "73px" : "0",
                 transition: "0.3s linear",
                 overflowY: isGadz ? undefined : "hidden",
@@ -187,11 +185,11 @@ export default function Profil() {
               <GreenText style={{ marginBottom: "5px" }}>Identifiants gadzariques</GreenText>
               <StyledInput hoverBorder="transparent" readOnly value="Mac Nhat'sss 47-102Li219" type="text" />
             </Col6>
-            <Col6 paddingLeft="10px"
-              style={{
-                alignItems: minWidth1000 ? "end" : "center",
-                justifyContent: "end"
-              }}
+            <Col6 
+              paddingLeft="10px"
+              align="end" 
+              mobileAlign="center"
+              style={{ justifyContent: "end" }}
             >
               <GreenButton>Editer mon profil</GreenButton>
             </Col6>

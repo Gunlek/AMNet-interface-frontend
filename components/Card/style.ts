@@ -11,6 +11,11 @@ export const StyledCard = styled.div`
   display: flex;
   flex-direction: column;
   scrollbar-color: #C4C4C4 rgba(255, 255, 255, 0.6);
+  margin-bottom: ${(props) => props.marginBottom};
+
+  @media screen and (max-width: 1000px){
+    margin-bottom: ${(props) => props.mobileMarginBottom};
+  } 
 `;
 
 export const StyledCardCampus = styled(StyledCard)`
@@ -19,6 +24,7 @@ export const StyledCardCampus = styled(StyledCard)`
   
   @media screen and (max-width: 1000px){
     width: 100%;
+    margin-bottom: ${(props) => props.mobileMarginBottom};
   } 
 `;
 
@@ -50,6 +56,12 @@ export const StyledHelpSection = styled.div`
   text-align: center;
   font-size: 1.2em;
   width: 100%;
+  margin-bottom: ${(props) => props.marginBottom};
+  
+  @media screen and (max-width: 1000px){
+    margin-bottom: ${(props) => props.mobileMarginBottom};
+    padding: ${(props) => props.padding};
+  }
 `;
 
 export const GreenLine = styled.div`
@@ -83,11 +95,10 @@ export const StyledCampusFooter = styled(StyledFooter)`
   background: rgba(255, 255, 255, 0.9);
   width: 100%;
   margin-right: 0;
-  position: relative;
   
   @media screen and (max-width: 1000px){
     padding-right: 10px;
-    padding-left:10px;
+    padding-left: 10px;
   } 
 `;
 
@@ -157,4 +168,15 @@ export const StyledModal = styled(StyledCardCampus)`
   transform: translate(-50%, -50%);
   z-index: ${props => (props.reveal ? "4" : "-1")};
   opacity: ${props => (props.reveal ? "1" : "0")};
+`
+
+export const StyledMinImg = styled.img`
+  width: 90%;
+  height: auto;
+  aspect-ratio: 1 / 1; 
+
+  @media screen and (max-width: 1000px){
+    width: auto; 
+    height: 80%; 
+  } 
 `

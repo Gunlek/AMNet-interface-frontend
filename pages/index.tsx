@@ -15,7 +15,7 @@ import {
   ResponsiveRow,
   Row
 } from "../components/Container/style";
-import { StyledCardCampus } from "../components/Card/style";
+import { StyledCardCampus, StyledMinImg } from "../components/Card/style";
 import { WhiteP, BlackP, BlackText, StyledLink } from "../components/Text/style";
 import useMediaQuery from "../components/MediaQueries/MediaQuery";
 import RectangleLogo from "../components/Card/RectangleLogo";
@@ -37,8 +37,7 @@ const accutalTeam = [
   }];
 export default function Homepage() {
   const minWidth1000 = useMediaQuery('(min-width:1000px)');
-  const minWidth500 = useMediaQuery('(min-width:500px)');
-  
+
   return (
     <>
       <Head>
@@ -46,21 +45,21 @@ export default function Homepage() {
       </Head>
       <CampusGlobalStyle padding="0 5%"/>
 
-      <ResponsiveRow style={{ margin: minWidth1000 ? "20px 0" : "0" }}>
-        <Col6 style={{ justifyContent: minWidth1000 ? "start" : "center", alignItems: minWidth1000 ? "start" : "center" }}>
+      <Row margin="20px 0" mobileMargin="30px 0" direction="column">
+        <Col6 mobileMarginBottom="30px" justify="center" align="start" mobileAlign="center">
           <RectangleLogo color="white" />
         </Col6>
-        <Col6 style={{ justifyContent: "center", alignItems: minWidth1000 ? "end" : "center", marginTop: minWidth1000 ? "0" : "20px" }}>
+        <Col6 align="end" mobileAlign="center" justify="center">
           <a href="./login" style={{ borderRadius: "30px" }}>
-            <GreenButton width={minWidth1000 ? "300px" : "250px"}>Se Connecter / S'inscrire</GreenButton>
+            <GreenButton width={"300px"}>Se Connecter / S'inscrire</GreenButton>
           </a>
         </Col6>
-      </ResponsiveRow>
+      </Row>
 
-      <ResponsiveRow style={{ marginBottom: "20px", flex: "2" }}>
-        <Col7 paddingRight="15px" MobileMarginBottom="20px"
+      <ResponsiveRow marginBottom="20px" mobileMarginBottom="30px" style={{ flex: "2" }}>
+        <Col7 paddingRight="15px" mobileMarginBottom="30px"
           style={{
-            paddingTop: "30px",
+            paddingTop: "0px",
             justifyContent: "space-between"
           }}
         >
@@ -78,21 +77,20 @@ export default function Homepage() {
             </WhiteP>
           </div>
 
-          <StyledCardCampus style={{ marginBottom: minWidth1000 ? "0" : "20px" }}>
+          <StyledCardCampus>
             <ResponsiveRow>
               <Col2
                 style={{
                   alignItems: "center",
-                  justifyContent: "center",
-                  marginBottom: minWidth1000 ? "0" : "10px"
+                  justifyContent: "center"
                 }}
               >
-                <img
-                  style={{ width: minWidth1000 ? "90%" : "auto", height: minWidth1000 ? "auto" : "80%", aspectRatio: "1 / 1" }}
+                <StyledMinImg
                   src="/static/logo/mc_logo.png"
                   alt="Logo Minecraft"
                 />
               </Col2>
+
               <Col10 style={{ marginLeft: "2%" }}>
                 <TitleCard>Serveur Minecraft</TitleCard>
                 <BlackP style={{ marginBottom: "1.2rem" }}>
@@ -110,7 +108,7 @@ export default function Homepage() {
           </StyledCardCampus>
         </Col7>
 
-        <Col5 style={{ marginLeft: minWidth1000 ? "15px" : "0", justifyContent: "space-between" }}>
+        <Col5 marginLeft="15px" style={{ justifyContent: "space-between" }}>
           <TeamPicture Team={accutalTeam} />
 
           <StyledCardCampus style={{ marginTop: "30px" }}>
@@ -132,10 +130,10 @@ export default function Homepage() {
           </StyledCardCampus>
         </Col5>
       </ResponsiveRow>
-      <Row style={{ flex: "1", alignItems: "end" }}>
-        <HelpSection style={{ marginBottom: "20px" }} />
-      </Row>
 
+      <Row style={{ flex: "1", alignItems: "end" }}>
+        <HelpSection mobileMarginBottom="30px" marginBottom="20px"/>
+      </Row>
     </>
   );
 }

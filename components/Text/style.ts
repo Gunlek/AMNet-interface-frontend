@@ -45,6 +45,11 @@ export const WhiteP = styled.p`
   font-size: 1.2rem;
   padding: 0;
   margin: 0;
+  margin-bottom: ${(props) => props.marginBottom};
+
+  @media screen and (max-width: 1000px){
+    margin-bottom: ${(props) => props.mobileMarginBottom};
+  } 
 `;
 
 export const BlackP = styled(WhiteP)`
@@ -57,6 +62,11 @@ export const BlackUl = styled.ul`
   font-size: 1.2rem;
   margin: 0;
   padding:0;
+  margin-bottom: ${(props) => props.marginBottom};
+
+  @media screen and (max-width: 1000px){
+    margin-bottom: ${(props) => props.mobileMarginBottom};
+  } 
   
   li{
     list-style-type: none;

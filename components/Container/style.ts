@@ -4,6 +4,16 @@ export const Column = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
+  justify-content: ${(props) => props.justify};
+  align-items: ${(props) => props.align};
+
+  @media screen and (max-width: 1000px){
+    width: ${(props) => props.mobileWidth};
+    margin: ${(props) => props.mobileMargin};
+    margin-bottom: ${(props) => props.mobileMarginBottom};
+    justify-content: ${(props) => props.mobileJustify};
+    align-items: ${(props) => props.mobileAlign};
+  }
 `;
 
 export const Row = styled.div`
@@ -11,10 +21,20 @@ export const Row = styled.div`
   width: 100%;
   flex-direction: row;
   margin: ${(props) => props.margin};
+  margin-bottom: ${(props) => props.marginBottom};
+  justify-content: ${(props) => props.justify};
+  align-items: ${(props) => props.align};
 
   @media screen and (max-width: 1000px){
     width: ${(props) => props.mobileWidth};
     margin: ${(props) => props.mobileMargin};
+    margin-bottom: ${(props) => props.mobileMarginBottom};
+    justify-content: ${(props) => props.mobileJustify};
+    align-items: ${(props) => props.mobileAlign};
+  }
+  
+  @media screen and (max-width: 600px){
+    flex-direction: ${(props) => props.direction};
   } 
 `;
 
@@ -76,7 +96,7 @@ export const Col7 = styled(Col)`
     max-width: 100%;
     padding-left: 0;
     padding-right: 0;
-    margin-bottom: ${(props) => props.MobileMarginBottom};
+    margin-bottom: ${(props) => props.mobileMarginBottom};
   }
 `;
 
@@ -85,21 +105,37 @@ export const Col6 = styled(Col)`
   max-width: 50%;
   padding-left: ${(props) => props.paddingLeft};
   padding-right: ${(props) => props.paddingRight};
+  justify-content: ${(props) => props.justify};
+  align-items: ${(props) => props.align};
+  margin-left: ${(props) => props.marginLeft};
+  margin-right: ${(props) => props.marginRight};
 
   @media screen and (max-width: 1000px){
     max-width: 100%;
+    margin-left: 0;
+    margin-right: 0;
     padding-left: 0;
     padding-right: 0;
-    margin-bottom: ${(props) => props.MobileMarginBottom};
+    margin-bottom: ${(props) => props.mobileMarginBottom};
+  } 
+
+  @media screen and (max-width: 600px){
+    justify-content: ${(props) => props.mobileJustify};
+    align-items: ${(props) => props.mobileAlign};
   } 
 `;
 
 export const Col5 = styled(Col)`
   flex: 5;
   max-width: 41.66%;
+  padding-left: ${(props) => props.paddingLeft};
+  padding-right: ${(props) => props.paddingRight};
+  margin-left: ${(props) => props.marginLeft};
 
   @media screen and (max-width: 1000px){
+    margin-left: 0;
     max-width: 100%;
+    margin-bottom: ${(props) => props.mobileMarginBottom};
   }
 `;
 
@@ -122,16 +158,19 @@ export const Col3 = styled(Col)`
     max-width: 100%;
     padding-left: 0;
     padding-right: 0;
-    margin-bottom: ${(props) => props.MobileMarginBottom};
+    margin-bottom: ${(props) => props.mobileMarginBottom};
   }
 `;
 
 export const Col2 = styled(Col)`
   flex: 2;
   max-width: 16.66%;
+  padding-left: ${(props) => props.paddingLeft};
+  padding-right: ${(props) => props.paddingRight};
 
   @media screen and (max-width: 1000px){
     max-width: 100%;
+    margin-bottom: ${(props) => props.mobileMarginBottom};
   }
 `;
 
@@ -168,8 +207,10 @@ export const CheckboxRow = styled(Row)`
   grid-template-columns: repeat(auto-fill,minmax(${(props) => props.width || "125px"}, 1fr));
   align-items: center;
   gap: 15px 0;
+  margin-bottom: ${(props) => props.marginBottom};
 
   @media screen and (max-width: 1000px){
     justify-items: ${(props) => props.justify};
+    margin-bottom: ${(props) => props.mobileMarginBottom};
   } 
 `;
