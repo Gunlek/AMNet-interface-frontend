@@ -132,10 +132,9 @@ export default function Profil() {
 
           <ResponsiveRow
             style={{
-              marginBottom: isGadz ? "20px" : "0",
-              height: isGadz ? minWidth1000 ? "73px" : "244.6px" : "0px",
-              transition: "0.3s linear",
-              overflowY: isGadz ? undefined : "hidden"
+              height: isGadz ? minWidth1000 ? "93px" : "264.6px" : "0px",
+              transition: "height 0.3s linear",
+              overflowY: "clip",
             }}
           >
             <Col6 paddingRight="10px" mobileMarginBottom="20px">
@@ -172,13 +171,17 @@ export default function Profil() {
             </Col6>
           </ResponsiveRow>
 
-          <ResponsiveRow style={{ marginBottom: "20px", flex: "1" }}>
+          <ResponsiveRow 
+            marginBottom={isGadz ? "0" : "20px"} 
+            mobileMarginBottom={isGadz ? "10px" : "30px"} 
+            style={{  flex: "1", transition: "margin-bottom 0.3s linear" }}
+          >
             <Col6 paddingRight="10px"
               mobileMarginBottom={isGadz ? "20px" : "0"}
               style={{
-                height: isGadz ? "73px" : "0",
-                transition: "0.3s linear",
-                overflowY: isGadz ? undefined : "hidden",
+                height: isGadz ? "93px" : "0",
+                transition: "height 0.3s linear",
+                overflowY: "clip",
                 flex: (!isGadz && !minWidth1000) ? "none" : undefined
               }}
             >
@@ -189,7 +192,11 @@ export default function Profil() {
               paddingLeft="10px"
               align="end" 
               mobileAlign="center"
-              style={{ justifyContent: "end" }}
+              style={{ 
+                justifyContent: "end", 
+                paddingBottom: isGadz ? "20px" : "0",
+                transition: "padding-bottom 0.3s linear"
+              }}
             >
               <GreenButton>Editer mon profil</GreenButton>
             </Col6>

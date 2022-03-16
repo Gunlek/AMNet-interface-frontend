@@ -84,6 +84,7 @@ export default function SignUp() {
                 <StyledInputLabel htmlFor="user_name">Nom d'utilisateur</StyledInputLabel>
                 <StyledInput id="user_name" type="text" />
               </Col6>
+              
               <Col6
                 paddingLeft="10px"
                 style={{
@@ -104,6 +105,7 @@ export default function SignUp() {
                 <StyledInputLabel htmlFor="user_firstname">Prénom</StyledInputLabel>
                 <StyledInput id="user_firstname" type="text" />
               </Col3>
+
               <Col3
                 paddingRight="10px"
                 paddingLeft="10px"
@@ -112,6 +114,7 @@ export default function SignUp() {
                 <StyledInputLabel htmlFor="user_lastname">Nom</StyledInputLabel>
                 <StyledInput id="user_lastname" type="text" />
               </Col3>
+
               <Col6 paddingLeft="10px">
                 <StyledInputLabel htmlFor="user_email">Adresse e-mail</StyledInputLabel>
                 <StyledInput id="user_email" type="email" />
@@ -123,6 +126,7 @@ export default function SignUp() {
                 <StyledInputLabel htmlFor="user_phone">Téléphone</StyledInputLabel>
                 <StyledInput id="user_phone" type="tel" />
               </Col6>
+
               <Col6 paddingLeft="10px">
                 <StyledInputLabel htmlFor={isOther ? "user_promotion2" : "user_promotion"}>Promotion</StyledInputLabel>
                 <StyledSelect
@@ -155,25 +159,25 @@ export default function SignUp() {
 
             <ResponsiveRow
               style={{
-                marginBottom: isGadz ? "20px" : "0",
-                height: isGadz ? minWidth1000 ? "73px" : "244.6px" : "0px",
-                transition: "0.3s linear",
-                overflowY: "hidden"
+                height: isGadz ? minWidth1000 ? "93px" : "244.6px" : "0px",
+                transition: "height 0.3s linear",
+                overflowY: "clip"
               }}
             >
               <Col6 paddingRight="10px" mobileMarginBottom="20px">
                 <StyledInputLabel htmlFor="user_bucque">Bucque</StyledInputLabel>
                 <StyledInput id="user_bucque" type="text" />
               </Col6>
+
               <Col3
                 paddingRight="10px"
                 paddingLeft="10px"
                 mobileMarginBottom="20px"
-
               >
                 <StyledInputLabel htmlFor="user_fams">Fam's</StyledInputLabel>
                 <StyledInput id="user_fams" type="text" />
               </Col3>
+
               <Col3 paddingLeft="10px">
                 <StyledInputLabel htmlFor="user_campus">Tabagn's</StyledInputLabel>
                 <StyledSelect id="user_campus">
@@ -194,6 +198,7 @@ export default function SignUp() {
                 <StyledInputLabel htmlFor="user_password">Mot de passe</StyledInputLabel>
                 <StyledInput id="user_password" type="password" />
               </Col6>
+
               <Col6 paddingLeft="10px">
                 <StyledInputLabel htmlFor="user_password2">Confirmez votre Mot de passe</StyledInputLabel>
                 <StyledInput id="user_password2" type="password" />
