@@ -69,9 +69,14 @@ export const Col8 = styled(Col)`
 export const Col7 = styled(Col)`
   flex: 7;
   max-width: 58.33%;
+  padding-left: ${(props) => props.paddingLeft};
+  padding-right: ${(props) => props.paddingRight};
 
   @media screen and (max-width: 1000px){
     max-width: 100%;
+    padding-left: 0;
+    padding-right: 0;
+    margin-bottom: ${(props) => props.MobileMarginBottom};
   }
 `;
 
