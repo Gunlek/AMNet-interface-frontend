@@ -31,7 +31,7 @@ export const StyledStateContribution = styled.div`
 `;
 
 export const StyledStateInvite = styled.select`
-  background: ${(props) => props.status? "#67BC45" : "#F23232"};
+  background-color: ${(props) => props.status? "#67BC45" : "#F23232"};
   border-radius: 16px;
   height: 40px;
   width: 150px;
@@ -41,7 +41,7 @@ export const StyledStateInvite = styled.select`
   color: white;
   border: none;
   font-family: "Poppins";
-  transition: 0.2s;
+  transition: background-color 0.2s;
 
   option {
       color: black;

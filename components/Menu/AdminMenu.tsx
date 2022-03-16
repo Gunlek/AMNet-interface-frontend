@@ -56,7 +56,7 @@ export default function AdminMenu(props: { page: string }) {
 
             <StyledDivLogo>
               <a href="../" style={{ display: "flex", justifyContent: "center" }}>
-                <img width="75px" src="/static/logo/small_logo.svg" />
+                <img style={{ width: "75px", height: "75px" }} src="/static/logo/small_logo.svg" />
               </a>
             </StyledDivLogo>
 
@@ -72,7 +72,7 @@ export default function AdminMenu(props: { page: string }) {
                 gridColumnEnd: "4",
                 height: open ? "200px" : "0",
                 overflow: "hidden",
-                transition: "all 0.3s linear",
+                transition: "height 0.3s linear, padding-bottom 0.3s linear",
                 paddingBottom: open ? "10px" : "0",
                 gridAutoRows: "95px"
               }}
@@ -110,7 +110,7 @@ export default function AdminMenu(props: { page: string }) {
           <StyledMenu>
             <StyledDivLogo>
               <a href="../" style={{ display: "flex", justifyContent: "center" }}>
-                <img width="75px" src="/static/logo/small_logo.svg" />
+                <img style={{ width: "75px", height: "75px" }} src="/static/logo/small_logo.svg" />
               </a>
             </StyledDivLogo>
 

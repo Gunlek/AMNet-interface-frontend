@@ -9,7 +9,7 @@ export const StyledButton = styled.button`
   color: white;
   font-size: 1.2rem;
   text-align: center;
-  transition: 0.3s linear, font-size 0s, width 0s, color 0s, border-radius 0s, font-family 0s, box-shadow 0.3s;
+  transition: 0.3s linear, box-shadow 0.3s;
   background: linear-gradient(90deg, var(--c1, #f6d365), var(--c2, #fda085) 51%, var(--c1, #f6d365)) var(--x, 0)/ 200%;
 
   &:hover{ 
