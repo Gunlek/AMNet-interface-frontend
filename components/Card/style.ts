@@ -51,7 +51,7 @@ export const StyledHelpSection = styled.div`
 `;
 
 export const GreenLine = styled.div`
-  flex: 1;
+  flex:1;
   border: 1px solid #096A09;
   height: 0px;
   background: #096a09;
@@ -60,15 +60,15 @@ export const GreenLine = styled.div`
 `;
 
 export const StyledFooter = styled.footer`
-  display: flex;
+  display:flex;
   justify-content: end;
   align-items: center;
   margin: 0;
   margin-right: -2%;
   padding-right: 5px;
   margin-top: 10px;
-  padding-top: 5px;
-  padding-bottom: 5px;
+  padding-top:5px;
+  padding-bottom:5px;
 
   @media screen and (max-width: 1000px){
     text-align: center;
@@ -80,8 +80,6 @@ export const StyledFooter = styled.footer`
 export const StyledCampusFooter = styled(StyledFooter)`
   background: rgba(255, 255, 255, 0.9);
   width: 100%;
-  margin-right: 0;
-  position: relative;
   
   @media screen and (max-width: 1000px){
     padding-right: 10px;
@@ -138,7 +136,7 @@ export const StyledBackgroundModal = styled.div`
   width: 100%; 
   left: 0; 
   top: 0;  
-  transition: ${props => (props.reveal ? "opacity" : "all")} 0.3s linear;
+  transition: opacity 0.3s linear;
   z-index: ${props => props.reveal ? "3" : "-1"};
   opacity: ${props => props.reveal ? "1" : "0"};
 `;
@@ -151,7 +149,7 @@ export const StyledModal = styled(StyledCardCampus)`
   position: fixed; 
   top: 50%; 
   left: 50%;  
-  transition: ${props => (props.reveal ? "opacity" : "all")} 0.3s linear;
+  transition: opacity 0.3s linear;
   transform: translate(-50%, -50%);
   z-index: ${props => (props.reveal ? "4" : "-1")};
   opacity: ${props => (props.reveal ? "1" : "0")};

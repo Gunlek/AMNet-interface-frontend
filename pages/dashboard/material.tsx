@@ -1,5 +1,6 @@
 import React from "react";
 import Head from "next/head";
+import { DefaultBackground } from "../../components/Background/style";
 import { GreenButton } from "../../components/Button/Buttons";
 import {
   Column,
@@ -40,56 +41,58 @@ const material = [
 
 export default function UserMaterial() {
   const minWidth1000 = useMediaQuery('(min-width:1000px)');
-  const { reveal, toggle } = ModalLogic();
+  const {reveal, toggle} = ModalLogic();
 
   return (
     <>
       <Head>
         <title>Mes demandes &bull; AMNet</title>
       </Head>
-      <UserMenu page="material" />
+      <DefaultBackground>
+        <UserMenu page="material" />
 
-      <DashboardContainer>
-        <ResponsiveRow style={{ margin: minWidth1000 ? "1% 0" : "4% 0", alignItems: "center" }}>
-          <Column style={{ justifyContent: "center" }}>
-            <BlackTitle>Mes demandes de matériel</BlackTitle>
+        <DashboardContainer>
+          <ResponsiveRow style={{ margin: minWidth1000 ? "1% 0" : "4% 0", alignItems: "center" }}>
+            <Column style={{ justifyContent: "center" }}>
+              <BlackTitle>Mes demandes de matériel</BlackTitle>
+            </Column>
+
+            <div 
+              style={{ 
+                flex: "1", 
+                alignItems: "end", 
+                justifyContent: "center", 
+                marginTop: minWidth1000 ? "0" : "4%" 
+              }}
+            >
+              <GreenButton width="280px" onClick={toggle}>Nouvelle demande</GreenButton>
+              <MaterialModal reveal={reveal} hide={toggle}/>
+            </div>
+          </ResponsiveRow>
+
+          <Column style={{ marginBottom: "2%" }}>
+            <BlackP>
+               Pour compléter votre installation, vous pouvez avoir besoin d'un écran, d'un cable ethernet ou de matériel informatique.
+               <br/><span style={{ color: "#096a09", fontWeight: "bold" }}>Cette page</span> page est là pour vous permettre de formuler vos besoins dans la limite de nos stocks. Nous reviendrons vers vous dès que votre demande aura été étudiée !
+            </BlackP>
           </Column>
 
-          <div
-            style={{
-              flex: "1",
-              alignItems: "end",
-              justifyContent: "center",
-              marginTop: minWidth1000 ? "0" : "4%"
-            }}
-          >
-            <GreenButton width="280px" onClick={toggle}>Nouvelle demande</GreenButton>
-            <MaterialModal reveal={reveal} hide={toggle} />
-          </div>
-        </ResponsiveRow>
+          <StyledCard style={{ flex: "1", marginBottom: minWidth1000 ? "2%" : "4%" }}>
+            <div
+              style={{
+                height: "100%",
+                width: "100%",
+                overflowX: "auto"
+              }}
+            >
+              <MaterialUserTable requests={material} />
+            </div>
+          </StyledCard>
 
-        <Column style={{ marginBottom: "2%" }}>
-          <BlackP>
-            Pour compléter votre installation, vous pouvez avoir besoin d'un écran, d'un cable ethernet ou de matériel informatique.
-            <br /><span style={{ color: "#096a09", fontWeight: "bold" }}>Cette page</span> page est là pour vous permettre de formuler vos besoins dans la limite de nos stocks. Nous reviendrons vers vous dès que votre demande aura été étudiée !
-          </BlackP>
-        </Column>
-
-        <StyledCard style={{ flex: "1", marginBottom: minWidth1000 ? "2%" : "4%" }}>
-          <div
-            style={{
-              height: "100%",
-              width: "100%",
-              overflowX: "auto"
-            }}
-          >
-            <MaterialUserTable requests={material} />
-          </div>
-        </StyledCard>
-
-        <HelpSection color="#096A09" />
-        <Footer />
-      </DashboardContainer>
+          <HelpSection color="#096A09" />
+          <Footer />
+        </DashboardContainer>
+      </DefaultBackground>
     </>
   );
 }

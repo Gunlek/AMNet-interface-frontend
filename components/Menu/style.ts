@@ -16,14 +16,12 @@ export const StyledMenu = styled(StyledCard)`
     padding: 10px;
     border-top-left-radius: 0px;
     border-top-right-radius: 0px;
-    padding-bottom: 25px;
   }
   
   @media screen and (max-width: 800px){
     display: grid;
     grid-Template-Columns: 1fr 1fr 1fr;
     justify-items: center;
-    padding-bottom: 10px;
   } 
 `;
 

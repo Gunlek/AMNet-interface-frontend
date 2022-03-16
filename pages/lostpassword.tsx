@@ -1,6 +1,6 @@
 import React from "react";
 import Head from "next/head";
-import { CampusGlobalStyle } from "../components/Background/style";
+import { CampusBackground, CampusGlobalStyle } from "../components/Background/style";
 import {
   Footer,
   HelpSection,
@@ -11,45 +11,44 @@ import { StyledCardCampus } from "../components/Card/style";
 import { Row } from "../components/Container/style";
 import { StyledInput, StyledInputLabel } from "../components/Input/style";
 import RectangleLogo from "../components/Card/RectangleLogo";
-import useMediaQuery from "../components/MediaQueries/MediaQuery";
 
 export default function LostPassword() {
-  const minWidth1000 = useMediaQuery('(min-width:1000px)');
   return (
     <>
       <Head>
         <title>Mot de passe oublié &bull; AMNet</title>
       </Head>
       <CampusGlobalStyle />
-      <Row
-        style={{
-          flex: "1",
-          justifyContent: "center",
-          alignItems: "center",
-          margin: "20px 0",
-          width: !minWidth1000 && "90%"
-        }}
-      >
-        <StyledCardCampus width="45%">
-          <Row style={{ marginBottom: "20px", marginTop: "10px", justifyContent: "center" }}>
-            <RectangleLogo />
-          </Row>
-
-          <TitleCard>Mot de passe oublié</TitleCard>
-
-          <form method="post">
-            <div style={{ marginBottom: "20px" }}>
-              <StyledInputLabel htmlFor="user_mail">Adresse e-mail associée au compte</StyledInputLabel>
-              <StyledInput id="user_mail" type="email" />
-            </div>
-            <Row style={{ justifyContent: "center" }}>
-              <GreenButton>Envoyez un mail de récuperation</GreenButton>
+      <CampusBackground>
+        <Row
+          style={{
+            flex: "1",
+            justifyContent: "center",
+            alignItems: "center",
+            margin: "20px 0"
+          }}
+        >
+          <StyledCardCampus width="45%">
+            <Row style={{ marginBottom: "20px", marginTop: "10px", justifyContent: "center" }}>
+              <RectangleLogo />
             </Row>
-          </form>
-        </StyledCardCampus>
-      </Row>
 
-      <HelpSection />
+            <TitleCard>Mot de passe oublié</TitleCard> 
+
+            <form method="post">
+              <div style={{ marginBottom: "20px" }}>
+                <StyledInputLabel htmlFor="user_mail">Adresse e-mail associée au compte</StyledInputLabel>
+                <StyledInput id="user_mail" type="email" />
+              </div>
+              <Row style={{ justifyContent: "center" }}>
+                <GreenButton>Envoyez un mail de récuperation</GreenButton>
+              </Row>
+            </form>
+          </StyledCardCampus>
+        </Row>
+        
+        <HelpSection />
+      </CampusBackground> 
       <Footer page="campus" />
     </>
   );
