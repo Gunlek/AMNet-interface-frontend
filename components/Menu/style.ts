@@ -37,7 +37,7 @@ export const MenuContener = styled.div`
     height: auto;
     width: 100%;
     position: ${(props) => props.top ? "absolute" : "fixed"};
-    transition: transform ${(props) => (props.scroll < 115 && props.scroll > 100 ) ? "0s" : props.timeTransform };
+    ${(props) => (props.scroll < 115 && props.scroll > 100 ) ? undefined : "transition : transform 0.4s" };
     transform: ${(props) => ((!props.top) && !props.sticky)? 'translateY(-100%)' : 'translateY(0)'};
   }  
 `;

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Head from "next/head";
 import { CampusBackground, CampusGlobalStyle } from "../components/Background/style";
 import { GreenButton } from "../components/Button/Buttons";
@@ -27,7 +27,9 @@ import {
   BlackP
 } from "../components/Text/style";
 import useMediaQuery from "../components/MediaQueries/MediaQuery";
+import Radio from "../components/Input/RoundCheckbox";
 import RectangleLogo from "../components/Card/RectangleLogo";
+import Checkbox from "../components/Input/Checkbox";
 import RoundCheckbox from "../components/Input/RoundCheckbox";
 
 export default function SignUp() {
@@ -35,25 +37,19 @@ export default function SignUp() {
   const [isGadz, setGadz] = useState(false);
   const [isOther, setOther] = useState(false);
   const [acceptRules, setacceptRules] = useState(false);
-  
 
   const handleValueChange = (elmt) => {
     setGadz(elmt.target.value == "OldPromotion" || elmt.target.value == "ActivePromotion");
     setOther(elmt.target.value == "Other");
   }
 
-  const CancelChange = () => {
+  function CancelChange() {
     setOther(!isOther);
   }
 
   function handleRadioChange() {
     setacceptRules(!acceptRules);
   }
-
-  useEffect(() => {
-    const test = document.getElementById("user_promotion2") as HTMLInputElement
-    if(isOther) test.focus()
-  }, [isOther])
 
   return (
     <>
@@ -140,6 +136,7 @@ export default function SignUp() {
                   <div style={{ display: isOther ? "flex" : "none", alignItems: "center" }} >
                     <StyledInput
                       id="user_promotion2"
+                      ref={PromotionInput => { (PromotionInput && isOther) && PromotionInput.focus() }}
                       type="text"
                     />
                     <StyledImg
@@ -215,14 +212,7 @@ export default function SignUp() {
               </Column>
 
               <Row style={{ marginBottom: "20px", justifyContent: "center" }}>
-                <label 
-                  htmlFor="accept_rules" 
-                  style={{ 
-                    display: "flex", 
-                    alignItems: minWidth1000 ?"end" : "center", 
-                    justifyContent: "center" 
-                  }} 
-                >
+                <label htmlFor="accept_rules" style={{ display: "flex", alignItems: minWidth1000 ?"end" : "center" }} >
                   <RoundCheckbox id="accept_rules" checked={acceptRules} onChange={handleRadioChange} />
                   <BlackText style={{ paddingLeft: "10px" }}>Accepter les Statuts et le Réglement interieur</BlackText>
                 </label>
