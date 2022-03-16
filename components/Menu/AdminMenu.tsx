@@ -18,7 +18,7 @@ import {
 } from "./style";
 
 export default function AdminMenu(props: { page: string }) {
-  const minWidth800 = useMediaQuery('(min-width:801px)');
+  const minWidth800 = useMediaQuery('(min-width:800px)');
   const minWidth1000 = useMediaQuery('(min-width:1000px)');
   const [scroll, scrolled, top] = useScrollingUp()
   const [open, SetOpen] = useState(false);
@@ -28,7 +28,7 @@ export default function AdminMenu(props: { page: string }) {
   }
 
   useEffect(() => {
-    if (!scrolled) if (open) handleChange()
+    if(!scrolled) if(open) handleChange()
   }, [scrolled])
 
   const positionning = {
@@ -42,20 +42,19 @@ export default function AdminMenu(props: { page: string }) {
   };
 
   return (
-    <MenuContener timeTransform={open ? "0.6s" : "0.3s"} top={top} scroll={scroll} sticky={scrolled}>
+    <MenuContener timeTransform={open? "0.6s" : "0.3s"} top={top} scroll={scroll} sticky={scrolled}>
       <StyledMenu>
-        {!minWidth800 &&
-          <Row
-            style={{
-              flex: "1",
-              margin: "5px 0",
-              justifyContent: "center",
-              alignItems: "center"
-            }}
-          >
-            <BurgerMenu open={open} onClick={handleChange} />
-          </Row>
-        }
+        <Row
+          style={{
+            flex: "1",
+            margin: "5px 0",
+            justifyContent: "center",
+            alignItems: "center",
+            display: minWidth800 ? "none" : "flex"
+          }}
+        >
+          <BurgerMenu open={open} onClick={handleChange} />
+        </Row>
 
         <StyledDivLogo>
           <a href="../" style={{ display: "flex", justifyContent: "center" }}>
@@ -63,11 +62,9 @@ export default function AdminMenu(props: { page: string }) {
           </a>
         </StyledDivLogo>
 
-        {!minWidth800 &&
-          <StyledDivLogOut>
-            <LogOutIcon />
-          </StyledDivLogOut>
-        }
+        <StyledDivLogOut display={minWidth800 ? "none" : "flex"}>
+          <LogOutIcon id="1" />
+        </StyledDivLogOut>
 
         <Row style={positionning}>
           <SettingsIcon page={props.page} />
@@ -93,16 +90,15 @@ export default function AdminMenu(props: { page: string }) {
           <IndexIcon page={props.page} />
         </Row>
 
-        {minWidth800 &&
-          <StyledDivLogOut
-            style={{
-              flex: minWidth1000 ? "3" : "1",
-              marginTop: minWidth1000 ? "10px" : "0"
-            }}
-          >
-            <LogOutIcon />
-          </StyledDivLogOut>
-        }
+        <StyledDivLogOut
+          style={{
+            flex: minWidth1000 ? "3" : "1",
+            marginTop: minWidth1000 ? "10px" : "0",
+            display: minWidth800 ? "flex" : "none"
+          }}
+        >
+          <LogOutIcon id="2" />
+        </StyledDivLogOut>
       </StyledMenu>
     </MenuContener>
   )

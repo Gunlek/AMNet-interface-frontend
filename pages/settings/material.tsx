@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Head from "next/head";
+import { DefaultBackground } from "../../components/Background/style";
 import { Row, DashboardContainer } from "../../components/Container/style";
 import { StyledCard } from "../../components/Card/style";
 import AdminMenu from "../../components/Menu/AdminMenu";
@@ -11,31 +12,31 @@ import { Footer } from "../../components/Card/Cards";
 
 const material = [
   {
-    "material_id": 1,
-    "material_user": 1,
-    "material_description": "Ordinateur portable",
-    "material_state": "declined",
-    "user_pay_status": 1,
-    "user_name": "Greg",
-    "material_reason": "Je veux"
+      "material_id": 1,
+      "material_user": 1,
+      "material_description": "Ordinateur portable",
+      "material_state": "declined",
+      "user_pay_status": 1,
+      "user_name": "Greg",
+      "material_reason": "Je veux"
   },
   {
-    "material_id": 2,
-    "material_user": 4,
-    "material_description": "Ordinateur portable",
-    "material_state": "pending",
-    "user_pay_status": 1,
-    "user_name": "Greg",
-    "material_reason": "Je veux un pc pour faire de la CAO Je veux un pc pour faire de la CAO"
+      "material_id": 2,
+      "material_user": 4,
+      "material_description": "Ordinateur portable",
+      "material_state": "pending",
+      "user_pay_status": 1,
+      "user_name": "Greg",
+      "material_reason": "Je veux un pc pour faire de la CAO Je veux un pc pour faire de la CAO"
   },
   {
-    "material_id": 1,
-    "material_user": 5,
-    "material_description": "Ordinateur portable",
-    "material_state": "active",
-    "user_pay_status": 1,
-    "user_name": "Greg",
-    "material_reason": "Je veux un pc pour faire de la CAO Je veux un pc pour faire de la CAO Je veux un pc pour faire de la CAO Je veux un pc pour faire de la CAO"
+      "material_id": 1,
+      "material_user": 5,
+      "material_description": "Ordinateur portable",
+      "material_state": "active",
+      "user_pay_status": 1,
+      "user_name": "Greg",
+      "material_reason": "Je veux un pc pour faire de la CAO Je veux un pc pour faire de la CAO Je veux un pc pour faire de la CAO Je veux un pc pour faire de la CAO"
   }
 ]
 
@@ -52,23 +53,25 @@ export default function AdminMaterial() {
       <Head>
         <title>Administration &bull; AMNet</title>
       </Head>
-      <AdminMenu page="material" />
+      <DefaultBackground>
+        <AdminMenu page="material" />
 
-      <DashboardContainer>
-        <Row style={{ margin: minWidth1000 ? "1% 0" : "4% 0", justifyContent: minWidth1000 ? "start" : "center" }}>
-          <BlackTitle>Demandes de matériel </BlackTitle>
-        </Row>
+        <DashboardContainer>
+          <Row style={{margin: minWidth1000 ? "1% 0" : "4% 0", justifyContent: minWidth1000 ? "start" : "center"}}>
+            <BlackTitle>Demandes de matériel </BlackTitle>
+          </Row>
+          
+          <RequestTab status={Tab} TabChange={handleTabChange}/>
 
-        <RequestTab status={Tab} TabChange={handleTabChange} />
+          <StyledCard style={{ flex: "1", marginBottom: minWidth1000 ? "2%" : "4%" }}>
+            <div style={{ height:"100%", width:"100%", overflowX:"auto" }}>
+              <MaterialAdminTable status={Tab} requests={material}/>
+            </div>
+          </StyledCard>
 
-        <StyledCard style={{ flex: "1", marginBottom: minWidth1000 ? "2%" : "4%" }}>
-          <div style={{ height: "100%", width: "100%", overflowX: "auto" }}>
-            <MaterialAdminTable status={Tab} requests={material} />
-          </div>
-        </StyledCard>
-
-        <Footer />
-      </DashboardContainer>
+          <Footer />
+        </DashboardContainer>
+      </DefaultBackground>
     </>
   );
 }

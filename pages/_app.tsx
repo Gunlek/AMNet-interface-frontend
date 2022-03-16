@@ -1,6 +1,6 @@
+import "../styles/globals.css";
 import Head from "next/head";
 import 'regenerator-runtime/runtime'
-import { GlobalStyle } from "../styles/global";
 
 function MyApp({ Component, pageProps }) {
   return <>
@@ -16,7 +16,6 @@ function MyApp({ Component, pageProps }) {
             <meta name="theme-color" content="#ffffff"/>
             <meta name="viewport" content="width=device-width, user-scalable=no"/>
           </Head>
-          <GlobalStyle/>
           <Component {...pageProps} />
         </>
 }
