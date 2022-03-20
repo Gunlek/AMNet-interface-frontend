@@ -147,7 +147,7 @@ export function ProoveModal(props: { request: any, link: string }) {
     return (
         <>
             <BodyWithModal reveal={reveal} />
-            <StyledLink onClick={toggle}>Image</StyledLink>
+            <StyledLink color="#096a09" onClick={toggle}>Image</StyledLink>
             <StyledBackgroundModal onClick={toggle} reveal={reveal} />
             <StyledModal
                 width={minWidth1000 ? "1200px" : undefined}
@@ -161,8 +161,7 @@ export function ProoveModal(props: { request: any, link: string }) {
                 <div
                     style={{
                         width: "100%",
-                        overflow: "auto",
-                        paddingRight: "12.5px"
+                        overflow: "auto"
                     }}
                 >
                     <TitleCard hideLine={!minWidth1000}>Demande d'accès pour un objet connecté</TitleCard>
