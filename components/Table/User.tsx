@@ -24,7 +24,7 @@ export function IoTUserTable(props: { requests: any[] }) {
                 <StyledFlexTd>{value['access_description']}</StyledFlexTd>
                 <StyledTd>{value['access_mac']}</StyledTd>
                 <StyledTd>
-                    <StyledLink color="#096a09" hovercolor="#67bc45">Image</StyledLink>
+                    <StyledLink color="#096a09">Image</StyledLink>
                 </StyledTd>
                 <StyledTd>
                     <StateRequest state={value['acces_state']} />
