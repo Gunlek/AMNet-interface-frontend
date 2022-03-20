@@ -33,7 +33,6 @@ const StyledCheckbox = styled.div`
   border: ${props => (props.color ? 'solid white 2.5px' : 'solid #096A09 2.5px')};
   z-index: 1;
   position: relative;
-  transition: border 0.3s ;
 
   &::before{
     position: absolute;

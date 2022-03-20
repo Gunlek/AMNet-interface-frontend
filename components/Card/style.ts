@@ -10,13 +10,21 @@ export const StyledCard = styled.div`
   height: ${(props) => props.height};
   display: flex;
   flex-direction: column;
+  scrollbar-color: #C4C4C4 rgba(255, 255, 255, 0.6);
+  margin-bottom: ${(props) => props.marginBottom};
+
+  @media screen and (max-width: 1000px){
+    margin-bottom: ${(props) => props.mobileMarginBottom};
+  } 
 `;
 
 export const StyledCardCampus = styled(StyledCard)`
   background: rgba(255, 255, 255, 0.9);
-
+  scrollbar-color: #C4C4C4 rgba(255, 255, 255, 0.9);
+  
   @media screen and (max-width: 1000px){
     width: 100%;
+    margin-bottom: ${(props) => props.mobileMarginBottom};
   } 
 `;
 
@@ -30,7 +38,7 @@ export const StyledGreenCard = styled.div`
 `;
 
 export const StyledTeamPicture = styled(Column)`
-  background-image: url(${props => props.background || "/static/images/team.png"});
+  background-image: url(${props => props.background || "/static/images/team.jpg"});
   outline: ${props => props.outline};
   background-repeat: no-repeat;
   background-position: 50% 0%;
@@ -48,6 +56,12 @@ export const StyledHelpSection = styled.div`
   text-align: center;
   font-size: 1.2em;
   width: 100%;
+  margin-bottom: ${(props) => props.marginBottom};
+  
+  @media screen and (max-width: 1000px){
+    margin-bottom: ${(props) => props.mobileMarginBottom};
+    padding: ${(props) => props.padding};
+  }
 `;
 
 export const GreenLine = styled.div`
@@ -81,11 +95,10 @@ export const StyledCampusFooter = styled(StyledFooter)`
   background: rgba(255, 255, 255, 0.9);
   width: 100%;
   margin-right: 0;
-  position: relative;
   
   @media screen and (max-width: 1000px){
     padding-right: 10px;
-    padding-left:10px;
+    padding-left: 10px;
   } 
 `;
 
@@ -94,26 +107,26 @@ export const StyledTabColumn = styled(Column)`
   font-size: 1.2em;
   text-align: center;
   line-height: 40px;
-  transition: 0.3s;
+  transition: color 0.3s, background-color 0.3s;
   border-top-left-radius: 15px;
   border-top-right-radius: 15px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  
+  cursor: ${(props) => !props.focus && "pointer"};
+
   &:hover{
     background-color: ${(props) => !props.focus && "rgba(0, 0, 0, 0.1)"};
     color: black;
-    cursor: ${(props) => !props.focus && "pointer"};
   }
 
   &:after{
     transform: translateY(50%);
     content: "";
     width: 100%;
-    background: ${(props) => props.afterBackground};;
+    background-color: ${(props) => props.afterBackground};;
     height: 4px;
-    transition: 0.3s;
+    transition: background-color 0.3s;
   }
 `;
 
@@ -138,7 +151,7 @@ export const StyledBackgroundModal = styled.div`
   width: 100%; 
   left: 0; 
   top: 0;  
-  transition: ${props => (props.reveal ? "opacity" : "all")} 0.3s linear;
+  transition: ${props => (!props.reveal && "z-index 0.3s linear")}, opacity 0.3s linear;
   z-index: ${props => props.reveal ? "3" : "-1"};
   opacity: ${props => props.reveal ? "1" : "0"};
 `;
@@ -150,9 +163,20 @@ export const StyledModal = styled(StyledCardCampus)`
   padding: 30px; 
   position: fixed; 
   top: 50%; 
-  left: 50%;  
-  transition: ${props => (props.reveal ? "opacity" : "all")} 0.3s linear;
+  left: 50%;
+  transition: ${props => (!props.reveal && "z-index 0.3s linear")}, opacity 0.3s linear;
   transform: translate(-50%, -50%);
   z-index: ${props => (props.reveal ? "4" : "-1")};
   opacity: ${props => (props.reveal ? "1" : "0")};
+`
+
+export const StyledMinImg = styled.img`
+  width: 90%;
+  height: auto;
+  aspect-ratio: 1 / 1; 
+
+  @media screen and (max-width: 1000px){
+    width: auto; 
+    height: 80%; 
+  } 
 `

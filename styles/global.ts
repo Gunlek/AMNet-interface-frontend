@@ -1,32 +1,9 @@
 import { createGlobalStyle } from "styled-components";
 
 export const GlobalStyle = createGlobalStyle`
-    @font-face {
-        font-family: "Poppins";
-        src:url("/static/Poppins-Medium.ttf");
-    }
-
-    ::-webkit-scrollbar {
-        width: 6px;
-        height: 6px;
-    }
-
-    /* Track */
-    ::-webkit-scrollbar-track {
-        -webkit-border-radius: 5px;
-        border-radius: 5px;
-    }
-
-    /* Handle */
-    ::-webkit-scrollbar-thumb {
-        -webkit-border-radius: 5px;
-        border-radius: 5px;
-        background: #c4c4c4;
-    }
-
     *{
         scrollbar-width: thin;
-        scrollbar-color: #C4C4C433 none;
+        scrollbar-color: #C4C4C4 #E8EFEA;
         -moz-user-select: none; /* Firefox */
         -webkit-user-select: none; /* Chrome, Safari, Opéra depuis la version 15 */
         -ms-user-select: none; /* Internet explorer depuis la version 10 et Edge */
@@ -60,14 +37,6 @@ export const GlobalStyle = createGlobalStyle`
         color: white;
     }
 
-    @media screen and (max-width: 1000px){
-    html, 
-    body{
-        font-size:13px;
-        padding: 0;
-    }
-    }
-
     /* Chrome, Safari, Edge, Opera */
     input::-webkit-outer-spin-button,
     input::-webkit-inner-spin-button {
@@ -90,5 +59,31 @@ export const GlobalStyle = createGlobalStyle`
     a {
         color: inherit;
         text-decoration: none;
+    }
+
+    ::-webkit-scrollbar {
+        width: 6px;
+        height: 6px;
+    }
+
+    /* Track */
+    ::-webkit-scrollbar-track {
+        -webkit-border-radius: 5px;
+        border-radius: 5px;
+    }
+
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+        -webkit-border-radius: 5px;
+        border-radius: 5px;
+        background: #c4c4c4;
+    }
+
+    @media screen and (max-width: 1000px){
+        html, 
+        body{
+            font-size:13px;
+            padding: 0;
+        }
     }
 `

@@ -11,19 +11,8 @@ export default function RectangleLogo(props: { color?: string, height?: string }
     if (props.color == 'white') {
       return (
         <a target="_blank" href="https://www.google.com/search?q=the+answer+to+life%2C+the+universe+and+everything" 
-          style={{ 
-            width: minWidth1000? "auto": "80%",
-            marginTop: minWidth1000? "0": "4%", 
-            height: minWidth1000? "100px": "auto",
-            cursor: "auto"
-          }}
-        >
-          <img
-            style={{ 
-              width: minWidth1000? "auto": "100%", 
-              height: minWidth1000? "100px": "auto", 
-              aspectRatio: "19 / 8.5" 
-            }}
+          style={{ cursor: "auto" }}>
+          <img style={{ height: "100px", aspectRatio: "19 / 8.5" }}
             src="/static/logo/white_logo.svg"
             alt="Logo AMNet"
           />

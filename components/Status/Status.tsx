@@ -14,7 +14,7 @@ export function StateContribution(props: { status: string }) {
     return (
       <StyledStateContribution>
         <BlackText style={{ paddingRight: "10px" }}>Cotisation :</BlackText>
-        <img style={{ height: "20px" }} src="/static/icons/succes.svg" />
+        <img style={{ height: "20px", width: "27.5px" }} src="/static/icons/succes.svg" />
       </StyledStateContribution>
     );
   }
@@ -26,7 +26,7 @@ export function StateContribution(props: { status: string }) {
       <Row style={{ alignItems: "baseline", justifyContent: "center" }}>
         <StyledStateContribution style={{ marginRight: "15px" }}>
           <BlackText style={{ paddingRight: "10px" }}>Cotisation :</BlackText>
-          <img style={{ height: "20px" }} src="/static/icons/fail.svg" />
+          <img style={{ height: "20px", width: "18px"  }} src="/static/icons/fail.svg" />
         </StyledStateContribution>
         <GreenButton width="150px" height="50px" onClick={toggle}>Payer</GreenButton>
         <ContributionModal reveal={reveal} hide={toggle} />

@@ -1,7 +1,7 @@
 import React from "react";
 import Head from "next/head";
 import { GreenButton, OrangeButton, RedButton } from "../../components/Button/Buttons";
-import { DashboardContainer, ResponsiveRow } from "../../components/Container/style";
+import { DashboardContainer, ResponsiveRow, Row } from "../../components/Container/style";
 import { StyledCard } from "../../components/Card/style";
 import AdminMenu from "../../components/Menu/AdminMenu";
 import { BlackTitle } from "../../components/Text/style";
@@ -404,40 +404,42 @@ export default function Users() {
         <AdminMenu page="users" />
 
         <DashboardContainer>
-          <ResponsiveRow style={{ margin: minWidth1000 ? "1% 0" : "4% 0" }}>
-            <div>
+          <ResponsiveRow margin="1% 0" mobileMargin="20px 0 30px">
+            <Row mobileJustify="center" mobileMarginBottom="10px">
               <BlackTitle>Liste des adhérents</BlackTitle>
-            </div>
-            <ResponsiveRow style={{ flex: "1", alignItems: "center", justifyContent: "end", marginTop: minWidth1000 ? "0" : "4%", }}>
+            </Row>
+            <ResponsiveRow style={{ flex: "1", alignItems: "center", justifyContent: "end"}}>
               {Filter}
             </ResponsiveRow>
           </ResponsiveRow>
 
           {Checkboxs}
 
-          <div
-              style={{
-                marginBottom: minWidth1000 ? "2%" : "4%",
-                display: "grid",
-                gridTemplateColumns: minWidth1700 ? "repeat(auto-fill,minmax(425px, 1fr))" : "repeat(auto-fill,minmax(300px, 1fr))",
-                gridAutoRows: "minmax(70px, auto)",
-                border: "none",
-                justifyItems: "center",
-                alignItems: "center",
-                gap: "20px 0"
-              }}
-            >
-              <GreenButton width="300px">Confirmer le paiement</GreenButton>
-              <RedButton width="300px">Annuler le paiement</RedButton>
-              <OrangeButton width="300px">Passer en Gadz</OrangeButton>
-              <RedButton width="300px">Supprimer</RedButton>
-            </div>
+          <Row
+            marginBottom="2%" 
+            mobileMarginBottom="30px"
+            style={{
+              display: "grid",
+              gridTemplateColumns: minWidth1700 ? "repeat(auto-fill,minmax(425px, 1fr))" : "repeat(auto-fill,minmax(300px, 1fr))",
+              gridAutoRows: "minmax(70px, auto)",
+              border: "none",
+              justifyItems: "center",
+              alignItems: "center",
+              gap: "20px 0"
+            }}
+          >
+            <GreenButton width="300px">Confirmer le paiement</GreenButton>
+            <RedButton width="300px">Annuler le paiement</RedButton>
+            <OrangeButton width="300px">Passer en Gadz</OrangeButton>
+            <RedButton width="300px">Supprimer</RedButton>
+          </Row>
  
           <StyledCard 
+            marginBottom="2%" 
+            mobileMarginBottom="30px"
             style={{ 
-              flex: "1 0 0", 
-              marginBottom: "2%", 
-              minHeight: minWidth1000? "0" : "600px" 
+              flex: "1 0 0",
+              minHeight: minWidth1000? "0" : "500px" 
             }}
           >
             <div

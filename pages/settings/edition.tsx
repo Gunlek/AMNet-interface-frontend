@@ -53,11 +53,11 @@ export default function Edition() {
       <AdminMenu page="edition" />
 
       <DashboardContainer>
-        <Row style={{ margin: minWidth1000 ? "1% 0" : "4% 0", justifyContent: minWidth1000 ? "start" : "center" }}>
+        <Row margin="1% 0" mobileMargin="20px 0" mobileJustify="center">
           <BlackTitle>Edition</BlackTitle>
         </Row>
 
-        <StyledCard style={{ marginBottom: minWidth1000 ? "2%" : "4%" }}>
+        <StyledCard marginBottom="2%" mobileMarginBottom="30px">
           <TitleCard>Documents administratifs</TitleCard>
           <form method="post" style={{ marginTop: "20px", height: "100%" }}>
             <div style={{ marginBottom: "20px" }}>
@@ -74,9 +74,9 @@ export default function Edition() {
                   </StyledLink>
                 </div>
                 <ResponsiveRow
+                  mobileJustify="center"
                   style={{
                     width: minWidth1000 ? "auto" : undefined,
-                    justifyContent: !minWidth1000 && "center",
                     alignItems: "center"
                   }}
                 >
@@ -153,10 +153,10 @@ export default function Edition() {
           </form>
         </StyledCard>
 
-        <StyledCard style={{ marginBottom: "2%" }}>
+        <StyledCard marginBottom="2%" mobileMarginBottom="30px">
           <TitleCard>Page d'accueil</TitleCard>
           <ResponsiveRow style={{ marginTop: "20px" }}>
-            <Col6 style={{ marginRight: minWidth1000 ? "1%" : "0" }}>
+            <Col6 marginRight="1%" mobileMarginBottom="20px">
               <GreenText style={{ marginBottom: "5px" }}>Photo de l'AMNet</GreenText>
               <ResponsiveRow style={{ marginBottom: "20px" }}>
                 <div style={{ width: minWidth1000 ? "300px" : "auto", marginBottom: minWidth1000 ? "0" : "20px" }}>
@@ -194,7 +194,7 @@ export default function Edition() {
               {teamEditor}
             </Col6>
 
-            <Col6 style={{ marginLeft: minWidth1000 ? "1%" : "0", marginTop: minWidth1000 ? "0" : "20px" }}>
+            <Col6 marginLeft="1%">
               <GreenText style={{ marginBottom: "5px" }}>Apercu de la Photo avec les bucques</GreenText>
               <TeamPicture
                 outline="3px solid #096a09"

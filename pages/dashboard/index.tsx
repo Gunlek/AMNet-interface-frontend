@@ -6,18 +6,21 @@ import {
   Col6,
   Column,
   DashboardContainer,
-  ResponsiveRow
+  ResponsiveRow,
 } from "../../components/Container/style";
-import { Footer, HelpSection, TitleCard } from "../../components/Card/Cards"
+import { Footer, HelpSection, TitleCard } from "../../components/Card/Cards";
 import { StyledCard } from "../../components/Card/style";
 import UserMenu from "../../components/Menu/UserMenu";
 import { StateContribution } from "../../components/Status/Status";
-import { BlackTitle, BlackText, StyledLinkButton } from "../../components/Text/style";
+import {
+  BlackTitle,
+  BlackText,
+  StyledLinkButton,
+} from "../../components/Text/style";
 import useMediaQuery from "../../components/MediaQueries/MediaQuery";
 
-
 export default function Dashboard() {
-  const minWidth1000 = useMediaQuery('(min-width:1000px)');
+  const minWidth1000 = useMediaQuery("(min-width:1000px)");
 
   return (
     <>
@@ -28,36 +31,49 @@ export default function Dashboard() {
       <UserMenu page="index" />
 
       <DashboardContainer>
-        <ResponsiveRow style={{ margin: "15px 0", justifyContent: minWidth1000 ? "start" : "center" }}>
-          <Column style={{ justifyContent: "center" }}>
+        <ResponsiveRow margin="1% 0" mobileMargin="20px 0">
+          <Column
+            mobileMarginBottom="20px"
+            style={{ justifyContent: "center" }}
+          >
             <BlackTitle>Mon Espace AMNet</BlackTitle>
           </Column>
 
-          <Column style={{ flex: "1", alignItems: minWidth1000 ? "end" : "center", justifyContent: "center" }}>
+          <Column
+            align="end"
+            mobileAlign="center"
+            style={{ flex: "1", justifyContent: "center" }}
+          >
             <StateContribution status="paid" />
           </Column>
         </ResponsiveRow>
 
-        <StyledCard style={{ flex: "3", marginBottom: minWidth1000 ? "2%" : "4%" }}>
+        <StyledCard
+          marginBottom="2%"
+          mobileMarginBottom="30px"
+          style={{ flex: "3" }}
+        >
           <Column style={{ height: "100%" }}>
             <TitleCard>Actualité AMNet</TitleCard>
             <BlackText>
-              Nouvelle mise à jour
-              Le design de l'interface a changé et
-              quelques améliorations sont toujours en cours !
+              Nouvelle mise à jour Le design de l'interface a changé et quelques
+              améliorations sont toujours en cours !
             </BlackText>
           </Column>
         </StyledCard>
 
-        <ResponsiveRow style={{ flex: "6", marginBottom: minWidth1000 ? "2%" : "4%" }}>
-          <Col6 style={{ marginRight: minWidth1000 ? "1%" : "0", marginBottom: minWidth1000 ? "0" : "4%" }}>
+        <ResponsiveRow
+          marginBottom="2%"
+          mobileMarginBottom="30px"
+          style={{ flex: "6" }}
+        >
+          <Col6 paddingRight="1%" mobileMarginBottom="30px">
             <StyledCard style={{ height: "100%" }}>
               <Column style={{ height: "100%" }}>
                 <TitleCard>Objets connectés</TitleCard>
                 <BlackText>
-                  Faites vos demandes d'ajouts spécifiques
-                  (Objets connectés (IoT), consoles, etc...)
-                  depuis cette page
+                  Faites vos demandes d'ajouts spécifiques (Objets connectés
+                  (IoT), consoles, etc...) depuis cette page
                 </BlackText>
 
                 <Row
@@ -65,10 +81,13 @@ export default function Dashboard() {
                     flex: "1",
                     justifyContent: "center",
                     alignItems: "end",
-                    marginTop: "20px"
+                    marginTop: "20px",
                   }}
                 >
-                  <StyledLinkButton href="../dashboard/iot" style={{ borderRadius: "90px" }}>
+                  <StyledLinkButton
+                    href="../dashboard/iot"
+                    style={{ borderRadius: "90px" }}
+                  >
                     <GreenButton>Accéder</GreenButton>
                   </StyledLinkButton>
                 </Row>
@@ -76,26 +95,28 @@ export default function Dashboard() {
             </StyledCard>
           </Col6>
 
-          <Col6 style={{ marginLeft: minWidth1000 ? "1%" : "0" }}>
+          <Col6 paddingLeft="1%">
             <StyledCard style={{ height: "100%" }}>
               <Column style={{ height: "100%" }}>
                 <TitleCard>FAQ</TitleCard>
                 <BlackText>
-                  Vous vous posez une question sur notre association?
-                  Sur comment se connecter à notre réseau?
-                  Trouvez toutes vos réponses ici !
+                  Vous vous posez une question sur notre association? Sur
+                  comment se connecter à notre réseau? Trouvez toutes vos
+                  réponses ici !
                 </BlackText>
 
                 <Row
-                  style={
-                    {
-                      flex: "1",
-                      justifyContent: "center",
-                      alignItems: "end",
-                      marginTop: "20px"
-                    }}
+                  style={{
+                    flex: "1",
+                    justifyContent: "center",
+                    alignItems: "end",
+                    marginTop: "20px",
+                  }}
                 >
-                  <StyledLinkButton href="../dashboard/faq" style={{ borderRadius: "90px" }}>
+                  <StyledLinkButton
+                    href="../dashboard/faq"
+                    style={{ borderRadius: "90px" }}
+                  >
                     <GreenButton>Accéder</GreenButton>
                   </StyledLinkButton>
                 </Row>

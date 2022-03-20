@@ -164,12 +164,11 @@ export function UsersTable(data: any[]) {
   return [
     <GlobalFilter globalFilter={state.globalFilter} setGlobalFilter={setGlobalFilter} />,
     <CheckboxRow
+      marginBottom="2%"
+      mobileMarginBottom="30px"
       justify="center"
       width="150px"
-      style={{
-        marginBottom: minWidth1000 ? "2%" : "4%",
-        alignItems: "center"
-      }}
+      style={{ alignItems: "center" }}
     >
       {allColumns.slice(2, -1).map(column => (
         <StyledLabel key={column.id}>

@@ -68,13 +68,13 @@ export default function AdminIoT() {
       <AdminMenu page="iot" />
 
       <DashboardContainer>
-        <Row style={{ margin: minWidth1000 ? "1% 0" : "4% 0", justifyContent: minWidth1000 ? "start" : "center" }}>
+        <Row margin="1% 0" mobileMargin="20px 0" mobileJustify="center">
           <BlackTitle>Demandes d'accès à AMNet IoT </BlackTitle>
         </Row>
 
         <RequestTab status={Tab} TabChange={handleTabChange} />
 
-        <StyledCard style={{ flex: "1", marginBottom: "2%" }}>
+        <StyledCard marginBottom="2%" mobileMarginBottom="30px" style={{ flex: "1"  }}>
           <div
             style={{
               height: "100%",

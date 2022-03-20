@@ -14,13 +14,12 @@ import {
   MenuContener,
   StyledDivLogo,
   StyledDivLogOut,
-  StyledMenu
+  StyledMenu,
 } from "./style";
 import { MediaContextProvider, Media } from "../MediaQueries/MediaSSR";
 
-
 export default function UserMenu(props: { page: string }) {
-  const [scroll, scrolled, top] = useScrollingUp()
+  const [scroll, scrolled, top] = useScrollingUp();
   const [open, SetOpen] = useState(false);
 
   function handleChange() {
@@ -28,8 +27,8 @@ export default function UserMenu(props: { page: string }) {
   }
 
   useEffect(() => {
-    if (!scrolled) if (open) handleChange()
-  }, [scrolled])
+    if (!scrolled) if (open) handleChange();
+  }, [scrolled]);
 
   const positionning = {
     flex: "1",
@@ -41,22 +40,33 @@ export default function UserMenu(props: { page: string }) {
   return (
     <MediaContextProvider>
       <Media at="sm">
-        <MenuContener timeTransform={open ? "0.6s" : "0.3s"} top={top} scroll={scroll} sticky={scrolled}>
+        <MenuContener
+          timeTransform={open ? "0.6s" : "0.3s"}
+          top={top}
+          scroll={scroll}
+          sticky={scrolled}
+        >
           <StyledMenu>
             <Row
               style={{
                 flex: "1",
                 margin: "5px 0",
                 justifyContent: "center",
-                alignItems: "center"
+                alignItems: "center",
               }}
             >
               <BurgerMenu open={open} onClick={handleChange} />
             </Row>
 
             <StyledDivLogo>
-              <a href="../" style={{ display: "flex", justifyContent: "center" }}>
-                <img width="75px" src="/static/logo/small_logo.svg" />
+              <a
+                href="../"
+                style={{ display: "flex", justifyContent: "center" }}
+              >
+                <img
+                  style={{ width: "75px", height: "75px" }}
+                  src="/static/logo/small_logo.svg"
+                />
               </a>
             </StyledDivLogo>
 
@@ -64,8 +74,7 @@ export default function UserMenu(props: { page: string }) {
               <LogOutIcon />
             </StyledDivLogOut>
 
-
-            <div 
+            <div
               style={{
                 display: "grid",
                 gridTemplateColumns: "1fr 1fr 1fr",
@@ -74,9 +83,9 @@ export default function UserMenu(props: { page: string }) {
                 gridColumnEnd: "4",
                 height: open ? "295px" : "0",
                 overflow: "hidden",
-                transition: "all 0.3s linear",
-                paddingBottom: open ? "10px" : "0"                
-             }}
+                transition: "height 0.3s linear, padding-bottom 0.3s linear",
+                paddingBottom: open ? "10px" : "0",
+              }}
             >
               <Row style={positionning}>
                 <IndexIcon page={props.page} />
@@ -111,11 +120,22 @@ export default function UserMenu(props: { page: string }) {
       </Media>
 
       <Media greaterThan="sm">
-        <MenuContener timeTransform="0.3s" top={top} scroll={scroll} sticky={scrolled}>
+        <MenuContener
+          timeTransform="0.3s"
+          top={top}
+          scroll={scroll}
+          sticky={scrolled}
+        >
           <StyledMenu>
             <StyledDivLogo>
-              <a href="../" style={{ display: "flex", justifyContent: "center" }}>
-                <img width="75px" src="/static/logo/small_logo.svg" />
+              <a
+                href="../"
+                style={{ display: "flex", justifyContent: "center" }}
+              >
+                <img
+                  style={{ width: "75px", height: "75px" }}
+                  src="/static/logo/small_logo.svg"
+                />
               </a>
             </StyledDivLogo>
 
@@ -150,10 +170,9 @@ export default function UserMenu(props: { page: string }) {
             <StyledDivLogOut>
               <LogOutIcon />
             </StyledDivLogOut>
-
           </StyledMenu>
         </MenuContener>
       </Media>
     </MediaContextProvider>
-  )
+  );
 }

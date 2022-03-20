@@ -25,7 +25,6 @@ const StyledCheckbox = styled.div`
     width: 25px;
     height: 25px;
     border-radius: 50%;
-    transition: all 0.3s ;
     border: solid #096A09 2px;
 
     &::before{

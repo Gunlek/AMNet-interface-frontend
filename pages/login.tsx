@@ -75,7 +75,7 @@ export default function Login() {
         </StyledCardCampus>
       </Row>
 
-      <HelpSection />
+      <HelpSection padding="0 5%"/>
       <Footer page="campus" />
     </>
   );
