@@ -17,6 +17,7 @@ import {
   StyledMenu
 } from "./style";
 import { MediaContextProvider, Media } from "../MediaQueries/MediaSSR";
+import SmallLogo from "../NavIcons/smallLogo";
 
 
 export default function UserMenu(props: { page: string }) {
@@ -55,9 +56,7 @@ export default function UserMenu(props: { page: string }) {
             </Row>
 
             <StyledDivLogo>
-              <a href="../" style={{ display: "flex", justifyContent: "center" }}>
-                <img style={{ width: "75px", height: "75px" }} src="/static/logo/small_logo.svg" />
-              </a>
+              <SmallLogo/>
             </StyledDivLogo>
 
             <StyledDivLogOut>
@@ -114,9 +113,7 @@ export default function UserMenu(props: { page: string }) {
         <MenuContener timeTransform="0.3s" top={top} scroll={scroll} sticky={scrolled}>
           <StyledMenu>
             <StyledDivLogo>
-              <a href="../" style={{ display: "flex", justifyContent: "center" }}>
-                <img style={{ width: "75px", height: "75px" }} src="/static/logo/small_logo.svg" />
-              </a>
+              <SmallLogo/>
             </StyledDivLogo>
 
             <Row style={positionning}>

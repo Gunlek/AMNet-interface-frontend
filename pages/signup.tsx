@@ -73,7 +73,7 @@ export default function SignUp() {
       >
         <StyledCardCampus width="75%">
           <Row style={{ marginBottom: "20px", marginTop: "10px", justifyContent: "center" }}>
-            <RectangleLogo height={minWidth1000 ? "125px" : "100px"} />
+            <RectangleLogo height={"125px"} />
           </Row>
 
           <TitleCard>Inscription</TitleCard>

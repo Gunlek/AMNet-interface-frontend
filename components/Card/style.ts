@@ -181,3 +181,12 @@ export const StyledMinImg = styled.img`
     height: 80%; 
   } 
 `
+
+export const StyledLogo = styled.svg`
+  height: ${props => (props.height || "100px")};
+  aspect-ratio: 19 / 8.5; 
+
+  @media screen and (max-width: 1000px){
+    height: 100px; 
+  } 
+`
