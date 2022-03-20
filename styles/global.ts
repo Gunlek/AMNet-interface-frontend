@@ -21,7 +21,7 @@ export const GlobalStyle = createGlobalStyle`
     }
 
     ::selection{
-        background-color: #2E8A21;
+        background-color: #287c1d;
         color: white;
     }
 
