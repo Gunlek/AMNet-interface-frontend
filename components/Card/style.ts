@@ -38,7 +38,7 @@ export const StyledGreenCard = styled.div`
 `;
 
 export const StyledTeamPicture = styled(Column)`
-  background-image: url(${props => props.background || "/static/images/team.jpg"});
+  background-image: url(${props => props.background || "/static/images/homepage/team.jpg"});
   outline: ${props => props.outline};
   background-repeat: no-repeat;
   background-position: 50% 0%;
@@ -157,6 +157,7 @@ export const StyledBackgroundModal = styled.div`
 `;
 
 export const StyledModal = styled(StyledCardCampus)`
+  background: white;
   width: ${props => props.width || "90%"};
   align-items: center; 
   justify-content: center;
