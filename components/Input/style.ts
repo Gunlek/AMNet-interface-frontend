@@ -10,6 +10,7 @@ export const StyledInput = styled.input`
   font-size: 1.2rem;
   border: 2px solid transparent;
   margin: 0;
+  transition: border 0.2s;
 
   &:hover, &:focus{
     background: rgba(255, 255, 255, 0.8);
@@ -31,6 +32,7 @@ export const StyledSelect = styled.select`
   height: 40px;
   border: 2px solid transparent;
   font-size: 1.2rem;
+  transition: border 0.2s;
 
   &:hover, &:focus{
     background: rgba(255, 255, 255, 0.8);
@@ -55,6 +57,8 @@ export const StyledTextArea = styled.textarea`
   border: 2px solid transparent;
   font-size: 1.2rem;
   overflow: hidden;
+  transition: border 0.2s;
+  
  
   &:hover, &:focus{
     background: rgba(255, 255, 255, 0.8);
