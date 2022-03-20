@@ -12,8 +12,7 @@ export const CampusGlobalStyle = createGlobalStyle`
     scrollbar-color: auto;
     
     @media screen and (max-width: 1000px){
-      background-attachment: scroll;
-      background-position-x: 60%;
+      background-image: url("/static/images/homepage/mobile-campus.jpg");
     }
   }
 
