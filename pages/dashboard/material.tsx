@@ -10,7 +10,6 @@ import { Footer, HelpSection } from "../../components/Card/Cards"
 import { StyledCard } from "../../components/Card/style";
 import UserMenu from "../../components/Menu/UserMenu";
 import { BlackTitle, BlackText, BlackP } from "../../components/Text/style";
-import useMediaQuery from "../../components/MediaQueries/MediaQuery";
 import { MaterialUserTable } from "../../components/Table/User";
 import { ModalLogic, MaterialModal } from "../../components/Card/Modals";
 
@@ -39,7 +38,6 @@ const material = [
 ]
 
 export default function UserMaterial() {
-  const minWidth1000 = useMediaQuery('(min-width:1000px)');
   const { reveal, toggle } = ModalLogic();
 
   return (

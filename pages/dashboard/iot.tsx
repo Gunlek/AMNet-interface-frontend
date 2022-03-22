@@ -16,7 +16,6 @@ import {
   BlackP,
   BlackUl
 } from "../../components/Text/style";
-import useMediaQuery from "../../components/MediaQueries/MediaQuery";
 import { IoTUserTable } from "../../components/Table/User";
 import { ModalLogic, IoTModal } from "../../components/Card/Modals";
 
@@ -53,7 +52,6 @@ const Iot = [
 ]
 
 export default function UserIoT() {
-  const minWidth1000 = useMediaQuery('(min-width:1000px)')
   const { reveal, toggle } = ModalLogic();
   const empty = (Iot.length === 0);
 
