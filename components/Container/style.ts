@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const Column = styled.div`
   display: flex;
   flex-direction: column;
-  width: 100%;
+  width: ${(props) => props.width || "100%"};
   margin: ${(props) => props.margin};
   margin-bottom: ${(props) => props.marginBottom};
   justify-content: ${(props) => props.justify};
@@ -28,7 +28,7 @@ export const Row = styled(Column)`
 
 export const ResponsiveRow = styled(Row)`
   @media screen and (max-width: 1000px){
-    flex-direction: column;
+    flex-direction: ${(props) => props.direction || "column"};
   } 
 `;
 
@@ -168,13 +168,17 @@ export const DashboardContainer = styled.div`
     margin-left: 0;
     padding-left: 0; 
     margin-top: 95px;
-    padding: 0 5% 2.5%;
+    padding: 0 5%;
+  }
+
+  @media screen and (max-width: 1000px ) and (min-width: 801px){
+    margin-top: 112.5px;
   }
 `;
 
 export const CheckboxRow = styled(Row)`
   display: grid;
-  grid-template-columns: repeat(auto-fill,minmax(${(props) => props.width || "125px"}, 1fr));
+  grid-template-columns: repeat(auto-fill,minmax(${(props) => props.colWidth || "125px"}, 1fr));
   align-items: center;
   gap: 15px 0;
   margin-bottom: ${(props) => props.marginBottom};
@@ -182,5 +186,6 @@ export const CheckboxRow = styled(Row)`
   @media screen and (max-width: 1000px){
     justify-items: ${(props) => props.justify};
     margin-bottom: ${(props) => props.mobileMarginBottom};
+    grid-template-columns: repeat(auto-fill,minmax(${(props) => props.mobileColWidth}, 1fr));
   } 
 `;
