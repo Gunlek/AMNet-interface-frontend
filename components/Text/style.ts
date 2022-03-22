@@ -3,6 +3,11 @@ import styled from "styled-components";
 export const WhiteText = styled.div`
   color: white;
   font-size: 1.2rem;
+
+  @media screen and (max-width: 1000px){
+    margin-bottom: ${(props) => props.mobileMarginBottom};
+    text-align: ${(props) => props.mobileAlignTxt};
+  }
 `;
 
 export const GreenText = styled(WhiteText)`
@@ -49,6 +54,7 @@ export const WhiteP = styled.p`
 
   @media screen and (max-width: 1000px){
     margin-bottom: ${(props) => props.mobileMarginBottom};
+    text-align: ${(props) => props.mobileAlignTxt};
   } 
 `;
 

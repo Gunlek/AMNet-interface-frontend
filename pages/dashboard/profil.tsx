@@ -67,13 +67,13 @@ export default function Profil() {
               <StyledInput id="user_name" type="text" />
             </Col6>
             <Col6
-              paddingLeft="10px" align="start" mobileAlign="center"
+              paddingLeft="10px" mobileAlign="center"
               style={{
                 justifyContent: "end",
                 height: minWidth1000 ? "75px" : "auto"
               }}
             >
-              <BlackText style={{ textAlign: minWidth1000 ? "start" : "justify" }}>
+              <BlackText mobileAlignTxt="justify">
                 Votre nom d'utilisateur ne doit contenir
                 que des lettres, des chiffres ou des espaces.
               </BlackText>
