@@ -13,12 +13,8 @@ import { StyledCard } from "../../components/Card/style";
 import UserMenu from "../../components/Menu/UserMenu";
 import { StateContribution } from "../../components/Status/Status";
 import { BlackTitle, BlackText, StyledLinkButton } from "../../components/Text/style";
-import useMediaQuery from "../../components/MediaQueries/MediaQuery";
-
 
 export default function Dashboard() {
-  const minWidth1000 = useMediaQuery('(min-width:1000px)');
-
   return (
     <>
       <Head>
