@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { SmallRedButton } from "../Button/Buttons";
 import { Row } from "../Container/style";
 import useMediaQuery from "../MediaQueries/MediaQuery";
+import { MediaContextProvider, Media } from "../MediaQueries/MediaSSR";
 import { StateRequest } from "../Status/Status";
 import { StyledLink } from "../Text/style";
 import {
@@ -15,10 +16,10 @@ import {
 
 export function IoTUserTable(props: { requests: any[] }) {
     let listHTML = [];
-    const minWidth1000 = useMediaQuery('(min-width:1000px)');
+    let mobilelistHTML = [];
 
     props.requests.map((value, index) => {
-        listHTML.push(minWidth1000 ?
+        listHTML.push(
             <StyledTr key={index}>
                 <StyledTd>{index + 1}</StyledTd>
                 <StyledFlexTd>{value['access_description']}</StyledFlexTd>
@@ -33,7 +34,9 @@ export function IoTUserTable(props: { requests: any[] }) {
                     <SmallRedButton>Supprimer</SmallRedButton>
                 </StyledTd>
             </StyledTr>
-            :
+        );
+
+        mobilelistHTML.push(
             <React.Fragment key={index}>
                 <StyledHeadTr>
                     <StyledTh>Equipement {index + 1}</StyledTh>
@@ -58,37 +61,42 @@ export function IoTUserTable(props: { requests: any[] }) {
                     <StyledTd style={{ textAlign: "center" }}><SmallRedButton>Supprimer</SmallRedButton></StyledTd>
                 </StyledTr>
             </React.Fragment>
-        );
+        )
     })
 
-    return (minWidth1000 ?
-        <StyledTable>
-            <thead>
-                <StyledHeadTr>
-                    <StyledTh scope="col">#</StyledTh>
-                    <StyledTh scope="col">Description</StyledTh>
-                    <StyledTh scope="col">Adresse Mac</StyledTh>
-                    <StyledTh scope="col">Preuve</StyledTh>
-                    <StyledTh scope="col"><span style={{ paddingLeft: "5px" }}>Etat</span></StyledTh>
-                    <StyledTh scope="col"><span style={{ paddingLeft: "5px" }}>Action</span></StyledTh>
-                </StyledHeadTr>
-            </thead>
-            <tbody>{listHTML}</tbody>
-        </StyledTable>
-        :
-        <StyledTable>
-            <tbody>{listHTML}</tbody>
-        </StyledTable>
+    return (
+        <MediaContextProvider>
+            <Media at="sm">
+                <StyledTable>
+                    <tbody>{mobilelistHTML}</tbody>
+                </StyledTable>
+            </Media>
+            <Media greaterThan="sm">
+                <StyledTable>
+                    <thead>
+                        <StyledHeadTr>
+                            <StyledTh scope="col">#</StyledTh>
+                            <StyledTh scope="col">Description</StyledTh>
+                            <StyledTh scope="col">Adresse Mac</StyledTh>
+                            <StyledTh scope="col">Preuve</StyledTh>
+                            <StyledTh scope="col"><span style={{ paddingLeft: "5px" }}>Etat</span></StyledTh>
+                            <StyledTh scope="col"><span style={{ paddingLeft: "5px" }}>Action</span></StyledTh>
+                        </StyledHeadTr>
+                    </thead>
+                    <tbody>{listHTML}</tbody>
+                </StyledTable>
+            </Media>
+        </MediaContextProvider>
     );
 };
 
 
 export function MaterialUserTable(props: { requests: any[] }) {
     let listHTML = [];
-    const minWidth1000 = useMediaQuery('(min-width:1000px)');
+    let mobilelistHTML = [];
 
     props.requests.map((value, index) => {
-        listHTML.push(minWidth1000 ?
+        listHTML.push(
             <StyledTr key={index}>
                 <StyledTd>{index + 1}</StyledTd>
                 <StyledTd>{value['material_description']}</StyledTd>
@@ -100,7 +108,9 @@ export function MaterialUserTable(props: { requests: any[] }) {
                     <SmallRedButton>Supprimer</SmallRedButton>
                 </StyledTd>
             </StyledTr>
-            :
+        );
+
+        mobilelistHTML.push(
             <React.Fragment key={index}>
                 <StyledHeadTr>
                     <StyledTh>Demande {index + 1} </StyledTh>
@@ -119,25 +129,30 @@ export function MaterialUserTable(props: { requests: any[] }) {
                     <StyledTd style={{ textAlign: "center" }}><SmallRedButton>Supprimer</SmallRedButton></StyledTd>
                 </StyledTr>
             </React.Fragment>
-        );
+        )
     })
 
-    return (minWidth1000 ?
-        <StyledTable>
-            <thead>
-                <StyledHeadTr>
-                    <StyledTh scope="col">#</StyledTh>
-                    <StyledTh scope="col">Description</StyledTh>
-                    <StyledTh scope="col">Détails</StyledTh>
-                    <StyledTh scope="col"><span style={{ paddingLeft: "5px" }}>Etat</span></StyledTh>
-                    <StyledTh scope="col"><span style={{ paddingLeft: "5px" }}>Action</span></StyledTh>
-                </StyledHeadTr>
-            </thead>
-            <tbody>{listHTML}</tbody>
-        </StyledTable>
-        :
-        <StyledTable>
-            <tbody>{listHTML}</tbody>
-        </StyledTable>
+    return (
+        <MediaContextProvider>
+            <Media at="sm">
+                <StyledTable>
+                    <tbody>{mobilelistHTML}</tbody>
+                </StyledTable>
+            </Media>
+            <Media greaterThan="sm">
+                <StyledTable>
+                    <thead>
+                        <StyledHeadTr>
+                            <StyledTh scope="col">#</StyledTh>
+                            <StyledTh scope="col">Description</StyledTh>
+                            <StyledTh scope="col">Détails</StyledTh>
+                            <StyledTh scope="col"><span style={{ paddingLeft: "5px" }}>Etat</span></StyledTh>
+                            <StyledTh scope="col"><span style={{ paddingLeft: "5px" }}>Action</span></StyledTh>
+                        </StyledHeadTr>
+                    </thead>
+                    <tbody>{listHTML}</tbody>
+                </StyledTable>
+            </Media>
+        </MediaContextProvider>
     );
 };

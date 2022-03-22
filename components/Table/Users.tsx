@@ -13,6 +13,9 @@ import {
   StyledHeadTr
 } from './style';
 import UsersMobileLine from './MobileLine/Users';
+import { MediaContextProvider, Media } from '../MediaQueries/MediaSSR';
+import Fail from '../NavIcons/fail';
+import Succes from '../NavIcons/succes';
 
 interface Props {
   indeterminate?: boolean;
@@ -58,7 +61,6 @@ const IndeterminateCheckbox = forwardRef<HTMLInputElement, Props>(
 );
 
 function GlobalFilter({ globalFilter, setGlobalFilter }) {
-  const minWidth1000 = useMediaQuery('(min-width:1000px)');
   const [value, setValue] = useState(globalFilter)
   const onChange = useAsyncDebounce(value => {
     setGlobalFilter(value || undefined)
@@ -66,11 +68,11 @@ function GlobalFilter({ globalFilter, setGlobalFilter }) {
 
   return (
     <>
-      <BlackText style={{ marginBottom: minWidth1000 ? "0" : "2%" }}>Rechercher</BlackText>
+      <BlackText mobileMarginBottom="10px">Rechercher</BlackText>
       <StyledInput value={value || ""}
         spellcheck="false"
         onChange={e => { setValue(e.target.value); onChange(e.target.value); }}
-        style={{ marginLeft: minWidth1000 ? "20px" : "0", width: minWidth1000 ? "300px" : "100%" }}
+        width="300px" mobileWidth="100%" marginLeft="20px"
         type="text"
       />
     </>
@@ -78,7 +80,6 @@ function GlobalFilter({ globalFilter, setGlobalFilter }) {
 }
 
 export function UsersTable(data: any[]) {
-  const minWidth1000 = useMediaQuery('(min-width:1000px)');
   const columns = useMemo(
     () => [
       { Header: '#', accessor: (row, i) => i + 1 },
@@ -167,7 +168,7 @@ export function UsersTable(data: any[]) {
       marginBottom="2%"
       mobileMarginBottom="30px"
       justify="center"
-      width="150px"
+      colWidth="150px"
       style={{ alignItems: "center" }}
     >
       {allColumns.slice(2, -1).map(column => (
@@ -180,108 +181,109 @@ export function UsersTable(data: any[]) {
     selectedFlatRows.map(
       d => d.original["user_id"]
     ),
-    minWidth1000 ?
-      <StyledTable {...getTableProps()}>
-        <thead style={{ position: "sticky", top: "0", zIndex: "2" }}>
-          {headerGroups.map(headerGroup => (
-            <StyledHeadTr {...headerGroup.getHeaderGroupProps()}>
-
-              {headerGroup.headers.map((column, index) => (
-                <StyledTh {...column.getHeaderProps(column.getSortByToggleProps())}>
-                  <div style={{ display: "flex" }}>
-                    {column.render('Header')}
-                    <span
-                      style={{
-                        display: "inline-block",
-                        marginLeft: "10px",
-                        width: "20px"
-                      }}
-                    >
-                      {(index == 0) && Object.keys(selectedRowIds).length}
-                      {!(index == 0) && column.isSorted ? column.isSortedDesc ? '▼' : '▲' : ''}
-                    </span>
-                  </div>
-                </StyledTh>
-              ))}
-            </StyledHeadTr>
-          ))}
-        </thead>
-        <tbody {...getTableBodyProps()}>
-          {rows.map((row, index) => {
-            prepareRow(row)
-            return (
-              <StyledUsersTr key={index} {...row.getRowProps()}>
-                {row.cells.map((cell) => {
-                  if (cell.column['id'] == 'user_pay_status') {
-                    return (
-                      <StyledTd {...cell.getCellProps()}>
-                        <img style={{ height: "20px", marginLeft: "40px" }} src={cell.value ? "/static/icons/succes.svg" : "/static/icons/fail.svg"} />
-                      </StyledTd>
-                    )
-                  }
-                  else if (cell.column['id'] == 'user_is_gadz') {
-                    return (
-                      <StyledTd {...cell.getCellProps()}>
-                        <img style={{ height: "20px", marginLeft: "12.5px" }} src={cell.value ? "/static/icons/succes.svg" : "/static/icons/fail.svg"} />
-                      </StyledTd>
-                    )
-                  }
-                  else {
-                    return (
-                      <StyledTd {...cell.getCellProps()}>
-                        {cell.render('Cell')}
-                      </StyledTd>
-                    )
-                  }
-                })}
-              </StyledUsersTr>
-            )
-          })}
-        </tbody>
-      </StyledTable>
-      :
-      <>
-        <Row style={{ 
-            marginBottom: "20px", 
-            justifyContent: "space-between",   
+    <MediaContextProvider>
+      <Media at="sm">
+        <>
+          <Row style={{
+            marginBottom: "20px",
+            justifyContent: "space-between",
             position: "sticky",
-            zIndex: "2", 
-            top: "0", 
+            zIndex: "2",
+            top: "0",
             borderRadius: "10px",
             background: "#096A09",
             color: "white",
             padding: "15px 20px"
           }}
-        >
-          <label
-            style={{
-              width: "55px",
-              display: "flex",
-              justifyContent: "space-between",
-              fontSize: "1.2rem",
-            }}
           >
-            {Object.keys(selectedRowIds).length}
-            {headerGroups[0].headers[0].render('Header')}
-          </label>
-          <WhiteText style={{ paddingRight: "10px" }}>Tout sélectionner</WhiteText>
-        </Row>
+            <label
+              style={{
+                width: "55px",
+                display: "flex",
+                justifyContent: "space-between",
+                fontSize: "1.2rem",
+              }}
+            >
+              {Object.keys(selectedRowIds).length}
+              {headerGroups[0].headers[0].render('Header')}
+            </label>
+            <WhiteText style={{ paddingRight: "10px" }}>Tout sélectionner</WhiteText>
+          </Row>
 
-        {rows.map((row, index) => {
-          prepareRow(row)
+          {rows.map((row, index) => {
+            prepareRow(row)
 
-          return (
-            <UsersMobileLine 
-              key={index} 
-              row={row}
-              columnsNumber={14 - state.hiddenColumns.length} 
-              isLast={index == (rows.length-1)}  
-            />
-          )
-        })}
-      </>
+            return (
+              <UsersMobileLine
+                key={index}
+                row={row}
+                columnsNumber={14 - state.hiddenColumns.length}
+                isLast={index == (rows.length - 1)}
+              />
+            )
+          })}
+        </>
+      </Media>
+      <Media greaterThan="sm">
+        <StyledTable {...getTableProps()}>
+          <thead style={{ position: "sticky", top: "0", zIndex: "2" }}>
+            {headerGroups.map(headerGroup => (
+              <StyledHeadTr {...headerGroup.getHeaderGroupProps()}>
+
+                {headerGroup.headers.map((column, index) => (
+                  <StyledTh {...column.getHeaderProps(column.getSortByToggleProps())}>
+                    <div style={{ display: "flex" }}>
+                      {column.render('Header')}
+                      <span
+                        style={{
+                          display: "inline-block",
+                          marginLeft: "10px",
+                          width: "20px"
+                        }}
+                      >
+                        {(index == 0) && Object.keys(selectedRowIds).length}
+                        {!(index == 0) && column.isSorted ? column.isSortedDesc ? '▼' : '▲' : ''}
+                      </span>
+                    </div>
+                  </StyledTh>
+                ))}
+              </StyledHeadTr>
+            ))}
+          </thead>
+          <tbody {...getTableBodyProps()}>
+            {rows.map((row, index) => {
+              prepareRow(row)
+              return (
+                <StyledUsersTr key={index} {...row.getRowProps()}>
+                  {row.cells.map((cell) => {
+                    if (cell.column['id'] == 'user_pay_status' || cell.column['id'] == 'user_is_gadz') {
+                      return (
+                        <StyledTd style={{ textAlign: "center" }}{...cell.getCellProps()}>
+                          {cell.value ? <Succes marginRight="25px"/> : <Fail marginRight="25px"/>}
+                        </StyledTd>
+                      )
+                    }
+                    else {
+                      return (
+                        <StyledTd {...cell.getCellProps()}>
+                          {cell.render('Cell')}
+                        </StyledTd>
+                      )
+                    }
+                  })}
+                </StyledUsersTr>
+              )
+            })}
+          </tbody>
+        </StyledTable>
+      </Media>
+    </MediaContextProvider>
   ]
 }
+
+
+
+
 
 
 

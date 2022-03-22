@@ -47,31 +47,22 @@ export const TeamEditor = () => {
         <>
             <form> 
                 <ResponsiveRow style={{ marginBottom: "20px" }}>
-                    <Col5
-                        style={{
-                            paddingRight: minWidth1000 ? "10px" : "0",
-                            marginBottom: minWidth1000 ? "0" : "20px",
-                            maxWidth: minWidth1000 ? "41.66%" : "100%"
-                        }}
-                    >
-                        <StyledInputLabel htmlFor="surname" style={{ paddingLeft: "5px" }}>Bucque</StyledInputLabel>
-                        <StyledInput id="surname" type="text" onChange={(elmt) => setPseudo(elmt.target.value)} />
+                    <Col5 paddingRight="10px" mobileMarginBottom="20px">
+                        <StyledInputLabel htmlFor="adminr_bucque" style={{ paddingLeft: "5px" }}>Bucque</StyledInputLabel>
+                        <StyledInput id="admin_bucque" type="text" onChange={(elmt) => setPseudo(elmt.target.value)} />
                     </Col5>
-                    <Col5
-                        style={{
-                            paddingLeft: minWidth1000 ? "10px" : "0",
-                            paddingRight: minWidth1000 ? "10px" : "0",
-                            marginBottom: minWidth1000 ? "0" : "20px",
-                            maxWidth: minWidth1000 ? "41.66%" : "100%"
-                        }}
+                    <Col5 
+                        paddingRight="10px" 
+                        mobileMarginBottom="20px" 
+                        paddingLeft="10px"    
                     >
-                        <StyledInputLabel htmlFor="num" style={{ paddingLeft: "5px" }}>Num's</StyledInputLabel>
-                        <StyledInput id="num" type="text" onChange={(elmt) => setId(elmt.target.value)} />
+                        <StyledInputLabel htmlFor="admin_num" style={{ paddingLeft: "5px" }}>Num's</StyledInputLabel>
+                        <StyledInput id="admin_num" type="text" onChange={(elmt) => setId(elmt.target.value)} />
                     </Col5>
 
                     <Col2
+                        paddingLeft="10px"
                         style={{
-                            paddingLeft: minWidth1000 ? "10px" : "0",
                             justifyContent: "end", alignItems: "center",
                             minWidth: "160px"
                         }}

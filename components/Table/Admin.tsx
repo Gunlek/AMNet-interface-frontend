@@ -11,9 +11,12 @@ import {
     StyledTh,
     StyledTr
 } from "./style";
-import IoTMobileLine  from "./MobileLine/IoT";
+import IoTMobileLine from "./MobileLine/IoT";
 import { ProoveModal } from "../Card/Modals";
 import MaterialMobileLine from "./MobileLine/Material";
+import { MediaContextProvider, Media } from "../MediaQueries/MediaSSR";
+import Succes from "../NavIcons/succes";
+import Fail from "../NavIcons/fail";
 
 export const Buttons = (props: { status: string, id?: string }) => {
     return (
@@ -27,19 +30,19 @@ export const Buttons = (props: { status: string, id?: string }) => {
 
 export function IoTAdminTable(props: { requests: any[], status: string }) {
     let listHTML = [];
+    let mobilelistHTML = [];
     var index = 1;
-    const minWidth1000 = useMediaQuery('(min-width:1000px)');
 
     props.requests.map((value) => {
         if (value['acces_state'] == props.status) {
-            listHTML.push(minWidth1000 ?
+            listHTML.push(
                 <StyledTr key={index}>
                     <StyledTd>{index}</StyledTd>
                     <StyledTd>
                         <StyledLink color="#096a09" hovercolor="#67bc45">{value['user_name']}</StyledLink>
                     </StyledTd>
-                    <StyledTd>
-                        <img style={{ height: "20px", marginLeft: "35px" }} src={value['user_pay_status'] ? "/static/icons/succes.svg" : "/static/icons/fail.svg"} />
+                    <StyledTd style={{textAlign: "center"}}>
+                        {value['user_pay_status'] ? <Succes marginRight="15px"/> : <Fail marginRight="15px"/>}
                     </StyledTd>
                     <StyledFlexTd>{value['access_description']}</StyledFlexTd>
                     <StyledTd>{value['access_mac']}</StyledTd>
@@ -61,51 +64,60 @@ export function IoTAdminTable(props: { requests: any[], status: string }) {
                         </div>
                     </StyledTd>
                 </StyledTr>
-                :
+            );
+
+            mobilelistHTML.push(
                 <IoTMobileLine key={index} index={index} value={value} status={props.status} />
             );
+
             index++
         }
     })
 
-    return (minWidth1000 ?
-        <StyledTable>
-            <thead>
-                <StyledHeadTr>
-                    <StyledTh scope="col">#</StyledTh>
-                    <StyledTh scope="col">Utilisateur</StyledTh>
-                    <StyledTh scope="col">Cotisation</StyledTh>
-                    <StyledTh scope="col">Description</StyledTh>
-                    <StyledTh scope="col">Adresse Mac</StyledTh>
-                    <StyledTh scope="col">Preuve</StyledTh>
-                    <StyledTh scope="col"><span style={{ paddingLeft: "5px" }}>Etat</span></StyledTh>
-                    <StyledTh scope="col"><span style={{ paddingLeft: "5px" }}>Actions</span></StyledTh>
-                </StyledHeadTr>
-            </thead>
-            <tbody>{listHTML}</tbody>
-        </StyledTable>
-        :
-        <>
-            {listHTML}
-        </>
+
+    return (
+        <MediaContextProvider>
+            <Media at="sm">
+                {mobilelistHTML}
+            </Media>
+            <Media greaterThan="sm">
+                <StyledTable>
+                    <thead>
+                        <StyledHeadTr>
+                            <StyledTh scope="col">#</StyledTh>
+                            <StyledTh scope="col">Utilisateur</StyledTh>
+                            <StyledTh scope="col">Cotisation</StyledTh>
+                            <StyledTh scope="col">Description</StyledTh>
+                            <StyledTh scope="col">Adresse Mac</StyledTh>
+                            <StyledTh scope="col">Preuve</StyledTh>
+                            <StyledTh scope="col"><span style={{ paddingLeft: "5px" }}>Etat</span></StyledTh>
+                            <StyledTh scope="col"><span style={{ paddingLeft: "5px" }}>Actions</span></StyledTh>
+                        </StyledHeadTr>
+                    </thead>
+                    <tbody>{listHTML}</tbody>
+                </StyledTable>
+            </Media>
+        </MediaContextProvider>
+
     );
 };
 
 export function MaterialAdminTable(props: { requests: any[], status: string }) {
     let listHTML = [];
+    let mobilelistHTML = [];
     var index = 1
     const minWidth1000 = useMediaQuery('(min-width:1000px)');
 
     props.requests.map((value) => {
         if (value['material_state'] == props.status) {
-            listHTML.push(minWidth1000 ?
+            listHTML.push(
                 <StyledTr key={index} style={{ padding: "10px 0 10px 30px" }}>
                     <StyledTd>{index}</StyledTd>
                     <StyledTd>
                         <StyledLink hovercolor="#67bc45">{value['user_name']}</StyledLink>
                     </StyledTd>
-                    <StyledTd>
-                        <img style={{ height: "20px", marginLeft: "40px" }} src={value['user_pay_status'] ? "/static/icons/succes.svg" : "/static/icons/fail.svg"} />
+                    <StyledTd style={{textAlign: "center"}}>
+                        {value['user_pay_status'] ? <Succes marginRight="15px"/> : <Fail marginRight="15px"/>}
                     </StyledTd>
                     <StyledTd>{value['material_description']}</StyledTd>
                     <StyledFlexTd style={{ whiteSpace: "normal" }}><div style={{ width: "300px", maxWidth: "max-content" }}>{value['material_reason']}</div></StyledFlexTd>
@@ -124,32 +136,40 @@ export function MaterialAdminTable(props: { requests: any[], status: string }) {
                         </div>
                     </StyledTd>
                 </StyledTr>
-                :
-                <MaterialMobileLine key={index} index={index} value={value} status={props.status}/>
             );
+
+            mobilelistHTML.push(
+                <MaterialMobileLine key={index} index={index} value={value} status={props.status} />
+            )
+
             index++
         }
     })
 
-    return (minWidth1000 ?
-        <StyledTable style={{ width: "100%" }}>
-            <thead>
-                <StyledHeadTr>
-                    <StyledTh scope="col">#</StyledTh>
-                    <StyledTh scope="col">Utilisateur</StyledTh>
-                    <StyledTh scope="col">Cotisation</StyledTh>
-                    <StyledTh scope="col">Description</StyledTh>
-                    <StyledTh scope="col">Détails</StyledTh>
-                    <StyledTh scope="col"><span style={{ paddingLeft: "5px" }}>Etat</span></StyledTh>
-                    <StyledTh scope="col"><span style={{ paddingLeft: "5px" }}>Actions</span></StyledTh>
-                </StyledHeadTr>
-            </thead>
-            <tbody>{listHTML}</tbody>
-        </StyledTable>
-        :
-        <>
-            {listHTML}
-        </>
+
+
+    return (
+        <MediaContextProvider>
+            <Media at="sm">
+                {mobilelistHTML}
+            </Media>
+            <Media greaterThan="sm">
+                <StyledTable style={{ width: "100%" }}>
+                    <thead>
+                        <StyledHeadTr>
+                            <StyledTh scope="col">#</StyledTh>
+                            <StyledTh scope="col">Utilisateur</StyledTh>
+                            <StyledTh scope="col">Cotisation</StyledTh>
+                            <StyledTh scope="col">Description</StyledTh>
+                            <StyledTh scope="col">Détails</StyledTh>
+                            <StyledTh scope="col"><span style={{ paddingLeft: "5px" }}>Etat</span></StyledTh>
+                            <StyledTh scope="col"><span style={{ paddingLeft: "5px" }}>Actions</span></StyledTh>
+                        </StyledHeadTr>
+                    </thead>
+                    <tbody>{listHTML}</tbody>
+                </StyledTable>
+            </Media>
+        </MediaContextProvider>
     );
 
 };
