@@ -1,18 +1,17 @@
 import { Row } from "../Container/style";
-import useMediaQuery from "../MediaQueries/MediaQuery";
 import { StyledTabColumn } from "./style";
 
 export default function RequestTab(props: { status: string, TabChange: Function }){
-    const minWidth1000 = useMediaQuery('(min-width:1000px)');
     const inProcess = (props.status == "pending");
     const accepted = (props.status == "active");
     const denied = (props.status == "declined");
   
     return(
     <Row 
+        marginBottom="2%"
+        mobileMarginBottom="30px"
+        mobileJustify="center"
         style={{
-            marginBottom: minWidth1000 ? "2%" : "4%", 
-            justifyContent: !minWidth1000 && "center",
             borderBottom: "2px solid rgba(0, 0, 0, 0.2)", 
             height: "46px"
         }}
