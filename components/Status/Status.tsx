@@ -8,13 +8,15 @@ import {
   StyledStateRequest
 } from "./style";
 import { ContributionModal, ModalLogic } from "../Card/Modals";
+import Fail from "../NavIcons/fail";
+import Succes from "../NavIcons/succes";
 
 export function StateContribution(props: { status: string }) {
   if (props.status == 'paid') {
     return (
       <StyledStateContribution>
         <BlackText style={{ paddingRight: "10px" }}>Cotisation :</BlackText>
-        <img style={{ height: "20px", width: "27.5px" }} src="/static/icons/succes.svg" />
+        <Succes/>
       </StyledStateContribution>
     );
   }
@@ -26,7 +28,7 @@ export function StateContribution(props: { status: string }) {
       <Row style={{ alignItems: "baseline", justifyContent: "center" }}>
         <StyledStateContribution style={{ marginRight: "15px" }}>
           <BlackText style={{ paddingRight: "10px" }}>Cotisation :</BlackText>
-          <img style={{ height: "20px", width: "18px"  }} src="/static/icons/fail.svg" />
+          <Fail/>
         </StyledStateContribution>
         <GreenButton width="150px" height="50px" onClick={toggle}>Payer</GreenButton>
         <ContributionModal reveal={reveal} hide={toggle} />
