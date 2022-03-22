@@ -86,14 +86,13 @@ export default function SignUp() {
               </Col6>
               
               <Col6
-                paddingLeft="10px"
+                paddingLeft="10px" mobileAlign="center"
                 style={{
                   justifyContent: "end",
-                  height: minWidth1000 ? "75px" : "auto",
-                  alignItems: minWidth1000 ? "start" : "center"
+                  height: minWidth1000 ? "75px" : "auto"
                 }}
               >
-                <BlackText style={{ textAlign: minWidth1000 ? "start" : "justify" }}>
+                <BlackText mobileAlignTxt="justify">
                   Votre nom d'utilisateur ne doit contenir
                   que des lettres, des chiffres ou des espaces.
                 </BlackText>
@@ -227,7 +226,7 @@ export default function SignUp() {
                 }}
               >
                 <RoundCheckbox id="accept_rules" checked={acceptRules} onChange={handleRadioChange} />
-                <BlackText style={{ paddingLeft: "10px", textAlign: minWidth1000 ? undefined : "center", }}>
+                <BlackText  mobileAlignTxt="center" style={{ paddingLeft: "10px" }}>
                   Accepter les Statuts et le Réglement interieur
                 </BlackText>
               </label>

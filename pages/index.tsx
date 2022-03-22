@@ -114,12 +114,7 @@ export default function Homepage() {
           <StyledCardCampus style={{ marginTop: "30px" }}>
             <TitleCard>A propos</TitleCard>
             <Row style={{ marginBottom: "1.2rem" }}>
-              <BlackP
-                style={{
-                  textAlign: minWidth1000 ? undefined : "center",
-                  marginRight: "20px"
-                }}
-              >
+              <BlackP mobileAlignTxt="center" style={{ marginRight: "20px" }}>
                 Projet développé et maintenu par Hard Win'∫ 58Li218, Squall'∫ 4Li218 et Mac Nhat'∫ 47-102Li219 &bull; Version 2.0.1
               </BlackP>
               <GitHub height="30px" margin="0" />
