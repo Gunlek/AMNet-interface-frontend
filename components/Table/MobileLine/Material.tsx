@@ -3,6 +3,8 @@ import { StateRequest } from "../../Status/Status";
 import React, { useState } from "react";
 import { Buttons } from "../Admin";
 import { ProoveModal } from "../../Card/Modals";
+import Fail from "../../NavIcons/fail";
+import Succes from "../../NavIcons/succes";
 
 export const MaterialMobileLine = ({ index, value, status }: {
     index: number,
@@ -45,10 +47,7 @@ export const MaterialMobileLine = ({ index, value, status }: {
                         <StyledTr>
                             <StyledTd>Cotisation</StyledTd>
                             <StyledTd style={{ textAlign: "center" }}>
-                                <img
-                                    style={{ height: "20px" }}
-                                    src={value['user_pay_status'] ? "/static/icons/succes.svg" : "/static/icons/fail.svg"}
-                                />
+                                {value['user_pay_status'] ? <Succes/> : <Fail/>}
                             </StyledTd>
                         </StyledTr>
                         <StyledTr>

@@ -1,5 +1,7 @@
-import { StyledHeadTr, StyledTable, StyledTd, StyledTh, StyledTr } from "../style";
+import { StyledTable, StyledTd, StyledTr } from "../style";
 import React, { useState } from "react";
+import Fail from "../../NavIcons/fail";
+import Succes from "../../NavIcons/succes";
 
 export const UsersMobileLine = ({ row, columnsNumber, isLast }: {
     columnsNumber: number,
@@ -43,26 +45,14 @@ export const UsersMobileLine = ({ row, columnsNumber, isLast }: {
                                 )
                             }
 
-                            if (cell.column['id'] == 'user_pay_status') {
+                            if (cell.column['id'] == 'user_pay_status' || cell.column['id'] == 'user_is_gadz') {
                                 return (
                                     <StyledTr {...cell.getCellProps()}>
                                         <StyledTd>
                                             {cell.column.render('Header')}
                                         </StyledTd>
                                         <StyledTd style={{ textAlign: "center" }}>
-                                            <img style={{ height: "20px" }} src={cell.value ? "/static/icons/succes.svg" : "/static/icons/fail.svg"} />
-                                        </StyledTd>
-                                    </StyledTr>
-                                )
-                            }
-                            else if (cell.column['id'] == 'user_is_gadz') {
-                                return (
-                                    <StyledTr>
-                                        <StyledTd {...cell.getCellProps()}>
-                                            {cell.column.render('Header')}
-                                        </StyledTd>
-                                        <StyledTd style={{ textAlign: "center" }}>
-                                            <img style={{ height: "20px" }} src={cell.value ? "/static/icons/succes.svg" : "/static/icons/fail.svg"} />
+                                            {cell.value ? <Succes/> : <Fail/>}
                                         </StyledTd>
                                     </StyledTr>
                                 )
