@@ -4,7 +4,6 @@ import { Row, DashboardContainer } from "../../components/Container/style";
 import { StyledCard } from "../../components/Card/style";
 import AdminMenu from "../../components/Menu/AdminMenu";
 import { BlackTitle } from "../../components/Text/style";
-import useMediaQuery from "../../components/MediaQueries/MediaQuery";
 import RequestTab from "../../components/Card/RequestTab";
 import { MaterialAdminTable } from "../../components/Table/Admin";
 import { Footer } from "../../components/Card/Cards";
@@ -40,7 +39,6 @@ const material = [
 ]
 
 export default function AdminMaterial() {
-  const minWidth1000 = useMediaQuery('(min-width:1000px)');
   const [Tab, setTab] = useState("pending");
 
   const handleTabChange = (elmt) => {
@@ -61,13 +59,13 @@ export default function AdminMaterial() {
 
         <RequestTab status={Tab} TabChange={handleTabChange} />
 
-        <StyledCard marginBottom="2%" mobileMarginBottom="30px" style={{ flex: "1" }}>
+        <StyledCard marginBottom="2%" mobileMarginBottom="10px" style={{ flex: "1" }}>
           <div style={{ height: "100%", width: "100%", overflowX: "auto" }}>
             <MaterialAdminTable status={Tab} requests={material} />
           </div>
         </StyledCard>
 
-        <Footer />
+        <Footer marginTop="0"/>
       </DashboardContainer>
     </>
   );

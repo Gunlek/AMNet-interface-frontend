@@ -436,7 +436,7 @@ export default function Users() {
  
           <StyledCard 
             marginBottom="2%" 
-            mobileMarginBottom="30px"
+            mobileMarginBottom="10px"
             style={{ 
               flex: "1 0 0",
               minHeight: minWidth1000? "0" : "500px" 
@@ -453,7 +453,7 @@ export default function Users() {
             </div>
           </StyledCard>
 
-          <Footer />
+          <Footer marginTop="0"/>
         </DashboardContainer>
     </>
   );

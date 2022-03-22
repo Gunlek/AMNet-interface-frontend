@@ -63,7 +63,7 @@ export default function Edition() {
             <div style={{ marginBottom: "20px" }}>
               <GreenText style={{ marginBottom: "5px" }}>Réglement Intérieur</GreenText>
               <ResponsiveRow>
-                <div style={{ width: minWidth1000 ? "400px" : "auto", marginBottom: minWidth1000 ? "0" : "20px" }}>
+                <Row width="400px" mobileWidth="auto" mobileMarginBottom="20px">
                   <StyledLink
                     color="black"
                     hovercolor="#2E8A21"
@@ -72,11 +72,12 @@ export default function Edition() {
                   >
                     Voir le Réglement Intérieur actuel
                   </StyledLink>
-                </div>
+                </Row>
                 <ResponsiveRow
                   mobileJustify="center"
+                  width="auto"
+                  mobileWidth="100%"
                   style={{
-                    width: minWidth1000 ? "auto" : undefined,
                     alignItems: "center"
                   }}
                 >
@@ -107,7 +108,7 @@ export default function Edition() {
             <div style={{ marginBottom: "20px" }}>
               <GreenText style={{ marginBottom: "5px" }}>Status</GreenText>
               <ResponsiveRow>
-                <div style={{ width: minWidth1000 ? "400px" : "auto", marginBottom: minWidth1000 ? "0" : "20px" }}>
+                <Row width="400px" mobileWidth="auto" mobileMarginBottom="20px">
                   <StyledLink
                     color="black"
                     hovercolor="#2E8A21"
@@ -116,13 +117,12 @@ export default function Edition() {
                   >
                     Voir les statuts actuels
                   </StyledLink>
-                </div>
+                </Row>
                 <ResponsiveRow
-                  style={{
-                    width: minWidth1000 ? "auto" : undefined,
-                    justifyContent: !minWidth1000 && "center",
-                    alignItems: "center"
-                  }}
+                  width="auto"
+                  mobileWidth="100%"
+                  mobileJustify="center"
+                  align="center"
                 >
                   <FileUploader id="1" setfile={SetFile} accept=".pdf" />
                   <div
@@ -153,13 +153,13 @@ export default function Edition() {
           </form>
         </StyledCard>
 
-        <StyledCard marginBottom="2%" mobileMarginBottom="30px">
+        <StyledCard marginBottom="2%" mobileMarginBottom="10px">
           <TitleCard>Page d'accueil</TitleCard>
           <ResponsiveRow style={{ marginTop: "20px" }}>
             <Col6 marginRight="1%" mobileMarginBottom="20px">
               <GreenText style={{ marginBottom: "5px" }}>Photo de l'AMNet</GreenText>
               <ResponsiveRow style={{ marginBottom: "20px" }}>
-                <div style={{ width: minWidth1000 ? "300px" : "auto", marginBottom: minWidth1000 ? "0" : "20px" }}>
+                <Row width="400px" mobileWidth="auto" mobileMarginBottom="20px">
                   <StyledLink
                     color="black"
                     hovercolor="#2E8A21"
@@ -168,7 +168,7 @@ export default function Edition() {
                   >
                     Voir la photo actuelle
                   </StyledLink>
-                </div>
+                </Row>
                 <ResponsiveRow style={{ alignItems: "center", width: "auto" }}>
                   <FileUploader id="2" setfile={SetFile} accept=".jpeg, .jpg, .png, .svg" />
                   <BlackText
@@ -208,7 +208,7 @@ export default function Edition() {
             <GreenButton>Mettre à jour</GreenButton>
           </Row>
         </StyledCard>
-        <Footer />
+        <Footer marginTop="0"/>
       </DashboardContainer>
     </>
   );

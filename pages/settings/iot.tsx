@@ -4,7 +4,6 @@ import { StyledCard } from "../../components/Card/style";
 import AdminMenu from "../../components/Menu/AdminMenu";
 import { DashboardContainer, Row } from "../../components/Container/style";
 import { BlackTitle } from "../../components/Text/style";
-import useMediaQuery from "../../components/MediaQueries/MediaQuery";
 import RequestTab from "../../components/Card/RequestTab";
 import { IoTAdminTable } from "../../components/Table/Admin";
 import { Footer } from "../../components/Card/Cards";
@@ -53,7 +52,6 @@ const Iot = [
 ]
 
 export default function AdminIoT() {
-  const minWidth1000 = useMediaQuery('(min-width:1000px)');
   const [Tab, setTab] = useState("pending");
 
   const handleTabChange = (elmt) => {
@@ -74,7 +72,7 @@ export default function AdminIoT() {
 
         <RequestTab status={Tab} TabChange={handleTabChange} />
 
-        <StyledCard marginBottom="2%" mobileMarginBottom="30px" style={{ flex: "1"  }}>
+        <StyledCard marginBottom="2%" mobileMarginBottom="10px" style={{ flex: "1"  }}>
           <div
             style={{
               height: "100%",
@@ -86,7 +84,7 @@ export default function AdminIoT() {
           </div>
         </StyledCard>
 
-        <Footer />
+        <Footer marginTop="0"/>
       </DashboardContainer>
     </>
   );

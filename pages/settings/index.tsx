@@ -6,9 +6,8 @@ import { StyledCard } from "../../components/Card/style";
 import AdminMenu from "../../components/Menu/AdminMenu";
 import { StateIntegration, StateInvite } from "../../components/Status/Status";
 import AutoTextArea from "../../components/Input/TextArea";
-import useMediaQuery from "../../components/MediaQueries/MediaQuery";
 import Checkbox from "../../components/Input/Checkbox";
-import { StyledInput, StyledInputLabel, StyledLabel, StyledSelect } from "../../components/Input/style";
+import { StyledInput, StyledInputLabel, StyledLabel } from "../../components/Input/style";
 import { BlackTitle, BlackText, GreenText } from "../../components/Text/style";
 import {
   Row,
@@ -21,8 +20,6 @@ import {
 } from "../../components/Container/style";
 
 export default function Settings() {
-  const minWidth1000 = useMediaQuery('(min-width:1000px)');
-
   const [Checked, setChecked] = useState({
     "Contribution": false,
     "NoContribution": false,
@@ -117,17 +114,15 @@ export default function Settings() {
           </StyledCard>
         </Row>
 
-        <Row marginBottom="2%" mobileMarginBottom="30px">
+        <Row marginBottom="2%" mobileMarginBottom="10px">
           <StyledCard>
             <TitleCard>Système de mail</TitleCard>
 
             <form method="post" style={{ flex: "1" }}>
               <ResponsiveRow
-                style={{
-                  marginTop: "20px",
-                  marginBottom: "20px",
-                  flexDirection: !minWidth1000 && "column-reverse"
-                }}
+                direction="column-reverse" 
+                marginBottom="20px"
+                style={{ marginTop: "20px" }}
               >
                 <Col4 style={{ paddingRight: "10px" }}>
                   <StyledInputLabel htmlFor="MailTitle">Titre du Mail</StyledInputLabel>
@@ -135,7 +130,7 @@ export default function Settings() {
                 </Col4>
                 <Col2 paddingLeft="10px" mobileMarginBottom="30px">
                   <GreenText style={{ marginBottom: "5px" }}>Cotisation payée</GreenText>
-                  <CheckboxRow width={minWidth1000 ? "85px" : "125px"} style={{ flex: "1", alignItems: "center" }}>
+                  <CheckboxRow mobileColWidth="125px" colWidth="85px" style={{ flex: "1", alignItems: "center" }}>
                     <StyledLabel style={{ width: "fit-content" }}>
                       <Checkbox id="Contribution" checked={Checked["Contribution"]} onChange={handleCheckboxChange} />
                       <BlackText style={{ marginLeft: "10px" }}>Oui</BlackText>
@@ -149,7 +144,7 @@ export default function Settings() {
 
                 <Col6 paddingLeft="1%" mobileMarginBottom="30px">
                   <GreenText style={{ marginBottom: "5px" }}>Prom's</GreenText>
-                  <CheckboxRow width={minWidth1000 ? "140px" : "125px"} style={{ flex: "1", alignItems: "center" }}>
+                  <CheckboxRow colWidth="140px" mobileColWidth="125px" style={{ flex: "1", alignItems: "center" }}>
                     <StyledLabel style={{ width: "fit-content" }}>
                       <Checkbox id="NewPromotion" checked={Checked["NewPromotion"]} onChange={handleCheckboxChange} />
                       <BlackText style={{ marginLeft: "10px" }}>2021</BlackText>
@@ -175,14 +170,14 @@ export default function Settings() {
                 <AutoTextArea id="Mail" />
               </div>
 
-              <Row style={{ marginTop: "-5px", justifyContent: "center" }}>
+              <Row style={{ justifyContent: "center" }}>
                 <GreenButton>Envoyer</GreenButton>
               </Row>
             </form>
           </StyledCard>
         </Row>
 
-        <Footer />
+        <Footer marginTop="0"/>
       </DashboardContainer>
     </>
   );
