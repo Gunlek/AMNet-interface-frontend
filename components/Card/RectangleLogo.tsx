@@ -1,4 +1,3 @@
-import useMediaQuery from "../MediaQueries/MediaQuery";
 import { StyledLogo } from "./style";
 
 export default function RectangleLogo(props: { color?: string, height?: string }) {
