@@ -155,7 +155,7 @@ export const StyledBackgroundModal = styled.div`
   width: 100%; 
   left: 0; 
   top: 0;  
-  transition: ${props => (!props.reveal && "z-index 0.3s linear")}, opacity 0.3s linear;
+  transition: z-index 0.3s linear, opacity 0.3s linear;
   z-index: ${props => props.reveal ? "3" : "-1"};
   opacity: ${props => props.reveal ? "1" : "0"};
 `;
@@ -169,7 +169,7 @@ export const StyledModal = styled(StyledCardCampus)`
   position: fixed; 
   top: 50%; 
   left: 50%;
-  transition: ${props => (!props.reveal && "z-index 0.3s linear")}, opacity 0.3s linear;
+  transition: z-index 0.3s linear, opacity 0.3s linear;
   transform: translate(-50%, -50%);
   z-index: ${props => (props.reveal ? "4" : "-1")};
   opacity: ${props => (props.reveal ? "1" : "0")};
