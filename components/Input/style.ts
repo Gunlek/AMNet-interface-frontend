@@ -11,6 +11,7 @@ export const StyledInput = styled.input`
   border: 2px solid transparent;
   margin: 0;
   transition: border 0.2s;
+  margin-left: ${(props) => props.marginLeft};
 
   &:hover, &:focus{
     background: rgba(255, 255, 255, 0.8);
@@ -20,6 +21,8 @@ export const StyledInput = styled.input`
 
   @media screen and (max-width: 1000px){
     font-size: 16px;
+    width: ${(props) => props.mobileWidth || "100%"};
+    margin-left: 0;
   }
 `;
 
