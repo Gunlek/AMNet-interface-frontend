@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { SmallRedButton } from "../Button/Buttons";
+import { UserProoveModal } from "../Card/Modals";
 import { Row } from "../Container/style";
 import useMediaQuery from "../MediaQueries/MediaQuery";
 import { MediaContextProvider, Media } from "../MediaQueries/MediaSSR";
@@ -25,7 +26,7 @@ export function IoTUserTable(props: { requests: any[] }) {
                 <StyledFlexTd>{value['access_description']}</StyledFlexTd>
                 <StyledTd>{value['access_mac']}</StyledTd>
                 <StyledTd>
-                    <StyledLink color="#096a09">Image</StyledLink>
+                    <UserProoveModal link="/static/images/homepage/campus.jpg"/>
                 </StyledTd>
                 <StyledTd>
                     <StateRequest state={value['acces_state']} />
@@ -48,8 +49,8 @@ export function IoTUserTable(props: { requests: any[] }) {
                 </StyledTr>
                 <StyledTr>
                     <StyledTd>Preuve</StyledTd>
-                    <StyledTd style={{ textAlign: "center" }}>
-                        <StyledLink color="#096a09" hovercolor="#67bc45">Image</StyledLink>
+                    <StyledTd style={{ textAlign: "center", whiteSpace: "normal" }}>
+                        <UserProoveModal link="/static/images/homepage/campus.jpg"/>
                     </StyledTd>
                 </StyledTr>
                 <StyledTr>
