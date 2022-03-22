@@ -47,7 +47,7 @@ export function GreenCard(props: { promotion: string }) {
   );
 }
 
-export function Footer(props: { page?: string }) {
+export function Footer(props: { page?: string, marginTop?: string }) {
   if(props.page == "campus"){
     return (
       <StyledCampusFooter>
@@ -57,7 +57,7 @@ export function Footer(props: { page?: string }) {
   }
   else{
     return (
-      <StyledFooter>
+      <StyledFooter marginTop={props.marginTop}>
         Projet développé et maintenu par Hard Win'∫ 58Li218, Squall'∫ 4Li218 et Mac Nhat'∫ 47-102Li219 &bull; Version 2.0.1 <GitHub />
       </StyledFooter>
     );
