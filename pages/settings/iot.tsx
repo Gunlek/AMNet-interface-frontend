@@ -7,6 +7,7 @@ import { BlackTitle } from "../../components/Text/style";
 import RequestTab from "../../components/Card/RequestTab";
 import { IoTAdminTable } from "../../components/Table/Admin";
 import { Footer } from "../../components/Card/Cards";
+import useMediaQuery from "../../components/MediaQueries/MediaQuery";
 
 const Iot = [
   {
@@ -52,10 +53,14 @@ const Iot = [
 ]
 
 export default function AdminIoT() {
-  const [Tab, setTab] = useState("pending");
+  const [Tab, setTab] = useState({ old: null, new: "pending" });
+  const minWidth1000 = useMediaQuery('(min-width:1000px)');
 
   const handleTabChange = (elmt) => {
-    setTab(elmt.currentTarget.id);
+    let newTab = { ...Tab };
+    newTab.old = newTab.new;
+    newTab.new = elmt.currentTarget.id;
+    setTab(newTab);
   }
 
   return (
@@ -70,9 +75,16 @@ export default function AdminIoT() {
           <BlackTitle>Demandes d'accès à AMNet IoT </BlackTitle>
         </Row>
 
-        <RequestTab status={Tab} TabChange={handleTabChange} />
+        <RequestTab status={Tab.new} TabChange={handleTabChange} />
 
-        <StyledCard marginBottom="2%" mobileMarginBottom="10px" style={{ flex: "1"  }}>
+        <StyledCard
+          marginBottom="2%"
+          mobileMarginBottom="10px"
+          style={{
+            flex: "1 0 0",
+            minHeight: minWidth1000 ? "0" : "500px"
+          }}
+        >
           <div
             style={{
               height: "100%",
@@ -84,7 +96,7 @@ export default function AdminIoT() {
           </div>
         </StyledCard>
 
-        <Footer marginTop="0"/>
+        <Footer marginTop="0" />
       </DashboardContainer>
     </>
   );
