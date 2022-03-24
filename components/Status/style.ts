@@ -9,6 +9,7 @@ export const StyledStateRequest = styled.div`
   outline: 2px solid ${(props) => props.color || "#FF9900"};
   text-align: center;
   margin: ${(props) => props.center && "0 auto"};
+  user-select: none;
 
   @media screen and (max-width: 1000px){
     width: 140px;
