@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { SmallGreenButton } from '../Button/Buttons';
-import { Col2, Col5, Col6, Column, ResponsiveRow, Row } from '../Container/style';
+import { Col2, Col5, ResponsiveRow } from '../Container/style';
 import { StyledInput, StyledInputLabel } from '../Input/style';
 import useMediaQuery from '../MediaQueries/MediaQuery';
 import { GreenText } from '../Text/style';

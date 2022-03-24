@@ -11,7 +11,6 @@ import { StyledCardCampus } from "../components/Card/style";
 import { Row } from "../components/Container/style";
 import { StyledInput, StyledInputLabel } from "../components/Input/style";
 import RectangleLogo from "../components/Card/RectangleLogo";
-import useMediaQuery from "../components/MediaQueries/MediaQuery";
 
 export default function LostPassword() {
   return (

@@ -10,10 +10,9 @@ import {
 } from "../components/Card/Cards";
 import { StyledCardCampus } from "../components/Card/style";
 import { StyledInput, StyledInputLabel } from "../components/Input/style";
-import { BlackText, GreenText, StyledLink } from "../components/Text/style";
+import { BlackText, StyledLink } from "../components/Text/style";
 import Checkbox from "../components/Input/Checkbox";
 import RectangleLogo from "../components/Card/RectangleLogo";
-import useMediaQuery from "../components/MediaQueries/MediaQuery";
 
 export default function Login() {
   const [checked, setChecked] = useState(false);
