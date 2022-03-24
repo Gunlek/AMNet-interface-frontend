@@ -64,7 +64,11 @@ export const GlobalStyle = createGlobalStyle`
     ::-webkit-scrollbar-thumb {
         -webkit-border-radius: 5px;
         border-radius: 5px;
-        background: #c4c4c4;
+        background-color: #c4c4c4;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+        background-color: #797979;
     }
 
     @media screen and (max-width: 1000px){
