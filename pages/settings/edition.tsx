@@ -20,28 +20,29 @@ import TeamPicture from "../../components/Card/TeamPicture";
 export default function Edition() {
   const minWidth1000 = useMediaQuery('(min-width:1000px)');
   const [Team, teamEditor] = TeamEditor()
-  const [TabFile, setTabFile] = useState([null, null, null]);
+  const [TabFile, setTabFile] = useState({ IR: null, Status: null, TeamPicture: null });
 
   useEffect(() => {
-    const input0 = document.getElementById("0") as HTMLInputElement;
-    const input1 = document.getElementById("1") as HTMLInputElement;
-    const input2 = document.getElementById("2") as HTMLInputElement;
-    input0.value = null;
-    input1.value = null;
-    input2.value = null;
+    const IRinput = document.getElementById("IR") as HTMLInputElement;
+    const StatusInput = document.getElementById("Status") as HTMLInputElement;
+    const TeamPictureInput = document.getElementById("TeamPicture") as HTMLInputElement;
+
+    IRinput.value = null;
+    StatusInput.value = null;
+    TeamPictureInput.value = null;
   }, []);
 
-  function SetFile(index: string, file: any) {
-    let NemTabFile = TabFile.slice(0);
-    NemTabFile[index] = file;
+  const SetFile = (id: string, file: any) => {
+    let NemTabFile = { ...TabFile };
+    NemTabFile[id] = file;
     setTabFile(NemTabFile);
   }
 
-  function DeleteFile(index: string) {
-    const input = document.getElementById(index) as HTMLInputElement;
-    let NemTabFile = TabFile.slice(0);
-    NemTabFile[index] = null;
+  const DeleteFile = (id: string) => {
+    const input = document.getElementById(id) as HTMLInputElement;
     input.value = null;
+    let NemTabFile = { ...TabFile };
+    NemTabFile[id] = null;
     setTabFile(NemTabFile);
   }
 
@@ -81,25 +82,24 @@ export default function Edition() {
                     alignItems: "center"
                   }}
                 >
-                  <FileUploader id="0" setfile={SetFile} accept=".pdf" />
+                  <FileUploader id="IR" setfile={SetFile} accept=".pdf" />
                   <div
                     style={{
                       marginLeft: minWidth1000 && "10px",
                       marginTop: !minWidth1000 && "10px",
-                      display: TabFile[0] ? "flex" : "none",
+                      display: TabFile.IR ? "flex" : "none",
                       alignItems: "center"
                     }}
                   >
                     <StyledLink
-                      color="black"
-                      hovercolor="#2E8A21"
+                      color="#096a09"
                       target="_blank"
-                      href={TabFile[0] && URL.createObjectURL(TabFile[0])}
+                      href={TabFile.IR && URL.createObjectURL(TabFile.IR)}
                     >
-                      {TabFile[0] && TabFile[0]["name"]}
+                      {TabFile.IR && TabFile.IR["name"]}
                     </StyledLink>
 
-                    <StyledImg onClick={() => DeleteFile("0")} src="/static/icons/fail.svg" />
+                    <StyledImg onClick={() => DeleteFile("IR")} src="/static/icons/fail.svg" />
                   </div>
                 </ResponsiveRow>
               </ResponsiveRow>
@@ -124,24 +124,23 @@ export default function Edition() {
                   mobileJustify="center"
                   align="center"
                 >
-                  <FileUploader id="1" setfile={SetFile} accept=".pdf" />
+                  <FileUploader id="Status" setfile={SetFile} accept=".pdf" />
                   <div
                     style={{
                       marginLeft: minWidth1000 && "10px",
                       marginTop: !minWidth1000 && "10px",
-                      display: TabFile[1] ? "flex" : "none",
+                      display: TabFile.Status ? "flex" : "none",
                       alignItems: "center"
                     }}
                   >
                     <StyledLink
-                      color="black"
-                      hovercolor="#2E8A21"
+                      color="#096a09"
                       target="_blank"
-                      href={TabFile[1] && URL.createObjectURL(TabFile[1])}
+                      href={TabFile.Status && URL.createObjectURL(TabFile.Status)}
                     >
-                      {TabFile[1] && TabFile[1]["name"]}
+                      {TabFile.Status && TabFile.Status["name"]}
                     </StyledLink>
-                    <StyledImg onClick={() => DeleteFile("1")} src="/static/icons/fail.svg" />
+                    <StyledImg onClick={() => DeleteFile("Status")} src="/static/icons/fail.svg" />
                   </div>
                 </ResponsiveRow>
               </ResponsiveRow>
@@ -161,8 +160,7 @@ export default function Edition() {
               <ResponsiveRow style={{ marginBottom: "20px" }}>
                 <Row width="400px" mobileWidth="auto" mobileMarginBottom="20px">
                   <StyledLink
-                    color="black"
-                    hovercolor="#2E8A21"
+                    color="#096a09"
                     target="_blank"
                     href="/static/images/team.png"
                   >
@@ -170,24 +168,23 @@ export default function Edition() {
                   </StyledLink>
                 </Row>
                 <ResponsiveRow style={{ alignItems: "center", width: "auto" }}>
-                  <FileUploader id="2" setfile={SetFile} accept=".jpeg, .jpg, .png, .svg" />
+                  <FileUploader id="TeamPicture" setfile={SetFile} accept=".jpeg, .jpg, .png, .svg" />
                   <BlackText
                     style={{
                       marginLeft: minWidth1000 && "10px",
                       marginTop: !minWidth1000 && "10px",
-                      display: TabFile[2] ? "flex" : "none",
+                      display: TabFile.TeamPicture ? "flex" : "none",
                       alignItems: "center"
                     }}
                   >
                     <StyledLink
-                      color="black"
-                      hovercolor="#2E8A21"
+                      color="#096a09"
                       target="_blank"
-                      href={TabFile[2] && URL.createObjectURL(TabFile[2])}
+                      href={TabFile.TeamPicture && URL.createObjectURL(TabFile.TeamPicture)}
                     >
-                      {TabFile[2] && TabFile[2]["name"]}
+                      {TabFile.TeamPicture && TabFile.TeamPicture["name"]}
                     </StyledLink>
-                    <StyledImg onClick={() => DeleteFile("2")} src="/static/icons/fail.svg" />
+                    <StyledImg onClick={() => DeleteFile("TeamPicture")} src="/static/icons/fail.svg" />
                   </BlackText>
                 </ResponsiveRow>
               </ResponsiveRow>
@@ -198,7 +195,7 @@ export default function Edition() {
               <GreenText style={{ marginBottom: "5px" }}>Apercu de la Photo avec les bucques</GreenText>
               <TeamPicture
                 outline="3px solid #096a09"
-                background={TabFile[2] && URL.createObjectURL(TabFile[2])}
+                background={TabFile.TeamPicture && URL.createObjectURL(TabFile.TeamPicture)}
                 Team={Team}
               />
             </Col6>
@@ -208,7 +205,7 @@ export default function Edition() {
             <GreenButton>Mettre à jour</GreenButton>
           </Row>
         </StyledCard>
-        <Footer marginTop="0"/>
+        <Footer marginTop="0" />
       </DashboardContainer>
     </>
   );
