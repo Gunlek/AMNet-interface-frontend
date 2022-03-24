@@ -1,8 +1,7 @@
 import { StyledHeadTr, StyledTable, StyledTd, StyledTh, StyledTr } from "../style";
 import { StateRequest } from "../../Status/Status";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Buttons } from "../Admin";
-import { ProoveModal } from "../../Card/Modals";
 import Fail from "../../NavIcons/fail";
 import Succes from "../../NavIcons/succes";
 
@@ -18,21 +17,23 @@ export const MaterialMobileLine = ({ index, value, status }: {
     },
     status: string
 }) => {
-
     const [scrolled, setScrolled] = useState(false);
+    useEffect(() => {
+        setScrolled(false)
+    }, [value])
 
     return (
         <>
             <div
                 style={{
                     height: scrolled ? status == "pending" ? "530px" : "470px" : "53px",
-                    transition: "0.3s linear",
+                    transition: "height 0.3s linear, margin-bottom 0.3s linear",
                     overflowY: "hidden",
                     overflowX: "auto",
                     marginBottom: scrolled ? "0" : "30px"
                 }}
             >
-                <StyledTable style={{ tableLayout: "fixed" }}>
+                <StyledTable>
                     <thead>
                         <StyledHeadTr onClick={() => setScrolled(!scrolled)}>
                             <StyledTh style={{ width: "130px" }}>Equipement {index}</StyledTh>

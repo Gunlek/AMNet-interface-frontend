@@ -1,6 +1,6 @@
 import { StyledHeadTr, StyledTable, StyledTd, StyledTh, StyledTr } from "../style";
 import { StateRequest } from "../../Status/Status";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Buttons } from "../Admin";
 import { ProoveModal } from "../../Card/Modals";
 import Fail from "../../NavIcons/fail";
@@ -22,6 +22,9 @@ export const IoTMobileLine = ({ index, value, status }: {
 }) => {
 
     const [scrolled, setScrolled] = useState(false);
+    useEffect(() => {
+        setScrolled(false)
+    }, [value])
 
     return (
         <>
