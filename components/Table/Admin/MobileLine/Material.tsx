@@ -1,11 +1,11 @@
-import { StyledHeadTr, StyledTable, StyledTd, StyledTh, StyledTr } from "../style";
-import { StateRequest } from "../../Status/Status";
+import { StyledHeadTr, StyledTable, StyledTd, StyledTh, StyledTr } from "../../style";
+import { StateRequest } from "../../../Status/Status";
 import React, { useEffect, useState } from "react";
-import { Buttons } from "../Admin";
-import Fail from "../../NavIcons/fail";
-import Succes from "../../NavIcons/succes";
+import { Buttons } from "../Buttons";
+import Fail from "../../../NavIcons/fail";
+import Succes from "../../../NavIcons/succes";
 
-export const MaterialMobileLine = ({ index, value, status }: {
+export const MaterialMobileLine = ({ index, value, status, display }: {
     index: number,
     value: {
         material_id: string,
@@ -15,12 +15,13 @@ export const MaterialMobileLine = ({ index, value, status }: {
         user_pay_status: number,
         user_name: string
     },
-    status: string
+    status: string,
+    display: any
 }) => {
     const [scrolled, setScrolled] = useState(false);
     useEffect(() => {
         setScrolled(false)
-    }, [value])
+    }, [display])
 
     return (
         <>

@@ -1,12 +1,12 @@
-import { StyledHeadTr, StyledTable, StyledTd, StyledTh, StyledTr } from "../style";
-import { StateRequest } from "../../Status/Status";
+import { StyledHeadTr, StyledTable, StyledTd, StyledTh, StyledTr } from "../../style";
+import { StateRequest } from "../../../Status/Status";
 import React, { useEffect, useState } from "react";
-import { Buttons } from "../Admin";
-import { ProoveModal } from "../../Card/Modals";
-import Fail from "../../NavIcons/fail";
-import Succes from "../../NavIcons/succes";
+import { Buttons } from "../Buttons";
+import Fail from "../../../NavIcons/fail";
+import Succes from "../../../NavIcons/succes";
+import ProoveModal from "../../../Card/Modals/AdminProoveModal";
 
-export const IoTMobileLine = ({ index, value, status }: {
+export const IoTMobileLine = ({ index, value, status, display }: {
     index: number,
     value: {
         access_id: string,
@@ -18,23 +18,24 @@ export const IoTMobileLine = ({ index, value, status }: {
         user_pay_status: number,
         user_name: string
     },
-    status: string
+    status: string,
+    display: any
 }) => {
 
     const [scrolled, setScrolled] = useState(false);
     useEffect(() => {
         setScrolled(false)
-    }, [value])
+    }, [display])
 
     return (
         <>
             <div
                 style={{
-                    height: scrolled ? status == "pending" ? "539px" : "479px" : "53px",
+                    height: scrolled ? status == "pending" ? "535px" : "475px" : "53px",
                     transition: "0.3s linear",
                     overflowY: "hidden",
                     overflowX: "auto",
-                    marginBottom: scrolled ? "0px" : "30px"
+                    marginBottom: scrolled ? "0" : "30px"
                 }}
             >
                 <StyledTable style={{ tableLayout: "fixed" }}>

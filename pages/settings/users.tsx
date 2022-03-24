@@ -6,7 +6,7 @@ import { StyledCard } from "../../components/Card/style";
 import AdminMenu from "../../components/Menu/AdminMenu";
 import { BlackTitle } from "../../components/Text/style";
 import useMediaQuery from "../../components/MediaQueries/MediaQuery";
-import { UsersTable } from "../../components/Table/Users";
+import { UsersTable } from "../../components/Table/Admin/Users";
 import { Footer } from "../../components/Card/Cards";
 
 const data = [

@@ -1,7 +1,7 @@
-import { StyledTable, StyledTd, StyledTr } from "../style";
+import { StyledTable, StyledTd, StyledTr } from "../../style";
 import React, { useState } from "react";
-import Fail from "../../NavIcons/fail";
-import Succes from "../../NavIcons/succes";
+import Fail from "../../../NavIcons/fail";
+import Succes from "../../../NavIcons/succes";
 
 export const UsersMobileLine = ({ row, columnsNumber, isLast }: {
     columnsNumber: number,

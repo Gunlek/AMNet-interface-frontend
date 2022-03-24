@@ -1,21 +1,20 @@
-import React, { forwardRef, useEffect, useMemo, useRef, useState } from 'react'
+import React, { forwardRef, useEffect, useMemo, useState } from 'react'
 import { useTable, useFilters, useGlobalFilter, useAsyncDebounce, useRowSelect, useSortBy } from 'react-table'
-import { CheckboxRow, Row } from '../Container/style';
-import Checkbox from '../Input/Checkbox';
-import { StyledInput, StyledLabel } from '../Input/style';
-import { BlackText, WhiteText } from '../Text/style';
-import useMediaQuery from '../MediaQueries/MediaQuery';
+import { CheckboxRow, Row } from '../../Container/style';
+import Checkbox from '../../Input/Checkbox';
+import { StyledInput, StyledLabel } from '../../Input/style';
+import { BlackText, WhiteText } from '../../Text/style';
 import {
   StyledTable,
   StyledTh,
   StyledTd,
   StyledUsersTr,
   StyledHeadTr
-} from './style';
+} from '../style';
 import UsersMobileLine from './MobileLine/Users';
-import { MediaContextProvider, Media } from '../MediaQueries/MediaSSR';
-import Fail from '../NavIcons/fail';
-import Succes from '../NavIcons/succes';
+import { MediaContextProvider, Media } from '../../MediaQueries/MediaSSR';
+import Fail from '../../NavIcons/fail';
+import Succes from '../../NavIcons/succes';
 
 interface Props {
   indeterminate?: boolean;

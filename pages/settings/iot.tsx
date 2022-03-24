@@ -5,9 +5,8 @@ import AdminMenu from "../../components/Menu/AdminMenu";
 import { DashboardContainer, Row } from "../../components/Container/style";
 import { BlackTitle } from "../../components/Text/style";
 import RequestTab from "../../components/Card/RequestTab";
-import { IoTAdminTable } from "../../components/Table/Admin";
 import { Footer } from "../../components/Card/Cards";
-import useMediaQuery from "../../components/MediaQueries/MediaQuery";
+import IoTAdminTable from "../../components/Table/Admin/Iot";
 
 const Iot = [
   {
@@ -54,7 +53,6 @@ const Iot = [
 
 export default function AdminIoT() {
   const [Tab, setTab] = useState({ old: null, new: "pending" });
-  const minWidth1000 = useMediaQuery('(min-width:1000px)');
 
   const handleTabChange = (elmt) => {
     let newTab = { ...Tab };
@@ -80,10 +78,7 @@ export default function AdminIoT() {
         <StyledCard
           marginBottom="2%"
           mobileMarginBottom="10px"
-          style={{
-            flex: "1 0 0",
-            minHeight: minWidth1000 ? "0" : "500px"
-          }}
+          style={{ flex: "1 0 0" }}
         >
           <div
             style={{

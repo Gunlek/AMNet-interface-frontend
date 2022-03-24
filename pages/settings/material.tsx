@@ -5,9 +5,8 @@ import { StyledCard } from "../../components/Card/style";
 import AdminMenu from "../../components/Menu/AdminMenu";
 import { BlackTitle } from "../../components/Text/style";
 import RequestTab from "../../components/Card/RequestTab";
-import { MaterialAdminTable } from "../../components/Table/Admin";
 import { Footer } from "../../components/Card/Cards";
-import useMediaQuery from "../../components/MediaQueries/MediaQuery";
+import MaterialAdminTable from "../../components/Table/Admin/Material";
 
 const material = [
   {
@@ -41,7 +40,6 @@ const material = [
 
 export default function AdminMaterial() {
   const [Tab, setTab] = useState({ old: null, new: "pending" });
-  const minWidth1000 = useMediaQuery('(min-width:1000px)');
 
   const handleTabChange = (elmt) => {
     let newTab = { ...Tab };
@@ -67,10 +65,7 @@ export default function AdminMaterial() {
         <StyledCard
           marginBottom="2%" 
           mobileMarginBottom="10px" 
-          style={{
-            flex: "1 0 0",
-            minHeight: minWidth1000 ? "0" : "500px"
-          }}
+          style={{ flex: "1 0 0" }}
         >
           <div style={{ height: "100%", width: "100%", overflowX: "auto" }}>
             <MaterialAdminTable status={Tab} requests={material} />
