@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 
 export const StyledTable = styled.table`
   width: 100%;
@@ -93,4 +93,29 @@ export const StyledTh = styled.th`
     border-bottom-right-radius: 10px;
     padding-right:0;
   }
+`;
+
+const opacityIn = keyframes`
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+`;
+
+const opacityOut = keyframes`
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+`;
+
+export const Tbody = styled.tbody`
+  animation: ${(props) => props.opacityIn && opacityIn } ${(props) => props.opacityOut && opacityOut } 0.75s linear;
+  display: ${(props) => props.Display};
 `;
