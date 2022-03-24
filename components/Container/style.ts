@@ -189,3 +189,17 @@ export const CheckboxRow = styled(Row)`
     grid-template-columns: repeat(auto-fill,minmax(${(props) => props.mobileColWidth}, 1fr));
   } 
 `;
+
+export const ButtonsRow = styled(Row)`
+  display: grid;
+  grid-Template-Columns: repeat(auto-fill,minmax(425px, 1fr));
+  grid-Auto-Rows: 70px;
+  border: none;
+  justify-items: center;
+  align-items: center;
+  gap: 20px 0;
+
+  @media screen and (max-width: 1700px){
+    grid-Template-Columns: repeat(auto-fill,minmax(300px, 1fr))
+  } 
+`;

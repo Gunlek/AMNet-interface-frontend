@@ -1,7 +1,7 @@
 import React from "react";
 import Head from "next/head";
 import { GreenButton, OrangeButton, RedButton } from "../../components/Button/Buttons";
-import { DashboardContainer, ResponsiveRow, Row } from "../../components/Container/style";
+import { ButtonsRow, DashboardContainer, ResponsiveRow, Row } from "../../components/Container/style";
 import { StyledCard } from "../../components/Card/style";
 import AdminMenu from "../../components/Menu/AdminMenu";
 import { BlackTitle } from "../../components/Text/style";
@@ -392,7 +392,6 @@ const data = [
 ]
 
 export default function Users() {
-  const minWidth1700 = useMediaQuery('(min-width:1700px)');
   const minWidth1000 = useMediaQuery('(min-width:1000px)');
   const [Filter, Checkboxs, SelectedRows, Table] = UsersTable(data)
   
@@ -415,24 +414,15 @@ export default function Users() {
 
           {Checkboxs}
 
-          <Row
+          <ButtonsRow
             marginBottom="2%" 
             mobileMarginBottom="30px"
-            style={{
-              display: "grid",
-              gridTemplateColumns: minWidth1700 ? "repeat(auto-fill,minmax(425px, 1fr))" : "repeat(auto-fill,minmax(300px, 1fr))",
-              gridAutoRows: "minmax(70px, auto)",
-              border: "none",
-              justifyItems: "center",
-              alignItems: "center",
-              gap: "20px 0"
-            }}
           >
             <GreenButton width="300px">Confirmer le paiement</GreenButton>
             <RedButton width="300px">Annuler le paiement</RedButton>
             <OrangeButton width="300px">Passer en Gadz</OrangeButton>
             <RedButton width="300px">Supprimer</RedButton>
-          </Row>
+          </ButtonsRow>
  
           <StyledCard 
             marginBottom="2%" 
