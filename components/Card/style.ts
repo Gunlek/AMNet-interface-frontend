@@ -1,4 +1,4 @@
-import styled, { keyframes } from "styled-components";
+import styled from "styled-components";
 import { Column } from "../Container/style";
 
 export const StyledCard = styled.div`
@@ -24,7 +24,6 @@ export const StyledCardCampus = styled(StyledCard)`
   
   @media screen and (max-width: 1000px){
     width: 100%;
-    margin-bottom: ${(props) => props.mobileMarginBottom};
   } 
 `;
 
@@ -34,7 +33,7 @@ export const StyledGreenCard = styled.div`
   color: #ffffff;
   width: 99%;
   padding: 5px 40px;
-  font-size: 1.2em;
+  font-size: 1.2rem;
 `;
 
 export const StyledTeamPicture = styled(Column)`
@@ -80,7 +79,7 @@ export const StyledFooter = styled.footer`
   margin: 0;
   margin-right: -2%;
   padding: 0 5px;
-  margin-top: ${(props) => props.marginTop  || "10px"};
+  margin-top: ${(props) => props.marginTop || "10px"};
   margin-bottom: 10px;
   
   @media screen and (max-width: 1000px){
@@ -133,64 +132,3 @@ export const StyledTabColumn = styled(Column)`
     transition: background-color 0.3s;
   }
 `;
-
-export const StyledImg = styled.img`
-  border-radius: ${(props) => props.shadow ? "8px" : "50%"};
-  transition: 0.3s;
-  margin-left: ${(props) => props.marginLeft || "10px"};
-  width: ${(props) => props.width || "1.4rem"};
-  padding: ${(props) => props.padding || "0.2rem"};
-  cursor: pointer;
-
-  &:hover{
-    background: ${(props) => !props.shadow && "rgba(0, 0, 0, 0.1)"};
-    box-shadow: ${(props) => props.shadow && "0px 2px 10px rgba(0, 0, 0, 0.4)"};
-  }
-`
-
-export const StyledBackgroundModal = styled.div`
-  background: rgba(0, 0, 0, 0.5); 
-  position: fixed; 
-  height: 150%; 
-  width: 100%; 
-  left: 0; 
-  top: 0;  
-  transition: z-index 0.3s linear, opacity 0.3s linear;
-  z-index: ${props => props.reveal ? "3" : "-1"};
-  opacity: ${props => props.reveal ? "1" : "0"};
-`;
-
-export const StyledModal = styled(StyledCardCampus)`
-  background: white;
-  width: ${props => props.width || "90%"};
-  align-items: center; 
-  justify-content: center;
-  padding: 30px; 
-  position: fixed; 
-  top: 50%; 
-  left: 50%;
-  transition: z-index 0.3s linear, opacity 0.3s linear;
-  transform: translate(-50%, -50%);
-  z-index: ${props => (props.reveal ? "4" : "-1")};
-  opacity: ${props => (props.reveal ? "1" : "0")};
-`
-
-export const StyledMinImg = styled.img`
-  width: 90%;
-  height: auto;
-  aspect-ratio: 1 / 1; 
-
-  @media screen and (max-width: 1000px){
-    width: auto; 
-    height: 80%; 
-  } 
-`
-
-export const StyledLogo = styled.svg`
-  height: ${props => (props.height || "100px")};
-  aspect-ratio: 19 / 8.5; 
-
-  @media screen and (max-width: 1000px){
-    height: 100px; 
-  } 
-`

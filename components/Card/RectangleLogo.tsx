@@ -1,4 +1,4 @@
-import { StyledLogo } from "./style";
+import { StyledLogo } from "./Images/style";
 
 export default function RectangleLogo(props: { color?: string, height?: string }) {
   if (props.color == 'white') {

@@ -6,7 +6,7 @@ import {
   ResponsiveRow,
   Col6
 } from "../../components/Container/style";
-import { StyledCard, StyledImg } from "../../components/Card/style";
+import { StyledCard } from "../../components/Card/style";
 import AdminMenu from "../../components/Menu/AdminMenu";
 import { BlackText, BlackTitle, GreenText, StyledLink } from "../../components/Text/style";
 import { GreenButton } from "../../components/Button/Buttons";
@@ -15,6 +15,7 @@ import { TeamEditor } from "../../components/TeamEditor/TeamEditor";
 import useMediaQuery from "../../components/MediaQueries/MediaQuery";
 import FileUploader from "../../components/Input/FileUploader";
 import TeamPicture from "../../components/Card/TeamPicture";
+import { StyledImg } from "../../components/Card/Images/style";
 
 
 export default function Edition() {

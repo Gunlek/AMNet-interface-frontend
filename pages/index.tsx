@@ -15,12 +15,13 @@ import {
   ResponsiveRow,
   Row
 } from "../components/Container/style";
-import { StyledCardCampus, StyledMinImg } from "../components/Card/style";
+import { StyledCardCampus } from "../components/Card/style";
 import { WhiteP, BlackP, BlackText, StyledLink } from "../components/Text/style";
 import useMediaQuery from "../components/MediaQueries/MediaQuery";
 import RectangleLogo from "../components/Card/RectangleLogo";
 import TeamPicture from "../components/Card/TeamPicture";
 import GitHub from "../components/NavIcons/github";
+import { StyledMinImg } from "../components/Card/Images/style";
 
 const accutalTeam = [
   {

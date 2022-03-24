@@ -7,7 +7,7 @@ import {
   HelpSection,
   TitleCard
 } from "../components/Card/Cards";
-import { StyledCardCampus, StyledImg } from "../components/Card/style";
+import { StyledCardCampus } from "../components/Card/style";
 import {
   Col6,
   Col3,
@@ -29,6 +29,7 @@ import {
 import useMediaQuery from "../components/MediaQueries/MediaQuery";
 import RectangleLogo from "../components/Card/RectangleLogo";
 import RoundCheckbox from "../components/Input/RoundCheckbox";
+import { StyledImg } from "../components/Card/Images/style";
 
 export default function SignUp() {
   const minWidth1000 = useMediaQuery('(min-width:1000px)');

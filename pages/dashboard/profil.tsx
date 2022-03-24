@@ -18,7 +18,7 @@ import {
   BlackText
 } from "../../components/Text/style";
 import useMediaQuery from "../../components/MediaQueries/MediaQuery";
-import { StyledImg } from "../../components/Card/style";
+import { StyledImg } from "../../components/Card/Images/style";
 
 
 export default function Profil() {
