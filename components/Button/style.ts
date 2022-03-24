@@ -11,6 +11,7 @@ export const StyledButton = styled.button`
   text-align: center;
   transition: 0.3s linear, box-shadow 0.3s;
   background: linear-gradient(90deg, var(--c1, #f6d365), var(--c2, #fda085) 51%, var(--c1, #f6d365)) var(--x, 0)/ 200%;
+  user-select: none;
 
   &:hover{ 
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
@@ -65,9 +66,9 @@ export const SmallStyledRedButton = styled(SmallStyledButton)`
 `;
 
 export const SmallStyledOrangeButton = styled(SmallStyledButton)`
-  background-color: #D78306;
+  background-color: #FF9900;
 
   &:hover{
-    background-color: #AA6B0B;
+    background-color: #D78306
   }
 `;
