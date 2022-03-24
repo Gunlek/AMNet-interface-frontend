@@ -230,23 +230,45 @@ export function UsersTable(data: any[]) {
             {headerGroups.map(headerGroup => (
               <StyledHeadTr {...headerGroup.getHeaderGroupProps()}>
 
-                {headerGroup.headers.map((column, index) => (
-                  <StyledTh {...column.getHeaderProps(column.getSortByToggleProps())}>
-                    <div style={{ display: "flex" }}>
-                      {column.render('Header')}
-                      <span
-                        style={{
-                          display: "inline-block",
-                          marginLeft: "10px",
-                          width: "20px"
-                        }}
-                      >
-                        {(index == 0) && Object.keys(selectedRowIds).length}
-                        {!(index == 0) && column.isSorted ? column.isSortedDesc ? '▼' : '▲' : ''}
-                      </span>
-                    </div>
-                  </StyledTh>
-                ))}
+                {headerGroup.headers.map((column, index) => {
+                  if (column['id'] == 'user_pay_status' || column['id'] == 'user_is_gadz') {
+                    return (
+                      <StyledTh {...column.getHeaderProps(column.getSortByToggleProps())}>
+                        <div style={{ display: "flex", userSelect: "none", justifyContent: "center" }}>
+                          {column.render('Header')}
+                          <span
+                            style={{
+                              display: "inline-block",
+                              marginLeft: "10px",
+                              width: "20px"
+                            }}
+                          >
+                            {column.isSorted ? column.isSortedDesc ? '▼' : '▲' : ''}
+                          </span>
+                        </div>
+                      </StyledTh>
+                    )
+                  }
+                  else {
+                    return (
+                      <StyledTh {...column.getHeaderProps(column.getSortByToggleProps())}>
+                        <div style={{ display: "flex", userSelect: "none" }}>
+                          {column.render('Header')}
+                          <span
+                            style={{
+                              display: "inline-block",
+                              marginLeft: "10px",
+                              width: "20px"
+                            }}
+                          >
+                            {(index == 0) && Object.keys(selectedRowIds).length}
+                            {!(index == 0) && column.isSorted ? column.isSortedDesc ? '▼' : '▲' : ''}
+                          </span>
+                        </div>
+                      </StyledTh>
+                    )
+                  }
+                })}
               </StyledHeadTr>
             ))}
           </thead>
@@ -259,7 +281,7 @@ export function UsersTable(data: any[]) {
                     if (cell.column['id'] == 'user_pay_status' || cell.column['id'] == 'user_is_gadz') {
                       return (
                         <StyledTd style={{ textAlign: "center" }}{...cell.getCellProps()}>
-                          {cell.value ? <Succes marginRight="25px"/> : <Fail marginRight="25px"/>}
+                          {cell.value ? <Succes marginRight="25px" /> : <Fail marginRight="25px" />}
                         </StyledTd>
                       )
                     }
