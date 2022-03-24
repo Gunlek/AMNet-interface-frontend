@@ -2,9 +2,9 @@ import { Row } from "../Container/style";
 import { StyledTabColumn } from "./style";
 
 export default function RequestTab(props: { status: string, TabChange: Function }){
-    const inProcess = (props.status == "pending");
-    const accepted = (props.status == "active");
-    const denied = (props.status == "declined");
+    const pending = (props.status == "pending");
+    const active = (props.status == "active");
+    const declined = (props.status == "declined");
   
     return(
     <Row 
@@ -18,10 +18,10 @@ export default function RequestTab(props: { status: string, TabChange: Function 
     >
         <StyledTabColumn
             id="pending"
-            onClick={props.TabChange}
-            focus={inProcess}
-            afterBackground={inProcess && "#096A09"}
-            afterHeight={inProcess && "4px"}
+            onClick={!pending ? props.TabChange : undefined}
+            focus={pending}
+            afterBackground={pending && "#096A09"}
+            afterHeight={pending && "4px"}
             style={{
                 width:"100px",
                 marginRight:"40px"
@@ -32,10 +32,10 @@ export default function RequestTab(props: { status: string, TabChange: Function 
         
         <StyledTabColumn 
             id="active"
-            onClick={props.TabChange}
-            focus={accepted}
-            afterBackground={accepted && "#096A09"}
-            afterHeight={accepted && "4px"}
+            onClick={!active ? props.TabChange : undefined}
+            focus={active}
+            afterBackground={active && "#096A09"}
+            afterHeight={active && "4px"}
             style={{
                 width:"100px",
                 marginRight:"40px"
@@ -46,14 +46,11 @@ export default function RequestTab(props: { status: string, TabChange: Function 
 
         <StyledTabColumn
             id="declined"
-            focus={denied}
-            onClick={props.TabChange} 
-            afterBackground={denied && "#096A09"}
-            afterHeight={denied && "4px"}
-            style={{
-                width:"124px",
-                
-            }}
+            focus={declined}
+            onClick={!declined ? props.TabChange : undefined} 
+            afterBackground={declined && "#096A09"}
+            afterHeight={declined && "4px"}
+            style={{ width:"124px" }}
         >
             Révoquées
         </StyledTabColumn>
