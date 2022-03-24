@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { GreenButton } from "../Button/Buttons";
 import { Row } from "../Container/style";
 import { BlackText } from "../Text/style";
 import {
@@ -7,9 +6,9 @@ import {
   StyledStateInvite,
   StyledStateRequest
 } from "./style";
-import { ContributionModal, ModalLogic } from "../Card/Modals";
 import Fail from "../NavIcons/fail";
 import Succes from "../NavIcons/succes";
+import ContributionModal from "../Card/Modals/ContributionModal";
 
 export function StateContribution(props: { status: string }) {
   if (props.status == 'paid') {
@@ -22,7 +21,7 @@ export function StateContribution(props: { status: string }) {
   }
   else if(props.status == 'unpaid')
   {
-    const { reveal, toggle } = ModalLogic();
+    
 
     return (
       <Row style={{ alignItems: "baseline", justifyContent: "center" }}>
@@ -30,8 +29,7 @@ export function StateContribution(props: { status: string }) {
           <BlackText style={{ paddingRight: "10px" }}>Cotisation :</BlackText>
           <Fail/>
         </StyledStateContribution>
-        <GreenButton width="150px" height="50px" onClick={toggle}>Payer</GreenButton>
-        <ContributionModal reveal={reveal} hide={toggle} />
+        <ContributionModal/>
       </Row>
     );
   }

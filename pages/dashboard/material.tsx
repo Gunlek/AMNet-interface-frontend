@@ -1,6 +1,5 @@
 import React from "react";
 import Head from "next/head";
-import { GreenButton } from "../../components/Button/Buttons";
 import {
   Column,
   DashboardContainer,
@@ -9,9 +8,9 @@ import {
 import { Footer, HelpSection } from "../../components/Card/Cards"
 import { StyledCard } from "../../components/Card/style";
 import UserMenu from "../../components/Menu/UserMenu";
-import { BlackTitle, BlackText, BlackP } from "../../components/Text/style";
-import { MaterialUserTable } from "../../components/Table/User";
-import { ModalLogic, MaterialModal } from "../../components/Card/Modals";
+import { BlackTitle, BlackP } from "../../components/Text/style";
+import MaterialModal from "../../components/Card/Modals/MaterialModal";
+import MaterialUserTable from "../../components/Table/User/Material";
 
 const material = [
   {
@@ -38,8 +37,6 @@ const material = [
 ]
 
 export default function UserMaterial() {
-  const { reveal, toggle } = ModalLogic();
-
   return (
     <>
       <Head>
@@ -60,8 +57,7 @@ export default function UserMaterial() {
               justifyContent: "center"
             }}
           >
-            <GreenButton width="280px" onClick={toggle}>Nouvelle demande</GreenButton>
-            <MaterialModal reveal={reveal} hide={toggle} />
+            <MaterialModal/>
           </div>
         </ResponsiveRow>
 

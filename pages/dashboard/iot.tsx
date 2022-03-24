@@ -1,6 +1,5 @@
 import React from "react";
 import Head from "next/head";
-import { GreenButton } from "../../components/Button/Buttons";
 import {
   Column,
   DashboardContainer,
@@ -16,8 +15,8 @@ import {
   BlackP,
   BlackUl
 } from "../../components/Text/style";
-import { IoTUserTable } from "../../components/Table/User";
-import { ModalLogic, IoTModal } from "../../components/Card/Modals";
+import IoTModal from "../../components/Card/Modals/IoTModal";
+import IoTUserTable from "../../components/Table/User/IoT";
 
 const Iot = [
   {
@@ -52,7 +51,6 @@ const Iot = [
 ]
 
 export default function UserIoT() {
-  const { reveal, toggle } = ModalLogic();
   const empty = (Iot.length === 0);
 
   return (
@@ -75,8 +73,7 @@ export default function UserIoT() {
               justifyContent: "center"
             }}
           >
-            <GreenButton width="280px" onClick={toggle}>Nouvelle demande</GreenButton>
-            <IoTModal reveal={reveal} hide={toggle} />
+            <IoTModal/>
           </div>
         </ResponsiveRow>
 
