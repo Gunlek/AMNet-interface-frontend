@@ -8,6 +8,7 @@ export const Column = styled.div`
   margin-bottom: ${(props) => props.marginBottom};
   justify-content: ${(props) => props.justify};
   align-items: ${(props) => props.align};
+  display: ${(props) => props.display};
 
   @media screen and (max-width: 1000px){
     width: ${(props) => props.mobileWidth};
@@ -15,6 +16,10 @@ export const Column = styled.div`
     margin-bottom: ${(props) => props.mobileMarginBottom};
     justify-content: ${(props) => props.mobileJustify};
     align-items: ${(props) => props.mobileAlign};
+  }
+
+  @media screen and (max-width: 800px){
+    display: ${(props) => props.mobileDisplay};
   }
 `;
 
@@ -52,6 +57,7 @@ export const Col = styled.div`
     margin-bottom: ${(props) => props.mobileMarginBottom};
     justify-content: ${(props) => props.mobileJustify};
     align-items: ${(props) => props.mobileAlign};
+    flex: ${(props) => props.mobileFlex};
   }
 `;
 
