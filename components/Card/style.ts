@@ -116,6 +116,7 @@ export const StyledTabColumn = styled(Column)`
   display: flex;
   flex-direction: column;
   align-items: center;
+  user-select: none;
   cursor: ${(props) => !props.focus && "pointer"};
 
   &:hover{
@@ -127,7 +128,7 @@ export const StyledTabColumn = styled(Column)`
     transform: translateY(50%);
     content: "";
     width: 100%;
-    background-color: ${(props) => props.afterBackground};;
+    background-color: ${(props) => props.focus && "#096A09"};;
     height: 4px;
     transition: background-color 0.3s;
   }
