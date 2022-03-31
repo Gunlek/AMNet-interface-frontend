@@ -14,10 +14,9 @@ export default function MaterialAdminTable(props: { requests: any[], status: { o
     let index = { active: 1, declined: 1, pending: 1 };
     const [Display, setDisplay] = useState({ active: "none", declined: "none", pending: "table-row-group" })
     const [Opacity, setOpacity] = useState({ active: "", declined: "", pending: "" })
-    const [Mount, setMount] = useState(false)
 
     useEffect(() => {
-        if (Mount) {
+        if (props.status.old !== null) {
             const newOpacity = { active: "", declined: "", pending: "" }
             newOpacity[props.status.old] = "out"
             setOpacity(newOpacity)
@@ -31,8 +30,6 @@ export default function MaterialAdminTable(props: { requests: any[], status: { o
                 setOpacity(newOpacity)
             }, 750);
         }
-
-        if (!Mount) setMount(true)
     }, [props.status]);
 
     props.requests.map((value) => {

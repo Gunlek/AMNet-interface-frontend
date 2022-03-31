@@ -15,10 +15,9 @@ export default function IoTAdminTable(props: { requests: any[], status: { old: s
     let index = { active: 1, declined: 1, pending: 1 };
     const [Display, setDisplay] = useState({ active: "none", declined: "none", pending: "table-row-group" })
     const [Opacity, setOpacity] = useState({ active: "", declined: "", pending: "" })
-    const [Mount, setMount] = useState(false)
 
     useEffect(() => {
-        if (Mount) {
+        if (props.status.old !== null) {
             const newOpacity = { active: "", declined: "", pending: "" }
             newOpacity[props.status.old] = "out"
             setOpacity(newOpacity)
@@ -32,8 +31,6 @@ export default function IoTAdminTable(props: { requests: any[], status: { old: s
                 setOpacity(newOpacity)
             }, 750);
         }
-
-        if (!Mount) setMount(true)
     }, [props.status]);
 
     props.requests.map((value) => {
@@ -111,8 +108,8 @@ export default function IoTAdminTable(props: { requests: any[], status: { old: s
             </Media>
             <Media greaterThan="sm">
                 <StyledTable>
-                    <thead>
-                        <StyledHeadTr style={{ position: "sticky", top: "0", zIndex: "2" }}>
+                    <thead style={{ position: "sticky", top: "0", zIndex: "2" }}>
+                        <StyledHeadTr>
                             <StyledTh scope="col">#</StyledTh>
                             <StyledTh scope="col">Utilisateur</StyledTh>
                             <StyledTh scope="col">Cotisation</StyledTh>
