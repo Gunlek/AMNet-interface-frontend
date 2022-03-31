@@ -79,6 +79,7 @@ export const StyledTh = styled.th`
   padding : 15px 25px;
   background: #096A09;
   color: white;
+  user-select: none;
 
   &:first-child {
     background: #096A09;
