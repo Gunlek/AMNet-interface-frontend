@@ -1,4 +1,4 @@
-import React, { forwardRef, useEffect, useMemo, useState } from 'react'
+import React, { forwardRef, useEffect, useMemo, useRef, useState } from 'react'
 import { useTable, useFilters, useGlobalFilter, useAsyncDebounce, useRowSelect, useSortBy } from 'react-table'
 import { CheckboxRow, Row } from '../../Container/style';
 import Checkbox from '../../Input/Checkbox';
@@ -22,9 +22,9 @@ interface Props {
 }
 
 const useCombinedRefs = (...refs): React.MutableRefObject<any> => {
-  const targetRef = React.useRef();
+  const targetRef = useRef();
 
-  React.useEffect(() => {
+  useEffect(() => {
     refs.forEach(ref => {
       if (!ref) return;
 
@@ -226,10 +226,8 @@ export function UsersTable(data: any[]) {
       <Media greaterThan="sm">
         <StyledTable {...getTableProps()}>
           <thead style={{ position: "sticky", top: "0", zIndex: "2" }}>
-            {headerGroups.map(headerGroup => (
-              <StyledHeadTr {...headerGroup.getHeaderGroupProps()}>
-
-                {headerGroup.headers.map((column, index) => {
+              <StyledHeadTr {...headerGroups[0].getHeaderGroupProps()}>
+                {headerGroups[0].headers.map((column, index) => {
                   if (column['id'] == 'user_pay_status' || column['id'] == 'user_is_gadz') {
                     return (
                       <StyledTh {...column.getHeaderProps(column.getSortByToggleProps())}>
@@ -269,8 +267,8 @@ export function UsersTable(data: any[]) {
                   }
                 })}
               </StyledHeadTr>
-            ))}
           </thead>
+
           <tbody {...getTableBodyProps()}>
             {rows.map((row, index) => {
               prepareRow(row)
