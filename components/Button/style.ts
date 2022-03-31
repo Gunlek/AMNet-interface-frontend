@@ -7,7 +7,7 @@ export const StyledButton = styled.button`
   height: ${(props) => props.height || "60px"};
   width: ${(props) => props.width || constants.defaultButtonWidth};
   color: white;
-  font-size: 1.2rem;
+  font-size: 19px;
   text-align: center;
   transition: 0.3s linear, box-shadow 0.3s;
   background: linear-gradient(90deg, var(--c1, #f6d365), var(--c2, #fda085) 51%, var(--c1, #f6d365)) var(--x, 0)/ 200%;
@@ -35,7 +35,6 @@ export const StyledOrangeButton = styled(StyledButton)`
   --c2: #AA6B0B;
 `;
 
-
 export const SmallStyledButton = styled(StyledButton)`
   border-radius: 16px;
   height: 40px;
@@ -47,7 +46,7 @@ export const SmallStyledButton = styled(StyledButton)`
   @media screen and (max-width: 1000px){
     width: ${(props) => props.width || "140px"};
   }
-`  
+`;
 
 export const SmallStyledGreenButton = styled(SmallStyledButton)`
   background-color: #67BC45;
