@@ -1,19 +1,15 @@
-import styled, { createGlobalStyle } from "styled-components";
+import { createGlobalStyle } from "styled-components";
 
 export const CampusGlobalStyle = createGlobalStyle` 
   body{
     padding: 0;
-    background-image: url("/static/images/homepage/campus.jpg");
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url("/static/images/homepage/campus2.jpg");
     background-color: #c1c1c1;
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
     min-height: 100vh;
     scrollbar-color: auto;
-    
-    @media screen and (max-width: 1000px){
-      background-image: url("/static/images/homepage/mobile-campus.jpg");
-    }
   }
 
   #__next{
