@@ -23,6 +23,10 @@ export const StyledMenu = styled(StyledCard)`
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     padding-bottom: 10px;
+    overflow: hidden;
+    transition: height 0.3s linear, padding-bottom 0.3s linear;
+    grid-auto-rows: auto 95px 95px;
+    height: ${(props) => props.mobileHeight};
   } 
 `;
 
@@ -61,11 +65,16 @@ export const StyledDivLogOut = styled(Row)`
   justify-content: center; 
   width: 60px;
   justify-self: center;
+  display: ${(props) => props.display};
 
   @media screen and (max-width: 1000px){
     flex-direction: column;
     align-items: center; 
     flex: 1;
     margin-top: 0;
+  }
+
+  @media screen and (max-width: 800px){
+    display: ${(props) => props.mobileDisplay};
   }
 `

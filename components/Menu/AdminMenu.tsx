@@ -15,7 +15,6 @@ import {
   StyledDivLogOut,
   StyledMenu
 } from "./style";
-import { MediaContextProvider, Media } from "../MediaQueries/MediaSSR";
 import SmallLogo from "../NavIcons/smallLogo";
 
 
@@ -39,112 +38,65 @@ export default function AdminMenu(props: { page: string }) {
   };
 
   return (
-    <MediaContextProvider>
-      <Media at="sm">
-        <MenuContener timeTransform={open ? "0.6s" : "0.3s"} top={top} scroll={scroll} sticky={scrolled}>
-          <StyledMenu>
-            <Row
-              style={{
-                flex: "1",
-                margin: "5px 0",
-                justifyContent: "center",
-                alignItems: "center"
-              }}
-            >
-              <BurgerMenu open={open} onClick={handleChange} />
-            </Row>
+    <MenuContener timeTransform={open ? "0.6s" : "0.3s"} top={top} scroll={scroll} sticky={scrolled}>
+      <StyledMenu mobileHeight={open ? "285px" : "95px"}>
+        <Row
+          display="none"
+          mobileDisplay="flex"
+          justify="center"
+          align="center"
+          style={{
+            flex: "1",
+            margin: "5px 0",
+          }}
+        >
+          <BurgerMenu open={open} onClick={handleChange} />
+        </Row>
+        <StyledDivLogo>
+          <SmallLogo />
+        </StyledDivLogo>
 
-            <StyledDivLogo>
-              <SmallLogo/>
-            </StyledDivLogo>
+        <StyledDivLogOut
+          display="none"
+          mobileDisplay="flex"
+        >
+          <LogOutIcon id="1" />
+        </StyledDivLogOut>
 
-            <StyledDivLogOut>
-              <LogOutIcon />
-            </StyledDivLogOut>
+        <Row style={positionning}>
+          <SettingsIcon page={props.page} />
+        </Row>
 
-            <div
-              style={{
-                display: "grid",
-                gridTemplateColumns: "1fr 1fr 1fr",
-                gridColumnStart: "1",
-                gridColumnEnd: "4",
-                height: open ? "200px" : "0",
-                overflow: "hidden",
-                transition: "height 0.3s linear, padding-bottom 0.3s linear",
-                paddingBottom: open ? "10px" : "0",
-                gridAutoRows: "95px"
-              }}
-            >
-              <Row style={positionning}>
-                <SettingsIcon page={props.page} />
-              </Row>
+        <Row style={positionning}>
+          <UsersIcon page={props.page} />
+        </Row>
 
-              <Row style={positionning}>
-                <UsersIcon page={props.page} />
-              </Row>
+        <Row style={positionning}>
+          <IoTIcon page={props.page} location="settings" />
+        </Row>
 
-              <Row style={positionning}>
-                <IoTIcon page={props.page} location="settings" />
-              </Row>
+        <Row style={positionning}>
+          <MaterialIcon page={props.page} location="settings" />
+        </Row>
 
-              <Row style={positionning}>
-                <MaterialIcon page={props.page} location="settings" />
-              </Row>
+        <Row style={positionning}>
+          <EditionIcon page={props.page} />
+        </Row>
 
-              <Row style={positionning}>
-                <EditionIcon page={props.page} />
-              </Row>
+        <Row style={positionning}>
+          <IndexIcon page={props.page} />
+        </Row>
 
-              <Row style={positionning}>
-                <IndexIcon page={props.page} />
-              </Row>
-            </div>
-          </StyledMenu>
-        </MenuContener>
-      </Media>
-
-      <Media greaterThan="sm">
-        <MenuContener timeTransform="0.3s" top={top} scroll={scroll} sticky={scrolled}>
-          <StyledMenu>
-            <StyledDivLogo>
-              <SmallLogo/>
-            </StyledDivLogo>
-
-            <Row style={positionning}>
-              <SettingsIcon page={props.page} />
-            </Row>
-
-            <Row style={positionning}>
-              <UsersIcon page={props.page} />
-            </Row>
-
-            <Row style={positionning}>
-              <IoTIcon page={props.page} location="settings" />
-            </Row>
-
-            <Row style={positionning}>
-              <MaterialIcon page={props.page} location="settings" />
-            </Row>
-
-            <Row style={positionning}>
-              <EditionIcon page={props.page} />
-            </Row>
-
-            <Row style={positionning}>
-              <IndexIcon page={props.page} />
-            </Row>
-
-            <StyledDivLogOut
-              flex="3"
-              marginTop="10px"
-            >
-              <LogOutIcon />
-            </StyledDivLogOut>
-          </StyledMenu>
-        </MenuContener>
-      </Media>
-    </MediaContextProvider>
-
+        <StyledDivLogOut
+          flex="3"
+          marginTop="10px"
+          display="flex"
+          mobileDisplay="none"
+        >
+          <LogOutIcon id="2" />
+        </StyledDivLogOut>
+      </StyledMenu>
+    </MenuContener>
   )
 }
 
