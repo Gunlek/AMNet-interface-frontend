@@ -38,8 +38,7 @@ export default function Profil() {
   }
 
   useEffect(() => {
-    const test = document.getElementById("user_promotion2") as HTMLInputElement
-    if (isOther) test.focus()
+    if (isOther) document.getElementById("user_promotion2").focus()
   }, [isOther])
 
   return (
@@ -69,8 +68,8 @@ export default function Profil() {
             <Col6
               paddingLeft="10px" mobileAlign="center"
               style={{
-                justifyContent: "end",
-                height: minWidth1000 ? "75px" : "auto"
+                justifyContent: "center",
+                height: "100%"
               }}
             >
               <BlackText mobileAlignTxt="justify">
@@ -178,11 +177,12 @@ export default function Profil() {
           >
             <Col6 paddingRight="10px"
               mobileMarginBottom={isGadz ? "20px" : "0"}
+              mobileFlex={isGadz ? undefined : "none !important"}
               style={{
                 height: isGadz ? "93px" : "0",
                 transition: "height 0.3s linear",
                 overflowY: "clip",
-                flex: (!isGadz && !minWidth1000) ? "none" : undefined
+                
               }}
             >
               <GreenText style={{ marginBottom: "5px" }}>Identifiants gadzariques</GreenText>

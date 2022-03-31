@@ -17,7 +17,6 @@ import {
 } from "../components/Container/style";
 import { StyledCardCampus } from "../components/Card/style";
 import { WhiteP, BlackP, BlackText, StyledLink } from "../components/Text/style";
-import useMediaQuery from "../components/MediaQueries/MediaQuery";
 import RectangleLogo from "../components/Card/RectangleLogo";
 import TeamPicture from "../components/Card/TeamPicture";
 import GitHub from "../components/NavIcons/github";
@@ -37,8 +36,6 @@ const accutalTeam = [
     id: "74Li220"
   }];
 export default function Homepage() {
-  const minWidth1000 = useMediaQuery('(min-width:1000px)');
-
   return (
     <>
       <Head>
@@ -57,7 +54,7 @@ export default function Homepage() {
         </Col6>
       </Row>
 
-      <ResponsiveRow marginBottom="20px" mobileMarginBottom="30px" style={{ flex: "2" }}>
+      <ResponsiveRow marginBottom="20px" mobileMarginBottom="30px" style={{ flex: "8" }}>
         <Col7 paddingRight="15px" mobileMarginBottom="30px"
           style={{
             paddingTop: "0px",

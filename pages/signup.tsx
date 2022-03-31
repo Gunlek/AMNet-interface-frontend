@@ -53,8 +53,7 @@ export default function SignUp() {
   }
 
   useEffect(() => {
-    const test = document.getElementById("user_promotion2") as HTMLInputElement
-    if (isOther) test.focus()
+    if (isOther) document.getElementById("user_promotion2").focus()
   }, [isOther])
 
   return (
