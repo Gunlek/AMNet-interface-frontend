@@ -71,3 +71,14 @@ export const SmallStyledOrangeButton = styled(SmallStyledButton)`
     background-color: #D78306
   }
 `;
+
+export const StyledBackArrow = styled.div`
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: ${(props) => "translateY("+props.translate+")"};
+  user-select: none;
+`;
