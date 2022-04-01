@@ -24,9 +24,9 @@ export const StyledMenu = styled(StyledCard)`
     grid-template-columns: 1fr 1fr 1fr;
     padding-bottom: 10px;
     overflow: hidden;
-    transition: height 0.3s linear, padding-bottom 0.3s linear;
-    grid-auto-rows: auto 95px 95px;
-    height: ${(props) => props.mobileHeight};
+    transition: height 0.3s linear;
+    grid-auto-rows: auto 95px 95px 95px;
+    height: ${(props) => props.mobileHeight+"px"};
   } 
 `;
 

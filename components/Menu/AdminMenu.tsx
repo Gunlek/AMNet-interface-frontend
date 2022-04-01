@@ -39,7 +39,7 @@ export default function AdminMenu(props: { page: string }) {
 
   return (
     <MenuContener timeTransform={open ? "0.6s" : "0.3s"} top={top} scroll={scroll} sticky={scrolled}>
-      <StyledMenu mobileHeight={open ? "285px" : "95px"}>
+      <StyledMenu mobileHeight={open ? "285" : "95"}>
         <Row
           display="none"
           mobileDisplay="flex"

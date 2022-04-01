@@ -22,7 +22,17 @@ import SmallLogo from "../NavIcons/smallLogo";
 export default function UserMenu(props: { page: string }) {
   const [scroll, scrolled, top] = useScrollingUp()
   const [open, SetOpen] = useState(false);
+  const Contribution = true;
+  const isGadz = Contribution ? true : false;
+  const isAdmin = true;
 
+  var NumHiddenIcon = 0
+  if (!isGadz) NumHiddenIcon++
+  if (!isAdmin) NumHiddenIcon++
+  if (!Contribution) NumHiddenIcon = NumHiddenIcon + 2
+
+  const mobileHeight = (Math.ceil((7 - NumHiddenIcon) / 3) * 95 + 95).toString()
+  
   function handleChange() {
     SetOpen(!open);
   }
@@ -40,7 +50,7 @@ export default function UserMenu(props: { page: string }) {
 
   return (
     <MenuContener timeTransform={open ? "0.6s" : "0.3s"} top={top} scroll={scroll} sticky={scrolled}>
-      <StyledMenu mobileHeight={open ? "362.5px" : "95px"}>
+      <StyledMenu mobileHeight={open ? mobileHeight : "95"}>
         <Row
           display="none"
           mobileDisplay="flex"
@@ -72,32 +82,41 @@ export default function UserMenu(props: { page: string }) {
           <ProfilIcon page={props.page} />
         </Row>
 
-        <Row style={positionning}>
-          <IoTIcon page={props.page} location="dashboard" />
-        </Row>
+        {Contribution &&
+          <>
+            <Row style={positionning}>
+              <IoTIcon page={props.page} location="dashboard" />
+            </Row>
 
-        <Row style={positionning}>
-          <MaterialIcon page={props.page} location="dashboard" />
-        </Row>
+            <Row style={positionning}>
+              <MaterialIcon page={props.page} location="dashboard" />
+            </Row>
+          </>
+        }
 
-        <Row style={positionning}>
-          <GadzflixIcon />
-        </Row>
+        {isGadz && 
+          <Row style={positionning}>
+            <GadzflixIcon />
+          </Row>
+        }
 
         <Row style={positionning}>
           <FAQIcon page={props.page} />
         </Row>
 
-        <Row style={positionning}>
-          <SettingsIcon page={props.page} />
-        </Row>
+        {isAdmin &&
+          <Row style={positionning}>
+            <SettingsIcon page={props.page} />
+          </Row>
+        }
 
         <StyledDivLogOut display="flex"
           mobileDisplay="none"
+          flex={NumHiddenIcon + 2}
         >
           <LogOutIcon id="2" />
         </StyledDivLogOut>
       </StyledMenu>
-    </MenuContener>
+    </MenuContener >
   )
 }
