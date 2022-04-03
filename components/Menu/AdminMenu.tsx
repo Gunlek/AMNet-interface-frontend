@@ -45,10 +45,6 @@ export default function AdminMenu(props: { page: string }) {
           mobileDisplay="flex"
           justify="center"
           align="center"
-          style={{
-            flex: "1",
-            margin: "5px 0",
-          }}
         >
           <BurgerMenu open={open} onClick={handleChange} />
         </Row>
@@ -56,10 +52,7 @@ export default function AdminMenu(props: { page: string }) {
           <SmallLogo />
         </StyledDivLogo>
 
-        <StyledDivLogOut
-          display="none"
-          mobileDisplay="flex"
-        >
+        <StyledDivLogOut display="none" mobileDisplay="flex">
           <LogOutIcon id="1" />
         </StyledDivLogOut>
 
@@ -72,11 +65,11 @@ export default function AdminMenu(props: { page: string }) {
         </Row>
 
         <Row style={positionning}>
-          <IoTIcon page={props.page} location="settings" />
+          <IoTIcon page={props.page} admin={true} />
         </Row>
 
         <Row style={positionning}>
-          <MaterialIcon page={props.page} location="settings" />
+          <MaterialIcon page={props.page} admin={true} />
         </Row>
 
         <Row style={positionning}>

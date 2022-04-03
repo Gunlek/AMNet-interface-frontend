@@ -32,7 +32,7 @@ export default function UserMenu(props: { page: string }) {
   if (!Contribution) NumHiddenIcon = NumHiddenIcon + 2
 
   const mobileHeight = (Math.ceil((7 - NumHiddenIcon) / 3) * 95 + 95).toString()
-  
+
   function handleChange() {
     SetOpen(!open);
   }
@@ -56,10 +56,6 @@ export default function UserMenu(props: { page: string }) {
           mobileDisplay="flex"
           justify="center"
           align="center"
-          style={{
-            flex: "1",
-            margin: "5px 0",
-          }}
         >
           <BurgerMenu open={open} onClick={handleChange} />
         </Row>
@@ -67,10 +63,7 @@ export default function UserMenu(props: { page: string }) {
           <SmallLogo />
         </StyledDivLogo>
 
-        <StyledDivLogOut
-          display="none"
-          mobileDisplay="flex"
-        >
+        <StyledDivLogOut display="none" mobileDisplay="flex">
           <LogOutIcon id="1" />
         </StyledDivLogOut>
 
@@ -85,16 +78,16 @@ export default function UserMenu(props: { page: string }) {
         {Contribution &&
           <>
             <Row style={positionning}>
-              <IoTIcon page={props.page} location="dashboard" />
+              <IoTIcon page={props.page} />
             </Row>
 
             <Row style={positionning}>
-              <MaterialIcon page={props.page} location="dashboard" />
+              <MaterialIcon page={props.page} />
             </Row>
           </>
         }
 
-        {isGadz && 
+        {isGadz &&
           <Row style={positionning}>
             <GadzflixIcon />
           </Row>
