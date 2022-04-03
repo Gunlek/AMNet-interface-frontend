@@ -21,8 +21,6 @@ export function StateContribution(props: { status: string }) {
   }
   else if(props.status == 'unpaid')
   {
-    
-
     return (
       <Row style={{ alignItems: "baseline", justifyContent: "center" }}>
         <StyledStateContribution style={{ marginRight: "15px" }}>
@@ -48,7 +46,7 @@ export function StateRequest(props: { state: string, center?: boolean }) {
 }
 
 export function StateInvite(props: { state?: boolean }) {
-  var [state, setState] = useState(props.state);
+  const [state, setState] = useState(props.state);
 
   const handleValueChange = (elmt) => {
     setState(elmt.target.value == "enabled");
@@ -63,7 +61,7 @@ export function StateInvite(props: { state?: boolean }) {
 }
 
 export function StateIntegration(props: { state?: boolean }) {
-  var [state, setState] = useState(props.state);
+  const [state, setState] = useState(props.state);
 
   const handleValueChange = (elmt) => {
     setState(elmt.target.value == "enabled");
