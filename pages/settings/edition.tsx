@@ -161,7 +161,7 @@ export default function Edition() {
               <ResponsiveRow style={{ marginBottom: "20px" }}>
                 <Row width="400px" mobileWidth="auto" mobileMarginBottom="20px">
                   <StyledLink
-                    color="#096a09"
+                    color="black"
                     target="_blank"
                     href="/static/images/team.png"
                   >
