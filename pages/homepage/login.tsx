@@ -1,18 +1,14 @@
 import React, { useState } from "react";
 import Head from "next/head";
-import { CampusGlobalStyle } from "../components/Background/style";
-import { GreenButton } from "../components/Button/Buttons";
-import { Row } from "../components/Container/style";
-import {
-  Footer,
-  HelpSection,
-  TitleCard,
-} from "../components/Card/Cards";
-import { StyledCardCampus } from "../components/Card/style";
-import { StyledInput, StyledInputLabel } from "../components/Input/style";
-import { BlackText, StyledLink } from "../components/Text/style";
-import Checkbox from "../components/Input/Checkbox";
-import RectangleLogo from "../components/Card/RectangleLogo";
+import { CampusGlobalStyle } from "../../components/Background/style";
+import { GreenButton } from "../../components/Button/Buttons";
+import { TitleCard, HelpSection, Footer } from "../../components/Card/Cards";
+import RectangleLogo from "../../components/Card/RectangleLogo";
+import { StyledCardCampus } from "../../components/Card/style";
+import { Row } from "../../components/Container/style";
+import Checkbox from "../../components/Input/Checkbox";
+import { StyledInputLabel, StyledInput } from "../../components/Input/style";
+import { BlackText, StyledLink } from "../../components/Text/style";
 
 export default function Login() {
   const [checked, setChecked] = useState(false);

@@ -1,24 +1,15 @@
 import React, { useEffect, useState } from "react";
 import Head from "next/head";
-import { GreenButton } from "../../components/Button/Buttons";
-import {
-  Col6,
-  Col3,
-  Column,
-  DashboardContainer,
-  ResponsiveRow
-} from "../../components/Container/style";
-import { Footer, HelpSection } from "../../components/Card/Cards"
-import { StyledInput, StyledInputLabel, StyledSelect } from "../../components/Input/style";
-import UserMenu from "../../components/Menu/UserMenu";
-import { StateContribution } from "../../components/Status/Status";
-import {
-  BlackTitle,
-  GreenText,
-  BlackText
-} from "../../components/Text/style";
-import useMediaQuery from "../../components/MediaQueries/MediaQuery";
-import { StyledImg } from "../../components/Card/Images/style";
+import { GreenButton } from "../components/Button/Buttons";
+import { HelpSection, Footer } from "../components/Card/Cards";
+import { StyledImg } from "../components/Card/Images/style";
+import { DashboardContainer, ResponsiveRow, Column, Col6, Col3 } from "../components/Container/style";
+import { StyledInputLabel, StyledInput, StyledSelect } from "../components/Input/style";
+import useMediaQuery from "../components/MediaQueries/MediaQuery";
+import UserMenu from "../components/Menu/UserMenu";
+import { StateContribution } from "../components/Status/Status";
+import { BlackTitle, BlackText, GreenText } from "../components/Text/style";
+
 
 
 export default function Profil() {

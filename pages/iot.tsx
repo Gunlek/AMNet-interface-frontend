@@ -1,22 +1,13 @@
 import React from "react";
 import Head from "next/head";
-import {
-  Column,
-  DashboardContainer,
-  ResponsiveRow
-} from "../../components/Container/style";
-import { Footer, HelpSection } from "../../components/Card/Cards"
-import { StyledCard } from "../../components/Card/style";
-import UserMenu from "../../components/Menu/UserMenu";
-import {
-  BlackTitle,
-  BlackText,
-  StyledLink,
-  BlackP,
-  BlackUl
-} from "../../components/Text/style";
-import IoTModal from "../../components/Card/Modals/IoTModal";
-import IoTUserTable from "../../components/Table/User/IoT";
+import { HelpSection, Footer } from "../components/Card/Cards";
+import IoTModal from "../components/Card/Modals/IoTModal";
+import { StyledCard } from "../components/Card/style";
+import { DashboardContainer, ResponsiveRow, Column } from "../components/Container/style";
+import UserMenu from "../components/Menu/UserMenu";
+import IoTUserTable from "../components/Table/User/IoT";
+import { BlackTitle, BlackP, StyledLink, BlackText, BlackUl } from "../components/Text/style";
+
 
 const Iot = [
   {

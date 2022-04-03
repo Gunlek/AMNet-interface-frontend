@@ -1,16 +1,13 @@
 import React from "react";
 import Head from "next/head";
-import { CampusGlobalStyle } from "../components/Background/style";
-import {
-  Footer,
-  HelpSection,
-  TitleCard
-} from "../components/Card/Cards";
-import { GreenButton } from "../components/Button/Buttons";
-import { StyledCardCampus } from "../components/Card/style";
-import { Row } from "../components/Container/style";
-import { StyledInput, StyledInputLabel } from "../components/Input/style";
-import RectangleLogo from "../components/Card/RectangleLogo";
+import { CampusGlobalStyle } from "../../components/Background/style";
+import { GreenButton } from "../../components/Button/Buttons";
+import { TitleCard, HelpSection, Footer } from "../../components/Card/Cards";
+import RectangleLogo from "../../components/Card/RectangleLogo";
+import { StyledCardCampus } from "../../components/Card/style";
+import { Row } from "../../components/Container/style";
+import { StyledInputLabel, StyledInput } from "../../components/Input/style";
+
 
 export default function LostPassword() {
   return (

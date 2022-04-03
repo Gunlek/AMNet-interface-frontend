@@ -1,35 +1,28 @@
 import React, { useEffect, useState } from "react";
 import Head from "next/head";
-import { CampusGlobalStyle } from "../components/Background/style";
-import { GreenButton } from "../components/Button/Buttons";
-import {
-  Footer,
-  HelpSection,
-  TitleCard
-} from "../components/Card/Cards";
-import { StyledCardCampus } from "../components/Card/style";
-import {
-  Col6,
-  Col3,
-  Row,
-  ResponsiveRow,
-  Column,
-} from "../components/Container/style";
-import {
-  StyledInput,
-  StyledInputLabel,
-  StyledSelect
-} from "../components/Input/style";
-import {
-  GreenText,
-  BlackText,
-  StyledLink,
-  BlackP
-} from "../components/Text/style";
-import useMediaQuery from "../components/MediaQueries/MediaQuery";
-import RectangleLogo from "../components/Card/RectangleLogo";
-import RoundCheckbox from "../components/Input/RoundCheckbox";
-import { StyledImg } from "../components/Card/Images/style";
+import { CampusGlobalStyle } from "../../components/Background/style";
+import { GreenButton } from "../../components/Button/Buttons";
+import { TitleCard, HelpSection, Footer } from "../../components/Card/Cards";
+import { StyledImg } from "../../components/Card/Images/style";
+import RectangleLogo from "../../components/Card/RectangleLogo";
+import { StyledCardCampus } from "../../components/Card/style";
+import RoundCheckbox from "../../components/Input/RoundCheckbox";
+import { StyledInputLabel, StyledInput, StyledSelect } from "../../components/Input/style";
+import useMediaQuery from "../../components/MediaQueries/MediaQuery";
+import { 
+  Row, 
+  ResponsiveRow, 
+  Col6, 
+  Col3, 
+  Column 
+} from "../../components/Container/style";
+import { 
+  BlackText, 
+  GreenText, 
+  StyledLink, 
+  BlackP 
+} from "../../components/Text/style";
+
 
 export default function SignUp() {
   const minWidth1000 = useMediaQuery('(min-width:1000px)');
@@ -89,7 +82,7 @@ export default function SignUp() {
                 paddingLeft="10px" mobileAlign="center"
                 style={{
                   justifyContent: "end",
-                  height: minWidth1000 ? "75px" : "auto"
+                  height: "100%"
                 }}
               >
                 <BlackText mobileAlignTxt="justify">

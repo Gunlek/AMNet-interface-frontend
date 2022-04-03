@@ -1,13 +1,13 @@
 import React from "react";
 import Head from "next/head";
-import { CampusGlobalStyle } from "../components/Background/style";
-import { Footer, HelpSection, TitleCard } from "../components/Card/Cards";
-import { StyledCardCampus } from "../components/Card/style";
-import { Col6, ResponsiveRow } from "../components/Container/style";
-import RectangleLogo from "../components/Card/RectangleLogo";
-import { GreenButton } from "../components/Button/Buttons";
-import { BlackP } from "../components/Text/style";
-import useMediaQuery from "../components/MediaQueries/MediaQuery";
+import { CampusGlobalStyle } from "../../components/Background/style";
+import { Footer, HelpSection, TitleCard } from "../../components/Card/Cards";
+import { StyledCardCampus } from "../../components/Card/style";
+import { Col6, ResponsiveRow } from "../../components/Container/style";
+import RectangleLogo from "../../components/Card/RectangleLogo";
+import { GreenButton } from "../../components/Button/Buttons";
+import { BlackP } from "../../components/Text/style";
+import useMediaQuery from "../../components/MediaQueries/MediaQuery";
 
 export default function FAQ() {
   const minWidth1000 = useMediaQuery('(min-width:1000px)');

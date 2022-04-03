@@ -20,7 +20,7 @@ export function HelpSection(props: { color?: string, marginBottom?: string, mobi
       padding={props.padding}
     >
       Besoin d'assistance ?{" "}
-      <StyledLink color={props.color} href={props.color ? "../dashboard/faq" : "./faq"}>FAQ</StyledLink>{" "}ou{" "}
+      <StyledLink color={props.color} href={"/homepage/faq"}>FAQ</StyledLink>{" "}ou{" "}
       <StyledLink color={props.color} href="mailto:contact@amnet.fr">contact@amnet.fr</StyledLink>
     </StyledHelpSection>
   );

@@ -18,7 +18,7 @@ export default function Faq(props: {page: string}){
     }
     else{
         return(
-            <StyledBackIcon content={content} href="../dashboard/faq">
+            <StyledBackIcon content={content} href="./homepage/faq">
                 <StyledIcon width="34" height="34" viewBox="0 0 25 43" xmlns="http://www.w3.org/2000/svg" xmlSpace="preserve">
                     <path d="M12 2c5.354.223 7.677 5.618 4.5 9.67-.83 1-2.17 1.66-2.83 2.5C13 15 13 16 13 17h-3c0-1.67 0-3.08.67-4.08.66-1 2-1.59 2.83-2.25C15.916 8.43 15.32 5.257 12 5a3 3 0 0 0-3 3H6a6 6 0 0 1 6-6Z" transform="matrix(2.05 0 0 2.05 -12.04 -3.46)"/>
                     <g transform="matrix(2 0 0 2 -2234.14 -3463.86)">
