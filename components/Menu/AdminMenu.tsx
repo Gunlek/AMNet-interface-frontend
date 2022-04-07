@@ -82,7 +82,6 @@ export default function AdminMenu(props: { page: string }) {
 
         <StyledDivLogOut
           flex="3"
-          marginTop="10px"
           display="flex"
           mobileDisplay="none"
         >
