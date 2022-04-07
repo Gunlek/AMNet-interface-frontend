@@ -59,7 +59,7 @@ export default function Dashboard() {
                     marginTop: "20px"
                   }}
                 >
-                  <ButtonLink href="./iot">Accéder</ButtonLink>
+                  <ButtonLink href="/iot">Accéder</ButtonLink>
                 </Row>
               </Column>
             </StyledCard>
@@ -83,7 +83,7 @@ export default function Dashboard() {
                     marginTop: "20px"
                   }}
                 >
-                  <ButtonLink href="./homepage/faq">Accéder</ButtonLink>
+                  <ButtonLink href="/homepage/faq">Accéder</ButtonLink>
                 </Row>
               </Column>
             </StyledCard>

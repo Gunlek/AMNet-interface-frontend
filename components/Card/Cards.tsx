@@ -10,6 +10,7 @@ import {
   GreenTitle 
 } from "../Text/style";
 import GitHub from "../NavIcons/github";
+import Link from "next/link";
 
 export function HelpSection(props: { color?: string, marginBottom?: string, mobileMarginBottom?: string, padding?: string }) {
   return (
@@ -20,7 +21,10 @@ export function HelpSection(props: { color?: string, marginBottom?: string, mobi
       padding={props.padding}
     >
       Besoin d'assistance ?{" "}
-      <StyledLink color={props.color} href={"/homepage/faq"}>FAQ</StyledLink>{" "}ou{" "}
+      <Link href="/homepage/faq" passHref>
+        <StyledLink color={props.color} >FAQ</StyledLink>
+      </Link>
+      {" "}ou{" "}
       <StyledLink color={props.color} href="mailto:contact@amnet.fr">contact@amnet.fr</StyledLink>
     </StyledHelpSection>
   );

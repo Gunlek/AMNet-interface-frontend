@@ -9,10 +9,11 @@ import { Row } from "../../components/Container/style";
 import Checkbox from "../../components/Input/Checkbox";
 import { StyledInputLabel, StyledInput } from "../../components/Input/style";
 import { BlackText, StyledLink } from "../../components/Text/style";
+import Link from "next/link";
 
 export default function Login() {
   const [checked, setChecked] = useState(false);
-  
+
   const handleCheckboxChange = (elmt) => {
     setChecked(elmt.target.checked);
   }
@@ -56,11 +57,15 @@ export default function Login() {
             </label>
 
             <div style={{ marginBottom: "5px" }}>
-              <StyledLink hovercolor="#096A09" href="./lostpassword">Mot de passe / Identifiant oublié</StyledLink>
+              <Link href="/homepage/lostpassword" passHref>
+                <StyledLink hovercolor="#096A09" >Mot de passe / Identifiant oublié</StyledLink>
+              </Link>
             </div>
 
             <div style={{ marginBottom: "20px" }}>
-              <StyledLink hovercolor="#096A09" href="./signup"> Pas encore inscrit ? Inscrivez-vous en cliquant ici</StyledLink>
+              <Link href="/homepage/signup" passHref>
+                <StyledLink hovercolor="#096A09"> Pas encore inscrit ? Inscrivez-vous en cliquant ici</StyledLink>
+              </Link>
             </div>
 
             <Row style={{ justifyContent: "center" }}>
@@ -70,7 +75,7 @@ export default function Login() {
         </StyledCardCampus>
       </Row>
 
-      <HelpSection padding="0 5%"/>
+      <HelpSection padding="0 5%" />
       <Footer page="campus" />
     </>
   );
