@@ -1,7 +1,7 @@
 import React from "react";
 import Head from "next/head";
 import { CampusGlobalStyle } from "../../components/Background/style";
-import { GreenButton } from "../../components/Button/Buttons";
+import { ButtonLink } from "../../components/Button/Buttons";
 import { TitleCard, HelpSection } from "../../components/Card/Cards";
 import { StyledMinImg } from "../../components/Card/Images/style";
 import RectangleLogo from "../../components/Card/RectangleLogo";
@@ -50,9 +50,7 @@ export default function Homepage() {
           <RectangleLogo color="white" />
         </Col6>
         <Col6 align="end" mobileAlign="center" justify="center">
-          <a href="./homepage/login" style={{ borderRadius: "30px" }}>
-            <GreenButton width="300px">Se Connecter / S'inscrire</GreenButton>
-          </a>
+            <ButtonLink href="./homepage/login"  width="300px">Se Connecter / S'inscrire</ButtonLink>
         </Col6>
       </Row>
 

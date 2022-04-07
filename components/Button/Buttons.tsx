@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 import {
   StyledGreenButton,
@@ -107,5 +108,15 @@ export function ArrowButton(props: { onClick: Function, position: string }) {
         <path d="M.91,0l3.6,3.62L8.11,0,9,1.18,4.51,5.62,0,1.13Z" />
       </svg>
     </StyledBackArrow>
+  );
+}
+
+export function ButtonLink(props: { children: React.ReactNode; width?: string, height?: string, href: string }) {
+  return (
+    <Link href={props.href} passHref>
+      <StyledGreenButton as="a" width={props.width} height={props.height} style={{ lineHeight: props.height || "60px" }}>
+        {props.children}
+      </StyledGreenButton>
+    </Link>
   );
 }

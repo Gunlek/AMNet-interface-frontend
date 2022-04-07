@@ -4,6 +4,7 @@ import constants from "../../styles/constants";
 export const StyledButton = styled.button`
   border-radius: 90px;
   border: transparent;
+  outline: none;
   height: ${(props) => props.height || "60px"};
   width: ${(props) => props.width || constants.defaultButtonWidth};
   color: white;

@@ -1,12 +1,12 @@
 import React from "react";
 import Head from "next/head";
-import { GreenButton } from "../components/Button/Buttons";
+import { ButtonLink } from "../components/Button/Buttons";
 import { TitleCard, HelpSection, Footer } from "../components/Card/Cards";
 import { StyledCard } from "../components/Card/style";
 import { DashboardContainer, ResponsiveRow, Column, Col6, Row } from "../components/Container/style";
 import UserMenu from "../components/Menu/UserMenu";
 import { StateContribution } from "../components/Status/Status";
-import { BlackTitle, BlackText, StyledLinkButton } from "../components/Text/style";
+import { BlackTitle, BlackText } from "../components/Text/style";
 
 
 export default function Dashboard() {
@@ -20,7 +20,7 @@ export default function Dashboard() {
 
       <DashboardContainer>
         <ResponsiveRow margin="1% 0" mobileMargin="20px 0">
-          <Column mobileMarginBottom="20px"  style={{ justifyContent: "center" }}>
+          <Column mobileMarginBottom="20px" style={{ justifyContent: "center" }}>
             <BlackTitle>Mon Espace AMNet</BlackTitle>
           </Column>
 
@@ -59,9 +59,7 @@ export default function Dashboard() {
                     marginTop: "20px"
                   }}
                 >
-                  <StyledLinkButton href="../dashboard/iot" style={{ borderRadius: "90px" }}>
-                    <GreenButton>Accéder</GreenButton>
-                  </StyledLinkButton>
+                  <ButtonLink href="./iot">Accéder</ButtonLink>
                 </Row>
               </Column>
             </StyledCard>
@@ -78,17 +76,14 @@ export default function Dashboard() {
                 </BlackText>
 
                 <Row
-                  style={
-                    {
-                      flex: "1",
-                      justifyContent: "center",
-                      alignItems: "end",
-                      marginTop: "20px"
-                    }}
+                  style={{
+                    flex: "1",
+                    justifyContent: "center",
+                    alignItems: "end",
+                    marginTop: "20px"
+                  }}
                 >
-                  <StyledLinkButton href="./homepage/faq" style={{ borderRadius: "90px" }}>
-                    <GreenButton>Accéder</GreenButton>
-                  </StyledLinkButton>
+                  <ButtonLink href="./homepage/faq">Accéder</ButtonLink>
                 </Row>
               </Column>
             </StyledCard>
