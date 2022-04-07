@@ -29,7 +29,7 @@ export const StyledBackIcon = styled.a`
   
   &::after{
     position: absolute;
-    content:  ${(props) => props.content && '"'+props.content+'"'};
+    content:  ${(props) => props.tooltip && '"'+props.tooltip+'"'};
     top: 50%;
     left: 125%;
     transform: translateY(-50%);
@@ -106,7 +106,7 @@ export const StyledActiveIcon = styled.div`
 
     &::after{
       position: absolute;
-      content:  ${(props) => props.content && '"'+props.content+'"'};
+      content:  ${(props) => props.tooltip && '"'+props.tooltip+'"'};
       border-radius: 15px;
       padding: 10px;
       width: max-content;
