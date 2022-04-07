@@ -215,7 +215,7 @@ export default function SignUp() {
                 htmlFor="accept_rules"
                 style={{
                   display: "flex",
-                  alignItems: minWidth1000 ? "end" : "center",
+                  alignItems: "center",
                   justifyContent: "center"
                 }}
               >
