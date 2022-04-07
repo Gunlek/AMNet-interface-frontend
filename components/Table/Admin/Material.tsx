@@ -28,7 +28,7 @@ export default function MaterialAdminTable(props: { requests: any[], status: { o
                 const newOpacity = { active: "", declined: "", pending: "" }
                 newOpacity[props.status.new] = "in"
                 setOpacity(newOpacity)
-            }, 750);
+            }, 500);
         }
     }, [props.status]);
 
@@ -55,8 +55,7 @@ export default function MaterialAdminTable(props: { requests: any[], status: { o
                             display: "flex",
                             justifyContent: "space-between",
                             width: (props.status.new == "pending") ? "495px" : "320px",
-                            transition: "width 0.75s linear",
-                            overflow: "hidden"
+                            transition: "width 0.5s linear"
                         }}
                     >
                         <Buttons status={value['material_state']} />
@@ -118,7 +117,7 @@ export default function MaterialAdminTable(props: { requests: any[], status: { o
                                     style={{
                                         width: (props.status.new == "pending") ? "500px" : "325px",
                                         paddingLeft: "5px",
-                                        transition: "width 0.75s linear"
+                                        transition: "width 0.5s linear"
                                     }}
                                 >
                                     Actions

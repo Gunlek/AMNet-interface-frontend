@@ -117,11 +117,11 @@ const opacityOut = keyframes`
 `;
 
 export const Tbody = styled.tbody`
-  animation: ${(props) => props.opacityIn && opacityIn } ${(props) => props.opacityOut && opacityOut } 0.75s linear;
+  animation: ${(props) => props.opacityIn && opacityIn } ${(props) => props.opacityOut && opacityOut } 0.5s linear;
   display: ${(props) => props.Display};
 `;
 
 export const MobileTbody = styled.div`
-  animation: ${(props) => props.opacityIn && opacityIn } ${(props) => props.opacityOut && opacityOut } 0.75s linear;
+  animation: ${(props) => props.opacityIn && opacityIn } ${(props) => props.opacityOut && opacityOut } 0.5s linear;
   display: ${(props) => props.Display};
 `;
