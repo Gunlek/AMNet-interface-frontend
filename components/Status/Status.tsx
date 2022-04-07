@@ -9,25 +9,67 @@ import {
 import Fail from "../NavIcons/fail";
 import Succes from "../NavIcons/succes";
 import ContributionModal from "../Card/Modals/ContributionModal";
+import { SmallGreenButton, SmallOrangeButton, SmallRedButton } from "../Button/Buttons";
 
-export function StateContribution(props: { status: string }) {
+export function StateContribution(props: { status: string, admin?: boolean }) {
   if (props.status == 'paid') {
     return (
-      <StyledStateContribution>
-        <BlackText style={{ paddingRight: "10px" }}>Cotisation :</BlackText>
-        <Succes/>
-      </StyledStateContribution>
-    );
-  }
-  else if(props.status == 'unpaid')
-  {
-    return (
-      <Row style={{ alignItems: "baseline", justifyContent: "center" }}>
+      <Row
+        style={{
+          alignItems: "baseline",
+          justifyContent: "center",
+          width: props.admin ? "auto" : undefined
+        }}
+      >
         <StyledStateContribution style={{ marginRight: "15px" }}>
           <BlackText style={{ paddingRight: "10px" }}>Cotisation :</BlackText>
-          <Fail/>
+          <Succes />
         </StyledStateContribution>
-        <ContributionModal/>
+        {props.admin && <SmallRedButton>Annuler</SmallRedButton>}
+      </Row>
+    )
+  }
+  else if (props.status == 'unpaid') {
+    return (
+      <Row
+        style={{
+          alignItems: "baseline",
+          justifyContent: "center",
+          width: props.admin ? "auto" : undefined
+        }}
+      >
+        <StyledStateContribution style={{ marginRight: "15px"}}>
+          <BlackText style={{ paddingRight: "10px" }}>Cotisation :</BlackText>
+          <Fail />
+        </StyledStateContribution>
+        {props.admin ?
+          <SmallGreenButton>Confirmer</SmallGreenButton>
+          :
+          <ContributionModal />
+        }
+      </Row>
+    );
+  }
+}
+
+export function StateAdmin(props: { status: string, admin?: boolean }) {
+  if (props.status == 'admin') {
+    return (
+      <Row style={{ alignItems: "baseline", justifyContent: "center" }}>
+        <StyledStateContribution style={{ marginRight: "15px", marginLeft: "15px"  }}>
+          <BlackText style={{ paddingRight: "10px" }}>Admin</BlackText>
+        </StyledStateContribution>
+        <SmallOrangeButton>Rétrograder</SmallOrangeButton>
+      </Row>
+    );
+  }
+  else if (props.status == 'user') {
+    return (
+      <Row style={{ alignItems: "baseline", justifyContent: "center" }}>
+        <StyledStateContribution style={{ marginRight: "15px", marginLeft: "15px"  }}>
+          <BlackText style={{ paddingRight: "10px" }}>Utilisateur</BlackText>
+        </StyledStateContribution>
+        <SmallGreenButton height="40px">Promouvoir</SmallGreenButton>
       </Row>
     );
   }
