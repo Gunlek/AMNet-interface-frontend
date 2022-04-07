@@ -47,6 +47,8 @@ export const GlobalStyle = createGlobalStyle`
     a {
         color: inherit;
         text-decoration: none;
+        border: transparent;
+        outline: none;
     }
 
     ::-webkit-scrollbar {
