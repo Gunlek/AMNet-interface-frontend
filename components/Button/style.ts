@@ -38,7 +38,7 @@ export const StyledOrangeButton = styled(StyledButton)`
 
 export const SmallStyledButton = styled(StyledButton)`
   border-radius: 16px;
-  height: 40px;
+  height: ${(props) => props.height || "40px"};
   width: ${(props) => props.width || "150px"};
   font-size: ${(props) => props.fontSize || "1.2rem"};
   background: none;
