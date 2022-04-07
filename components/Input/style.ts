@@ -26,28 +26,6 @@ export const StyledInput = styled.input`
   }
 `;
 
-export const StyledSelect = styled.select`
-  background: rgba(255, 255, 255, 0.6);
-  box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.06);
-  border-radius: 15px;
-  width: ${(props) => props.width || "100%"};
-  padding-left: 20px;
-  height: 40px;
-  border: 2px solid transparent;
-  font-size: 1.2rem;
-  transition: border 0.2s;
-
-  &:hover, &:focus{
-    background: rgba(255, 255, 255, 0.8);
-    border: 2px solid #096A09;
-    outline: none;
-  }
-
-  @media screen and (max-width: 1000px){
-    font-size: 16px;
-  }
-`;
-
 export const StyledTextArea = styled.textarea`
   min-height: 150px;
   width: 100%; 
@@ -61,7 +39,6 @@ export const StyledTextArea = styled.textarea`
   font-size: 1.2rem;
   overflow: hidden;
   transition: border 0.2s;
-  
  
   &:hover, &:focus{
     background: rgba(255, 255, 255, 0.8);

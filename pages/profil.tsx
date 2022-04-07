@@ -4,7 +4,7 @@ import { GreenButton } from "../components/Button/Buttons";
 import { HelpSection, Footer } from "../components/Card/Cards";
 import { StyledImg } from "../components/Card/Images/style";
 import { DashboardContainer, ResponsiveRow, Column, Col6, Col3 } from "../components/Container/style";
-import { StyledInputLabel, StyledInput, StyledSelect } from "../components/Input/style";
+import { StyledInputLabel, StyledInput } from "../components/Input/style";
 import useMediaQuery from "../components/MediaQueries/MediaQuery";
 import UserMenu from "../components/Menu/UserMenu";
 import { StateContribution } from "../components/Status/Status";
@@ -92,17 +92,18 @@ export default function Profil() {
             </Col6>
             <Col6 paddingLeft="10px">
               <StyledInputLabel htmlFor={isOther ? "user_promotion2" : "user_promotion"}>Promotion</StyledInputLabel>
-              <StyledSelect
+              <StyledInput
                 defaultValue="NewPromotion"
                 id="user_promotion"
                 style={{ display: isOther ? "none" : "inline" }}
                 onChange={handleValueChange}
+                as="select"
               >
                 <option value="OldPromotion">219</option>
                 <option value="ActivePromotion">220</option>
                 <option value="NewPromotion">2021</option>
                 <option value="Other">Autre</option>
-              </StyledSelect>
+              </StyledInput>
               <div style={{ display: isOther ? "flex" : "none", alignItems: "center" }} >
                 <StyledInput
                   id="user_promotion2"
@@ -137,7 +138,7 @@ export default function Profil() {
             </Col3>
             <Col3 paddingLeft="10px">
               <StyledInputLabel htmlFor="user_campus">Tabagn's</StyledInputLabel>
-              <StyledSelect id="user_campus" name="tbk">
+              <StyledInput id="user_campus" name="tbk" as="select">
                 <option value="Li">Birse</option>
                 <option value="An">Boquette</option>
                 <option value="Bo">Bordel's</option>
@@ -146,7 +147,7 @@ export default function Profil() {
                 <option value="KIN">KIN</option>
                 <option value="Pa">P3</option>
                 <option value="Me">Siber's</option>
-              </StyledSelect>
+              </StyledInput>
             </Col3>
           </ResponsiveRow>
 

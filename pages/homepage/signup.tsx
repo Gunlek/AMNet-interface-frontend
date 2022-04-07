@@ -7,7 +7,7 @@ import { StyledImg } from "../../components/Card/Images/style";
 import RectangleLogo from "../../components/Card/RectangleLogo";
 import { StyledCardCampus } from "../../components/Card/style";
 import RoundCheckbox from "../../components/Input/RoundCheckbox";
-import { StyledInputLabel, StyledInput, StyledSelect } from "../../components/Input/style";
+import { StyledInputLabel, StyledInput } from "../../components/Input/style";
 import useMediaQuery from "../../components/MediaQueries/MediaQuery";
 import { 
   Row, 
@@ -121,8 +121,9 @@ export default function SignUp() {
 
               <Col6 paddingLeft="10px">
                 <StyledInputLabel htmlFor={isOther ? "user_promotion2" : "user_promotion"}>Promotion</StyledInputLabel>
-                <StyledSelect
+                <StyledInput
                   id="user_promotion"
+                  as="select"
                   style={{ display: isOther ? "none" : "inline" }}
                   onChange={handleValueChange}
                   defaultValue="NewPromotion"
@@ -131,7 +132,7 @@ export default function SignUp() {
                   <option value="ActivePromotion">220</option>
                   <option value="NewPromotion">2021</option>
                   <option value="Other">Autre</option>
-                </StyledSelect>
+                </StyledInput>
                 <div style={{ display: isOther ? "flex" : "none", alignItems: "center" }} >
                   <StyledInput
                     id="user_promotion2"
@@ -172,7 +173,7 @@ export default function SignUp() {
 
               <Col3 paddingLeft="10px">
                 <StyledInputLabel htmlFor="user_campus">Tabagn's</StyledInputLabel>
-                <StyledSelect id="user_campus">
+                <StyledInput id="user_campus" as="select">
                   <option value="Li">Birse</option>
                   <option value="An">Boquette</option>
                   <option value="Bo">Bordel's</option>
@@ -181,7 +182,7 @@ export default function SignUp() {
                   <option value="KIN">KIN</option>
                   <option value="Pa">P3</option>
                   <option value="Me">Siber's</option>
-                </StyledSelect>
+                </StyledInput>
               </Col3>
             </ResponsiveRow>
 
