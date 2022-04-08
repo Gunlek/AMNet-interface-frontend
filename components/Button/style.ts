@@ -18,6 +18,10 @@ export const StyledButton = styled.button`
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
     cursor: pointer;
     --x: 100%;
+  } 
+
+  @media screen and (max-width: 1000px){
+    margin-bottom: ${(props) => props.mobileMarginBottom};
   }
 `;
 

@@ -10,7 +10,7 @@ import {
   StyledBackArrow
 } from "./style";
 
-type ButtonProps = { children: React.ReactNode; width?: string, height?: string, onClick?: Function, type?: string, fontSize?: string };
+type ButtonProps = { children: React.ReactNode; width?: string, height?: string, onClick?: Function, type?: string, fontSize?: string, mobileMarginBottom?: string };
 
 export function GreenButton(props: ButtonProps) {
   return (
@@ -19,6 +19,7 @@ export function GreenButton(props: ButtonProps) {
       width={props.width}
       height={props.height}
       onClick={props.onClick}
+      mobileMarginBottom={props.mobileMarginBottom}
     >
       {props.children}
     </StyledGreenButton>
@@ -46,6 +47,7 @@ export function RedButton(props: ButtonProps) {
       width={props.width}
       height={props.height}
       onClick={props.onClick}
+      mobileMarginBottom={props.mobileMarginBottom}
     >
       {props.children}
     </StyledRedButton>);
@@ -73,6 +75,7 @@ export function OrangeButton(props: ButtonProps) {
       width={props.width}
       height={props.height}
       onClick={props.onClick}
+      mobileMarginBottom={props.mobileMarginBottom}
     >
       {props.children}
     </StyledOrangeButton>);
