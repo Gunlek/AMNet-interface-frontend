@@ -9,6 +9,8 @@ export const Column = styled.div`
   justify-content: ${(props) => props.justify};
   align-items: ${(props) => props.align};
   display: ${(props) => props.display};
+  padding-left: ${(props) => props.paddingLeft};
+  padding-bottom: ${(props) => props.paddingBottom};
 
   @media screen and (max-width: 1000px){
     width: ${(props) => props.mobileWidth};
@@ -16,6 +18,8 @@ export const Column = styled.div`
     margin-bottom: ${(props) => props.mobileMarginBottom};
     justify-content: ${(props) => props.mobileJustify};
     align-items: ${(props) => props.mobileAlign};
+    padding-left: 0;
+    padding-bottom: 0;
   }
 
   @media screen and (max-width: 800px){
