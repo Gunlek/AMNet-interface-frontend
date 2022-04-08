@@ -18,7 +18,7 @@ import {
 import SmallLogo from "../NavIcons/smallLogo";
 
 
-export default function AdminMenu(props: { page: string }) {
+export default function AdminMenu(props: { page?: string }) {
   const [scroll, scrolled, top] = useScrollingUp()
   const [open, SetOpen] = useState(false);
 
