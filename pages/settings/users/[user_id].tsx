@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
 import Head from "next/head";
 import { GreenButton, RedButton } from "../../../components/Button/Buttons";
-import { HelpSection, Footer } from "../../../components/Card/Cards";
+import { Footer } from "../../../components/Card/Cards";
 import { StyledImg } from "../../../components/Card/Images/style";
-import { DashboardContainer, ResponsiveRow, Column, Col6, Col3, Col1, Col, Row } from "../../../components/Container/style";
+import { DashboardContainer, ResponsiveRow, Col6, Col3, Col, Row } from "../../../components/Container/style";
 import { StyledInputLabel, StyledInput } from "../../../components/Input/style";
 import useMediaQuery from "../../../components/MediaQueries/MediaQuery";
-import { StateAdmin, StateContribution } from "../../../components/Status/Status";
 import { BlackTitle, BlackText, GreenText } from "../../../components/Text/style";
 import AdminMenu from "../../../components/Menu/AdminMenu";
+import { AdminStateContribution } from "../../../components/Status/Status";
 
 export default function User() {
     const minWidth1000 = useMediaQuery('(min-width:1000px)');
@@ -17,7 +17,7 @@ export default function User() {
 
 
     const handleValueChange = (elmt) => {
-        setGadz(elmt.target.value == "OldPromotion" || elmt.target.value == "ActivePromotion");
+        setGadz(elmt.target.value == "OldPromotion" ||  elmt.target.value =="ActivePromotion");
         setOther(elmt.target.value == "Other");
         if (elmt.target.value == "Other") elmt.target.value = "NewPromotion"
     }
@@ -39,7 +39,7 @@ export default function User() {
             <Head>
                 <title>Administration &bull; AMNet</title>
             </Head>
-            <AdminMenu page="" />
+            <AdminMenu />
 
             <DashboardContainer>
                 <ResponsiveRow margin="1% 0" mobileMargin="20px 0" mobileJustify="center">
@@ -47,9 +47,18 @@ export default function User() {
                         <BlackTitle>Editer le Profil &bull; Argilla</BlackTitle>
                     </Col>
 
-                    <Row align="center" mobileJustify="center" width="auto">
-                        <StateContribution status="paid" admin={true} />
-                        <StateAdmin status="user" />
+                    <Row width="auto">
+                        <Col6 style={{ paddingRight: "10px" }}>
+                            <StyledInputLabel htmlFor="user_cotisation">Cotisation</StyledInputLabel>
+                            <AdminStateContribution id="user_cotisation" />
+                        </Col6>
+                        <Col6 style={{ paddingLeft: "10px" }}>
+                            <StyledInputLabel htmlFor="user_rank">Rang</StyledInputLabel>
+                            <StyledInput as="select" id="user_rank">
+                                <option value="OldPromotion">Utilisateur</option>
+                                <option value="ActivePromotion">Admin</option>
+                            </StyledInput>
+                        </Col6>
                     </Row>
                 </ResponsiveRow>
 
@@ -93,7 +102,7 @@ export default function User() {
                             <StyledInputLabel htmlFor="user_phone">Téléphone</StyledInputLabel>
                             <StyledInput id="user_phone" type="tel" />
                         </Col6>
-                        <Col3 paddingLeft="10px" paddingRight="10px" >
+                        <Col3 paddingLeft="10px" paddingRight="10px" mobileMarginBottom="20px">
                             <StyledInputLabel htmlFor={isOther ? "user_promotion2" : "user_promotion"}>Promotion</StyledInputLabel>
                             <StyledInput
                                 defaultValue="NewPromotion"
@@ -122,7 +131,7 @@ export default function User() {
                                 />
                             </div>
                         </Col3>
-                        <Col3 paddingLeft="10px" mobileMarginBottom="20px">
+                        <Col3 paddingLeft="10px">
                             <StyledInputLabel htmlFor="user_gadz">Gadz</StyledInputLabel>
                             <StyledInput id="user_gadz" as="select" onChange={handleValueChange2} value={isGadz ? "Yes" : "No"}>
                                 <option value="Yes">Oui</option>
@@ -146,7 +155,7 @@ export default function User() {
                             <StyledInputLabel htmlFor="user_fams">Fam's</StyledInputLabel>
                             <StyledInput id="user_fams" type="text" />
                         </Col3>
-                        <Col3 paddingLeft="10px">
+                        <Col3 paddingLeft="10px" mobileMarginBottom="20px">
                             <StyledInputLabel htmlFor="user_campus">Tabagn's</StyledInputLabel>
                             <StyledInput id="user_campus" name="tbk" as="select">
                                 <option value="Li">Birse</option>
@@ -166,7 +175,7 @@ export default function User() {
                             <StyledInputLabel htmlFor="user_password">Mot de passe</StyledInputLabel>
                             <StyledInput id="user_password" type="password" />
                         </Col6>
-                        <Col6 paddingLeft="10px">
+                        <Col6 mobileMarginBottom={isGadz ? undefined : "10px"} paddingLeft="10px">
                             <StyledInputLabel htmlFor="user_password2">Confirmez le Mot de passe</StyledInputLabel>
                             <StyledInput id="user_password2" type="password" />
                         </Col6>
@@ -174,41 +183,41 @@ export default function User() {
 
                     <ResponsiveRow
                         marginBottom={isGadz ? "0" : "20px"}
-                        mobileMarginBottom={isGadz ? "10px" : "30px"}
+                        mobileMarginBottom="10px"
                         style={{ flex: "1", transition: "margin-bottom 0.3s linear" }}
                     >
                         <Col6 paddingRight="10px"
-                            mobileMarginBottom={isGadz ? "20px" : "0"}
+                            mobileMarginBottom={isGadz ? "30px" : "0"}
                             mobileFlex={isGadz ? undefined : "none !important"}
                             style={{
                                 height: isGadz ? "93px" : "0",
                                 transition: "height 0.3s linear",
-                                overflowY: "clip",
-
+                                overflowY: "clip"
                             }}
                         >
                             <GreenText style={{ marginBottom: "5px" }}>Identifiants gadzariques</GreenText>
                             <StyledInput hoverBorder="transparent" readOnly value="Mac Nhat'sss 47-102Li219" type="text" />
                         </Col6>
-                        <Col6
+
+                        <ResponsiveRow
                             paddingLeft="10px"
                             align="end"
                             mobileAlign="center"
+                            paddingBottom={isGadz ? "20px" : "0"}
                             style={{
-                                justifyContent: "space-around",
-                                paddingBottom: isGadz ? "20px" : "0",
                                 transition: "padding-bottom 0.3s linear",
-                                flexDirection: "row"
+                                width: "auto",
+                                flex: "6",
+                                justifyContent: "space-around"
                             }}
                         >
-                            <RedButton>Supprimer le profil</RedButton>
-                            <GreenButton>Editer le profil</GreenButton>
-                        </Col6>
+                            <RedButton width="300px" mobileMarginBottom="25px">Supprimer le profil</RedButton>
+                            <GreenButton width="300px">Editer le profil</GreenButton>
+                        </ResponsiveRow>
                     </ResponsiveRow>
                 </form>
 
-
-                <Footer />
+                <Footer marginTop="0" />
             </DashboardContainer>
         </>
     );
