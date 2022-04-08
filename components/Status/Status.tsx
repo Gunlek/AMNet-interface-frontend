@@ -9,24 +9,14 @@ import {
 import Fail from "../NavIcons/fail";
 import Succes from "../NavIcons/succes";
 import ContributionModal from "../Card/Modals/ContributionModal";
-import { SmallGreenButton, SmallOrangeButton, SmallRedButton } from "../Button/Buttons";
 
-export function StateContribution(props: { status: string, admin?: boolean }) {
+export function StateContribution(props: { status: string }) {
   if (props.status == 'paid') {
     return (
-      <Row
-        style={{
-          alignItems: "baseline",
-          justifyContent: "center",
-          width: props.admin ? "auto" : undefined
-        }}
-      >
-        <StyledStateContribution style={{ marginRight: "15px" }}>
-          <BlackText style={{ paddingRight: "10px" }}>Cotisation :</BlackText>
-          <Succes />
-        </StyledStateContribution>
-        {props.admin && <SmallRedButton>Annuler</SmallRedButton>}
-      </Row>
+      <StyledStateContribution style={{ marginRight: "15px" }}>
+        <BlackText style={{ paddingRight: "10px" }}>Cotisation :</BlackText>
+        <Succes />
+      </StyledStateContribution>
     )
   }
   else if (props.status == 'unpaid') {
@@ -34,42 +24,14 @@ export function StateContribution(props: { status: string, admin?: boolean }) {
       <Row
         style={{
           alignItems: "baseline",
-          justifyContent: "center",
-          width: props.admin ? "auto" : undefined
+          justifyContent: "center"
         }}
       >
-        <StyledStateContribution style={{ marginRight: "15px"}}>
+        <StyledStateContribution style={{ marginRight: "15px" }}>
           <BlackText style={{ paddingRight: "10px" }}>Cotisation :</BlackText>
           <Fail />
         </StyledStateContribution>
-        {props.admin ?
-          <SmallGreenButton>Confirmer</SmallGreenButton>
-          :
-          <ContributionModal />
-        }
-      </Row>
-    );
-  }
-}
-
-export function StateAdmin(props: { status: string, admin?: boolean }) {
-  if (props.status == 'admin') {
-    return (
-      <Row style={{ alignItems: "baseline", justifyContent: "center" }}>
-        <StyledStateContribution style={{ marginRight: "15px", marginLeft: "15px"  }}>
-          <BlackText style={{ paddingRight: "10px" }}>Admin</BlackText>
-        </StyledStateContribution>
-        <SmallOrangeButton>Rétrograder</SmallOrangeButton>
-      </Row>
-    );
-  }
-  else if (props.status == 'user') {
-    return (
-      <Row style={{ alignItems: "baseline", justifyContent: "center" }}>
-        <StyledStateContribution style={{ marginRight: "15px", marginLeft: "15px"  }}>
-          <BlackText style={{ paddingRight: "10px" }}>Utilisateur</BlackText>
-        </StyledStateContribution>
-        <SmallGreenButton height="40px">Promouvoir</SmallGreenButton>
+        <ContributionModal />
       </Row>
     );
   }
@@ -113,6 +75,27 @@ export function StateIntegration(props: { state?: boolean }) {
     <StyledStateInvite status={state} onChange={handleValueChange}>
       <option value="enabled">Ayat's</option>
       <option value="disabled">Fini</option>
+    </StyledStateInvite>
+  );
+}
+
+export function AdminStateContribution(props: { state?: boolean, id: string }) {
+  const [state, setState] = useState(props.state);
+
+  const handleValueChange = (elmt) => {
+    setState(elmt.target.value == "enabled");
+  }
+
+  return (
+    <StyledStateInvite
+      id={props.id}
+      status={state}
+      onChange={handleValueChange}
+      defaultValue={props.state ? "enabled" : "disabled"}
+      style={{ width: "100%" }}
+    >
+      <option value="enabled">Payée</option>
+      <option value="disabled"> Non Payée</option>
     </StyledStateInvite>
   );
 }
