@@ -2,12 +2,10 @@ import React, { useState } from 'react';
 import { SmallGreenButton } from '../Button/Buttons';
 import { Col2, Col5, ResponsiveRow } from '../Container/style';
 import { StyledInput, StyledInputLabel } from '../Input/style';
-import useMediaQuery from '../MediaQueries/MediaQuery';
 import { GreenText } from '../Text/style';
 import TeamList from './TeamList';
 
 export const TeamEditor = () => {
-    const minWidth1000 = useMediaQuery('(min-width:1000px)');
     const accutalTeam = [
         {
           pseudo: "Trobotyk'ss (ML)°",
