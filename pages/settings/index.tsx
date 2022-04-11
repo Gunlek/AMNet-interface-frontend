@@ -5,7 +5,6 @@ import { Footer, TitleCard } from "../../components/Card/Cards"
 import { StyledCard } from "../../components/Card/style";
 import AdminMenu from "../../components/Menu/AdminMenu";
 import { StateIntegration, StateInvite } from "../../components/Status/Status";
-import AutoTextArea from "../../components/Input/TextArea";
 import Checkbox from "../../components/Input/Checkbox";
 import { StyledInput, StyledInputLabel, StyledLabel } from "../../components/Input/style";
 import { BlackTitle, BlackText, GreenText } from "../../components/Text/style";
@@ -18,6 +17,10 @@ import {
   Col2,
   Col4
 } from "../../components/Container/style";
+import Editor from "../../components/Input/Editor";
+import '../../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
+import { EditorStyle } from "../../styles/editor";
+import MailModal from "../../components/Card/Modals/MailModal";
 
 export default function Settings() {
   const [Checked, setChecked] = useState({
@@ -33,10 +36,14 @@ export default function Settings() {
     const NewChecked = { ...Checked };
     NewChecked[elmt.currentTarget.id] = !NewChecked[elmt.currentTarget.id];
     setChecked(NewChecked)
-  }
+  };
+
+  const [WelcomeMessageEditor, WelcomeMessageHTML] = Editor('<p style="text-align:center;"><strong>Bienvenue sur le site de l\'AMNet</strong></p><p style="text-align:center;">Si vous avez un problème avec le portail de connexion voici le <a href="https://amnet.fr" target="_blank">lien</a>&nbsp;</p><p style="text-align:center;">Et voici le lien Gadzflix.fr</p>');
+  const [MailEditor, MailHTML] = Editor();
 
   return (
     <>
+      <EditorStyle />
       <Head>
         <title>Administration &bull; AMNet</title>
       </Head>
@@ -106,8 +113,10 @@ export default function Settings() {
             <TitleCard>Message d'actualité</TitleCard>
 
             <form method="post" style={{ marginTop: "20px", flex: "1" }}>
-              <AutoTextArea />
-              <Row style={{ marginTop: "20px", justifyContent: "center" }}>
+              <div style={{ marginBottom: "20px" }}>
+                {WelcomeMessageEditor}
+              </div>
+              <Row style={{ justifyContent: "center" }}>
                 <GreenButton>Mettre à jour</GreenButton>
               </Row>
             </form>
@@ -120,13 +129,13 @@ export default function Settings() {
 
             <form method="post" style={{ flex: "1" }}>
               <ResponsiveRow
-                direction="column-reverse" 
+                direction="column-reverse"
                 marginBottom="20px"
                 style={{ marginTop: "20px" }}
               >
                 <Col4 style={{ paddingRight: "10px" }}>
-                  <StyledInputLabel htmlFor="MailTitle">Titre du Mail</StyledInputLabel>
-                  <StyledInput id="MailTitle" type="text" />
+                  <StyledInputLabel htmlFor="object">Objet</StyledInputLabel>
+                  <StyledInput id="object" type="text" />
                 </Col4>
                 <Col2 paddingLeft="10px" mobileMarginBottom="30px">
                   <GreenText style={{ marginBottom: "5px" }}>Cotisation payée</GreenText>
@@ -167,17 +176,17 @@ export default function Settings() {
 
               <div style={{ marginBottom: "20px" }}>
                 <StyledInputLabel htmlFor="Mail">Corps du Mail</StyledInputLabel>
-                <AutoTextArea id="Mail" />
+                {MailEditor}
               </div>
 
               <Row style={{ justifyContent: "center" }}>
-                <GreenButton>Envoyer</GreenButton>
+                <MailModal html={MailHTML} />
               </Row>
             </form>
           </StyledCard>
         </Row>
 
-        <Footer marginTop="0"/>
+        <Footer marginTop="0" />
       </DashboardContainer>
     </>
   );
