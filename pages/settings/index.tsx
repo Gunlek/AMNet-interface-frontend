@@ -30,15 +30,56 @@ export default function Settings() {
     "ActivePromotion": false,
     "NewPromotion": false,
     "Other": false,
+    "AllSelect": false
   });
+
+  const handleAllCheckboxChange = () => {
+    if (Checked.AllSelect) {
+      const NewChecked = {
+        "Contribution": false,
+        "NoContribution": false,
+        "OldPromotion": false,
+        "ActivePromotion": false,
+        "NewPromotion": false,
+        "Other": false,
+        "AllSelect": false
+      }
+      setChecked(NewChecked)
+    }
+    else {
+      const NewChecked = {
+        "Contribution": true,
+        "NoContribution": true,
+        "OldPromotion": true,
+        "ActivePromotion": true,
+        "NewPromotion": true,
+        "Other": true,
+        "AllSelect": true
+      }
+      setChecked(NewChecked)
+    }
+
+  };
 
   const handleCheckboxChange = (elmt) => {
     const NewChecked = { ...Checked };
     NewChecked[elmt.currentTarget.id] = !NewChecked[elmt.currentTarget.id];
+    if(
+        NewChecked.ActivePromotion && 
+        NewChecked.Contribution && 
+        NewChecked.NewPromotion && 
+        NewChecked.NoContribution && 
+        NewChecked.OldPromotion && 
+        NewChecked.Other
+      )
+    {
+        NewChecked.AllSelect = true
+    }
+    else{NewChecked.AllSelect = false}
     setChecked(NewChecked)
   };
 
-  const [WelcomeMessageEditor, WelcomeMessageHTML] = Editor('<p style="text-align:center;"><strong>Bienvenue sur le site de l\'AMNet</strong></p><p style="text-align:center;">Si vous avez un problème avec le portail de connexion voici le <a href="https://amnet.fr" target="_blank">lien</a>&nbsp;</p><p style="text-align:center;">Et voici le lien Gadzflix.fr</p>');
+  const [WelcomeMessageEditor, WelcomeMessageHTML] = Editor('<p style="text-align:center;"><strong>Bienvenue sur le site de l\'AMNet</strong></p><p style="text-align:center;">Si vous avez un problème avec le portail de connexion voici le <a href="https://amnet.fr" target="_blank">lien</a>&nbsp; <br>Et voici le lien Gadzflix.fr</p>');
   const [MailEditor, MailHTML] = Editor();
 
   return (
@@ -111,78 +152,101 @@ export default function Settings() {
         <Row marginBottom="2%" mobileMarginBottom="30px">
           <StyledCard style={{ height: "100%" }}>
             <TitleCard>Message d'actualité</TitleCard>
-
-            <form method="post" style={{ marginTop: "20px", flex: "1" }}>
-              <div style={{ marginBottom: "20px" }}>
-                {WelcomeMessageEditor}
-              </div>
-              <Row style={{ justifyContent: "center" }}>
-                <GreenButton>Mettre à jour</GreenButton>
-              </Row>
-            </form>
+            <div style={{ marginBottom: "20px" }}>
+              {WelcomeMessageEditor}
+              <BlackText
+                style={{
+                  textAlign: "center",
+                  fontSize: "10px",
+                  marginTop: "10px"
+                }}
+              >
+                Petite tuysse : appuyer sur SHIFT+ENTREE pour faire un retour à la ligne sans espaces
+              </BlackText>
+            </div>
+            <Row style={{ justifyContent: "center" }}>
+              <GreenButton>Mettre à jour</GreenButton>
+            </Row>
           </StyledCard>
         </Row>
 
         <Row marginBottom="2%" mobileMarginBottom="10px">
           <StyledCard>
             <TitleCard>Système de mail</TitleCard>
+            <ResponsiveRow
+              direction="column-reverse"
+              marginBottom="20px"
+              style={{ marginTop: "20px" }}
+            >
+              <Col4 style={{ paddingRight: "10px" }}>
+                <StyledInputLabel htmlFor="object">Objet</StyledInputLabel>
+                <StyledInput id="object" type="text" />
+              </Col4>
+              <Col2 paddingLeft="10px" mobileMarginBottom="30px">
+                <GreenText style={{ marginBottom: "5px" }}>Cotisation payée</GreenText>
+                <CheckboxRow mobileColWidth="125px" colWidth="85px" style={{ flex: "1", alignItems: "center" }}>
+                  <StyledLabel style={{ width: "fit-content" }}>
+                    <Checkbox id="Contribution" checked={Checked["Contribution"]} onChange={handleCheckboxChange} />
+                    <BlackText style={{ marginLeft: "10px" }}>Oui</BlackText>
+                  </StyledLabel>
+                  <StyledLabel style={{ width: "fit-content" }}>
+                    <Checkbox id="NoContribution" checked={Checked["NoContribution"]} onChange={handleCheckboxChange} />
+                    <BlackText style={{ marginLeft: "10px" }}>Non</BlackText>
+                  </StyledLabel>
+                </CheckboxRow>
+              </Col2>
 
-            <form method="post" style={{ flex: "1" }}>
-              <ResponsiveRow
-                direction="column-reverse"
-                marginBottom="20px"
-                style={{ marginTop: "20px" }}
+              <Col6 paddingLeft="1%" mobileMarginBottom="30px">
+                <Row>
+                  <Col6>
+                    <GreenText style={{ marginBottom: "5px" }}>Prom's</GreenText>
+                  </Col6>
+                  <Col6>
+                    <StyledLabel style={{ width: "fit-content" }}>
+                      <Checkbox id="AllSelect" checked={Checked["AllSelect"]} onChange={handleAllCheckboxChange} />
+                      <BlackText style={{ marginLeft: "10px" }}>Tout sélectionner</BlackText>
+                    </StyledLabel>
+                  </Col6>
+                </Row>
+
+                <CheckboxRow colWidth="140px" mobileColWidth="125px" style={{ flex: "1", alignItems: "center" }}>
+                  <StyledLabel style={{ width: "fit-content" }}>
+                    <Checkbox id="NewPromotion" checked={Checked["NewPromotion"]} onChange={handleCheckboxChange} />
+                    <BlackText style={{ marginLeft: "10px" }}>2021</BlackText>
+                  </StyledLabel>
+                  <StyledLabel style={{ width: "fit-content" }}>
+                    <Checkbox id="ActivePromotion" checked={Checked["ActivePromotion"]} onChange={handleCheckboxChange} />
+                    <BlackText style={{ marginLeft: "10px" }}>220</BlackText>
+                  </StyledLabel>
+                  <StyledLabel style={{ width: "fit-content" }}>
+                    <Checkbox id="OldPromotion" checked={Checked["OldPromotion"]} onChange={handleCheckboxChange} />
+                    <BlackText style={{ marginLeft: "10px" }}>219/Archis</BlackText>
+                  </StyledLabel>
+                  <StyledLabel style={{ width: "fit-content" }}>
+                    <Checkbox id="Other" checked={Checked["Other"]} onChange={handleCheckboxChange} />
+                    <BlackText style={{ marginLeft: "10px" }}>Autres</BlackText>
+                  </StyledLabel>
+                </CheckboxRow>
+              </Col6>
+            </ResponsiveRow>
+
+            <div style={{ marginBottom: "20px" }}>
+              <StyledInputLabel htmlFor="Mail">Corps du Mail</StyledInputLabel>
+              {MailEditor}
+              <BlackText
+                style={{
+                  textAlign: "center",
+                  fontSize: "10px",
+                  marginTop: "10px"
+                }}
               >
-                <Col4 style={{ paddingRight: "10px" }}>
-                  <StyledInputLabel htmlFor="object">Objet</StyledInputLabel>
-                  <StyledInput id="object" type="text" />
-                </Col4>
-                <Col2 paddingLeft="10px" mobileMarginBottom="30px">
-                  <GreenText style={{ marginBottom: "5px" }}>Cotisation payée</GreenText>
-                  <CheckboxRow mobileColWidth="125px" colWidth="85px" style={{ flex: "1", alignItems: "center" }}>
-                    <StyledLabel style={{ width: "fit-content" }}>
-                      <Checkbox id="Contribution" checked={Checked["Contribution"]} onChange={handleCheckboxChange} />
-                      <BlackText style={{ marginLeft: "10px" }}>Oui</BlackText>
-                    </StyledLabel>
-                    <StyledLabel style={{ width: "fit-content" }}>
-                      <Checkbox id="NoContribution" checked={Checked["NoContribution"]} onChange={handleCheckboxChange} />
-                      <BlackText style={{ marginLeft: "10px" }}>Non</BlackText>
-                    </StyledLabel>
-                  </CheckboxRow>
-                </Col2>
+                Petite tuysse : appuyer sur SHIFT+ENTREE pour faire un retour à la ligne sans espaces
+              </BlackText>
+            </div>
 
-                <Col6 paddingLeft="1%" mobileMarginBottom="30px">
-                  <GreenText style={{ marginBottom: "5px" }}>Prom's</GreenText>
-                  <CheckboxRow colWidth="140px" mobileColWidth="125px" style={{ flex: "1", alignItems: "center" }}>
-                    <StyledLabel style={{ width: "fit-content" }}>
-                      <Checkbox id="NewPromotion" checked={Checked["NewPromotion"]} onChange={handleCheckboxChange} />
-                      <BlackText style={{ marginLeft: "10px" }}>2021</BlackText>
-                    </StyledLabel>
-                    <StyledLabel style={{ width: "fit-content" }}>
-                      <Checkbox id="ActivePromtion" checked={Checked["ActivePromtion"]} onChange={handleCheckboxChange} />
-                      <BlackText style={{ marginLeft: "10px" }}>220</BlackText>
-                    </StyledLabel>
-                    <StyledLabel style={{ width: "fit-content" }}>
-                      <Checkbox id="OldPromotion" checked={Checked["OldPromotion"]} onChange={handleCheckboxChange} />
-                      <BlackText style={{ marginLeft: "10px" }}>219/Archis</BlackText>
-                    </StyledLabel>
-                    <StyledLabel style={{ width: "fit-content" }}>
-                      <Checkbox id="Other" checked={Checked["Other"]} onChange={handleCheckboxChange} />
-                      <BlackText style={{ marginLeft: "10px" }}>Autres</BlackText>
-                    </StyledLabel>
-                  </CheckboxRow>
-                </Col6>
-              </ResponsiveRow>
-
-              <div style={{ marginBottom: "20px" }}>
-                <StyledInputLabel htmlFor="Mail">Corps du Mail</StyledInputLabel>
-                {MailEditor}
-              </div>
-
-              <Row style={{ justifyContent: "center" }}>
-                <MailModal html={MailHTML} />
-              </Row>
-            </form>
+            <Row style={{ justifyContent: "center" }}>
+              <MailModal html={MailHTML} />
+            </Row>
           </StyledCard>
         </Row>
 
