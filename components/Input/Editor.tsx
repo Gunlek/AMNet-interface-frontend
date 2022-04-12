@@ -5,14 +5,11 @@ import { EditorProps } from 'react-draft-wysiwyg'
 import { BlackText } from "../Text/style";
 import draftToHtml from 'draftjs-to-html';
 import htmlToDraft from 'html-to-draftjs';
-import { handleNewLine, insertNewUnstyledBlock } from 'draftjs-utils';
 
 const DraftEditor = dynamic<EditorProps>(
     () => import('react-draft-wysiwyg').then((mod) => mod.Editor),
     { ssr: false }
 )
-
-
 
 export default function Editor(html?: string) {
     const [convertedContent, setConvertedContent] = useState(null);
@@ -35,8 +32,6 @@ export default function Editor(html?: string) {
             setConvertedContent(currentContentAsHTML);
         }
 
-        
-
         useEffect(() => {
             setRender(
                 <DraftEditor
@@ -53,10 +48,7 @@ export default function Editor(html?: string) {
                         link: { inDropdown: true },
                         blockType: { options: ['Normal', 'H1', 'H2', 'H3', 'H4', 'H5', 'H6'] }
                     }}
-                    handleReturn={() => {
-                        handleEditorChange(RichUtils.insertSoftNewline(editorState));
-                        return true
-                    }}
+
                 />
             )
         }
