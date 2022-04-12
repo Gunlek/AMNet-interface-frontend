@@ -50,7 +50,7 @@ export default function Homepage() {
           <RectangleLogo color="white" />
         </Col6>
         <Col6 align="end" mobileAlign="center" justify="center">
-            <ButtonLink href="./homepage/login"  width="300px">Se Connecter / S'inscrire</ButtonLink>
+            <ButtonLink href="/homepage/login"  width="300px">Se Connecter / S'inscrire</ButtonLink>
         </Col6>
       </Row>
 
