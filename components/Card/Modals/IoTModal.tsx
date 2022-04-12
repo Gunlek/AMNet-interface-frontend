@@ -40,11 +40,11 @@ export default function IoTModal() {
                 <TitleCard hideLine={!minWidth1000}>Demande d'accès pour un objet connecté</TitleCard>
                 <div style={{ marginBottom: "20px", width: "100%" }}>
                     <StyledInputLabel htmlFor="mac_adress_equipment">Adresse Physique</StyledInputLabel>
-                    <StyledInput id="mac_adress_equipment" placeholder="Par exemple: 5E:FF:56:A2:AF:15" />
+                    <StyledInput style={{ boxShadow: "0px 4px 14px rgba(0, 159, 0, 0.15)" }} id="mac_adress_equipment" placeholder="Par exemple: 5E:FF:56:A2:AF:15" />
                 </div>
                 <div style={{ marginBottom: "20px", width: "100%" }}>
                     <StyledInputLabel htmlFor="description_equipment">Description</StyledInputLabel>
-                    <StyledInput id="description_equipment" placeholder="Par exemple: Chromecast" />
+                    <StyledInput style={{ boxShadow: "0px 4px 14px rgba(0, 159, 0, 0.15)" }} id="description_equipment" placeholder="Par exemple: Chromecast" />
                 </div>
                 <div style={{ marginBottom: "30px", width: "100%" }}>
                     <StyledInputLabel

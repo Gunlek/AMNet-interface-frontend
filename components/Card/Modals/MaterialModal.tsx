@@ -20,11 +20,11 @@ export default function MaterialModal() {
                 <TitleCard>Demande de matériel</TitleCard>
                 <div style={{ marginBottom: "20px", width: "100%" }}>
                     <StyledInputLabel htmlFor="description_equipment">Description</StyledInputLabel>
-                    <StyledInput id="description_equipment" placeholder="Par exemple: 1 écran" />
+                    <StyledInput style={{ boxShadow: "0px 4px 14px rgba(0, 159, 0, 0.15)" }} id="description_equipment" placeholder="Par exemple: 1 écran" />
                 </div>
                 <div style={{ marginBottom: "30px", width: "100%" }}>
                     <StyledInputLabel htmlFor="reason_equipment">Détails</StyledInputLabel>
-                    <StyledTextArea id="reason_equipment" placeholder="Par exemple: Je souhaite avoir un second écran pour faire de la CAO" />
+                    <StyledTextArea style={{ boxShadow: "0px 4px 14px rgba(0, 159, 0, 0.15)" }} id="reason_equipment" placeholder="Par exemple: Je souhaite avoir un second écran pour faire de la CAO" />
                 </div>
                 <Row style={{ justifyContent: "center" }}>
                     <GreenButton width="350px">Envoyer la demande</GreenButton>
