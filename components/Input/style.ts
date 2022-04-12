@@ -8,7 +8,7 @@ export const StyledInput = styled.input`
   padding-left:20px;
   height: 40px;
   font-size: 1.2rem;
-  border: 2px solid transparent;
+  border: ${(props) => props.border || "2px solid transparent"};
   margin: 0;
   transition: border 0.3s;
   margin-left: ${(props) => props.marginLeft};
