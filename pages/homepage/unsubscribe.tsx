@@ -14,7 +14,7 @@ export default function Unsubscribe() {
   return (
     <>
       <Head>
-        <title>Mot de passe oublié &bull; AMNet</title>
+        <title>Liste de diffusion &bull; AMNet</title>
       </Head>
       <CampusGlobalStyle />
       <Row
