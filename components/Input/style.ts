@@ -10,7 +10,7 @@ export const StyledInput = styled.input`
   font-size: 1.2rem;
   border: 2px solid transparent;
   margin: 0;
-  transition: border 0.2s;
+  transition: border 0.3s;
   margin-left: ${(props) => props.marginLeft};
 
   &:hover, &:focus{
@@ -25,30 +25,12 @@ export const StyledInput = styled.input`
     margin-left: 0;
   }
 `;
-
-export const StyledTextArea = styled.textarea`
+export const StyledTextArea = styled(StyledInput).attrs({ as: 'textarea' })`
   min-height: 150px;
-  width: 100%; 
   resize: none;
-  margin:0;
-  padding: 10px 20px;
-  background: rgba(255, 255, 255, 0.6);
-  box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.06);
-  border-radius: 15px;
-  border: 2px solid transparent;
-  font-size: 1.2rem;
   overflow: hidden;
-  transition: border 0.2s;
- 
-  &:hover, &:focus{
-    background: rgba(255, 255, 255, 0.8);
-    border: 2px solid #096A09;
-    outline: none;
-  }
-
-  @media screen and (max-width: 1000px){
-    font-size: 16px;
-  }
+  padding: 10px 20px;
+  margin: 0;
 `;
 
 export const StyledInputLabel = styled.label`
