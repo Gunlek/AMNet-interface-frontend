@@ -63,6 +63,7 @@ export const StyledLabel = styled.label`
   display: flex; 
   align-items: center;
   width: ${(props) => props.width || "150px"}; 
+  user-select: none;
 
   @media screen and (max-width: 1000px){
     width: ${(props) => props.width || "100px"}; 

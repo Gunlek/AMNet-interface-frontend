@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import { StyledLabel } from './style'
 
 const CheckboxContainer = styled.div`
   display: inline-block;
@@ -33,6 +34,7 @@ const StyledCheckbox = styled.div`
   border: ${props => (props.color ? 'solid white 2.5px' : 'solid #096A09 2.5px')};
   z-index: 1;
   position: relative;
+  transition: box-shadow 0.2s;
 
   &::before{
     position: absolute;
@@ -44,12 +46,12 @@ const StyledCheckbox = styled.div`
     left: -2.5px;
     z-index: -1;
     background:  ${props => (props.color ? 'white' : 'linear-gradient(135deg, #67BC45 5.67%, #096A09 94.96%)')};
-    transition: opacity 0.3s;
+    transition: opacity 0.2s;
     opacity: ${props => (props.checked ? '1' : '0')};
     border-radius: 9px;
   }
 
-  &:hover{
+  ${StyledLabel}:hover &, &:hover{
     box-shadow: 0px 2px 10px ${props => (props.color ? 'rgba(255, 255, 255, 0.4)' : 'rgba(0, 0, 0, 0.3)')};
   }
 
