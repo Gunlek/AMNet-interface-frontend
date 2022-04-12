@@ -19,9 +19,9 @@ export default function MailModal(props: { html: any }) {
             <BodyWithModal reveal={reveal} />
             <GreenButton onClick={toggle2}>Pré-visualiser le Mail</GreenButton>
             <StyledBackgroundModal onClick={toggle2} reveal={reveal} />
-            <StyledModal width={minWidth1000 ? "800px" : undefined} reveal={reveal}>
+            <StyledModal width={minWidth1000 ? "800px" : undefined} reveal={reveal} style={{ maxHeight: "90vh" }}>
                 <TitleCard>Pré-visualisation du Mail</TitleCard>
-                <div style={{ width: "100%", borderRadius: "20px", marginBottom: "30px", overflow: "hidden" }}>
+                <div style={{ width: "100%", borderRadius: "20px", marginBottom: "30px", overflowY: "auto" }}>
                     <table style={{ background: "#E8EFEA", border: "none", borderCollapse: "collapse" }} width="100%">
                         <tbody>
                             <tr>
@@ -51,12 +51,12 @@ export default function MailModal(props: { html: any }) {
                                                         <tbody>
                                                             <tr>
                                                                 <td>
-                                                                    <table style={{ width: "533px", margin: "0 auto"  }}>
+                                                                    <table style={{ width: "533px", margin: "0 auto" }}>
                                                                         <tbody>
                                                                             <tr>
                                                                                 <td>
                                                                                     <div dangerouslySetInnerHTML={{ __html: props.html || "" }} style={{ width: "100%", padding: "0 30px", fontSize: "18px" }}>
-                                                                                        
+
                                                                                     </div>
                                                                                 </td>
                                                                             </tr>
@@ -88,7 +88,7 @@ export default function MailModal(props: { html: any }) {
                             </tr>
                             <tr>
                                 <td>
-                                    <table style={{ border: "none", borderCollapse: "collapse", width: "600px", margin: "0 auto"  }}>
+                                    <table style={{ border: "none", borderCollapse: "collapse", width: "600px", margin: "0 auto" }}>
                                         <tbody>
                                             <tr style={{ textAlign: "center" }}>
                                                 <td>
