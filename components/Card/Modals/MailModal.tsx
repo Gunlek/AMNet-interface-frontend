@@ -1,4 +1,3 @@
-import { BodyWithModal } from "../../Background/style"
 import { GreenButton } from "../../Button/Buttons"
 import useMediaQuery from "../../MediaQueries/MediaQuery"
 import { TitleCard } from "../Cards"
@@ -7,19 +6,18 @@ import { StyledBackgroundModal, StyledModal } from "./style"
 
 export default function MailModal(props: { html: any }) {
     const minWidth1000 = useMediaQuery('(min-width: 1000px)')
-    const { reveal, toggle } = ModalLogic();
-
-    const toggle2 = (e) => {
-        e.preventDefault();
-        toggle()
-    }
+    const { Display, Opacity, toggle } = ModalLogic()
 
     return (
         <>
-            <BodyWithModal reveal={reveal} />
-            <GreenButton onClick={toggle2}>Pré-visualiser le Mail</GreenButton>
-            <StyledBackgroundModal onClick={toggle2} reveal={reveal} />
-            <StyledModal width={minWidth1000 ? "800px" : undefined} reveal={reveal} style={{ maxHeight: "90vh" }}>
+            <GreenButton onClick={toggle}>Pré-visualiser le Mail</GreenButton>
+            <StyledBackgroundModal onClick={toggle} Display={Display} Opacity={Opacity} />
+            <StyledModal
+                width={minWidth1000 ? "800px" : undefined}
+                Display={Display}
+                Opacity={Opacity}
+                style={{ maxHeight: "90vh" }}
+            >
                 <TitleCard>Pré-visualisation du Mail</TitleCard>
                 <div style={{ width: "100%", borderRadius: "20px", marginBottom: "30px", overflowY: "auto" }}>
                     <table style={{ background: "#E8EFEA", border: "none", borderCollapse: "collapse" }} width="100%">

@@ -1,4 +1,3 @@
-import { BodyWithModal } from "../../Background/style"
 import { GreenButton } from "../../Button/Buttons"
 import useMediaQuery from "../../MediaQueries/MediaQuery"
 import { BlackText, StyledLink } from "../../Text/style"
@@ -8,14 +7,13 @@ import { StyledBackgroundModal, StyledModal } from "./style"
 
 export default function ContributionModal() {
     const minWidth1000 = useMediaQuery('(min-width: 1000px)')
-    const { reveal, toggle } = ModalLogic();
+    const { Display, Opacity, toggle } = ModalLogic()
 
     return (
         <>
-            <BodyWithModal reveal={reveal} />
             <GreenButton width="150px" height="50px" onClick={toggle}>Payer</GreenButton>
-            <StyledBackgroundModal onClick={toggle} reveal={reveal} />
-            <StyledModal width={minWidth1000 ? "600px" : undefined} reveal={reveal}>
+            <StyledBackgroundModal onClick={toggle} Display={Display} Opacity={Opacity} />
+            <StyledModal width={minWidth1000 ? "600px" : undefined} Display={Display} Opacity={Opacity}>
                 <TitleCard>Cotisation</TitleCard>
                 <BlackText style={{ marginBottom: "30px", textAlign: "justify" }}>
                     Le paiement de la cotisation s'effectue en utilisant Lydia. Il vous sera proposé d'utiliser votre compte Lydia pour régler votre cotisation. Si vous n'êtes pas titulaire d'un compte Lydia, il vous sera possible de réaliser le paiement en utilisant votre carte bancaire.

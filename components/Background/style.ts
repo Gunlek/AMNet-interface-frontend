@@ -19,13 +19,3 @@ export const CampusGlobalStyle = createGlobalStyle`
     padding: ${(props) => props.padding};
   }
 `
-
-export const BodyWithModal = createGlobalStyle` 
-  body{
-    @media screen and (max-width: 1000px){
-      height: ${(props) => props.reveal && '100vh'};
-      overflow-y: ${(props) => props.reveal && 'hidden'}; 
-      position: ${(props) => props.reveal && 'fixed'};
-    } 
-  }
-`

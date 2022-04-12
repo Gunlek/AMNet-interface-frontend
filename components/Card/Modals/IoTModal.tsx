@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { BodyWithModal } from "../../Background/style";
 import { GreenButton } from "../../Button/Buttons";
 import { ResponsiveRow, Row } from "../../Container/style";
 import FileUploader from "../../Input/FileUploader";
@@ -13,7 +12,7 @@ import { StyledBackgroundModal, StyledModal } from "./style";
 
 export default function IoTModal() {
     const minWidth1000 = useMediaQuery('(min-width: 1000px)')
-    const { reveal, toggle } = ModalLogic();
+    const { Display, Opacity, toggle } = ModalLogic()
     const [File, setFile] = useState(null);
 
     useEffect(() => {
@@ -31,20 +30,21 @@ export default function IoTModal() {
         setFile(null);
     }
 
+
+
     return (
         <>
-            <BodyWithModal reveal={reveal} />
             <GreenButton width="280px" onClick={toggle}>Nouvelle demande</GreenButton>
-            <StyledBackgroundModal onClick={toggle} reveal={reveal} />
-            <StyledModal width={minWidth1000 ? "900px" : undefined} reveal={reveal}>
+            <StyledBackgroundModal onClick={toggle} Display={Display} Opacity={Opacity} />
+            <StyledModal width={minWidth1000 ? "900px" : undefined} Display={Display} Opacity={Opacity}>
                 <TitleCard hideLine={!minWidth1000}>Demande d'accès pour un objet connecté</TitleCard>
                 <div style={{ marginBottom: "20px", width: "100%" }}>
                     <StyledInputLabel htmlFor="mac_adress_equipment">Adresse Physique</StyledInputLabel>
-                    <StyledInput style={{ boxShadow: "0px 4px 14px rgba(0, 159, 0, 0.15)" }} id="mac_adress_equipment" placeholder="Par exemple: 5E:FF:56:A2:AF:15" />
+                    <StyledInput border="2px solid rgba(0, 159, 0, 0.15)" id="mac_adress_equipment" placeholder="Par exemple: 5E:FF:56:A2:AF:15" />
                 </div>
                 <div style={{ marginBottom: "20px", width: "100%" }}>
                     <StyledInputLabel htmlFor="description_equipment">Description</StyledInputLabel>
-                    <StyledInput style={{ boxShadow: "0px 4px 14px rgba(0, 159, 0, 0.15)" }} id="description_equipment" placeholder="Par exemple: Chromecast" />
+                    <StyledInput border="2px solid rgba(0, 159, 0, 0.15)" id="description_equipment" placeholder="Par exemple: Chromecast" />
                 </div>
                 <div style={{ marginBottom: "30px", width: "100%" }}>
                     <StyledInputLabel

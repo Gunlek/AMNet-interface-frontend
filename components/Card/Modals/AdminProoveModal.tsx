@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { BodyWithModal } from "../../Background/style";
 import { ResponsiveRow, Col8, Col4 } from "../../Container/style";
 import useMediaQuery from "../../MediaQueries/MediaQuery";
 import { StateRequest } from "../../Status/Status";
@@ -7,35 +6,18 @@ import { Buttons } from "../../Table/Admin/Buttons";
 import { StyledTable, StyledHeadTr, StyledTh, StyledTr, StyledTd } from "../../Table/style";
 import { StyledLink } from "../../Text/style";
 import { TitleCard } from "../Cards";
-import { StyledBackgroundModal2, StyledModal2 } from "./style";
+import ModalLogic from "./ModalLogic";
+import { StyledBackgroundModal, StyledModal } from "./style";
 
 export default function ProoveModal(props: { request: any, link: string }) {
     const minWidth1000 = useMediaQuery('(min-width: 1200px)')
-
-    const [Display, setDisplay] = useState(false)
-    const [Opacity, setOpacity ] = useState(false)
-    
-    function toggle(){
-        if(Display)
-        {
-            setOpacity(false)
-           
-            setTimeout(() => {
-                setDisplay(false)
-            }, 300);
-        }
-        else{
-            setDisplay(true)
-            setOpacity(true)
-        }
-    }
+    const { Display, Opacity, toggle } = ModalLogic()
     
     return (
         <>
-            <BodyWithModal reveal={Display} />
             <StyledLink color="#096a09" onClick={toggle}>Image</StyledLink>
-            <StyledBackgroundModal2 onClick={toggle} Display={Display} Opacity={Opacity}/>
-            <StyledModal2
+            <StyledBackgroundModal onClick={toggle} Display={Display} Opacity={Opacity}/>
+            <StyledModal
                 width={minWidth1000 ? "1200px" : undefined}
                 Display={Display} Opacity={Opacity}
                 style={{
@@ -95,7 +77,7 @@ export default function ProoveModal(props: { request: any, link: string }) {
                         </Col4>
                     </ResponsiveRow>
                 </div>
-            </StyledModal2>
+            </StyledModal>
         </>
     )
 }

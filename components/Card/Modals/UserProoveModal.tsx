@@ -1,4 +1,3 @@
-import { BodyWithModal } from "../../Background/style"
 import useMediaQuery from "../../MediaQueries/MediaQuery"
 import { StyledLink } from "../../Text/style"
 import { TitleCard } from "../Cards"
@@ -7,16 +6,15 @@ import { StyledBackgroundModal, StyledModal } from "./style"
 
 export default function UserProoveModal(props: { link: string }) {
     const minWidth1000 = useMediaQuery('(min-width: 1200px)')
-    const { reveal, toggle } = ModalLogic()
+    const { Display, Opacity, toggle } = ModalLogic()
 
     return (
         <>
-            <BodyWithModal reveal={reveal} />
             <StyledLink color="#096a09" onClick={toggle}>Image</StyledLink>
-            <StyledBackgroundModal onClick={toggle} reveal={reveal} />
+            <StyledBackgroundModal onClick={toggle} Display={Display} Opacity={Opacity} />
             <StyledModal
                 width={minWidth1000 ? "800px" : undefined}
-                reveal={reveal}
+                Display={Display} Opacity={Opacity}
                 style={{
                     maxHeight: "90vh",
                     padding: minWidth1000 ? "30px" : "20px",
