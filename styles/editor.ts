@@ -43,19 +43,19 @@ export const EditorStyle = createGlobalStyle`
     }
 
     .rdw-option-wrapper {
-        border: 1px solid black;
+        border: 2px solid black;
         padding: 10px;
         height: 30px;
-        margin: 0 15px;
+        margin: 5px 15px;
         background: none;
         border-radius: 9px;
     }
 
     .rdw-dropdown-wrapper {
-        border: 1px solid black;
+        border: 2px solid black;
         padding: 10px 0;
         height: 30px;
-        margin: 0 15px;
+        margin: 5px 15px;
         background: none;
         border-radius: 9px;
     }
