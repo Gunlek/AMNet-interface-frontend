@@ -17,6 +17,8 @@ export const StyledMenu = styled(StyledCard)`
     border-top-left-radius: 0px;
     border-top-right-radius: 0px;
     padding-bottom: 25px;
+    transition: box-shadow 0.3s linear;
+    box-shadow: ${(props) => !props.Shadow && "none"};
   }
   
   @media screen and (max-width: 800px){
