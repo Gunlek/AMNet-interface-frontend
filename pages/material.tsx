@@ -9,30 +9,12 @@ import MaterialUserTable from "../components/Table/User/Material";
 import { BlackTitle, BlackP } from "../components/Text/style";
 
 const material = [
-  {
-    "material_id": 1,
-    "material_user": 1,
-    "material_description": "Ordinateur portable",
-    "material_state": "declined",
-    "material_reason": "Je veux un pc pour faire de la CAO"
-  },
-  {
-    "material_id": 2,
-    "material_user": 4,
-    "material_description": "Ordinateur portable",
-    "material_state": "pending",
-    "material_reason": "Je veux un pc pour faire de la CAO Je veux un pc pour faire de la CAO"
-  },
-  {
-    "material_id": 1,
-    "material_user": 5,
-    "material_description": "Ordinateur portable",
-    "material_state": "active",
-    "material_reason": "Je veux un pc pour faire de la CAO Je veux un pc pour faire de la CAO Je veux un pc pour faire de la CAO Je veux un pc pour faire de la CAO"
-  }
+
 ]
 
 export default function UserMaterial() {
+  const empty = (material.length === 0);
+
   return (
     <>
       <Head>
@@ -41,8 +23,8 @@ export default function UserMaterial() {
       <UserMenu page="material" />
 
       <DashboardContainer>
-        <ResponsiveRow  margin="1% 0" mobileMargin="20px 0" style={{ alignItems: "center" }}>
-          <Column mobileMargin="30px" style={{ justifyContent: "center" }}>
+        <ResponsiveRow margin="1% 0" mobileMargin="20px 0" style={{ alignItems: "center" }}>
+          <Column mobileMarginBottom="20px" style={{ justifyContent: "center" }}>
             <BlackTitle>Mes demandes de matériel</BlackTitle>
           </Column>
 
@@ -53,7 +35,7 @@ export default function UserMaterial() {
               justifyContent: "center"
             }}
           >
-            <MaterialModal/>
+            <MaterialModal />
           </div>
         </ResponsiveRow>
 
@@ -64,16 +46,27 @@ export default function UserMaterial() {
           </BlackP>
         </Column>
 
-        <StyledCard mobileMarginBottom="30px" marginBottom="2%" style={{ flex: "1" }}>
-          <div
-            style={{
-              height: "100%",
-              width: "100%",
-              overflowX: "auto"
-            }}
-          >
-            <MaterialUserTable requests={material} />
-          </div>
+        <StyledCard
+          mobileMarginBottom={empty ? "0" : "30px"}
+          marginBottom={empty ? "0" : "2%"}
+          style={{
+            flex: "1",
+            background: empty ? "none" : undefined,
+            padding: empty ? "0" : undefined,
+            boxShadow: empty ? "none" : undefined
+          }}
+        >
+          {!empty &&
+            <div
+              style={{
+                height: "100%",
+                width: "100%",
+                overflowX: "auto"
+              }}
+            >
+              <MaterialUserTable requests={material} />
+            </div>
+          }
         </StyledCard>
 
         <HelpSection color="#096A09" />

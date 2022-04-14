@@ -10,35 +10,7 @@ import { BlackTitle, BlackP, StyledLink, BlackText, BlackUl } from "../component
 
 
 const Iot = [
-  {
-    "acces_id": 1,
-    "access_description": "Chromecast",
-    "access_mac": "AABBCCDDEEFF",
-    "access_proof": "photoProof-1621263399914.jpg",
-    "acces_state": "pending",
-  },
-  {
-    "acces_id": 2,
-    "access_description": "Chromecast",
-    "access_mac": "AABBCCDDEEFF",
-    "access_proof": "photoProof-1621263399914.jpg",
-    "acces_user": 1,
-    "acces_state": "active",
-  },
-  {
-    "acces_id": 3,
-    "access_description": "Chromecast",
-    "access_mac": "AABBCCDDEEFF",
-    "access_proof": "photoProof-1621263399914.jpg",
-    "acces_state": "declined",
-  },
-  {
-    "acces_id": 1,
-    "access_description": "Chromecast",
-    "access_mac": "AABBCCDDEEFF",
-    "access_proof": "photoProof-1621263399914.jpg",
-    "acces_state": "pending",
-  }
+
 ]
 
 export default function UserIoT() {
@@ -53,7 +25,7 @@ export default function UserIoT() {
 
       <DashboardContainer>
         <ResponsiveRow margin="1% 0" mobileMargin="20px 0" style={{ alignItems: "center" }}>
-          <Column mobileMarginBottom="30px" style={{ justifyContent: "center" }}>
+          <Column mobileMarginBottom="20px" style={{ justifyContent: "center" }}>
             <BlackTitle>Mes demandes d'accès à AMNet IoT</BlackTitle>
           </Column>
 
@@ -64,7 +36,7 @@ export default function UserIoT() {
               justifyContent: "center"
             }}
           >
-            <IoTModal/>
+            <IoTModal />
           </div>
         </ResponsiveRow>
 
@@ -101,16 +73,17 @@ export default function UserIoT() {
             boxShadow: empty ? "none" : undefined
           }}
         >
-          <div
-            style={{
-              height: "100%",
-              width: "100%",
-              overflowX: "auto",
-              display: empty ? "none" : "block"
-            }}
-          >
-            <IoTUserTable requests={Iot} />
-          </div>
+          {!empty &&
+            <div
+              style={{
+                height: "100%",
+                width: "100%",
+                overflowX: "auto"
+              }}
+            >
+              <IoTUserTable requests={Iot} />
+            </div>
+          }
         </StyledCard>
 
         <HelpSection color="#096A09" />
