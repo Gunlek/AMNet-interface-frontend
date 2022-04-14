@@ -166,19 +166,19 @@ export const Col1 = styled(Col)`
 
 export const DashboardContainer = styled.div`
   padding-left: 2%; 
-  width: calc(100% - 85px);
+  height: 100%;
   display: flex;
   flex-direction: column;
   margin-left: 85px;
-  margin-top: 1%;
+  padding-top: 1%;
   flex: 1;
 
   @media screen and (max-width: 1000px){
     width: 100%;
     margin-left: 0;
-    padding-left: 0; 
     margin-top: 95px;
     padding: 0 5%;
+    height: auto;
   }
 
   @media screen and (max-width: 1000px ) and (min-width: 801px){

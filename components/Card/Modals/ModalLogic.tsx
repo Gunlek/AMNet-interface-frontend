@@ -11,12 +11,7 @@ const scrollbarWidth = () => {
 }
 
 const Scroll = () => {
-    let Scroll: number
-    if (typeof window !== "undefined") {
-        Scroll = window.pageYOffset
-    }
-
-    const [scrolling, setScrolling] = useState(Scroll)
+    const [scrolling, setScrolling] = useState(0)
 
     const handleScroll = () => {
         setScrolling(window.pageYOffset)
@@ -42,7 +37,7 @@ function ModalBody(reveal: boolean, scrolled: number, minWidth1000: boolean) {
     document.body.style.height = reveal ? "100vh" : "";
     document.body.style.overflowY = reveal ? "hidden" : "";
     document.body.style.top = reveal ? "-" + scrolled.toString() + "px" : "";
-    document.body.style.paddingRight = reveal ? minWidth1000 ? "calc( 1.95% + " + barWidth.toString() + "px )" : barWidth.toString() + "px" : "";
+    document.body.style.paddingRight = reveal ? barWidth.toString() + "px " : "";
     menu.style.top = reveal ? "0" : "";
     menu.style.paddingRight = reveal ? minWidth1000 ? "" : barWidth.toString() + "px" : "";
 }
@@ -50,6 +45,7 @@ function ModalBody(reveal: boolean, scrolled: number, minWidth1000: boolean) {
 export const ModalLogic = () => {
     const [Display, setDisplay] = useState(false)
     const [Opacity, setOpacity] = useState(false)
+    const [top, setTop] = useState(0)
     const scrolled = Scroll()
     const minWidth1000 = useMediaQuery('(min-width: 1000px)')
 
@@ -61,10 +57,9 @@ export const ModalLogic = () => {
             setOpacity(false)
             setTimeout(() => {
                 setDisplay(false)
-                const scrollY = document.body.style.top;
                 ModalBody(false, scrolled, minWidth1000)
                 menu.style.transition = "none";
-                window.scrollTo(0, parseInt(scrollY || '0') * -1);
+                window.scrollTo(0, Math.round(top));
 
                 setTimeout(() => {
                     menu.style.transition = "";
@@ -72,6 +67,7 @@ export const ModalLogic = () => {
             }, 280);
         }
         else {
+            setTop(scrolled)
             ModalBody(true, scrolled, minWidth1000)
             setDisplay(true)
             setOpacity(true)

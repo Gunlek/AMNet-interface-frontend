@@ -16,7 +16,6 @@ export const GlobalStyle = createGlobalStyle`
 
     body{
         min-height: 100vh;
-        padding: 0 2%;
         display: flex;
     }
 
@@ -39,8 +38,9 @@ export const GlobalStyle = createGlobalStyle`
 
     #__next{
         display: flex;
-        flex-Direction: column;
+        flex-Direction: row;
         width: 100%;
+        padding: 0 2%;
         min-height: 100vh;
     }
 
@@ -77,6 +77,10 @@ export const GlobalStyle = createGlobalStyle`
         html, 
         body{
             font-size:13px;
+            padding: 0;
+        }
+
+        #__next{
             padding: 0;
         }
     }
