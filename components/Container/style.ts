@@ -171,7 +171,8 @@ export const DashboardContainer = styled.div`
   flex-direction: column;
   margin-left: 85px;
   padding-top: 1%;
-  flex: 1;
+  flex: 1 0 0;
+  max-width: calc(100% - 85px);
 
   @media screen and (max-width: 1000px){
     width: 100%;
@@ -179,6 +180,7 @@ export const DashboardContainer = styled.div`
     margin-top: 95px;
     padding: 0 5%;
     height: auto;
+    max-width: none;
   }
 
   @media screen and (max-width: 1000px ) and (min-width: 801px){
