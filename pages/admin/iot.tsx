@@ -6,7 +6,7 @@ import { DashboardContainer, Row } from "../../components/Container/style";
 import { BlackTitle } from "../../components/Text/style";
 import RequestTab from "../../components/Card/RequestTab";
 import { Footer } from "../../components/Card/Cards";
-import IoTAdminTable from "../../components/Table/Admin/Iot";
+import IoTAdminTable from "../../components/Table/Admin/IoT";
 
 const Iot = [
   {

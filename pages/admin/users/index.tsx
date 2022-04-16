@@ -6,8 +6,9 @@ import { StyledCard } from "../../../components/Card/style";
 import AdminMenu from "../../../components/Menu/AdminMenu";
 import { BlackTitle } from "../../../components/Text/style";
 import useMediaQuery from "../../../components/MediaQueries/MediaQuery";
-import { UsersTable } from "../../../components/Table/Admin/Users";
+import { UsersTable } from "../../../components/Table/Admin/Users2";
 import { Footer } from "../../../components/Card/Cards";
+import AutoSizer from "react-virtualized-auto-sizer"
 
 const data = [
   {
@@ -432,17 +433,14 @@ export default function Users() {
             minHeight: minWidth1000 ? "0" : "500px"
           }}
         >
-          <div
-            style={{
-              height: "100%",
-              overflow: "auto",
-              position: "sticky"
-            }}
-          >
-            {Table}
-          </div>
-        </StyledCard>
+          <AutoSizer>
+            {({ height, width }) => (
+              Table(height, width)
+            )}
+          </AutoSizer>
+          
 
+        </StyledCard>
         <Footer marginTop="0" />
       </DashboardContainer>
     </>

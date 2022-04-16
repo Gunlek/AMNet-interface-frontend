@@ -88,7 +88,7 @@ export default function Settings() {
       <Head>
         <title>Administration &bull; AMNet</title>
       </Head>
-      <AdminMenu page="settings" />
+      <AdminMenu page="admin" />
 
       <DashboardContainer>
         <Row margin="1% 0" mobileMargin="20px 0" mobileJustify="center">

@@ -6,7 +6,7 @@ import LogOutIcon from "../NavIcons/log_out";
 import MaterialIcon from "../NavIcons/material";
 import IoTIcon from "../NavIcons/iot";
 import ProfilIcon from "../NavIcons/profil";
-import SettingsIcon from "../NavIcons/settings";
+import AdminIcon from "../NavIcons/admin";
 import BurgerMenu from "../NavIcons/burgermenu";
 import { useEffect, useState } from "react";
 import useScrollingUp from "./scroll";
@@ -99,7 +99,7 @@ export default function UserMenu(props: { page: string }) {
 
         {isAdmin &&
           <Row style={positionning}>
-            <SettingsIcon page={props.page} />
+            <AdminIcon page={props.page} />
           </Row>
         }
 

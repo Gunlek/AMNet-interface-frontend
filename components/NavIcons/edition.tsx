@@ -15,7 +15,7 @@ export default function Edition(props: { page: string }) {
     }
     else {
         return (
-            <Link href="/settings/edition" passHref>
+            <Link href="/admin/edition" passHref>
                 <StyledBackIcon tooltip={content}>
                     <StyledIcon xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 8.996 8.996">
                         <path d="m8.877 1.669-.755.755L6.573.876 7.33.12a.415.415 0 0 1 .581 0l.967.967a.415.415 0 0 1 0 .582zM1.551 5.89l4.577-4.577 1.548 1.548-4.57 4.585H1.552Z" />

@@ -4,7 +4,7 @@ import IndexIcon from "../NavIcons";
 import LogOutIcon from "../NavIcons/log_out";
 import MaterialIcon from "../NavIcons/material";
 import IoTIcon from "../NavIcons/iot";
-import SettingsIcon from "../NavIcons/settings";
+import AdminIcon from "../NavIcons/admin";
 import UsersIcon from "../NavIcons/users";
 import BurgerMenu from "../NavIcons/burgermenu";
 import { useEffect, useState } from "react";
@@ -57,7 +57,7 @@ export default function AdminMenu(props: { page?: string }) {
         </StyledDivLogOut>
 
         <Row style={positionning}>
-          <SettingsIcon page={props.page} />
+          <AdminIcon page={props.page} />
         </Row>
 
         <Row style={positionning}>
