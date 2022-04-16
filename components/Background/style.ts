@@ -17,5 +17,6 @@ export const CampusGlobalStyle = createGlobalStyle`
     justify-content: space-between;
     align-items: center; 
     padding: ${(props) => props.padding};
+    flex-direction: column;
   }
 `
