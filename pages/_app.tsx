@@ -3,15 +3,17 @@ import { useRouter } from "next/router";
 import 'regenerator-runtime/runtime'
 import { GlobalStyle } from "../styles/global";
 import "../styles/globals.css";
+import Homepage from "./homepage";
 
 
 function MyApp({ Component, pageProps }) {
   const router = useRouter()
-  const isLogged = true;
   const pathname = router.pathname.split('/')[1]
-  const test = !isLogged && !(pathname === "homepage")
+  
+  const isLogged = true;
+  const isRedirected = !isLogged && (pathname !== "homepage")
 
-  if (test) { typeof window !== 'undefined' && router.push('/homepage') }
+  if (isRedirected) { typeof window !== 'undefined' && router.push('/homepage') }
   
   return <>
     <Head>
@@ -26,10 +28,9 @@ function MyApp({ Component, pageProps }) {
       <meta name="msapplication-config" content="/favicons/browserconfig.xml" />
       <meta name="theme-color" content="#ffffff" />
       <meta name="viewport" content="width=device-width, user-scalable=no" />
-      <title>Chargement &bull; AMNet</title>
     </Head>
     <GlobalStyle />
-    {!test && <Component {...pageProps} />}
+    {isRedirected ? <Homepage /> : <Component {...pageProps} />}
   </>
 }
 
