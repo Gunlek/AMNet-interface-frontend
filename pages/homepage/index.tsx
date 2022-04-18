@@ -8,20 +8,21 @@ import RectangleLogo from "../../components/Card/RectangleLogo";
 import { StyledCardCampus } from "../../components/Card/style";
 import TeamPicture from "../../components/Card/TeamPicture";
 import GitHub from "../../components/NavIcons/github";
-import { 
-  Row, 
-  Col6, 
-  ResponsiveRow, 
-  Col7, 
-  Col2, 
-  Col10, 
-  Col5 
+import {
+  Row,
+  Col6,
+  ResponsiveRow,
+  Col7,
+  Col2,
+  Col10,
+  Col5,
+  Column
 } from "../../components/Container/style";
-import { 
-  WhiteP, 
-  BlackP, 
-  StyledLink, 
-  BlackText 
+import {
+  WhiteP,
+  BlackP,
+  StyledLink,
+  BlackText
 } from "../../components/Text/style";
 
 const accutalTeam = [
@@ -43,18 +44,18 @@ export default function Homepage() {
       <Head>
         <title>Accueil &bull; AMNet</title>
       </Head>
-      <CampusGlobalStyle padding="0 5%"/>
+      <CampusGlobalStyle padding="0 5%" />
 
       <Row margin="20px 0" mobileMargin="30px 0" direction="column">
         <Col6 mobileMarginBottom="30px" justify="center" mobileAlign="center">
           <RectangleLogo color="white" />
         </Col6>
         <Col6 align="end" mobileAlign="center" justify="center">
-            <ButtonLink href="/homepage/login"  width="300px">Se Connecter / S'inscrire</ButtonLink>
+          <ButtonLink href="/homepage/login" width="300px">Se Connecter / S'inscrire</ButtonLink>
         </Col6>
       </Row>
 
-      <ResponsiveRow marginBottom="20px" mobileMarginBottom="30px" style={{ flex: "8" }}>
+      <ResponsiveRow marginBottom="30px" mobileMarginBottom="30px" style={{ flex: "10" }}>
         <Col7 paddingRight="15px" mobileMarginBottom="30px"
           style={{
             paddingTop: "0px",
@@ -75,7 +76,24 @@ export default function Homepage() {
             </WhiteP>
           </div>
 
+        </Col7>
+
+        <Col5 marginLeft="15px" style={{ justifyContent: "space-between" }}>
+          <TeamPicture Team={accutalTeam} />
+
+
+        </Col5>
+      </ResponsiveRow>
+
+      <ResponsiveRow marginBottom="20px" mobileMarginBottom="30px">
+        <Col7 paddingRight="15px" mobileMarginBottom="30px"
+          style={{
+            paddingTop: "0px",
+            justifyContent: "space-between"
+          }}
+        >
           <StyledCardCampus>
+            <TitleCard>Serveur Minecraft</TitleCard>
             <ResponsiveRow>
               <Col2
                 style={{
@@ -89,8 +107,7 @@ export default function Homepage() {
                 />
               </Col2>
 
-              <Col10 style={{ marginLeft: "2%" }}>
-                <TitleCard>Serveur Minecraft</TitleCard>
+              <Col10 paddingLeft="30px">
                 <BlackP style={{ marginBottom: "1.2rem" }}>
                   En plus de fournir un accès internet aux résidents nous
                   offrons une multitude de services, un serveur Minecraft :{" "}
@@ -107,25 +124,27 @@ export default function Homepage() {
         </Col7>
 
         <Col5 marginLeft="15px" style={{ justifyContent: "space-between" }}>
-          <TeamPicture Team={accutalTeam} />
-
-          <StyledCardCampus style={{ marginTop: "30px" }}>
+          <StyledCardCampus style={{ height: "100%" }}>
             <TitleCard>A propos</TitleCard>
-            <Row style={{ marginBottom: "1.2rem" }}>
-              <BlackP mobileAlignTxt="center" style={{ marginRight: "20px" }}>
-                Projet développé et maintenu par Hard Win'∫ 58Li218, Squall'∫ 4Li218 et Mac Nhat'∫ 47-102Li219 &bull; Version 2.0.1
+            <Column style={{ justifyContent: "space-between", height: "100%" }}>
+              <BlackP mobileAlignTxt="center" style={{ marginBottom: "10px" }} >
+                Projet développé et maintenu par Hard Win'∫ 58Li218, Squall'∫ 4Li218 et Mac Nhat'∫ 47-102Li219
               </BlackP>
-              <GitHub height="30px" margin="0" />
-            </Row>
-            <BlackText style={{ textAlign: "right" }}>
-              Design et UI pensés avec l'aide de Cou'∫<span style={{ marginLeft: "1.5px" }}>'</span>tal 141Li219
-            </BlackText>
+
+              <BlackText style={{ display: "flex", alignItems: "center", justifyContent: "center", marginBottom: "10px" }}>
+                <span style={{ marginRight: "15px", fontSize: "1.5rem" }}>Version 2.0.1 </span><GitHub height="40px" margin="0" />
+              </BlackText>
+
+              <BlackText style={{ textAlign: "right" }}>
+                Design et UI pensés avec l'aide de Cou'∫<span style={{ marginLeft: "1.5px" }}>'</span>tal 141Li219
+              </BlackText>
+            </Column>
           </StyledCardCampus>
         </Col5>
       </ResponsiveRow>
 
-      <Row style={{ flex: "1", alignItems: "end" }}>
-        <HelpSection mobileMarginBottom="30px" marginBottom="20px"/>
+      <Row style={{ alignItems: "end", flex: "2"  }}>
+        <HelpSection mobileMarginBottom="30px" marginBottom="20px" />
       </Row>
     </>
   );
