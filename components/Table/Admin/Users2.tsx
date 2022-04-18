@@ -355,7 +355,6 @@ const Inner = React.forwardRef<HTMLDivElement, React.HTMLProps<HTMLDivElement>>(
         <StyledTable style={{ top, position: 'absolute', width: '100%' }}>
           {header}
           <tbody >{children}</tbody>
-
         </StyledTable>
       </div>
     )
