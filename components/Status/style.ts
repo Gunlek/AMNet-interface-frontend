@@ -10,21 +10,7 @@ export const StyledStateRequest = styled.div`
   margin: ${(props) => props.center && "0 auto"};
   user-select: none;
   position: relative;
-
-  &:after{
-    top: -1.5px;
-    left: -0.5px;
-    border-radius: 16px;
-    height: 40px;
-    width: 148px;
-    position: absolute;
-    content: "";
-    border: 2px solid ${(props) => props.color || "#FF9900"};
-
-    @media screen and (max-width: 1000px){
-      width: 138px;
-    }
-  }
+  outline: 2px solid ${(props) => props.color || "#FF9900"};
 
   @media screen and (max-width: 1000px){
     width: 140px;
