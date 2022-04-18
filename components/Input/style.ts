@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const StyledInput = styled.input`
-  background: rgba(255, 255, 255, 0.6);
+  background-color: rgba(255, 255, 255, 0.6);
   box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.06);
   border-radius: 15px;
   width: ${(props) => props.width || "100%"};
@@ -10,11 +10,11 @@ export const StyledInput = styled.input`
   font-size: 1.2rem;
   border: ${(props) => props.border || "2px solid transparent"};
   margin: 0;
-  transition: border 0.3s;
+  transition: border 0.3s, background-color 0.3s;
   margin-left: ${(props) => props.marginLeft};
 
   &:hover, &:focus{
-    background: rgba(255, 255, 255, 0.8);
+    background-color: rgba(255, 255, 255, 0.8);
     border: 2px solid ${(props) => props.hoverBorder || "#096A09"};
     outline: none;
   }
