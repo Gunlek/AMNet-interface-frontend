@@ -32,7 +32,7 @@ export const StyledGreenCard = styled.div`
   border-radius: 13px 20px 20px 0px;
   color: #ffffff;
   width: 99%;
-  padding: 5px 40px;
+  padding: 5px 0 5px 40px;
   font-size: 1.2rem;
 `;
 
