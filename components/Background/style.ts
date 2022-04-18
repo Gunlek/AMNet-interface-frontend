@@ -16,7 +16,7 @@ export const CampusGlobalStyle = createGlobalStyle`
   #__next{
     justify-content: space-between;
     align-items: center; 
-    padding: ${(props) => props.padding};
+    padding: ${(props) => props.padding || "0"};
     flex-direction: column;
   }
 `
