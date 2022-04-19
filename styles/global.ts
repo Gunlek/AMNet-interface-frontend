@@ -17,6 +17,7 @@ export const GlobalStyle = createGlobalStyle`
     body{
         min-height: 100vh;
         display: flex;
+        background-image: none;
     }
 
     ::selection{

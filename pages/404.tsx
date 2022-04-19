@@ -1,17 +1,14 @@
 import React from "react";
 import Head from "next/head";
 import { CampusGlobalStyle } from "../components/Background/style";
-import { GreenButton } from "../components/Button/Buttons";
+import { ButtonLink } from "../components/Button/Buttons";
 import { TitleCard, HelpSection, Footer } from "../components/Card/Cards";
 import RectangleLogo from "../components/Card/RectangleLogo";
 import { StyledCardCampus } from "../components/Card/style";
 import { Row } from "../components/Container/style";
-import { BlackText, StyledLink,  } from "../components/Text/style";
-import { useRouter } from "next/router";
+import { BlackText, StyledLink, } from "../components/Text/style";
 
 export default function Page404() {
-  const router = useRouter()
-
   return (
     <>
       <Head>
@@ -45,7 +42,7 @@ export default function Page404() {
               marginTop: "20px"
             }}
           >
-            <GreenButton onClick={()=> router.back()}>Retour en arrière</GreenButton>
+            <ButtonLink href="/">Accéder à l'accueil</ButtonLink>
           </Row>
 
         </StyledCardCampus>
