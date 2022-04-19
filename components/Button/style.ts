@@ -46,7 +46,7 @@ export const SmallStyledButton = styled(StyledButton)`
   width: ${(props) => props.width || "150px"};
   font-size: ${(props) => props.fontSize || "1.2rem"};
   background: none;
-  transition: background-color 0.3s ease-out;
+  transition: background-color 0.3s ease-out, box-shadow 0.3s;
 
   @media screen and (max-width: 1000px){
     width: ${(props) => props.width || "140px"};
