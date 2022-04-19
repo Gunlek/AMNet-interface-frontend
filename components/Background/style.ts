@@ -3,7 +3,7 @@ import { createGlobalStyle } from "styled-components";
 export const CampusGlobalStyle = createGlobalStyle` 
   body{
     padding: 0;
-    background: linear-gradient(0deg, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url("/static/images/homepage/campus2.jpg");
+    background-image: url("/static/images/homepage/campus.jpg");
     background-position-x: 50%;
     background-color: #c1c1c1;
     background-repeat: no-repeat;
@@ -11,6 +11,10 @@ export const CampusGlobalStyle = createGlobalStyle`
     background-attachment: fixed;
     min-height: 100vh;
     scrollbar-color: auto;
+
+    @media screen and (max-width: 1000px){
+      background-image: url("/static/images/homepage/mobileCampus.jpg");
+    }
   }
 
   #__next{
