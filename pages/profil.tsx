@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Head from "next/head";
 import { GreenButton } from "../components/Button/Buttons";
 import { HelpSection, Footer } from "../components/Card/Cards";
-import { StyledImg } from "../components/Card/Images/style";
+import { StyledCancelImg } from "../components/Card/Images/style";
 import { DashboardContainer, ResponsiveRow, Column, Col6, Col3 } from "../components/Container/style";
 import { StyledInputLabel, StyledInput } from "../components/Input/style";
 import useMediaQuery from "../components/MediaQueries/MediaQuery";
@@ -45,7 +45,7 @@ export default function Profil() {
             <BlackTitle>Editer mon Profil</BlackTitle>
           </Column>
 
-          <Column align="end" mobileAlign="center" style={{ flex: "1", justifyContent:"center" }}>
+          <Column align="end" mobileAlign="center" style={{ flex: "1", justifyContent: "center" }}>
             <StateContribution status="unpaid" />
           </Column>
         </ResponsiveRow>
@@ -109,14 +109,7 @@ export default function Profil() {
                   id="user_promotion2"
                   type="text"
                 />
-                <StyledImg
-                  padding="0"
-                  width="35px"
-                  marginLeft="20px"
-                  shadow="1"
-                  onClick={CancelChange}
-                  src="/static/icons/cancel.svg"
-                />
+                <StyledCancelImg onClick={CancelChange} />
               </div>
             </Col6>
           </ResponsiveRow>
@@ -162,10 +155,10 @@ export default function Profil() {
             </Col6>
           </ResponsiveRow>
 
-          <ResponsiveRow 
-            marginBottom={isGadz ? "0" : "20px"} 
-            mobileMarginBottom={isGadz ? "10px" : "30px"} 
-            style={{  flex: "1", transition: "margin-bottom 0.3s linear" }}
+          <ResponsiveRow
+            marginBottom={isGadz ? "0" : "20px"}
+            mobileMarginBottom={isGadz ? "10px" : "30px"}
+            style={{ flex: "1", transition: "margin-bottom 0.3s linear" }}
           >
             <Col6 paddingRight="10px"
               mobileMarginBottom={isGadz ? "20px" : "0"}
@@ -174,18 +167,18 @@ export default function Profil() {
                 height: isGadz ? "93px" : "0",
                 transition: "height 0.3s linear",
                 overflowY: "clip",
-                
+
               }}
             >
               <GreenText style={{ marginBottom: "5px" }}>Identifiants gadzariques</GreenText>
               <StyledInput hoverBorder="transparent" readOnly value="Mac Nhat'sss 47-102Li219" type="text" />
             </Col6>
-            <Col6 
+            <Col6
               paddingLeft="10px"
-              align="end" 
+              align="end"
               mobileAlign="center"
-              style={{ 
-                justifyContent: "end", 
+              style={{
+                justifyContent: "end",
                 paddingBottom: isGadz ? "20px" : "0",
                 transition: "padding-bottom 0.3s linear"
               }}

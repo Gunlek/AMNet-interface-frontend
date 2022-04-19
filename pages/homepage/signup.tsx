@@ -3,24 +3,24 @@ import Head from "next/head";
 import { CampusGlobalStyle } from "../../components/Background/style";
 import { GreenButton } from "../../components/Button/Buttons";
 import { TitleCard, HelpSection, Footer } from "../../components/Card/Cards";
-import { StyledImg } from "../../components/Card/Images/style";
+import { StyledCancelImg } from "../../components/Card/Images/style";
 import RectangleLogo from "../../components/Card/RectangleLogo";
 import { StyledCardCampus } from "../../components/Card/style";
 import RoundCheckbox from "../../components/Input/RoundCheckbox";
 import { StyledInputLabel, StyledInput } from "../../components/Input/style";
 import useMediaQuery from "../../components/MediaQueries/MediaQuery";
-import { 
-  Row, 
-  ResponsiveRow, 
-  Col6, 
-  Col3, 
-  Column 
+import {
+  Row,
+  ResponsiveRow,
+  Col6,
+  Col3,
+  Column
 } from "../../components/Container/style";
-import { 
-  BlackText, 
-  GreenText, 
-  StyledLink, 
-  BlackP 
+import {
+  BlackText,
+  GreenText,
+  StyledLink,
+  BlackP
 } from "../../components/Text/style";
 
 
@@ -77,7 +77,7 @@ export default function SignUp() {
                 <StyledInputLabel htmlFor="user_name">Nom d'utilisateur</StyledInputLabel>
                 <StyledInput id="user_name" type="text" />
               </Col6>
-              
+
               <Col6
                 paddingLeft="10px" mobileAlign="center"
                 style={{
@@ -138,14 +138,7 @@ export default function SignUp() {
                     id="user_promotion2"
                     type="text"
                   />
-                  <StyledImg
-                    padding="0"
-                    width="35px"
-                    marginLeft="20px"
-                    shadow="1"
-                    onClick={CancelChange}
-                    src="/static/icons/cancel.svg"
-                  />
+                  <StyledCancelImg onClick={CancelChange} />
                 </div>
               </Col6>
             </ResponsiveRow>
@@ -220,7 +213,7 @@ export default function SignUp() {
                 }}
               >
                 <RoundCheckbox id="accept_rules" checked={acceptRules} onChange={handleRadioChange} />
-                <BlackText  mobileAlignTxt="center" style={{ paddingLeft: "10px" }}>
+                <BlackText mobileAlignTxt="center" style={{ paddingLeft: "10px" }}>
                   Accepter les Statuts et le Réglement interieur
                 </BlackText>
               </label>
@@ -233,7 +226,7 @@ export default function SignUp() {
         </StyledCardCampus>
       </Row>
 
-      <HelpSection padding="0 5%"/>
+      <HelpSection padding="0 5%" />
       <Footer page="campus" />
     </>
   );

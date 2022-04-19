@@ -1,16 +1,27 @@
 import styled from "styled-components";
 
-export const StyledImg = styled.img`
-  border-radius: ${(props) => props.shadow ? "8px" : "50%"};
-  transition: 0.3s;
-  margin-left: ${(props) => props.marginLeft || "10px"};
-  width: ${(props) => props.width || "1.4rem"};
-  padding: ${(props) => props.padding || "0.2rem"};
+export const StyledDeleteImg = styled.img.attrs({ src:"/static/icons/fail.svg" })`
+  border-radius: 50%;
+  transition: background-color 0.3s;
+  margin-left: 10px;
+  width: 1.4rem;
+  padding: 0.2rem;
   cursor: pointer;
 
   &:hover{
-    background: ${(props) => !props.shadow && "rgba(0, 0, 0, 0.1)"};
-    box-shadow: ${(props) => props.shadow && "0px 2px 10px rgba(0, 0, 0, 0.4)"};
+    background-color: rgba(0, 0, 0, 0.1);
+  }
+`
+
+export const StyledCancelImg = styled.img.attrs({ src:"/static/icons/cancel.svg" })`
+  border-radius: 8px;
+  transition: box-shadow 0.2s;
+  margin-left: 20px;
+  width: 35px;
+  cursor: pointer;
+
+  &:hover{
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.4);
   }
 `
 
