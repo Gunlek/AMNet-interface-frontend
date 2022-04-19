@@ -15,13 +15,14 @@ import { TeamEditor } from "../../components/TeamEditor/TeamEditor";
 import useMediaQuery from "../../components/MediaQueries/MediaQuery";
 import FileUploader from "../../components/Input/FileUploader";
 import TeamPicture from "../../components/Card/TeamPicture";
-import { StyledImg } from "../../components/Card/Images/style";
+import { StyledDeleteImg } from "../../components/Card/Images/style";
 
 
 export default function Edition() {
   const minWidth1000 = useMediaQuery('(min-width:1000px)');
   const [Team, teamEditor] = TeamEditor()
   const [TabFile, setTabFile] = useState({ IR: null, Status: null, TeamPicture: null });
+  const [URLTeamPicture, setURURLTeamPicture] = useState(undefined)
 
   useEffect(() => {
     const IRinput = document.getElementById("IR") as HTMLInputElement;
@@ -32,6 +33,13 @@ export default function Edition() {
     StatusInput.value = null;
     TeamPictureInput.value = null;
   }, []);
+
+  useEffect(() => {
+    if (TabFile.TeamPicture && TabFile.TeamPicture["size"] <= 102400)
+      setURURLTeamPicture(URL.createObjectURL(TabFile.TeamPicture))
+    else
+      setURURLTeamPicture(undefined)
+  }, [TabFile]);
 
   const SetFile = (id: string, file: any) => {
     let NemTabFile = { ...TabFile };
@@ -84,24 +92,26 @@ export default function Edition() {
                   }}
                 >
                   <FileUploader id="IR" setfile={SetFile} accept=".pdf" />
-                  <div
-                    style={{
-                      marginLeft: minWidth1000 && "10px",
-                      marginTop: !minWidth1000 && "10px",
-                      display: TabFile.IR ? "flex" : "none",
-                      alignItems: "center"
-                    }}
-                  >
-                    <StyledLink
-                      color="#096a09"
-                      target="_blank"
-                      href={TabFile.IR && URL.createObjectURL(TabFile.IR)}
+                  {TabFile.IR &&
+                    <div
+                      style={{
+                        marginLeft: minWidth1000 && "10px",
+                        marginTop: !minWidth1000 && "10px",
+                        display: "flex",
+                        alignItems: "center"
+                      }}
                     >
-                      {TabFile.IR && TabFile.IR["name"]}
-                    </StyledLink>
+                      <StyledLink
+                        color="#096a09"
+                        target="_blank"
+                        href={URL.createObjectURL(TabFile.IR)}
+                      >
+                        {TabFile.IR["name"]}
+                      </StyledLink>
 
-                    <StyledImg onClick={() => DeleteFile("IR")} src="/static/icons/fail.svg" />
-                  </div>
+                      <StyledDeleteImg onClick={() => DeleteFile("IR")} src="/static/icons/fail.svg" />
+                    </div>
+                  }
                 </ResponsiveRow>
               </ResponsiveRow>
             </div>
@@ -126,23 +136,25 @@ export default function Edition() {
                   align="center"
                 >
                   <FileUploader id="Status" setfile={SetFile} accept=".pdf" />
-                  <div
-                    style={{
-                      marginLeft: minWidth1000 && "10px",
-                      marginTop: !minWidth1000 && "10px",
-                      display: TabFile.Status ? "flex" : "none",
-                      alignItems: "center"
-                    }}
-                  >
-                    <StyledLink
-                      color="#096a09"
-                      target="_blank"
-                      href={TabFile.Status && URL.createObjectURL(TabFile.Status)}
+                  {TabFile.Status &&
+                    <div
+                      style={{
+                        marginLeft: minWidth1000 && "10px",
+                        marginTop: !minWidth1000 && "10px",
+                        display: "flex",
+                        alignItems: "center"
+                      }}
                     >
-                      {TabFile.Status && TabFile.Status["name"]}
-                    </StyledLink>
-                    <StyledImg onClick={() => DeleteFile("Status")} src="/static/icons/fail.svg" />
-                  </div>
+                      <StyledLink
+                        color="#096a09"
+                        target="_blank"
+                        href={URL.createObjectURL(TabFile.Status)}
+                      >
+                        {TabFile.Status["name"]}
+                      </StyledLink>
+                      <StyledDeleteImg onClick={() => DeleteFile("Status")} src="/static/icons/fail.svg" />
+                    </div>
+                  }
                 </ResponsiveRow>
               </ResponsiveRow>
             </div>
@@ -163,32 +175,61 @@ export default function Edition() {
                   <StyledLink
                     color="black"
                     target="_blank"
-                    href="/static/images/team.png"
+                    href="/static/images/homepage/team.jpg"
                   >
                     Voir la photo actuelle
                   </StyledLink>
                 </Row>
+
                 <ResponsiveRow style={{ alignItems: "center", width: "auto" }}>
-                  <FileUploader id="TeamPicture" setfile={SetFile} accept=".jpeg, .jpg, .png, .svg" />
-                  <BlackText
-                    style={{
-                      marginLeft: minWidth1000 && "10px",
-                      marginTop: !minWidth1000 && "10px",
-                      display: TabFile.TeamPicture ? "flex" : "none",
-                      alignItems: "center"
-                    }}
-                  >
-                    <StyledLink
-                      color="#096a09"
-                      target="_blank"
-                      href={TabFile.TeamPicture && URL.createObjectURL(TabFile.TeamPicture)}
+                  <FileUploader id="TeamPicture" setfile={SetFile} accept=".jpeg, .jpg" />
+
+                  {TabFile.TeamPicture &&
+                    <BlackText
+                      style={{
+                        marginLeft: minWidth1000 && "10px",
+                        marginTop: !minWidth1000 && "10px",
+                        display: "flex",
+                        alignItems: "center"
+                      }}
                     >
-                      {TabFile.TeamPicture && TabFile.TeamPicture["name"]}
-                    </StyledLink>
-                    <StyledImg onClick={() => DeleteFile("TeamPicture")} src="/static/icons/fail.svg" />
-                  </BlackText>
+                      {TabFile.TeamPicture["size"] <= 102400 ?
+                        <>
+                          <StyledLink
+                            color="#096a09"
+                            target="_blank"
+                            href={URLTeamPicture}
+                          >
+                            {TabFile.TeamPicture["name"]}
+                          </StyledLink>
+                          <StyledDeleteImg onClick={() => (DeleteFile("TeamPicture"))} />
+                        </>
+                        :
+                        <>
+                          Fichier trop volumineux
+                        </>
+                      }
+                    </BlackText>
+                  }
                 </ResponsiveRow>
               </ResponsiveRow>
+
+              <BlackText
+                style={{
+                  textAlign: "center",
+                  fontSize: "10px",
+                  marginBottom: "20px"
+                }}
+              >
+                Pour optimiser le chargement de la homepage, la photo de la Team ne doit pas dépasser les 100Ko.
+                <br /> Petite thuysse : largeur maximum 1000px, en .jpg ou .jpeg et utilisez{" "}
+                <StyledLink color="#096a09"
+                  target="_blank" href="https://compressor.io/" style={{ fontSize: "10px" }}
+                >
+                  ce site
+                </StyledLink>
+              </BlackText>
+
               {teamEditor}
             </Col6>
 
@@ -196,7 +237,7 @@ export default function Edition() {
               <GreenText style={{ marginBottom: "5px" }}>Apercu de la Photo avec les bucques</GreenText>
               <TeamPicture
                 outline="3px solid #096a09"
-                background={TabFile.TeamPicture && URL.createObjectURL(TabFile.TeamPicture)}
+                background={URLTeamPicture}
                 Team={Team}
               />
             </Col6>
