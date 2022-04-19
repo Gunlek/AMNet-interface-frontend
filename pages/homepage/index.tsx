@@ -94,7 +94,7 @@ export default function Homepage() {
         >
           <StyledCardCampus>
             <TitleCard>Serveur Minecraft</TitleCard>
-            <ResponsiveRow>
+            <ResponsiveRow direction="column-reverse">
               <Col2
                 style={{
                   alignItems: "center",
