@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Head from "next/head";
 import { GreenButton, RedButton } from "../../../components/Button/Buttons";
 import { Footer } from "../../../components/Card/Cards";
-import { StyledImg } from "../../../components/Card/Images/style";
+import { StyledCancelImg } from "../../../components/Card/Images/style";
 import { DashboardContainer, ResponsiveRow, Col6, Col3, Col, Row } from "../../../components/Container/style";
 import { StyledInputLabel, StyledInput } from "../../../components/Input/style";
 import useMediaQuery from "../../../components/MediaQueries/MediaQuery";
@@ -121,14 +121,7 @@ export default function User() {
                                     id="user_promotion2"
                                     type="text"
                                 />
-                                <StyledImg
-                                    padding="0"
-                                    width="35px"
-                                    marginLeft="20px"
-                                    shadow="1"
-                                    onClick={CancelChange}
-                                    src="/static/icons/cancel.svg"
-                                />
+                                <StyledCancelImg onClick={CancelChange} />
                             </div>
                         </Col3>
                         <Col3 paddingLeft="10px">
