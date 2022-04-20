@@ -29,7 +29,7 @@ export const StyledBackIcon = styled.a`
   
   &::after{
     position: absolute;
-    content:  ${(props) => props.tooltip && '"'+props.tooltip+'"'};
+    content:  ${(props) => props.tooltip && '"' + props.tooltip + '"'};
     top: 50%;
     left: 125%;
     transform: translateY(-50%);
@@ -82,7 +82,7 @@ export const StyledBackBurger = styled.div`
     background: linear-gradient(135deg, #67BC45 5.67%, #096A09 94.96%);
     z-index: -1;
     transition: opacity 0.3s linear;
-    opacity: ${(props) => props.opacity || "0"};
+    opacity: ${(props) => props.Opacity || "0"};
     border-radius: 15px;
   }
 
@@ -106,7 +106,7 @@ export const StyledActiveIcon = styled.div`
 
     &::after{
       position: absolute;
-      content:  ${(props) => props.tooltip && '"'+props.tooltip+'"'};
+      content:  ${(props) => props.tooltip && '"' + props.tooltip + '"'};
       border-radius: 15px;
       padding: 10px;
       width: max-content;
@@ -139,6 +139,7 @@ export const StyledBackLogOut = styled.a`
   align-items: end;
   width: 60px;
   height: 60px;
+  position: relative;
 
   @media screen and (max-width: 1000px){
     align-items: center;
@@ -146,14 +147,13 @@ export const StyledBackLogOut = styled.a`
 `;
 
 export const StyledLogOut = styled.svg`
-    position: absolute;
-    opacity: 1;
-    transition: opacity 0.3s;
-
-    ${StyledBackLogOut}:hover & {
-      opacity: 0;  
-    }
+  position: absolute;
+  opacity: 1;
+  transition: opacity 0.3s;
   
+  ${StyledBackLogOut}:hover & {
+    opacity: 0;  
+  }
 `;
 
 export const StyledLinkGitHub = styled.a`
