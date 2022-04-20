@@ -41,7 +41,7 @@ export default function AdminMenu(props: { page?: string }) {
     <MenuContener id="menu" timeTransform={open ? "0.6s" : "0.3s"} top={top} scroll={scroll} sticky={scrolled}>
       <StyledMenu Shadow={open} mobileHeight={open ? "285" : "95"}>
         <Row
-          display="none"
+          Display="none"
           mobileDisplay="flex"
           justify="center"
           align="center"
@@ -52,7 +52,7 @@ export default function AdminMenu(props: { page?: string }) {
           <SmallLogo />
         </StyledDivLogo>
 
-        <StyledDivLogOut display="none" mobileDisplay="flex">
+        <StyledDivLogOut Display="none" mobileDisplay="flex">
           <LogOutIcon id="1" />
         </StyledDivLogOut>
 
@@ -82,7 +82,7 @@ export default function AdminMenu(props: { page?: string }) {
 
         <StyledDivLogOut
           flex="3"
-          display="flex"
+          Display="flex"
           mobileDisplay="none"
         >
           <LogOutIcon id="2" />

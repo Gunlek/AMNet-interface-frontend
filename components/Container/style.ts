@@ -8,7 +8,7 @@ export const Column = styled.div`
   margin-bottom: ${(props) => props.marginBottom};
   justify-content: ${(props) => props.justify};
   align-items: ${(props) => props.align};
-  display: ${(props) => props.display};
+  display: ${(props) => props.Display};
   padding-left: ${(props) => props.paddingLeft};
   padding-bottom: ${(props) => props.paddingBottom};
 
@@ -172,8 +172,8 @@ export const DashboardContainer = styled.div`
   margin-left: 85px;
   padding-top: 1%;
   flex: 1 0 0;
-  max-width: calc(100% - 85px);
-
+  max-width: fill-available;
+  
   @media screen and (max-width: 1000px){
     width: 100%;
     margin-left: 0;

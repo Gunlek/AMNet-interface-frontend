@@ -67,7 +67,7 @@ export const StyledDivLogOut = styled(Row)`
   justify-content: center; 
   width: 60px;
   justify-self: center;
-  display: ${(props) => props.display};
+  display: ${(props) => props.Display};
 
   @media screen and (max-width: 1000px){
     flex-direction: column;
