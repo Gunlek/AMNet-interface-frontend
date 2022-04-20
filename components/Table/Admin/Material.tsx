@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { useState, useEffect } from "react";
 import { MediaContextProvider, Media } from "../../MediaQueries/MediaSSR";
 import Fail from "../../NavIcons/fail";
@@ -37,14 +38,25 @@ export default function MaterialAdminTable(props: { requests: any[], status: { o
             <StyledTr key={index[value['material_state']]} style={{ padding: "10px 0 10px 30px" }}>
                 <StyledTd>{index[value['material_state']]}</StyledTd>
                 <StyledTd>
-                    <StyledLink color="#096a09">{value['user_name']}</StyledLink>
+                    <Link 
+                        href={{
+                            pathname: '/admin/users/[user_id]',
+                            query: { user_id: value['material_user'] },
+                        }} 
+                        prefetch={false} 
+                        passHref
+                    >
+                        <StyledLink color="#096a09">{value['user_name']}</StyledLink>
+                    </Link>
                 </StyledTd>
                 <StyledTd style={{ textAlign: "center" }}>
                     {value['user_pay_status'] ? <Succes marginRight="15px" /> : <Fail marginRight="15px" />}
                 </StyledTd>
                 <StyledTd>{value['material_description']}</StyledTd>
                 <StyledFlexTd style={{ whiteSpace: "normal" }}>
+                    <div style={{ minWidth: "100%", width: "400px", maxWidth: "max-content" }}>
                         {value['material_reason']}
+                    </div>
                 </StyledFlexTd>
                 <StyledTd>
                     <StateRequest state={value['material_state']} />
