@@ -6,7 +6,7 @@ import { StyledInputLabel, StyledInput } from "../../Input/style";
 import useMediaQuery from "../../MediaQueries/MediaQuery";
 import { StyledLink } from "../../Text/style";
 import { TitleCard } from "../Cards";
-import { StyledImg } from "../Images/style";
+import { StyledDeleteImg } from "../Images/style";
 import { ModalLogic } from "./ModalLogic";
 import { StyledBackgroundModal, StyledModal } from "./style";
 
@@ -30,8 +30,6 @@ export default function IoTModal() {
         setFile(null);
     }
 
-
-
     return (
         <>
             <GreenButton width="280px" onClick={toggle}>Nouvelle demande</GreenButton>
@@ -54,24 +52,26 @@ export default function IoTModal() {
                         Photographie de l'objet avec Adresse Physique visible</StyledInputLabel>
                     <ResponsiveRow style={{ alignItems: "center" }}>
                         <FileUploader id="picture_equipment" setfile={Setfile} accept=".jpeg, .jpg, .png, .svg" />
-                        <div
-                            style={{
-                                marginLeft: minWidth1000 && "10px",
-                                marginTop: !minWidth1000 && "10px",
-                                display: File ? "flex" : "none",
-                                alignItems: "center"
-                            }}
-                        >
-                            <StyledLink
-                                color="black"
-                                hovercolor="#2E8A21"
-                                target="_blank"
-                                href={File && URL.createObjectURL(File)}
+                        {File &&
+                            <div
+                                style={{
+                                    marginLeft: minWidth1000 && "10px",
+                                    marginTop: !minWidth1000 && "10px",
+                                    display: "flex",
+                                    alignItems: "center"
+                                }}
                             >
-                                {File && File["name"]}
-                            </StyledLink>
-                            <StyledImg width="1.2rem" onClick={() => DeleteFile()} src="/static/icons/fail.svg" />
-                        </div>
+                                <StyledLink
+                                    color="black"
+                                    hovercolor="#2E8A21"
+                                    target="_blank"
+                                    href={URL.createObjectURL(File)}
+                                >
+                                    {File["name"]}
+                                </StyledLink>
+                                <StyledDeleteImg onClick={() => DeleteFile()} />
+                            </div>
+                        }
                     </ResponsiveRow>
                 </div>
                 <Row style={{ justifyContent: "center" }}>
