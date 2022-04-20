@@ -55,14 +55,7 @@ export const MaterialMobileLine = ({ index, value, status, display }: {
                         <StyledTr>
                             <StyledTd>Détails</StyledTd>
                             <StyledTd style={{ textAlign: "center", whiteSpace: "normal" }}>
-                                <div
-                                    style={{
-                                        height: "70px",
-                                        overflow: "auto",
-                                    }}
-                                >
-                                    {value['material_reason']}
-                                </div>
+                                <div>{value['material_reason']}</div>
                             </StyledTd>
                         </StyledTr>
                         <StyledTr>

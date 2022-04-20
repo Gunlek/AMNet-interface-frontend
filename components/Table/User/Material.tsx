@@ -13,7 +13,11 @@ export default function MaterialUserTable(props: { requests: any[] }) {
             <StyledTr key={index}>
                 <StyledTd>{index + 1}</StyledTd>
                 <StyledTd>{value['material_description']}</StyledTd>
-                <StyledFlexTd style={{ whiteSpace: "normal" }}>{value['material_reason']}</StyledFlexTd>
+                <StyledFlexTd style={{ whiteSpace: "normal" }}>
+                    <div style={{ minWidth: "100%", width: "400px", maxWidth: "max-content" }}>
+                        {value['material_reason']}
+                    </div>
+                </StyledFlexTd>
                 <StyledTd>
                     <StateRequest state={value['material_state']} />
                 </StyledTd>
