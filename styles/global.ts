@@ -49,7 +49,8 @@ export const GlobalStyle = createGlobalStyle`
         color: inherit;
         text-decoration: none;
         border: transparent;
-        outline: none;
+        -webkit-tap-highlight-color: transparent;
+        outline: none !important;
     }
 
     ::-webkit-scrollbar {
