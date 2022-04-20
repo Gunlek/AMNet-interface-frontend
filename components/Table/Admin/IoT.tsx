@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { useState, useEffect } from "react";
 import ProoveModal from "../../Card/Modals/AdminProoveModal";
 import { MediaContextProvider, Media } from "../../MediaQueries/MediaSSR";
@@ -38,7 +39,16 @@ export default function IoTAdminTable(props: { requests: any[], status: { old: s
             <StyledTr key={index[value['acces_state']]}>
                 <StyledTd>{index[value['acces_state']]}</StyledTd>
                 <StyledTd>
-                    <StyledLink color="#096a09">{value['user_name']}</StyledLink>
+                    <Link
+                        href={{
+                            pathname: '/admin/users/[user_id]',
+                            query: { user_id: value['acces_user'] },
+                        }}
+                        prefetch={false}
+                        passHref
+                    >
+                        <StyledLink color="#096a09">{value['user_name']}</StyledLink>
+                    </Link>
                 </StyledTd>
                 <StyledTd style={{ textAlign: "center" }}>
                     {value['user_pay_status'] ? <Succes marginRight="15px" /> : <Fail marginRight="15px" />}
@@ -57,7 +67,7 @@ export default function IoTAdminTable(props: { requests: any[], status: { old: s
                             display: "flex",
                             justifyContent: "space-between",
                             width: (props.status.new == "pending") ? "495px" : "320px",
-                            transition: "width 0.5s linear" 
+                            transition: "width 0.5s linear"
                         }}
                     >
                         <Buttons status={value['acces_state']} />
@@ -67,13 +77,13 @@ export default function IoTAdminTable(props: { requests: any[], status: { old: s
         );
 
         mobilelistHTML[value['acces_state']].push(
-           
-            <IoTMobileLine 
-                key={index[value['acces_state']]} 
-                index={index[value['acces_state']]} 
-                value={value} 
+
+            <IoTMobileLine
+                key={index[value['acces_state']]}
+                index={index[value['acces_state']]}
+                value={value}
                 status={props.status.new}
-                display={Display} 
+                display={Display}
             />
         );
 
