@@ -35,7 +35,7 @@ export default function ProoveModal(props: { request: any, link: string }) {
                     <TitleCard hideLine={!minWidth1000}>Demande d'accès pour un objet connecté</TitleCard>
                     <ResponsiveRow>
                         <Col8 style={{ paddingRight: minWidth1000 ? "1%" : "0", marginBottom: minWidth1000 ? "0" : "20px" }}>
-                            <img style={{ borderRadius: "30px", minWidth: "100%" }} src={props.link} />
+                            <img style={{ borderRadius: "30px", minWidth: "100%" }} src={Display ? props.link : undefined} />
                         </Col8>
                         <Col4 style={{ paddingLeft: minWidth1000 ? "1%" : "0", overflow: "auto" }}>
                             <StyledTable>
