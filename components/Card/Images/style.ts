@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const StyledDeleteImg = styled.img.attrs({ src:"/static/icons/fail.svg" })`
+export const StyledDeleteImg = styled.img.attrs({ src: "/static/icons/fail.svg" })`
   border-radius: 50%;
   transition: background-color 0.3s;
   margin-left: 10px;
@@ -13,7 +13,7 @@ export const StyledDeleteImg = styled.img.attrs({ src:"/static/icons/fail.svg" }
   }
 `
 
-export const StyledCancelImg = styled.img.attrs({ src:"/static/icons/cancel.svg" })`
+export const StyledCancelImg = styled.img.attrs({ src: "/static/icons/cancel.svg" })`
   border-radius: 8px;
   transition: box-shadow 0.2s;
   margin-left: 20px;
@@ -25,7 +25,7 @@ export const StyledCancelImg = styled.img.attrs({ src:"/static/icons/cancel.svg"
   }
 `
 
-export const StyledMinImg = styled.img`
+export const StyledMinecraftImg = styled.img.attrs({ src: "/static/logo/mc_logo.png", alt: "Logo Minecraft" })`
   width: 90%;
   height: auto;
   aspect-ratio: 1 / 1; 
