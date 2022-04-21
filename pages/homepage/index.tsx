@@ -3,7 +3,7 @@ import Head from "next/head";
 import { CampusGlobalStyle } from "../../components/Background/style";
 import { ButtonLink } from "../../components/Button/Buttons";
 import { TitleCard, HelpSection } from "../../components/Card/Cards";
-import { StyledMinImg } from "../../components/Card/Images/style";
+import { StyledMinecraftImg } from "../../components/Card/Images/style";
 import RectangleLogo from "../../components/Card/RectangleLogo";
 import { StyledCardCampus } from "../../components/Card/style";
 import TeamPicture from "../../components/Card/TeamPicture";
@@ -101,10 +101,7 @@ export default function Homepage() {
                   justifyContent: "center"
                 }}
               >
-                <StyledMinImg
-                  src="/static/logo/mc_logo.png"
-                  alt="Logo Minecraft"
-                />
+                <StyledMinecraftImg />
               </Col2>
 
               <Col10 paddingLeft="30px">
@@ -143,7 +140,7 @@ export default function Homepage() {
         </Col5>
       </ResponsiveRow>
 
-      <Row style={{ alignItems: "end", flex: "2"  }}>
+      <Row style={{ alignItems: "end", flex: "2" }}>
         <HelpSection mobileMarginBottom="30px" marginBottom="20px" />
       </Row>
     </>
