@@ -352,9 +352,9 @@ const Inner = React.forwardRef<HTMLDivElement, React.HTMLProps<HTMLDivElement>>(
     const { header, top } = useContext(VirtualTableContext)
     return (
       <div {...rest} ref={ref}>
-        <StyledTable style={{ top, position: 'absolute', width: '100%' }}>
+        <StyledTable>
           {header}
-          <tbody >{children}</tbody>
+          <tbody  style={{ top, position: 'relative', width: '100%' }}>{children}</tbody>
         </StyledTable>
       </div>
     )
