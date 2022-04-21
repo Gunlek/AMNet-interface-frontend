@@ -38,7 +38,7 @@ export const StyledGreenCard = styled.div`
 
 export const StyledTeamPicture = styled(Column)`
   background-image: url(${props => props.background || "/static/images/homepage/team.jpg"});
-  border: ${props => props.outline};
+  outline: ${props => props.outline};
   background-repeat: no-repeat;
   background-position: 50% 0%;
   background-size: cover;
