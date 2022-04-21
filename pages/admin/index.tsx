@@ -232,7 +232,6 @@ export default function Settings() {
             </ResponsiveRow>
             <StyledInputLabel htmlFor="Mail">Corps du Mail</StyledInputLabel>
             <div style={{ marginBottom: "10px" }}>
-              
               {MailEditor}
             </div>
 
