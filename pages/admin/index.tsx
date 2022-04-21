@@ -34,36 +34,33 @@ export default function Settings() {
   });
 
   const handleAllCheckboxChange = () => {
-    if (Checked.AllSelect) {
-      const NewChecked = {
-        "Contribution": false,
-        "NoContribution": false,
-        "OldPromotion": false,
-        "ActivePromotion": false,
-        "NewPromotion": false,
-        "Other": false,
-        "AllSelect": false
-      }
-      setChecked(NewChecked)
+    const NewChecked = Checked.AllSelect ? {
+      "Contribution": false,
+      "NoContribution": false,
+      "OldPromotion": false,
+      "ActivePromotion": false,
+      "NewPromotion": false,
+      "Other": false,
+      "AllSelect": false
     }
-    else {
-      const NewChecked = {
-        "Contribution": true,
-        "NoContribution": true,
-        "OldPromotion": true,
-        "ActivePromotion": true,
-        "NewPromotion": true,
-        "Other": true,
-        "AllSelect": true
-      }
-      setChecked(NewChecked)
+    :
+    {
+      "Contribution": true,
+      "NoContribution": true,
+      "OldPromotion": true,
+      "ActivePromotion": true,
+      "NewPromotion": true,
+      "Other": true,
+      "AllSelect": true
     }
 
+    setChecked(NewChecked)
   };
 
   const handleCheckboxChange = (elmt) => {
     const NewChecked = { ...Checked };
     NewChecked[elmt.currentTarget.id] = !NewChecked[elmt.currentTarget.id];
+    
     if (
       NewChecked.ActivePromotion &&
       NewChecked.Contribution &&
@@ -71,10 +68,9 @@ export default function Settings() {
       NewChecked.NoContribution &&
       NewChecked.OldPromotion &&
       NewChecked.Other
-    ) {
-      NewChecked.AllSelect = true
-    }
-    else { NewChecked.AllSelect = false }
+    ) NewChecked.AllSelect = true
+    else NewChecked.AllSelect = false
+
     setChecked(NewChecked)
   };
 
@@ -158,7 +154,7 @@ export default function Settings() {
             <BlackText
               style={{
                 textAlign: "center",
-                fontSize: "10px",
+                fontSize: "12px",
                 marginBottom: "20px"
               }}
             >
@@ -238,7 +234,7 @@ export default function Settings() {
             <BlackText
               style={{
                 textAlign: "center",
-                fontSize: "10px",
+                fontSize: "12px",
                 marginBottom: "20px"
               }}
             >
