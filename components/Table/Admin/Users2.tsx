@@ -212,60 +212,65 @@ export function UsersTable(data: any[]) {
     [prepareRow, rows]
   )
 
-  function Table(height,  width) {
+  function Table() {
     return (
-      <VirtualTable
-        height={height}
-        width={width+"px"}
-        itemCount={data.length}
-        itemSize={60}
-        header={
-          <thead style={{ position: "sticky", top: "0", zIndex: "2" }}>
-            <StyledHeadTr >
-              {headerGroups[0].headers.map((column, index) => {
-                if (column['id'] == 'user_pay_status' || column['id'] == 'user_is_gadz') {
-                  return (
-                    <StyledTh >
-                      <div style={{ display: "flex", userSelect: "none", justifyContent: "center" }}>
-                        {column.render('Header')}
-                        <span
-                          style={{
-                            display: "inline-block",
-                            marginLeft: "10px",
-                            width: "20px"
-                          }}
-                        >
-                          {column.isSorted ? column.isSortedDesc ? '▼' : '▲' : ''}
-                        </span>
-                      </div>
-                    </StyledTh>
-                  )
-                }
-                else {
-                  return (
-                    <StyledTh >
-                      <div style={{ display: "flex", userSelect: "none" }}>
-                        {column.render('Header')}
-                        <span
-                          style={{
-                            display: "inline-block",
-                            marginLeft: "10px",
-                            width: "20px"
-                          }}
-                        >
-                          {(index == 0) && Object.keys(selectedRowIds).length}
-                          {!(index == 0) && column.isSorted ? column.isSortedDesc ? '▼' : '▲' : ''}
-                        </span>
-                      </div>
-                    </StyledTh>
-                  )
-                }
-              })}
-            </StyledHeadTr>
-          </thead>
-        }
-        row={Row}
-      />
+      <AutoSizer>
+            {({ height, width }) => (
+               <VirtualTable
+               height={height}
+               width={width+"px"}
+               itemCount={data.length}
+               itemSize={60}
+               header={
+                 <thead style={{ position: "sticky", top: "0", zIndex: "2" }}>
+                   <StyledHeadTr >
+                     {headerGroups[0].headers.map((column, index) => {
+                       if (column['id'] == 'user_pay_status' || column['id'] == 'user_is_gadz') {
+                         return (
+                           <StyledTh >
+                             <div style={{ display: "flex", userSelect: "none", justifyContent: "center" }}>
+                               {column.render('Header')}
+                               <span
+                                 style={{
+                                   display: "inline-block",
+                                   marginLeft: "10px",
+                                   width: "20px"
+                                 }}
+                               >
+                                 {column.isSorted ? column.isSortedDesc ? '▼' : '▲' : ''}
+                               </span>
+                             </div>
+                           </StyledTh>
+                         )
+                       }
+                       else {
+                         return (
+                           <StyledTh >
+                             <div style={{ display: "flex", userSelect: "none" }}>
+                               {column.render('Header')}
+                               <span
+                                 style={{
+                                   display: "inline-block",
+                                   marginLeft: "10px",
+                                   width: "20px"
+                                 }}
+                               >
+                                 {(index == 0) && Object.keys(selectedRowIds).length}
+                                 {!(index == 0) && column.isSorted ? column.isSortedDesc ? '▼' : '▲' : ''}
+                               </span>
+                             </div>
+                           </StyledTh>
+                         )
+                       }
+                     })}
+                   </StyledHeadTr>
+                 </thead>
+               }
+               row={Row}
+             />
+            )}
+          </AutoSizer>
+     
     )
   }
 
