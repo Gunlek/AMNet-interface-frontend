@@ -64,18 +64,17 @@ export default function Settings() {
   const handleCheckboxChange = (elmt) => {
     const NewChecked = { ...Checked };
     NewChecked[elmt.currentTarget.id] = !NewChecked[elmt.currentTarget.id];
-    if(
-        NewChecked.ActivePromotion && 
-        NewChecked.Contribution && 
-        NewChecked.NewPromotion && 
-        NewChecked.NoContribution && 
-        NewChecked.OldPromotion && 
-        NewChecked.Other
-      )
-    {
-        NewChecked.AllSelect = true
+    if (
+      NewChecked.ActivePromotion &&
+      NewChecked.Contribution &&
+      NewChecked.NewPromotion &&
+      NewChecked.NoContribution &&
+      NewChecked.OldPromotion &&
+      NewChecked.Other
+    ) {
+      NewChecked.AllSelect = true
     }
-    else{NewChecked.AllSelect = false}
+    else { NewChecked.AllSelect = false }
     setChecked(NewChecked)
   };
 
@@ -152,18 +151,20 @@ export default function Settings() {
         <Row marginBottom="2%" mobileMarginBottom="30px">
           <StyledCard style={{ height: "100%" }}>
             <TitleCard>Message d'actualité</TitleCard>
-            <div style={{ marginBottom: "20px" }}>
+            <div style={{ marginBottom: "10px" }}>
               {WelcomeMessageEditor}
-              <BlackText
-                style={{
-                  textAlign: "center",
-                  fontSize: "10px",
-                  marginTop: "10px"
-                }}
-              >
-                Petite tuysse : appuyer sur SHIFT+ENTREE pour faire un retour à la ligne sans espaces
-              </BlackText>
             </div>
+
+            <BlackText
+              style={{
+                textAlign: "center",
+                fontSize: "10px",
+                marginBottom: "20px"
+              }}
+            >
+              Petite tuysse : appuyer sur SHIFT+ENTREE pour faire un retour à la ligne sans espaces
+            </BlackText>
+
             <Row style={{ justifyContent: "center" }}>
               <GreenButton>Mettre à jour</GreenButton>
             </Row>
@@ -229,20 +230,21 @@ export default function Settings() {
                 </CheckboxRow>
               </Col6>
             </ResponsiveRow>
-
-            <div style={{ marginBottom: "20px" }}>
-              <StyledInputLabel htmlFor="Mail">Corps du Mail</StyledInputLabel>
+            <StyledInputLabel htmlFor="Mail">Corps du Mail</StyledInputLabel>
+            <div style={{ marginBottom: "10px" }}>
+              
               {MailEditor}
-              <BlackText
-                style={{
-                  textAlign: "center",
-                  fontSize: "10px",
-                  marginTop: "10px"
-                }}
-              >
-                Petite tuysse : appuyer sur SHIFT+ENTREE pour faire un retour à la ligne sans espaces
-              </BlackText>
             </div>
+
+            <BlackText
+              style={{
+                textAlign: "center",
+                fontSize: "10px",
+                marginBottom: "20px"
+              }}
+            >
+              Petite tuysse : appuyer sur SHIFT+ENTREE pour faire un retour à la ligne sans espaces
+            </BlackText>
 
             <Row style={{ justifyContent: "center" }}>
               <MailModal html={MailHTML} />
