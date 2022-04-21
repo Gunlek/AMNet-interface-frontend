@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { EditorState, convertToRaw, ContentState, RichUtils } from "draft-js";
+import React, { useState } from "react";
+import { EditorState, convertToRaw, ContentState } from "draft-js";
 import dynamic from "next/dynamic";
 import { EditorProps } from 'react-draft-wysiwyg'
 import { BlackText } from "../Text/style";
@@ -13,7 +13,7 @@ const DraftEditor = dynamic<EditorProps>(
 
 export default function Editor(html?: string) {
     const [convertedContent, setConvertedContent] = useState(null);
-    const [render, setRender] = useState(<BlackText style={{ textAlign: "center" }}>Editeur en cours de chargement</BlackText>)
+    var render = <BlackText style={{ textAlign: "center" }}>Editeur en cours de chargement</BlackText>;
 
     if (typeof window !== 'undefined') {
         const HTML = html || "";
@@ -32,28 +32,20 @@ export default function Editor(html?: string) {
             setConvertedContent(currentContentAsHTML);
         }
 
-        useEffect(() => {
-            setRender(
-                <DraftEditor
-                    editorState={editorState}
-                    onEditorStateChange={handleEditorChange}
-                    toolbarClassName="toolbar"
-                    wrapperClassName="wrapper"
-                    editorClassName={focus ? "editorFocused" : "editor"}
-                    onFocus={() => setFocus(true)}
-                    onBlur={() => setFocus(false)}
-                    toolbar={{
-                        options: ['inline', 'blockType', 'fontSize', 'list', 'textAlign', 'link', 'emoji'],
-                        fontSize: { options: [8, 9, 10, 11, 12, 14, 16, 18, 24, 30] },
-                        link: { inDropdown: true },
-                        blockType: { options: ['Normal', 'H1', 'H2', 'H3', 'H4', 'H5', 'H6'] }
-                    }}
-
-                />
-            )
-        }
-
-            , [editorState])
+        render = <DraftEditor
+            editorState={editorState}
+            onEditorStateChange={handleEditorChange}
+            toolbarClassName="toolbar"
+            wrapperClassName="wrapper"
+            editorClassName={focus ? "editorFocused" : "editor"}
+            onFocus={() => setFocus(true)}
+            onBlur={() => setFocus(false)}
+            toolbar={{
+                options: ['inline', 'blockType', 'fontSize', 'list', 'textAlign', 'link', 'emoji'],
+                fontSize: { options: [8, 9, 10, 11, 12, 14, 16, 18, 24, 30] },
+                link: { inDropdown: true },
+                blockType: { options: ['Normal', 'H1', 'H2', 'H3', 'H4', 'H5', 'H6'] }
+            }} />;
     }
 
     return [render, convertedContent]
