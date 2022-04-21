@@ -21,6 +21,7 @@ export const StyledHeadTr = styled(StyledTr)`
 export const StyledTd = styled.td`
   padding : 15px 25px;
   white-space: nowrap;
+  transition: background-color 0.2s;
 
   &:first-child {
     padding-left: 20px;
@@ -35,13 +36,14 @@ export const StyledTd = styled.td`
 export const StyledUsersTr = styled(StyledTr)`
   &:nth-child(2n){
     ${StyledTd} {
-      background: rgba(0, 0, 0, 0.075);
+      background-color: rgba(0, 0, 0, 0.075);
+
     }
   }
 
   &:hover{
     ${StyledTd} {
-      background: rgba(0, 0, 0, 0.2);
+      background-color: rgba(0, 0, 0, 0.2);
     }   
   }
 
@@ -117,11 +119,11 @@ const opacityOut = keyframes`
 `;
 
 export const Tbody = styled.tbody`
-  animation: ${(props) => props.opacityIn && opacityIn } ${(props) => props.opacityOut && opacityOut } 0.5s linear;
+  animation: ${(props) => props.opacityIn && opacityIn} ${(props) => props.opacityOut && opacityOut} 0.5s linear;
   display: ${(props) => props.Display};
 `;
 
 export const MobileTbody = styled.div`
-  animation: ${(props) => props.opacityIn && opacityIn } ${(props) => props.opacityOut && opacityOut } 0.5s linear;
+  animation: ${(props) => props.opacityIn && opacityIn} ${(props) => props.opacityOut && opacityOut} 0.5s linear;
   display: ${(props) => props.Display};
 `;
