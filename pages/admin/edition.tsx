@@ -22,7 +22,7 @@ export default function Edition() {
   const minWidth1000 = useMediaQuery('(min-width:1000px)');
   const [Team, teamEditor] = TeamEditor()
   const [TabFile, setTabFile] = useState({ IR: null, Status: null, TeamPicture: null });
-  const [URLTeamPicture, setURURLTeamPicture] = useState(undefined)
+  const [URLTeamPicture, setURLTeamPicture] = useState(undefined)
 
   useEffect(() => {
     const IRinput = document.getElementById("IR") as HTMLInputElement;
@@ -36,9 +36,9 @@ export default function Edition() {
 
   useEffect(() => {
     if (TabFile.TeamPicture && TabFile.TeamPicture["size"] <= 102400)
-      setURURLTeamPicture(URL.createObjectURL(TabFile.TeamPicture))
+      setURLTeamPicture(URL.createObjectURL(TabFile.TeamPicture))
     else
-      setURURLTeamPicture(undefined)
+      setURLTeamPicture(undefined)
   }, [TabFile]);
 
   const SetFile = (id: string, file: any) => {
@@ -217,14 +217,17 @@ export default function Edition() {
               <BlackText
                 style={{
                   textAlign: "center",
-                  fontSize: "10px",
+                  fontSize: "12px",
                   marginBottom: "20px"
                 }}
               >
                 Pour optimiser le chargement de la homepage, la photo de la Team ne doit pas dépasser les 100Ko.
                 <br /> Petite thuysse : largeur maximum 1000px, en .jpg ou .jpeg et utilisez{" "}
-                <StyledLink color="#096a09"
-                  target="_blank" href="https://compressor.io/" style={{ fontSize: "10px" }}
+                <StyledLink
+                  color="#096a09"
+                  target="_blank"
+                  href="https://compressor.io/"
+                  style={{ fontSize: "12px" }}
                 >
                   ce site
                 </StyledLink>
