@@ -35,12 +35,13 @@ export const StyledMenu = styled(StyledCard)`
 export const MenuContener = styled.div`
   width: 85px;
   position: fixed;
-  height:100vh;
+  height: 100vh;
   display: flex;
   align-items: center;
-  
-  @media screen and (max-width: 1000px){
-    z-index: 2;
+  z-index: 4;
+  top: 0;
+
+  @media screen and (max-width: 1000px){  
     height: auto;
     width: 100%;
     position: ${(props) => props.top ? "absolute" : "fixed"};

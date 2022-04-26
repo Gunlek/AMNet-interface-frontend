@@ -38,7 +38,7 @@ export default function UserMenu(props: { page: string }) {
   }
 
   useEffect(() => {
-    if (!scrolled) if (open) handleChange()
+    if (!scrolled) if (open) setTimeout(() => {handleChange()}, 525);
   }, [scrolled])
 
   const positionning = {
@@ -46,10 +46,11 @@ export default function UserMenu(props: { page: string }) {
     minHeight: "70px",
     justifyContent: "center",
     alignItems: "center",
+    userSelect: "none"
   };
 
   return (
-    <MenuContener id="menu" timeTransform={open ? "0.6s" : "0.3s"} top={top} scroll={scroll} sticky={scrolled}>
+    <MenuContener id="menu" timeTransform={open ? "0.5s" : "0.3s"} top={top} scroll={scroll} sticky={scrolled}>
       <StyledMenu mobileHeight={open ? mobileHeight : "95"}>
         <Row
           Display="none"
