@@ -18,7 +18,7 @@ export const StyledBackIcon = styled.a`
     left: 0;
     background: linear-gradient(135deg, #67BC45 5.67%, #096A09 94.96%);
     z-index: -1;
-    transition: opacity 0.3s linear;
+    transition: opacity 0.2s linear;
     opacity: 0;
     border-radius: 15px;
   }
@@ -33,7 +33,7 @@ export const StyledBackIcon = styled.a`
     top: 50%;
     left: 125%;
     transform: translateY(-50%);
-    transition: opacity 0.3s linear;
+    transition: opacity 0.2s linear;
     opacity: 0;
     border-radius: 15px;
     padding: 10px;
@@ -81,7 +81,7 @@ export const StyledBackBurger = styled.div`
     left: 0;
     background: linear-gradient(135deg, #67BC45 5.67%, #096A09 94.96%);
     z-index: -1;
-    transition: opacity 0.3s linear;
+    transition: opacity 0.2s linear;
     opacity: ${(props) => props.Opacity || "0"};
     border-radius: 15px;
   }
@@ -122,7 +122,7 @@ export const StyledActiveIcon = styled.div`
 
 export const StyledIcon = styled.svg`
   fill: #C5C7C6;
-  transition: fill 0.3s linear;
+  transition: fill 0.2s linear;
 
   ${StyledBackIcon}:hover & {
     fill: white;    
@@ -149,7 +149,7 @@ export const StyledBackLogOut = styled.a`
 export const StyledLogOut = styled.svg`
   position: absolute;
   opacity: 1;
-  transition: opacity 0.3s;
+  transition: opacity 0.2s;
   
   ${StyledBackLogOut}:hover & {
     opacity: 0;  
@@ -165,7 +165,7 @@ export const StyledLinkGitHub = styled.a`
 
 export const StyledGitHub = styled.path`
   fill: #096a09; 
-  transition: fill 0.3s;
+  transition: fill 0.2s;
 
   ${StyledLinkGitHub}:hover &{
     fill: #67bc45;
