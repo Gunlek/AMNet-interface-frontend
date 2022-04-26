@@ -9,11 +9,20 @@ export const CampusGlobalStyle = createGlobalStyle`
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
-    min-height: 100vh;
-    scrollbar-color: auto;
 
     @media screen and (max-width: 1000px){
-      background-image: url("/static/images/homepage/mobileCampus.jpg");
+      background-image: none;
+
+      &::before{
+        content: "";
+        background-image: url("/static/images/homepage/mobileCampus.jpg");
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        position: fixed;
+        height: 100vh;
+        width: 100vw;
+      }
     }
   }
 
@@ -22,5 +31,10 @@ export const CampusGlobalStyle = createGlobalStyle`
     align-items: center; 
     padding: ${(props) => props.padding || "0"};
     flex-direction: column;
+
+    @media screen and (max-width: 1000px){
+      position: absolute;
+      z-index: 2;
+    }
   }
 `

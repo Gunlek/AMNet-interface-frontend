@@ -12,12 +12,23 @@ export const GlobalStyle = createGlobalStyle`
         padding: 0;
         margin: 0;
         background-color: #E8EFEA;
+
+        @media screen and (max-width: 1000px){
+            font-size:13px;
+            padding: 0;
+        }
     }
 
     body{
         min-height: 100vh;
         display: flex;
         background-image: none;
+
+        @media screen and (max-width: 1000px){
+            &::before{
+                content: none;
+            }
+        }
     }
 
     ::selection{
@@ -43,6 +54,10 @@ export const GlobalStyle = createGlobalStyle`
         width: 100%;
         padding: 0 2%;
         min-height: 100vh;
+
+        @media screen and (max-width: 1000px){
+            padding: 0;
+        }
     }
 
     a {
