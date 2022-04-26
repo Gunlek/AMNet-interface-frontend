@@ -8,6 +8,8 @@ import { ButtonLink } from "../../components/Button/Buttons";
 
 
 export default function FAQ() {
+  const isLogged = false;
+
   return (
     <>
       <Head>
@@ -21,7 +23,7 @@ export default function FAQ() {
             <RectangleLogo color="white" />
           </Col6>
           <Col6 align="end" mobileAlign="center" justify="center">
-            <ButtonLink href="/homepage/login" width="300px">Se Connecter / S'inscrire</ButtonLink>
+            <ButtonLink href={isLogged ? "/" : "/homepage/login"} width="300px">Accéder à Mon Compte</ButtonLink>
           </Col6>
         </Row>
       </Column>

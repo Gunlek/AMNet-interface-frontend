@@ -1,6 +1,5 @@
 import React from "react";
 import Head from "next/head";
-import { CampusGlobalStyle } from "../../components/Background/style";
 import { ButtonLink } from "../../components/Button/Buttons";
 import { TitleCard, HelpSection } from "../../components/Card/Cards";
 import { StyledMinecraftImg } from "../../components/Card/Images/style";
@@ -24,21 +23,25 @@ import {
   StyledLink,
   BlackText
 } from "../../components/Text/style";
+import { CampusGlobalStyle } from "../../components/Background/style";
 
-const accutalTeam = [
-  {
-    'pseudo': "Trobotyk'ss (ML)°",
-    id: "47Li220"
-  },
-  {
-    'pseudo': "Sdoosh",
-    id: "96Li220"
-  },
-  {
-    'pseudo': "Nem'O",
-    id: "74Li220"
-  }];
 export default function Homepage() {
+  const accutalTeam = [
+    {
+      'pseudo': "Trobotyk'ss (ML)°",
+      id: "47Li220"
+    },
+    {
+      'pseudo': "Sdoosh",
+      id: "96Li220"
+    },
+    {
+      'pseudo': "Nem'O",
+      id: "74Li220"
+    }];
+
+  const isLogged = false;
+
   return (
     <>
       <Head>
@@ -48,10 +51,10 @@ export default function Homepage() {
 
       <Row margin="20px 0" mobileMargin="30px 0" direction="column">
         <Col6 mobileMarginBottom="30px" justify="center" mobileAlign="center">
-          <RectangleLogo color="white" />
+          <RectangleLogo color="white" easter={true} />
         </Col6>
         <Col6 align="end" mobileAlign="center" justify="center">
-          <ButtonLink href="/homepage/login" width="300px">Se Connecter / S'inscrire</ButtonLink>
+          <ButtonLink href={isLogged ? "/" : "/homepage/login"} width="300px">Accéder à Mon Compte</ButtonLink>
         </Col6>
       </Row>
 
