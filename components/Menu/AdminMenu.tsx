@@ -40,7 +40,7 @@ export default function AdminMenu(props: { page?: string }) {
 
   return (
     <MenuContener id="menu" timeTransform={open ? "0.5s" : "0.3s"} top={top} scroll={scroll} sticky={scrolled}>
-      <StyledMenu Shadow={open} mobileHeight={open ? "285" : "95"}>
+      <StyledMenu as="nav" Shadow={open} mobileHeight={open ? "285" : "95"}>
         <Row
           Display="none"
           mobileDisplay="flex"
