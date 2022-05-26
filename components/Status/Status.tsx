@@ -1,14 +1,18 @@
 import React, { useState } from "react";
 import { Row } from "../Container/style";
-import { BlackText } from "../Text/style";
+import { BlackText, StyledLink } from "../Text/style";
 import {
+  StyledConteneurNotif,
+  StyledNotification,
   StyledStateContribution,
   StyledStateInvite,
-  StyledStateRequest
+  StyledStateRequest,
+  StyledSVG
 } from "./style";
 import Fail from "../NavIcons/fail";
 import Succes from "../NavIcons/succes";
 import ContributionModal from "../Card/Modals/ContributionModal";
+import Link from "next/link";
 
 export function StateContribution(props: { status: string }) {
   if (props.status == 'paid') {
@@ -95,7 +99,66 @@ export function AdminStateContribution(props: { state?: boolean, id: string }) {
       style={{ width: "100%" }}
     >
       <option value="enabled">Payée</option>
-      <option value="disabled"> Non Payée</option>
+      <option value="disabled">Non Payée</option>
     </StyledStateInvite>
+  );
+}
+
+export function AdminNotifications(props: { notifNumber: number }) {
+  const notifNumber = props.notifNumber !== 0 ? props.notifNumber : undefined;
+  const [Display, setDisplay] = useState(false);
+  const [Opacity, setOpacity] = useState(true);
+  const content = Display ?  <><Link href="/admin/iot" passHref>
+    <StyledLink>Demandes d'accès internet: 1</StyledLink>
+  </Link>
+    <Link href="/admin/material" passHref>
+      <StyledLink>Demandes de matériel: 1</StyledLink>
+    </Link></> : "Demandes"
+
+
+  const handleChange = (e) => {
+    e.preventDefault()
+
+    if (Display) {
+      setOpacity(false);
+      setTimeout(() => {
+        setDisplay(false)
+        setOpacity(true)
+      }, 300);
+    }
+  }
+  return (
+    <>
+      <StyledConteneurNotif onClick={() => setDisplay(!Display)} Display={Display} notifNumber={notifNumber}>
+        <StyledSVG width="42px" height="30px" viewBox="0 0 16 20" version="1.1" xmlns="http://www.w3.org/2000/svg">
+          <g stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
+            <g transform="translate(-444.000000, -4100.000000)">
+              <g transform="translate(100.000000, 4044.000000)">
+                <g transform="translate(340.000000, 54.000000)">
+                  <g>
+                    <polygon points="0 0 24 0 24 24 0 24" />
+                    <path d="M12,22 C13.1,22 14,21.1 14,20 L10,20 C10,21.1 10.89,22 12,22 Z M18,16 L18,11 C18,7.93 16.36,5.36 13.5,4.68 L13.5,4 C13.5,3.17 12.83,2.5 12,2.5 C11.17,2.5 10.5,3.17 10.5,4 L10.5,4.68 C7.63,5.36 6,7.92 6,11 L6,16 L4.71,17.29 C4.08,17.92 4.52,19 5.41,19 L18.58,19 C19.47,19 19.92,17.92 19.29,17.29 L18,16 Z" />
+                  </g>
+                </g>
+              </g>
+            </g>
+          </g>
+        </StyledSVG>
+        <StyledNotification Display={Display} Opacity={Opacity}>
+          {content}
+        </StyledNotification>
+      </StyledConteneurNotif>
+      <div
+        onClick={handleChange}
+        style={{
+          display: Display ? "block" : "none",
+          position: "fixed", height: "100%",
+          width: "100%",
+          left: "0",
+          top: "0",
+          zIndex: "2"
+        }}
+      />
+    </>
   );
 }
