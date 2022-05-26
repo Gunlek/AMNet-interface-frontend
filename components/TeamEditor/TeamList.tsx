@@ -1,6 +1,6 @@
 import React, { useCallback, useMemo, useRef } from 'react';
 import { ArrowButton, SmallRedButton } from '../Button/Buttons';
-import { StyledTable, StyledTd, StyledTr } from '../Table/style';
+import { StyledTable, StyledTd, StyledTeamTr, StyledTr, StyledUsersTr } from '../Table/style';
 import { useTable } from 'react-table'
 import { DndProvider, useDrag, useDrop } from 'react-dnd'
 import update from 'immutability-helper'
@@ -59,7 +59,7 @@ const Row = ({ row, index, moveRow, deleteTeamMember }) => {
 
 
   return (
-    <StyledTr ref={dropRef} style={{ opacity }}>
+    <StyledTeamTr ref={dropRef} style={{ opacity }}>
       <StyledTd
         colspan="2"
         ref={dragRef}
@@ -67,7 +67,7 @@ const Row = ({ row, index, moveRow, deleteTeamMember }) => {
           width: "83.32%",
           userSelect: "none",
           cursor: "pointer",
-          paddingLeft: "0",
+          paddingLeft: "0"
         }}
       >
         <div
@@ -97,7 +97,7 @@ const Row = ({ row, index, moveRow, deleteTeamMember }) => {
       <StyledTd>
         <SmallRedButton onClick={(elmt) => deleteTeamMember(elmt, index)}>Supprimer</SmallRedButton>
       </StyledTd>
-    </StyledTr>
+    </StyledTeamTr>
   )
 }
 

@@ -37,7 +37,6 @@ export const StyledUsersTr = styled(StyledTr)`
   &:nth-child(2n){
     ${StyledTd} {
       background-color: rgba(0, 0, 0, 0.075);
-
     }
   }
 
@@ -70,8 +69,38 @@ export const StyledUsersTr = styled(StyledTr)`
   }
 `;
 
+export const StyledTeamTr = styled(StyledTr)`
+  &:hover{
+    ${StyledTd} {
+      background-color: rgba(0, 0, 0, 0.2);
+    }   
+  }
+
+  &:last-child{
+    border-bottom: 2px transparent;
+
+    ${StyledTd}:first-child {
+      border-bottom-left-radius: 10px;
+    }
+
+    ${StyledTd}:last-child {
+      border-bottom-right-radius: 10px;
+   }
+  }
+
+  &:first-child{ 
+    ${StyledTd}:first-child {
+      border-top-left-radius: 10px;
+    }
+
+    ${StyledTd}:last-child {
+      border-top-right-radius: 10px;
+    } 
+  }
+`;
+
 export const StyledFlexTd = styled(StyledTd)`
-  width:100vw;
+  width: 100vw;
 `;
 
 export const StyledTh = styled.th`
