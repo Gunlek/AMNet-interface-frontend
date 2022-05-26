@@ -3,7 +3,7 @@ import { useTable, useFilters, useGlobalFilter, useAsyncDebounce, useRowSelect, 
 import { CheckboxRow, Row } from '../../Container/style';
 import Checkbox from '../../Input/Checkbox';
 import { StyledInput, StyledLabel } from '../../Input/style';
-import { BlackText, WhiteText } from '../../Text/style';
+import { BlackText, StyledLink, WhiteText } from '../../Text/style';
 import {
   StyledTable,
   StyledTh,
@@ -15,6 +15,7 @@ import UsersMobileLine from './MobileLine/Users';
 import { MediaContextProvider, Media } from '../../MediaQueries/MediaSSR';
 import Fail from '../../NavIcons/fail';
 import Succes from '../../NavIcons/succes';
+import Link from 'next/link';
 
 interface Props {
   indeterminate?: boolean;
@@ -226,59 +227,75 @@ export function UsersTable(data: any[]) {
       <Media greaterThan="sm">
         <StyledTable {...getTableProps()}>
           <thead style={{ position: "sticky", top: "0", zIndex: "2" }}>
-              <StyledHeadTr {...headerGroups[0].getHeaderGroupProps()}>
-                {headerGroups[0].headers.map((column, index) => {
-                  if (column['id'] == 'user_pay_status' || column['id'] == 'user_is_gadz') {
-                    return (
-                      <StyledTh {...column.getHeaderProps(column.getSortByToggleProps())}>
-                        <div style={{ display: "flex", userSelect: "none", justifyContent: "center" }}>
-                          {column.render('Header')}
-                          <span
-                            style={{
-                              display: "inline-block",
-                              marginLeft: "10px",
-                              width: "20px"
-                            }}
-                          >
-                            {column.isSorted ? column.isSortedDesc ? '▼' : '▲' : ''}
-                          </span>
-                        </div>
-                      </StyledTh>
-                    )
-                  }
-                  else {
-                    return (
-                      <StyledTh {...column.getHeaderProps(column.getSortByToggleProps())}>
-                        <div style={{ display: "flex", userSelect: "none" }}>
-                          {column.render('Header')}
-                          <span
-                            style={{
-                              display: "inline-block",
-                              marginLeft: "10px",
-                              width: "20px"
-                            }}
-                          >
-                            {(index == 0) && Object.keys(selectedRowIds).length}
-                            {!(index == 0) && column.isSorted ? column.isSortedDesc ? '▼' : '▲' : ''}
-                          </span>
-                        </div>
-                      </StyledTh>
-                    )
-                  }
-                })}
-              </StyledHeadTr>
+            <StyledHeadTr {...headerGroups[0].getHeaderGroupProps()}>
+              {headerGroups[0].headers.map((column, index) => {
+                if (column['id'] == 'user_pay_status' || column['id'] == 'user_is_gadz') {
+                  return (
+                    <StyledTh {...column.getHeaderProps(column.getSortByToggleProps())}>
+                      <div style={{ display: "flex", userSelect: "none", justifyContent: "center" }}>
+                        {column.render('Header')}
+                        <span
+                          style={{
+                            display: "inline-block",
+                            marginLeft: "10px",
+                            width: "20px"
+                          }}
+                        >
+                          {column.isSorted ? column.isSortedDesc ? '▼' : '▲' : ''}
+                        </span>
+                      </div>
+                    </StyledTh>
+                  )
+                }
+                else {
+                  return (
+                    <StyledTh {...column.getHeaderProps(column.getSortByToggleProps())}>
+                      <div style={{ display: "flex", userSelect: "none" }}>
+                        {column.render('Header')}
+                        <span
+                          style={{
+                            display: "inline-block",
+                            marginLeft: "10px",
+                            width: "20px"
+                          }}
+                        >
+                          {(index == 0) && Object.keys(selectedRowIds).length}
+                          {!(index == 0) && column.isSorted ? column.isSortedDesc ? '▼' : '▲' : ''}
+                        </span>
+                      </div>
+                    </StyledTh>
+                  )
+                }
+              })}
+            </StyledHeadTr>
           </thead>
 
           <tbody {...getTableBodyProps()}>
             {rows.map((row, index) => {
               prepareRow(row)
               return (
-                <StyledUsersTr key={index} {...row.getRowProps()}>
+                <StyledUsersTr {...row.getRowProps()}>
                   {row.cells.map((cell) => {
                     if (cell.column['id'] == 'user_pay_status' || cell.column['id'] == 'user_is_gadz') {
                       return (
                         <StyledTd style={{ textAlign: "center" }}{...cell.getCellProps()}>
                           {cell.value ? <Succes marginRight="25px" /> : <Fail marginRight="25px" />}
+                        </StyledTd>
+                      )
+                    }
+                    else if (cell.column['id'] == 'user_name') {
+                      return (
+                        <StyledTd {...cell.getCellProps()}>
+                          <Link href={{
+                            pathname: '/admin/users/[user_id]',
+                            query: { user_id: row.allCells[14].value },
+                          }}
+                            prefetch={false}
+                            passHref>
+                            <StyledLink color="#096a09">
+                              {cell.render('Cell')}
+                            </StyledLink>
+                          </Link>
                         </StyledTd>
                       )
                     }

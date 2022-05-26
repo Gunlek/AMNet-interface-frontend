@@ -1,4 +1,4 @@
-import { useState } from "react";
+import Link from "next/link";
 import { ResponsiveRow, Col8, Col4 } from "../../Container/style";
 import useMediaQuery from "../../MediaQueries/MediaQuery";
 import { StateRequest } from "../../Status/Status";
@@ -12,11 +12,11 @@ import { StyledBackgroundModal, StyledModal } from "./style";
 export default function ProoveModal(props: { request: any, link: string }) {
     const minWidth1000 = useMediaQuery('(min-width: 1200px)')
     const { Display, Opacity, toggle } = ModalLogic()
-    
+
     return (
         <>
             <StyledLink color="#096a09" onClick={toggle}>Image</StyledLink>
-            <StyledBackgroundModal onClick={toggle} Display={Display} Opacity={Opacity}/>
+            <StyledBackgroundModal onClick={toggle} Display={Display} Opacity={Opacity} />
             <StyledModal
                 width={minWidth1000 ? "1200px" : undefined}
                 Display={Display} Opacity={Opacity}
@@ -46,7 +46,18 @@ export default function ProoveModal(props: { request: any, link: string }) {
                                     </StyledHeadTr>
                                     <StyledTr>
                                         <StyledTd>Utilisateur</StyledTd>
-                                        <StyledTd style={{ textAlign: "center" }}>{props.request['user_name']}</StyledTd>
+                                        <StyledTd style={{ textAlign: "center" }}>
+                                            <Link
+                                                href={{
+                                                    pathname: '/admin/users/[user_id]',
+                                                    query: { user_id: props.request['acces_user'] },
+                                                }}
+                                                prefetch={false}
+                                                passHref
+                                            >
+                                                <StyledLink color="#096a09">{props.request['user_name']}</StyledLink>
+                                            </Link>
+                                        </StyledTd>
                                     </StyledTr>
                                     <StyledTr>
                                         <StyledTd>Adresse Mac</StyledTd>
