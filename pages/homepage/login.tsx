@@ -53,7 +53,7 @@ export default function Login() {
 
             <label style={{ display: "flex", alignItems: "Center", marginBottom: "20px" }}>
               <Checkbox checked={checked} onChange={handleCheckboxChange} />
-              <span style={{ marginLeft: "10px" }}><BlackText>Rester connecté</BlackText></span>
+              <BlackText style={{ marginLeft: "10px" }}>Rester connecté</BlackText>
             </label>
 
             <div style={{ marginBottom: "5px" }}>
