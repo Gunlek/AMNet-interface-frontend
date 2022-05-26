@@ -5,7 +5,7 @@ import { TitleCard, HelpSection, Footer } from "../components/Card/Cards";
 import { StyledCard } from "../components/Card/style";
 import { DashboardContainer, ResponsiveRow, Column, Col6, Row } from "../components/Container/style";
 import UserMenu from "../components/Menu/UserMenu";
-import { StateContribution } from "../components/Status/Status";
+import { AdminNotifications, StateContribution } from "../components/Status/Status";
 import { BlackTitle, BlackText } from "../components/Text/style";
 
 
@@ -24,9 +24,10 @@ export default function Dashboard() {
             <BlackTitle>Mon Espace AMNet</BlackTitle>
           </Column>
 
-          <Column align="end" mobileAlign="center" style={{ flex: "1", justifyContent: "center" }}>
+          <Row align="center" style={{ flex: "1", justifyContent: "center" }}>
+            <AdminNotifications notifNumber={3}/>
             <StateContribution status="paid" />
-          </Column>
+          </Row>
         </ResponsiveRow>
 
         <StyledCard marginBottom="2%" mobileMarginBottom="30px" style={{ flex: "3" }}>
