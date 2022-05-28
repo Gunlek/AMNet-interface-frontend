@@ -36,7 +36,7 @@ const Row = ({ row, index, moveRow, deleteTeamMember }) => {
       if (dragIndex > hoverIndex && hoverClientY > hoverMiddleY) {
         return
       }
-      
+
       moveRow(dragIndex, hoverIndex)
       item.index = hoverIndex
     },
@@ -94,7 +94,7 @@ const Row = ({ row, index, moveRow, deleteTeamMember }) => {
         </div>
       </StyledTd>
 
-      <StyledTd>
+      <StyledTd style={{ paddingRight: "10px" }}>
         <SmallRedButton onClick={(elmt) => deleteTeamMember(elmt, index)}>Supprimer</SmallRedButton>
       </StyledTd>
     </StyledTeamTr>
@@ -103,7 +103,7 @@ const Row = ({ row, index, moveRow, deleteTeamMember }) => {
 
 const MobileRow = ({ row, index, moveRow, deleteTeamMember, lastIndex }) => {
   const newIndexDown = index == lastIndex ? 0 : index + 1;
-  const newIndexUp = index == 0 ? lastIndex : index-1;
+  const newIndexUp = index == 0 ? lastIndex : index - 1;
 
   return (
     <StyledTr>

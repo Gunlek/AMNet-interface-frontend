@@ -60,9 +60,10 @@ export const TeamEditor = () => {
 
                     <Col2
                         paddingLeft="10px"
+                        paddingRight="10px"
                         style={{
                             justifyContent: "end", alignItems: "center",
-                            minWidth: "160px"
+                            minWidth: "170px",
                         }}
                     >
                         <SmallGreenButton type="submit" onClick={registerNewTeamMember}>Ajouter</SmallGreenButton>
