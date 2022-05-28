@@ -53,11 +53,11 @@ export default function MaterialAdminTable(props: { requests: any[], status: { o
                     {value['user_pay_status'] ? <Succes marginRight="15px" /> : <Fail marginRight="15px" />}
                 </StyledTd>
                 <StyledTd>{value['material_description']}</StyledTd>
-                <StyledFlexTd style={{ whiteSpace: "normal" }}>
-                    <div style={{ minWidth: "100%", width: "400px", maxWidth: "max-content" }}>
+                <StyledTd style={{ whiteSpace: "normal" }}>
+                    <div style={{ width: "400px"}}>
                         {value['material_reason']}
                     </div>
-                </StyledFlexTd>
+                </StyledTd>
                 <StyledTd>
                     <StateRequest state={value['material_state']} />
                 </StyledTd>
