@@ -1,4 +1,4 @@
-import styled, { keyframes }  from "styled-components";
+import styled, { keyframes } from "styled-components";
 import { StyledCard } from "../Card/style";
 
 export const StyledStateRequest = styled.div`
@@ -81,8 +81,8 @@ export const StyledConteneurNotif = styled.div`
     justify-content: center;
     background-color: red;
     font-size: 14px;
-    width: 20px;
-    height: 20px;
+    padding: 5px;
+    aspect-ratio: 1 / 1;
     border-radius: 50%;
     position: absolute;
     right: 0;
@@ -107,15 +107,27 @@ export const StyledNotification = styled(StyledCard)`
   overflow: hidden;
   pointer-events: ${(props) => props.Display ? undefined : "none"};
 
-  ${StyledConteneurNotif}:hover & {
-    opacity: 1;
+  span{
+    transition: opacity ${(props) => props.Display ? "1.4s" : "0.2s"};
+    opacity: ${(props) => props.Display ? "1" : "0"};
   }
 
   @media screen and (max-width: 1000px){
-    transition: opacity 0.3s;
-    left: 285%;
-    padding: ${(props) => !props.Display && "0"};
-    width: ${(props) => props.Display ? "max-content" : "0"};
-    height: ${(props) => props.Display ? "auto" : "0"};
+    transition: opacity 0.3s, z-index 0.3s,;
+    left: ${(props) => props.Unpaid ? "-300%" : "285%"};
+    width: max-content;
+    height: auto;
+    border-radius: 30px;
+    padding: 20px;
+
+    span{
+      opacity: 1
+    }
+  }
+  
+  @media screen and (min-width: 1000px){
+    ${StyledConteneurNotif}:hover & {
+      opacity: 1;
+    }
   }
 `;

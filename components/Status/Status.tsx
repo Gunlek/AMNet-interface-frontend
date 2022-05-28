@@ -104,17 +104,10 @@ export function AdminStateContribution(props: { state?: boolean, id: string }) {
   );
 }
 
-export function AdminNotifications(props: { notifNumber: number }) {
+export function AdminNotifications(props: { notifNumber: number, unpaid?: boolean }) {
   const notifNumber = props.notifNumber !== 0 ? props.notifNumber : undefined;
   const [Display, setDisplay] = useState(false);
   const [Opacity, setOpacity] = useState(true);
-  const content = Display ?  <><Link href="/admin/iot" passHref>
-    <StyledLink>Demandes d'accès internet: 1</StyledLink>
-  </Link>
-    <Link href="/admin/material" passHref>
-      <StyledLink>Demandes de matériel: 1</StyledLink>
-    </Link></> : "Demandes"
-
 
   const handleChange = (e) => {
     e.preventDefault()
@@ -144,15 +137,21 @@ export function AdminNotifications(props: { notifNumber: number }) {
             </g>
           </g>
         </StyledSVG>
-        <StyledNotification Display={Display} Opacity={Opacity}>
-          {content}
+        <StyledNotification Display={Display} Opacity={Opacity} Unpaid={props.unpaid}>
+          <Link href="/admin/iot" passHref>
+            <StyledLink>Demandes <span>d'accès internet: 1</span></StyledLink>
+          </Link>
+          <Link href="/admin/material" passHref>
+            <StyledLink><span>Demandes de matériel: 1</span></StyledLink>
+          </Link>
         </StyledNotification>
       </StyledConteneurNotif>
       <div
         onClick={handleChange}
         style={{
           display: Display ? "block" : "none",
-          position: "fixed", height: "100%",
+          position: "fixed",
+          height: "100%",
           width: "100%",
           left: "0",
           top: "0",
