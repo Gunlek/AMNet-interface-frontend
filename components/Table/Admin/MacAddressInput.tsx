@@ -13,35 +13,44 @@ export default function MacAdressTd(props: { access_mac: string, id: any }) {
     }
 
     function handleBlur() {
-        if (MacAdressVerification(newMAC) === "") {
+        const MacAdress = MacAdressVerification(newMAC)
+        if (MacAdress === "") {
             setTooltip(true)
             setNewMac(props.access_mac)
-            
+
             setTimeout(() => {
                 setTooltip(false)
             }, 3000);
         }
+        else {
+            setNewMac(MacAdress)
+        }
+        
         setInput(false)
     }
 
     const handleKeyDown = (event) => {
         if (event.key === 'Enter') {
-            if (MacAdressVerification(newMAC) === "") {
+            const MacAdress = MacAdressVerification(newMAC)
+            if (MacAdress === "") {
                 setTooltip(true)
                 setNewMac(props.access_mac)
-                
+
                 setTimeout(() => {
                     setTooltip(false)
-                }, 2000);
+                }, 3000);
             }
+            else {
+                setNewMac(MacAdress)
+            }
+
             setInput(false)
         }
     }
 
     useEffect(() => {
-        if (input) document.getElementById("mac_add_" + props.id).focus()
+        if (input) document.getElementById("mac_add").focus()
     }, [input])
-
 
     return (
         <StyledTd
@@ -55,7 +64,7 @@ export default function MacAdressTd(props: { access_mac: string, id: any }) {
         >
             {input ?
                 <input
-                    id={"mac_add_" + props.id}
+                    id={"mac_add"}
                     style={{
                         width: "100%",
                         fontSize: "1.2rem",
@@ -75,27 +84,26 @@ export default function MacAdressTd(props: { access_mac: string, id: any }) {
                 :
                 newMAC
             }
-            
-                <StyledCard
-                    style={{
-                        position: "absolute",
-                        bottom: "-80px",
-                        left: "50%",
-                        transform: "translateX(-50%)",
-                        color: "red",
-                        border: "2px solid red",
-                        background: "white",
-                        zIndex: tooltip ? "7" : "-1",
-                        opacity: tooltip ? "1" : "0",
-                        width: "auto",
-                        padding: "15px",
-                        borderRadius: "15px",
-                        transition: "opacity 0.3s, z-index 0.3s"
-                    }}
-                >
-                    L'adresse physique<br/>entrée est invalide
-                </StyledCard>
-            
+
+            <div
+                style={{
+                    position: "absolute",
+                    bottom: "-80px",
+                    left: "50%",
+                    transform: "translateX(-50%)",
+                    color: "red",
+                    border: "2px solid red",
+                    background: "white",
+                    zIndex: tooltip ? "7" : "-1",
+                    opacity: tooltip ? "1" : "0",
+                    width: "auto",
+                    padding: "15px",
+                    borderRadius: "15px",
+                    transition: "opacity 0.3s, z-index 0.3s"
+                }}
+            >
+                L'adresse physique<br />entrée est invalide
+            </div>
         </StyledTd>
     )
 };
