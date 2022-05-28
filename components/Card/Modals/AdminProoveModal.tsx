@@ -3,6 +3,7 @@ import { ResponsiveRow, Col8, Col4 } from "../../Container/style";
 import useMediaQuery from "../../MediaQueries/MediaQuery";
 import { StateRequest } from "../../Status/Status";
 import { Buttons } from "../../Table/Admin/Buttons";
+import MacAdressTd from "../../Table/Admin/MacAddressInput";
 import { StyledTable, StyledHeadTr, StyledTh, StyledTr, StyledTd } from "../../Table/style";
 import { StyledLink } from "../../Text/style";
 import { TitleCard } from "../Cards";
@@ -42,7 +43,7 @@ export default function ProoveModal(props: { request: any, link: string }) {
                                 <tbody>
                                     <StyledHeadTr>
                                         <StyledTh>Equipement</StyledTh>
-                                        <StyledTh style={{ textAlign: "center" }}>{props.request['access_description']}</StyledTh>
+                                        <StyledTh style={{ textAlign: "center", width: "230px" }}>{props.request['access_description']}</StyledTh>
                                     </StyledHeadTr>
                                     <StyledTr>
                                         <StyledTd>Utilisateur</StyledTd>
@@ -61,7 +62,7 @@ export default function ProoveModal(props: { request: any, link: string }) {
                                     </StyledTr>
                                     <StyledTr>
                                         <StyledTd>Adresse Mac</StyledTd>
-                                        <StyledTd style={{ textAlign: "center" }}>{props.request['access_mac']}</StyledTd>
+                                        <MacAdressTd access_mac={props.request['access_mac']} id={"modale"}/>
                                     </StyledTr>
                                     <StyledTr>
                                         <StyledTd>Etat</StyledTd>

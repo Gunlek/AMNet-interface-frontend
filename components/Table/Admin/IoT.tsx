@@ -8,6 +8,8 @@ import { StateRequest } from "../../Status/Status";
 import { StyledLink } from "../../Text/style";
 import { StyledTr, StyledTd, StyledFlexTd, MobileTbody, StyledTable, StyledHeadTr, StyledTh, Tbody } from "../style";
 import { Buttons } from "./Buttons";
+import MacAdressTd from "./MacAddressInput";
+
 import IoTMobileLine from "./MobileLine/IoT";
 
 export default function IoTAdminTable(props: { requests: any[], status: { old: string, new: string } }) {
@@ -34,7 +36,7 @@ export default function IoTAdminTable(props: { requests: any[], status: { old: s
         }
     }, [props.status]);
 
-    props.requests.map((value) => {
+    props.requests.map((value, id) => {
         listHTML[value['acces_state']].push(
             <StyledTr key={index[value['acces_state']]}>
                 <StyledTd>{index[value['acces_state']]}</StyledTd>
@@ -53,8 +55,8 @@ export default function IoTAdminTable(props: { requests: any[], status: { old: s
                 <StyledTd style={{ textAlign: "center" }}>
                     {value['user_pay_status'] ? <Succes marginRight="15px" /> : <Fail marginRight="15px" />}
                 </StyledTd>
-                <StyledFlexTd>{value['access_description']}</StyledFlexTd>
-                <StyledTd>{value['access_mac']}</StyledTd>
+                <StyledTd>{value['access_description']}</StyledTd>
+                <MacAdressTd access_mac={value['access_mac']} id={id} />
                 <StyledTd>
                     <ProoveModal request={value} link="/static/images/homepage/campus.jpg" />
                 </StyledTd>
@@ -123,7 +125,7 @@ export default function IoTAdminTable(props: { requests: any[], status: { old: s
                             <StyledTh scope="col">Utilisateur</StyledTh>
                             <StyledTh scope="col">Cotisation</StyledTh>
                             <StyledTh scope="col">Description</StyledTh>
-                            <StyledTh scope="col">Adresse Mac</StyledTh>
+                            <StyledTh style={{ width: "230px", textAlign: "center" }} scope="col">Adresse Mac</StyledTh>
                             <StyledTh scope="col">Preuve</StyledTh>
                             <StyledTh scope="col"><span style={{ paddingLeft: "5px" }}>Etat</span></StyledTh>
                             <StyledTh scope="col">
