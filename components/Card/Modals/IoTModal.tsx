@@ -4,21 +4,50 @@ import { ResponsiveRow, Row } from "../../Container/style";
 import FileUploader from "../../Input/FileUploader";
 import { StyledInputLabel, StyledInput } from "../../Input/style";
 import useMediaQuery from "../../MediaQueries/MediaQuery";
-import { StyledLink } from "../../Text/style";
+import { BlackText, StyledLink } from "../../Text/style";
 import { TitleCard } from "../Cards";
 import { StyledDeleteImg } from "../Images/style";
 import { ModalLogic } from "./ModalLogic";
 import { StyledBackgroundModal, StyledModal } from "./style";
 
+const replaceAll = (str: string, search: string, replace: string) => {
+    return str.split(search).join(replace);
+}
+
+const isMacAdress = (MacAddress: string) => {
+    const regex = /^([0-9A-F]{2}){5}([0-9A-F]{2})$/;
+
+    return regex.test(MacAddress)
+}
+
+export const MacAdressVerification = (MacAddress: string) => {
+    const newMacAddress = replaceAll(replaceAll(replaceAll(replaceAll(MacAddress, '-', ''), ':', ''), ' ', ''), ';', '').toUpperCase()
+    const Verification = isMacAdress(newMacAddress)
+
+    if (Verification) return newMacAddress
+    else return ""
+};
+
 export default function IoTModal() {
     const minWidth1000 = useMediaQuery('(min-width: 1000px)')
     const { Display, Opacity, toggle } = ModalLogic()
     const [File, setFile] = useState(null);
+    const [macAddress, setMacAddress] = useState("");
+    const [description, setDescription] = useState("");
+    const [fillingError, setFillingError] = useState({ macAddress: false, description: false, File: false });
 
     useEffect(() => {
         const input = document.getElementById("picture_equipment") as HTMLInputElement;
         input.value = null;
     }, []);
+
+    useEffect(() => {
+        if (fillingError.File && File) {
+            const NewFillingError = { ...fillingError };
+            NewFillingError.File = false;
+            setFillingError(NewFillingError)
+        }
+    }, [File]);
 
     function Setfile(id: string, file: any) {
         setFile(file);
@@ -28,6 +57,29 @@ export default function IoTModal() {
         const input = document.getElementById("picture_equipment") as HTMLInputElement;
         input.value = null;
         setFile(null);
+        const NewFillingError = { ...fillingError };
+        NewFillingError.File = true;
+        setFillingError(NewFillingError)
+    }
+
+    const onBlurVerification = (e) => {
+        if (e.currentTarget.id === "mac_adress_equipment") {
+            const NewFillingError = { ...fillingError };
+            NewFillingError.macAddress = MacAdressVerification(macAddress) === "";
+            setFillingError(NewFillingError)
+        }
+        if (e.currentTarget.id === "description_equipment") {
+            const NewFillingError = { ...fillingError };
+            NewFillingError.description = description === "";
+            setFillingError(NewFillingError)
+        }
+    }
+
+    const SendReq = (e) => {
+        e.preventDefault();
+        const verifiedMacAddress = MacAdressVerification(macAddress)
+        const newFillingError = { macAddress: verifiedMacAddress === "", description: description === "", File: File === null }
+        setFillingError(newFillingError)
     }
 
     return (
@@ -38,11 +90,33 @@ export default function IoTModal() {
                 <TitleCard hideLine={!minWidth1000}>Demande d'accès pour un objet connecté</TitleCard>
                 <div style={{ marginBottom: "20px", width: "100%" }}>
                     <StyledInputLabel htmlFor="mac_adress_equipment">Adresse Physique</StyledInputLabel>
-                    <StyledInput border="2px solid rgba(0, 159, 0, 0.15)" id="mac_adress_equipment" placeholder="Par exemple: 5E:FF:56:A2:AF:15" />
+                    <StyledInput
+                        border="2px solid rgba(0, 159, 0, 0.15)"
+                        id="mac_adress_equipment"
+                        placeholder="Par exemple: 5E:FF:56:A2:AF:15"
+                        onChange={(elmt) => setMacAddress(elmt.target.value)}
+                        onBlur={onBlurVerification}
+                    />
+                    {fillingError.macAddress &&
+                        <BlackText style={{ color: "red", marginTop: "5px" }}>
+                            L'adresse physique est invalide
+                        </BlackText>
+                    }
                 </div>
                 <div style={{ marginBottom: "20px", width: "100%" }}>
                     <StyledInputLabel htmlFor="description_equipment">Description</StyledInputLabel>
-                    <StyledInput border="2px solid rgba(0, 159, 0, 0.15)" id="description_equipment" placeholder="Par exemple: Chromecast" />
+                    <StyledInput
+                        border="2px solid rgba(0, 159, 0, 0.15)"
+                        id="description_equipment"
+                        placeholder="Par exemple: Chromecast"
+                        onChange={(elmt) => setDescription(elmt.target.value)}
+                        onBlur={onBlurVerification}
+                    />
+                    {fillingError.description &&
+                        <BlackText style={{ color: "red", marginTop: "5px" }}>
+                            La description est obligatoire
+                        </BlackText>
+                    }
                 </div>
                 <div style={{ marginBottom: "30px", width: "100%" }}>
                     <StyledInputLabel
@@ -73,9 +147,14 @@ export default function IoTModal() {
                             </div>
                         }
                     </ResponsiveRow>
+                    {fillingError.File &&
+                        <BlackText style={{ color: "red", marginTop: "5px" }}>
+                            La photograpgie est obligatoire
+                        </BlackText>
+                    }
                 </div>
                 <Row style={{ justifyContent: "center" }}>
-                    <GreenButton width="350px">Envoyer la demande</GreenButton>
+                    <GreenButton onClick={SendReq} width="350px">Envoyer la demande</GreenButton>
                 </Row>
             </StyledModal>
         </>
