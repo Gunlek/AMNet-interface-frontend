@@ -10,6 +10,8 @@ import { BlackTitle, BlackText } from "../components/Text/style";
 
 
 export default function Dashboard() {
+  const Contribution = true;
+
   return (
     <>
       <Head>
@@ -20,13 +22,14 @@ export default function Dashboard() {
 
       <DashboardContainer>
         <ResponsiveRow margin="1% 0" mobileMargin="20px 0">
-          <Column mobileMarginBottom="20px" style={{ justifyContent: "center" }}>
+          <Row mobileMarginBottom="20px" justify="space-between" mobileJustify="space-around" style={{ flex:"1", alignItems: "center" }}>
             <BlackTitle>Mon Espace AMNet</BlackTitle>
-          </Column>
+            {!Contribution && <AdminNotifications notifNumber={3} unpaid={true}/>}
+          </Row>
 
-          <Row align="center" style={{ flex: "1", justifyContent: "center" }}>
-            <AdminNotifications notifNumber={3}/>
-            <StateContribution status="paid" />
+          <Row align="center" style={{ justifyContent: "center", width: "auto" }}>
+            {Contribution && <AdminNotifications notifNumber={3}/>}
+            <StateContribution status={Contribution ? "paid" : "unpaid"} />
           </Row>
         </ResponsiveRow>
 
