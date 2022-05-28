@@ -43,7 +43,8 @@ export const EditorStyle = createGlobalStyle`
     }
 
     .rdw-option-wrapper {
-        border: 2px solid black;
+        border: 2px solid #096A09;
+        box-shadow: none;
         padding: 10px;
         height: 30px;
         margin: 5px 15px;
@@ -51,8 +52,13 @@ export const EditorStyle = createGlobalStyle`
         border-radius: 9px;
     }
 
+    .rdw-option-wrapper:hover {
+        box-shadow: none;
+    }
+
     .rdw-dropdown-wrapper {
-        border: 2px solid black;
+        border: 2px solid #096A09;
+        box-shadow: none;
         padding: 10px 0;
         height: 30px;
         margin: 5px 15px;
@@ -60,6 +66,10 @@ export const EditorStyle = createGlobalStyle`
         border-radius: 9px;
     }
 
+    .rdw-dropdown-wrapper:hover {
+        box-shadow: none;
+    }
+    
     .rdw-fontsize-dropdown{
         width: 50px;
     }
