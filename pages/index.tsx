@@ -22,13 +22,13 @@ export default function Dashboard() {
 
       <DashboardContainer>
         <ResponsiveRow margin="1% 0" mobileMargin="20px 0">
-          <Row mobileMarginBottom="20px" justify="space-between" mobileJustify="space-around" style={{ flex:"1", alignItems: "center" }}>
+          <Row mobileMarginBottom="20px" justify="space-between" mobileJustify="space-around" style={{ flex: "1", alignItems: "center" }}>
             <BlackTitle>Mon Espace AMNet</BlackTitle>
-            {!Contribution && <AdminNotifications notifNumber={3} unpaid={true}/>}
+            {!Contribution && <AdminNotifications notifNumber={3} unpaid={true} />}
           </Row>
 
           <Row align="center" style={{ justifyContent: "center", width: "auto" }}>
-            {Contribution && <AdminNotifications notifNumber={3}/>}
+            {Contribution && <AdminNotifications notifNumber={3} />}
             <StateContribution status={Contribution ? "paid" : "unpaid"} />
           </Row>
         </ResponsiveRow>
@@ -36,7 +36,7 @@ export default function Dashboard() {
         <StyledCard marginBottom="2%" mobileMarginBottom="30px" style={{ flex: "3" }}>
           <Column style={{ height: "100%" }}>
             <TitleCard>Actualité AMNet</TitleCard>
-            <BlackText>
+            <BlackText style={{ textAlign: "justify" }}>
               Nouvelle mise à jour
               Le design de l'interface a changé et
               quelques améliorations sont toujours en cours !
@@ -49,7 +49,7 @@ export default function Dashboard() {
             <StyledCard style={{ height: "100%" }}>
               <Column style={{ height: "100%" }}>
                 <TitleCard>Objets connectés</TitleCard>
-                <BlackText>
+                <BlackText style={{ textAlign: "justify" }}>
                   Faites vos demandes d'ajouts spécifiques
                   (Objets connectés (IoT), consoles, etc...)
                   depuis cette page
@@ -73,7 +73,7 @@ export default function Dashboard() {
             <StyledCard style={{ height: "100%" }}>
               <Column style={{ height: "100%" }}>
                 <TitleCard>FAQ</TitleCard>
-                <BlackText>
+                <BlackText style={{ textAlign: "justify" }}>
                   Vous vous posez une question sur notre association?
                   Sur comment se connecter à notre réseau?
                   Trouvez toutes vos réponses ici !
