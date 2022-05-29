@@ -68,8 +68,8 @@ function GlobalFilter({ globalFilter, setGlobalFilter }) {
 
   return (
     <>
-      <BlackText mobileMarginBottom="10px">Rechercher</BlackText>
-      <StyledInput value={value || ""}
+      <BlackText mobileMarginBottom="10px" as="label" htmlFor="research">Rechercher</BlackText>
+      <StyledInput id="research" value={value || ""}
         spellcheck="false"
         onChange={e => { setValue(e.target.value); onChange(e.target.value); }}
         width="300px" mobileWidth="100%" marginLeft="20px"
