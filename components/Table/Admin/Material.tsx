@@ -5,7 +5,7 @@ import Fail from "../../NavIcons/fail";
 import Succes from "../../NavIcons/succes";
 import { StateRequest } from "../../Status/Status";
 import { StyledLink } from "../../Text/style";
-import { StyledTr, StyledTd, StyledFlexTd, MobileTbody, StyledTable, StyledHeadTr, StyledTh, Tbody } from "../style";
+import { StyledTr, StyledTd, MobileTbody, StyledTable, StyledHeadTr, StyledTh, Tbody } from "../style";
 import { Buttons } from "./Buttons";
 import MaterialMobileLine from "./MobileLine/Material";
 
@@ -13,7 +13,7 @@ export default function MaterialAdminTable(props: { requests: any[], status: { o
     let listHTML = { active: [], declined: [], pending: [] };
     let mobilelistHTML = { active: [], declined: [], pending: [] };
     let index = { active: 1, declined: 1, pending: 1 };
-    const [Display, setDisplay] = useState({ active: "none", declined: "none", pending: "table-row-group" })
+    const [Display, setDisplay] = useState({ active: false, declined: false, pending: true })
     const [Opacity, setOpacity] = useState({ active: "", declined: "", pending: "" })
 
     useEffect(() => {
@@ -23,8 +23,8 @@ export default function MaterialAdminTable(props: { requests: any[], status: { o
             setOpacity(newOpacity)
 
             setTimeout(() => {
-                const newDisplay = { active: "none", declined: "none", pending: "none" }
-                newDisplay[props.status.new] = "table-row-group"
+                const newDisplay = { active: false, declined: false, pending: false}
+                newDisplay[props.status.new] = true
                 setDisplay(newDisplay)
                 const newOpacity = { active: "", declined: "", pending: "" }
                 newOpacity[props.status.new] = "in"
