@@ -420,7 +420,7 @@ export default function Users() {
         >
           <GreenButton width="300px">Confirmer le paiement</GreenButton>
           <RedButton width="300px">Annuler le paiement</RedButton>
-          <OrangeButton width="300px">Passer en Gadz</OrangeButton>
+          <OrangeButton width="300px">Changer de statut Gadz</OrangeButton>
           <RedButton width="300px">Supprimer</RedButton>
         </ButtonsRow>
 
