@@ -5,6 +5,8 @@ import { Buttons } from "../Buttons";
 import Fail from "../../../NavIcons/fail";
 import Succes from "../../../NavIcons/succes";
 import ProoveModal from "../../../Card/Modals/AdminProoveModal";
+import Link from "next/link";
+import { StyledLink } from "../../../Text/style";
 
 export const IoTMobileLine = ({ index, value, status, display }: {
     index: number,
@@ -48,12 +50,23 @@ export const IoTMobileLine = ({ index, value, status, display }: {
                     <tbody>
                         <StyledTr>
                             <StyledTd style={{ width: "130px" }}>Utilisateur</StyledTd>
-                            <StyledTd style={{ textAlign: "center" }}>{value['user_name']}</StyledTd>
+                            <StyledTd style={{ textAlign: "center" }}>
+                                <Link
+                                    href={{
+                                        pathname: '/admin/users/[user_id]',
+                                        query: { user_id: value['acces_user'] },
+                                    }}
+                                    prefetch={false}
+                                    passHref
+                                >
+                                    <StyledLink color="#096a09">{value['user_name']}</StyledLink>
+                                </Link>
+                            </StyledTd>
                         </StyledTr>
                         <StyledTr>
                             <StyledTd>Cotisation</StyledTd>
                             <StyledTd style={{ textAlign: "center" }}>
-                                {value['user_pay_status'] ? <Succes/> : <Fail/>}
+                                {value['user_pay_status'] ? <Succes /> : <Fail />}
                             </StyledTd>
                         </StyledTr>
                         <StyledTr>

@@ -2,6 +2,8 @@ import { StyledTable, StyledTd, StyledTr } from "../../style";
 import React, { useState } from "react";
 import Fail from "../../../NavIcons/fail";
 import Succes from "../../../NavIcons/succes";
+import Link from "next/link";
+import { StyledLink } from "../../../Text/style";
 
 export const UsersMobileLine = ({ row, columnsNumber, isLast }: {
     columnsNumber: number,
@@ -13,16 +15,15 @@ export const UsersMobileLine = ({ row, columnsNumber, isLast }: {
 
     return (
         <>
-
             <div
                 style={{
                     height: scrolled ? (columnsNumber * 55 + 10).toString() + "px" : "56px",
                     transition: "0.3s linear",
                     overflowY: "hidden",
                     overflowX: scrolled ? "auto" : "hidden",
-                    marginBottom: isLast? "0" : "30px",
+                    marginBottom: isLast ? "0" : "30px",
                     borderRadius: "10px",
-                    border:  "2px solid #096A09"
+                    border: "2px solid #096A09"
                 }}
             >
                 <StyledTable style={{ tableLayout: !scrolled && "fixed" }}>
@@ -40,7 +41,18 @@ export const UsersMobileLine = ({ row, columnsNumber, isLast }: {
                                                 {cell.column.render('Header')}
                                             </div>
                                         </StyledTd>
-                                        <StyledTd style={{ textAlign: "center" }}>{cell.render('Cell')}</StyledTd>
+                                        <StyledTd style={{ textAlign: "center" }}>
+                                            <Link href={{
+                                                pathname: '/admin/users/[user_id]',
+                                                query: { user_id: row.allCells[14].value },
+                                            }}
+                                                prefetch={false}
+                                                passHref>
+                                                <StyledLink color="#096a09">
+                                                    {cell.render('Cell')}
+                                                </StyledLink>
+                                            </Link>
+                                        </StyledTd>
                                     </StyledTr>
                                 )
                             }
@@ -52,7 +64,7 @@ export const UsersMobileLine = ({ row, columnsNumber, isLast }: {
                                             {cell.column.render('Header')}
                                         </StyledTd>
                                         <StyledTd style={{ textAlign: "center" }}>
-                                            {cell.value ? <Succes/> : <Fail/>}
+                                            {cell.value ? <Succes /> : <Fail />}
                                         </StyledTd>
                                     </StyledTr>
                                 )
