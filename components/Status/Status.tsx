@@ -17,8 +17,8 @@ import Link from "next/link";
 export function StateContribution(props: { status: string }) {
   if (props.status == 'paid') {
     return (
-      <StyledStateContribution style={{ marginRight: "15px" }}>
-        <BlackText style={{ paddingRight: "10px" }}>Cotisation :</BlackText>
+      <StyledStateContribution>
+        <BlackText style={{ paddingRight: "10px", fontSize: "18px" }}>Cotisation :</BlackText>
         <Succes />
       </StyledStateContribution>
     )
@@ -32,7 +32,7 @@ export function StateContribution(props: { status: string }) {
         }}
       >
         <StyledStateContribution style={{ marginRight: "15px" }}>
-          <BlackText style={{ paddingRight: "10px" }}>Cotisation :</BlackText>
+          <BlackText style={{ paddingRight: "10px", fontSize: "18px"  }}>Cotisation :</BlackText>
           <Fail />
         </StyledStateContribution>
         <ContributionModal />
