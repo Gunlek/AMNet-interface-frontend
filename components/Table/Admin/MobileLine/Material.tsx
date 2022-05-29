@@ -21,8 +21,11 @@ export const MaterialMobileLine = ({ index, value, status, display }: {
     display: any
 }) => {
     const [scrolled, setScrolled] = useState(false);
+    
     useEffect(() => {
-        setScrolled(false)
+        setTimeout(() => {
+            setScrolled(false)
+        }, 500);
     }, [display])
 
     return (

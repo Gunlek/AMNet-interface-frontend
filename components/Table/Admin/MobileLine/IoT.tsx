@@ -23,10 +23,12 @@ export const IoTMobileLine = ({ index, value, status, display }: {
     status: string,
     display: any
 }) => {
-
     const [scrolled, setScrolled] = useState(false);
+    
     useEffect(() => {
-        setScrolled(false)
+        setTimeout(() => {
+            setScrolled(false)
+        }, 500);
     }, [display])
 
     return (
