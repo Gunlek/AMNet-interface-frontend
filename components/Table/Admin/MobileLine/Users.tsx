@@ -26,7 +26,7 @@ export const UsersMobileLine = ({ row, columnsNumber, isLast }: {
                     border: "2px solid #096A09"
                 }}
             >
-                <StyledTable style={{ tableLayout: !scrolled && "fixed" }}>
+                <StyledTable>
                     <tbody>
                         {row.cells.map((cell, index) => {
                             if (cell.column['id'] == 'user_name') {
