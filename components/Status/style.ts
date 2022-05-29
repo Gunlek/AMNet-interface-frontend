@@ -68,10 +68,11 @@ export const StyledSVG = styled.svg`
 export const StyledConteneurNotif = styled.div`
   position: relative;
   cursor: pointer;
-  margin-right: 15px;
+  margin-right: 25px;
   display: flex;
   font-size: 1.2rem;
   z-index: ${(props) => props.Display ? "4" : "1"};
+  -webkit-tap-highlight-color: transparent;
   
   &::before{
     content: ${(props) => props.notifNumber && '"' + props.notifNumber + '"'};
@@ -81,8 +82,8 @@ export const StyledConteneurNotif = styled.div`
     justify-content: center;
     background-color: red;
     font-size: 14px;
-    padding: 5px;
-    aspect-ratio: 1 / 1;
+    height: 24px;
+    width: 24px;
     border-radius: 50%;
     position: absolute;
     right: 0;
@@ -106,7 +107,7 @@ export const StyledNotification = styled(StyledCard)`
   z-index: ${(props) => props.Display ? "5" : "-2"};
   overflow: hidden;
   pointer-events: ${(props) => props.Display ? undefined : "none"};
-
+  
   span{
     transition: opacity ${(props) => props.Display ? "1.4s" : "0.2s"};
     opacity: ${(props) => props.Display ? "1" : "0"};
