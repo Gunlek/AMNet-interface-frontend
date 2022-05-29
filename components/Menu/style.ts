@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { StyledCard } from "../Card/style";
-import { Row } from "../Container/style";
+import { Column, Row } from "../Container/style";
 
 export const StyledMenu = styled(StyledCard)`
   height: 96%;
@@ -8,30 +8,22 @@ export const StyledMenu = styled(StyledCard)`
   padding-Top:20px;
   padding-bottom:10px;
   align-items: center;
-  z-index:2;
-  overflow-y: auto;
-  overflow-x: hidden;
+  z-index: 4;
 
   @media screen and (max-width: 1000px){
-    background: white;
-    flex-direction: row;
-    padding: 10px;
-    border-top-left-radius: 0px;
-    border-top-right-radius: 0px;
-    padding-bottom: 25px;
     transition: box-shadow 0.3s linear;
     box-shadow: ${(props) => !props.Shadow && "none"};
   }
-  
-  @media screen and (max-width: 800px){
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    padding-bottom: 10px;
-    overflow: hidden;
-    transition: height 0.3s linear;
-    grid-auto-rows: auto 95px 95px 95px;
-    height: ${(props) => props.mobileHeight+"px"};
-  } 
+
+  @media screen and (max-width: 1000px){
+    width: 100%;
+    background: white;
+    padding: 0px;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+    transition: box-shadow 0.3s linear;
+    box-shadow: ${(props) => !props.Shadow && "none"};
+  }
 `;
 
 export const MenuContener = styled.div`
@@ -68,7 +60,7 @@ export const StyledDivLogOut = styled(Row)`
   margin-top: ${(props) => props.marginTop};
   align-items: end; 
   justify-content: center; 
-  width: 60px;
+  width: 100%;
   justify-self: center;
   display: ${(props) => props.Display};
 
@@ -83,3 +75,31 @@ export const StyledDivLogOut = styled(Row)`
     display: ${(props) => props.mobileDisplay};
   }
 `
+
+export const StyledIconContener = styled(Column)`
+  height: 100%;
+  width: 80px;
+  
+  @media screen and (max-width: 1000px){
+    width: 100%;
+    flex-direction: row;
+    padding: 10px;
+    padding-bottom: 25px;
+    transition: box-shadow 0.3s linear;
+  }
+  
+  @media screen and (max-width: 800px){
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    padding-bottom: 10px;
+    overflow: hidden;
+    transition: height 0.3s linear;
+    grid-auto-rows: auto 95px 95px 95px;
+    height: ${(props) => props.mobileHeight+"px"};
+  }
+
+  @media screen and (max-height: ${(props) => props.maxHeight}) and (min-width: 1000px){
+    overflow-y: scroll;
+    overflow-x: hidden;
+  } 
+`;

@@ -13,6 +13,7 @@ import {
   MenuContener,
   StyledDivLogo,
   StyledDivLogOut,
+  StyledIconContener,
   StyledMenu
 } from "./style";
 import SmallLogo from "../NavIcons/smallLogo";
@@ -27,7 +28,7 @@ export default function AdminMenu(props: { page?: string }) {
   }
 
   useEffect(() => {
-    if (!scrolled) if (open) setTimeout(() => {handleChange()}, 525);
+    if (!scrolled) if (open) setTimeout(() => { handleChange() }, 525);
   }, [scrolled])
 
   const positionning = {
@@ -40,54 +41,56 @@ export default function AdminMenu(props: { page?: string }) {
 
   return (
     <MenuContener id="menu" timeTransform={open ? "0.5s" : "0.3s"} top={top} scroll={scroll} sticky={scrolled}>
-      <StyledMenu as="nav" Shadow={open} mobileHeight={open ? "285" : "95"}>
-        <Row
-          Display="none"
-          mobileDisplay="flex"
-          justify="center"
-          align="center"
-        >
-          <BurgerMenu open={open} onClick={handleChange} />
-        </Row>
-        <StyledDivLogo>
-          <SmallLogo />
-        </StyledDivLogo>
+      <StyledMenu Shadow={open}>
+        <StyledIconContener as="nav" maxHeight={"615px"} mobileHeight={open ? "285" : "95"}>
+          <Row
+            Display="none"
+            mobileDisplay="flex"
+            justify="center"
+            align="center"
+          >
+            <BurgerMenu open={open} onClick={handleChange} />
+          </Row>
+          <StyledDivLogo>
+            <SmallLogo />
+          </StyledDivLogo>
 
-        <StyledDivLogOut Display="none" mobileDisplay="flex">
-          <LogOutIcon id="1" />
-        </StyledDivLogOut>
+          <StyledDivLogOut Display="none" mobileDisplay="flex">
+            <LogOutIcon id="1" />
+          </StyledDivLogOut>
 
-        <Row style={positionning}>
-          <AdminIcon page={props.page} />
-        </Row>
+          <Row style={positionning}>
+            <AdminIcon page={props.page} />
+          </Row>
 
-        <Row style={positionning}>
-          <UsersIcon page={props.page} />
-        </Row>
+          <Row style={positionning}>
+            <UsersIcon page={props.page} />
+          </Row>
 
-        <Row style={positionning}>
-          <IoTIcon page={props.page} admin={true} />
-        </Row>
+          <Row style={positionning}>
+            <IoTIcon page={props.page} admin={true} />
+          </Row>
 
-        <Row style={positionning}>
-          <MaterialIcon page={props.page} admin={true} />
-        </Row>
+          <Row style={positionning}>
+            <MaterialIcon page={props.page} admin={true} />
+          </Row>
 
-        <Row style={positionning}>
-          <EditionIcon page={props.page} />
-        </Row>
+          <Row style={positionning}>
+            <EditionIcon page={props.page} />
+          </Row>
 
-        <Row style={positionning}>
-          <IndexIcon page={props.page} />
-        </Row>
+          <Row style={positionning}>
+            <IndexIcon page={props.page} />
+          </Row>
 
-        <StyledDivLogOut
-          flex="3"
-          Display="flex"
-          mobileDisplay="none"
-        >
-          <LogOutIcon id="2" />
-        </StyledDivLogOut>
+          <StyledDivLogOut
+            flex="3"
+            Display="flex"
+            mobileDisplay="none"
+          >
+            <LogOutIcon id="2" />
+          </StyledDivLogOut>
+        </StyledIconContener>
       </StyledMenu>
     </MenuContener>
   )

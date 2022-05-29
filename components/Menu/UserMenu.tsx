@@ -14,6 +14,7 @@ import {
   MenuContener,
   StyledDivLogo,
   StyledDivLogOut,
+  StyledIconContener,
   StyledMenu
 } from "./style";
 import SmallLogo from "../NavIcons/smallLogo";
@@ -38,7 +39,7 @@ export default function UserMenu(props: { page: string }) {
   }
 
   useEffect(() => {
-    if (!scrolled) if (open) setTimeout(() => {handleChange()}, 525);
+    if (!scrolled) if (open) setTimeout(() => { handleChange() }, 525);
   }, [scrolled])
 
   const positionning = {
@@ -51,66 +52,68 @@ export default function UserMenu(props: { page: string }) {
 
   return (
     <MenuContener id="menu" timeTransform={open ? "0.5s" : "0.3s"} top={top} scroll={scroll} sticky={scrolled}>
-      <StyledMenu as="nav" mobileHeight={open ? mobileHeight : "95"}>
-        <Row
-          Display="none"
-          mobileDisplay="flex"
-          justify="center"
-          align="center"
-        >
-          <BurgerMenu open={open} onClick={handleChange} />
-        </Row>
-        <StyledDivLogo>
-          <SmallLogo />
-        </StyledDivLogo>
-
-        <StyledDivLogOut Display="none" mobileDisplay="flex">
-          <LogOutIcon id="1" />
-        </StyledDivLogOut>
-
-        <Row style={positionning}>
-          <IndexIcon page={props.page} />
-        </Row>
-
-        <Row style={positionning}>
-          <ProfilIcon page={props.page} />
-        </Row>
-
-        {Contribution &&
-          <>
-            <Row style={positionning}>
-              <IoTIcon page={props.page} />
-            </Row>
-
-            <Row style={positionning}>
-              <MaterialIcon page={props.page} />
-            </Row>
-          </>
-        }
-
-        {isGadz &&
-          <Row style={positionning}>
-            <GadzflixIcon />
+      <StyledMenu Shadow={open}>
+        <StyledIconContener as="nav" maxHeight={(690-NumHiddenIcon*70).toString()+"px"} mobileHeight={open ? mobileHeight : "95"}>
+          <Row
+            Display="none"
+            mobileDisplay="flex"
+            justify="center"
+            align="center"
+          >
+            <BurgerMenu open={open} onClick={handleChange} />
           </Row>
-        }
+          <StyledDivLogo>
+            <SmallLogo />
+          </StyledDivLogo>
 
-        <Row style={positionning}>
-          <FAQIcon page={props.page} />
-        </Row>
+          <StyledDivLogOut Display="none" mobileDisplay="flex">
+            <LogOutIcon id="1" />
+          </StyledDivLogOut>
 
-        {isAdmin &&
           <Row style={positionning}>
-            <AdminIcon page={props.page} />
+            <IndexIcon page={props.page} />
           </Row>
-        }
 
-        <StyledDivLogOut 
-          Display="flex"
-          mobileDisplay="none"
-          flex={NumHiddenIcon + 2}
-        >
-          <LogOutIcon id="2" />
-        </StyledDivLogOut>
+          <Row style={positionning}>
+            <ProfilIcon page={props.page} />
+          </Row>
+
+          {Contribution &&
+            <>
+              <Row style={positionning}>
+                <IoTIcon page={props.page} />
+              </Row>
+
+              <Row style={positionning}>
+                <MaterialIcon page={props.page} />
+              </Row>
+            </>
+          }
+
+          {isGadz &&
+            <Row style={positionning}>
+              <GadzflixIcon />
+            </Row>
+          }
+
+          <Row style={positionning}>
+            <FAQIcon page={props.page} />
+          </Row>
+
+          {isAdmin &&
+            <Row style={positionning}>
+              <AdminIcon page={props.page} />
+            </Row>
+          }
+
+          <StyledDivLogOut
+            Display="flex"
+            mobileDisplay="none"
+            flex={NumHiddenIcon + 2}
+          >
+            <LogOutIcon id="2" />
+          </StyledDivLogOut>
+        </StyledIconContener>
       </StyledMenu>
     </MenuContener >
   )
