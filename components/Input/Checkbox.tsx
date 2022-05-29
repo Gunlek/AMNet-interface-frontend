@@ -31,7 +31,7 @@ const StyledCheckbox = styled.div`
   width: 25px;
   height: 25px;
   border-radius: 9px;
-  border: ${props => (props.color ? 'solid white 2.5px' : 'solid #096A09 2.5px')};
+  border: solid #096A09 2.5px;
   z-index: 1;
   position: relative;
   transition: box-shadow 0.2s;
@@ -42,17 +42,16 @@ const StyledCheckbox = styled.div`
     height:25px;
     width:25px;
     top: -2.5px;
-  
     left: -2.5px;
     z-index: -1;
-    background:  ${props => (props.color ? 'white' : 'linear-gradient(135deg, #67BC45 5.67%, #096A09 94.96%)')};
+    background: linear-gradient(135deg, #67BC45 5.67%, #096A09 94.96%);
     transition: opacity 0.2s;
     opacity: ${props => (props.checked ? '1' : '0')};
     border-radius: 9px;
   }
 
   ${StyledLabel}:hover &, &:hover{
-    box-shadow: 0px 2px 10px ${props => (props.color ? 'rgba(255, 255, 255, 0.4)' : 'rgba(0, 0, 0, 0.3)')};
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.3);
   }
 
   ${Icon} {
@@ -60,17 +59,35 @@ const StyledCheckbox = styled.div`
   }
 `
 
+const StyledWhiteCheckbox = styled(StyledCheckbox)`
+  border: solid white 2.5px;
+
+  &::before{
+    background: white;
+  }
+  
+  ${StyledLabel}:hover &, &:hover{
+    box-shadow:  0px 2px 10px rgba(255, 255, 255, 0.4);
+  }
+`;
+
 const Checkbox = (props: any) => (
   <CheckboxContainer>
     <HiddenCheckbox checked={props.checked} {...props} />
-    <StyledCheckbox color={props.color} checked={props.checked}>
-      <Icon color={props.color} viewBox="0 0 24 24">
-        <polyline points="20 6 9 17 4 12" />
-      </Icon>
-    </StyledCheckbox>
+    {props.Color === "white" ?
+      <StyledWhiteCheckbox checked={props.checked}>
+        <Icon color={props.Color} viewBox="0 0 24 24">
+          <polyline points="20 6 9 17 4 12" />
+        </Icon>
+      </StyledWhiteCheckbox>
+      :
+      <StyledCheckbox checked={props.checked}>
+        <Icon viewBox="0 0 24 24">
+          <polyline points="20 6 9 17 4 12" />
+        </Icon>
+      </StyledCheckbox>
+    }
   </CheckboxContainer>
 )
-
-
 
 export default Checkbox
