@@ -91,7 +91,7 @@ export default function MailModal(props: { html: any }) {
                                             <tbody>
                                                 <tr style={{ textAlign: "center" }}>
                                                     <td>
-                                                        <a href="https://amnet.fr">
+                                                        <a target="_blank" href="https://amnet.fr">
                                                             <img style={{ display: "inline-block", border: "none" }}
                                                                 src="/static/images/template/amnet.png" />
                                                         </a>
@@ -102,8 +102,8 @@ export default function MailModal(props: { html: any }) {
                                                 </tr>
                                                 <tr>
                                                     <td style={{ textAlign: "center", fontSize: "12px", padding: "0 10px" }} >
-                                                        Pour vous désabonner <a style={{ textDecoration: "none", color: "#096A09" }}
-                                                            href="">Cliquez ici</a>
+                                                        Pour vous désabonner <a href="/homepage/unsubscribe" target="_blank" style={{ textDecoration: "none", color: "#096A09" }}
+                                                            >Cliquez ici</a>
                                                     </td>
                                                 </tr>
                                             </tbody>
