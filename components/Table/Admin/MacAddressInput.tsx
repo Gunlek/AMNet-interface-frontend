@@ -88,7 +88,7 @@ export default function MacAdressTd(props: { access_mac: string, id: any }) {
             <div
                 style={{
                     position: "absolute",
-                    bottom: "-80px",
+                    bottom: "-70px",
                     left: "50%",
                     transform: "translateX(-50%)",
                     color: "red",
@@ -97,12 +97,12 @@ export default function MacAdressTd(props: { access_mac: string, id: any }) {
                     zIndex: tooltip ? "7" : "-1",
                     opacity: tooltip ? "1" : "0",
                     width: "auto",
-                    padding: "15px",
+                    padding: "10px",
                     borderRadius: "15px",
                     transition: "opacity 0.3s, z-index 0.3s"
                 }}
             >
-                L'adresse physique<br />entrée est invalide
+                L'adresse physique<br/>entrée est invalide
             </div>
         </StyledTd>
     )
