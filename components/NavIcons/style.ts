@@ -31,7 +31,7 @@ export const StyledBackIcon = styled.a`
     position: absolute;
     content:  ${(props) => props.tooltip && '"' + props.tooltip + '"'};
     top: 50%;
-    left: 125%;
+    left: 135%;
     transform: translateY(-50%);
     transition: opacity 0.2s linear;
     opacity: 0;
@@ -137,12 +137,37 @@ export const StyledBackLogOut = styled.a`
   display: flex;
   justify-content: center;
   align-items: end;
-  width: 60px;
+  width: 100%;
   height: 60px;
   position: relative;
 
+  &::after{
+    position: absolute;
+    content:  "Déconnexion";
+    top: 60%;
+    left: 115%;
+    transform: translateY(-50%);
+    transition: opacity 0.2s linear;
+    opacity: 0;
+    border-radius: 15px;
+    padding: 10px;
+    background: white;
+    width: max-content;
+    pointer-events: none;
+    box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.06);
+    z-index: 3;
+  }
+
+  &:hover::after{
+    opacity: 1;
+  }
+
   @media screen and (max-width: 1000px){
     align-items: center;
+
+    &::after{
+      content: none;
+    }
   }
 `;
 
