@@ -77,16 +77,17 @@ export const StyledFooter = styled.footer`
   justify-content: end;
   align-items: center;
   margin: 0;
-  margin-right: -2%;
+  margin-right: -2.25%;
   padding: 0 5px;
   margin-top: ${(props) => props.marginTop || "10px"};
-  margin-bottom: 10px;
+  margin-bottom: 6px;
   
   @media screen and (max-width: 1000px){
     text-align: center;
     margin-right: 0;
     margin-top: 15px;
-    margin-bottom: 15px;
+    margin-bottom: 10px;
+    padding: 0;
   } 
 `;
 
@@ -94,8 +95,8 @@ export const StyledCampusFooter = styled(StyledFooter)`
   background: rgba(255, 255, 255, 0.9);
   width: 100%;
   margin-right: 0;
-  padding-top: 5px;
-  padding-bottom: 5px;
+  padding-top: 6px;
+  padding-bottom: 6px;
   margin-bottom: 0;
 
   
