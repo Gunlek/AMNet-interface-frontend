@@ -145,16 +145,12 @@ export function UsersTable(data: any[]) {
           // The header can use the table's getToggleAllRowsSelectedProps method
           // to render a checkbox
           Header: ({ getToggleAllRowsSelectedProps }) => (
-            <div>
-              <IndeterminateCheckbox color="white" {...getToggleAllRowsSelectedProps()} />
-            </div>
+            <IndeterminateCheckbox Color="white" {...getToggleAllRowsSelectedProps()} />
           ),
           // The cell can use the individual row's getToggleRowSelectedProps method
           // to the render a checkbox
           Cell: ({ row }) => (
-            <div>
-              <IndeterminateCheckbox {...row.getToggleRowSelectedProps()} />
-            </div>
+            <IndeterminateCheckbox {...row.getToggleRowSelectedProps()} />
           ),
         },
         ...columns,
@@ -182,7 +178,7 @@ export function UsersTable(data: any[]) {
       d => d.original["user_id"]
     ),
     <MediaContextProvider>
-      <Media at="sm">
+      <Media at="sm" style={{ position: "sticky" }}>
         <>
           <Row style={{
             marginBottom: "20px",
