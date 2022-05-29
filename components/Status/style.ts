@@ -71,7 +71,7 @@ export const StyledConteneurNotif = styled.div`
   margin-right: 25px;
   display: flex;
   font-size: 1.2rem;
-  z-index: ${(props) => props.Display ? "4" : "1"};
+  z-index: ${(props) => props.Display ? "3" : "1"};
   -webkit-tap-highlight-color: transparent;
   
   &::before{
@@ -104,7 +104,7 @@ export const StyledNotification = styled(StyledCard)`
   width: ${(props) => props.Display ? "340px" : "126px"};
   border-radius: ${(props) => !props.Display && "15px"};
   padding: ${(props) => !props.Display && "10px"};
-  z-index: ${(props) => props.Display ? "5" : "-2"};
+  z-index: ${(props) => props.Display ? "3" : "-2"};
   overflow: hidden;
   pointer-events: ${(props) => props.Display ? undefined : "none"};
   

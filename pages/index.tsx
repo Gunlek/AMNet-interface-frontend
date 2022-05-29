@@ -60,7 +60,9 @@ export default function Dashboard() {
                     flex: "1",
                     justifyContent: "center",
                     alignItems: "end",
-                    marginTop: "20px"
+                    marginTop: "20px",
+                    position: "relative",
+                    zIndex: "3"
                   }}
                 >
                   <ButtonLink href="/iot">Accéder</ButtonLink>
@@ -84,7 +86,9 @@ export default function Dashboard() {
                     flex: "1",
                     justifyContent: "center",
                     alignItems: "end",
-                    marginTop: "20px"
+                    marginTop: "20px",
+                    position: "relative",
+                    zIndex: "3"
                   }}
                 >
                   <ButtonLink href="/homepage/faq">Accéder</ButtonLink>
