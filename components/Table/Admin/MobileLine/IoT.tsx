@@ -94,7 +94,8 @@ export const IoTMobileLine = ({ index, value, status, display }: {
                                         display: "flex",
                                         alignItems: "center",
                                         justifyContent: "space-between",
-                                        flexDirection: "column"
+                                        flexDirection: "column",
+                                        transition: "height 0.1s ease-out 0.5s"
                                     }}
                                 >
                                     <Buttons status={value['acces_state']} />

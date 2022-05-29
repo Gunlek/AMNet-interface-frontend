@@ -87,7 +87,8 @@ export const MaterialMobileLine = ({ index, value, status, display }: {
                                         display: "flex",
                                         alignItems: "center",
                                         justifyContent: "space-between",
-                                        flexDirection: "column"
+                                        flexDirection: "column",
+                                        transition: "height 0.1s ease-out 0.5s"
                                     }}
                                 >
                                     <Buttons status={value['material_state']} />
