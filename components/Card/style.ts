@@ -77,7 +77,7 @@ export const StyledFooter = styled.footer`
   justify-content: end;
   align-items: center;
   margin: 0;
-  margin-right: -2.25%;
+  margin-right: -2%;
   padding: 0 5px;
   margin-top: ${(props) => props.marginTop || "10px"};
   margin-bottom: 6px;
@@ -98,7 +98,7 @@ export const StyledCampusFooter = styled(StyledFooter)`
   padding-top: 6px;
   padding-bottom: 6px;
   margin-bottom: 0;
-
+  padding-right: 0.6%;
   
   @media screen and (max-width: 1000px){
     padding-right: 10px;
