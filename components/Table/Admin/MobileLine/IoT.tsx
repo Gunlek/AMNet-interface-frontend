@@ -24,8 +24,12 @@ export const IoTMobileLine = ({ index, value, status, display }: {
     display: any
 }) => {
     const [scrolled, setScrolled] = useState(false);
-    
+    const [height, setHeight] = useState("");
+
     useEffect(() => {
+        const newHeight = status == "pending" ? "530px" : "470px";
+        setHeight(newHeight)
+        
         setTimeout(() => {
             setScrolled(false)
         }, 500);
@@ -35,11 +39,11 @@ export const IoTMobileLine = ({ index, value, status, display }: {
         <>
             <div
                 style={{
-                    height: scrolled ? status == "pending" ? "535px" : "475px" : "53px",
+                    height: scrolled ? height : "53px",
                     transition: "0.3s linear",
                     overflowY: "hidden",
-                    overflowX: "auto",
-                    marginBottom: scrolled ? "0" : "30px"
+                    overflowX: scrolled ? "auto" : "hidden",
+                    marginBottom: scrolled ? "5px" : "30px"
                 }}
             >
                 <StyledTable style={{ tableLayout: "fixed" }}>
