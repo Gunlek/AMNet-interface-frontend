@@ -119,7 +119,8 @@ export const StyledTabColumn = styled(Column)`
   align-items: center;
   user-select: none;
   cursor: ${(props) => !props.focus && "pointer"};
-
+  -webkit-tap-highlight-color: transparent;
+  
   &:hover{
     background-color: ${(props) => !props.focus && "rgba(0, 0, 0, 0.1)"};
     color: black;
