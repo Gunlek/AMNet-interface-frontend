@@ -1,6 +1,6 @@
 import { StyledHeadTr, StyledTable, StyledTd, StyledTh, StyledTr } from "../../style";
 import { StateRequest } from "../../../Status/Status";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Buttons } from "../Buttons";
 import Fail from "../../../NavIcons/fail";
 import Succes from "../../../NavIcons/succes";
@@ -21,8 +21,13 @@ export const MaterialMobileLine = ({ index, value, status, display }: {
     display: any
 }) => {
     const [scrolled, setScrolled] = useState(false);
-    
+    const [height, setHeight] = useState(0);
+    const elementRef = useRef(null);
+
     useEffect(() => {
+        const newHeight = status === "pending" ? 452 + elementRef.current?.clientHeight : 392 + elementRef.current?.clientHeight
+        setHeight(newHeight)
+
         setTimeout(() => {
             setScrolled(false)
         }, 500);
@@ -32,17 +37,17 @@ export const MaterialMobileLine = ({ index, value, status, display }: {
         <>
             <div
                 style={{
-                    height: scrolled ? status == "pending" ? "530px" : "470px" : "53px",
+                    height: scrolled ? height.toString() + "px" : "53px",
                     transition: "height 0.3s linear, margin-bottom 0.3s linear",
                     overflowY: "hidden",
-                    overflowX: "auto",
-                    marginBottom: scrolled ? "0" : "30px"
+                    overflowX: scrolled ? "auto" : "hidden",
+                    marginBottom: scrolled ? "5px" : "30px"
                 }}
             >
                 <StyledTable>
                     <thead>
                         <StyledHeadTr onClick={() => setScrolled(!scrolled)}>
-                            <StyledTh style={{ width: "130px" }}>Equipement {index}</StyledTh>
+                            <StyledTh style={{ width: "130px" }}>Demande {index}</StyledTh>
                             <StyledTh style={{ textAlign: "center", paddingRight: "10px" }}>{value['material_description']}</StyledTh>
                         </StyledHeadTr>
                     </thead>
@@ -71,7 +76,7 @@ export const MaterialMobileLine = ({ index, value, status, display }: {
                         <StyledTr>
                             <StyledTd>Détails</StyledTd>
                             <StyledTd style={{ textAlign: "center", whiteSpace: "normal" }}>
-                                <div>{value['material_reason']}</div>
+                                <div ref={elementRef}>{value['material_reason']}</div>
                             </StyledTd>
                         </StyledTr>
                         <StyledTr>
