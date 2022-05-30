@@ -65,9 +65,15 @@ export default function AdminMaterial() {
         <StyledCard
           marginBottom="2%" 
           mobileMarginBottom="10px" 
-          style={{ flex: "1 0 0" }}
+          style={{ flex: "1 0 0", minHeight: "0" }}
         >
-          <div style={{ height: "100%", width: "100%", overflowX: "auto" }}>
+          <div 
+            style={{ 
+              height: "100%", 
+              width: "100%", 
+              overflow: "auto" 
+            }}
+          >
             <MaterialAdminTable status={Tab} requests={material} />
           </div>
         </StyledCard>
