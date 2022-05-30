@@ -9,7 +9,6 @@ import { StyledLink } from "../../Text/style";
 import { StyledTr, StyledTd, MobileTbody, StyledTable, StyledHeadTr, StyledTh, Tbody } from "../style";
 import { Buttons } from "./Buttons";
 import MacAdressTd from "./MacAddressInput";
-
 import IoTMobileLine from "./MobileLine/IoT";
 
 export default function IoTAdminTable(props: { requests: any[], status: { old: string, new: string } }) {
@@ -96,22 +95,19 @@ export default function IoTAdminTable(props: { requests: any[], status: { old: s
         <MediaContextProvider>
             <Media at="sm">
                 <MobileTbody
-                    opacityIn={Opacity.pending == "in"}
-                    opacityOut={Opacity.pending == "out"}
+                    Opacity={Opacity.pending}
                     Display={Display.pending}
                 >
                     {mobilelistHTML.pending}
                 </MobileTbody>
                 <MobileTbody
-                    opacityIn={Opacity.active == "in"}
-                    opacityOut={Opacity.active == "out"}
+                    Opacity={Opacity.active}
                     Display={Display.active}
                 >
                     {mobilelistHTML.active}
                 </MobileTbody>
                 <MobileTbody
-                    opacityIn={Opacity.declined == "in"}
-                    opacityOut={Opacity.declined == "out"}
+                    Opacity={Opacity.declined}
                     Display={Display.declined}
                 >
                     {mobilelistHTML.declined}
@@ -141,23 +137,21 @@ export default function IoTAdminTable(props: { requests: any[], status: { old: s
                             </StyledTh>
                         </StyledHeadTr>
                     </thead>
+                    
                     <Tbody
-                        opacityIn={Opacity.pending == "in"}
-                        opacityOut={Opacity.pending == "out"}
+                        Opacity={Opacity.pending}
                         Display={Display.pending}
                     >
                         {listHTML.pending}
                     </Tbody>
                     <Tbody
-                        opacityIn={Opacity.active == "in"}
-                        opacityOut={Opacity.active == "out"}
+                        Opacity={Opacity.active}
                         Display={Display.active}
                     >
                         {listHTML.active}
                     </Tbody>
                     <Tbody
-                        opacityIn={Opacity.declined == "in"}
-                        opacityOut={Opacity.declined == "out"}
+                        Opacity={Opacity.declined}
                         Display={Display.declined}
                     >
                         {listHTML.declined}

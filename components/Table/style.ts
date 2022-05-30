@@ -148,11 +148,11 @@ const opacityOut = keyframes`
 `;
 
 export const Tbody = styled.tbody`
-  animation: ${(props) => props.opacityIn && opacityIn} ${(props) => props.opacityOut && opacityOut} 0.5s linear;
+  animation: ${(props) => props.Opacity == "in" ? opacityIn : props.Opacity == "out" ? opacityOut : undefined} 0.5s linear;
   display: ${(props) => props.Display ? "table-row-group" : "none"};
 `;
 
 export const MobileTbody = styled.div`
-  animation: ${(props) => props.opacityIn && opacityIn} ${(props) => props.opacityOut && opacityOut} 0.5s linear;
+  animation: ${(props) => props.Opacity == "in" ? opacityIn : props.Opacity == "out" ? opacityOut : undefined} 0.5s linear;
   display: ${(props) => props.Display ? "block" : "none"};
 `;

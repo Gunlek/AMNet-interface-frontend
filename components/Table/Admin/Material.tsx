@@ -23,7 +23,7 @@ export default function MaterialAdminTable(props: { requests: any[], status: { o
             setOpacity(newOpacity)
 
             setTimeout(() => {
-                const newDisplay = { active: false, declined: false, pending: false}
+                const newDisplay = { active: false, declined: false, pending: false }
                 newDisplay[props.status.new] = true
                 setDisplay(newDisplay)
                 const newOpacity = { active: "", declined: "", pending: "" }
@@ -38,12 +38,12 @@ export default function MaterialAdminTable(props: { requests: any[], status: { o
             <StyledTr key={index[value['material_state']]} style={{ padding: "10px 0 10px 30px" }}>
                 <StyledTd>{index[value['material_state']]}</StyledTd>
                 <StyledTd>
-                    <Link 
+                    <Link
                         href={{
                             pathname: '/admin/users/[user_id]',
                             query: { user_id: value['material_user'] },
-                        }} 
-                        prefetch={false} 
+                        }}
+                        prefetch={false}
                         passHref
                     >
                         <StyledLink color="#096a09">{value['user_name']}</StyledLink>
@@ -54,7 +54,7 @@ export default function MaterialAdminTable(props: { requests: any[], status: { o
                 </StyledTd>
                 <StyledTd>{value['material_description']}</StyledTd>
                 <StyledTd style={{ whiteSpace: "normal" }}>
-                    <div style={{ width: "400px"}}>
+                    <div style={{ width: "400px" }}>
                         {value['material_reason']}
                     </div>
                 </StyledTd>
@@ -93,22 +93,19 @@ export default function MaterialAdminTable(props: { requests: any[], status: { o
         <MediaContextProvider>
             <Media at="sm">
                 <MobileTbody
-                    opacityIn={Opacity.pending == "in"}
-                    opacityOut={Opacity.pending == "out"}
+                    Opacity={Opacity.pending}
                     Display={Display.pending}
                 >
                     {mobilelistHTML.pending}
                 </MobileTbody>
                 <MobileTbody
-                    opacityIn={Opacity.active == "in"}
-                    opacityOut={Opacity.active == "out"}
+                    Opacity={Opacity.active}
                     Display={Display.active}
                 >
                     {mobilelistHTML.active}
                 </MobileTbody>
                 <MobileTbody
-                    opacityIn={Opacity.declined == "in"}
-                    opacityOut={Opacity.declined == "out"}
+                    Opacity={Opacity.declined}
                     Display={Display.declined}
                 >
                     {mobilelistHTML.declined}
@@ -139,22 +136,19 @@ export default function MaterialAdminTable(props: { requests: any[], status: { o
                     </thead>
 
                     <Tbody
-                        opacityIn={Opacity.pending == "in"}
-                        opacityOut={Opacity.pending == "out"}
+                        Opacity={Opacity.pending}
                         Display={Display.pending}
                     >
                         {listHTML.pending}
                     </Tbody>
                     <Tbody
-                        opacityIn={Opacity.active == "in"}
-                        opacityOut={Opacity.active == "out"}
+                        Opacity={Opacity.active}
                         Display={Display.active}
                     >
                         {listHTML.active}
                     </Tbody>
                     <Tbody
-                        opacityIn={Opacity.declined == "in"}
-                        opacityOut={Opacity.declined == "out"}
+                        Opacity={Opacity.declined}
                         Display={Display.declined}
                     >
                         {listHTML.declined}
