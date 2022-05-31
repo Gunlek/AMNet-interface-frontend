@@ -7,7 +7,7 @@ import Succes from "../../../NavIcons/succes";
 import Link from "next/link";
 import { StyledLink } from "../../../Text/style";
 
-export const MaterialMobileLine = ({ index, value, status, display }: {
+export const MaterialMobileLine = ({ index, value, status, display, isLast }: {
     index: number,
     value: {
         material_id: string,
@@ -18,7 +18,8 @@ export const MaterialMobileLine = ({ index, value, status, display }: {
         user_name: string
     },
     status: string,
-    display: any
+    display: any,
+    isLast?: boolean
 }) => {
     const [scrolled, setScrolled] = useState(false);
     const [height, setHeight] = useState(0);
@@ -41,7 +42,7 @@ export const MaterialMobileLine = ({ index, value, status, display }: {
                     transition: "height 0.3s linear, margin-bottom 0.3s linear",
                     overflowY: "hidden",
                     overflowX: scrolled ? "auto" : "hidden",
-                    marginBottom: scrolled ? "5px" : "30px"
+                    marginBottom: isLast ? scrolled ? "0" : "5px" : "25px" 
                 }}
             >
                 <StyledTable>

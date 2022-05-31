@@ -25,7 +25,7 @@ export default function IoTAdminTable(props: { requests: any[], status: { old: s
             setOpacity(newOpacity)
 
             setTimeout(() => {
-                const newDisplay = { active: false, declined: false, pending: false}
+                const newDisplay = { active: false, declined: false, pending: false }
                 newDisplay[props.status.new] = true
                 setDisplay(newDisplay)
                 const newOpacity = { active: "", declined: "", pending: "" }
@@ -83,7 +83,7 @@ export default function IoTAdminTable(props: { requests: any[], status: { old: s
                 key={index[value['acces_state']]}
                 index={index[value['acces_state']]}
                 value={value}
-                status={props.status.new}
+                status={value['acces_state']}
                 display={Display}
             />
         );
@@ -91,29 +91,62 @@ export default function IoTAdminTable(props: { requests: any[], status: { old: s
         index[value['acces_state']]++
     });
 
+    mobilelistHTML.active[mobilelistHTML.active.length - 1] = <IoTMobileLine
+        key={mobilelistHTML.active[mobilelistHTML.active.length - 1].props.index}
+        index={mobilelistHTML.active[mobilelistHTML.active.length - 1].props.index}
+        value={mobilelistHTML.active[mobilelistHTML.active.length - 1].props.value}
+        status={mobilelistHTML.active[mobilelistHTML.active.length - 1].props.status}
+        display={Display}
+        isLast={true}
+    />
+
+    mobilelistHTML.pending[mobilelistHTML.pending.length - 1] = <IoTMobileLine
+        key={mobilelistHTML.pending[mobilelistHTML.pending.length - 1].props.index}
+        index={mobilelistHTML.pending[mobilelistHTML.pending.length - 1].props.index}
+        value={mobilelistHTML.pending[mobilelistHTML.pending.length - 1].props.value}
+        status={mobilelistHTML.pending[mobilelistHTML.pending.length - 1].props.status}
+        display={Display}
+        isLast={true}
+    />
+
+    mobilelistHTML.declined[mobilelistHTML.declined.length - 1] = <IoTMobileLine
+        key={mobilelistHTML.declined[mobilelistHTML.declined.length - 1].props.index}
+        index={mobilelistHTML.declined[mobilelistHTML.declined.length - 1].props.index}
+        value={mobilelistHTML.declined[mobilelistHTML.declined.length - 1].props.value}
+        status={mobilelistHTML.declined[mobilelistHTML.declined.length - 1].props.status}
+        display={Display}
+        isLast={true}
+    />
+    
+    const ContainerStyle = {
+        height: "100%",
+        width: "100%",
+        overflow: "auto",
+    }
+
     return (
         <MediaContextProvider>
-            <Media at="sm">
-                <MobileTbody
-                    Opacity={Opacity.pending}
-                    Display={Display.pending}
-                >
-                    {mobilelistHTML.pending}
-                </MobileTbody>
-                <MobileTbody
-                    Opacity={Opacity.active}
-                    Display={Display.active}
-                >
-                    {mobilelistHTML.active}
-                </MobileTbody>
-                <MobileTbody
-                    Opacity={Opacity.declined}
-                    Display={Display.declined}
-                >
-                    {mobilelistHTML.declined}
-                </MobileTbody>
+            <Media at="sm" style={ContainerStyle}>
+                {Display.pending &&
+                    <MobileTbody Opacity={Opacity.pending}>
+                        {mobilelistHTML.pending}
+                    </MobileTbody>
+                }
+
+                {Display.active &&
+                    <MobileTbody Opacity={Opacity.active}>
+                        {mobilelistHTML.active}
+                    </MobileTbody>
+                }
+
+                {Display.declined &&
+                    <MobileTbody Opacity={Opacity.declined} >
+                        {mobilelistHTML.declined}
+                    </MobileTbody>
+                }
             </Media>
-            <Media greaterThan="sm">
+
+            <Media greaterThan="sm" style={ContainerStyle}>
                 <StyledTable>
                     <thead style={{ position: "sticky", top: "0", zIndex: "2" }}>
                         <StyledHeadTr>
@@ -137,25 +170,22 @@ export default function IoTAdminTable(props: { requests: any[], status: { old: s
                             </StyledTh>
                         </StyledHeadTr>
                     </thead>
-                    
-                    <Tbody
-                        Opacity={Opacity.pending}
-                        Display={Display.pending}
-                    >
-                        {listHTML.pending}
-                    </Tbody>
-                    <Tbody
-                        Opacity={Opacity.active}
-                        Display={Display.active}
-                    >
-                        {listHTML.active}
-                    </Tbody>
-                    <Tbody
-                        Opacity={Opacity.declined}
-                        Display={Display.declined}
-                    >
-                        {listHTML.declined}
-                    </Tbody>
+
+                    {Display.pending &&
+                        <Tbody Opacity={Opacity.pending}>
+                            {listHTML.pending}
+                        </Tbody>
+                    }
+                    {Display.active &&
+                        <Tbody Opacity={Opacity.active}>
+                            {listHTML.active}
+                        </Tbody>
+                    }
+                    {Display.declined &&
+                        <Tbody Opacity={Opacity.declined} >
+                            {listHTML.declined}
+                        </Tbody>
+                    }
                 </StyledTable>
             </Media>
         </MediaContextProvider>

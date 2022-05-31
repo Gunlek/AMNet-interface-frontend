@@ -8,7 +8,7 @@ import ProoveModal from "../../../Card/Modals/AdminProoveModal";
 import Link from "next/link";
 import { StyledLink } from "../../../Text/style";
 
-export const IoTMobileLine = ({ index, value, status, display }: {
+export const IoTMobileLine = ({ index, value, status, display, isLast }: {
     index: number,
     value: {
         access_id: string,
@@ -21,7 +21,8 @@ export const IoTMobileLine = ({ index, value, status, display }: {
         user_name: string
     },
     status: string,
-    display: any
+    display: any,
+    isLast?: boolean
 }) => {
     const [scrolled, setScrolled] = useState(false);
     const [height, setHeight] = useState("");
@@ -43,7 +44,7 @@ export const IoTMobileLine = ({ index, value, status, display }: {
                     transition: "0.3s linear",
                     overflowY: "hidden",
                     overflowX: scrolled ? "auto" : "hidden",
-                    marginBottom: scrolled ? "5px" : "30px"
+                    marginBottom: isLast ? scrolled ? "0" : "5px" : "25px" 
                 }}
             >
                 <StyledTable style={{ tableLayout: "fixed" }}>

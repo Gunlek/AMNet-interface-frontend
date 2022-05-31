@@ -149,10 +149,10 @@ const opacityOut = keyframes`
 
 export const Tbody = styled.tbody`
   animation: ${(props) => props.Opacity == "in" ? opacityIn : props.Opacity == "out" ? opacityOut : undefined} 0.5s linear;
-  display: ${(props) => props.Display ? "table-row-group" : "none"};
+  position: relative;
 `;
 
 export const MobileTbody = styled.div`
   animation: ${(props) => props.Opacity == "in" ? opacityIn : props.Opacity == "out" ? opacityOut : undefined} 0.5s linear;
-  display: ${(props) => props.Display ? "block" : "none"};
+  position: relative;
 `;
