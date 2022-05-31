@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { MediaContextProvider, Media } from "../../MediaQueries/MediaSSR";
 import Fail from "../../NavIcons/fail";
 import Succes from "../../NavIcons/succes";
@@ -15,6 +15,7 @@ export default function MaterialAdminTable(props: { requests: any[], status: { o
     let index = { active: 1, declined: 1, pending: 1 };
     const [Display, setDisplay] = useState({ active: false, declined: false, pending: true })
     const [Opacity, setOpacity] = useState({ active: "", declined: "", pending: "" })
+    const ContainerRef = useRef(null)
 
     useEffect(() => {
         if (props.status.old !== null) {
@@ -29,6 +30,7 @@ export default function MaterialAdminTable(props: { requests: any[], status: { o
                 const newOpacity = { active: "", declined: "", pending: "" }
                 newOpacity[props.status.new] = "in"
                 setOpacity(newOpacity)
+                ContainerRef.current.scrollTo({ top: 0 })
             }, 500);
         }
     }, [props.status]);
@@ -90,103 +92,87 @@ export default function MaterialAdminTable(props: { requests: any[], status: { o
     });
 
     mobilelistHTML.active[mobilelistHTML.active.length - 1] = <MaterialMobileLine
-        key={mobilelistHTML.active[mobilelistHTML.active.length - 1].props.index}
-        index={mobilelistHTML.active[mobilelistHTML.active.length - 1].props.index}
-        value={mobilelistHTML.active[mobilelistHTML.active.length - 1].props.value}
-        status={mobilelistHTML.active[mobilelistHTML.active.length - 1].props.status}
-        display={Display}
+        {...mobilelistHTML.active[mobilelistHTML.active.length - 1].props}
         isLast={true}
     />
 
     mobilelistHTML.pending[mobilelistHTML.pending.length - 1] = <MaterialMobileLine
-        key={mobilelistHTML.pending[mobilelistHTML.pending.length - 1].props.index}
-        index={mobilelistHTML.pending[mobilelistHTML.pending.length - 1].props.index}
-        value={mobilelistHTML.pending[mobilelistHTML.pending.length - 1].props.value}
-        status={mobilelistHTML.pending[mobilelistHTML.pending.length - 1].props.status}
-        display={Display}
+        {...mobilelistHTML.pending[mobilelistHTML.pending.length - 1].props}
         isLast={true}
     />
 
     mobilelistHTML.declined[mobilelistHTML.declined.length - 1] = <MaterialMobileLine
-        key={mobilelistHTML.declined[mobilelistHTML.declined.length - 1].props.index}
-        index={mobilelistHTML.declined[mobilelistHTML.declined.length - 1].props.index}
-        value={mobilelistHTML.declined[mobilelistHTML.declined.length - 1].props.value}
-        status={mobilelistHTML.declined[mobilelistHTML.declined.length - 1].props.status}
-        display={Display}
+        {...mobilelistHTML.declined[mobilelistHTML.declined.length - 1].props}
         isLast={true}
     />
 
-    const ContainerStyle = {
-        height: "100%",
-        width: "100%",
-        overflow: "auto",
-    }
-
     return (
         <MediaContextProvider>
-            <Media at="sm" style={ContainerStyle}>
-                {Display.pending &&
-                    <MobileTbody Opacity={Opacity.pending}>
-                        {mobilelistHTML.pending}
-                    </MobileTbody>
-                }
-
-                {Display.active &&
-                    <MobileTbody Opacity={Opacity.active}>
-                        {mobilelistHTML.active}
-                    </MobileTbody>
-                }
-
-                {Display.declined &&
-                    <MobileTbody Opacity={Opacity.declined} >
-                        {mobilelistHTML.declined}
-                    </MobileTbody>
-                }
-            </Media>
-
-            <Media greaterThan="sm" style={ContainerStyle}>
-                <StyledTable>
-                    <thead style={{ position: "sticky", top: "0", zIndex: "2" }}>
-                        <StyledHeadTr>
-                            <StyledTh scope="col">#</StyledTh>
-                            <StyledTh scope="col">Utilisateur</StyledTh>
-                            <StyledTh scope="col">Cotisation</StyledTh>
-                            <StyledTh scope="col">Description</StyledTh>
-                            <StyledTh scope="col">Détails</StyledTh>
-                            <StyledTh scope="col"><span style={{ paddingLeft: "5px" }}>Etat</span></StyledTh>
-                            <StyledTh scope="col">
-                                <div
-                                    style={{
-                                        width: (props.status.new == "pending") ? "500px" : "325px",
-                                        paddingLeft: "5px",
-                                        transition: "width 0.5s linear"
-                                    }}
-                                >
-                                    Actions
-                                </div>
-                            </StyledTh>
-                        </StyledHeadTr>
-                    </thead>
-
+            <div ref={ContainerRef} style={{ height: "100%", width: "100%", overflow: "auto" }}>
+                <Media at="sm">
                     {Display.pending &&
-                        <Tbody Opacity={Opacity.pending}>
-                            {listHTML.pending}
-                        </Tbody>
+                        <MobileTbody Opacity={Opacity.pending}>
+                            {mobilelistHTML.pending}
+                        </MobileTbody>
                     }
 
                     {Display.active &&
-                        <Tbody Opacity={Opacity.active}>
-                            {listHTML.active}
-                        </Tbody>
+                        <MobileTbody Opacity={Opacity.active}>
+                            {mobilelistHTML.active}
+                        </MobileTbody>
                     }
 
                     {Display.declined &&
-                        <Tbody Opacity={Opacity.declined} >
-                            {listHTML.declined}
-                        </Tbody>
+                        <MobileTbody Opacity={Opacity.declined} >
+                            {mobilelistHTML.declined}
+                        </MobileTbody>
                     }
-                </StyledTable>
-            </Media>
+                </Media>
+
+                <Media greaterThan="sm">
+                    <StyledTable>
+                        <thead style={{ position: "sticky", top: "0", zIndex: "2" }}>
+                            <StyledHeadTr>
+                                <StyledTh scope="col">#</StyledTh>
+                                <StyledTh scope="col">Utilisateur</StyledTh>
+                                <StyledTh scope="col">Cotisation</StyledTh>
+                                <StyledTh scope="col">Description</StyledTh>
+                                <StyledTh scope="col">Détails</StyledTh>
+                                <StyledTh scope="col"><span style={{ paddingLeft: "5px" }}>Etat</span></StyledTh>
+                                <StyledTh scope="col">
+                                    <div
+                                        style={{
+                                            width: (props.status.new == "pending") ? "500px" : "325px",
+                                            paddingLeft: "5px",
+                                            transition: "width 0.5s linear"
+                                        }}
+                                    >
+                                        Actions
+                                    </div>
+                                </StyledTh>
+                            </StyledHeadTr>
+                        </thead>
+
+                        {Display.pending &&
+                            <Tbody Opacity={Opacity.pending}>
+                                {listHTML.pending}
+                            </Tbody>
+                        }
+
+                        {Display.active &&
+                            <Tbody Opacity={Opacity.active}>
+                                {listHTML.active}
+                            </Tbody>
+                        }
+
+                        {Display.declined &&
+                            <Tbody Opacity={Opacity.declined} >
+                                {listHTML.declined}
+                            </Tbody>
+                        }
+                    </StyledTable>
+                </Media>
+            </div>
         </MediaContextProvider>
     );
 };
