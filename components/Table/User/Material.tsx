@@ -7,6 +7,11 @@ import { StyledTr, StyledTd, StyledFlexTd, StyledHeadTr, StyledTh, StyledTable }
 export default function MaterialUserTable(props: { requests: any[] }) {
     let listHTML = [];
     let mobilelistHTML = [];
+    const containerStyle = {
+        height: "100%",
+        width: "100%",
+        overflow: "auto"
+    }
 
     props.requests.map((value, index) => {
         listHTML.push(
@@ -51,12 +56,13 @@ export default function MaterialUserTable(props: { requests: any[] }) {
 
     return (
         <MediaContextProvider>
-            <Media at="sm">
+            <Media at="sm" style={containerStyle}>
                 <StyledTable>
                     <tbody>{mobilelistHTML}</tbody>
                 </StyledTable>
             </Media>
-            <Media greaterThan="sm">
+            
+            <Media greaterThan="sm" style={containerStyle}>
                 <StyledTable>
                     <thead>
                         <StyledHeadTr>

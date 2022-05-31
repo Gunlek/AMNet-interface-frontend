@@ -67,22 +67,14 @@ export default function UserIoT() {
         <StyledCard
           mobileMarginBottom={empty ? "0" : "30px"} marginBottom={empty ? "0" : "2%"}
           style={{
-            flex: "1",
+            flex: "1 1 0",
             background: empty ? "none" : undefined,
             padding: empty ? "0" : undefined,
             boxShadow: empty ? "none" : undefined
           }}
         >
           {!empty &&
-            <div
-              style={{
-                height: "100%",
-                width: "100%",
-                overflowX: "auto"
-              }}
-            >
-              <IoTUserTable requests={Iot} />
-            </div>
+            <IoTUserTable requests={Iot} />
           }
         </StyledCard>
 
