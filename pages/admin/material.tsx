@@ -7,6 +7,7 @@ import { BlackTitle } from "../../components/Text/style";
 import RequestTab from "../../components/Card/RequestTab";
 import { Footer } from "../../components/Card/Cards";
 import MaterialAdminTable from "../../components/Table/Admin/Material";
+import useMediaQuery from "../../components/MediaQueries/MediaQuery";
 
 const material = [
   {
@@ -40,7 +41,8 @@ const material = [
 
 export default function AdminMaterial() {
   const [Tab, setTab] = useState({ old: null, new: "pending" });
-
+  const minWidth1000 = useMediaQuery('(min-width:1000px)');
+  
   const handleTabChange = (elmt) => {
     let newTab = { ...Tab };
     newTab.old = newTab.new;
@@ -63,19 +65,11 @@ export default function AdminMaterial() {
         <RequestTab status={Tab.new} TabChange={handleTabChange} />
 
         <StyledCard
-          marginBottom="2%" 
-          mobileMarginBottom="10px" 
-          style={{ flex: "1 0 0", minHeight: "0" }}
+          marginBottom="2%"
+          mobileMarginBottom="10px"
+          style={{ flex: "1 0 0", minHeight: minWidth1000 ? "0" : "300px" }}
         >
-          <div 
-            style={{ 
-              height: "100%", 
-              width: "100%", 
-              overflow: "auto" 
-            }}
-          >
-            <MaterialAdminTable status={Tab} requests={material} />
-          </div>
+          <MaterialAdminTable status={Tab} requests={material} />
         </StyledCard>
 
         <Footer marginTop="0" />

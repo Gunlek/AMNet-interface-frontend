@@ -432,7 +432,7 @@ export default function Users() {
             minHeight: minWidth1000 ? "0" : "500px"
           }}
         >
-          <div style={{ width: "100%", height: "100%", overflow: "auto" }}>{Table}</div>
+          {Table}
         </StyledCard>
         <Footer marginTop="0" />
       </DashboardContainer>

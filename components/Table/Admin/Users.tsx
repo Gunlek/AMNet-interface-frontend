@@ -158,6 +158,12 @@ export function UsersTable(data: any[]) {
     }
   )
 
+  const ContainerStyle = {
+    height: "100%",
+    width: "100%",
+    overflow: "auto",
+  }
+
   return [
     <GlobalFilter globalFilter={state.globalFilter} setGlobalFilter={setGlobalFilter} />,
     <CheckboxRow
@@ -178,7 +184,7 @@ export function UsersTable(data: any[]) {
       d => d.original["user_id"]
     ),
     <MediaContextProvider>
-      <Media at="sm" style={{ position: "sticky" }}>
+      <Media at="sm" style={ContainerStyle}>
         <>
           <Row style={{
             marginBottom: "20px",
@@ -220,7 +226,8 @@ export function UsersTable(data: any[]) {
           })}
         </>
       </Media>
-      <Media greaterThan="sm">
+
+      <Media style={ContainerStyle} greaterThan="sm">
         <StyledTable {...getTableProps()}>
           <thead style={{ position: "sticky", top: "0", zIndex: "2" }}>
             <StyledHeadTr {...headerGroups[0].getHeaderGroupProps()}>
@@ -266,7 +273,7 @@ export function UsersTable(data: any[]) {
             </StyledHeadTr>
           </thead>
 
-          <tbody {...getTableBodyProps()}>
+          <tbody {...getTableBodyProps()} style={{ position: "relative" }}>
             {rows.map((row, index) => {
               prepareRow(row)
               return (
