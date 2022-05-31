@@ -147,8 +147,9 @@ export default function SignUp() {
               style={{
                 height: isGadz ? minWidth1000 ? "93px" : "244.6px" : "0px",
                 transition: "height 0.3s linear",
-                overflowY: "clip"
+                overflowY: "clip",
               }}
+              mobileMarginBottom={isGadz ? "20px" : undefined}
             >
               <Col6 paddingRight="10px" mobileMarginBottom="20px">
                 <StyledInputLabel htmlFor="user_bucque">Bucque</StyledInputLabel>
@@ -179,7 +180,7 @@ export default function SignUp() {
               </Col3>
             </ResponsiveRow>
 
-            <ResponsiveRow style={{ marginBottom: "20px" }}>
+            <ResponsiveRow>
               <Col6 paddingRight="10px" mobileMarginBottom="20px">
                 <StyledInputLabel htmlFor="user_password">Mot de passe</StyledInputLabel>
                 <StyledInput id="user_password" type="password" />

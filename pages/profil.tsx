@@ -10,8 +10,6 @@ import UserMenu from "../components/Menu/UserMenu";
 import { StateContribution } from "../components/Status/Status";
 import { BlackTitle, BlackText, GreenText } from "../components/Text/style";
 
-
-
 export default function Profil() {
   const minWidth1000 = useMediaQuery('(min-width:1000px)');
   var [isGadz, setGadz] = useState(false);
@@ -115,6 +113,7 @@ export default function Profil() {
           </ResponsiveRow>
 
           <ResponsiveRow
+            mobileMarginBottom={isGadz ? "20px" : undefined}
             style={{
               height: isGadz ? minWidth1000 ? "93px" : "264.6px" : "0px",
               transition: "height 0.3s linear",
