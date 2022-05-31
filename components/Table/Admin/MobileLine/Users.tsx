@@ -23,7 +23,8 @@ export const UsersMobileLine = ({ row, columnsNumber, isLast }: {
                     overflowX: scrolled ? "auto" : "hidden",
                     marginBottom: isLast ? "0" : "30px",
                     borderRadius: "10px",
-                    border: "2px solid #096A09"
+                    border: "2px solid #096A09",
+                    position: "relative"
                 }}
             >
                 <StyledTable>
