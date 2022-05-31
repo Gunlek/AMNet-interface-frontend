@@ -128,9 +128,9 @@ export const StyledTabColumn = styled(Column)`
 
   &:after{
     transform: translateY(50%);
-    content: "";
+    content: ${(props) => props.focus && "''"};
     width: 100%;
-    background-color: ${(props) => props.focus && "#096A09"};;
+    background-color: #096A09;
     height: 4px;
     transition: background-color 0.3s;
   }
