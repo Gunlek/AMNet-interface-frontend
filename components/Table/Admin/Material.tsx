@@ -93,16 +93,19 @@ export default function MaterialAdminTable(props: { requests: any[], status: { o
 
     mobilelistHTML.active[mobilelistHTML.active.length - 1] = <MaterialMobileLine
         {...mobilelistHTML.active[mobilelistHTML.active.length - 1].props}
+        key={mobilelistHTML.active[mobilelistHTML.pending.length - 1]}
         isLast={true}
     />
 
     mobilelistHTML.pending[mobilelistHTML.pending.length - 1] = <MaterialMobileLine
         {...mobilelistHTML.pending[mobilelistHTML.pending.length - 1].props}
+        key={mobilelistHTML.pending[mobilelistHTML.pending.length - 1]}
         isLast={true}
     />
 
     mobilelistHTML.declined[mobilelistHTML.declined.length - 1] = <MaterialMobileLine
         {...mobilelistHTML.declined[mobilelistHTML.declined.length - 1].props}
+        key={mobilelistHTML.declined[mobilelistHTML.pending.length - 1]}
         isLast={true}
     />
 
