@@ -104,6 +104,28 @@ export function AdminStateContribution(props: { state?: boolean, id: string }) {
   );
 }
 
+export function AdminStateRank(props: { state?: boolean, id: string }) {
+  const [state, setState] = useState(props.state);
+
+  const handleValueChange = (elmt) => {
+    setState(elmt.target.value == "admin");
+  }
+
+  return (
+    <StyledStateInvite
+      id={props.id}
+      status={state}
+      onChange={handleValueChange}
+      defaultValue={props.state ? "admin" : "user"}
+      DefaultColor="#FF9900"
+      style={{ width: "100%" }}
+    >
+      <option value="admin">Admin</option>
+      <option value="user">Utilisateur</option>
+    </StyledStateInvite>
+  );
+}
+
 export function AdminNotifications(props: { notifNumber: number, unpaid?: boolean }) {
   const notifNumber = props.notifNumber !== 0 ? props.notifNumber : undefined;
   const [Display, setDisplay] = useState(false);

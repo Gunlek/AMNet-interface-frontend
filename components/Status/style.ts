@@ -30,7 +30,7 @@ export const StyledStateContribution = styled.div`
 `;
 
 export const StyledStateInvite = styled.select`
-  background-color: ${(props) => props.status ? "#67BC45" : "#F23232"};
+  background-color: ${(props) => props.status ? "#67BC45" : (props.DefaultColor || "#F23232")};
   border-radius: 16px;
   height: 40px;
   width: 150px;

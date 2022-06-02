@@ -8,18 +8,18 @@ import { StyledInputLabel, StyledInput } from "../../../components/Input/style";
 import useMediaQuery from "../../../components/MediaQueries/MediaQuery";
 import { BlackTitle, BlackText, GreenText } from "../../../components/Text/style";
 import AdminMenu from "../../../components/Menu/AdminMenu";
-import { AdminStateContribution } from "../../../components/Status/Status";
+import { AdminStateContribution, AdminStateRank } from "../../../components/Status/Status";
 import { useRouter } from "next/router";
 import Page404 from "../../404"
 
 export default function User() {
     const Router = useRouter()
+    const id = Router.query.user_id
 
-    if (Router.query.user_id == "47") {
+    if (true) {
         const minWidth1000 = useMediaQuery('(min-width:1000px)');
         const [isGadz, setGadz] = useState(false);
         const [isOther, setOther] = useState(false);
-        console.log(Router)
 
         const handleValueChange = (elmt) => {
             setGadz(elmt.target.value == "OldPromotion" || elmt.target.value == "ActivePromotion");
@@ -59,10 +59,7 @@ export default function User() {
                             </Col6>
                             <Col6 style={{ paddingLeft: "10px" }}>
                                 <StyledInputLabel htmlFor="user_rank">Rang</StyledInputLabel>
-                                <StyledInput as="select" id="user_rank">
-                                    <option value="OldPromotion">Utilisateur</option>
-                                    <option value="ActivePromotion">Admin</option>
-                                </StyledInput>
+                                <AdminStateRank id="user_rank"/>
                             </Col6>
                         </Row>
                     </ResponsiveRow>
