@@ -95,16 +95,19 @@ export default function IoTAdminTable(props: { requests: any[], status: { old: s
 
     mobilelistHTML.active[mobilelistHTML.active.length - 1] = <IoTMobileLine
         {...mobilelistHTML.active[mobilelistHTML.active.length - 1].props}
+        key={mobilelistHTML.active[mobilelistHTML.pending.length - 1]}
         isLast={true}
     />
 
     mobilelistHTML.pending[mobilelistHTML.pending.length - 1] = <IoTMobileLine
         {...mobilelistHTML.pending[mobilelistHTML.pending.length - 1].props}
+        key={mobilelistHTML.pending[mobilelistHTML.pending.length - 1]}
         isLast={true}
     />
 
     mobilelistHTML.declined[mobilelistHTML.declined.length - 1] = <IoTMobileLine
         {...mobilelistHTML.declined[mobilelistHTML.declined.length - 1].props}
+        key={mobilelistHTML.declined[mobilelistHTML.pending.length - 1]}
         isLast={true}
     />
 
