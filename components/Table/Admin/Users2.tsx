@@ -1,28 +1,24 @@
 import React, { forwardRef, useCallback, useEffect, useMemo, useRef, useState } from 'react'
-import { useTable, useFilters, useGlobalFilter, useAsyncDebounce, useRowSelect, useSortBy, useBlockLayout } from 'react-table'
-import { CheckboxRow } from '../../Container/style';
+import { useTable, useFilters, useGlobalFilter, useAsyncDebounce, useRowSelect, useSortBy, useBlockLayout, useFlexLayout } from 'react-table'
+import { CheckboxRow, Row } from '../../Container/style';
 import Checkbox from '../../Input/Checkbox';
 import { StyledInput, StyledLabel } from '../../Input/style';
-import { BlackText, WhiteText } from '../../Text/style';
+import { BlackText, StyledLink, WhiteText } from '../../Text/style';
 import {
-  StyledTable,
   StyledTh,
   StyledTd,
   StyledUsersTr,
   StyledHeadTr,
-  StyledTr
+  StyledUsersBody,
+  StyledMobileContainerRow
 } from '../style';
 import UsersMobileLine from './MobileLine/Users';
 import { MediaContextProvider, Media } from '../../MediaQueries/MediaSSR';
 import Fail from '../../NavIcons/fail';
 import Succes from '../../NavIcons/succes';
+import Link from 'next/link';
 import { FixedSizeList } from 'react-window'
 import AutoSizer from "react-virtualized-auto-sizer"
-
-
-import { useContext } from 'react'
-import { FixedSizeListProps } from 'react-window'
-
 
 interface Props {
   indeterminate?: boolean;
@@ -31,7 +27,6 @@ interface Props {
 
 const useCombinedRefs = (...refs): React.MutableRefObject<any> => {
   const targetRef = useRef();
-
 
   useEffect(() => {
     refs.forEach(ref => {
@@ -60,10 +55,9 @@ const IndeterminateCheckbox = forwardRef<HTMLInputElement, Props>(
     }, [combinedRef, indeterminate]);
 
     return (
-      <StyledLabel width="25px">
+      <StyledLabel Display="inline-flex" width="25px">
         <Checkbox refs={combinedRef} {...rest} />
       </StyledLabel>
-
     );
   }
 );
@@ -76,8 +70,8 @@ function GlobalFilter({ globalFilter, setGlobalFilter }) {
 
   return (
     <>
-      <BlackText mobileMarginBottom="10px">Rechercher</BlackText>
-      <StyledInput value={value || ""}
+      <BlackText mobileMarginBottom="10px" as="label" htmlFor="research">Rechercher</BlackText>
+      <StyledInput id="research" value={value || ""}
         spellcheck="false"
         onChange={e => { setValue(e.target.value); onChange(e.target.value); }}
         width="300px" mobileWidth="100%" marginLeft="20px"
@@ -87,42 +81,29 @@ function GlobalFilter({ globalFilter, setGlobalFilter }) {
   )
 }
 
-
-
 export function UsersTable(data: any[]) {
-  const newRow = ({ index, style }) => (
-    <div className={index % 2 ? "ListItemOdd" : "ListItemEven"} style={style}>
-      newRow {index}
-    </div>
-  );
-
-
-
   const columns = useMemo(
     () => [
-      { Header: '#', accessor: (row, i) => i + 1 },
-      { Header: 'Utilisateur', accessor: 'user_name' },
-      { Header: 'Prénom', accessor: 'user_firstname' },
-      { Header: 'Nom', accessor: 'user_lastname' },
-      { Header: 'Mail', accessor: 'user_email' },
-      { Header: 'Cotisation', accessor: 'user_pay_status' },
-      { Header: 'Téléphone', accessor: 'user_phone' },
-      { Header: 'Bucque', accessor: 'user_bucque' },
-      { Header: 'Fam\'s', accessor: 'user_fams' },
-      { Header: 'Campus', accessor: 'user_campus' },
-      { Header: 'Promotion', accessor: 'user_pomotion' },
-      { Header: 'Rank', accessor: 'user_rank' },
-      { Header: 'Gadz', accessor: 'user_is_gadz' },
+      { Header: '#', accessor: (row, i) => i + 1, width: 90 },
+      { Header: 'Utilisateur', accessor: 'user_name', minWidth: 250 },
+      { Header: 'Prénom', accessor: 'user_firstname', minWidth: 200 },
+      { Header: 'Nom', accessor: 'user_lastname', minWidth: 250 },
+      { Header: 'Mail', accessor: 'user_email', minWidth: 350 },
+      { Header: 'Cotiz', accessor: 'user_pay_status', width: 100 },
+      { Header: 'Téléphone', accessor: 'user_phone', width: 200 },
+      { Header: 'Bucque', accessor: 'user_bucque', minWidth: 250 },
+      { Header: 'Fam\'s', accessor: 'user_fams', width: 150 },
+      { Header: 'TBK', accessor: 'user_campus', width: 150 },
+      { Header: 'Prom\'s', accessor: 'user_proms', width: 100 },
+      { Header: 'Rank', accessor: 'user_rank', width: 100 },
+      { Header: 'Gadz', accessor: 'user_is_gadz', width: 100 },
       { Header: 'Id', accessor: 'user_id' }
     ]
     ,
     []
   )
 
-  // Use the state and functions returned from useTable to build your UI
   const {
-    getTableProps,
-    getTableBodyProps,
     headerGroups,
     rows,
     prepareRow,
@@ -131,7 +112,6 @@ export function UsersTable(data: any[]) {
     setGlobalFilter,
     state,
     selectedFlatRows,
-    totalColumnsWidth
   } = useTable({
     columns,
     data,
@@ -140,9 +120,8 @@ export function UsersTable(data: any[]) {
         'user_phone',
         'user_bucque',
         'user_fams',
-        'user_fams',
         'user_campus',
-        'user_pomotion',
+        'user_proms',
         'user_rank',
         'user_is_gadz',
         'user_id'
@@ -152,29 +131,18 @@ export function UsersTable(data: any[]) {
     useFilters,
     useGlobalFilter,
     useSortBy,
+    useFlexLayout,
     useRowSelect,
-    useBlockLayout,
     hooks => {
       hooks.visibleColumns.push(columns => [
-        // Let's make a column for selection
         {
           id: 'selection',
-          minWidth: 35,
-          width: 35,
-          maxWidth: 35,
-          // The header can use the table's getToggleAllRowsSelectedProps method
-          // to render a checkbox
+          width: 90,
           Header: ({ getToggleAllRowsSelectedProps }) => (
-            <div>
-              <IndeterminateCheckbox color="white" {...getToggleAllRowsSelectedProps()} />
-            </div>
+            <IndeterminateCheckbox Color="white" {...getToggleAllRowsSelectedProps()} />
           ),
-          // The cell can use the individual row's getToggleRowSelectedProps method
-          // to the render a checkbox
           Cell: ({ row }) => (
-            <div>
-              <IndeterminateCheckbox {...row.getToggleRowSelectedProps()} />
-            </div>
+            <IndeterminateCheckbox {...row.getToggleRowSelectedProps()} />
           ),
         },
         ...columns,
@@ -182,95 +150,170 @@ export function UsersTable(data: any[]) {
     }
   )
 
-
-
-  const Row = useCallback(
-    ({ index }) => {
+  const RenderRow = useCallback(
+    ({ index, style }) => {
       const row = rows[index]
       prepareRow(row)
+      const remainder = index % 2;
+
       return (
-        <StyledTr key={index} >
+        <StyledUsersTr as="div"  {...row.getRowProps({ style })}>
           {row.cells.map((cell) => {
-            if (cell.column['id'] == 'user_pay_status' || cell.column['id'] == 'user_is_gadz') {
-              return (
-                <StyledTd style={{ textAlign: "center" }}>
-                  {cell.value ? <Succes marginRight="25px" /> : <Fail marginRight="25px" />}
-                </StyledTd>
-              )
-            }
-            else {
-              return (
-                <StyledTd>
-                  {cell.render('Cell')}
-                </StyledTd>
-              )
-            }
+            const replaceBySvg = (cell.column['id'] == 'user_pay_status' || cell.column['id'] == 'user_is_gadz')
+
+            return (
+              <StyledTd
+                textAlign={replaceBySvg ? "center" : undefined}
+                BackgroundColor={remainder ? "rgba(0, 0, 0, 0.075)" : undefined}
+                {...cell.getCellProps()}
+                as="div"
+              >
+                {replaceBySvg ?
+                  cell.value ? <Succes /> : <Fail />
+                  :
+                  cell.column['id'] == 'user_name' ?
+                    <Link href={{
+                      pathname: '/admin/users/[user_id]',
+                      query: { user_id: row.allCells[14].value }
+                    }}
+                      prefetch={false}
+                      passHref>
+                      <StyledLink color="#096a09">
+                        {cell.render('Cell')}
+                      </StyledLink>
+                    </Link>
+                    :
+                    cell.render('Cell')
+                }
+              </StyledTd>
+            )
           })}
-        </StyledTr>
+        </StyledUsersTr>
       )
     },
     [prepareRow, rows]
   )
 
+  const RenderMobileRow = useCallback(
+    ({ index, style }) => {
+      const row = rows[index]
+      prepareRow(row)
+      return (
+        <StyledMobileContainerRow  {...row.getRowProps({ style })}>
+          <UsersMobileLine
+            key={index}
+            row={row}
+            columnsNumber={13 - state.hiddenColumns.length}
+            isLast={index == (rows.length - 1)}
+          />
+        </StyledMobileContainerRow>
+      )
+    },
+    [prepareRow, rows]
+  )
+
+  const idSelected = selectedFlatRows.map(d => d.original["user_id"])
+
+  const innerElementType = forwardRef(({ children, ...rest }, ref) => (
+    <>
+      <div style={{ display: "flex", width: "100%", position: "sticky", top: "0", zIndex: "2" }}>
+        <StyledHeadTr {...headerGroups[0].getHeaderGroupProps()} as="div">
+          {headerGroups[0].headers.map((column, index) => {
+            const replaceBySvg = (column['id'] == 'user_pay_status' || column['id'] == 'user_is_gadz')
+
+            return (
+              <StyledTh textAlign={replaceBySvg ? "center" : undefined} {...column.getHeaderProps(column.getSortByToggleProps())} as="div">
+                {column.render('Header')}
+                {(index == 0) ?
+                  <span
+                    style={{
+                      display: "inline-block",
+                      transform: "translateY(-15%)",
+                      marginLeft: "10px"
+                    }}
+                  >
+                    {Object.keys(selectedRowIds).length}
+                  </span>
+                  :
+                  column.isSorted ? column.isSortedDesc ? '▼' : '▲' : ''
+                }
+              </StyledTh>
+            )
+          })}
+        </StyledHeadTr>
+      </div>
+
+      <StyledUsersBody {...rest}>
+        {children}
+      </StyledUsersBody>
+    </>
+  ));
+
+  const innerMobileElementType = forwardRef(({ children, ...rest }, ref) => (
+    <>
+      <Row style={{
+        marginBottom: "20px",
+        justifyContent: "space-between",
+        position: "sticky",
+        zIndex: "3",
+        top: "0",
+        borderRadius: "10px",
+        background: "#096A09",
+        color: "white",
+        padding: "15px 20px"
+      }}
+      >
+        <div
+          style={{
+            width: "55px",
+            display: "flex",
+            justifyContent: "space-between",
+            fontSize: "1.2rem",
+          }}
+        >
+          {Object.keys(selectedRowIds).length}
+          {headerGroups[0].headers[0].render('Header')}
+        </div>
+        <WhiteText style={{ paddingRight: "10px" }}>Tout sélectionner</WhiteText>
+      </Row>
+
+      <StyledUsersBody {...rest}>
+        {children}
+      </StyledUsersBody>
+    </>
+  ));
+
   function Table() {
     return (
       <AutoSizer>
-            {({ height, width }) => (
-               <VirtualTable
-               height={height}
-               width={width+"px"}
-               itemCount={data.length}
-               itemSize={60}
-               header={
-                 <thead style={{ position: "sticky", top: "0", zIndex: "2" }}>
-                   <StyledHeadTr >
-                     {headerGroups[0].headers.map((column, index) => {
-                       if (column['id'] == 'user_pay_status' || column['id'] == 'user_is_gadz') {
-                         return (
-                           <StyledTh >
-                             <div style={{ display: "flex", userSelect: "none", justifyContent: "center" }}>
-                               {column.render('Header')}
-                               <span
-                                 style={{
-                                   display: "inline-block",
-                                   marginLeft: "10px",
-                                   width: "20px"
-                                 }}
-                               >
-                                 {column.isSorted ? column.isSortedDesc ? '▼' : '▲' : ''}
-                               </span>
-                             </div>
-                           </StyledTh>
-                         )
-                       }
-                       else {
-                         return (
-                           <StyledTh >
-                             <div style={{ display: "flex", userSelect: "none" }}>
-                               {column.render('Header')}
-                               <span
-                                 style={{
-                                   display: "inline-block",
-                                   marginLeft: "10px",
-                                   width: "20px"
-                                 }}
-                               >
-                                 {(index == 0) && Object.keys(selectedRowIds).length}
-                                 {!(index == 0) && column.isSorted ? column.isSortedDesc ? '▼' : '▲' : ''}
-                               </span>
-                             </div>
-                           </StyledTh>
-                         )
-                       }
-                     })}
-                   </StyledHeadTr>
-                 </thead>
-               }
-               row={Row}
-             />
-            )}
-          </AutoSizer>
-     
+        {({ height, width }) => (
+          <MediaContextProvider>
+            <Media style={{ width: width, height: height }} at="sm">
+              <FixedSizeList
+                height={height}
+                itemCount={rows.length}
+                itemSize={86}
+                width={width}
+                innerElementType={innerMobileElementType}
+              >
+                {RenderMobileRow}
+              </FixedSizeList>
+            </Media>
+
+            <Media greaterThan="sm">
+              <FixedSizeList
+                height={height}
+                itemCount={rows.length}
+                itemSize={61}
+                width={width}
+                innerElementType={innerElementType}
+              >
+                {RenderRow}
+              </FixedSizeList>
+            </Media>
+          </MediaContextProvider>
+        )}
+      </AutoSizer>
     )
   }
 
@@ -290,78 +333,8 @@ export function UsersTable(data: any[]) {
         </StyledLabel>
       ))}
     </CheckboxRow>,
-    selectedFlatRows.map(
-      d => d.original["user_id"]
-    ),
+    idSelected
+    ,
     Table
   ]
 }
-
-
-/** Context for cross component communication */
-const VirtualTableContext = React.createContext<{
-  top: number
-  setTop: (top: number) => void
-  header: React.ReactNode
-}>({
-  top: 0,
-  setTop: (value: number) => { },
-  header: <></>,
-})
-
-/** The virtual table. It basically accepts all of the same params as the original FixedSizeList.*/
-function VirtualTable({
-  row,
-  header,
-  footer,
-  ...rest
-}: {
-  header?: React.ReactNode
-  row: FixedSizeListProps['children']
-} & Omit<FixedSizeListProps, 'children' | 'innerElementType'>) {
-  const listRef = useRef<FixedSizeList | null>()
-  const [top, setTop] = useState(0)
-
-  return (
-    <VirtualTableContext.Provider value={{ top, setTop, header }}>
-      <FixedSizeList
-        {...rest}
-        innerElementType={Inner}
-        onItemsRendered={props => {
-          const style =
-            listRef.current &&
-            // @ts-ignore private method access
-            listRef.current._getItemStyle(props.overscanStartIndex)
-          setTop((style && style.top) || 0)
-
-          // Call the original callback
-          rest.onItemsRendered && rest.onItemsRendered(props)
-        }}
-        ref={el => (listRef.current = el)}
-      >
-        {row}
-      </FixedSizeList>
-    </VirtualTableContext.Provider>
-  )
-}
-
-
-
-/**
- * The Inner component of the virtual list. This is the "Magic".
- * Capture what would have been the top elements position and apply it to the table.
- * Other than that, render an optional header and footer.
- **/
-const Inner = React.forwardRef<HTMLDivElement, React.HTMLProps<HTMLDivElement>>(
-  function Inner({ children, ...rest }, ref) {
-    const { header, top } = useContext(VirtualTableContext)
-    return (
-      <div {...rest} ref={ref}>
-        <StyledTable>
-          {header}
-          <tbody  style={{ top, position: 'relative', width: '100%' }}>{children}</tbody>
-        </StyledTable>
-      </div>
-    )
-  }
-)
