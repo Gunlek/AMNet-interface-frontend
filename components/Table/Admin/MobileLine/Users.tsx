@@ -12,12 +12,12 @@ export const UsersMobileLine = ({ row, columnsNumber, isLast }: {
 }) => {
 
     const [scrolled, setScrolled] = useState(false);
-
+    
     return (
         <div
             style={{
-                height: scrolled ? (columnsNumber * 55 + 10).toString() + "px" : "56px",
-                transition: "height 0.3s ease-in-out, z-index 0.3s ease-in-out, background-color 0.3s ease-in-out",
+                height: scrolled ? (columnsNumber * 55 + 5).toString() + "px" : "56px",
+                transition: "height 0.3s ease-in-out, z-index 0.3s ease-in-out",
                 overflowY: "hidden",
                 overflowX: scrolled ? "auto" : "hidden",
                 marginBottom: isLast ? "0" : "30px",
@@ -26,7 +26,7 @@ export const UsersMobileLine = ({ row, columnsNumber, isLast }: {
                 position: "relative",
                 width: "100%",
                 zIndex: scrolled ? "2" : "0",
-                backgroundColor: scrolled ? "white" : "transparent"
+                backgroundColor: "white"
             }}
         >
             <StyledTable>
@@ -38,16 +38,14 @@ export const UsersMobileLine = ({ row, columnsNumber, isLast }: {
                             return (
                                 <StyledTr {...cell.getCellProps()} onClick={() => setScrolled(!scrolled)}>
                                     <StyledTd>
-                                        <div style={{ width: "85px", display: "flex", justifyContent: "space-between" }}>
-                                            {isUserName ? cell.column['id'] == 'user_name' &&
-                                                <label style={{ width: "55px", display: "flex", justifyContent: "space-between" }}>
+                                        {isUserName ? cell.column['id'] == 'user_name' &&
+                                            <div style={{ width: "60px", display: "flex", justifyContent: "space-between" }}>
                                                     {row.cells[0].render('Cell')}
                                                     {row.cells[1].render('Cell')}
-                                                </label>
-                                                :
-                                                cell.column.render('Header')
-                                            }
-                                        </div>
+                                            </div>
+                                            :
+                                            cell.column.render('Header')
+                                        }
                                     </StyledTd>
                                     <StyledTd style={{ textAlign: "center" }}>
                                         {isUserName ?
@@ -57,7 +55,7 @@ export const UsersMobileLine = ({ row, columnsNumber, isLast }: {
                                             }}
                                                 prefetch={false}
                                                 passHref>
-                                                <StyledLink color="#096a09">
+                                                <StyledLink color="#096a09" style={{}}>
                                                     {cell.render('Cell')}
                                                 </StyledLink>
                                             </Link>

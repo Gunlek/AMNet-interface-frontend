@@ -48,7 +48,7 @@ export default function Users() {
           marginBottom="2%"
           mobileMarginBottom="10px"
           minHeight="0"
-          mobileMinHeight="500px"
+          mobileMinHeight="600px"
           style={{ flex: "1 0 0" }}
         >
           {Table()}
