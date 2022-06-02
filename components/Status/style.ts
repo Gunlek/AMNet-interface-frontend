@@ -109,7 +109,7 @@ export const StyledNotification = styled(StyledCard)`
   pointer-events: ${(props) => props.Display ? undefined : "none"};
   
   span{
-    transition: opacity ${(props) => props.Display ? "1.4s" : "0.2s"};
+    transition: opacity ${(props) => props.Display ? "0.75s cubic-bezier(.46,.03,.52,.96)" : "0.1s linear"} ;
     opacity: ${(props) => props.Display ? "1" : "0"};
   }
 
