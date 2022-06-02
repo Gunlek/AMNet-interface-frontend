@@ -42,7 +42,7 @@ export const StyledInputLabel = styled.label`
 `;
 
 export const StyledLabel = styled.label`
-  display: flex; 
+  display: ${(props) => props.Display || "flex"}; 
   align-items: center;
   width: ${(props) => props.width || "150px"}; 
   user-select: none;
