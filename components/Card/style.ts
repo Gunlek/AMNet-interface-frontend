@@ -12,9 +12,11 @@ export const StyledCard = styled.div`
   flex-direction: column;
   scrollbar-color: #C4C4C4 rgba(255, 255, 255, 0.6);
   margin-bottom: ${(props) => props.marginBottom};
+  min-height: ${(props) => props.minHeight};
 
   @media screen and (max-width: 1000px){
     margin-bottom: ${(props) => props.mobileMarginBottom};
+    min-height: ${(props) => props.mobileMinHeight};
   } 
 `;
 
