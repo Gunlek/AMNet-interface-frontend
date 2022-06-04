@@ -13,7 +13,8 @@ export const StyledButton = styled.button`
   transition: 0.3s linear, box-shadow 0.3s;
   background: linear-gradient(90deg, var(--c1, #f6d365), var(--c2, #fda085) 51%, var(--c1, #f6d365)) var(--x, 0)/ 200%;
   user-select: none;
-
+  line-height: ${(props) => props.lineHeight};
+  
   &:hover{ 
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
     cursor: pointer;

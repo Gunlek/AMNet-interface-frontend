@@ -114,10 +114,10 @@ export function ArrowButton(props: { onClick: Function, position: string }) {
   );
 }
 
-export function ButtonLink(props: { children: React.ReactNode; width?: string, height?: string, href: string }) {
+export function ButtonLink(props: { children: React.ReactNode; width?: string, height?: string, href: string, style?: React.CSSProperties}) {
   return (
     <Link href={props.href} passHref>
-      <StyledGreenButton as="a" width={props.width} height={props.height} style={{ lineHeight: props.height || "60px" }}>
+      <StyledGreenButton as="a" width={props.width} height={props.height} lineHeight={props.height || "60px"} style={props.style}>
         {props.children}
       </StyledGreenButton>
     </Link>
