@@ -8,16 +8,16 @@ import TeamList from './TeamList';
 export const TeamEditor = () => {
     const accutalTeam = [
         {
-          pseudo: "Trobotyk'ss (ML)°",
-          id: "47Li220"
+            pseudo: "Trobotyk'ss (ML)°",
+            id: "47Li220"
         },
         {
-          pseudo: "Sdoosh",
-          id: "96Li220"
+            pseudo: "Sdoosh",
+            id: "96Li220"
         },
         {
-          pseudo: "Nem'O",
-          id: "74Li220"
+            pseudo: "Nem'O",
+            id: "74Li220"
         }
     ];
 
@@ -27,32 +27,33 @@ export const TeamEditor = () => {
 
     const registerNewTeamMember = (e) => {
         e.preventDefault();
-        
-        if(!(pseudo==="" || id==="")){
-        setTeam(team.concat({
-            pseudo: pseudo,
-            id: id
-        }));}
+
+        if (!(pseudo === "" || id === "")) {
+            setTeam(team.concat({
+                pseudo: pseudo,
+                id: id
+            }));
+        }
 
     }
 
-    function SetterTeam(NewTeam){
+    function SetterTeam(NewTeam) {
         setTeam(NewTeam)
     }
 
-    return[
+    return [
         team,
         <>
-            <form> 
+            <form>
                 <ResponsiveRow style={{ marginBottom: "20px" }}>
                     <Col5 paddingRight="10px" mobileMarginBottom="20px">
                         <StyledInputLabel htmlFor="adminr_bucque" style={{ paddingLeft: "5px" }}>Bucque</StyledInputLabel>
                         <StyledInput id="admin_bucque" type="text" onChange={(elmt) => setPseudo(elmt.target.value)} />
                     </Col5>
-                    <Col5 
-                        paddingRight="10px" 
-                        mobileMarginBottom="20px" 
-                        paddingLeft="10px"    
+                    <Col5
+                        paddingRight="10px"
+                        mobileMarginBottom="20px"
+                        paddingLeft="10px"
                     >
                         <StyledInputLabel htmlFor="admin_num" style={{ paddingLeft: "5px" }}>Num's</StyledInputLabel>
                         <StyledInput id="admin_num" type="text" onChange={(elmt) => setId(elmt.target.value)} />
