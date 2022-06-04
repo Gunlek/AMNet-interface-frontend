@@ -22,6 +22,7 @@ import {
   StyledLink,
   BlackP
 } from "../../components/Text/style";
+import PasswordInput from "../../components/Input/PasswordInput";
 
 
 export default function SignUp() {
@@ -183,12 +184,12 @@ export default function SignUp() {
             <ResponsiveRow>
               <Col6 paddingRight="10px" mobileMarginBottom="20px">
                 <StyledInputLabel htmlFor="user_password">Mot de passe</StyledInputLabel>
-                <StyledInput id="user_password" type="password" />
+                <PasswordInput id="user_password" />
               </Col6>
 
               <Col6 paddingLeft="10px">
                 <StyledInputLabel htmlFor="user_password2">Confirmez votre Mot de passe</StyledInputLabel>
-                <StyledInput id="user_password2" type="password" />
+                <PasswordInput id="user_password2" />
               </Col6>
             </ResponsiveRow>
 

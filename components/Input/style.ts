@@ -1,5 +1,25 @@
 import styled from "styled-components";
 
+export const StyledSpan = styled.span`
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 10px;
+  color: #096a09;
+  cursor: pointer;
+  display: none;
+  height: 40px;
+  width : 40px;
+  justify-content: center;
+  align-items: center;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+`;
+
+export const StyledWrapper = styled.div`
+  position: relative;
+`;
+
 export const StyledInput = styled.input`
   background-color: rgba(255, 255, 255, 0.6);
   box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.06);
@@ -13,10 +33,14 @@ export const StyledInput = styled.input`
   transition: border 0.3s, background-color 0.3s;
   margin-left: ${(props) => props.marginLeft};
 
-  &:hover, &:focus{
+  ${StyledWrapper}:hover &, &:hover, &:focus{
     background-color: rgba(255, 255, 255, 0.8);
-    border: 2px solid ${(props) => props.hoverBorder || "#096A09"};
-    outline: none;
+    border: 2px solid  #096A09;
+    outline: none;     
+  }
+
+  &:valid ~ ${StyledSpan}{
+    display: flex;
   }
 
   @media screen and (max-width: 1000px){
@@ -25,6 +49,7 @@ export const StyledInput = styled.input`
     margin-left: 0;
   }
 `;
+
 export const StyledTextArea = styled(StyledInput).attrs({ as: 'textarea' })`
   min-height: 150px;
   resize: none;
@@ -51,3 +76,7 @@ export const StyledLabel = styled.label`
     width: ${(props) => props.width || "100px"}; 
   } 
 `;
+
+
+
+

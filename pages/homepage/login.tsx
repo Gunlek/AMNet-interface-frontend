@@ -10,6 +10,7 @@ import Checkbox from "../../components/Input/Checkbox";
 import { StyledInputLabel, StyledInput } from "../../components/Input/style";
 import { BlackText, StyledLink } from "../../components/Text/style";
 import Link from "next/link";
+import PasswordInput from "../../components/Input/PasswordInput";
 
 export default function Login() {
   const [checked, setChecked] = useState(false);
@@ -48,7 +49,7 @@ export default function Login() {
 
             <div style={{ marginBottom: "20px" }}>
               <StyledInputLabel htmlFor="user_password">Mot de passe</StyledInputLabel>
-              <StyledInput id="user_password" type="password" />
+              <PasswordInput id="user_password" />
             </div>
 
             <label style={{ display: "flex", alignItems: "Center", marginBottom: "20px" }}>

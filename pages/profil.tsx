@@ -9,6 +9,7 @@ import useMediaQuery from "../components/MediaQueries/MediaQuery";
 import UserMenu from "../components/Menu/UserMenu";
 import { StateContribution } from "../components/Status/Status";
 import { BlackTitle, BlackText, GreenText } from "../components/Text/style";
+import PasswordInput from "../components/Input/PasswordInput";
 
 export default function Profil() {
   const minWidth1000 = useMediaQuery('(min-width:1000px)');
@@ -146,11 +147,11 @@ export default function Profil() {
           <ResponsiveRow style={{ marginBottom: "20px" }}>
             <Col6 paddingRight="10px" mobileMarginBottom="20px">
               <StyledInputLabel htmlFor="user_password">Mot de passe</StyledInputLabel>
-              <StyledInput id="user_password" type="password" />
+              <PasswordInput id="user_password" />
             </Col6>
             <Col6 paddingLeft="10px">
               <StyledInputLabel htmlFor="user_password2">Confirmez votre Mot de passe</StyledInputLabel>
-              <StyledInput id="user_password2" type="password" />
+              <PasswordInput id="user_password2" />
             </Col6>
           </ResponsiveRow>
 
@@ -170,7 +171,7 @@ export default function Profil() {
               }}
             >
               <GreenText style={{ marginBottom: "5px" }}>Identifiants gadzariques</GreenText>
-              <StyledInput hoverBorder="transparent" readOnly value="Mac Nhat'sss 47-102Li219" type="text" />
+              <StyledInput style={{ border: "2px solid transparent" }} readOnly value="Mac Nhat'sss 47-102Li219" type="text" />
             </Col6>
             <Col6
               paddingLeft="10px"

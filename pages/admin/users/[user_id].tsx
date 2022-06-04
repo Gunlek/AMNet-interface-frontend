@@ -11,6 +11,7 @@ import AdminMenu from "../../../components/Menu/AdminMenu";
 import { AdminStateContribution, AdminStateRank } from "../../../components/Status/Status";
 import { useRouter } from "next/router";
 import Page404 from "../../404"
+import PasswordInput from "../../../components/Input/PasswordInput";
 
 export default function User() {
     const Router = useRouter()
@@ -168,11 +169,11 @@ export default function User() {
                         <ResponsiveRow style={{ marginBottom: "20px" }}>
                             <Col6 paddingRight="10px" mobileMarginBottom="20px">
                                 <StyledInputLabel htmlFor="user_password">Mot de passe</StyledInputLabel>
-                                <StyledInput id="user_password" type="password" />
+                                <PasswordInput id="user_password" />
                             </Col6>
                             <Col6 mobileMarginBottom={isGadz ? undefined : "10px"} paddingLeft="10px">
                                 <StyledInputLabel htmlFor="user_password2">Confirmez le Mot de passe</StyledInputLabel>
-                                <StyledInput id="user_password2" type="password" />
+                                <PasswordInput id="user_password2" />
                             </Col6>
                         </ResponsiveRow>
 
@@ -191,7 +192,7 @@ export default function User() {
                                 }}
                             >
                                 <GreenText style={{ marginBottom: "5px" }}>Identifiants gadzariques</GreenText>
-                                <StyledInput hoverBorder="transparent" readOnly value="Mac Nhat'sss 47-102Li219" type="text" />
+                                <StyledInput style={{ border: "2px solid transparent" }} readOnly value="Mac Nhat'sss 47-102Li219" type="text" />
                             </Col6>
 
                             <ResponsiveRow
