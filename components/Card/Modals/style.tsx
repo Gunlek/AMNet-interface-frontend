@@ -29,7 +29,6 @@ export const StyledBackgroundModal = styled.div`
   left: 0; 
   top: 0;
   z-index: 5;
-  display: ${(props) => props.Display ? undefined : "none"};
   animation: ${(props) => props.Opacity ? opacityIn : opacityOut}  0.3s linear;  
 `;
 
@@ -44,6 +43,5 @@ export const StyledModal = styled(StyledCardCampus)`
   left: 50%;
   z-index: 6;
   transform: translate(-50%, -50%);
-  display: ${(props) => props.Display ? undefined : "none"};
   animation: ${(props) => props.Opacity ? opacityIn : opacityOut}  0.3s linear;
 `
