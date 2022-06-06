@@ -181,7 +181,7 @@ export default function SignUp() {
               </Col3>
             </ResponsiveRow>
 
-            <ResponsiveRow>
+            <ResponsiveRow style={{ marginBottom: "20px" }}>
               <Col6 paddingRight="10px" mobileMarginBottom="20px">
                 <StyledInputLabel htmlFor="user_password">Mot de passe</StyledInputLabel>
                 <PasswordInput id="user_password" />
