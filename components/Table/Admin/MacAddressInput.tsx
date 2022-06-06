@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { MacAdressVerification } from "../../Card/Modals/IoTModal";
-import { StyledCard } from "../../Card/style";
+import { MacAddressVerification } from "../../Card/Modals/IoTModal";
 import { StyledTd } from "../style";
 
 export default function MacAdressTd(props: { access_mac: string, id: any }) {
@@ -13,7 +12,7 @@ export default function MacAdressTd(props: { access_mac: string, id: any }) {
     }
 
     function handleBlur() {
-        const MacAdress = MacAdressVerification(newMAC)
+        const MacAdress = MacAddressVerification(newMAC)
         if (MacAdress === "") {
             setTooltip(true)
             setNewMac(props.access_mac)
@@ -31,7 +30,7 @@ export default function MacAdressTd(props: { access_mac: string, id: any }) {
 
     const handleKeyDown = (event) => {
         if (event.key === 'Enter') {
-            const MacAdress = MacAdressVerification(newMAC)
+            const MacAdress = MacAddressVerification(newMAC)
             if (MacAdress === "") {
                 setTooltip(true)
                 setNewMac(props.access_mac)
