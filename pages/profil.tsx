@@ -171,7 +171,7 @@ export default function Profil() {
               }}
             >
               <GreenText style={{ marginBottom: "5px" }}>Identifiants gadzariques</GreenText>
-              <StyledInput style={{ border: "2px solid transparent" }} readOnly value="Mac Nhat'sss 47-102Li219" type="text" />
+              <StyledInput style={{ border: "2px solid transparent", backgroundColor: "rgba(255, 255, 255, 0.6)" }} readOnly value="Mac Nhat'sss 47-102Li219" type="text" />
             </Col6>
             <Col6
               paddingLeft="10px"
