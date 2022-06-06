@@ -3,8 +3,8 @@ import { BlackText, GreenText } from "../Text/style";
 import { GreenCard } from "./Cards";
 import { StyledTeamPicture, StyledCardCampus } from "./style";
 
-export default function TeamPicture(props: {Team: any, background?: string, outline?: string}) {
-  const promotion="220"
+export default function TeamPicture(props: { Team: { pseudo: string, id: string }[], background?: string, outline?: string }) {
+  const promotion = "220"
 
   const Flex = {
     flex: (12 / props.Team.length).toString(),
@@ -12,7 +12,7 @@ export default function TeamPicture(props: {Team: any, background?: string, outl
   };
 
   let Team = [];
-  
+
   props.Team.map((value, index) => {
     Team.push(
       <Column key={index} style={Flex}>
@@ -27,18 +27,18 @@ export default function TeamPicture(props: {Team: any, background?: string, outl
   });
 
   return (
-    <StyledTeamPicture 
-      background={props.background} 
+    <StyledTeamPicture
+      background={props.background}
       outline={props.outline}
-      style={{ 
-        paddingTop:"15px", 
-        justifyContent:"space-between" 
+      style={{
+        paddingTop: "15px",
+        justifyContent: "space-between"
       }}
     >
-      <GreenCard promotion={promotion}/>
-      <StyledCardCampus style={{ alignItems:"center", flexDirection: "row" }}>
+      <GreenCard promotion={promotion} />
+      <StyledCardCampus style={{ alignItems: "center", flexDirection: "row" }}>
         {Team}
-      </StyledCardCampus> 
+      </StyledCardCampus>
     </StyledTeamPicture>
   );
 }
