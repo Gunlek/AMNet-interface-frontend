@@ -11,6 +11,7 @@ export const Column = styled.div`
   display: ${(props) => props.Display};
   padding-left: ${(props) => props.paddingLeft};
   padding-bottom: ${(props) => props.paddingBottom};
+  height: ${(props) => props.Height};
 
   @media screen and (max-width: 1000px){
     width: ${(props) => props.mobileWidth};
@@ -20,6 +21,7 @@ export const Column = styled.div`
     align-items: ${(props) => props.mobileAlign};
     padding-left: 0;
     padding-bottom: 0;
+    height: ${(props) => props.MobileHeight};
   }
 
   @media screen and (max-width: 800px){
