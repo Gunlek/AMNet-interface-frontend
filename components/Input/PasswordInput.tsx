@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { StyledInput, StyledSpan, StyledWrapper } from "./style";
 import { VscEye, VscEyeClosed } from "react-icons/vsc";
 
-export default function PasswordInput(props: { id?: string, style?: React.CSSProperties, onChange?: Function, ref?: any }) {
+export default function PasswordInput(props: { id?: string, style?: React.CSSProperties, onChange?: Function, onBlur?: Function, ref?: any }) {
     const [visible, setVisible] = useState(false)
 
     return (
@@ -14,6 +14,7 @@ export default function PasswordInput(props: { id?: string, style?: React.CSSPro
                 id={props.id}
                 style={props.style}
                 onChange={props.onChange}
+                onBlur={props.onBlur}
                 required
             />
             <StyledSpan onClick={() => setVisible(!visible)}>
