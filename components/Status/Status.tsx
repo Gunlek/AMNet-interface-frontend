@@ -61,7 +61,11 @@ export function StateInvite(props: { state?: boolean }) {
   }
 
   return (
-    <StyledStateInvite status={state} onChange={handleValueChange}>
+    <StyledStateInvite 
+      status={state} 
+      onChange={handleValueChange}
+      defaultValue={props.state ? "enabled" : "disabled"}
+      >
       <option value="enabled">Activé</option>
       <option value="disabled">Désactivé</option>
     </StyledStateInvite>
@@ -76,7 +80,11 @@ export function StateIntegration(props: { state?: boolean }) {
   }
 
   return (
-    <StyledStateInvite status={state} onChange={handleValueChange}>
+    <StyledStateInvite 
+      status={state} 
+      onChange={handleValueChange} 
+      defaultValue={props.state ? "enabled" : "disabled"}
+    >
       <option value="enabled">Ayat's</option>
       <option value="disabled">Fini</option>
     </StyledStateInvite>
@@ -126,7 +134,7 @@ export function AdminStateRank(props: { state?: boolean, id: string }) {
   );
 }
 
-export function AdminNotifications(props: { notifNumber: number, unpaid?: boolean }) {
+export function AdminNotifications(props: { notifNumber: number, unpaid?: boolean, access_quantity: number, material_quantity: number }) {
   const notifNumber = props.notifNumber !== 0 ? props.notifNumber : undefined;
   const [Display, setDisplay] = useState(false);
   const [Opacity, setOpacity] = useState(true);
@@ -161,10 +169,10 @@ export function AdminNotifications(props: { notifNumber: number, unpaid?: boolea
         </StyledSVG>
         <StyledNotification Display={Display} Opacity={Opacity} Unpaid={props.unpaid}>
           <Link href="/admin/iot" passHref>
-            <StyledLink>Demandes <span>d'accès internet: 1</span></StyledLink>
+            <StyledLink>Demandes <span>d'accès internet: {props.access_quantity}</span></StyledLink>
           </Link>
           <Link href="/admin/material" passHref>
-            <StyledLink><span>Demandes de matériel: 1</span></StyledLink>
+            <StyledLink><span>Demandes de matériel: {props.material_quantity}</span></StyledLink>
           </Link>
         </StyledNotification>
       </StyledConteneurNotif>
