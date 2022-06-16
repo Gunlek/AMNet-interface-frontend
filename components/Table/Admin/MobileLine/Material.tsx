@@ -97,7 +97,7 @@ export const MaterialMobileLine = ({ index, value, status, display, isLast }: {
                                         transition: "height 0.1s ease-out 0.5s"
                                     }}
                                 >
-                                    <Buttons status={value['material_state']} />
+                                    <Buttons status={value['material_state']} requestType="hardware"/>
                                 </div>
                             </StyledTd>
                         </StyledTr>

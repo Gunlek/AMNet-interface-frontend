@@ -38,14 +38,14 @@ export default function IoTAdminTable(props: { requests: any[], status: { old: s
     }, [props.status]);
 
     props.requests.map((value, id) => {
-        listHTML[value['acces_state']].push(
-            <StyledTr key={index[value['acces_state']]}>
-                <StyledTd>{index[value['acces_state']]}</StyledTd>
+        listHTML[value['access_state']].push(
+            <StyledTr key={index[value['access_state']]}>
+                <StyledTd>{index[value['access_state']]}</StyledTd>
                 <StyledTd>
                     <Link
                         href={{
                             pathname: '/admin/users/[user_id]',
-                            query: { user_id: value['acces_user'] },
+                            query: { user_id: value['access_user'] },
                         }}
                         prefetch={false}
                         passHref
@@ -59,10 +59,10 @@ export default function IoTAdminTable(props: { requests: any[], status: { old: s
                 <StyledTd>{value['access_description']}</StyledTd>
                 <MacAdressTd access_mac={value['access_mac']} id={id} />
                 <StyledTd>
-                    <ProoveModal request={value} link="/static/images/homepage/campus.jpg" />
+                    <ProoveModal request={value} link={value['access_proof']} />
                 </StyledTd>
                 <StyledTd>
-                    <StateRequest state={value['acces_state']} />
+                    <StateRequest state={value['access_state']} />
                 </StyledTd>
                 <StyledTd>
                     <div
@@ -73,24 +73,24 @@ export default function IoTAdminTable(props: { requests: any[], status: { old: s
                             transition: "width 0.5s linear"
                         }}
                     >
-                        <Buttons status={value['acces_state']} />
+                        <Buttons status={value['access_state']} id={value['access_id']} requestType="access"/>
                     </div>
                 </StyledTd>
             </StyledTr>
         );
 
-        mobilelistHTML[value['acces_state']].push(
+        mobilelistHTML[value['access_state']].push(
 
             <IoTMobileLine
-                key={index[value['acces_state']]}
-                index={index[value['acces_state']]}
+                key={index[value['access_state']]}
+                index={index[value['access_state']]}
                 value={value}
-                status={value['acces_state']}
+                status={value['access_state']}
                 display={Display}
             />
         );
 
-        index[value['acces_state']]++
+        index[value['access_state']]++
     });
 
     mobilelistHTML.active[mobilelistHTML.active.length - 1] = <IoTMobileLine
@@ -110,6 +110,8 @@ export default function IoTAdminTable(props: { requests: any[], status: { old: s
         key={mobilelistHTML.declined[mobilelistHTML.pending.length - 1]}
         isLast={true}
     />
+
+   
 
     return (
         <MediaContextProvider>

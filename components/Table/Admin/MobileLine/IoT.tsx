@@ -11,12 +11,12 @@ import { StyledLink } from "../../../Text/style";
 export const IoTMobileLine = ({ index, value, status, display, isLast }: {
     index: number,
     value: {
-        access_id: string,
-        access_description: string,
-        access_mac: string,
-        access_proof: string,
-        access_user: number,
-        access_state: string,
+        accesss_id: string,
+        accesss_description: string,
+        accesss_mac: string,
+        accesss_proof: string,
+        accesss_user: number,
+        accesss_state: string,
         user_pay_status: number,
         user_name: string
     },
@@ -51,7 +51,7 @@ export const IoTMobileLine = ({ index, value, status, display, isLast }: {
                     <thead>
                         <StyledHeadTr onClick={() => setScrolled(!scrolled)}>
                             <StyledTh style={{ width: "130px" }}>Equipement {index}</StyledTh>
-                            <StyledTh style={{ textAlign: "center" }}>{value['access_description']}</StyledTh>
+                            <StyledTh style={{ textAlign: "center" }}>{value['accesss_description']}</StyledTh>
                         </StyledHeadTr>
                     </thead>
                     <tbody>
@@ -61,7 +61,7 @@ export const IoTMobileLine = ({ index, value, status, display, isLast }: {
                                 <Link
                                     href={{
                                         pathname: '/admin/users/[user_id]',
-                                        query: { user_id: value['acces_user'] },
+                                        query: { user_id: value['access_user'] },
                                     }}
                                     prefetch={false}
                                     passHref
@@ -78,7 +78,7 @@ export const IoTMobileLine = ({ index, value, status, display, isLast }: {
                         </StyledTr>
                         <StyledTr>
                             <StyledTd>Adresse Mac</StyledTd>
-                            <StyledTd style={{ textAlign: "center" }}>{value['access_mac']}</StyledTd>
+                            <StyledTd style={{ textAlign: "center" }}>{value['accesss_mac']}</StyledTd>
                         </StyledTr>
                         <StyledTr>
                             <StyledTd>Preuve</StyledTd>
@@ -88,7 +88,7 @@ export const IoTMobileLine = ({ index, value, status, display, isLast }: {
                         </StyledTr>
                         <StyledTr>
                             <StyledTd>Etat</StyledTd>
-                            <StyledTd><StateRequest center={true} state={value['acces_state']} /></StyledTd>
+                            <StyledTd><StateRequest center={true} state={value['access_state']} /></StyledTd>
                         </StyledTr>
                         <StyledTr>
                             <StyledTd>Actions</StyledTd>
@@ -103,7 +103,7 @@ export const IoTMobileLine = ({ index, value, status, display, isLast }: {
                                         transition: "height 0.1s ease-out 0.5s"
                                     }}
                                 >
-                                    <Buttons status={value['acces_state']} />
+                                    <Buttons status={value['access_state']} requestType="access"/>
                                 </div>
                             </StyledTd>
                         </StyledTr>

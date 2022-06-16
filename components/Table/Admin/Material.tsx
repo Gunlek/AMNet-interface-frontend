@@ -72,7 +72,7 @@ export default function MaterialAdminTable(props: { requests: any[], status: { o
                             transition: "width 0.5s linear"
                         }}
                     >
-                        <Buttons status={value['material_state']} />
+                        <Buttons status={value['material_state']} requestType="hardware"/>
                     </div>
                 </StyledTd>
             </StyledTr>
