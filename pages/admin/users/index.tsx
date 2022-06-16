@@ -8,12 +8,18 @@ import { BlackTitle } from "../../../components/Text/style";
 import useMediaQuery from "../../../components/MediaQueries/MediaQuery";
 import { UsersTable } from "../../../components/Table/Admin/Users2";
 import { Footer } from "../../../components/Card/Cards";
+import axios from "axios";
 
-const data = []
+export async function getServerSideProps() {
+  const users = await (await axios.get(`http://localhost:3333/user`)).data
 
-export default function Users() {
-  const minWidth1000 = useMediaQuery('(min-width:1000px)');
-  const [Filter, Checkboxs, SelectedRows, Table] = UsersTable(data)
+  return {
+      props: { users }
+  }
+}
+
+export default function Users( props: { users }) {
+  const [Filter, Checkboxs, SelectedRows, Table] = UsersTable(props.users)
 
   return (
     <>

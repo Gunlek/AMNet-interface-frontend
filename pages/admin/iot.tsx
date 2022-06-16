@@ -8,51 +8,17 @@ import RequestTab from "../../components/Card/RequestTab";
 import { Footer } from "../../components/Card/Cards";
 import IoTAdminTable from "../../components/Table/Admin/IoT";
 import useMediaQuery from "../../components/MediaQueries/MediaQuery";
+import axios from "axios";
 
-const Iot = [
-  {
-    "acces_id": 1,
-    "access_description": "Chromecast",
-    "access_mac": "AABBCCDDEEFF",
-    "access_proof": "photoProof-1621263399914.jpg",
-    "acces_user": 1,
-    "acces_state": "pending",
-    "user_pay_status": 1,
-    "user_name": "Harwins",
-  },
-  {
-    "acces_id": 2,
-    "access_description": "Chromecast",
-    "access_mac": "AABBCCDDEEFF",
-    "access_proof": "photoProof-1621263399914.jpg",
-    "acces_user": 5,
-    "acces_state": "active",
-    "user_pay_status": 0,
-    "user_name": "Argilla",
-  },
-  {
-    "acces_id": 3,
-    "access_description": "Chromecast",
-    "access_mac": "AABBCCDDEEFF",
-    "access_proof": "photoProof-1621263399914.jpg",
-    "acces_user": 6,
-    "acces_state": "declined",
-    "user_pay_status": 1,
-    "user_name": "Greg"
-  },
-  {
-    "acces_id": 1,
-    "access_description": "Chromecast",
-    "access_mac": "AABBCCDDEEFF",
-    "access_proof": "photoProof-1621263399914.jpg",
-    "acces_user": 1,
-    "acces_state": "pending",
-    "user_pay_status": 1,
-    "user_name": "Greg",
+export async function getServerSideProps() {
+  const access = await (await axios.get(`http://localhost:3333/access`)).data
+
+  return {
+      props: { access }
   }
-]
+}
 
-export default function AdminIoT() {
+export default function AdminIoT(props: { access }) {
   const [Tab, setTab] = useState({ old: null, new: "pending" });
   const minWidth1000 = useMediaQuery('(min-width:1000px)');
   
@@ -82,7 +48,7 @@ export default function AdminIoT() {
           mobileMarginBottom="10px"
           style={{ flex: "1 0 0", minHeight: minWidth1000 ? "0" : "300px" }}
         >
-          <IoTAdminTable status={Tab} requests={Iot} />
+          <IoTAdminTable status={Tab} requests={props.access} />
         </StyledCard>
 
         <Footer marginTop="0" />

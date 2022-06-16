@@ -23,9 +23,19 @@ import {
   BlackP
 } from "../../components/Text/style";
 import PasswordInput from "../../components/Input/PasswordInput";
+import axios from "axios";
 
+export async function getServerSideProps() {
+  const active_proms = await (await axios.get(`http://localhost:3333/settings/active_proms`)).data
+  const usins_state = await (await axios.get(`http://localhost:3333/settings/usins_state`)).data
+  const lydia_cotiz = await (await axios.get(`http://localhost:3333/settings/lydia_cotiz`)).data
 
-export default function SignUp() {
+  return {
+    props: { active_proms, usins_state, lydia_cotiz }
+  }
+}
+
+export default function SignUp(props: { active_proms: number, usins_state: boolean, lydia_cotiz: number }) {
   const minWidth1000 = useMediaQuery('(min-width:1000px)');
   const [isGadz, setGadz] = useState(false);
   const [isOther, setOther] = useState(false);
@@ -129,9 +139,9 @@ export default function SignUp() {
                   onChange={handleValueChange}
                   defaultValue="NewPromotion"
                 >
-                  <option value="OldPromotion">219</option>
-                  <option value="ActivePromotion">220</option>
-                  <option value="NewPromotion">2021</option>
+                  <option value="OldPromotion">{props.active_proms - 1}</option>
+                  <option value="ActivePromotion">{props.active_proms}</option>
+                  <option value="NewPromotion">{props.usins_state ? props.active_proms + 1801 : props.active_proms + 1}</option>
                   <option value="Other">Autre</option>
                 </StyledInput>
                 <div style={{ display: isOther ? "flex" : "none", alignItems: "center" }} >
@@ -201,7 +211,7 @@ export default function SignUp() {
                 Consultez <StyledLink color="#096a09" target="_blank" href="/static/docs/Reglement_Interieur_AMNet.pdf">le Règlement intérieur de l'association</StyledLink>
               </BlackText>
               <BlackP>
-                AMNet Birse est une association Loi 1901, vous devez en accepter les statuts et le réglement intérieur. La validation de ce formulaire et le réglement de la cotisation annuelle (35€) vaut pour adhésion à l'association.
+                AMNet Birse est une association Loi 1901, vous devez en accepter les statuts et le réglement intérieur. La validation de ce formulaire et le réglement de la cotisation annuelle ({props.lydia_cotiz}€) vaut pour adhésion à l'association.
               </BlackP>
             </Column>
 

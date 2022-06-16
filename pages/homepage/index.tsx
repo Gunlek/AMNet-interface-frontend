@@ -24,24 +24,19 @@ import {
   BlackText
 } from "../../components/Text/style";
 import { CampusGlobalStyle } from "../../components/Background/style";
+import axios from "axios";
 
-export default function Homepage() {
-  const accutalTeam = [
-    {
-      'pseudo': "Trobotyk'ss (ML)°",
-      id: "47Li220"
-    },
-    {
-      'pseudo': "Sdoosh",
-      id: "96Li220"
-    },
-    {
-      'pseudo': "Nem'O",
-      id: "74Li220"
-    }];
+export async function getStaticProps() {
+  const accutalTeam  = await (await axios.get('http://localhost:3333/settings/admin-list')).data
 
+  return {
+    props: { accutalTeam },
+    revalidate: 3600,
+  }
+}
+
+export default function Homepage(props: { accutalTeam }) {
   const isLogged = false;
-
   return (
     <>
       <Head>
@@ -82,9 +77,7 @@ export default function Homepage() {
         </Col7>
 
         <Col5 marginLeft="15px" style={{ justifyContent: "space-between" }}>
-          <TeamPicture Team={accutalTeam} />
-
-
+          <TeamPicture Team={props.accutalTeam} />
         </Col5>
       </ResponsiveRow>
 

@@ -21,8 +21,36 @@ import Editor from "../../components/Input/Editor";
 import '../../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import { EditorStyle } from "../../styles/editor";
 import MailModal from "../../components/Card/Modals/MailModal";
+import axios from "axios";
 
-export default function Settings() {
+export async function getServerSideProps() {
+  const access_quantity = await (await axios.get(`http://localhost:3333/access/quantity`)).data
+  const material_quantity = await (await axios.get(`http://localhost:3333/hardware/quantity`)).data
+  const users_quantity = await (await axios.get(`http://localhost:3333/user/quantity`)).data
+  const paid_users_quantity = await (await axios.get(`http://localhost:3333/user/quantity/paid`)).data
+  const lydia_cotiz = await (await axios.get(`http://localhost:3333/settings/lydia_cotiz`)).data
+  const active_proms = await (await axios.get(`http://localhost:3333/settings/active_proms`)).data
+  const usins_state = await (await axios.get(`http://localhost:3333/settings/usins_state`)).data
+  const guest_access = await (await axios.get(`http://localhost:3333/settings/guest_access`)).data
+  const news_message = await (await axios.get(`http://localhost:3333/settings/news_message`)).data
+  
+  return {
+    props: { access_quantity, material_quantity, users_quantity, lydia_cotiz, active_proms, usins_state, guest_access, news_message, paid_users_quantity }
+  }
+}
+
+export default function Settings(props: { 
+    access_quantity: number, 
+    material_quantity: number, 
+    users_quantity: number, 
+    lydia_cotiz: number, 
+    active_proms: number, 
+    usins_state: boolean, 
+    guest_access: boolean, 
+    news_message: string,
+    paid_users_quantity: number 
+  }) {
+
   const [Checked, setChecked] = useState({
     "Contribution": false,
     "NoContribution": false,
@@ -43,16 +71,16 @@ export default function Settings() {
       "Other": false,
       "AllSelect": false
     }
-    :
-    {
-      "Contribution": true,
-      "NoContribution": true,
-      "OldPromotion": true,
-      "ActivePromotion": true,
-      "NewPromotion": true,
-      "Other": true,
-      "AllSelect": true
-    }
+      :
+      {
+        "Contribution": true,
+        "NoContribution": true,
+        "OldPromotion": true,
+        "ActivePromotion": true,
+        "NewPromotion": true,
+        "Other": true,
+        "AllSelect": true
+      }
 
     setChecked(NewChecked)
   };
@@ -60,7 +88,7 @@ export default function Settings() {
   const handleCheckboxChange = (elmt) => {
     const NewChecked = { ...Checked };
     NewChecked[elmt.currentTarget.id] = !NewChecked[elmt.currentTarget.id];
-    
+
     if (
       NewChecked.ActivePromotion &&
       NewChecked.Contribution &&
@@ -74,7 +102,7 @@ export default function Settings() {
     setChecked(NewChecked)
   };
 
-  const [WelcomeMessageEditor, WelcomeMessageHTML] = Editor('<p style="text-align:center;"><strong>Bienvenue sur le site de l\'AMNet</strong></p><p style="text-align:center;">Si vous avez un problème avec le portail de connexion voici le <a href="https://amnet.fr" target="_blank">lien</a>&nbsp; <br>Et voici le lien Gadzflix.fr</p>');
+  const [WelcomeMessageEditor, WelcomeMessageHTML] = Editor(props.news_message);
   const [MailEditor, MailHTML] = Editor();
 
   return (
@@ -95,11 +123,11 @@ export default function Settings() {
             <StyledCard style={{ flex: "1" }}>
               <TitleCard>Etat des demandes</TitleCard>
               <BlackText>
-                Nombre d'utilisateurs: 6 <br />
-                Nombre d'utilisateurs ayant payé la cotiz': 3 <br />
+                Nombre d'utilisateurs: {props.users_quantity} <br />
+                Nombre d'utilisateurs ayant payé la cotiz': {props.paid_users_quantity} <br />
                 <br /><br />
-                Demandes d'accès internet: 1<br />
-                Demandes de matériel: 1
+                Demandes d'accès internet: {props.access_quantity}<br />
+                Demandes de matériel: {props.material_quantity}
               </BlackText>
             </StyledCard>
           </Col6>
@@ -113,7 +141,7 @@ export default function Settings() {
                     <GreenText style={{ marginBottom: "5px" }}>Compte Invité</GreenText>
                   </Col6>
                   <Col6 style={{ alignItems: "end" }}>
-                    <StateInvite state={true} />
+                    <StateInvite state={props.guest_access} />
                   </Col6>
                 </Row>
 
@@ -122,18 +150,18 @@ export default function Settings() {
                     <GreenText style={{ marginBottom: "5px" }}>Usinage</GreenText>
                   </Col6>
                   <Col6 style={{ alignItems: "end" }}>
-                    <StateIntegration state={true} />
+                    <StateIntegration state={props.usins_state} />
                   </Col6>
                 </Row>
 
                 <div style={{ marginBottom: "20px" }}>
                   <StyledInputLabel htmlFor="AmountContribution">Montant de la cotisation</StyledInputLabel>
-                  <StyledInput id="AmountContribution" type="number" />
+                  <StyledInput id="AmountContribution" type="number" defaultValue={props.lydia_cotiz} />
                 </div>
 
                 <div style={{ marginBottom: "20px" }}>
                   <StyledInputLabel htmlFor="SetActivePromotion">Promotion active</StyledInputLabel>
-                  <StyledInput id="SetActivePromotion" type="number" />
+                  <StyledInput id="SetActivePromotion" type="number" defaultValue={props.active_proms}/>
                 </div>
 
                 <Row style={{ justifyContent: "center" }}>
@@ -209,15 +237,15 @@ export default function Settings() {
                 <CheckboxRow colWidth="140px" mobileColWidth="125px" style={{ flex: "1", alignItems: "center" }}>
                   <StyledLabel style={{ width: "fit-content" }}>
                     <Checkbox id="NewPromotion" checked={Checked["NewPromotion"]} onChange={handleCheckboxChange} />
-                    <BlackText style={{ marginLeft: "10px" }}>2021</BlackText>
+                    <BlackText style={{ marginLeft: "10px" }}>2022</BlackText>
                   </StyledLabel>
                   <StyledLabel style={{ width: "fit-content" }}>
                     <Checkbox id="ActivePromotion" checked={Checked["ActivePromotion"]} onChange={handleCheckboxChange} />
-                    <BlackText style={{ marginLeft: "10px" }}>220</BlackText>
+                    <BlackText style={{ marginLeft: "10px" }}>221</BlackText>
                   </StyledLabel>
                   <StyledLabel style={{ width: "fit-content" }}>
                     <Checkbox id="OldPromotion" checked={Checked["OldPromotion"]} onChange={handleCheckboxChange} />
-                    <BlackText style={{ marginLeft: "10px" }}>219/Archis</BlackText>
+                    <BlackText style={{ marginLeft: "10px" }}>220</BlackText>
                   </StyledLabel>
                   <StyledLabel style={{ width: "fit-content" }}>
                     <Checkbox id="Other" checked={Checked["Other"]} onChange={handleCheckboxChange} />
