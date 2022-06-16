@@ -43,7 +43,7 @@ export default function ProoveModal(props: { request: any, link: string }) {
                                         <Image
                                             alt={props.request['access_description']}
                                             style={{ borderRadius: "30px" }}
-                                            src={props.link}
+                                            src={"/static" + props.request['access_proof']}
                                             quality="50"
                                             layout="fill"
                                         />
@@ -62,7 +62,7 @@ export default function ProoveModal(props: { request: any, link: string }) {
                                                     <Link
                                                         href={{
                                                             pathname: '/admin/users/[user_id]',
-                                                            query: { user_id: props.request['acces_user'] },
+                                                            query: { user_id: props.request['access_user'] },
                                                         }}
                                                         prefetch={false}
                                                         passHref
@@ -77,21 +77,21 @@ export default function ProoveModal(props: { request: any, link: string }) {
                                             </StyledTr>
                                             <StyledTr>
                                                 <StyledTd>Etat</StyledTd>
-                                                <StyledTd><StateRequest center={true} state={props.request['acces_state']} /></StyledTd>
+                                                <StyledTd><StateRequest center={true} state={props.request['access_state']} /></StyledTd>
                                             </StyledTr>
                                             <StyledTr>
                                                 <StyledTd>Actions</StyledTd>
                                                 <StyledTd style={{ textAlign: "center" }}>
                                                     <div
                                                         style={{
-                                                            height: (props.request['acces_state'] == "pending") ? "160px" : "100px",
+                                                            height: (props.request['access_state'] == "pending") ? "160px" : "100px",
                                                             display: "flex",
                                                             alignItems: "center",
                                                             justifyContent: "space-between",
                                                             flexDirection: "column"
                                                         }}
                                                     >
-                                                        <Buttons status={props.request['acces_state']} />
+                                                        <Buttons id={props.request['access_id']} status={props.request['access_state']} />
                                                     </div>
                                                 </StyledTd>
                                             </StyledTr>
