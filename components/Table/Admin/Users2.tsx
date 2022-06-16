@@ -97,6 +97,7 @@ export function UsersTable(data: any[]) {
       { Header: 'Prom\'s', accessor: 'user_proms', width: 100 },
       { Header: 'Rank', accessor: 'user_rank', width: 100 },
       { Header: 'Gadz', accessor: 'user_is_gadz', width: 100 },
+      { Header: 'Notification', accessor: 'user_notification', width: 125 },
       { Header: 'Id', accessor: 'user_id' }
     ]
     ,
@@ -124,7 +125,8 @@ export function UsersTable(data: any[]) {
         'user_proms',
         'user_rank',
         'user_is_gadz',
-        'user_id'
+        'user_id',
+        'user_notification'
       ]
     }
   },
@@ -159,8 +161,8 @@ export function UsersTable(data: any[]) {
       return (
         <StyledUsersTr as="div"  {...row.getRowProps({ style })}>
           {row.cells.map((cell) => {
-            const replaceBySvg = (cell.column['id'] == 'user_pay_status' || cell.column['id'] == 'user_is_gadz')
-
+            const replaceBySvg = (cell.column['id'] == 'user_pay_status' || cell.column['id'] == 'user_is_gadz' || cell.column['id'] == 'user_notification')
+            console.log(cell)
             return (
               <StyledTd
                 textAlign={replaceBySvg ? "center" : undefined}
@@ -174,7 +176,7 @@ export function UsersTable(data: any[]) {
                   cell.column['id'] == 'user_name' ?
                     <Link href={{
                       pathname: '/admin/users/[user_id]',
-                      query: { user_id: row.allCells[14].value }
+                      query: { user_id: row.allCells[15].value }
                     }}
                       prefetch={false}
                       passHref>
@@ -203,7 +205,7 @@ export function UsersTable(data: any[]) {
           <UsersMobileLine
             key={index}
             row={row}
-            columnsNumber={13 - state.hiddenColumns.length}
+            columnsNumber={14 - state.hiddenColumns.length}
             isLast={index == (rows.length - 1)}
           />
         </StyledMobileContainerRow>
