@@ -28,7 +28,7 @@ export function HelpSection(props: { color?: string, marginBottom?: string, mobi
   );
 }
 
-export function TitleCard(props: { children: string, hideLine?: boolean }) {
+export function TitleCard(props: { children: React.ReactNode, hideLine?: boolean }) {
   return (
     <Row style={{ marginBottom: "0.5rem", alignItems: "center" }}>
       <GreenTitle>
