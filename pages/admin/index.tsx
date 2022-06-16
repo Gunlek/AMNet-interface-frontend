@@ -17,7 +17,7 @@ import {
   Col2,
   Col4
 } from "../../components/Container/style";
-import Editor from "../../components/Input/Editor";
+import Editor from "../../components/Input/Editor2";
 import '../../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import { EditorStyle } from "../../styles/editor";
 import MailModal from "../../components/Card/Modals/MailModal";
@@ -179,16 +179,6 @@ export default function Settings(props: {
               {WelcomeMessageEditor}
             </div>
 
-            <BlackText
-              style={{
-                textAlign: "center",
-                fontSize: "12px",
-                marginBottom: "20px"
-              }}
-            >
-              Petite tuysse : appuyer sur SHIFT+ENTREE pour faire un retour à la ligne sans espaces
-            </BlackText>
-
             <Row style={{ justifyContent: "center" }}>
               <GreenButton>Mettre à jour</GreenButton>
             </Row>
@@ -258,16 +248,6 @@ export default function Settings(props: {
             <div style={{ marginBottom: "10px" }}>
               {MailEditor}
             </div>
-
-            <BlackText
-              style={{
-                textAlign: "center",
-                fontSize: "12px",
-                marginBottom: "20px"
-              }}
-            >
-              Petite tuysse : appuyer sur SHIFT+ENTREE pour faire un retour à la ligne sans espaces
-            </BlackText>
 
             <Row style={{ justifyContent: "center" }}>
               <MailModal html={MailHTML} />
