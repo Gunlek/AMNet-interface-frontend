@@ -24,33 +24,44 @@ import MailModal from "../../components/Card/Modals/MailModal";
 import axios from "axios";
 
 export async function getServerSideProps() {
-  const access_quantity = await (await axios.get(`http://localhost:3333/access/quantity`)).data
-  const material_quantity = await (await axios.get(`http://localhost:3333/hardware/quantity`)).data
-  const users_quantity = await (await axios.get(`http://localhost:3333/user/quantity`)).data
-  const paid_users_quantity = await (await axios.get(`http://localhost:3333/user/quantity/paid`)).data
-  const lydia_cotiz = await (await axios.get(`http://localhost:3333/settings/lydia_cotiz`)).data
-  const active_proms = await (await axios.get(`http://localhost:3333/settings/active_proms`)).data
-  const usins_state = await (await axios.get(`http://localhost:3333/settings/usins_state`)).data
-  const guest_access = await (await axios.get(`http://localhost:3333/settings/guest_access`)).data
-  const news_message = await (await axios.get(`http://localhost:3333/settings/news_message`)).data
-  
+  const [access_quantity, material_quantity, users_quantity, paid_users_quantity, lydia_cotiz, active_proms, usins_state, guest_access, news_message,] = await Promise.all([
+    axios.get(`http://localhost:3333/access/quantity`),
+    axios.get(`http://localhost:3333/hardware/quantity`),
+    axios.get(`http://localhost:3333/user/quantity`),
+    axios.get(`http://localhost:3333/user/quantity/paid`),
+    axios.get(`http://localhost:3333/settings/lydia_cotiz`),
+    axios.get(`http://localhost:3333/settings/active_proms`),
+    axios.get(`http://localhost:3333/settings/usins_state`),
+    axios.get(`http://localhost:3333/settings/guest_access`),
+    axios.get(`http://localhost:3333/settings/news_message`)
+  ])
+
   return {
-    props: { access_quantity, material_quantity, users_quantity, lydia_cotiz, active_proms, usins_state, guest_access, news_message, paid_users_quantity }
+    props: {
+      access_quantity: access_quantity.data,
+      material_quantity: material_quantity.data,
+      users_quantity: users_quantity.data,
+      lydia_cotiz: lydia_cotiz.data,
+      active_proms: active_proms.data,
+      usins_state: usins_state.data,
+      guest_access: guest_access.data,
+      news_message: news_message.data,
+      paid_users_quantity: paid_users_quantity.data
+    }
   }
 }
 
-export default function Settings(props: { 
-    access_quantity: number, 
-    material_quantity: number, 
-    users_quantity: number, 
-    lydia_cotiz: number, 
-    active_proms: number, 
-    usins_state: boolean, 
-    guest_access: boolean, 
-    news_message: string,
-    paid_users_quantity: number 
-  }) {
-
+export default function Settings(props: {
+  access_quantity: number,
+  material_quantity: number,
+  users_quantity: number,
+  lydia_cotiz: number,
+  active_proms: number,
+  usins_state: boolean,
+  guest_access: boolean,
+  news_message: string,
+  paid_users_quantity: number
+}) {
   const [Checked, setChecked] = useState({
     "Contribution": false,
     "NoContribution": false,
@@ -105,6 +116,18 @@ export default function Settings(props: {
   const [WelcomeMessageEditor, WelcomeMessageHTML] = Editor(props.news_message);
   const [MailEditor, MailHTML] = Editor();
 
+  const updateSettings = (e) => {
+    e.preventDefault();
+  }
+
+  const updateWelcomeMessage = (e) => {
+    e.preventDefault();
+  }
+
+  const sendMail = (e) => {
+    e.preventDefault();
+  }
+
   return (
     <>
       <EditorStyle />
@@ -135,39 +158,37 @@ export default function Settings(props: {
           <Col6 paddingLeft="1%">
             <StyledCard>
               <TitleCard>Paramètres</TitleCard>
-              <form method="post" style={{ marginTop: "20px", height: "100%" }}>
-                <Row style={{ marginBottom: "20px" }}>
-                  <Col6>
-                    <GreenText style={{ marginBottom: "5px" }}>Compte Invité</GreenText>
-                  </Col6>
-                  <Col6 style={{ alignItems: "end" }}>
-                    <StateInvite state={props.guest_access} />
-                  </Col6>
-                </Row>
+              <Row style={{ marginBottom: "20px" }}>
+                <Col6>
+                  <GreenText style={{ marginBottom: "5px" }}>Compte Invité</GreenText>
+                </Col6>
+                <Col6 style={{ alignItems: "end" }}>
+                  <StateInvite state={props.guest_access} />
+                </Col6>
+              </Row>
 
-                <Row style={{ marginBottom: "20px" }}>
-                  <Col6>
-                    <GreenText style={{ marginBottom: "5px" }}>Usinage</GreenText>
-                  </Col6>
-                  <Col6 style={{ alignItems: "end" }}>
-                    <StateIntegration state={props.usins_state} />
-                  </Col6>
-                </Row>
+              <Row style={{ marginBottom: "20px" }}>
+                <Col6>
+                  <GreenText style={{ marginBottom: "5px" }}>Usinage</GreenText>
+                </Col6>
+                <Col6 style={{ alignItems: "end" }}>
+                  <StateIntegration state={props.usins_state} />
+                </Col6>
+              </Row>
 
-                <div style={{ marginBottom: "20px" }}>
-                  <StyledInputLabel htmlFor="AmountContribution">Montant de la cotisation</StyledInputLabel>
-                  <StyledInput id="AmountContribution" type="number" defaultValue={props.lydia_cotiz} />
-                </div>
+              <div style={{ marginBottom: "20px" }}>
+                <StyledInputLabel htmlFor="AmountContribution">Montant de la cotisation</StyledInputLabel>
+                <StyledInput id="AmountContribution" type="number" defaultValue={props.lydia_cotiz} />
+              </div>
 
-                <div style={{ marginBottom: "20px" }}>
-                  <StyledInputLabel htmlFor="SetActivePromotion">Promotion active</StyledInputLabel>
-                  <StyledInput id="SetActivePromotion" type="number" defaultValue={props.active_proms}/>
-                </div>
+              <div style={{ marginBottom: "20px" }}>
+                <StyledInputLabel htmlFor="SetActivePromotion">Promotion active</StyledInputLabel>
+                <StyledInput id="SetActivePromotion" type="number" defaultValue={props.active_proms} />
+              </div>
 
-                <Row style={{ justifyContent: "center" }}>
-                  <GreenButton>Mettre à jour</GreenButton>
-                </Row>
-              </form>
+              <Row style={{ justifyContent: "center" }}>
+                <GreenButton onClick={updateSettings}>Mettre à jour</GreenButton>
+              </Row>
             </StyledCard>
           </Col6>
         </ResponsiveRow>
@@ -175,12 +196,12 @@ export default function Settings(props: {
         <Row marginBottom="2%" mobileMarginBottom="30px">
           <StyledCard style={{ height: "100%" }}>
             <TitleCard>Message d'actualité</TitleCard>
-            <div style={{ marginBottom: "10px" }}>
+            <div style={{ marginBottom: "20px" }}>
               {WelcomeMessageEditor}
             </div>
 
             <Row style={{ justifyContent: "center" }}>
-              <GreenButton>Mettre à jour</GreenButton>
+              <GreenButton onClick={updateWelcomeMessage}>Mettre à jour</GreenButton>
             </Row>
           </StyledCard>
         </Row>
@@ -227,15 +248,15 @@ export default function Settings(props: {
                 <CheckboxRow colWidth="140px" mobileColWidth="125px" style={{ flex: "1", alignItems: "center" }}>
                   <StyledLabel style={{ width: "fit-content" }}>
                     <Checkbox id="NewPromotion" checked={Checked["NewPromotion"]} onChange={handleCheckboxChange} />
-                    <BlackText style={{ marginLeft: "10px" }}>2022</BlackText>
+                    <BlackText style={{ marginLeft: "10px" }}>{props.usins_state ? props.active_proms + 1801 : props.active_proms + 1}</BlackText>
                   </StyledLabel>
                   <StyledLabel style={{ width: "fit-content" }}>
                     <Checkbox id="ActivePromotion" checked={Checked["ActivePromotion"]} onChange={handleCheckboxChange} />
-                    <BlackText style={{ marginLeft: "10px" }}>221</BlackText>
+                    <BlackText style={{ marginLeft: "10px" }}>{props.active_proms}</BlackText>
                   </StyledLabel>
                   <StyledLabel style={{ width: "fit-content" }}>
                     <Checkbox id="OldPromotion" checked={Checked["OldPromotion"]} onChange={handleCheckboxChange} />
-                    <BlackText style={{ marginLeft: "10px" }}>220</BlackText>
+                    <BlackText style={{ marginLeft: "10px" }}>{props.active_proms - 1}</BlackText>
                   </StyledLabel>
                   <StyledLabel style={{ width: "fit-content" }}>
                     <Checkbox id="Other" checked={Checked["Other"]} onChange={handleCheckboxChange} />
@@ -245,12 +266,12 @@ export default function Settings(props: {
               </Col6>
             </ResponsiveRow>
             <StyledInputLabel htmlFor="Mail">Corps du Mail</StyledInputLabel>
-            <div style={{ marginBottom: "10px" }}>
+            <div style={{ marginBottom: "20px" }}>
               {MailEditor}
             </div>
 
             <Row style={{ justifyContent: "center" }}>
-              <MailModal html={MailHTML} />
+              <MailModal onClick={sendMail} html={MailHTML} />
             </Row>
           </StyledCard>
         </Row>
