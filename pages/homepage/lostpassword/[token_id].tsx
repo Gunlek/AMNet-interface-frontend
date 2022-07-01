@@ -9,7 +9,7 @@ import { StyledCardCampus } from "../../../components/Card/style";
 import { Row } from "../../../components/Container/style";
 import PasswordInput from "../../../components/Input/PasswordInput";
 import { StyledInputLabel } from "../../../components/Input/style";
-import { BlackText } from "../../../components/Text/style";
+import { ErrorP } from "../../../components/Text/style";
 
 
 export async function getServerSideProps({ params }) {
@@ -21,14 +21,13 @@ export async function getServerSideProps({ params }) {
 }
 
 export default function ResetPassword(props: { name: string, token: string }) {
-  const [password1, setPassword1] = useState("");
-  const [password2, setPassword2] = useState("");
+  const [form, setForm] = useState({ password1: "", password2: "" });
   const [error, setError] = useState(false)
 
-  const sendRequest = async (e) => {
+  const changePassword = async (e) => {
     e.preventDefault();
-    if (password1 === password2) {
-      await axios.put(`http://localhost:3333/user/password/${props.token}`, { password1: password1, password2: password2 })
+    if (form.password1 === form.password2 && form.password1 !== "") {
+      await axios.put(`http://localhost:3333/user/password/${props.token}`, form)
     }
     else {
       setError(true)
@@ -36,13 +35,9 @@ export default function ResetPassword(props: { name: string, token: string }) {
   }
 
   const onBlur = () => {
-    if (password1 !== password2) {
-      setError(true)
-    }
-    else {
-      setError(false)
-    }
+    setError(form.password1 !== form.password2)
   }
+
   return (
     <>
       <Head>
@@ -59,7 +54,7 @@ export default function ResetPassword(props: { name: string, token: string }) {
         }}
       >
         <StyledCardCampus width="45%">
-          <form>
+          <form onSubmit={changePassword}>
             <Row style={{ marginBottom: "20px", marginTop: "10px", justifyContent: "center" }}>
               <RectangleLogo />
             </Row>
@@ -68,21 +63,21 @@ export default function ResetPassword(props: { name: string, token: string }) {
 
             <div style={{ marginBottom: "20px" }}>
               <StyledInputLabel htmlFor="user_password">Nouveau mot de passe</StyledInputLabel>
-              <PasswordInput id="user_password" onChange={(e) => { setPassword1(e.target.value) }} />
+              <PasswordInput id="user_password" onChange={(e) => { setForm({ password1: e.target.value, password2: form.password2 }) }} />
             </div>
 
             <div style={{ marginBottom: "20px" }}>
               <StyledInputLabel htmlFor="user_password_2">Confirmez votre mot de passe</StyledInputLabel>
-              <PasswordInput id="user_password_2" onChange={(e) => { setPassword2(e.target.value) }} onBlur={onBlur} />
+              <PasswordInput id="user_password_2" onChange={(e) => { setForm({ password1: form.password1, password2: e.target.value }) }} onBlur={onBlur} />
               {error &&
-                <BlackText style={{ color: "red", marginTop: "5px", textAlign: "center" }}>
+                <ErrorP>
                   Les mots de passe saisis ne sont pas identiques !
-                </BlackText>
+                </ErrorP>
               }
             </div>
 
             <Row style={{ justifyContent: "center" }}>
-              <GreenButton type="submit" onClick={sendRequest}>Mettre à jour</GreenButton>
+              <GreenButton type="submit">Mettre à jour</GreenButton>
             </Row>
           </form>
         </StyledCardCampus>
