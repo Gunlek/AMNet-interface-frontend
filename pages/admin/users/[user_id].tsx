@@ -13,12 +13,14 @@ import PasswordInput from "../../../components/Input/PasswordInput";
 import axios from "axios";
 
 export async function getServerSideProps({ params }) {
-    const user = await (await axios.get(`http://localhost:3333/user/${params.user_id}`)).data
-    const active_proms = await (await axios.get(`http://localhost:3333/settings/active_proms`)).data
-    const usins_state = await (await axios.get(`http://localhost:3333/settings/usins_state`)).data
+    const [user, active_proms, usins_state] = await Promise.all([
+        axios.get(`http://localhost:3333/user/${params.user_id}`),
+        axios.get(`http://localhost:3333/settings/active_proms`),
+        axios.get(`http://localhost:3333/settings/usins_state`),
+    ])
 
     return {
-        props: { user, active_proms, usins_state }
+        props: { user: user.data, active_proms: active_proms.data, usins_state: usins_state.data }
     }
 }
 
@@ -50,7 +52,7 @@ export default function User(props: {
             setOther(elmt.target.value == "Other");
             if (elmt.target.value == "Other") elmt.target.value = "NewPromotion"
         }
-        
+
         const handleValueChange2 = (elmt) => {
             setGadz(elmt.target.value == "Yes");
         }
