@@ -91,7 +91,7 @@ export default function ProoveModal(props: { request: any, link: string }) {
                                                             flexDirection: "column"
                                                         }}
                                                     >
-                                                        <Buttons id={props.request['access_id']} status={props.request['access_state']} />
+                                                        <Buttons id={props.request['access_id']} status={props.request['access_state']} requestType="access" />
                                                     </div>
                                                 </StyledTd>
                                             </StyledTr>
