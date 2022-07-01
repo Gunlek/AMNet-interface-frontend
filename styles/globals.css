@@ -1,5 +1,5 @@
 @font-face {
     font-family: "Poppins";
-    src:url("/static/Poppins-Medium.ttf");
+    src: url("/static/Poppins-Medium.ttf") format("truetype");
     font-display: swap;
 }
