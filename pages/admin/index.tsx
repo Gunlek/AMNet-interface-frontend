@@ -271,7 +271,7 @@ export default function Settings(props: {
             </div>
 
             <Row style={{ justifyContent: "center" }}>
-              <MailModal onClick={sendMail} html={MailHTML} />
+              <MailModal html={MailHTML} />
             </Row>
           </StyledCard>
         </Row>
