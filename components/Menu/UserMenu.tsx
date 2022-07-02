@@ -19,18 +19,23 @@ import {
 } from "./style";
 import SmallLogo from "../NavIcons/smallLogo";
 
-
-export default function UserMenu(props: { page: string }) {
+export default function UserMenu(props: { 
+  page: string, 
+  user: { 
+    "is_gadz": boolean,
+    "rank": string,
+    "pay_status": boolean
+  } 
+}) {
   const [scroll, scrolled, top] = useScrollingUp()
   const [open, SetOpen] = useState(false);
-  const Contribution = true;
-  const isGadz = Contribution ? true : false;
-  const isAdmin = true;
-
+  const isGadz = props.user.pay_status ? props.user.is_gadz : false;
+  const isAdmin = props.user.rank === "admin";
+  
   var NumHiddenIcon = 0
   if (!isGadz) NumHiddenIcon++
-  if (!isAdmin) NumHiddenIcon++
-  if (!Contribution) NumHiddenIcon = NumHiddenIcon + 2
+  if (props.user.rank === "user") NumHiddenIcon++
+  if (!props.user.pay_status) NumHiddenIcon = NumHiddenIcon + 2
 
   const mobileHeight = (Math.ceil((7 - NumHiddenIcon) / 3) * 95 + 95).toString()
 
@@ -78,7 +83,7 @@ export default function UserMenu(props: { page: string }) {
             <ProfilIcon page={props.page} />
           </Row>
 
-          {Contribution &&
+          {props.user.pay_status ?
             <>
               <Row style={positionning}>
                 <IoTIcon page={props.page} />
@@ -88,12 +93,16 @@ export default function UserMenu(props: { page: string }) {
                 <MaterialIcon page={props.page} />
               </Row>
             </>
+            :
+            undefined
           }
 
-          {isGadz &&
+          {isGadz ?
             <Row style={positionning}>
               <GadzflixIcon />
             </Row>
+            :
+            undefined
           }
 
           <Row style={positionning}>
