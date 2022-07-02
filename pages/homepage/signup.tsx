@@ -27,17 +27,19 @@ import PasswordInput from "../../components/Input/PasswordInput";
 import PhoneInput from "../../components/Input/PhoneInput";
 import useForm from "../../components/Input/useForm";
 import { useRouter } from "next/router";
-import axios, { AxiosResponse, AxiosError } from 'axios'
+import axios, { AxiosResponse } from 'axios'
+import { useCookies } from "react-cookie";
 
-
-export async function getServerSideProps() {
+export async function getStaticProps() {
   const [active_proms, usins_state, lydia_cotiz] = await Promise.all([
     axios.get(`http://localhost:3333/settings/active_proms`),
     axios.get(`http://localhost:3333/settings/usins_state`),
     axios.get(`http://localhost:3333/settings/lydia_cotiz`)
   ])
+
   return {
-    props: { active_proms: active_proms.data, usins_state: usins_state.data, lydia_cotiz: lydia_cotiz.data }
+    props: { active_proms: active_proms.data, usins_state: usins_state.data, lydia_cotiz: lydia_cotiz.data },
+    revalidate: 3600
   }
 }
 
@@ -50,6 +52,8 @@ export default function SignUp(props: { active_proms: number, usins_state: boole
     setacceptRules({ state: !acceptRules.state, error: acceptRules.state })
   }
 
+  const [cookie, setCookie] = useCookies(["access_token"])
+  
   const {
     form,
     isOther,
@@ -69,9 +73,24 @@ export default function SignUp(props: { active_proms: number, usins_state: boole
 
     if (acceptRules && !errorMessage.password && !errorMessage.format_name && !errorMessage.phone) {
       axios.post("http://localhost:3333/user", form, { validateStatus: () => true })
-        .then((res: AxiosResponse) => {
-          if (res.status == 200) router.push("/");
-          if(res.status === 409) handleFormErrors(res.data['user_name'], res.data['user_email']);
+        .then( async (res: AxiosResponse) => {
+          if (res.status == 200) {
+            const response =  await axios.post(
+              'http://localhost:3333/auth',
+              { name: form.user_name, password: form.user_password }
+            )
+            
+            const access_token = response.data['access_token']
+
+            setCookie("access_token", access_token, {
+              path: "/",
+              maxAge: 3600,
+              sameSite: true,
+            })
+
+            router.push("/")
+          }
+          if (res.status === 409) handleFormErrors(res.data['user_name'], res.data['user_email']);
         })
     }
 
