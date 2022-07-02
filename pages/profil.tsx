@@ -10,33 +10,95 @@ import UserMenu from "../components/Menu/UserMenu";
 import { StateContribution } from "../components/Status/Status";
 import { BlackTitle, BlackText, GreenText } from "../components/Text/style";
 import PasswordInput from "../components/Input/PasswordInput";
+import axios, { AxiosResponse } from "axios";
+import { parseCookies } from "../components/utils";
+import useForm from "../components/Input/useForm";
+import jwt_decode from "jwt-decode";
+import PhoneInput from "../components/Input/PhoneInput";
 
-export default function Profil() {
+
+export async function getServerSideProps({ req, res }) {
+  const cookies = parseCookies(req)
+
+  if (res) {
+    if (Object.keys(cookies).length === 0 && cookies.constructor === Object) {
+      res.writeHead(301, { Location: "/" })
+      res.end()
+    }
+  }
+
+  const userId = await jwt_decode(cookies.access_token)['id'];
+
+  const [user, active_proms, usins_state] = await Promise.all([
+    axios.get(`http://localhost:3333/user/${userId}`),
+    axios.get(`http://localhost:3333/settings/active_proms`),
+    axios.get(`http://localhost:3333/settings/usins_state`),
+  ])
+
+  return {
+    props: { user: user.data, active_proms: active_proms.data, usins_state: usins_state.data }
+  }
+}
+
+export default function Profil(props: {
+  user: {
+    "user_id": number,
+    "user_name": string,
+    "user_firstname": string,
+    "user_lastname": string,
+    "user_email": string,
+    "user_phone": string,
+    "user_bucque": string,
+    "user_fams": string,
+    "user_campus": string,
+    "user_proms": string,
+    "user_rank": string,
+    "user_is_gadz": boolean,
+    "user_pay_status": boolean
+  },
+  active_proms: number,
+  usins_state: boolean
+}) {
   const minWidth1000 = useMediaQuery('(min-width:1000px)');
-  var [isGadz, setGadz] = useState(false);
-  var [isOther, setOther] = useState(false);
+  const {
+    form,
+    isOther,
+    promotion,
+    errorMessage,
+    handleFormChange,
+    handleFormErrors,
+    handlePasswordChange,
+    handleNameChange,
+    handlePhoneChange,
+    cancelOther,
+    blurPassword2
+  } = useForm(props.active_proms, props.usins_state, props.user)
 
+  const editPorifl = (elmt) =>{
+    elmt.preventDefault()
 
-  const handleValueChange = (elmt) => {
-    setGadz(elmt.target.value == "OldPromotion" || elmt.target.value == "ActivePromotion");
-    setOther(elmt.target.value == "Other");
-    if (elmt.target.value == "Other") elmt.target.value = "NewPromotion"
+    if ( !errorMessage.password && !errorMessage.format_name && !errorMessage.phone) {
+      axios.put(`http://localhost:3333/user/${props.user.user_id}`, form, { validateStatus: () => true })
+        .then((res: AxiosResponse) => {
+          if (res.status === 409) handleFormErrors(res.data['user_name'], res.data['user_email']);
+        })
+    }
+
   }
-
-  const CancelChange = () => {
-    setOther(!isOther);
-  }
-
-  useEffect(() => {
-    if (isOther) document.getElementById("user_promotion2").focus()
-  }, [isOther])
 
   return (
     <>
       <Head>
         <title>Mon Profil &bull; AMNet</title>
       </Head>
-      <UserMenu page="profil" />
+      <UserMenu
+        page="profil"
+        user={{
+          is_gadz: props.user.user_is_gadz,
+          rank: props.user.user_rank,
+          pay_status: props.user.user_pay_status
+        }}
+      />
 
       <DashboardContainer>
         <ResponsiveRow margin="1% 0" mobileMargin="20px 0" mobileJustify="center">
@@ -45,16 +107,19 @@ export default function Profil() {
           </Column>
 
           <Column align="end" mobileAlign="center" style={{ flex: "1", justifyContent: "center" }}>
-            <StateContribution status="unpaid" />
+            <StateContribution status={props.user.user_pay_status ? "paid" : "unpaid"} />
           </Column>
         </ResponsiveRow>
 
-        <form style={{ width: "100%", flex: "1", display: "flex", flexDirection: "column" }} method="post">
+        <form style={{ width: "100%", flex: "1", display: "flex", flexDirection: "column" }} onSubmit={editPorifl}>
           <ResponsiveRow style={{ alignItems: "center", marginBottom: "20px" }}>
-            <Col6 mobileMarginBottom="20px" paddingRight="10px" style={{ width: "100%" }}>
+            <Col6 mobileMarginBottom="20px" paddingRight="10px" style={{ width: "100%", position: "relative" }}>
               <StyledInputLabel htmlFor="user_name">Nom d'utilisateur</StyledInputLabel>
-              <StyledInput id="user_name" type="text" />
+              <StyledInput id="user_name" type="text" onChange={handleNameChange} defaultValue={form.user_name} />
+              {errorMessage.name}
+              {errorMessage.format_name}
             </Col6>
+
             <Col6
               paddingLeft="10px" mobileAlign="center"
               style={{
@@ -72,66 +137,75 @@ export default function Profil() {
           <ResponsiveRow style={{ marginBottom: "20px" }}>
             <Col3 paddingRight="10px" mobileMarginBottom="20px">
               <StyledInputLabel htmlFor="user_firstname">Prénom</StyledInputLabel>
-              <StyledInput id="user_firstname" type="text" />
+              <StyledInput id="user_firstname" type="text" onChange={handleFormChange} defaultValue={form.user_firstname} />
             </Col3>
             <Col3 paddingLeft="10px" paddingRight="10px" mobileMarginBottom="20px">
               <StyledInputLabel htmlFor="user_lastname">Nom</StyledInputLabel>
-              <StyledInput id="user_lastname" type="text" />
+              <StyledInput id="user_lastname" type="text" onChange={handleFormChange} defaultValue={form.user_lastname} />
             </Col3>
-            <Col6 paddingLeft="10px">
+            <Col6 paddingLeft="10px" style={{ position: "relative" }}>
               <StyledInputLabel htmlFor="user_email">Adresse e-mail</StyledInputLabel>
-              <StyledInput id="user_email" type="email" />
+              <StyledInput id="user_email" type="email" onChange={handleFormChange} defaultValue={form.user_email} />
+              {errorMessage.email}
             </Col6>
           </ResponsiveRow>
 
           <ResponsiveRow style={{ marginBottom: "20px" }}>
-            <Col6 paddingRight="10px" mobileMarginBottom="20px">
+            <Col6 paddingRight="10px" mobileMarginBottom="20px" style={{ position: "relative" }}>
               <StyledInputLabel htmlFor="user_phone">Téléphone</StyledInputLabel>
-              <StyledInput id="user_phone" type="tel" />
+              <PhoneInput value={form.user_phone} onChange={handlePhoneChange} />
+              {errorMessage.phone}
             </Col6>
+
             <Col6 paddingLeft="10px">
               <StyledInputLabel htmlFor={isOther ? "user_promotion2" : "user_promotion"}>Promotion</StyledInputLabel>
-              <StyledInput
-                defaultValue="NewPromotion"
-                id="user_promotion"
-                style={{ display: isOther ? "none" : "inline" }}
-                onChange={handleValueChange}
-                as="select"
-              >
-                <option value="OldPromotion">219</option>
-                <option value="ActivePromotion">220</option>
-                <option value="NewPromotion">2021</option>
-                <option value="Other">Autre</option>
-              </StyledInput>
-              <div style={{ display: isOther ? "flex" : "none", alignItems: "center" }} >
+              {isOther ?
+                <div style={{ display: "flex", alignItems: "center" }} >
+                  <StyledInput
+                    id="user_proms2"
+                    type="text"
+                    onChange={handleFormChange}
+                    defaultValue={form.user_proms}
+                    required
+                  />
+                  <StyledCancelImg onClick={cancelOther} />
+                </div>
+                :
                 <StyledInput
-                  id="user_promotion2"
-                  type="text"
-                />
-                <StyledCancelImg onClick={CancelChange} />
-              </div>
+                  id="user_proms"
+                  as="select"
+                  onChange={handleFormChange}
+                  defaultValue={form.user_proms}
+                >
+                  <option value={promotion.old}>{promotion.old}</option>
+                  <option value={promotion.active}>{promotion.active}</option>
+                  <option value={promotion.new}>{promotion.new}</option>
+                  <option value="Other">Autre</option>
+                </StyledInput>
+              }
             </Col6>
           </ResponsiveRow>
 
           <ResponsiveRow
-            mobileMarginBottom={isGadz ? "20px" : undefined}
+            mobileMarginBottom={form.user_is_gadz ? "20px" : undefined}
+            Height={form.user_is_gadz ? "93px" : "0px"}
+            MobileHeight={form.user_is_gadz ? "264.6px" : "0px"}
             style={{
-              height: isGadz ? minWidth1000 ? "93px" : "264.6px" : "0px",
               transition: "height 0.3s linear",
               overflowY: "clip",
             }}
           >
             <Col6 paddingRight="10px" mobileMarginBottom="20px">
               <StyledInputLabel htmlFor="user_bucque">Bucque</StyledInputLabel>
-              <StyledInput id="user_bucque" type="text" />
+              <StyledInput id="user_bucque" type="text" onChange={handleFormChange} defaultValue={form.user_bucque} />
             </Col6>
             <Col3 paddingRight="10px" paddingLeft="10px" mobileMarginBottom="20px">
               <StyledInputLabel htmlFor="user_fams">Fam's</StyledInputLabel>
-              <StyledInput id="user_fams" type="text" />
+              <StyledInput id="user_fams" type="text" onChange={handleFormChange} defaultValue={form.user_fams} />
             </Col3>
             <Col3 paddingLeft="10px">
               <StyledInputLabel htmlFor="user_campus">Tabagn's</StyledInputLabel>
-              <StyledInput id="user_campus" name="tbk" as="select">
+              <StyledInput id="user_campus" name="tbk" as="select" onChange={handleFormChange} defaultValue={form.user_campus}>
                 <option value="Li">Birse</option>
                 <option value="An">Boquette</option>
                 <option value="Bo">Bordel's</option>
@@ -144,34 +218,39 @@ export default function Profil() {
             </Col3>
           </ResponsiveRow>
 
-          <ResponsiveRow style={{ marginBottom: "20px" }}>
+          <ResponsiveRow>
             <Col6 paddingRight="10px" mobileMarginBottom="20px">
               <StyledInputLabel htmlFor="user_password">Mot de passe</StyledInputLabel>
-              <PasswordInput id="user_password" />
+              <PasswordInput id="user_password" onChange={handlePasswordChange} />
             </Col6>
             <Col6 paddingLeft="10px">
               <StyledInputLabel htmlFor="user_password2">Confirmez votre Mot de passe</StyledInputLabel>
-              <PasswordInput id="user_password2" />
+              <PasswordInput id="user_password2" onChange={handlePasswordChange} onBlur={blurPassword2} />
             </Col6>
           </ResponsiveRow>
+          {errorMessage.password}
 
           <ResponsiveRow
-            marginBottom={isGadz ? "0" : "20px"}
-            mobileMarginBottom={isGadz ? "10px" : "30px"}
-            style={{ flex: "1", transition: "margin-bottom 0.3s linear" }}
+            marginBottom={form.user_is_gadz ? "0" : "20px"}
+            mobileMarginBottom={form.user_is_gadz ? "10px" : "30px"}
+            style={{ flex: "1", transition: "margin-bottom 0.3s linear", marginTop: "20px" }}
           >
             <Col6 paddingRight="10px"
-              mobileMarginBottom={isGadz ? "20px" : "0"}
-              mobileFlex={isGadz ? undefined : "none !important"}
+              mobileMarginBottom={form.user_is_gadz ? "20px" : "0"}
+              mobileFlex={form.user_is_gadz ? undefined : "none !important"}
               style={{
-                height: isGadz ? "93px" : "0",
+                height: form.user_is_gadz ? "93px" : "0",
                 transition: "height 0.3s linear",
                 overflowY: "clip",
-
               }}
             >
               <GreenText style={{ marginBottom: "5px" }}>Identifiants gadzariques</GreenText>
-              <StyledInput style={{ border: "2px solid transparent", backgroundColor: "rgba(255, 255, 255, 0.6)" }} readOnly value="Mac Nhat'sss 47-102Li219" type="text" />
+              <StyledInput
+                style={{ border: "2px solid transparent", backgroundColor: "rgba(255, 255, 255, 0.6)" }}
+                readOnly
+                value={form.user_bucque + " " + form.user_fams + form.user_campus + form.user_proms}
+                type="text"
+              />
             </Col6>
             <Col6
               paddingLeft="10px"
@@ -179,11 +258,11 @@ export default function Profil() {
               mobileAlign="center"
               style={{
                 justifyContent: "end",
-                paddingBottom: isGadz ? "20px" : "0",
+                paddingBottom: form.user_is_gadz ? "20px" : "0",
                 transition: "padding-bottom 0.3s linear"
               }}
             >
-              <GreenButton>Editer mon profil</GreenButton>
+              <GreenButton type="submit">Editer mon profil</GreenButton>
             </Col6>
           </ResponsiveRow>
         </form>
