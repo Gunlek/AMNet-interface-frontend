@@ -29,45 +29,41 @@ export default function useForm(
     const [isOther, setOther] = useState(false);
     const [onBlurPassword, setOnBlurPassword] = useState(false)
 
-    
-
-    const [form, setForm] = useState({
-        user_name: "",
-        user_firstname: "",
-        user_lastname: "",
-        user_email: "",
-        user_phone: "",
-        user_proms: promotion.new,
-        user_bucque: "",
-        user_fams: "",
-        user_campus: "Li",
-        user_password: "",
-        user_password2: "",
-        user_is_gadz: false,
-        user_pay_status: false,
-        user_rank: "user"
-    })
-
-    if (user) {
-        setForm(
-            {
-                user_name: user.user_name || "",
-                user_firstname: user.user_firstname || "",
-                user_lastname: user.user_lastname || "",
-                user_email: user.user_email || "",
-                user_phone: user.user_phone || "",
-                user_proms: user.user_proms || promotion.new,
-                user_bucque: user.user_bucque || "",
-                user_fams: user.user_fams || "",
-                user_campus: user.user_campus || "Li",
-                user_password: "",
-                user_password2: "",
-                user_is_gadz: user.user_is_gadz || false,
-                user_pay_status: user.user_pay_status || false,
-                user_rank: user.user_rank || "user"
-            }
-        )
-    }
+    const [form, setForm] = useState(user ?
+        {
+            user_name: user.user_name || "",
+            user_firstname: user.user_firstname || "",
+            user_lastname: user.user_lastname || "",
+            user_email: user.user_email || "",
+            user_phone: user.user_phone || "",
+            user_proms: user.user_proms || promotion.new,
+            user_bucque: user.user_bucque || "",
+            user_fams: user.user_fams || "",
+            user_campus: user.user_campus || "Li",
+            user_password: "",
+            user_password2: "",
+            user_is_gadz: user.user_is_gadz || false,
+            user_pay_status: user.user_pay_status || false,
+            user_rank: user.user_rank || "user"
+        }
+        :
+        {
+            user_name: "",
+            user_firstname: "",
+            user_lastname: "",
+            user_email: "",
+            user_phone: "",
+            user_proms: promotion.new,
+            user_bucque: "",
+            user_fams: "",
+            user_campus: "Li",
+            user_password: "",
+            user_password2: "",
+            user_is_gadz: false,
+            user_pay_status: false,
+            user_rank: "user"
+        }
+    )
 
     const [error, setError] = useState({
         user_name: false,
@@ -120,11 +116,11 @@ export default function useForm(
         handleFormChange(elmt)
     }
 
-    const handlePhoneChange = (value: string, isValid : boolean) =>{
-        const newError = {...error}
+    const handlePhoneChange = (value: string, isValid: boolean) => {
+        const newError = { ...error }
         newError.phone = !isValid
         setError(newError)
-        const newForm = {...form}
+        const newForm = { ...form }
         newForm.user_phone = "+" + value
         setForm(newForm)
     }
@@ -174,7 +170,7 @@ export default function useForm(
 
     useEffect(() => {
         if (error.user_name) document.getElementById("user_name").focus()
-        else if(error.user_email) document.getElementById("user_email").focus()
+        else if (error.user_email) document.getElementById("user_email").focus()
     }, [error])
 
     return {
