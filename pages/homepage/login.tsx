@@ -8,15 +8,49 @@ import { StyledCardCampus } from "../../components/Card/style";
 import { Row } from "../../components/Container/style";
 import Checkbox from "../../components/Input/Checkbox";
 import { StyledInputLabel, StyledInput } from "../../components/Input/style";
-import { BlackText, StyledLink } from "../../components/Text/style";
+import { BlackText, ErrorP, StyledLink } from "../../components/Text/style";
 import Link from "next/link";
 import PasswordInput from "../../components/Input/PasswordInput";
+import { useCookies } from "react-cookie"
+import axios from "axios";
+import { useRouter } from "next/router";
 
 export default function Login() {
   const [checked, setChecked] = useState(false);
+  const [form, setForm] = useState({ name: "", password: "" })
+  const [error, setError] = useState(false)
 
   const handleCheckboxChange = (elmt) => {
     setChecked(elmt.target.checked);
+  }
+
+  const handleFormChange = (elmt) => {
+    const newForm = { ...form };
+    newForm[elmt.currentTarget.id] = elmt.target.value;
+    setForm(newForm);
+  }
+
+  const [cookie, setCookie] = useCookies(["access_token"])
+  const router = useRouter()
+
+  const handleSignIn = async (e) => {
+    e.preventDefault()
+    try {
+      const response = await axios.post('http://localhost:3333/auth', form)
+      const access_token = response.data['access_token']
+      
+      setCookie("access_token", access_token, {
+        path: "/",
+        maxAge: checked ? 60 * 60 * 24 * 365 * 10 : 3600,
+        sameSite: true,
+      })
+
+      router.push("/")
+
+    } catch (err: any) {
+      if(err.response.status === 401) setError(true)
+      else console.log(err)
+    }
   }
 
   return (
@@ -41,15 +75,20 @@ export default function Login() {
 
           <TitleCard>Connexion</TitleCard>
 
-          <form method="post">
+          <form onSubmit={handleSignIn}>
             <div style={{ marginBottom: "20px" }}>
-              <StyledInputLabel htmlFor="user_name">Nom d'utilisateur</StyledInputLabel>
-              <StyledInput id="user_name" type="text" />
+              <StyledInputLabel htmlFor="name">Nom d'utilisateur</StyledInputLabel>
+              <StyledInput id="name" type="text" onChange={handleFormChange} />
             </div>
 
-            <div style={{ marginBottom: "20px" }}>
-              <StyledInputLabel htmlFor="user_password">Mot de passe</StyledInputLabel>
-              <PasswordInput id="user_password" />
+            <div style={{ marginBottom: "20px", position: "relative" }}>
+              <StyledInputLabel htmlFor="password">Mot de passe</StyledInputLabel>
+              <PasswordInput id="password" onChange={handleFormChange} />
+              {error &&
+                <ErrorP Fixed={true}>
+                  Identifiant ou mot de passe invalide
+                </ErrorP>
+              }
             </div>
 
             <label style={{ display: "flex", alignItems: "Center", marginBottom: "20px" }}>
@@ -70,7 +109,7 @@ export default function Login() {
             </div>
 
             <Row style={{ justifyContent: "center" }}>
-              <GreenButton>Connexion</GreenButton>
+              <GreenButton type="submit">Connexion</GreenButton>
             </Row>
           </form>
         </StyledCardCampus>
