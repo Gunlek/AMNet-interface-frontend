@@ -6,38 +6,19 @@ import Fail from "../../NavIcons/fail";
 import Succes from "../../NavIcons/succes";
 import { StateRequest } from "../../Status/Status";
 import { StyledLink } from "../../Text/style";
-import { StyledTr, StyledTd, MobileTbody, StyledTable, StyledHeadTr, StyledTh, Tbody } from "../style";
+import { StyledTr, StyledTd, MobileTbody, StyledTable, StyledHeadTr, StyledTh, Tbody, Thead } from "../style";
 import { Buttons } from "./Buttons";
-import MacAdressTd from "./MacAddressInput";
+import MacAdressTd from "../../Input/MacAddressInput";
 import IoTMobileLine from "./MobileLine/IoT";
+import TableTransition from "./TableTransition";
+import { adminAccess } from "../../Utils/types";
 
-export default function IoTAdminTable(props: { requests: any[], status: { old: string, new: string } }) {
+function CreateTable({ requests, Display }: { requests: adminAccess[]; Display: any; }) {
     let listHTML = { active: [], declined: [], pending: [] };
     let mobilelistHTML = { active: [], declined: [], pending: [] };
     let index = { active: 1, declined: 1, pending: 1 };
-    const [Display, setDisplay] = useState({ active: false, declined: false, pending: true })
-    const [Opacity, setOpacity] = useState({ active: "", declined: "", pending: "" })
-    const ContainerRef = useRef(null)
 
-    useEffect(() => {
-        if (props.status.old !== null) {
-            const newOpacity = { active: "", declined: "", pending: "" }
-            newOpacity[props.status.old] = "out"
-            setOpacity(newOpacity)
-
-            setTimeout(() => {
-                const newDisplay = { active: false, declined: false, pending: false }
-                newDisplay[props.status.new] = true
-                setDisplay(newDisplay)
-                const newOpacity = { active: "", declined: "", pending: "" }
-                newOpacity[props.status.new] = "in"
-                setOpacity(newOpacity)
-                ContainerRef.current.scrollTo({ top: 0 })
-            }, 500);
-        }
-    }, [props.status]);
-
-    props.requests.map((value, id) => {
+    requests.map((value, id) => {
         listHTML[value['access_state']].push(
             <StyledTr key={index[value['access_state']]}>
                 <StyledTd>{index[value['access_state']]}</StyledTd>
@@ -69,18 +50,16 @@ export default function IoTAdminTable(props: { requests: any[], status: { old: s
                         style={{
                             display: "flex",
                             justifyContent: "space-between",
-                            width: (props.status.new == "pending") ? "495px" : "320px",
-                            transition: "width 0.5s linear"
+                            width: (value['access_state'] == "pending") ? "495px" : "320px",
                         }}
                     >
-                        <Buttons status={value['access_state']} id={value['access_id']} requestType="access"/>
+                        <Buttons status={value['access_state']} id={value['access_id'].toString()} requestType="access" />
                     </div>
                 </StyledTd>
             </StyledTr>
         );
 
         mobilelistHTML[value['access_state']].push(
-
             <IoTMobileLine
                 key={index[value['access_state']]}
                 index={index[value['access_state']]}
@@ -93,25 +72,37 @@ export default function IoTAdminTable(props: { requests: any[], status: { old: s
         index[value['access_state']]++
     });
 
-    mobilelistHTML.active[mobilelistHTML.active.length - 1] = <IoTMobileLine
-        {...mobilelistHTML.active[mobilelistHTML.active.length - 1].props}
-        key={mobilelistHTML.active[mobilelistHTML.pending.length - 1]}
-        isLast={true}
-    />
+    if (mobilelistHTML.active.length > 0) {
+        mobilelistHTML.active[mobilelistHTML.active.length - 1] = <IoTMobileLine
+            {...mobilelistHTML.active[mobilelistHTML.active.length - 1].props}
+            key={mobilelistHTML.active[mobilelistHTML.pending.length - 1]}
+            isLast={true}
+        />
+    }
 
-    mobilelistHTML.pending[mobilelistHTML.pending.length - 1] = <IoTMobileLine
-        {...mobilelistHTML.pending[mobilelistHTML.pending.length - 1].props}
-        key={mobilelistHTML.pending[mobilelistHTML.pending.length - 1]}
-        isLast={true}
-    />
+    if (mobilelistHTML.pending.length > 0) {
+        mobilelistHTML.pending[mobilelistHTML.pending.length - 1] = <IoTMobileLine
+            {...mobilelistHTML.pending[mobilelistHTML.pending.length - 1].props}
+            key={mobilelistHTML.pending[mobilelistHTML.pending.length - 1]}
+            isLast={true}
+        />
+    }
 
-    mobilelistHTML.declined[mobilelistHTML.declined.length - 1] = <IoTMobileLine
-        {...mobilelistHTML.declined[mobilelistHTML.declined.length - 1].props}
-        key={mobilelistHTML.declined[mobilelistHTML.pending.length - 1]}
-        isLast={true}
-    />
+    if (mobilelistHTML.declined.length > 0) {
+        mobilelistHTML.declined[mobilelistHTML.declined.length - 1] = <IoTMobileLine
+            {...mobilelistHTML.declined[mobilelistHTML.declined.length - 1].props}
+            key={mobilelistHTML.declined[mobilelistHTML.pending.length - 1]}
+            isLast={true}
+        />
+    }
 
-   
+    return [listHTML, mobilelistHTML]
+}
+
+export default function IoTAdminTable(props: { requests: adminAccess[], status: { old: string, new: string } }) {
+    const ContainerRef = useRef(null)
+    const { Display, Opacity } = TableTransition(props.status, ContainerRef)
+    const [listHTML, mobilelistHTML] = CreateTable({ requests: props.requests, Display })
 
     return (
         <MediaContextProvider>
@@ -138,7 +129,7 @@ export default function IoTAdminTable(props: { requests: any[], status: { old: s
 
                 <Media greaterThan="sm">
                     <StyledTable>
-                        <thead style={{ position: "sticky", top: "0", zIndex: "2" }}>
+                        <Thead Opacity={Opacity.head} style={{ position: "sticky", top: "0", zIndex: "2" }}>
                             <StyledHeadTr>
                                 <StyledTh scope="col">#</StyledTh>
                                 <StyledTh scope="col">Utilisateur</StyledTh>
@@ -152,14 +143,14 @@ export default function IoTAdminTable(props: { requests: any[], status: { old: s
                                         style={{
                                             width: (props.status.new == "pending") ? "500px" : "325px",
                                             paddingLeft: "5px",
-                                            transition: "width 0.5s linear"
+                                            transition: "width 0.1s linear 0.5s"
                                         }}
                                     >
                                         Actions
                                     </div>
                                 </StyledTh>
                             </StyledHeadTr>
-                        </thead>
+                        </Thead>
 
                         {Display.pending &&
                             <Tbody Opacity={Opacity.pending}>

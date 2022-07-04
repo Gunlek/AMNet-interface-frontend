@@ -135,8 +135,27 @@ export const Tbody = styled.tbody`
   position: relative;
 `;
 
+export const Thead = styled.thead`
+  animation: ${(props) => props.Opacity == "in" ? opacityIn : props.Opacity == "out" ? opacityOut : undefined} 0.5s linear;
+`;
+
 export const MobileTbody = styled.div`
   animation: ${(props) => props.Opacity == "in" ? opacityIn : props.Opacity == "out" ? opacityOut : undefined} 0.5s linear;
   position: relative;
+`;
+
+export const MacTooltip = styled.div`
+  position: absolute;
+  bottom: -70px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: red;
+  border: 2px solid red;
+  background: white;
+  width: auto;
+  padding: 10px;
+  border-radius: 15px;
+  z-index: 7;
+  animation: ${(props) => props.Opacity == "in" ? opacityIn : props.Opacity == "out" ? opacityOut : undefined} 0.4s;
 `;
 

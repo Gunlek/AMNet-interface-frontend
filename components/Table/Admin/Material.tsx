@@ -5,37 +5,17 @@ import Fail from "../../NavIcons/fail";
 import Succes from "../../NavIcons/succes";
 import { StateRequest } from "../../Status/Status";
 import { StyledLink } from "../../Text/style";
-import { StyledTr, StyledTd, MobileTbody, StyledTable, StyledHeadTr, StyledTh, Tbody } from "../style";
+import { StyledTr, StyledTd, MobileTbody, StyledTable, StyledHeadTr, StyledTh, Tbody, Thead } from "../style";
 import { Buttons } from "./Buttons";
 import MaterialMobileLine from "./MobileLine/Material";
+import TableTransition from "./TableTransition";
 
-export default function MaterialAdminTable(props: { requests: any[], status: { old: string, new: string } }) {
+function CreateTable({ requests, Display }: { requests: any[]; Display: any; }) {
     let listHTML = { active: [], declined: [], pending: [] };
     let mobilelistHTML = { active: [], declined: [], pending: [] };
     let index = { active: 1, declined: 1, pending: 1 };
-    const [Display, setDisplay] = useState({ active: false, declined: false, pending: true })
-    const [Opacity, setOpacity] = useState({ active: "", declined: "", pending: "" })
-    const ContainerRef = useRef(null)
 
-    useEffect(() => {
-        if (props.status.old !== null) {
-            const newOpacity = { active: "", declined: "", pending: "" }
-            newOpacity[props.status.old] = "out"
-            setOpacity(newOpacity)
-
-            setTimeout(() => {
-                const newDisplay = { active: false, declined: false, pending: false }
-                newDisplay[props.status.new] = true
-                setDisplay(newDisplay)
-                const newOpacity = { active: "", declined: "", pending: "" }
-                newOpacity[props.status.new] = "in"
-                setOpacity(newOpacity)
-                ContainerRef.current.scrollTo({ top: 0 })
-            }, 500);
-        }
-    }, [props.status]);
-
-    props.requests.map((value) => {
+    requests.map((value) => {
         listHTML[value['material_state']].push(
             <StyledTr key={index[value['material_state']]} style={{ padding: "10px 0 10px 30px" }}>
                 <StyledTd>{index[value['material_state']]}</StyledTd>
@@ -68,11 +48,11 @@ export default function MaterialAdminTable(props: { requests: any[], status: { o
                         style={{
                             display: "flex",
                             justifyContent: "space-between",
-                            width: (props.status.new == "pending") ? "495px" : "320px",
+                            width: (value['access_state'] == "pending") ? "495px" : "320px",
                             transition: "width 0.5s linear"
                         }}
                     >
-                        <Buttons status={value['material_state']} requestType="hardware"/>
+                        <Buttons status={value['material_state']} requestType="hardware" />
                     </div>
                 </StyledTd>
             </StyledTr>
@@ -91,23 +71,38 @@ export default function MaterialAdminTable(props: { requests: any[], status: { o
         index[value['material_state']]++
     });
 
-    mobilelistHTML.active[mobilelistHTML.active.length - 1] = <MaterialMobileLine
-        {...mobilelistHTML.active[mobilelistHTML.active.length - 1].props}
-        key={mobilelistHTML.active[mobilelistHTML.pending.length - 1]}
-        isLast={true}
-    />
+    if (mobilelistHTML.active.length > 0) {
+        mobilelistHTML.active[mobilelistHTML.active.length - 1] = <MaterialMobileLine
+            {...mobilelistHTML.active[mobilelistHTML.active.length - 1].props}
+            key={mobilelistHTML.active[mobilelistHTML.pending.length - 1]}
+            isLast={true}
+        />
+    }
 
-    mobilelistHTML.pending[mobilelistHTML.pending.length - 1] = <MaterialMobileLine
-        {...mobilelistHTML.pending[mobilelistHTML.pending.length - 1].props}
-        key={mobilelistHTML.pending[mobilelistHTML.pending.length - 1]}
-        isLast={true}
-    />
+    if (mobilelistHTML.pending.length > 0) {
+        mobilelistHTML.pending[mobilelistHTML.pending.length - 1] = <MaterialMobileLine
+            {...mobilelistHTML.pending[mobilelistHTML.pending.length - 1].props}
+            key={mobilelistHTML.pending[mobilelistHTML.pending.length - 1]}
+            isLast={true}
+        />
+    }
 
-    mobilelistHTML.declined[mobilelistHTML.declined.length - 1] = <MaterialMobileLine
-        {...mobilelistHTML.declined[mobilelistHTML.declined.length - 1].props}
-        key={mobilelistHTML.declined[mobilelistHTML.pending.length - 1]}
-        isLast={true}
-    />
+    if (mobilelistHTML.declined.length > 0) {
+        mobilelistHTML.declined[mobilelistHTML.declined.length - 1] = <MaterialMobileLine
+            {...mobilelistHTML.declined[mobilelistHTML.declined.length - 1].props}
+            key={mobilelistHTML.declined[mobilelistHTML.pending.length - 1]}
+            isLast={true}
+        />
+    }
+
+    return [listHTML, mobilelistHTML]
+}
+
+
+export default function MaterialAdminTable(props: { requests: any[], status: { old: string, new: string } }) {
+    const ContainerRef = useRef(null)
+    const { Display, Opacity } = TableTransition(props.status, ContainerRef)
+    const [listHTML, mobilelistHTML] = CreateTable({ requests: props.requests, Display })
 
     return (
         <MediaContextProvider>
@@ -134,7 +129,7 @@ export default function MaterialAdminTable(props: { requests: any[], status: { o
 
                 <Media greaterThan="sm">
                     <StyledTable>
-                        <thead style={{ position: "sticky", top: "0", zIndex: "2" }}>
+                        <Thead Opacity={Opacity.head} style={{ position: "sticky", top: "0", zIndex: "2" }}>
                             <StyledHeadTr>
                                 <StyledTh scope="col">#</StyledTh>
                                 <StyledTh scope="col">Utilisateur</StyledTh>
@@ -154,7 +149,7 @@ export default function MaterialAdminTable(props: { requests: any[], status: { o
                                     </div>
                                 </StyledTh>
                             </StyledHeadTr>
-                        </thead>
+                        </Thead>
 
                         {Display.pending &&
                             <Tbody Opacity={Opacity.pending}>
