@@ -1,92 +1,57 @@
 import { createGlobalStyle } from "styled-components";
 
 export const EditorStyle = createGlobalStyle`
-    .toolbar {
-        background: rgba(255, 255, 255, 0.6);
-        box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.06);
-        display: flex;
-        justify-content: center;
-        border: none;
-        margin-bottom: 20px;
-        padding: 10px;
-        border-radius: 15px;
-        font-size: 1.2rem;
-    }
-
-    .editor{
+    .ql-container{
+        border: 2px solid transparent !important;
         min-height: 150px;
-        background: rgba(255, 255, 255, 0.6);
+        background-color: rgba(255, 255, 255, 0.6);
         box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.06);
         border-radius: 15px;
-        border: 2px solid transparent;
+        width: 100%;
+        transition: border 0.3s, background-color 0.3s;
         font-size: 1.2rem;
-        transition: border 0.2s;
-        padding: 0 20px;
-        transition: border 0.2s;
+        padding: 5px;
     }
 
-    .editorFocused{
-        min-height: 150px;
-        background: rgba(255, 255, 255, 0.8);
-        box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.06);
-        border-radius: 15px;
-        border: 2px solid #096A09;
-        font-size: 1.2rem;
-        transition: border 0.2s;
-        padding: 0 20px;
-        transition: border 0.2s;
+    .ql-container:hover, .focused .ql-container{
+        border: 2px solid #096A09 !important;
+        background-color: rgba(255, 255, 255, 0.8) !important;
     }
 
-    .editor:hover{
-        background: rgba(255, 255, 255, 0.8);
-        border: 2px solid #096A09;
+    .ql-snow.ql-toolbar button{
+        width: 32px !important;
+        height: 27px !important;
     }
 
-    .rdw-option-wrapper {
-        border: 2px solid #096A09;
-        box-shadow: none;
-        padding: 10px;
-        height: 30px;
-        margin: 5px 15px;
-        background: none;
-        border-radius: 9px;
+    .ql-snow .ql-stroke {
+        stroke-width: 1;
     }
 
-    .rdw-option-wrapper:hover {
-        box-shadow: none;
-    }
-
-    .rdw-dropdown-wrapper {
-        border: 2px solid #096A09;
-        box-shadow: none;
-        padding: 10px 0;
-        height: 30px;
-        margin: 5px 15px;
-        background: none;
-        border-radius: 9px;
-    }
-
-    .rdw-dropdown-wrapper:hover {
-        box-shadow: none;
-    }
-    
-    .rdw-fontsize-dropdown{
-        width: 50px;
-    }
-
-    @media screen and (max-width: 1000px) {
-        .wrapper {
-            font-size: 16px;
+    .ql-picker-label{ 
+        font-size: 1.2rem ;
+        
+        svg{
+            right: -7px !important;
+            stroke-width: 2 !important;
         }
+    }
 
-        .rdw-option-wrapper {
-            padding: 10px;
-            margin: 5px 7.5px;
-        }
+    .ql-picker-item:hover, 
+    .ql-picker-label:hover, 
+    .ql-snow.ql-toolbar .ql-picker-label:hover .ql-stroke, 
+    .ql-snow.ql-toolbar .ql-picker-item.ql-selected,
+    .ql-snow.ql-toolbar button:hover .ql-stroke,
+    .ql-snow.ql-toolbar button.ql-active .ql-stroke,
+    .ql-snow.ql-toolbar .ql-picker-item.ql-selected .ql-stroke,
+    .ql-snow.ql-toolbar .ql-picker-item:hover,
+    .ql-snow.ql-toolbar .ql-picker-item:hover .ql-stroke
+     {
+        color: #096A09 !important;
+        stroke: #096A09 !important;
+    }
 
-        .rdw-dropdown-wrapper {
-            padding: 10px 0;
-            margin: 5px 7.5px;
-        }
+    .ql-snow.ql-toolbar button:hover .ql-fill,
+    .ql-snow.ql-toolbar button.ql-active{
+        fill: #096A09 !important;
     }
 `
