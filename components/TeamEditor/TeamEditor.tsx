@@ -5,22 +5,7 @@ import { StyledInput, StyledInputLabel } from '../Input/style';
 import { GreenText } from '../Text/style';
 import TeamList from './TeamList';
 
-export const TeamEditor = () => {
-    const accutalTeam = [
-        {
-            pseudo: "Trobotyk'ss (ML)°",
-            id: "47Li220"
-        },
-        {
-            pseudo: "Sdoosh",
-            id: "96Li220"
-        },
-        {
-            pseudo: "Nem'O",
-            id: "74Li220"
-        }
-    ];
-
+export default function TeamEditor(accutalTeam: { pseudo: string, id: string }[]) {
     let [team, setTeam] = useState(accutalTeam);
     let [pseudo, setPseudo] = useState("");
     let [id, setId] = useState("");
@@ -41,41 +26,45 @@ export const TeamEditor = () => {
         setTeam(NewTeam)
     }
 
-    return [
+    const teamEditor = () => {
+        return (
+            <>
+                <form onSubmit={registerNewTeamMember}>
+                    <ResponsiveRow style={{ marginBottom: "20px" }}>
+                        <Col5 paddingRight="10px" mobileMarginBottom="20px">
+                            <StyledInputLabel htmlFor="adminr_bucque" style={{ paddingLeft: "5px" }}>Bucque</StyledInputLabel>
+                            <StyledInput id="admin_bucque" type="text" onChange={(elmt) => setPseudo(elmt.target.value)} />
+                        </Col5>
+                        <Col5
+                            paddingRight="10px"
+                            mobileMarginBottom="20px"
+                            paddingLeft="10px"
+                        >
+                            <StyledInputLabel htmlFor="admin_num" style={{ paddingLeft: "5px" }}>Num's</StyledInputLabel>
+                            <StyledInput id="admin_num" type="text" onChange={(elmt) => setId(elmt.target.value)} />
+                        </Col5>
+
+                        <Col2
+                            paddingLeft="10px"
+                            paddingRight="10px"
+                            style={{
+                                justifyContent: "end", alignItems: "center",
+                                minWidth: "170px",
+                            }}
+                        >
+                            <SmallGreenButton type="submit">Ajouter</SmallGreenButton>
+                        </Col2>
+                    </ResponsiveRow>
+                </form>
+
+                <GreenText>La Team actuelle</GreenText>
+                <TeamList list={team} setter={SetterTeam} />
+            </>
+        )
+    }
+
+    return {
         team,
-        <>
-            <form>
-                <ResponsiveRow style={{ marginBottom: "20px" }}>
-                    <Col5 paddingRight="10px" mobileMarginBottom="20px">
-                        <StyledInputLabel htmlFor="adminr_bucque" style={{ paddingLeft: "5px" }}>Bucque</StyledInputLabel>
-                        <StyledInput id="admin_bucque" type="text" onChange={(elmt) => setPseudo(elmt.target.value)} />
-                    </Col5>
-                    <Col5
-                        paddingRight="10px"
-                        mobileMarginBottom="20px"
-                        paddingLeft="10px"
-                    >
-                        <StyledInputLabel htmlFor="admin_num" style={{ paddingLeft: "5px" }}>Num's</StyledInputLabel>
-                        <StyledInput id="admin_num" type="text" onChange={(elmt) => setId(elmt.target.value)} />
-                    </Col5>
-
-                    <Col2
-                        paddingLeft="10px"
-                        paddingRight="10px"
-                        style={{
-                            justifyContent: "end", alignItems: "center",
-                            minWidth: "170px",
-                        }}
-                    >
-                        <SmallGreenButton type="submit" onClick={registerNewTeamMember}>Ajouter</SmallGreenButton>
-                    </Col2>
-                </ResponsiveRow>
-            </form>
-
-            <GreenText>La Team actuelle</GreenText>
-            <TeamList list={team} setter={SetterTeam} />
-        </>
-    ];
+        teamEditor
+    };
 }
-
-export default TeamEditor
