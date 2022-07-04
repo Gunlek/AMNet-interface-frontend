@@ -1,32 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { ErrorP } from "../Text/style";
+import { user } from "../../components/Utils/types";
 
 export default function useForm(
     active_proms: number,
     usins_state: boolean,
-    user?: {
-        user_name?: string,
-        user_firstname?: string,
-        user_lastname?: string,
-        user_email?: string,
-        user_phone?: string,
-        user_bucque?: string,
-        user_fams?: string,
-        user_campus?: string,
-        user_proms?: string,
-        user_password?: string,
-        user_password2?: string,
-        user_is_gadz?: boolean,
-        user_pay_status?: boolean,
-        user_rank?: string
-    }
+    user?: user
 ) {
     const promotion = {
         new: (usins_state ? active_proms + 1801 : active_proms + 1).toString(),
         active: active_proms.toString(),
         old: (active_proms - 1).toString()
     }
-    const [isOther, setOther] = useState(false);
+    const [isOther, setOther] = useState([promotion.new, promotion.active, promotion.old].indexOf(user.user_proms) === -1);
     const [onBlurPassword, setOnBlurPassword] = useState(false)
 
     const [form, setForm] = useState(user ?
@@ -165,7 +151,8 @@ export default function useForm(
     }
 
     useEffect(() => {
-        if (isOther) document.getElementById("user_proms2").focus()
+        const input = document.getElementById("user_proms2")
+        if (isOther && input) input.focus()
     }, [isOther])
 
     useEffect(() => {
