@@ -32,7 +32,7 @@ export function StateContribution(props: { status: string }) {
         }}
       >
         <StyledStateContribution style={{ marginRight: "15px" }}>
-          <BlackText style={{ paddingRight: "10px", fontSize: "18px"  }}>Cotisation :</BlackText>
+          <BlackText style={{ paddingRight: "10px", fontSize: "18px" }}>Cotisation :</BlackText>
           <Fail />
         </StyledStateContribution>
         <ContributionModal />
@@ -61,11 +61,11 @@ export function StateInvite(props: { state?: boolean }) {
   }
 
   return (
-    <StyledStateInvite 
-      status={state} 
+    <StyledStateInvite
+      status={state}
       onChange={handleValueChange}
       defaultValue={props.state ? "enabled" : "disabled"}
-      >
+    >
       <option value="enabled">Activé</option>
       <option value="disabled">Désactivé</option>
     </StyledStateInvite>
@@ -80,9 +80,9 @@ export function StateIntegration(props: { state?: boolean }) {
   }
 
   return (
-    <StyledStateInvite 
-      status={state} 
-      onChange={handleValueChange} 
+    <StyledStateInvite
+      status={state}
+      onChange={handleValueChange}
       defaultValue={props.state ? "enabled" : "disabled"}
     >
       <option value="enabled">Ayat's</option>
@@ -91,19 +91,21 @@ export function StateIntegration(props: { state?: boolean }) {
   );
 }
 
-export function AdminStateContribution(props: { state?: boolean, id: string }) {
-  const [state, setState] = useState(props.state);
-
-  const handleValueChange = (elmt) => {
-    setState(elmt.target.value == "enabled");
+export function AdminStateContribution(props: { state: boolean, id: string, onChange: Function }) {
+  const handleChange = (elmt) =>{
+    const newElmt = {...elmt};
+    newElmt.target.value = elmt.target.value === "enabled";
+    console.log(elmt);
+    console.log(newElmt)
+    props.onChange(newElmt);
   }
 
   return (
     <StyledStateInvite
       id={props.id}
-      status={state}
-      onChange={handleValueChange}
-      defaultValue={props.state ? "enabled" : "disabled"}
+      status={props.state}
+      onChange={handleChange}
+      defaultValue={props.state}
       style={{ width: "100%" }}
     >
       <option value="enabled">Payée</option>
@@ -112,19 +114,13 @@ export function AdminStateContribution(props: { state?: boolean, id: string }) {
   );
 }
 
-export function AdminStateRank(props: { state?: boolean, id: string }) {
-  const [state, setState] = useState(props.state);
-
-  const handleValueChange = (elmt) => {
-    setState(elmt.target.value == "admin");
-  }
-
+export function AdminStateRank(props: { state: string, id: string, onChange: Function }) {
   return (
     <StyledStateInvite
       id={props.id}
-      status={state}
-      onChange={handleValueChange}
-      defaultValue={props.state ? "admin" : "user"}
+      status={props.state === "admin"}
+      onChange={props.onChange}
+      defaultValue={props.state}
       DefaultColor="#FF9900"
       style={{ width: "100%" }}
     >
