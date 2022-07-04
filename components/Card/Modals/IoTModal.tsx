@@ -4,77 +4,67 @@ import { ResponsiveRow, Row } from "../../Container/style";
 import FileUploader from "../../Input/FileUploader";
 import { StyledInputLabel, StyledInput } from "../../Input/style";
 import useMediaQuery from "../../MediaQueries/MediaQuery";
-import { BlackText, StyledLink } from "../../Text/style";
+import { BlackText, ErrorP, StyledLink } from "../../Text/style";
+import MacAddressVerification from "../../Utils/macaddress";
 import { TitleCard } from "../Cards";
 import { StyledDeleteImg } from "../Images/style";
 import { ModalLogic } from "./ModalLogic";
 import { StyledBackgroundModal, StyledModal } from "./style";
 
-const replaceAll = (str: string, search: string, replace: string) => {
-    return str.split(search).join(replace);
-}
-
-const isMacAddress = (MacAddress: string) => {
-    const regex = /^([0-9A-F]{2}){5}([0-9A-F]{2})$/;
-
-    return regex.test(MacAddress)
-}
-
-export const MacAddressVerification = (MacAddress: string) => {
-    const newMacAddress = replaceAll(replaceAll(replaceAll(replaceAll(MacAddress, '-', ''), ':', ''), ' ', ''), ';', '').toUpperCase()
-    const Verification = isMacAddress(newMacAddress)
-
-    if (Verification) return newMacAddress
-    else return ""
-};
-
 export default function IoTModal() {
     const minWidth1000 = useMediaQuery('(min-width: 1000px)')
     const { Display, Opacity, toggle } = ModalLogic()
-    const [File, setFile] = useState(null);
-    const [macAddress, setMacAddress] = useState("");
-    const [description, setDescription] = useState("");
-    const [fillingError, setFillingError] = useState({ macAddress: false, description: false, File: false });
+    const [form, setForm] = useState({ access_mac: "", access_description: "", acces_proof: null });
+
+    const [error, setError] = useState({
+        access_mac: false,
+        access_description: false,
+        acces_proof: false
+    });
 
     useEffect(() => {
-        if (fillingError.File && File) {
-            const NewFillingError = { ...fillingError };
-            NewFillingError.File = false;
-            setFillingError(NewFillingError)
+        if (error.acces_proof && form.acces_proof) {
+            const Newerror = { ...error };
+            Newerror.acces_proof = false;
+            setError(Newerror);
         }
-    }, [File]);
+    }, [Display]);
 
-    function Setfile(id: string, file: any) {
-        setFile(file);
+    const handleFormChange = (elmt, id?: string) => {
+        const newForm = { ...form };
+        if (id) newForm[id] = elmt
+        else newForm[elmt.currentTarget.id] = elmt.target.value;
+        setForm(newForm);
     }
 
-    function DeleteFile() {
-        const input = document.getElementById("picture_equipment") as HTMLInputElement;
-        input.value = null;
-        setFile(null);
-        const NewFillingError = { ...fillingError };
-        NewFillingError.File = true;
-        setFillingError(NewFillingError)
+    const verification = (elmt) => {
+        const newError = { ...error };
+
+        if (elmt.currentTarget.id == "access_mac") newError.access_mac = MacAddressVerification(elmt.target.value) === "";
+        else newError.access_description = elmt.target.value === "";
+
+        setError(newError)
     }
 
-    const onBlurVerification = (e) => {
-        if (e.currentTarget.id === "mac_adress_equipment") {
-            const NewFillingError = { ...fillingError };
-            NewFillingError.macAddress = MacAddressVerification(macAddress) === "";
-            setFillingError(NewFillingError)
-        }
-        if (e.currentTarget.id === "description_equipment") {
-            const NewFillingError = { ...fillingError };
-            NewFillingError.description = description === "";
-            setFillingError(NewFillingError)
-        }
+    const deleteFile = (elmt) => {
+        elmt.preventDefault();
+        (document.getElementById("acces_proof") as HTMLInputElement).value = null;
+        const newForm = { ...form };
+        newForm.acces_proof = null;
+        setForm(newForm);
+        const Newerror = { ...error };
+        Newerror.acces_proof = true;
+        setError(Newerror);
     }
 
     const SendReq = (e) => {
         e.preventDefault();
-        const verifiedMacAddress = MacAddressVerification(macAddress)
-        const newFillingError = { macAddress: verifiedMacAddress === "", description: description === "", File: File === null }
-        setFillingError(newFillingError)
+        const newError = {
+            access_mac: MacAddressVerification(form.access_mac) === "",
+            access_description: form.access_description === "",
+            acces_proof: form.acces_proof === null
+        };
+        setError(newError);
     }
 
     return (
@@ -85,45 +75,48 @@ export default function IoTModal() {
                     <StyledBackgroundModal onClick={toggle} Opacity={Opacity} />
                     <StyledModal width={minWidth1000 ? "900px" : undefined} Opacity={Opacity}>
                         <TitleCard hideLine={!minWidth1000}>Demande d'accès pour un objet connecté</TitleCard>
-                        <div style={{ marginBottom: "20px", width: "100%" }}>
-                            <StyledInputLabel htmlFor="mac_adress_equipment">Adresse Physique</StyledInputLabel>
+                        <div style={{ width: "100%", position: "relative" }}>
+                            <StyledInputLabel htmlFor="access_mac">Adresse Physique</StyledInputLabel>
                             <StyledInput
                                 border="2px solid rgba(0, 159, 0, 0.15)"
-                                id="mac_adress_equipment"
+                                id="access_mac"
                                 placeholder="Par exemple: 5E:FF:56:A2:AF:15"
-                                onChange={(elmt) => setMacAddress(elmt.target.value)}
-                                onBlur={onBlurVerification}
+                                onChange={handleFormChange}
+                                onBlur={verification}
                             />
-                            {fillingError.macAddress &&
-                                <BlackText style={{ color: "red", marginTop: "5px" }}>
+                            {error.access_mac &&
+                                <ErrorP Fixed={true}>
                                     L'adresse physique est invalide
-                                </BlackText>
+                                </ErrorP>
                             }
                         </div>
-                        <div style={{ marginBottom: "20px", width: "100%" }}>
-                            <StyledInputLabel htmlFor="description_equipment">Description</StyledInputLabel>
+
+                        <div style={{ marginTop: "20px", width: "100%", position: "relative" }}>
+                            <StyledInputLabel htmlFor="access_description">Description</StyledInputLabel>
                             <StyledInput
                                 border="2px solid rgba(0, 159, 0, 0.15)"
-                                id="description_equipment"
+                                id="access_description"
                                 placeholder="Par exemple: Chromecast"
-                                onChange={(elmt) => setDescription(elmt.target.value)}
-                                onBlur={onBlurVerification}
+                                onChange={handleFormChange}
+                                onBlur={verification}
                             />
-                            {fillingError.description &&
-                                <BlackText style={{ color: "red", marginTop: "5px" }}>
+                            {error.access_description &&
+                                <ErrorP Fixed={true}>
                                     La description est obligatoire
-                                </BlackText>
+                                </ErrorP>
                             }
                         </div>
-                        <div style={{ marginBottom: "30px", width: "100%" }}>
+
+                        <div style={{ marginBottom: "30px", width: "100%", marginTop: "20px", position: "relative" }}>
                             <StyledInputLabel
                                 style={{ display: "block" }}
-                                htmlFor="picture_equipment"
+                                htmlFor="acces_proof"
                             >
-                                Photographie de l'objet avec Adresse Physique visible</StyledInputLabel>
+                                Photo de l'objet
+                            </StyledInputLabel>
                             <ResponsiveRow style={{ alignItems: "center" }}>
-                                <FileUploader id="picture_equipment" setfile={Setfile} accept=".jpeg, .jpg, .png, .svg" />
-                                {File &&
+                                <FileUploader id="acces_proof" setfile={handleFormChange} accept=".jpeg, .jpg, .png, .svg" />
+                                {form.acces_proof &&
                                     <div
                                         style={{
                                             marginLeft: minWidth1000 && "10px",
@@ -136,18 +129,18 @@ export default function IoTModal() {
                                             color="black"
                                             hovercolor="#2E8A21"
                                             target="_blank"
-                                            href={URL.createObjectURL(File)}
+                                            href={URL.createObjectURL(form.acces_proof)}
                                         >
-                                            {File["name"]}
+                                            {form.acces_proof["name"]}
                                         </StyledLink>
-                                        <StyledDeleteImg onClick={() => DeleteFile()} />
+                                        <StyledDeleteImg onClick={deleteFile} />
                                     </div>
                                 }
                             </ResponsiveRow>
-                            {fillingError.File &&
-                                <BlackText style={{ color: "red", marginTop: "5px" }}>
-                                    La photograpgie est obligatoire
-                                </BlackText>
+                            {error.acces_proof &&
+                                <ErrorP Fixed={true}>
+                                    La photo est obligatoire
+                                </ErrorP>
                             }
                         </div>
                         <Row style={{ justifyContent: "center" }}>
