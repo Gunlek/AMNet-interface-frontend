@@ -32,7 +32,7 @@ export default function UserMenu(props: {
   const isGadz = props.user.pay_status ? props.user.is_gadz : false;
   const isAdmin = props.user.rank === "admin";
   
-  var NumHiddenIcon = 0
+  let NumHiddenIcon = 0
   if (!isGadz) NumHiddenIcon++
   if (props.user.rank === "user") NumHiddenIcon++
   if (!props.user.pay_status) NumHiddenIcon = NumHiddenIcon + 2
