@@ -1,5 +1,4 @@
 import Head from "next/head";
-import { useRouter } from "next/router";
 import { CookiesProvider } from "react-cookie";
 import 'regenerator-runtime/runtime'
 import { GlobalStyle } from "../styles/global";
