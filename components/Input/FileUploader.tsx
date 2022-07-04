@@ -23,8 +23,7 @@ const FileUploader = (props: {accept?: string, id?: string, setfile?: Function }
 
     const handleChange = (e) => {
         const fileUploaded = e.target.files[0];
-        props.setfile(props.id, fileUploaded);
-
+        props.setfile(fileUploaded, props.id);
     };
 
     return (
