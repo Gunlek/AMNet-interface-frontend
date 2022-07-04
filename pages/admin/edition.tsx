@@ -11,16 +11,59 @@ import AdminMenu from "../../components/Menu/AdminMenu";
 import { BlackText, BlackTitle, GreenText, StyledLink } from "../../components/Text/style";
 import { GreenButton } from "../../components/Button/Buttons";
 import { Footer, TitleCard } from "../../components/Card/Cards";
-import { TeamEditor } from "../../components/TeamEditor/TeamEditor";
+import TeamEditor  from "../../components/TeamEditor/TeamEditor";
 import useMediaQuery from "../../components/MediaQueries/MediaQuery";
 import FileUploader from "../../components/Input/FileUploader";
 import TeamPicture from "../../components/Card/TeamPicture";
 import { StyledDeleteImg } from "../../components/Card/Images/style";
+import jwt_decode from "jwt-decode";
+import axios from "axios";
+import parseCookies from "../../components/Utils/cookie";
 
+export async function getServerSideProps({ req, res }) {
+  const cookies = parseCookies(req)
 
-export default function Edition() {
+  if (cookies.access_token) {
+    const userId = await jwt_decode(cookies.access_token)['id'];
+    const [accutalTeam, user] = await Promise.all([
+      axios.get('http://localhost:3333/settings/admin-list'),
+      axios.get(`http://localhost:3333/user/${userId}`)
+    ])
+
+    if (user.data.user_rank === "admin") {
+      if (res) {
+        if (Object.keys(cookies).length === 0 && cookies.constructor === Object) {
+          res.writeHead(301, { Location: "/" })
+          res.end()
+        }
+      }
+
+      return {
+        props: { accutalTeam: accutalTeam.data }
+      }
+    }
+    else {
+      return {
+        redirect: {
+          destination: '/',
+          permanent: false,
+        },
+      }
+    }
+  }
+  else {
+    return {
+      redirect: {
+        destination: '/homepage',
+        permanent: false,
+      },
+    }
+  }
+}
+
+export default function Edition(props: {accutalTeam: { pseudo: string, id: string }[]}) {
   const minWidth1000 = useMediaQuery('(min-width:1000px)');
-  const [Team, teamEditor] = TeamEditor()
+  const {team, teamEditor} = TeamEditor(props.accutalTeam)
   const [TabFile, setTabFile] = useState({ IR: null, Status: null, TeamPicture: null });
   const [URLTeamPicture, setURLTeamPicture] = useState(undefined)
 
@@ -41,16 +84,15 @@ export default function Edition() {
       setURLTeamPicture(undefined)
   }, [TabFile]);
 
-  const SetFile = (id: string, file: any) => {
+  const SetFile = (file: File, id: string) => {
     let NemTabFile = { ...TabFile };
     NemTabFile[id] = file;
     setTabFile(NemTabFile);
   }
 
   const DeleteFile = (id: string) => {
-    const input = document.getElementById(id) as HTMLInputElement;
-    input.value = null;
-    let NemTabFile = { ...TabFile };
+    (document.getElementById(id) as HTMLInputElement).value = null;
+    const NemTabFile = { ...TabFile };
     NemTabFile[id] = null;
     setTabFile(NemTabFile);
   }
@@ -233,15 +275,15 @@ export default function Edition() {
                 </StyledLink>
               </BlackText>
 
-              {teamEditor}
+              {teamEditor()}
             </Col6>
 
             <Col6 marginLeft="1%">
               <GreenText style={{ marginBottom: "5px" }}>Apercu de la Photo avec les bucques</GreenText>
               <TeamPicture
+                Team={team}
                 outline="3px solid #096a09"
                 background={URLTeamPicture}
-                Team={Team}
               />
             </Col6>
           </ResponsiveRow>
