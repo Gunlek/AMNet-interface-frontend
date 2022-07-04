@@ -25,18 +25,27 @@ import {
 } from "../../components/Text/style";
 import { CampusGlobalStyle } from "../../components/Background/style";
 import axios from "axios";
+import parseCookies from "../../components/Utils/cookie";
 
-export async function getStaticProps() {
-  const accutalTeam  = await (await axios.get('http://localhost:3333/settings/admin-list')).data
+export async function getServerSideProps({ req, res }) {
+  const accutalTeam = await axios.get('http://localhost:3333/settings/admin-list')
+  const cookies = parseCookies(req)
+
+  if (cookies.access_token) {
+    if (res) {
+      if (Object.keys(cookies).length === 0 && cookies.constructor === Object) {
+        res.writeHead(301, { Location: "/" })
+        res.end()
+      }
+    }
+  }
 
   return {
-    props: { accutalTeam },
-    revalidate: 3600,
+    props: { accutalTeam: accutalTeam.data, isLogged: cookies.access_token ? true : false }
   }
 }
 
-export default function Homepage(props: { accutalTeam }) {
-  const isLogged = false;
+export default function Homepage(props: { accutalTeam: { pseudo: string, id: string }[], isLogged: boolean }) {
   return (
     <>
       <Head>
@@ -49,7 +58,7 @@ export default function Homepage(props: { accutalTeam }) {
           <RectangleLogo color="white" easter={true} />
         </Col6>
         <Col6 align="end" mobileAlign="center" justify="center">
-          <ButtonLink href={isLogged ? "/" : "/homepage/login"} width="300px">Accéder à Mon Compte</ButtonLink>
+          <ButtonLink href={props.isLogged ? "/" : "/homepage/login"} width="300px">Accéder à Mon Compte</ButtonLink>
         </Col6>
       </Row>
 

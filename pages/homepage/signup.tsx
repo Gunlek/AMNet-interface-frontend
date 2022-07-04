@@ -29,17 +29,37 @@ import useForm from "../../components/Input/useForm";
 import { useRouter } from "next/router";
 import axios, { AxiosResponse } from 'axios'
 import { useCookies } from "react-cookie";
+import parseCookies from "../../components/Utils/cookie";
 
-export async function getStaticProps() {
-  const [active_proms, usins_state, lydia_cotiz] = await Promise.all([
-    axios.get(`http://localhost:3333/settings/active_proms`),
-    axios.get(`http://localhost:3333/settings/usins_state`),
-    axios.get(`http://localhost:3333/settings/lydia_cotiz`)
-  ])
+export async function getServerSideProps({ req, res }) {
 
-  return {
-    props: { active_proms: active_proms.data, usins_state: usins_state.data, lydia_cotiz: lydia_cotiz.data },
-    revalidate: 3600
+  const cookies = parseCookies(req)
+
+  if (cookies.access_token) {
+    if (res) {
+      if (Object.keys(cookies).length === 0 && cookies.constructor === Object) {
+        res.writeHead(301, { Location: "/" })
+        res.end()
+      }
+    }
+
+    return {
+      redirect: {
+        destination: '/',
+        permanent: false,
+      },
+    }
+  }
+  else {
+    const [active_proms, usins_state, lydia_cotiz] = await Promise.all([
+      axios.get(`http://localhost:3333/settings/active_proms`),
+      axios.get(`http://localhost:3333/settings/usins_state`),
+      axios.get(`http://localhost:3333/settings/lydia_cotiz`)
+    ])
+
+    return {
+      props: { active_proms: active_proms.data, usins_state: usins_state.data, lydia_cotiz: lydia_cotiz.data }
+    }
   }
 }
 
@@ -48,12 +68,16 @@ export default function SignUp(props: { active_proms: number, usins_state: boole
   const [acceptRules, setacceptRules] = useState({ state: false, error: false });
   const router = useRouter()
 
+  useEffect(() => {
+    router.prefetch('/');
+  }, [])
+
   const handleRadioChange = () => {
     setacceptRules({ state: !acceptRules.state, error: acceptRules.state })
   }
 
   const [cookie, setCookie] = useCookies(["access_token"])
-  
+
   const {
     form,
     isOther,
@@ -73,13 +97,13 @@ export default function SignUp(props: { active_proms: number, usins_state: boole
 
     if (acceptRules && !errorMessage.password && !errorMessage.format_name && !errorMessage.phone) {
       axios.post("http://localhost:3333/user", form, { validateStatus: () => true })
-        .then( async (res: AxiosResponse) => {
+        .then(async (res: AxiosResponse) => {
           if (res.status == 200) {
-            const response =  await axios.post(
+            const response = await axios.post(
               'http://localhost:3333/auth',
               { name: form.user_name, password: form.user_password }
             )
-            
+
             const access_token = response.data['access_token']
 
             setCookie("access_token", access_token, {

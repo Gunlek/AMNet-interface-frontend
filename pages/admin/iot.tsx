@@ -9,19 +9,55 @@ import { Footer } from "../../components/Card/Cards";
 import IoTAdminTable from "../../components/Table/Admin/IoT";
 import useMediaQuery from "../../components/MediaQueries/MediaQuery";
 import axios from "axios";
+import { adminAccess } from "../../components/Utils/types";
+import parseCookies from "../../components/Utils/cookie";
+import jwt_decode from "jwt-decode";
+import { user } from "../../components/Utils/types";
 
-export async function getServerSideProps() {
-  const access = await (await axios.get(`http://localhost:3333/access`)).data
+export async function getServerSideProps({ req, res }) {
+  const cookies = parseCookies(req)
 
-  return {
-      props: { access }
+  if (cookies.access_token) {
+    const userId = await jwt_decode(cookies.access_token)['id'];
+    const user = await (await axios.get(`http://localhost:3333/user/${userId}`)).data as user;
+
+    if (user.user_rank === "admin") {
+      if (res) {
+        if (Object.keys(cookies).length === 0 && cookies.constructor === Object) {
+          res.writeHead(301, { Location: "/" })
+          res.end()
+        }
+      }
+
+      const access = await (await axios.get(`http://localhost:3333/access`)).data as adminAccess[]
+
+      return {
+        props: { access }
+      }
+    }
+    else {
+      return {
+        redirect: {
+          destination: '/',
+          permanent: false,
+        },
+      }
+    }
+  }
+  else {
+    return {
+      redirect: {
+        destination: '/homepage',
+        permanent: false,
+      },
+    }
   }
 }
 
-export default function AdminIoT(props: { access }) {
+export default function AdminIoT(props: { access: adminAccess[] }) {
   const [Tab, setTab] = useState({ old: null, new: "pending" });
   const minWidth1000 = useMediaQuery('(min-width:1000px)');
-  
+
   const handleTabChange = (elmt) => {
     let newTab = { ...Tab };
     newTab.old = newTab.new;

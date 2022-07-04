@@ -8,41 +8,55 @@ import RequestTab from "../../components/Card/RequestTab";
 import { Footer } from "../../components/Card/Cards";
 import MaterialAdminTable from "../../components/Table/Admin/Material";
 import useMediaQuery from "../../components/MediaQueries/MediaQuery";
+import parseCookies from "../../components/Utils/cookie";
+import jwt_decode from "jwt-decode";
+import { user } from "../../components/Utils/types";
+import axios from "axios";
 
-const material = [
-  {
-    "material_id": 1,
-    "material_user": 1,
-    "material_description": "Ordinateur portable",
-    "material_state": "declined",
-    "user_pay_status": 1,
-    "user_name": "Greg",
-    "material_reason": "Je veux"
-  },
-  {
-    "material_id": 2,
-    "material_user": 4,
-    "material_description": "Ordinateur portable",
-    "material_state": "pending",
-    "user_pay_status": 1,
-    "user_name": "Greg",
-    "material_reason": "Je veux un pc pour faire de la CAO Je veux un pc pour faire de la CAO"
-  },
-  {
-    "material_id": 1,
-    "material_user": 5,
-    "material_description": "Ordinateur portable",
-    "material_state": "active",
-    "user_pay_status": 1,
-    "user_name": "Greg",
-    "material_reason": "Je veux un pc pour faire de la CAO Je veux un pc pour faire de la CAO Je veux un pc pour faire de la CAO Je veux un pc pour faire de la CAO"
+export async function getServerSideProps({ req, res }) {
+  const cookies = parseCookies(req)
+
+  if (cookies.access_token) {
+    const userId = await jwt_decode(cookies.access_token)['id'];
+    const user = await (await axios.get(`http://localhost:3333/user/${userId}`)).data as user;
+
+    if (user.user_rank === "admin") {
+      if (res) {
+        if (Object.keys(cookies).length === 0 && cookies.constructor === Object) {
+          res.writeHead(301, { Location: "/" })
+          res.end()
+        }
+      }
+
+      const hardware = await (await axios.get(`http://localhost:3333/hardware`)).data;
+
+      return {
+        props: { hardware }
+      }
+    }
+    else {
+      return {
+        redirect: {
+          destination: '/',
+          permanent: false,
+        },
+      }
+    }
   }
-]
+  else {
+    return {
+      redirect: {
+        destination: '/homepage',
+        permanent: false,
+      },
+    }
+  }
+}
 
-export default function AdminMaterial() {
+export default function AdminMaterial(props: { hardware }) {
   const [Tab, setTab] = useState({ old: null, new: "pending" });
   const minWidth1000 = useMediaQuery('(min-width:1000px)');
-  
+
   const handleTabChange = (elmt) => {
     let newTab = { ...Tab };
     newTab.old = newTab.new;
@@ -69,7 +83,7 @@ export default function AdminMaterial() {
           mobileMarginBottom="10px"
           style={{ flex: "1 0 0", minHeight: minWidth1000 ? "0" : "300px" }}
         >
-          <MaterialAdminTable status={Tab} requests={material} />
+          <MaterialAdminTable status={Tab} requests={props.hardware} />
         </StyledCard>
 
         <Footer marginTop="0" />

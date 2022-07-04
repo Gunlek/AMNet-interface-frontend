@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Head from "next/head";
 import { CampusGlobalStyle } from "../../components/Background/style";
 import { GreenButton } from "../../components/Button/Buttons";
@@ -14,44 +14,71 @@ import PasswordInput from "../../components/Input/PasswordInput";
 import { useCookies } from "react-cookie"
 import axios from "axios";
 import { useRouter } from "next/router";
+import parseCookies from "../../components/Utils/cookie";
+
+export async function getServerSideProps({ req, res }) {
+  const cookies = parseCookies(req)
+
+  if (cookies.access_token) {
+    if (res) {
+      if (Object.keys(cookies).length === 0 && cookies.constructor === Object) {
+        res.writeHead(301, { Location: "/" })
+        res.end()
+      }
+    }
+
+    return {
+      redirect: {
+        destination: '/',
+        permanent: false,
+      },
+    }
+  }
+  else return { props: {} }
+}
 
 export default function Login() {
   const [checked, setChecked] = useState(false);
-  const [form, setForm] = useState({ name: "", password: "" })
-  const [error, setError] = useState(false)
+  const [form, setForm] = useState({ name: "", password: "" });
+  const [error, setError] = useState(false);
 
   const handleCheckboxChange = (elmt) => {
     setChecked(elmt.target.checked);
-  }
+  };
 
   const handleFormChange = (elmt) => {
     const newForm = { ...form };
     newForm[elmt.currentTarget.id] = elmt.target.value;
     setForm(newForm);
-  }
+  };
 
-  const [cookie, setCookie] = useCookies(["access_token"])
-  const router = useRouter()
+  const [cookie, setCookie] = useCookies(["access_token"]);
+  const router = useRouter();
+
+
+  useEffect(() => {
+    router.prefetch('/');
+  }, [])
 
   const handleSignIn = async (e) => {
     e.preventDefault()
     try {
       const response = await axios.post('http://localhost:3333/auth', form)
       const access_token = response.data['access_token']
-      
+
       setCookie("access_token", access_token, {
         path: "/",
         maxAge: checked ? 60 * 60 * 24 * 365 * 10 : 3600,
-        sameSite: true,
+        sameSite: "strict"
       })
 
       router.push("/")
 
     } catch (err: any) {
-      if(err.response.status === 401) setError(true)
+      if (err.response.status === 401) setError(true)
       else console.log(err)
     }
-  }
+  };
 
   return (
     <>

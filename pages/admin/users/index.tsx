@@ -5,20 +5,43 @@ import { ButtonsRow, DashboardContainer, ResponsiveRow, Row } from "../../../com
 import { StyledCard } from "../../../components/Card/style";
 import AdminMenu from "../../../components/Menu/AdminMenu";
 import { BlackTitle } from "../../../components/Text/style";
-import useMediaQuery from "../../../components/MediaQueries/MediaQuery";
-import { UsersTable } from "../../../components/Table/Admin/Users2";
+import { UsersTable } from "../../../components/Table/Admin/Users";
 import { Footer } from "../../../components/Card/Cards";
 import axios from "axios";
+import parseCookies from "../../../components/Utils/cookie";
+import { user } from "../../../components/Utils/types";
 
-export async function getServerSideProps() {
-  const users = await (await axios.get(`http://localhost:3333/user`)).data
+export async function getServerSideProps({ req, res }) {
+  const cookies = parseCookies(req)
 
-  return {
-      props: { users }
+  if (cookies.access_token) {
+    const config = {
+      headers: { Authorization: `Bearer ${cookies.access_token}` }
+    };
+    const users = await axios.get(`http://localhost:3333/user`, config)
+
+    if (res) {
+      if (Object.keys(cookies).length === 0 && cookies.constructor === Object) {
+        res.writeHead(301, { Location: "/" })
+        res.end()
+      }
+    }
+
+    return {
+      props: { users: users.data }
+    }
+  }
+  else {
+    return {
+      redirect: {
+        destination: '/homepage',
+        permanent: false,
+      }
+    }
   }
 }
 
-export default function Users( props: { users }) {
+export default function Users(props: { users: user[] }) {
   const [Filter, Checkboxs, SelectedRows, Table] = UsersTable(props.users)
 
   return (

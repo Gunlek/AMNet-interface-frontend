@@ -17,36 +17,70 @@ import {
   Col2,
   Col4
 } from "../../components/Container/style";
-import Editor from "../../components/Input/Editor2";
-import '../../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
+import Editor from "../../components/Input/Editor";
 import { EditorStyle } from "../../styles/editor";
 import MailModal from "../../components/Card/Modals/MailModal";
 import axios from "axios";
+import parseCookies from "../../components/Utils/cookie";
+import { user } from "../../components/Utils/types";
+import jwt_decode from "jwt-decode";
 
-export async function getServerSideProps() {
-  const [access_quantity, material_quantity, users_quantity, paid_users_quantity, lydia_cotiz, active_proms, usins_state, guest_access, news_message,] = await Promise.all([
-    axios.get(`http://localhost:3333/access/quantity`),
-    axios.get(`http://localhost:3333/hardware/quantity`),
-    axios.get(`http://localhost:3333/user/quantity`),
-    axios.get(`http://localhost:3333/user/quantity/paid`),
-    axios.get(`http://localhost:3333/settings/lydia_cotiz`),
-    axios.get(`http://localhost:3333/settings/active_proms`),
-    axios.get(`http://localhost:3333/settings/usins_state`),
-    axios.get(`http://localhost:3333/settings/guest_access`),
-    axios.get(`http://localhost:3333/settings/news_message`)
-  ])
+export async function getServerSideProps({ req, res }) {
+  const cookies = parseCookies(req)
 
-  return {
-    props: {
-      access_quantity: access_quantity.data,
-      material_quantity: material_quantity.data,
-      users_quantity: users_quantity.data,
-      lydia_cotiz: lydia_cotiz.data,
-      active_proms: active_proms.data,
-      usins_state: usins_state.data,
-      guest_access: guest_access.data,
-      news_message: news_message.data,
-      paid_users_quantity: paid_users_quantity.data
+  if (cookies.access_token) {
+    const userId = await jwt_decode(cookies.access_token)['id'];
+    const user = await (await axios.get(`http://localhost:3333/user/${userId}`)).data as user;
+
+    if (user.user_rank === "admin") {
+      const [access_quantity, material_quantity, users_quantity, paid_users_quantity, lydia_cotiz, active_proms, usins_state, guest_access, news_message,] = await Promise.all([
+        axios.get(`http://localhost:3333/access/quantity`),
+        axios.get(`http://localhost:3333/hardware/quantity`),
+        axios.get(`http://localhost:3333/user/quantity`),
+        axios.get(`http://localhost:3333/user/quantity/paid`),
+        axios.get(`http://localhost:3333/settings/lydia_cotiz`),
+        axios.get(`http://localhost:3333/settings/active_proms`),
+        axios.get(`http://localhost:3333/settings/usins_state`),
+        axios.get(`http://localhost:3333/settings/guest_access`),
+        axios.get(`http://localhost:3333/settings/news_message`)
+      ])
+
+      if (res) {
+        if (Object.keys(cookies).length === 0 && cookies.constructor === Object) {
+          res.writeHead(301, { Location: "/" })
+          res.end()
+        }
+      }
+
+      return {
+        props: {
+          access_quantity: access_quantity.data,
+          material_quantity: material_quantity.data,
+          users_quantity: users_quantity.data,
+          lydia_cotiz: lydia_cotiz.data,
+          active_proms: active_proms.data,
+          usins_state: usins_state.data,
+          guest_access: guest_access.data,
+          news_message: news_message.data,
+          paid_users_quantity: paid_users_quantity.data
+        }
+      }
+    }
+    else {
+      return {
+        redirect: {
+          destination: '/',
+          permanent: false,
+        },
+      }
+    }
+  }
+  else {
+    return {
+      redirect: {
+        destination: '/homepage',
+        permanent: false,
+      },
     }
   }
 }
@@ -113,8 +147,8 @@ export default function Settings(props: {
     setChecked(NewChecked)
   };
 
-  const [WelcomeMessageEditor, WelcomeMessageHTML] = Editor(props.news_message);
-  const [MailEditor, MailHTML] = Editor();
+  const [WelcomeMessageEditor, WelcomeMessageHTML] = Editor("2", props.news_message);
+  const [MailEditor, MailHTML] = Editor("1");
 
   const updateSettings = (e) => {
     e.preventDefault();

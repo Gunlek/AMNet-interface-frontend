@@ -5,64 +5,57 @@ import { HelpSection, Footer } from "../components/Card/Cards";
 import { StyledCancelImg } from "../components/Card/Images/style";
 import { DashboardContainer, ResponsiveRow, Column, Col6, Col3 } from "../components/Container/style";
 import { StyledInputLabel, StyledInput } from "../components/Input/style";
-import useMediaQuery from "../components/MediaQueries/MediaQuery";
 import UserMenu from "../components/Menu/UserMenu";
 import { StateContribution } from "../components/Status/Status";
 import { BlackTitle, BlackText, GreenText } from "../components/Text/style";
 import PasswordInput from "../components/Input/PasswordInput";
 import axios, { AxiosResponse } from "axios";
-import { parseCookies } from "../components/utils";
 import useForm from "../components/Input/useForm";
 import jwt_decode from "jwt-decode";
 import PhoneInput from "../components/Input/PhoneInput";
-
+import parseCookies from "../components/Utils/cookie";
+import { user } from "../components/Utils/types";
 
 export async function getServerSideProps({ req, res }) {
   const cookies = parseCookies(req)
 
-  if (res) {
-    if (Object.keys(cookies).length === 0 && cookies.constructor === Object) {
-      res.writeHead(301, { Location: "/" })
-      res.end()
+  if (cookies.access_token) {
+    if (res) {
+      if (Object.keys(cookies).length === 0 && cookies.constructor === Object) {
+        res.writeHead(301, { Location: "/" })
+        res.end()
+      }
+    }
+
+    const userId = await jwt_decode(cookies.access_token)['id'];
+
+    const [user, active_proms, usins_state] = await Promise.all([
+      axios.get(`http://localhost:3333/user/${userId}`),
+      axios.get(`http://localhost:3333/settings/active_proms`),
+      axios.get(`http://localhost:3333/settings/usins_state`),
+    ])
+
+    return {
+      props: { user: user.data, active_proms: active_proms.data, usins_state: usins_state.data }
     }
   }
-
-  const userId = await jwt_decode(cookies.access_token)['id'];
-
-  const [user, active_proms, usins_state] = await Promise.all([
-    axios.get(`http://localhost:3333/user/${userId}`),
-    axios.get(`http://localhost:3333/settings/active_proms`),
-    axios.get(`http://localhost:3333/settings/usins_state`),
-  ])
-
-  return {
-    props: { user: user.data, active_proms: active_proms.data, usins_state: usins_state.data }
+  else {
+    return {
+      redirect: {
+        destination: '/homepage',
+        permanent: false,
+      },
+    }
   }
 }
 
 export default function Profil(props: {
-  user: {
-    "user_id": number,
-    "user_name": string,
-    "user_firstname": string,
-    "user_lastname": string,
-    "user_email": string,
-    "user_phone": string,
-    "user_bucque": string,
-    "user_fams": string,
-    "user_campus": string,
-    "user_proms": string,
-    "user_rank": string,
-    "user_is_gadz": boolean,
-    "user_pay_status": boolean
-  },
+  user: user,
   active_proms: number,
   usins_state: boolean
 }) {
-  const minWidth1000 = useMediaQuery('(min-width:1000px)');
   const {
     form,
-    isOther,
     promotion,
     errorMessage,
     handleFormChange,
@@ -70,17 +63,17 @@ export default function Profil(props: {
     handlePasswordChange,
     handleNameChange,
     handlePhoneChange,
-    cancelOther,
     blurPassword2
   } = useForm(props.active_proms, props.usins_state, props.user)
 
-  const editPorifl = (elmt) =>{
+  const editPorifl = (elmt) => {
     elmt.preventDefault()
 
-    if ( !errorMessage.password && !errorMessage.format_name && !errorMessage.phone) {
+    if (!errorMessage.password && !errorMessage.format_name && !errorMessage.phone) {
       axios.put(`http://localhost:3333/user/${props.user.user_id}`, form, { validateStatus: () => true })
         .then((res: AxiosResponse) => {
           if (res.status === 409) handleFormErrors(res.data['user_name'], res.data['user_email']);
+          //add modal pour notifier lutilisateur du changement
         })
     }
 
@@ -158,31 +151,14 @@ export default function Profil(props: {
             </Col6>
 
             <Col6 paddingLeft="10px">
-              <StyledInputLabel htmlFor={isOther ? "user_promotion2" : "user_promotion"}>Promotion</StyledInputLabel>
-              {isOther ?
-                <div style={{ display: "flex", alignItems: "center" }} >
-                  <StyledInput
-                    id="user_proms2"
-                    type="text"
-                    onChange={handleFormChange}
-                    defaultValue={form.user_proms}
-                    required
-                  />
-                  <StyledCancelImg onClick={cancelOther} />
-                </div>
-                :
-                <StyledInput
-                  id="user_proms"
-                  as="select"
-                  onChange={handleFormChange}
-                  defaultValue={form.user_proms}
-                >
-                  <option value={promotion.old}>{promotion.old}</option>
-                  <option value={promotion.active}>{promotion.active}</option>
-                  <option value={promotion.new}>{promotion.new}</option>
-                  <option value="Other">Autre</option>
-                </StyledInput>
-              }
+              <StyledInputLabel htmlFor="user_promotion">Promotion</StyledInputLabel>
+              <StyledInput
+                id="user_proms"
+                type="text"
+                onChange={handleFormChange}
+                defaultValue={form.user_proms}
+                required
+              />
             </Col6>
           </ResponsiveRow>
 
