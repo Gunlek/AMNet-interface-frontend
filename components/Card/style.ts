@@ -127,13 +127,4 @@ export const StyledTabColumn = styled(Column)`
     background-color: ${(props) => !props.focus && "rgba(0, 0, 0, 0.1)"};
     color: black;
   }
-
-  &:after{
-    transform: translateY(50%);
-    content: ${(props) => props.focus && "''"};
-    width: 100%;
-    background-color: #096A09;
-    height: 4px;
-    transition: background-color 0.3s;
-  }
 `;
