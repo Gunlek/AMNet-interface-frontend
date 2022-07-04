@@ -3,6 +3,7 @@ import { SmallRedButton } from "../../Button/Buttons";
 import UserProoveModal from "../../Card/Modals/UserProoveModal";
 import { MediaContextProvider, Media } from "../../MediaQueries/MediaSSR";
 import { StateRequest } from "../../Status/Status";
+import { access } from "../../Utils/types";
 import {
     StyledTr,
     StyledTd,
@@ -12,7 +13,7 @@ import {
     StyledHeadTr
 } from "../style";
 
-export default function IoTUserTable(props: { requests: any[] }) {
+export default function IoTUserTable(props: { requests: access[] }) {
     let listHTML = [];
     let mobilelistHTML = [];
     const containerStyle = {
@@ -25,13 +26,13 @@ export default function IoTUserTable(props: { requests: any[] }) {
         listHTML.push(
             <StyledTr key={index}>
                 <StyledTd>{index + 1}</StyledTd>
-                <StyledFlexTd>{value['access_description']}</StyledFlexTd>
-                <StyledTd>{value['access_mac']}</StyledTd>
+                <StyledFlexTd>{value.access_description}</StyledFlexTd>
+                <StyledTd>{value.access_mac}</StyledTd>
                 <StyledTd>
                     <UserProoveModal link="/static/images/homepage/campus.jpg"/>
                 </StyledTd>
                 <StyledTd>
-                    <StateRequest state={value['acces_state']} />
+                    <StateRequest state={value.access_state} />
                 </StyledTd>
                 <StyledTd>
                     <SmallRedButton>Supprimer</SmallRedButton>
@@ -43,11 +44,11 @@ export default function IoTUserTable(props: { requests: any[] }) {
             <React.Fragment key={index}>
                 <StyledHeadTr>
                     <StyledTh>Equipement {index + 1}</StyledTh>
-                    <StyledTh style={{ textAlign: "center", paddingRight: "10px" }}>{value['access_description']}</StyledTh>
+                    <StyledTh style={{ textAlign: "center", paddingRight: "10px" }}>{value.access_description}</StyledTh>
                 </StyledHeadTr>
                 <StyledTr>
                     <StyledTd>Adresse Mac </StyledTd>
-                    <StyledTd style={{ textAlign: "center" }}>{value['access_mac']}</StyledTd>
+                    <StyledTd style={{ textAlign: "center" }}>{value.access_mac}</StyledTd>
                 </StyledTr>
                 <StyledTr>
                     <StyledTd>Preuve</StyledTd>
@@ -57,7 +58,7 @@ export default function IoTUserTable(props: { requests: any[] }) {
                 </StyledTr>
                 <StyledTr>
                     <StyledTd>Etat</StyledTd>
-                    <StyledTd><StateRequest center={true} state={value['acces_state']} /></StyledTd>
+                    <StyledTd><StateRequest center={true} state={value.access_state} /></StyledTd>
                 </StyledTr>
                 <StyledTr style={{ borderBottom: props.requests.length == (index + 1) ? undefined : "2px solid transparent" }}>
                     <StyledTd>Action</StyledTd>

@@ -7,19 +7,11 @@ import Succes from "../../../NavIcons/succes";
 import ProoveModal from "../../../Card/Modals/AdminProoveModal";
 import Link from "next/link";
 import { StyledLink } from "../../../Text/style";
+import { adminAccess } from "../../../Utils/types";
 
 export const IoTMobileLine = ({ index, value, status, display, isLast }: {
     index: number,
-    value: {
-        accesss_id: string,
-        accesss_description: string,
-        accesss_mac: string,
-        accesss_proof: string,
-        accesss_user: number,
-        accesss_state: string,
-        user_pay_status: number,
-        user_name: string
-    },
+    value: adminAccess,
     status: string,
     display: any,
     isLast?: boolean
