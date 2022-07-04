@@ -3,7 +3,7 @@ import { ResponsiveRow, Col8, Col4 } from "../../Container/style";
 import useMediaQuery from "../../MediaQueries/MediaQuery";
 import { StateRequest } from "../../Status/Status";
 import { Buttons } from "../../Table/Admin/Buttons";
-import MacAdressTd from "../../Table/Admin/MacAddressInput";
+import MacAdressTd from "../../Input/MacAddressInput";
 import { StyledTable, StyledHeadTr, StyledTh, StyledTr, StyledTd } from "../../Table/style";
 import { StyledLink } from "../../Text/style";
 import { TitleCard } from "../Cards";
