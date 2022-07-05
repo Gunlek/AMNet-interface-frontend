@@ -16,7 +16,7 @@ import axios from "axios";
 import { useRouter } from "next/router";
 import parseCookies from "../../components/Utils/cookie";
 
-export async function getServerSideProps({ req, res }) {
+export async function getServerSideProps({ req, res, query }) {
   const cookies = parseCookies(req)
 
   if (cookies.access_token) {
@@ -34,10 +34,10 @@ export async function getServerSideProps({ req, res }) {
       },
     }
   }
-  else return { props: {} }
+  else return { props: { modal: query.modal === "true" } }
 }
 
-export default function Login() {
+export default function Login(props: { modal: boolean }) {
   const [checked, setChecked] = useState(false);
   const [form, setForm] = useState({ name: "", password: "" });
   const [error, setError] = useState(false);
@@ -57,7 +57,8 @@ export default function Login() {
 
 
   useEffect(() => {
-    router.prefetch('/');
+    if (props.modal) router.prefetch('/homepage/unsubscribe')
+    else router.prefetch('/');
   }, [])
 
   const handleSignIn = async (e) => {
@@ -72,8 +73,9 @@ export default function Login() {
         sameSite: "strict"
       })
 
-      router.push("/")
-
+      if (props.modal) router.push("/homepage/unsubscribe")
+      else router.push("/")
+      
     } catch (err: any) {
       if (err.response.status === 401) setError(true)
       else console.log(err)
