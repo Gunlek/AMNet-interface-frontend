@@ -112,7 +112,7 @@ export default function User(props: {
                         {errorMessage.phone}
                     </Col6>
                     <Col3 paddingLeft="10px" paddingRight="10px" mobileMarginBottom="20px">
-                        <StyledInputLabel htmlFor="user_promotion">Promotion</StyledInputLabel>
+                        <StyledInputLabel htmlFor="user_proms">Promotion</StyledInputLabel>
                         <StyledInput
                             id="user_proms"
                             type="text"
