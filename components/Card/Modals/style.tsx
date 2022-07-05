@@ -44,4 +44,9 @@ export const StyledModal = styled(StyledCardCampus)`
   z-index: 6;
   transform: translate(-50%, -50%);
   animation: ${(props) => props.Opacity ? opacityIn : opacityOut}  0.3s linear;
+  font-size:  1.2rem;
+  
+  @media screen and (max-width: 1000px){
+    width: 90% !important;
+  } 
 `

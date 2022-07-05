@@ -38,31 +38,34 @@ function ModalBody(reveal: boolean, scrolled: number, minWidth1000: boolean) {
     document.body.style.overflowY = reveal ? "hidden" : "";
     document.body.style.top = reveal ? "-" + scrolled.toString() + "px" : "";
     document.body.style.paddingRight = reveal ? barWidth.toString() + "px " : "";
-    menu.style.top = reveal ? "0" : "";
-    menu.style.paddingRight = reveal ? minWidth1000 ? "" : barWidth.toString() + "px" : "";
+
+    if(menu){
+        menu.style.top = reveal ? "0" : "";
+        menu.style.paddingRight = reveal ? minWidth1000 ? "" : barWidth.toString() + "px" : "";
+    }
 }
 
-export const ModalLogic = () => {
-    const [Display, setDisplay] = useState(false)
-    const [Opacity, setOpacity] = useState(false)
+export const ModalLogic = (onMount?: boolean) => {
+    const [Display, setDisplay] = useState(onMount ? true : false)
+    const [Opacity, setOpacity] = useState(onMount ? true : false)
     const [top, setTop] = useState(0)
     const scrolled = Scroll()
     const minWidth1000 = useMediaQuery('(min-width: 1000px)')
 
-    const toggle = (e) => {
+    const toggle = (e?) => {
         const menu = document.getElementById("menu")
-        e.preventDefault();
+        if(e) e.preventDefault();
 
         if (Display) {
             setOpacity(false)
             setTimeout(() => {
                 setDisplay(false)
                 ModalBody(false, scrolled, minWidth1000)
-                menu.style.transition = "none";
+                if(menu) menu.style.transition = "none";
                 window.scrollTo(0, Math.round(top));
 
                 setTimeout(() => {
-                    menu.style.transition = "";
+                    if(menu) menu.style.transition = "";
                 }, 100);
             }, 280);
         }
