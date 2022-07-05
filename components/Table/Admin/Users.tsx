@@ -177,7 +177,6 @@ export function UsersTable(data: any[]) {
                       pathname: '/admin/users/[user_id]',
                       query: { user_id: row.allCells[15].value }
                     }}
-                      prefetch={false}
                       passHref>
                       <StyledLink color="#096a09">
                         {cell.render('Cell')}
