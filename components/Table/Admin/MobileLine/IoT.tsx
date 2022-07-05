@@ -8,6 +8,7 @@ import ProoveModal from "../../../Card/Modals/AdminProoveModal";
 import Link from "next/link";
 import { StyledLink } from "../../../Text/style";
 import { adminAccess } from "../../../Utils/types";
+import MacAdressTd from "../../../Input/MacAddressInput";
 
 export const IoTMobileLine = ({ index, value, status, display, isLast }: {
     index: number,
@@ -17,12 +18,9 @@ export const IoTMobileLine = ({ index, value, status, display, isLast }: {
     isLast?: boolean
 }) => {
     const [scrolled, setScrolled] = useState(false);
-    const [height, setHeight] = useState("");
+    const height = status == "pending" ? "530px" : "470px";
 
     useEffect(() => {
-        const newHeight = status == "pending" ? "530px" : "470px";
-        setHeight(newHeight)
-        
         setTimeout(() => {
             setScrolled(false)
         }, 500);
@@ -70,7 +68,7 @@ export const IoTMobileLine = ({ index, value, status, display, isLast }: {
                         </StyledTr>
                         <StyledTr>
                             <StyledTd>Adresse Mac</StyledTd>
-                            <StyledTd style={{ textAlign: "center" }}>{value['accesss_mac']}</StyledTd>
+                            <MacAdressTd access_mac={value.access_mac}/>
                         </StyledTr>
                         <StyledTr>
                             <StyledTd>Preuve</StyledTd>
