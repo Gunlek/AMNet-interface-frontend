@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import Head from "next/head";
 import { Row, DashboardContainer } from "../../components/Container/style";
 import { StyledCard } from "../../components/Card/style";
@@ -12,6 +12,7 @@ import parseCookies from "../../components/Utils/cookie";
 import jwt_decode from "jwt-decode";
 import { user } from "../../components/Utils/types";
 import axios from "axios";
+import useTransition from "../../components/Table/Admin/TableTransition";
 
 export async function getServerSideProps({ req, res }) {
   const cookies = parseCookies(req)
@@ -54,16 +55,10 @@ export async function getServerSideProps({ req, res }) {
 }
 
 export default function AdminMaterial(props: { hardware }) {
-  const [Tab, setTab] = useState({ old: null, new: "pending" });
   const minWidth1000 = useMediaQuery('(min-width:1000px)');
-
-  const handleTabChange = (elmt) => {
-    let newTab = { ...Tab };
-    newTab.old = newTab.new;
-    newTab.new = elmt.currentTarget.id;
-    setTab(newTab);
-  }
-
+  const mobileContainerRef = useRef(null)
+  const { Display, Opacity, Tab, handleTabChange } = useTransition(mobileContainerRef)
+  
   return (
     <>
       <Head>
@@ -83,7 +78,7 @@ export default function AdminMaterial(props: { hardware }) {
           mobileMarginBottom="10px"
           style={{ flex: "1 0 0", minHeight: minWidth1000 ? "0" : "300px" }}
         >
-          <MaterialAdminTable status={Tab} requests={props.hardware} />
+          <MaterialAdminTable status={Tab} requests={props.hardware} display={Display} opacity={Opacity} mobileRef={mobileContainerRef} />
         </StyledCard>
 
         <Footer marginTop="0" />

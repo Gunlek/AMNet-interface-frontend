@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import Head from "next/head";
 import { StyledCard } from "../../components/Card/style";
 import AdminMenu from "../../components/Menu/AdminMenu";
@@ -13,6 +13,7 @@ import { adminAccess } from "../../components/Utils/types";
 import parseCookies from "../../components/Utils/cookie";
 import jwt_decode from "jwt-decode";
 import { user } from "../../components/Utils/types";
+import useTransition from "../../components/Table/Admin/TableTransition";
 
 export async function getServerSideProps({ req, res }) {
   const cookies = parseCookies(req)
@@ -55,15 +56,9 @@ export async function getServerSideProps({ req, res }) {
 }
 
 export default function AdminIoT(props: { access: adminAccess[] }) {
-  const [Tab, setTab] = useState({ old: null, new: "pending" });
+  const mobileContainerRef = useRef(null)
+  const { Display, Opacity, Tab, handleTabChange } = useTransition(mobileContainerRef)
   const minWidth1000 = useMediaQuery('(min-width:1000px)');
-
-  const handleTabChange = (elmt) => {
-    let newTab = { ...Tab };
-    newTab.old = newTab.new;
-    newTab.new = elmt.currentTarget.id;
-    setTab(newTab);
-  }
 
   return (
     <>
@@ -84,7 +79,13 @@ export default function AdminIoT(props: { access: adminAccess[] }) {
           mobileMarginBottom="10px"
           style={{ flex: "1 0 0", minHeight: minWidth1000 ? "0" : "300px" }}
         >
-          <IoTAdminTable status={Tab} requests={props.access} />
+          <IoTAdminTable 
+            status={Tab} 
+            requests={props.access} 
+            display={Display} 
+            opacity={Opacity} 
+            mobileRef={mobileContainerRef} 
+          />
         </StyledCard>
 
         <Footer marginTop="0" />
