@@ -5,12 +5,12 @@ import Fail from "../../NavIcons/fail";
 import Succes from "../../NavIcons/succes";
 import { StateRequest } from "../../Status/Status";
 import { StyledLink } from "../../Text/style";
+import { adminHardware } from "../../Utils/types";
 import { StyledTr, StyledTd, MobileTbody, StyledTable, StyledHeadTr, StyledTh, Tbody, Thead } from "../style";
 import { Buttons } from "./Buttons";
 import MaterialMobileLine from "./MobileLine/Material";
-import TableTransition from "./TableTransition";
 
-function CreateTable({ requests, Display }: { requests: any[]; Display: any; }) {
+function CreateTable({ requests, Display }: { requests: adminHardware[]; Display: any; }) {
     let listHTML = { active: [], declined: [], pending: [] };
     let mobilelistHTML = { active: [], declined: [], pending: [] };
     let index = { active: 1, declined: 1, pending: 1 };
@@ -25,7 +25,6 @@ function CreateTable({ requests, Display }: { requests: any[]; Display: any; }) 
                             pathname: '/admin/users/[user_id]',
                             query: { user_id: value['material_user'] },
                         }}
-                        prefetch={false}
                         passHref
                     >
                         <StyledLink color="#096a09">{value['user_name']}</StyledLink>
@@ -48,8 +47,7 @@ function CreateTable({ requests, Display }: { requests: any[]; Display: any; }) 
                         style={{
                             display: "flex",
                             justifyContent: "space-between",
-                            width: (value['access_state'] == "pending") ? "495px" : "320px",
-                            transition: "width 0.5s linear"
+                            width: (value['access_state'] == "pending") ? "495px" : "320px"
                         }}
                     >
                         <Buttons status={value['material_state']} requestType="hardware" />
@@ -99,29 +97,33 @@ function CreateTable({ requests, Display }: { requests: any[]; Display: any; }) 
 }
 
 
-export default function MaterialAdminTable(props: { requests: any[], status: { old: string, new: string } }) {
-    const ContainerRef = useRef(null)
-    const { Display, Opacity } = TableTransition(props.status, ContainerRef)
-    const [listHTML, mobilelistHTML] = CreateTable({ requests: props.requests, Display })
+export default function MaterialAdminTable(props: {
+    requests: adminHardware[],
+    status: { old: string, new: string },
+    display: { active: boolean, declined: boolean, pending: boolean },
+    opacity: { active: string, declined: string, pending: string, head: string },
+    mobileRef: any
+}) {
+    const [listHTML, mobilelistHTML] = CreateTable({ requests: props.requests, Display: props.display })
 
     return (
         <MediaContextProvider>
-            <div ref={ContainerRef} style={{ height: "100%", width: "100%", overflow: "auto" }}>
+            <div ref={props.mobileRef} style={{ height: "100%", width: "100%", overflow: "auto" }}>
                 <Media at="sm">
-                    {Display.pending &&
-                        <MobileTbody Opacity={Opacity.pending}>
+                    {props.display.pending &&
+                        <MobileTbody Opacity={props.opacity.pending}>
                             {mobilelistHTML.pending}
                         </MobileTbody>
                     }
 
-                    {Display.active &&
-                        <MobileTbody Opacity={Opacity.active}>
+                    {props.display.active &&
+                        <MobileTbody Opacity={props.opacity.active}>
                             {mobilelistHTML.active}
                         </MobileTbody>
                     }
 
-                    {Display.declined &&
-                        <MobileTbody Opacity={Opacity.declined} >
+                    {props.display.declined &&
+                        <MobileTbody Opacity={props.opacity.declined} >
                             {mobilelistHTML.declined}
                         </MobileTbody>
                     }
@@ -129,7 +131,7 @@ export default function MaterialAdminTable(props: { requests: any[], status: { o
 
                 <Media greaterThan="sm">
                     <StyledTable>
-                        <Thead Opacity={Opacity.head} style={{ position: "sticky", top: "0", zIndex: "2" }}>
+                        <Thead Opacity={props.opacity.head} style={{ position: "sticky", top: "0", zIndex: "2" }}>
                             <StyledHeadTr>
                                 <StyledTh scope="col">#</StyledTh>
                                 <StyledTh scope="col">Utilisateur</StyledTh>
@@ -142,7 +144,7 @@ export default function MaterialAdminTable(props: { requests: any[], status: { o
                                         style={{
                                             width: (props.status.new == "pending") ? "500px" : "325px",
                                             paddingLeft: "5px",
-                                            transition: "width 0.5s linear"
+                                            transition: "width 0s linear 0.75s"
                                         }}
                                     >
                                         Actions
@@ -151,20 +153,20 @@ export default function MaterialAdminTable(props: { requests: any[], status: { o
                             </StyledHeadTr>
                         </Thead>
 
-                        {Display.pending &&
-                            <Tbody Opacity={Opacity.pending}>
+                        {props.display.pending &&
+                            <Tbody Opacity={props.opacity.pending}>
                                 {listHTML.pending}
                             </Tbody>
                         }
 
-                        {Display.active &&
-                            <Tbody Opacity={Opacity.active}>
+                        {props.display.active &&
+                            <Tbody Opacity={props.opacity.active}>
                                 {listHTML.active}
                             </Tbody>
                         }
 
-                        {Display.declined &&
-                            <Tbody Opacity={Opacity.declined} >
+                        {props.display.declined &&
+                            <Tbody Opacity={props.opacity.declined} >
                                 {listHTML.declined}
                             </Tbody>
                         }

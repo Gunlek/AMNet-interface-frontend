@@ -131,16 +131,16 @@ const opacityOut = keyframes`
 `;
 
 export const Tbody = styled.tbody`
-  animation: ${(props) => props.Opacity == "in" ? opacityIn : props.Opacity == "out" ? opacityOut : undefined} 0.5s linear;
+  animation: ${(props) => props.Opacity == "in" ? opacityIn : props.Opacity == "out" ? opacityOut : undefined} 0.75s linear;
   position: relative;
 `;
 
 export const Thead = styled.thead`
-  animation: ${(props) => props.Opacity == "in" ? opacityIn : props.Opacity == "out" ? opacityOut : undefined} 0.5s linear;
+  animation: ${(props) => props.Opacity == "in" ? opacityIn : props.Opacity == "out" ? opacityOut : undefined} 0.75s linear;
 `;
 
 export const MobileTbody = styled.div`
-  animation: ${(props) => props.Opacity == "in" ? opacityIn : props.Opacity == "out" ? opacityOut : undefined} 0.5s linear;
+  animation: ${(props) => props.Opacity == "in" ? opacityIn : props.Opacity == "out" ? opacityOut : undefined} 0.75s linear;
   position: relative;
 `;
 

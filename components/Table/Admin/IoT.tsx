@@ -28,7 +28,6 @@ function CreateTable({ requests, Display }: { requests: adminAccess[]; Display: 
                             pathname: '/admin/users/[user_id]',
                             query: { user_id: value['access_user'] },
                         }}
-                        prefetch={false}
                         passHref
                     >
                         <StyledLink color="#096a09">{value['user_name']}</StyledLink>
@@ -38,8 +37,8 @@ function CreateTable({ requests, Display }: { requests: adminAccess[]; Display: 
                     {value['user_pay_status'] ? <Succes marginRight="15px" /> : <Fail marginRight="15px" />}
                 </StyledTd>
                 <StyledTd>{value['access_description']}</StyledTd>
-                <MacAdressTd access_mac={value['access_mac']} id={id} />
-                <StyledTd>
+                <MacAdressTd access_mac={value['access_mac']} />
+                <StyledTd style={{ textAlign: "center" }}>
                     <ProoveModal request={value} link={value['access_proof']} />
                 </StyledTd>
                 <StyledTd>
@@ -99,29 +98,33 @@ function CreateTable({ requests, Display }: { requests: adminAccess[]; Display: 
     return [listHTML, mobilelistHTML]
 }
 
-export default function IoTAdminTable(props: { requests: adminAccess[], status: { old: string, new: string } }) {
-    const ContainerRef = useRef(null)
-    const { Display, Opacity } = TableTransition(props.status, ContainerRef)
-    const [listHTML, mobilelistHTML] = CreateTable({ requests: props.requests, Display })
+export default function IoTAdminTable(props: {
+    requests: adminAccess[],
+    status: { old: string, new: string },
+    display: { active: boolean, declined: boolean, pending: boolean },
+    opacity: { active: string, declined: string, pending: string, head: string },
+    mobileRef: any
+}) {
+    const [listHTML, mobilelistHTML] = CreateTable({ requests: props.requests, Display: props.display })
 
     return (
         <MediaContextProvider>
-            <div ref={ContainerRef} style={{ height: "100%", width: "100%", overflow: "auto" }}>
+            <div ref={props.mobileRef} style={{ height: "100%", width: "100%", overflow: "auto" }}>
                 <Media at="sm">
-                    {Display.pending &&
-                        <MobileTbody Opacity={Opacity.pending}>
+                    {props.display.pending &&
+                        <MobileTbody Opacity={props.opacity.pending}>
                             {mobilelistHTML.pending}
                         </MobileTbody>
                     }
 
-                    {Display.active &&
-                        <MobileTbody Opacity={Opacity.active}>
+                    {props.display.active &&
+                        <MobileTbody Opacity={props.opacity.active}>
                             {mobilelistHTML.active}
                         </MobileTbody>
                     }
 
-                    {Display.declined &&
-                        <MobileTbody Opacity={Opacity.declined} >
+                    {props.display.declined &&
+                        <MobileTbody Opacity={props.opacity.declined} >
                             {mobilelistHTML.declined}
                         </MobileTbody>
                     }
@@ -129,7 +132,7 @@ export default function IoTAdminTable(props: { requests: adminAccess[], status: 
 
                 <Media greaterThan="sm">
                     <StyledTable>
-                        <Thead Opacity={Opacity.head} style={{ position: "sticky", top: "0", zIndex: "2" }}>
+                        <Thead Opacity={props.opacity.head} style={{ position: "sticky", top: "0", zIndex: "2" }}>
                             <StyledHeadTr>
                                 <StyledTh scope="col">#</StyledTh>
                                 <StyledTh scope="col">Utilisateur</StyledTh>
@@ -143,7 +146,7 @@ export default function IoTAdminTable(props: { requests: adminAccess[], status: 
                                         style={{
                                             width: (props.status.new == "pending") ? "500px" : "325px",
                                             paddingLeft: "5px",
-                                            transition: "width 0.1s linear 0.5s"
+                                            transition: "width 0s linear 0.75s"
                                         }}
                                     >
                                         Actions
@@ -152,18 +155,18 @@ export default function IoTAdminTable(props: { requests: adminAccess[], status: 
                             </StyledHeadTr>
                         </Thead>
 
-                        {Display.pending &&
-                            <Tbody Opacity={Opacity.pending}>
+                        {props.display.pending &&
+                            <Tbody Opacity={props.opacity.pending}>
                                 {listHTML.pending}
                             </Tbody>
                         }
-                        {Display.active &&
-                            <Tbody Opacity={Opacity.active}>
+                        {props.display.active &&
+                            <Tbody Opacity={props.opacity.active}>
                                 {listHTML.active}
                             </Tbody>
                         }
-                        {Display.declined &&
-                            <Tbody Opacity={Opacity.declined} >
+                        {props.display.declined &&
+                            <Tbody Opacity={props.opacity.declined} >
                                 {listHTML.declined}
                             </Tbody>
                         }
