@@ -10,7 +10,7 @@ import { BlackTitle, BlackP } from "../components/Text/style";
 import axios from "axios";
 import jwt_decode from "jwt-decode";
 import parseCookies from "../components/Utils/cookie";
-import { user } from "../components/Utils/types";
+import { hardware, user } from "../components/Utils/types";
 
 export async function getServerSideProps({ req, res }) {
   const cookies = parseCookies(req)
@@ -36,9 +36,9 @@ export async function getServerSideProps({ req, res }) {
 
       return {
         props: {
-          material: material.data,
-          access_token: cookies.access_token,
-          user: user.data
+          material: material.data as hardware[],
+          access_token: cookies.access_token as string,
+          user: user.data as user
         }
       }
     }
@@ -62,7 +62,7 @@ export async function getServerSideProps({ req, res }) {
 }
 
 export default function UserMaterial(props: {
-  material: any[],
+  material: hardware[],
   access_token: string,
   user: user
 }) {

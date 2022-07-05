@@ -2,9 +2,10 @@ import React from "react";
 import { SmallRedButton } from "../../Button/Buttons";
 import { MediaContextProvider, Media } from "../../MediaQueries/MediaSSR";
 import { StateRequest } from "../../Status/Status";
+import { hardware } from "../../Utils/types";
 import { StyledTr, StyledTd, StyledFlexTd, StyledHeadTr, StyledTh, StyledTable } from "../style";
 
-export default function MaterialUserTable(props: { requests: any[] }) {
+export default function MaterialUserTable(props: { requests: hardware[] }) {
     let listHTML = [];
     let mobilelistHTML = [];
     const containerStyle = {

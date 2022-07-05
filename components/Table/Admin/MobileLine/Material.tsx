@@ -6,17 +6,11 @@ import Fail from "../../../NavIcons/fail";
 import Succes from "../../../NavIcons/succes";
 import Link from "next/link";
 import { StyledLink } from "../../../Text/style";
+import { adminHardware } from "../../../Utils/types";
 
 export const MaterialMobileLine = ({ index, value, status, display, isLast }: {
     index: number,
-    value: {
-        material_id: string,
-        material_description: string,
-        material_reason: string,
-        material_state: string,
-        user_pay_status: number,
-        user_name: string
-    },
+    value: adminHardware,
     status: string,
     display: any,
     isLast?: boolean
