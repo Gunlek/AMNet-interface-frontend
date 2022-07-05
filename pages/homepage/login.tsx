@@ -15,6 +15,7 @@ import { useCookies } from "react-cookie"
 import axios from "axios";
 import { useRouter } from "next/router";
 import parseCookies from "../../components/Utils/cookie";
+import Modal from "../../components/Card/Modals/Modal";
 
 export async function getServerSideProps({ req, res, query }) {
   const cookies = parseCookies(req)
@@ -75,7 +76,7 @@ export default function Login(props: { modal: boolean }) {
 
       if (props.modal) router.push("/homepage/unsubscribe")
       else router.push("/")
-      
+
     } catch (err: any) {
       if (err.response.status === 401) setError(true)
       else console.log(err)
@@ -88,6 +89,11 @@ export default function Login(props: { modal: boolean }) {
         <title>Connexion &bull; AMNet</title>
       </Head>
       <CampusGlobalStyle />
+
+      <Modal show={props.modal} style={{ width: "425px", textAlign: "justify" }}>
+        Vous devez être connecté pour vous désinscrire de la liste de diffusion
+      </Modal>
+
       <Row
         mobileWidth="90%"
         style={{
