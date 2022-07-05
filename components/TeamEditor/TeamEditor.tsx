@@ -33,7 +33,7 @@ export default function TeamEditor(accutalTeam: { pseudo: string, id: string }[]
                     <ResponsiveRow style={{ marginBottom: "20px" }}>
                         <Col5 paddingRight="10px" mobileMarginBottom="20px">
                             <StyledInputLabel htmlFor="adminr_bucque" style={{ paddingLeft: "5px" }}>Bucque</StyledInputLabel>
-                            <StyledInput id="admin_bucque" type="text" onChange={(elmt) => setPseudo(elmt.target.value)} />
+                            <StyledInput id="admin_bucque" type="text" onChange={(elmt) => setPseudo(elmt.target.value)} required />
                         </Col5>
                         <Col5
                             paddingRight="10px"
@@ -41,7 +41,7 @@ export default function TeamEditor(accutalTeam: { pseudo: string, id: string }[]
                             paddingLeft="10px"
                         >
                             <StyledInputLabel htmlFor="admin_num" style={{ paddingLeft: "5px" }}>Num's</StyledInputLabel>
-                            <StyledInput id="admin_num" type="text" onChange={(elmt) => setId(elmt.target.value)} />
+                            <StyledInput id="admin_num" type="text" onChange={(elmt) => setId(elmt.target.value)} required />
                         </Col5>
 
                         <Col2
