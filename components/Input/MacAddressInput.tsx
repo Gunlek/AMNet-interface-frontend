@@ -1,12 +1,16 @@
 import React, { useEffect, useState } from "react";
 import MacAddressVerification from "../Utils/macaddress";
 import { MacTooltip, StyledTd } from "../Table/style";
+import { useLongPress } from "react-use";
+import useMediaQuery from "../MediaQueries/MediaQuery";
 
-export default function MacAdressTd(props: { access_mac: string, id: any }) {
+export default function MacAdressTd(props: { access_mac: string }) {
+    const minWidth1000 = !useMediaQuery('(min-width:1000px)'); 
     const [input, setInput] = useState(false)
     const [mac, setMac] = useState(props.access_mac)
     const [tooltip, setTooltip] = useState({ display: false, opacity: "" })
     const verifiedMac = MacAddressVerification(mac)
+    const longPressEvent = useLongPress(handleDoubleClick, { isPreventDefault: true, delay: 300 });
 
     function handleDoubleClick() {
         setInput(true)
@@ -42,9 +46,10 @@ export default function MacAdressTd(props: { access_mac: string, id: any }) {
                 textAlign: "center",
                 paddingBottom: "0",
                 paddingTop: "0",
-                position: "relative"
+                position: tooltip.display ? "relative" : undefined
             }}
             onDoubleClick={handleDoubleClick}
+            {...minWidth1000 && {...longPressEvent}}
         >
             {input ?
                 <input
@@ -53,11 +58,11 @@ export default function MacAdressTd(props: { access_mac: string, id: any }) {
                         width: "100%",
                         fontSize: "1.2rem",
                         outline: "none",
-                        padding: "0",
                         border: "2px solid #096A09",
                         background: "none",
                         borderRadius: "10px",
-                        paddingLeft: "5px"
+                        padding: "4px 0px 4px 0px",
+                        textAlign: "center",
                     }}
                     type="text"
                     onKeyDown={handleChange}
