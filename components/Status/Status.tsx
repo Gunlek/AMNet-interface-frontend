@@ -105,7 +105,7 @@ export function AdminStateContribution(props: { state: boolean, id: string, onCh
       id={props.id}
       status={props.state}
       onChange={handleChange}
-      defaultValue={props.state}
+      defaultValue={props.state ? "enabled" : "disabled"}
       style={{ width: "100%" }}
     >
       <option value="enabled">Payée</option>
