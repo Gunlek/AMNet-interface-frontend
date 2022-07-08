@@ -5,7 +5,7 @@ import { TitleCard } from "../Cards"
 import ModalLogic from "./ModalLogic"
 import { StyledBackgroundModal, StyledModal } from "./style"
 
-export default function ContributionModal() {
+export default function ContributionModal(props: { lydia_cotiz: Number }) {
     const minWidth1000 = useMediaQuery('(min-width: 1000px)')
     const { Display, Opacity, toggle } = ModalLogic()
 
@@ -15,14 +15,14 @@ export default function ContributionModal() {
             {Display &&
                 <>
                     <StyledBackgroundModal onClick={toggle} Opacity={Opacity} />
-                    <StyledModal width={minWidth1000 ? "600px" : undefined} Opacity={Opacity}>
+                    <StyledModal width={minWidth1000 ? "650px" : undefined} Opacity={Opacity}>
                         <TitleCard>Cotisation</TitleCard>
                         <BlackText style={{ marginBottom: "30px", textAlign: "justify" }}>
-                            Le paiement de la cotisation s'effectue en utilisant Lydia. Il vous sera proposé d'utiliser votre compte Lydia pour régler votre cotisation. Si vous n'êtes pas titulaire d'un compte Lydia, il vous sera possible de réaliser le paiement en utilisant votre carte bancaire.
+                            Le paiement de la cotisation (<span style={{ color: "#096a09" }}>{props.lydia_cotiz}€</span>) s'effectue en utilisant Lydia. Il vous sera proposé d'utiliser votre compte Lydia pour régler votre cotisation. Si vous n'êtes pas titulaire d'un compte Lydia, il vous sera possible de réaliser le paiement en utilisant votre carte bancaire.
                             <br /><br />
                             En cas de problème lors du paiement, n'hésitez pas à nous en informer à  <StyledLink color="#096a09" href="mailto:contact@amnet.fr">contact@amnet.fr</StyledLink>
                         </BlackText>
-                        <GreenButton width="100%">Cliquez pour procéder au paiement (35€)</GreenButton>
+                        <GreenButton fontSize={minWidth1000 ? undefined : "16px"} width={minWidth1000 ? "80%" : "100%"}>Cliquez pour procéder au paiement</GreenButton>
                     </StyledModal>
                 </>
             }
