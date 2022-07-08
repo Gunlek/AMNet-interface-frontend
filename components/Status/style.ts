@@ -95,23 +95,19 @@ export const StyledConteneurNotif = styled.div`
 export const StyledNotification = styled(StyledCard)`
   opacity : ${(props) => props.Display ? props.Opacity ? "1" : "0" : "0"};
   transition: width 0.3s, height 0.3s, border-radius 0.3s, padding 0.3s, z-index 0.3s, opacity 0.3s;
-  height: ${(props) => props.Display ? "97.6px" : "48.8px"}; 
+  height: ${(props) => props.Display ? "92.6px" : "43.8px"}; 
   position: absolute;
   top: 180%;
   left: 50%;
   transform: translateX(-50%);
   background: white;
-  width: ${(props) => props.Display ? "340px" : "126px"};
+  width: ${(props) => props.Display ? "340px" : "119px"};
   border-radius: ${(props) => !props.Display && "15px"};
-  padding: ${(props) => !props.Display && "10px"};
+  padding: ${(props) => !props.Display && "7.5px"};
   z-index: ${(props) => props.Display ? "3" : "-2"};
   overflow: hidden;
   pointer-events: ${(props) => props.Display ? undefined : "none"};
   
-  span{
-    transition: opacity ${(props) => props.Display ? "0.75s cubic-bezier(.46,.03,.52,.96)" : "0.1s linear"} ;
-    opacity: ${(props) => props.Display ? "1" : "0"};
-  }
 
   @media screen and (max-width: 1000px){
     transition: opacity 0.3s, z-index 0.3s,;
