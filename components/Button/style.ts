@@ -8,7 +8,7 @@ export const StyledButton = styled.button`
   height: ${(props) => props.height || "60px"};
   width: ${(props) => props.width || constants.defaultButtonWidth};
   color: white;
-  font-size: 19px;
+  font-size: ${(props) => props.fontSize || "19px"};
   text-align: center;
   transition: 0.3s linear, box-shadow 0.3s;
   background: linear-gradient(90deg, var(--c1, #f6d365), var(--c2, #fda085) 51%, var(--c1, #f6d365)) var(--x, 0)/ 200%;
