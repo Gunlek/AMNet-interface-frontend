@@ -10,7 +10,15 @@ import {
   StyledBackArrow
 } from "./style";
 
-type ButtonProps = { children: React.ReactNode; width?: string, height?: string, onClick?: Function, type?: string, fontSize?: string, mobileMarginBottom?: string };
+type ButtonProps = { 
+  children: React.ReactNode; 
+  width?: string, 
+  height?: string, 
+  onClick?: Function, 
+  type?: string, 
+  fontSize?: string, 
+  mobileMarginBottom?: string 
+};
 
 export function GreenButton(props: ButtonProps) {
   return (
@@ -20,6 +28,7 @@ export function GreenButton(props: ButtonProps) {
       height={props.height}
       onClick={props.onClick}
       mobileMarginBottom={props.mobileMarginBottom}
+      fontSize={props.fontSize}
     >
       {props.children}
     </StyledGreenButton>
@@ -48,6 +57,7 @@ export function RedButton(props: ButtonProps) {
       height={props.height}
       onClick={props.onClick}
       mobileMarginBottom={props.mobileMarginBottom}
+      fontSize={props.fontSize}
     >
       {props.children}
     </StyledRedButton>);
@@ -76,6 +86,7 @@ export function OrangeButton(props: ButtonProps) {
       height={props.height}
       onClick={props.onClick}
       mobileMarginBottom={props.mobileMarginBottom}
+      fontSize={props.fontSize}
     >
       {props.children}
     </StyledOrangeButton>);
@@ -114,10 +125,29 @@ export function ArrowButton(props: { onClick: Function, position: string }) {
   );
 }
 
-export function ButtonLink(props: { children: React.ReactNode; width?: string, height?: string, href: string, style?: React.CSSProperties}) {
+export function ButtonLink(props: {
+  children: React.ReactNode;
+  width?: string,
+  height?: string,
+  href: string,
+  style?: React.CSSProperties,
+  onClick?: Function
+}) {
+  const onClick = (e) => {
+    e.preventDefault();
+    props.onClick()
+  }
+
   return (
     <Link href={props.href} passHref>
-      <StyledGreenButton as="a" width={props.width} height={props.height} lineHeight={props.height || "60px"} style={props.style}>
+      <StyledGreenButton
+        as="a"
+        width={props.width}
+        height={props.height}
+        lineHeight={props.height || "60px"}
+        style={props.style}
+        onClick={props.onClick ? onClick : undefined}
+      >
         {props.children}
       </StyledGreenButton>
     </Link>
