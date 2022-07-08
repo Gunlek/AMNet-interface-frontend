@@ -29,14 +29,20 @@ export async function getServerSideProps({ req, res }) {
 
     const userId = await jwt_decode(cookies.access_token)['id'];
 
-    const [user, active_proms, usins_state] = await Promise.all([
+    const [user, active_proms, usins_state, lydia_cotiz] = await Promise.all([
       axios.get(`http://localhost:3333/user/${userId}`),
       axios.get(`http://localhost:3333/settings/active_proms`),
       axios.get(`http://localhost:3333/settings/usins_state`),
+      axios.get(`http://localhost:3333/settings/lydia_cotiz`)
     ])
 
     return {
-      props: { user: user.data, active_proms: active_proms.data, usins_state: usins_state.data }
+      props: { 
+        user: user.data, 
+        active_proms: active_proms.data, 
+        usins_state: usins_state.data, 
+        lydia_cotiz: lydia_cotiz.data 
+      }
     }
   }
   else {
@@ -52,7 +58,8 @@ export async function getServerSideProps({ req, res }) {
 export default function Profil(props: {
   user: user,
   active_proms: number,
-  usins_state: boolean
+  usins_state: boolean,
+  lydia_cotiz: Number
 }) {
   const {
     form,
@@ -100,7 +107,7 @@ export default function Profil(props: {
           </Column>
 
           <Column align="end" mobileAlign="center" style={{ flex: "1", justifyContent: "center" }}>
-            <StateContribution status={props.user.user_pay_status ? "paid" : "unpaid"} />
+            <StateContribution status={props.user.user_pay_status ? "paid" : "unpaid"} lydia_cotiz={props.lydia_cotiz} />
           </Column>
         </ResponsiveRow>
 
