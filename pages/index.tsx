@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Head from "next/head";
 import { ButtonLink } from "../components/Button/Buttons";
 import { TitleCard, HelpSection, Footer } from "../components/Card/Cards";
@@ -6,28 +6,30 @@ import { StyledCard } from "../components/Card/style";
 import { DashboardContainer, ResponsiveRow, Column, Col6, Row } from "../components/Container/style";
 import UserMenu from "../components/Menu/UserMenu";
 import { AdminNotifications, StateContribution } from "../components/Status/Status";
-import { BlackTitle, BlackText } from "../components/Text/style";
+import { BlackTitle, BlackText, NewsMessage } from "../components/Text/style";
 import axios from 'axios';
 import jwt_decode from "jwt-decode";
 import parseCookies from "../components/Utils/cookie";
 import { user } from "../components/Utils/types";
+import Modal from "../components/Card/Modals/Modal";
 
 export async function getServerSideProps({ req, res }) {
   const cookies = parseCookies(req)
 
   if (cookies.access_token) {
     const userId = await jwt_decode(cookies.access_token)['id'];
+    const user = await (await axios.get(`http://localhost:3333/user/${userId}`)).data;
 
     const [
       news_message,
       access_quantity,
       material_quantity,
-      user
+      lydia_cotiz
     ] = await Promise.all([
       axios.get('http://localhost:3333/settings/news_message'),
       axios.get(`http://localhost:3333/access/quantity`),
       axios.get(`http://localhost:3333/hardware/quantity`),
-      axios.get(`http://localhost:3333/user/${userId}`)
+      axios.get(`http://localhost:3333/settings/lydia_cotiz`)
     ])
 
     if (res) {
@@ -37,13 +39,25 @@ export async function getServerSideProps({ req, res }) {
       }
     }
 
-    return {
-      props: {
-        news_message: news_message.data,
-        access_quantity: access_quantity.data,
-        material_quantity: material_quantity.data,
-        access_token: cookies.access_token,
-        user: user.data
+    if (user.user_rank === 'admin') {
+      return {
+        props: {
+          news_message: news_message.data,
+          access_quantity: access_quantity.data,
+          material_quantity: material_quantity.data,
+          access_token: cookies.access_token,
+          lydia_cotiz: lydia_cotiz.data,
+          user: user
+        }
+      }
+    }
+    else {
+      return {
+        props: {
+          news_message: news_message.data,
+          lydia_cotiz: lydia_cotiz.data,
+          user: user
+        }
       }
     }
   }
@@ -63,15 +77,21 @@ export default function Dashboard(
     access_quantity: number,
     material_quantity: number,
     access_token: string,
-    user: user
+    user: user,
+    lydia_cotiz: Number
   }
 ) {
+  const [show, setShow] = useState(false)
 
   return (
     <>
       <Head>
         <title>Mon Espace &bull; AMNet</title>
       </Head>
+
+      <Modal show={show} style={{ width: "450px", textAlign: "center" }}>
+        Vous devez avoir payé votre cotisation <br />Pour accéder à cette page
+      </Modal>
 
       <UserMenu
         page="index"
@@ -104,13 +124,13 @@ export default function Dashboard(
                 material_quantity={props.material_quantity}
               /> : undefined
             }
-            <StateContribution status={props.user.user_pay_status ? "paid" : "unpaid"} />
+            <StateContribution status={props.user.user_pay_status ? "paid" : "unpaid"} lydia_cotiz={props.lydia_cotiz} />
           </Row>
         </ResponsiveRow>
 
         <StyledCard marginBottom="2%" mobileMarginBottom="30px" style={{ flex: "3" }}>
           <TitleCard>Actualité AMNet</TitleCard>
-          <BlackText style={{ textAlign: "justify" }} dangerouslySetInnerHTML={{ __html: props.news_message || "" }} />
+          <NewsMessage style={{ textAlign: "justify" }} dangerouslySetInnerHTML={{ __html: props.news_message || "" }} />
         </StyledCard>
 
         <ResponsiveRow marginBottom="2%" mobileMarginBottom="30px" style={{ flex: "6" }}>
@@ -131,7 +151,16 @@ export default function Dashboard(
                   marginTop: "20px",
                 }}
               >
-                <ButtonLink style={{ position: "relative", zIndex: "3" }} href="/iot">Accéder</ButtonLink>
+                <ButtonLink
+                  onClick={!props.user.user_pay_status ? () => setShow(!show) : undefined}
+                  style={{
+                    position: "relative",
+                    zIndex: "3"
+                  }}
+                  href="/iot"
+                >
+                  Accéder
+                </ButtonLink>
               </Row>
             </StyledCard>
           </Col6>
