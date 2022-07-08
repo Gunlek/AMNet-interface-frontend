@@ -14,7 +14,7 @@ import Succes from "../NavIcons/succes";
 import ContributionModal from "../Card/Modals/ContributionModal";
 import Link from "next/link";
 
-export function StateContribution(props: { status: string }) {
+export function StateContribution(props: { status: string, lydia_cotiz: Number }) {
   if (props.status == 'paid') {
     return (
       <StyledStateContribution>
@@ -35,7 +35,7 @@ export function StateContribution(props: { status: string }) {
           <BlackText style={{ paddingRight: "10px", fontSize: "18px" }}>Cotisation :</BlackText>
           <Fail />
         </StyledStateContribution>
-        <ContributionModal />
+        <ContributionModal lydia_cotiz={props.lydia_cotiz} />
       </Row>
     );
   }
@@ -92,8 +92,8 @@ export function StateIntegration(props: { state?: boolean }) {
 }
 
 export function AdminStateContribution(props: { state: boolean, id: string, onChange: Function }) {
-  const handleChange = (elmt) =>{
-    const newElmt = {...elmt};
+  const handleChange = (elmt) => {
+    const newElmt = { ...elmt };
     newElmt.target.value = elmt.target.value === "enabled";
     console.log(elmt);
     console.log(newElmt)
@@ -165,25 +165,33 @@ export function AdminNotifications(props: { notifNumber: number, unpaid?: boolea
         </StyledSVG>
         <StyledNotification Display={Display} Opacity={Opacity} Unpaid={props.unpaid}>
           <Link href="/admin/iot" passHref>
-            <StyledLink>Demandes <span>d'accès internet: {props.access_quantity}</span></StyledLink>
+            <StyledLink
+              style={{
+                width: "max-content",
+                marginBottom: "10px"
+              }}
+            >
+              Demandes d'accès internet: {props.access_quantity}
+            </StyledLink>
           </Link>
           <Link href="/admin/material" passHref>
-            <StyledLink><span>Demandes de matériel: {props.material_quantity}</span></StyledLink>
+            <StyledLink style={{ width: "max-content" }}>Demandes de matériel: {props.material_quantity}</StyledLink>
           </Link>
         </StyledNotification>
       </StyledConteneurNotif>
-      <div
-        onClick={handleChange}
-        style={{
-          display: Display ? "block" : "none",
-          position: "fixed",
-          height: "100%",
-          width: "100%",
-          left: "0",
-          top: "0",
-          zIndex: "2"
-        }}
-      />
+      {Display &&
+        <div
+          onClick={handleChange}
+          style={{
+            position: "fixed",
+            height: "100%",
+            width: "100%",
+            left: "0",
+            top: "0",
+            zIndex: "2"
+          }}
+        />
+      }
     </>
   );
 }
