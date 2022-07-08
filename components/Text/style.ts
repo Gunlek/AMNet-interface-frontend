@@ -18,6 +18,18 @@ export const BlackText = styled(WhiteText)`
   color: black;
 `;
 
+export const NewsMessage = styled(BlackText)`
+  a{
+    color: #096a09;
+    transition: color 0.3s;
+  }
+
+  a:hover{
+    color: #67bc45 !important;
+    cursor: pointer;
+  }
+`
+
 export const BlackTitle = styled.h1`
   margin: 0;
   font-weight: normal;
