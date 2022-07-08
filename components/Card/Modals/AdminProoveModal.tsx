@@ -43,7 +43,7 @@ export default function ProoveModal(props: { request: any, link: string }) {
                                         <Image
                                             alt={props.request['access_description']}
                                             style={{ borderRadius: "30px" }}
-                                            src={"/static" + props.request['access_proof']}
+                                            src={`${process.env.NEXT_PUBLIC_PROOF_FOLDER}${props.request['access_proof']}`}
                                             quality="50"
                                             layout="fill"
                                         />
@@ -73,7 +73,7 @@ export default function ProoveModal(props: { request: any, link: string }) {
                                             </StyledTr>
                                             <StyledTr>
                                                 <StyledTd>Adresse Mac</StyledTd>
-                                                <MacAdressTd access_mac={props.request['access_mac']} id={"modale"} />
+                                                <MacAdressTd access_mac={props.request['access_mac']} />
                                             </StyledTr>
                                             <StyledTr>
                                                 <StyledTd>Etat</StyledTd>

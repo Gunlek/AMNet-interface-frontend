@@ -286,9 +286,9 @@ export default function SignUp(props: { active_proms: number, usins_state: boole
             <Column style={{ alignItems: "start", marginBottom: "20px", marginTop: "20px" }} >
               <GreenText>Réglementation</GreenText>
               <BlackText style={{ marginTop: "5px", marginBottom: "1.2rem" }}>
-                Consultez <StyledLink color="#096a09" target="_blank" href="/static/docs/Statuts_AMNet.pdf">les Statuts de l'association</StyledLink>
+                Consultez <StyledLink color="#096a09" target="_blank" href={`${process.env.NEXT_PUBLIC_API_HOST}/Statuts-AMNet.pdf`}>les Statuts de l'association</StyledLink>
                 <br />
-                Consultez <StyledLink color="#096a09" target="_blank" href="/static/docs/Reglement_Interieur_AMNet.pdf">le Règlement intérieur de l'association</StyledLink>
+                Consultez <StyledLink color="#096a09" target="_blank" href={`${process.env.NEXT_PUBLIC_API_HOST}/RI-AMNet.pdf`}>le Règlement intérieur de l'association</StyledLink>
               </BlackText>
               <BlackP>
                 AMNet Birse est une association Loi 1901, vous devez en accepter les statuts et le réglement intérieur. La validation de ce formulaire et le réglement de la cotisation annuelle ({props.lydia_cotiz}€) valent pour adhésion à l'association.
