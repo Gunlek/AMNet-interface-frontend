@@ -12,7 +12,7 @@ export default function useForm(
         active: active_proms.toString(),
         old: (active_proms - 1).toString()
     }
-    const [isOther, setOther] = useState([promotion.new, promotion.active, promotion.old].indexOf(user.user_proms) === -1);
+    const [isOther, setOther] = useState(false);
     const [onBlurPassword, setOnBlurPassword] = useState(false)
 
     const [form, setForm] = useState(user ?
