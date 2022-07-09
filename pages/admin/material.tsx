@@ -29,10 +29,10 @@ export async function getServerSideProps({ req, res }) {
         }
       }
 
-      const hardware = await (await axios.get(`http://localhost:3333/hardware`)).data;
+      const hardware = await axios.get(`http://localhost:3333/hardware`);
 
       return {
-        props: { hardware }
+        props: { hardware: hardware.data }
       }
     }
     else {
