@@ -211,9 +211,8 @@ export function UsersTable(data: any[]) {
           />
         </StyledMobileContainerRow>
       )
-      // eslint-disable-next-line react-hooks/exhaustive-deps
     },
-    [prepareRow, rows]
+    [prepareRow, rows, state.hiddenColumns.length]
   )
 
   const idSelected = selectedFlatRows.map(d => d.original["user_id"])
