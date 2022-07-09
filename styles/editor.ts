@@ -13,6 +13,19 @@ export const EditorStyle = createGlobalStyle`
         padding: 5px;
     }
 
+    #Editor2{
+        a{
+            color: #096a09;
+            transition: color 0.3s;
+            text-decoration: none !important;
+        }
+
+        a:hover{
+            color: #67bc45 !important;
+            cursor: pointer;
+        }
+    }
+
     .ql-container:hover, .focused .ql-container{
         border: 2px solid #096A09 !important;
         background-color: rgba(255, 255, 255, 0.8) !important;

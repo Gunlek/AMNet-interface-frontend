@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import dynamic from "next/dynamic";
 import 'react-quill/dist/quill.snow.css';
-import { StyledInput, StyledTextArea } from "./style";
-import { EditorStyle } from "../../styles/editor";
+import { defaultProps } from "react-quill";
 const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 const QuillToolbar = dynamic(() => import("./toolbar"), { ssr: false });
 
@@ -41,7 +40,8 @@ export default function Editor(id: string, html?: string) {
         <>
             <QuillToolbar id={id} />
             <ReactQuill
-            className={focus? "focused" : undefined}
+                id={"Editor" + id}
+                className={focus? "focused" : undefined}
                 onBlur={() =>{setFocus(false)}}
                 onFocus={() => {setFocus(true)}}
                 modules={modules}
