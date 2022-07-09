@@ -47,7 +47,7 @@ function CreateTable({ requests, Display }: { requests: adminHardware[]; Display
                         style={{
                             display: "flex",
                             justifyContent: "space-between",
-                            width: (value['access_state'] == "pending") ? "495px" : "320px"
+                            width: (value['material_state'] == "pending") ? "495px" : "320px"
                         }}
                     >
                         <Buttons status={value['material_state']} requestType="hardware" />

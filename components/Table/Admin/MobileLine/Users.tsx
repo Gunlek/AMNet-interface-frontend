@@ -53,9 +53,9 @@ export const UsersMobileLine = ({ row, columnsNumber, isLast }: {
                                                 pathname: '/admin/users/[user_id]',
                                                 query: { user_id: row.allCells[14].value },
                                             }}
-                                                prefetch={false}
-                                                passHref>
-                                                <StyledLink color="#096a09" style={{}}>
+                                                passHref
+                                            >
+                                                <StyledLink color="#096a09">
                                                     {cell.render('Cell')}
                                                 </StyledLink>
                                             </Link>

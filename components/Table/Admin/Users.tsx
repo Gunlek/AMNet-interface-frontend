@@ -176,11 +176,13 @@ export function UsersTable(data: any[]) {
                   cell.value ? <Succes /> : <Fail />
                   :
                   cell.column['id'] == 'user_name' ?
-                    <Link href={{
-                      pathname: '/admin/users/[user_id]',
-                      query: { user_id: row.allCells[15].value }
-                    }}
-                      passHref>
+                    <Link
+                      href={{
+                        pathname: '/admin/users/[user_id]',
+                        query: { user_id: row.allCells[15].value }
+                      }}
+                      passHref
+                    >
                       <StyledLink color="#096a09">
                         {cell.render('Cell')}
                       </StyledLink>
@@ -226,15 +228,15 @@ export function UsersTable(data: any[]) {
             const replaceBySvg = (column['id'] == 'user_pay_status' || column['id'] == 'user_is_gadz' || column['id'] == 'user_notification')
 
             return (
-              <StyledTh 
-                key={column.id} 
-                textAlign={replaceBySvg ? "center" : undefined} 
-                {...column.getHeaderProps(column.getSortByToggleProps())} 
+              <StyledTh
+                key={column.id}
+                textAlign={replaceBySvg ? "center" : undefined}
+                {...column.getHeaderProps(column.getSortByToggleProps())}
                 as="div"
                 title={
-                  column.isSorted ? 
-                  column.isSortedDesc ? 
-                  'Tri supprimé' : 'Tri par ordre décroisant' : 'Tri par ordre croisant'
+                  column.isSorted ?
+                    column.isSortedDesc ?
+                      'Tri supprimé' : 'Tri par ordre décroisant' : 'Tri par ordre croisant'
                 }
               >
                 {column.render('Header')}
