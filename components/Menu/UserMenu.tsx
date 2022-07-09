@@ -19,19 +19,19 @@ import {
 } from "./style";
 import SmallLogo from "../NavIcons/smallLogo";
 
-export default function UserMenu(props: { 
-  page: string, 
-  user: { 
+export default function UserMenu(props: {
+  page: string,
+  user: {
     "is_gadz": boolean,
     "rank": string,
     "pay_status": boolean
-  } 
+  }
 }) {
   const [scroll, scrolled, top] = useScrollingUp()
   const [open, SetOpen] = useState(false);
   const isGadz = props.user.pay_status ? props.user.is_gadz : false;
   const isAdmin = props.user.rank === "admin";
-  
+
   let NumHiddenIcon = 0
   if (!isGadz) NumHiddenIcon++
   if (props.user.rank === "user") NumHiddenIcon++
@@ -44,13 +44,12 @@ export default function UserMenu(props: {
   }
 
   useEffect(() => {
-    if (!scrolled) if (open) setTimeout(() => { handleChange() }, 525);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [scrolled])
+    if (!scrolled) if (open) setTimeout(() => { SetOpen(!open); }, 525);
+  }, [scrolled, open])
 
   const positionning = {
     flex: "1",
-    minHeight: "70px",
+    minHeight: (70 + NumHiddenIcon * 5).toString() + "px",
     justifyContent: "center",
     alignItems: "center",
     userSelect: "none"
@@ -59,7 +58,7 @@ export default function UserMenu(props: {
   return (
     <MenuContener id="menu" timeTransform={open ? "0.5s" : "0.3s"} top={top} scroll={scroll} sticky={scrolled}>
       <StyledMenu Shadow={open}>
-        <StyledIconContener as="nav" maxHeight={(690-NumHiddenIcon*70).toString()+"px"} mobileHeight={open ? mobileHeight : "95"}>
+        <StyledIconContener as="nav" maxHeight={(690 - NumHiddenIcon * 70).toString() + "px"} mobileHeight={open ? mobileHeight : "95"}>
           <Row
             Display="none"
             mobileDisplay="flex"

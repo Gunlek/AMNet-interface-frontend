@@ -24,8 +24,6 @@ export const IoTMobileLine = ({ index, value, status, display, isLast }: {
         setTimeout(() => {
             setScrolled(false)
         }, 500);
-        
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [display])
 
     return (
@@ -55,7 +53,6 @@ export const IoTMobileLine = ({ index, value, status, display, isLast }: {
                                         pathname: '/admin/users/[user_id]',
                                         query: { user_id: value['access_user'] },
                                     }}
-                                    prefetch={false}
                                     passHref
                                 >
                                     <StyledLink color="#096a09">{value['user_name']}</StyledLink>

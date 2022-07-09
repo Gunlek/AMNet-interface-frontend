@@ -35,8 +35,7 @@ export default function IoTModal(props: { setAccess: Function, userId: Number })
             Newerror.access_proof = false;
             setError(Newerror);
         }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [Display]);
+    }, [error, form]);
 
     const handleFormChange = (elmt, id?: string) => {
         const newForm = { ...form };

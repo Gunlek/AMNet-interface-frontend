@@ -16,13 +16,10 @@ export const MaterialMobileLine = ({ index, value, status, display, isLast }: {
     isLast?: boolean
 }) => {
     const [scrolled, setScrolled] = useState(false);
-    const [height, setHeight] = useState(0);
     const elementRef = useRef(null);
+    const height = status === "pending" ? 480 + elementRef.current?.clientHeight : 410 + elementRef.current?.clientHeight
 
     useEffect(() => {
-        const newHeight = status === "pending" ? 452 + elementRef.current?.clientHeight : 392 + elementRef.current?.clientHeight
-        setHeight(newHeight)
-
         setTimeout(() => {
             setScrolled(false)
         }, 500);
@@ -53,9 +50,8 @@ export const MaterialMobileLine = ({ index, value, status, display, isLast }: {
                                 <Link
                                     href={{
                                         pathname: '/admin/users/[user_id]',
-                                        query: { user_id: value['acces_user'] },
+                                        query: { user_id: value['material_user'] },
                                     }}
-                                    prefetch={false}
                                     passHref
                                 >
                                     <StyledLink color="#096a09">{value['user_name']}</StyledLink>
