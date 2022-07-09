@@ -96,7 +96,7 @@ export default function UserIoT(props: {
               justifyContent: "center"
             }}
           >
-            <IoTModal />
+            <IoTModal userId={props.user.user_id} setAccess={setAccess} />
           </div>
         </ResponsiveRow>
 
@@ -132,7 +132,7 @@ export default function UserIoT(props: {
 
         {!empty &&
           <StyledCard mobileMarginBottom="30px" marginBottom="2%">
-            <IoTUserTable requests={access} />
+            <IoTUserTable requests={access} setAccess={setAccess} userId={props.user.user_id} />
           </StyledCard>
         }
 

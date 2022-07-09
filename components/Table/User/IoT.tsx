@@ -1,3 +1,4 @@
+import axios, { AxiosResponse } from "axios";
 import React from "react";
 import { SmallRedButton } from "../../Button/Buttons";
 import UserProoveModal from "../../Card/Modals/UserProoveModal";
@@ -13,13 +14,26 @@ import {
     StyledHeadTr
 } from "../style";
 
-export default function IoTUserTable(props: { requests: access[] }) {
+export default function IoTUserTable(props: { requests: access[], setAccess: Function, userId: Number }) {
     let listHTML = [];
     let mobilelistHTML = [];
     const containerStyle = {
         height: "100%",
         width: "100%",
         overflow: "auto"
+    }
+
+    const deleteAccess = async (e, accessId: Number) =>{
+        e.preventDefault();
+        await axios.delete(
+            `http://localhost:3333/access/${accessId}`,
+           )
+            .then(async (res: AxiosResponse) => {
+                if (res.status === 200) {
+                    const access = await axios.get(`http://localhost:3333/access/user/${props.userId}`);
+                    props.setAccess(access.data);
+                }
+            })
     }
 
     props.requests.map((value, index) => {
@@ -29,13 +43,15 @@ export default function IoTUserTable(props: { requests: access[] }) {
                 <StyledFlexTd>{value.access_description}</StyledFlexTd>
                 <StyledTd>{value.access_mac}</StyledTd>
                 <StyledTd>
-                    <UserProoveModal link="/static/images/homepage/campus.jpg"/>
+                    <UserProoveModal link={value.access_proof}/>
                 </StyledTd>
                 <StyledTd>
                     <StateRequest state={value.access_state} />
                 </StyledTd>
                 <StyledTd>
-                    <SmallRedButton>Supprimer</SmallRedButton>
+                    <SmallRedButton onClick={(e) => deleteAccess(e, value.access_id)}>
+                        Supprimer
+                    </SmallRedButton>
                 </StyledTd>
             </StyledTr>
         );
@@ -53,7 +69,7 @@ export default function IoTUserTable(props: { requests: access[] }) {
                 <StyledTr>
                     <StyledTd>Preuve</StyledTd>
                     <StyledTd style={{ textAlign: "center", whiteSpace: "normal" }}>
-                        <UserProoveModal link="/static/images/homepage/campus.jpg"/>
+                        <UserProoveModal link={value.access_proof}/>
                     </StyledTd>
                 </StyledTr>
                 <StyledTr>
@@ -62,7 +78,11 @@ export default function IoTUserTable(props: { requests: access[] }) {
                 </StyledTr>
                 <StyledTr style={{ borderBottom: props.requests.length == (index + 1) ? undefined : "2px solid transparent" }}>
                     <StyledTd>Action</StyledTd>
-                    <StyledTd style={{ textAlign: "center" }}><SmallRedButton>Supprimer</SmallRedButton></StyledTd>
+                    <StyledTd style={{ textAlign: "center" }}>
+                        <SmallRedButton onClick={(e) => deleteAccess(e, value.access_id)}>
+                            Supprimer
+                        </SmallRedButton>
+                    </StyledTd>
                 </StyledTr>
             </React.Fragment>
         )
