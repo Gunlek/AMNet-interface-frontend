@@ -31,7 +31,7 @@ export default function FAQ() {
 
       <Column style={{ padding: "0 5%", flex: "1", justifyContent: "center", alignItems: "center" }}>
         <StyledCardCampus style={{ display: "block", width: "fit-content" }}>
-          <Image src="/static/images/inconstruction.png" width={440} height={343} alt=""/>
+          <Image src="/static/images/inconstruction.png" width={440} height={343} alt="Construction Site Plot"/>
         </StyledCardCampus>
       </Column>
 
