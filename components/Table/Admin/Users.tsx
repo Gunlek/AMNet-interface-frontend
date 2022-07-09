@@ -62,6 +62,8 @@ const IndeterminateCheckbox = forwardRef<HTMLInputElement, Props>(
   }
 );
 
+IndeterminateCheckbox.displayName = "IndeterminateCheckbox";
+
 function GlobalFilter({ globalFilter, setGlobalFilter }) {
   const [value, setValue] = useState(globalFilter)
   const onChange = useAsyncDebounce(value => {
@@ -97,7 +99,7 @@ export function UsersTable(data: any[]) {
       { Header: 'Prom\'s', accessor: 'user_proms', width: 100 },
       { Header: 'Rank', accessor: 'user_rank', width: 100 },
       { Header: 'Gadz', accessor: 'user_is_gadz', width: 100 },
-      { Header: 'Notification', accessor: 'user_notification', width: 125 },
+      { Header: 'Notification', accessor: 'user_notification', width: 150 },
       { Header: 'Id', accessor: 'user_id' }
     ]
     ,
@@ -160,10 +162,11 @@ export function UsersTable(data: any[]) {
 
       return (
         <StyledUsersTr as="div"  {...row.getRowProps({ style })}>
-          {row.cells.map((cell) => {
+          {row.cells.map((cell, index) => {
             const replaceBySvg = (cell.column['id'] == 'user_pay_status' || cell.column['id'] == 'user_is_gadz' || cell.column['id'] == 'user_notification')
             return (
               <StyledTd
+                key={index}
                 textAlign={replaceBySvg ? "center" : undefined}
                 BackgroundColor={remainder ? "rgba(0, 0, 0, 0.075)" : undefined}
                 {...cell.getCellProps()}
@@ -208,21 +211,33 @@ export function UsersTable(data: any[]) {
           />
         </StyledMobileContainerRow>
       )
+      // eslint-disable-next-line react-hooks/exhaustive-deps
     },
     [prepareRow, rows]
   )
 
   const idSelected = selectedFlatRows.map(d => d.original["user_id"])
+  idSelected.displayName = "idSelected";
 
   const innerElementType = forwardRef(({ children, ...rest }, ref) => (
     <>
       <div style={{ display: "flex", width: "100%", position: "sticky", top: "0", zIndex: "2" }}>
         <StyledHeadTr {...headerGroups[0].getHeaderGroupProps()} as="div">
           {headerGroups[0].headers.map((column, index) => {
-            const replaceBySvg = (column['id'] == 'user_pay_status' || column['id'] == 'user_is_gadz')
+            const replaceBySvg = (column['id'] == 'user_pay_status' || column['id'] == 'user_is_gadz' || column['id'] == 'user_notification')
 
             return (
-              <StyledTh textAlign={replaceBySvg ? "center" : undefined} {...column.getHeaderProps(column.getSortByToggleProps())} as="div">
+              <StyledTh 
+                key={column.id} 
+                textAlign={replaceBySvg ? "center" : undefined} 
+                {...column.getHeaderProps(column.getSortByToggleProps())} 
+                as="div"
+                title={
+                  column.isSorted ? 
+                  column.isSortedDesc ? 
+                  'Tri supprimé' : 'Tri par ordre décroisant' : 'Tri par ordre croisant'
+                }
+              >
                 {column.render('Header')}
                 {(index == 0) ?
                   <span
@@ -248,6 +263,8 @@ export function UsersTable(data: any[]) {
       </StyledUsersBody>
     </>
   ));
+
+  innerElementType.displayName = "innerElementType";
 
   const innerMobileElementType = forwardRef(({ children, ...rest }, ref) => (
     <>
@@ -282,6 +299,8 @@ export function UsersTable(data: any[]) {
       </StyledUsersBody>
     </>
   ));
+
+  innerMobileElementType.displayName = "innerMobileElementType";
 
   function Table() {
     return (
@@ -318,8 +337,9 @@ export function UsersTable(data: any[]) {
   }
 
   return [
-    <GlobalFilter globalFilter={state.globalFilter} setGlobalFilter={setGlobalFilter} />,
+    <GlobalFilter key={1} globalFilter={state.globalFilter} setGlobalFilter={setGlobalFilter} />,
     <CheckboxRow
+      key={2}
       marginBottom="2%"
       mobileMarginBottom="30px"
       justify="center"
