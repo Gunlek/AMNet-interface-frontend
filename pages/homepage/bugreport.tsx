@@ -61,7 +61,7 @@ export default function BugReport() {
                     <TitleCard>Rapporter un Problème</TitleCard>
                     <ResponsiveRow style={{ alignItems: "center", marginBottom: "20px" }}>
                         <Col8 mobileMarginBottom="20px" paddingRight="10px">
-                            <StyledInputLabel htmlFor="user_name">Nom d'utilisateur</StyledInputLabel>
+                            <StyledInputLabel htmlFor="user_name">Nom d&apos;utilisateur</StyledInputLabel>
                             <StyledInput hoverBorder={checked ? "transparent" : undefined} id="user_name" type="text" readOnly={checked} />
                             <BlackText style={{ marginTop: "5px" }} mobileAlignTxt="justify">
                                 Entrez votre pseudo si vous avez un compte
@@ -71,7 +71,7 @@ export default function BugReport() {
                         <Col4 style={{ maxWidth: "max-content" }}>
                             <StyledLabel style={{ width: "max-content" }}>
                                 <Checkbox checked={checked} onChange={handleCheckboxChange} />
-                                <BlackText style={{ marginLeft: "10px" }}>Je n'ai pas de comtpte</BlackText>
+                                <BlackText style={{ marginLeft: "10px" }}>Je n&apos;ai pas de comtpte</BlackText>
                             </StyledLabel>
                         </Col4>
                     </ResponsiveRow>
@@ -92,7 +92,7 @@ export default function BugReport() {
                         <BlackText style={{ marginTop: "5px", textAlign: "center", fontSize: "1rem" }} mobileAlignTxt="justify">
                             Merci de nous donner un maximum de détails.
                             <br />
-                            Que s'est-il produit, à quelle heure le problème a eu lieu, qu'étiez-vous en train de faire exactement, avez-vous remarqué une action qui permettrait de le répéter etc..
+                            Que s&apos;est-il produit, à quelle heure le problème a eu lieu, qu&apos;étiez-vous en train de faire exactement, avez-vous remarqué une action qui permettrait de le répéter etc..
                             <br /><br />
                             Vous pouvez également nous forunir un screenshot si cela est nécessaire
                         </BlackText>

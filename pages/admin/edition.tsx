@@ -208,10 +208,10 @@ export default function Edition(props: {accutalTeam: { pseudo: string, id: strin
         </StyledCard>
 
         <StyledCard marginBottom="2%" mobileMarginBottom="10px">
-          <TitleCard>Page d'accueil</TitleCard>
+          <TitleCard>Page d&apos;accueil</TitleCard>
           <ResponsiveRow style={{ marginTop: "20px" }}>
             <Col6 marginRight="1%" mobileMarginBottom="20px">
-              <GreenText style={{ marginBottom: "5px" }}>Photo de l'AMNet</GreenText>
+              <GreenText style={{ marginBottom: "5px" }}>Photo de l&apos;AMNet</GreenText>
               <ResponsiveRow style={{ marginBottom: "20px" }}>
                 <Row width="400px" mobileWidth="auto" mobileMarginBottom="20px">
                   <StyledLink

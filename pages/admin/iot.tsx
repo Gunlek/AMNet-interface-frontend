@@ -69,7 +69,7 @@ export default function AdminIoT(props: { access: adminAccess[] }) {
 
       <DashboardContainer>
         <Row margin="1% 0" mobileMargin="20px 0" mobileJustify="center">
-          <BlackTitle>Demandes d'accès à AMNet IoT</BlackTitle>
+          <BlackTitle>Demandes d&apos;accès à AMNet IoT</BlackTitle>
         </Row>
 
         <RequestTab status={Tab.new} TabChange={handleTabChange} />

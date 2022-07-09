@@ -62,7 +62,7 @@ export default function Unsubscribe(props: { user: user }) {
         </BlackText>
 
         <Row style={{ marginTop: "20px", display: "flex", justifyContent: "center" }}>
-          <ButtonLink href="/">Accéder à l'accueil</ButtonLink>
+          <ButtonLink href="/">Accéder à l&apos;accueil</ButtonLink>
         </Row>
       </Modal>
 
@@ -84,9 +84,9 @@ export default function Unsubscribe(props: { user: user }) {
           <BlackText style={{ marginBottom: "20px", textAlign: "justify" }}>
             {props.user.user_notification ?
               <>
-                Vous souhaitez retirer l'adresse <span style={{ color: "#096a09" }}>{props.user.user_email}</span> de notre liste de diffusion ? <br /><br />
+                Vous souhaitez retirer l&apos;adresse <span style={{ color: "#096a09" }}>{props.user.user_email}</span> de notre liste de diffusion ? <br /><br />
 
-                Nous utilisons uniquement votre adresse e-mail pour vous communiquer des informations sur l'AMNet, comme une maintenance potentielle ou sur l'instabilité du réseau.
+                Nous utilisons uniquement votre adresse e-mail pour vous communiquer des informations sur l&apos;AMNet, comme une maintenance potentielle ou sur l&apos;instabilité du réseau.
               </>
               :
               <>

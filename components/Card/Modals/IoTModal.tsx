@@ -28,6 +28,8 @@ export default function IoTModal() {
             Newerror.acces_proof = false;
             setError(Newerror);
         }
+
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [Display]);
 
     const handleFormChange = (elmt, id?: string) => {
@@ -74,7 +76,7 @@ export default function IoTModal() {
                 <>
                     <StyledBackgroundModal onClick={toggle} Opacity={Opacity} />
                     <StyledModal width={minWidth1000 ? "900px" : undefined} Opacity={Opacity}>
-                        <TitleCard hideLine={!minWidth1000}>Demande d'accès pour un objet connecté</TitleCard>
+                        <TitleCard hideLine={!minWidth1000}>Demande d&apos;accès pour un objet connecté</TitleCard>
                         <div style={{ width: "100%", position: "relative" }}>
                             <StyledInputLabel htmlFor="access_mac">Adresse Physique</StyledInputLabel>
                             <StyledInput
@@ -86,7 +88,7 @@ export default function IoTModal() {
                             />
                             {error.access_mac &&
                                 <ErrorP Fixed={true}>
-                                    L'adresse physique est invalide
+                                    L&apos;adresse physique est invalide
                                 </ErrorP>
                             }
                         </div>
@@ -112,7 +114,7 @@ export default function IoTModal() {
                                 style={{ display: "block" }}
                                 htmlFor="acces_proof"
                             >
-                                Photo de l'objet
+                                Photo de l&apos;objet
                             </StyledInputLabel>
                             <ResponsiveRow style={{ alignItems: "center" }}>
                                 <FileUploader id="acces_proof" setfile={handleFormChange} accept=".jpeg, .jpg, .png, .svg" />

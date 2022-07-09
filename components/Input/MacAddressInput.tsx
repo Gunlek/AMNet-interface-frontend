@@ -76,7 +76,7 @@ export default function MacAdressTd(props: { access_mac: string }) {
 
             {tooltip.display &&
                 <MacTooltip Opacity={tooltip.opacity}>
-                    L'adresse physique<br />entrée est invalide
+                    L&apos;adresse physique<br />entrée est invalide
                 </MacTooltip>
             }
         </StyledTd>

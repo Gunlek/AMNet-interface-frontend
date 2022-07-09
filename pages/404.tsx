@@ -29,10 +29,10 @@ export default function Page404() {
             <RectangleLogo />
           </Row>
 
-          <TitleCard>Oup's... Erreur 404</TitleCard>
+          <TitleCard>Oup&apos;s... Erreur 404</TitleCard>
           <BlackText style={{ textAlign: "justify" }}>
             Il semble que même le pouvoir de la 47-102 ne suffise pas à trouver la page que vous recherchez...<br /><br />
-            La dernière solution serait sans doute d'invoquer le gorg'ss, pour cela il faut contacter la rochefouc's par le <StyledLink color="#096a09" href="mailto:contact@amnet.fr">channel 58</StyledLink>
+            La dernière solution serait sans doute d&apos;invoquer le gorg&apos;ss, pour cela il faut contacter la rochefouc&apos;s par le <StyledLink color="#096a09" href="mailto:contact@amnet.fr">channel 58</StyledLink>
           </BlackText>
 
           <Row
@@ -42,7 +42,7 @@ export default function Page404() {
               marginTop: "20px"
             }}
           >
-            <ButtonLink href="/">Accéder à l'accueil</ButtonLink>
+            <ButtonLink href="/">Accéder à l&apos;accueil</ButtonLink>
           </Row>
 
         </StyledCardCampus>

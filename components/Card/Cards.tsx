@@ -20,7 +20,7 @@ export function HelpSection(props: { color?: string, marginBottom?: string, mobi
       color={props.color}
       padding={props.padding}
     >
-      Besoin d'assistance ? Rdv sur la page{" "}
+      Besoin d&apos;assistance ? Rdv sur la page{" "}
       <StyledLink href="/homepage/faq" target="_blank" color={props.color}>FAQ</StyledLink>
       {" "}ou par mail à{" "}
       <StyledLink color={props.color} href="mailto:contact@amnet.fr">contact@amnet.fr</StyledLink>
@@ -53,14 +53,14 @@ export function Footer(props: { page?: string, marginTop?: string }) {
   if (props.page == "campus") {
     return (
       <StyledCampusFooter>
-        Projet développé et maintenu par Hard Win'∫ 58Li218, Squall'∫ 4Li218 et Mac Nhat'∫ 47-102Li219 &bull; Version 2.0.1 <GitHub />
+        Projet développé et maintenu par Hard Win&apos;∫ 58Li218, Squall&apos;∫ 4Li218 et Mac Nhat&apos;∫ 47-102Li219 &bull; Version 2.0.1 <GitHub />
       </StyledCampusFooter>
     );
   }
   else {
     return (
       <StyledFooter marginTop={props.marginTop}>
-        Projet développé et maintenu par Hard Win'∫ 58Li218, Squall'∫ 4Li218 et Mac Nhat'∫ 47-102Li219 &bull; Version 2.0.1 <GitHub />
+        Projet développé et maintenu par Hard Win&apos;∫ 58Li218, Squall&apos;∫ 4Li218 et Mac Nhat&apos;∫ 47-102Li219 &bull; Version 2.0.1 <GitHub />
       </StyledFooter>
     );
   }

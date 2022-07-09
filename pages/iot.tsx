@@ -86,7 +86,7 @@ export default function UserIoT(props: {
       <DashboardContainer>
         <ResponsiveRow margin="1% 0" mobileMargin="20px 0" style={{ alignItems: "center" }}>
           <Column mobileMarginBottom="20px" style={{ justifyContent: "center" }}>
-            <BlackTitle>Mes demandes d'accès à AMNet IoT</BlackTitle>
+            <BlackTitle>Mes demandes d&apos;accès à AMNet IoT</BlackTitle>
           </Column>
 
           <div
@@ -106,9 +106,9 @@ export default function UserIoT(props: {
           style={{ flex: empty ? "1" : undefined }}
         >
           <BlackP mobileMarginBottom="30px" marginBottom="2%">
-            Bien qu'il soit préférable de connecter vos appareils incompatibles avec AMNet Wi-Fi en filaire aux prises ethernet de votre logement, certains appareils ne proposent pas cette option.
+            Bien qu&apos;il soit préférable de connecter vos appareils incompatibles avec AMNet Wi-Fi en filaire aux prises ethernet de votre logement, certains appareils ne proposent pas cette option.
             <br /><br />
-            Cette page vous permet de créer une demande d'accès au réseau Wi-Fi : <span style={{ color: "#096a09", fontWeight: "bold" }}>AMNet IoT</span>, conçu pour supporter la connexion de Chromecast, Google Home, Xbox, Playstation et autres appareils qui ne disposent pas d'une connexion filaire et qui sont incompatibles avec AMNet Wi-Fi.
+            Cette page vous permet de créer une demande d&apos;accès au réseau Wi-Fi : <span style={{ color: "#096a09", fontWeight: "bold" }}>AMNet IoT</span>, conçu pour supporter la connexion de Chromecast, Google Home, Xbox, Playstation et autres appareils qui ne disposent pas d&apos;une connexion filaire et qui sont incompatibles avec AMNet Wi-Fi.
             <br /><br />
             <span style={{ color: "#096a09", fontWeight: "bold" }}>Attention</span> : si vous choisissez de brancher votre appareil en Ethernet, il ne sert à rien de créer une demande sur cette page : Il suffit de vous authentifier en accédant au <StyledLink color="#096a09" hovercolor="#67bc45" style={{ fontWeight: "bold" }} href="https://portail.amnet.fr:8003/index.php?zone=lan_birse" target="_blank" >Portail de connexion</StyledLink>  depuis votre navigateur web !
           </BlackP>
@@ -119,10 +119,10 @@ export default function UserIoT(props: {
 
           <BlackUl>
             <li>
-              Renseigner l'adresse physique (aussi appelée adresse MAC) de votre appareil, ainsi qu'une photo où l'on distingue clairement l'objet et l'adresse mac qui lui est associée
+              Renseigner l&apos;adresse physique (aussi appelée adresse MAC) de votre appareil, ainsi qu&apos;une photo où l&apos;on distingue clairement l&apos;objet et l&apos;adresse mac qui lui est associée
             </li>
             <li>
-              Attendre qu'un administrateur valide votre demande (2-3 jours, depassé ce laps de temps envoyez un mail à <StyledLink style={{ fontWeight: "bold" }} color="#096a09" hovercolor="#67bc45" href="mailto:contact@amnet.fr">contact@amnet.fr</StyledLink>)
+              Attendre qu&apos;un administrateur valide votre demande (2-3 jours, depassé ce laps de temps envoyez un mail à <StyledLink style={{ fontWeight: "bold" }} color="#096a09" hovercolor="#67bc45" href="mailto:contact@amnet.fr">contact@amnet.fr</StyledLink>)
             </li>
             <li>
               Une fois la demande validée vous receverez un mail et vous pourrez connecter votre appareil au réseau :{" "}<span style={{ color: "#096a09", fontWeight: "bold" }}>AMNet Wi-Fi IoT</span>

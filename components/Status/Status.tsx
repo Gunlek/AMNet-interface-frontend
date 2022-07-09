@@ -85,7 +85,7 @@ export function StateIntegration(props: { state?: boolean }) {
       onChange={handleValueChange}
       defaultValue={props.state ? "enabled" : "disabled"}
     >
-      <option value="enabled">Ayat's</option>
+      <option value="enabled">Ayat&apos;s</option>
       <option value="disabled">Fini</option>
     </StyledStateInvite>
   );
@@ -171,7 +171,7 @@ export function AdminNotifications(props: { notifNumber: number, unpaid?: boolea
                 marginBottom: "10px"
               }}
             >
-              Demandes d'accès internet: {props.access_quantity}
+              Demandes d&apos;accès internet: {props.access_quantity}
             </StyledLink>
           </Link>
           <Link href="/admin/material" passHref>

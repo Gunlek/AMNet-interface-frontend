@@ -36,7 +36,7 @@ export default function ProoveModal(props: { request: any, link: string }) {
                                 overflow: "auto"
                             }}
                         >
-                            <TitleCard hideLine={!minWidth1000}>Demande d'accès pour un objet connecté</TitleCard>
+                            <TitleCard hideLine={!minWidth1000}>Demande d&apos;accès pour un objet connecté</TitleCard>
                             <ResponsiveRow>
                                 <Col8 style={{ paddingRight: minWidth1000 ? "1%" : "0", marginBottom: minWidth1000 ? "0" : "20px" }}>
                                     <div style={{ position: "relative", width: "100%", height: minWidth1000 ? "100%" : "300px" }}>
@@ -64,7 +64,6 @@ export default function ProoveModal(props: { request: any, link: string }) {
                                                             pathname: '/admin/users/[user_id]',
                                                             query: { user_id: props.request['access_user'] },
                                                         }}
-                                                        prefetch={false}
                                                         passHref
                                                     >
                                                         <StyledLink color="#096a09">{props.request['user_name']}</StyledLink>

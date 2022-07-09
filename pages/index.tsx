@@ -138,7 +138,7 @@ export default function Dashboard(
             <StyledCard style={{ height: "100%" }}>
               <TitleCard>Objets connectés</TitleCard>
               <BlackText style={{ textAlign: "justify" }}>
-                Faites vos demandes d'ajouts spécifiques
+                Faites vos demandes d&apos;ajouts spécifiques
                 (Objets connectés (IoT), consoles, etc...)
                 depuis cette page
               </BlackText>

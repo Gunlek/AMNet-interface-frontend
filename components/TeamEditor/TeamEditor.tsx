@@ -40,7 +40,7 @@ export default function TeamEditor(accutalTeam: { pseudo: string, id: string }[]
                             mobileMarginBottom="20px"
                             paddingLeft="10px"
                         >
-                            <StyledInputLabel htmlFor="admin_num" style={{ paddingLeft: "5px" }}>Num's</StyledInputLabel>
+                            <StyledInputLabel htmlFor="admin_num" style={{ paddingLeft: "5px" }}>Num&apos;s</StyledInputLabel>
                             <StyledInput id="admin_num" type="text" onChange={(elmt) => setId(elmt.target.value)} required />
                         </Col5>
 

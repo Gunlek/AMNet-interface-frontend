@@ -114,7 +114,7 @@ export default function Profil(props: {
         <form style={{ width: "100%", flex: "1", display: "flex", flexDirection: "column" }} onSubmit={editPorifl}>
           <ResponsiveRow style={{ alignItems: "center", marginBottom: "20px" }}>
             <Col6 mobileMarginBottom="20px" paddingRight="10px" style={{ width: "100%", position: "relative" }}>
-              <StyledInputLabel htmlFor="user_name">Nom d'utilisateur</StyledInputLabel>
+              <StyledInputLabel htmlFor="user_name">Nom d&apos;utilisateur</StyledInputLabel>
               <StyledInput id="user_name" type="text" onChange={handleNameChange} defaultValue={form.user_name} />
               {errorMessage.name}
               {errorMessage.format_name}
@@ -128,7 +128,7 @@ export default function Profil(props: {
               }}
             >
               <BlackText mobileAlignTxt="justify">
-                Votre nom d'utilisateur ne doit contenir
+                Votre nom d&apos;utilisateur ne doit contenir
                 que des lettres, des chiffres ou des espaces.
               </BlackText>
             </Col6>
@@ -183,20 +183,20 @@ export default function Profil(props: {
               <StyledInput id="user_bucque" type="text" onChange={handleFormChange} defaultValue={form.user_bucque} />
             </Col6>
             <Col3 paddingRight="10px" paddingLeft="10px" mobileMarginBottom="20px">
-              <StyledInputLabel htmlFor="user_fams">Fam's</StyledInputLabel>
+              <StyledInputLabel htmlFor="user_fams">Fam&apos;s</StyledInputLabel>
               <StyledInput id="user_fams" type="text" onChange={handleFormChange} defaultValue={form.user_fams} />
             </Col3>
             <Col3 paddingLeft="10px">
-              <StyledInputLabel htmlFor="user_campus">Tabagn's</StyledInputLabel>
+              <StyledInputLabel htmlFor="user_campus">Tabagn&apos;s</StyledInputLabel>
               <StyledInput id="user_campus" name="tbk" as="select" onChange={handleFormChange} defaultValue={form.user_campus}>
                 <option value="Li">Birse</option>
                 <option value="An">Boquette</option>
-                <option value="Bo">Bordel's</option>
-                <option value="Ch">Chalon's</option>
-                <option value="Cl">Clun's</option>
+                <option value="Bo">Bordel&apos;s</option>
+                <option value="Ch">Chalon&apos;s</option>
+                <option value="Cl">Clun&apos;s</option>
                 <option value="KIN">KIN</option>
                 <option value="Pa">P3</option>
-                <option value="Me">Siber's</option>
+                <option value="Me">Siber&apos;s</option>
               </StyledInput>
             </Col3>
           </ResponsiveRow>

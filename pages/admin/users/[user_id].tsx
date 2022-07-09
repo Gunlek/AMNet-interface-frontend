@@ -71,7 +71,7 @@ export default function User(props: {
 
                 <ResponsiveRow style={{ alignItems: "center", marginBottom: "20px" }}>
                     <Col6 mobileMarginBottom="20px" paddingRight="10px" style={{ width: "100%", position: "relative" }}>
-                        <StyledInputLabel htmlFor="user_name">Nom d'utilisateur</StyledInputLabel>
+                        <StyledInputLabel htmlFor="user_name">Nom d&apos;utilisateur</StyledInputLabel>
                         <StyledInput id="user_name" type="text" defaultValue={form.user_name} onChange={handleNameChange} />
                         {errorMessage.name}
                         {errorMessage.format_name}
@@ -84,7 +84,7 @@ export default function User(props: {
                         }}
                     >
                         <BlackText mobileAlignTxt="justify">
-                            Le nom d'utilisateur ne doit contenir
+                            Le nom d&apos;utilisateur ne doit contenir
                             que des lettres, des chiffres ou des espaces.
                         </BlackText>
                     </Col6>
@@ -144,20 +144,20 @@ export default function User(props: {
                         <StyledInput id="user_bucque" type="text" defaultValue={form.user_bucque} />
                     </Col6>
                     <Col3 paddingRight="10px" paddingLeft="10px" mobileMarginBottom="20px">
-                        <StyledInputLabel htmlFor="user_fams">Fam's</StyledInputLabel>
+                        <StyledInputLabel htmlFor="user_fams">Fam&apos;s</StyledInputLabel>
                         <StyledInput id="user_fams" type="text" defaultValue={form.user_fams} />
                     </Col3>
                     <Col3 paddingLeft="10px" mobileMarginBottom="20px">
-                        <StyledInputLabel htmlFor="user_campus">Tabagn's</StyledInputLabel>
+                        <StyledInputLabel htmlFor="user_campus">Tabagn&apos;s</StyledInputLabel>
                         <StyledInput id="user_campus" name="tbk" as="select" defaultValue={form.user_campus}>
                             <option value="li">Birse</option>
                             <option value="an">Boquette</option>
-                            <option value="bo">Bordel's</option>
-                            <option value="ch">Chalon's</option>
-                            <option value="cl">Clun's</option>
+                            <option value="bo">Bordel&apos;s</option>
+                            <option value="ch">Chalon&apos;s</option>
+                            <option value="cl">Clun&apos;s</option>
                             <option value="kin">KIN</option>
                             <option value="pa">P3</option>
-                            <option value="me">Siber's</option>
+                            <option value="me">Siber&apos;s</option>
                         </StyledInput>
                     </Col3>
                 </ResponsiveRow>

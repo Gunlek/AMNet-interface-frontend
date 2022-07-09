@@ -172,7 +172,7 @@ export default function Settings(props: {
 
       <DashboardContainer>
         <Row margin="1% 0" mobileMargin="20px 0" mobileJustify="center">
-          <BlackTitle>Espace d'administration</BlackTitle>
+          <BlackTitle>Espace d&apos;administration</BlackTitle>
         </Row>
 
         <ResponsiveRow marginBottom="2%" mobileMarginBottom="30px">
@@ -180,10 +180,10 @@ export default function Settings(props: {
             <StyledCard style={{ flex: "1" }}>
               <TitleCard>Etat des demandes</TitleCard>
               <BlackText>
-                Nombre d'utilisateurs: {props.users_quantity} <br />
-                Nombre d'utilisateurs ayant payé la cotiz': {props.paid_users_quantity} <br />
+                Nombre d&apos;utilisateurs: {props.users_quantity} <br />
+                Nombre d&apos;utilisateurs ayant payé la cotiz&apos;: {props.paid_users_quantity} <br />
                 <br /><br />
-                Demandes d'accès internet: {props.access_quantity}<br />
+                Demandes d&apos;accès internet: {props.access_quantity}<br />
                 Demandes de matériel: {props.material_quantity}
               </BlackText>
             </StyledCard>
@@ -229,7 +229,7 @@ export default function Settings(props: {
 
         <Row marginBottom="2%" mobileMarginBottom="30px">
           <StyledCard style={{ height: "100%" }}>
-            <TitleCard>Message d'actualité</TitleCard>
+            <TitleCard>Message d&apos;actualité</TitleCard>
             <div style={{ marginBottom: "20px" }}>
               {WelcomeMessageEditor}
             </div>
@@ -269,7 +269,7 @@ export default function Settings(props: {
               <Col6 paddingLeft="1%" mobileMarginBottom="30px">
                 <Row>
                   <Col6>
-                    <GreenText style={{ marginBottom: "5px" }}>Prom's</GreenText>
+                    <GreenText style={{ marginBottom: "5px" }}>Prom&apos;s</GreenText>
                   </Col6>
                   <Col6>
                     <StyledLabel style={{ width: "fit-content" }}>

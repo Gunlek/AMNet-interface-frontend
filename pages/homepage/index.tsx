@@ -107,7 +107,7 @@ export default function Homepage(props: { accutalTeam: { pseudo: string, id: str
                   En plus de fournir un accès internet aux résidents nous
                   offrons une multitude de services, un serveur Minecraft :{" "}
                   <span style={{ color: "#096A09" }}>minecraft.amnet.fr</span>{" "}
-                  et d'autres que nous vous laisserons découvrir un jour ...
+                  et d&apos;autres que nous vous laisserons découvrir un jour ...
                 </BlackP>
                 <BlackP>
                   Si vous avez des idées de services que nous pourrions proposer
@@ -123,7 +123,7 @@ export default function Homepage(props: { accutalTeam: { pseudo: string, id: str
             <TitleCard>A propos</TitleCard>
             <Column style={{ justifyContent: "space-between", height: "100%" }}>
               <BlackP mobileAlignTxt="center" style={{ marginBottom: "10px" }} >
-                Projet développé et maintenu par Hard Win'∫ 58Li218, Squall'∫ 4Li218 et Mac Nhat'∫ 47-102Li219
+                Projet développé et maintenu par Hard Win&apos;∫ 58Li218, Squall&apos;∫ 4Li218 et Mac Nhat&apos;∫ 47-102Li219
               </BlackP>
 
               <BlackText style={{ display: "flex", alignItems: "center", justifyContent: "center", marginBottom: "10px" }}>
@@ -131,7 +131,7 @@ export default function Homepage(props: { accutalTeam: { pseudo: string, id: str
               </BlackText>
 
               <BlackText style={{ textAlign: "right" }}>
-                Design et UI pensés avec l'aide de Cou'∫<span style={{ marginLeft: "1.5px" }}>'</span>tal 141Li219
+                Design et UI pensés avec l&apos;aide de Cou&apos;∫<span style={{ marginLeft: "1.5px" }}>&apos;</span>tal 141Li219
               </BlackText>
             </Column>
           </StyledCardCampus>

@@ -119,11 +119,11 @@ export default function useForm(
         name:
             error.user_name &&
             <ErrorP Fixed={true}>
-                Ce nom d'utilisateur est déjà utilisé
+                Ce nom d&apos;utilisateur est déjà utilisé
             </ErrorP>,
         format_name: error.user_name_format &&
             <ErrorP Fixed={true}>
-                Ce nom d'utilisateur n'a pas le bon format
+                Ce nom d&apos;utilisateur n&apos;a pas le bon format
             </ErrorP>,
         email:
             error.user_email &&
@@ -139,7 +139,7 @@ export default function useForm(
             </div>,
         phone: error.phone &&
             <ErrorP Fixed={true}>
-                Ce numéro de téléphone n'a pas le bon format
+                Ce numéro de téléphone n&apos;a pas le bon format
             </ErrorP>
     }
 
