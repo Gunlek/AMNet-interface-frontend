@@ -19,7 +19,7 @@ export type access = {
     access_id: number;
     access_description: string;
     access_mac: string;
-    access_proof: string | File;
+    access_proof: string;
     access_state: string;
 }
 
