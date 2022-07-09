@@ -7,8 +7,6 @@ import startsWith from 'lodash.startswith';
 import { isPossiblePhoneNumber } from 'react-phone-number-input'
 
 export default function PhoneInput(props: { value: string, onChange: any }) {
-    const [focus, setFocus] = useState(false)
-
     const onChange = (value: string, country: { dialCode: any; }) => {
         props.onChange(value, isPossiblePhoneNumber("+" + value) && startsWith(value, country.dialCode))
     }
@@ -25,8 +23,6 @@ export default function PhoneInput(props: { value: string, onChange: any }) {
                 inputClass="phoneInput"
                 buttonStyle={{ background: "transparent", border: "none", marginLeft: "20px" }}
                 placeholder=""
-                onFocus={() => { setFocus(true) }}
-                onBlur={() => { setFocus(false) }}
                 onChange={onChange}
                 inputProps={{ required: true, id: "user_phone" }}
             />
