@@ -217,3 +217,15 @@ export const ButtonsRow = styled(Row)`
     grid-Template-Columns: repeat(auto-fill,minmax(300px, 1fr))
   } 
 `;
+
+export const MinecraftContainer = styled.div`
+   position: relative; 
+   width: 90%; 
+   height: 90%;
+   
+   @media screen and (max-width: 1000px){
+    height: 120px;
+    width: 120px;
+    margin-top: 20px;
+  } 
+`;

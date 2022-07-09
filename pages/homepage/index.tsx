@@ -2,7 +2,7 @@ import React from "react";
 import Head from "next/head";
 import { ButtonLink } from "../../components/Button/Buttons";
 import { TitleCard, HelpSection } from "../../components/Card/Cards";
-import { StyledMinecraftImg } from "../../components/Card/Images/style";
+import Image from 'next/image'
 import RectangleLogo from "../../components/Card/RectangleLogo";
 import { StyledCardCampus } from "../../components/Card/style";
 import TeamPicture from "../../components/Card/TeamPicture";
@@ -15,7 +15,8 @@ import {
   Col2,
   Col10,
   Col5,
-  Column
+  Column,
+  MinecraftContainer
 } from "../../components/Container/style";
 import {
   WhiteP,
@@ -96,7 +97,9 @@ export default function Homepage(props: { accutalTeam: { pseudo: string, id: str
                   justifyContent: "center"
                 }}
               >
-                <StyledMinecraftImg />
+                <MinecraftContainer>
+                  <Image layout="fill" src="/static/logo/mc_logo.png" alt="Logo Minecraft"/>
+                </MinecraftContainer>
               </Col2>
 
               <Col10 paddingLeft="30px">

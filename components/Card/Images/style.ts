@@ -25,17 +25,6 @@ export const StyledCancelImg = styled.img.attrs({ src: "/static/icons/cancel.svg
   }
 `
 
-export const StyledMinecraftImg = styled.img.attrs({ src: "/static/logo/mc_logo.png", alt: "Logo Minecraft" })`
-  width: 90%;
-  height: auto;
-  aspect-ratio: 1 / 1; 
-
-  @media screen and (max-width: 1000px){
-    width: auto; 
-    height: 80%; 
-  } 
-`
-
 export const StyledLogo = styled.svg`
   height: ${props => (props.height || "100px")};
   aspect-ratio: 19 / 8.5; 
