@@ -3,11 +3,14 @@ import { StyledLink } from "../../Text/style"
 import { TitleCard } from "../Cards"
 import { ModalLogic } from "./ModalLogic"
 import { StyledBackgroundModal, StyledModal } from "./style"
+import Image from 'next/image'
+import { useState } from "react"
 
 export default function UserProoveModal(props: { link: string }) {
     const minWidth1000 = useMediaQuery('(min-width: 1200px)')
     const { Display, Opacity, toggle } = ModalLogic()
-
+    const [ratio, setRatio] = useState(16/9)
+    
     return (
         <>
             <StyledLink color="#096a09" onClick={toggle}>Image</StyledLink>
@@ -30,7 +33,19 @@ export default function UserProoveModal(props: { link: string }) {
                             }}
                         >
                             <TitleCard>Photo de votre equipement</TitleCard>
-                            <img style={{ borderRadius: "30px", maxWidth: "100%" }} src={props.link} />
+                            <div style={{ position: "relative" }}>
+                                <Image
+                                    style={{ borderRadius: "30px" }}
+                                    src={`${process.env.NEXT_PUBLIC_API_HOST}/${props.link}`}
+                                    alt="Photo Proof"
+                                    width={800}
+                                    height={800 / ratio}
+                                    layout="responsive"
+                                    onLoadingComplete={({ naturalWidth, naturalHeight }) => 
+                                      setRatio(naturalWidth / naturalHeight)
+                                    }
+                                />
+                            </div>
                         </div>
                     </StyledModal></>
             }

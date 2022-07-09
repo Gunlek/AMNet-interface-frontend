@@ -43,7 +43,7 @@ export default function ProoveModal(props: { request: any, link: string }) {
                                         <Image
                                             alt={props.request['access_description']}
                                             style={{ borderRadius: "30px" }}
-                                            src={`${process.env.NEXT_PUBLIC_PROOF_FOLDER}${props.request['access_proof']}`}
+                                            src={`${process.env.NEXT_PUBLIC_API_HOST}/${props.request['access_proof']}`}
                                             quality="50"
                                             layout="fill"
                                         />
