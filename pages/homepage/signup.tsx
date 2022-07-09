@@ -70,6 +70,7 @@ export default function SignUp(props: { active_proms: number, usins_state: boole
 
   useEffect(() => {
     router.prefetch('/');
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   const handleRadioChange = () => {
@@ -156,7 +157,7 @@ export default function SignUp(props: { active_proms: number, usins_state: boole
                   position: "relative"
                 }}
               >
-                <StyledInputLabel htmlFor="user_name">Nom d'utilisateur</StyledInputLabel>
+                <StyledInputLabel htmlFor="user_name">Nom d&apos;utilisateur</StyledInputLabel>
                 <StyledInput onChange={handleNameChange} id="user_name" type="text" required />
                 {errorMessage.name}
                 {errorMessage.format_name}
@@ -170,7 +171,7 @@ export default function SignUp(props: { active_proms: number, usins_state: boole
                 }}
               >
                 <BlackText mobileAlignTxt="justify">
-                  Votre nom d'utilisateur ne doit contenir
+                  Votre nom d&apos;utilisateur ne doit contenir
                   que des lettres, des chiffres ou des espaces.
                 </BlackText>
               </Col6>
@@ -251,21 +252,21 @@ export default function SignUp(props: { active_proms: number, usins_state: boole
                 paddingLeft="10px"
                 mobileMarginBottom="20px"
               >
-                <StyledInputLabel htmlFor="user_fams">Fam's</StyledInputLabel>
+                <StyledInputLabel htmlFor="user_fams">Fam&apos;s</StyledInputLabel>
                 <StyledInput onChange={handleFormChange} id="user_fams" type="text" />
               </Col3>
 
               <Col3 paddingLeft="10px">
-                <StyledInputLabel htmlFor="user_campus">Tabagn's</StyledInputLabel>
+                <StyledInputLabel htmlFor="user_campus">Tabagn&apos;s</StyledInputLabel>
                 <StyledInput onChange={handleFormChange} id="user_campus" as="select" defaultValue="Li">
                   <option value="Li">Birse</option>
                   <option value="An">Boquette</option>
-                  <option value="Bo">Bordel's</option>
-                  <option value="Ch">Chalon's</option>
-                  <option value="Cl">Clun's</option>
+                  <option value="Bo">Bordel&apos;s</option>
+                  <option value="Ch">Chalon&apos;s</option>
+                  <option value="Cl">Clun&apos;s</option>
                   <option value="KIN">KIN</option>
                   <option value="Pa">P3</option>
-                  <option value="Me">Siber's</option>
+                  <option value="Me">Siber&apos;s</option>
                 </StyledInput>
               </Col3>
             </ResponsiveRow>
@@ -286,12 +287,12 @@ export default function SignUp(props: { active_proms: number, usins_state: boole
             <Column style={{ alignItems: "start", marginBottom: "20px", marginTop: "20px" }} >
               <GreenText>Réglementation</GreenText>
               <BlackText style={{ marginTop: "5px", marginBottom: "1.2rem" }}>
-                Consultez <StyledLink color="#096a09" target="_blank" href={`${process.env.NEXT_PUBLIC_API_HOST}/Statuts-AMNet.pdf`}>les Statuts de l'association</StyledLink>
+                Consultez <StyledLink color="#096a09" target="_blank" href={`${process.env.NEXT_PUBLIC_API_HOST}/Statuts-AMNet.pdf`}>les Statuts de l&apos;association</StyledLink>
                 <br />
-                Consultez <StyledLink color="#096a09" target="_blank" href={`${process.env.NEXT_PUBLIC_API_HOST}/RI-AMNet.pdf`}>le Règlement intérieur de l'association</StyledLink>
+                Consultez <StyledLink color="#096a09" target="_blank" href={`${process.env.NEXT_PUBLIC_API_HOST}/RI-AMNet.pdf`}>le Règlement intérieur de l&apos;association</StyledLink>
               </BlackText>
               <BlackP>
-                AMNet Birse est une association Loi 1901, vous devez en accepter les statuts et le réglement intérieur. La validation de ce formulaire et le réglement de la cotisation annuelle ({props.lydia_cotiz}€) valent pour adhésion à l'association.
+                AMNet Birse est une association Loi 1901, vous devez en accepter les statuts et le réglement intérieur. La validation de ce formulaire et le réglement de la cotisation annuelle ({props.lydia_cotiz}€) valent pour adhésion à l&apos;association.
               </BlackP>
             </Column>
 

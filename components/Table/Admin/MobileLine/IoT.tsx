@@ -24,6 +24,8 @@ export const IoTMobileLine = ({ index, value, status, display, isLast }: {
         setTimeout(() => {
             setScrolled(false)
         }, 500);
+        
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [display])
 
     return (

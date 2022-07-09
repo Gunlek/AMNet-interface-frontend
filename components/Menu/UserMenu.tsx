@@ -45,6 +45,7 @@ export default function UserMenu(props: {
 
   useEffect(() => {
     if (!scrolled) if (open) setTimeout(() => { handleChange() }, 525);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [scrolled])
 
   const positionning = {

@@ -60,6 +60,7 @@ export default function Login(props: { modal: boolean }) {
   useEffect(() => {
     if (props.modal) router.prefetch('/homepage/unsubscribe')
     else router.prefetch('/');
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   const handleSignIn = async (e) => {
@@ -112,7 +113,7 @@ export default function Login(props: { modal: boolean }) {
 
           <form onSubmit={handleSignIn}>
             <div style={{ marginBottom: "20px" }}>
-              <StyledInputLabel htmlFor="name">Nom d'utilisateur</StyledInputLabel>
+              <StyledInputLabel htmlFor="name">Nom d&apos;utilisateur</StyledInputLabel>
               <StyledInput id="name" type="text" onChange={handleFormChange} />
             </div>
 

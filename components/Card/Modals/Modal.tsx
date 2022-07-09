@@ -9,10 +9,11 @@ export default function Modal(props: {
 }) {
     const { Display, Opacity, toggle } = ModalLogic(props.show)
     const [mount, setMount] = useState(false)
-    
+
     useEffect(() => {
         setMount(true)
         if (mount) { toggle() }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [props.show])
 
     return (
