@@ -105,9 +105,12 @@ export default function UserMenu(props: {
             undefined
           }
 
-          <Row style={positionning}>
-            <FAQIcon page={props.page} />
-          </Row>
+          {!(process.env.NEXT_PUBLIC_FAQ_STATE === 'inactive') &&
+            <Row style={positionning}>
+              <FAQIcon page={props.page} />
+            </Row>
+          }
+
 
           {isAdmin &&
             <Row style={positionning}>
