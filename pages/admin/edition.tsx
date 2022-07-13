@@ -11,59 +11,51 @@ import AdminMenu from "../../components/Menu/AdminMenu";
 import { BlackText, BlackTitle, GreenText, StyledLink } from "../../components/Text/style";
 import { GreenButton } from "../../components/Button/Buttons";
 import { Footer, TitleCard } from "../../components/Card/Cards";
-import TeamEditor  from "../../components/TeamEditor/TeamEditor";
+import TeamEditor from "../../components/TeamEditor/TeamEditor";
 import useMediaQuery from "../../components/MediaQueries/MediaQuery";
 import FileUploader from "../../components/Input/FileUploader";
 import TeamPicture from "../../components/Card/TeamPicture";
 import { StyledDeleteImg } from "../../components/Card/Images/style";
-import jwt_decode from "jwt-decode";
 import axios from "axios";
-import parseCookies from "../../components/Utils/cookie";
+import getToken from "../../components/Utils/auth-token";
+import getConfig from "../../components/Utils/req-config";
 
-export async function getServerSideProps({ req, res }) {
-  const cookies = parseCookies(req)
+export async function getServerSideProps({ req }) {
+  const { access_token, userId } = getToken(req)
 
-  if (cookies.access_token) {
-    const userId = await jwt_decode(cookies.access_token)['id'];
+  if (access_token) {
+    const config = getConfig(access_token)
+
     const [accutalTeam, user] = await Promise.all([
-      axios.get('http://localhost:3333/settings/admin-list'),
-      axios.get(`http://localhost:3333/user/${userId}`)
+      axios.get(`${process.env.NEXT_PUBLIC_API_HOST}/settings/admin-list`),
+      axios.get(`${process.env.NEXT_PUBLIC_API_HOST}/user/${userId}`, config)
     ])
 
     if (user.data.user_rank === "admin") {
-      if (res) {
-        if (Object.keys(cookies).length === 0 && cookies.constructor === Object) {
-          res.writeHead(301, { Location: "/" })
-          res.end()
-        }
-      }
-
       return {
         props: { accutalTeam: accutalTeam.data }
       }
     }
-    else {
-      return {
-        redirect: {
-          destination: '/',
-          permanent: false,
-        },
+
+    return {
+      redirect: {
+        destination: '/',
+        permanent: false,
       }
     }
   }
-  else {
-    return {
-      redirect: {
-        destination: '/homepage',
-        permanent: false,
-      },
+
+  return {
+    redirect: {
+      destination: '/homepage',
+      permanent: false,
     }
   }
 }
 
-export default function Edition(props: {accutalTeam: { pseudo: string, id: string }[]}) {
+export default function Edition(props: { accutalTeam: { pseudo: string, id: string }[] }) {
   const minWidth1000 = useMediaQuery('(min-width:1000px)');
-  const {team, teamEditor} = TeamEditor(props.accutalTeam)
+  const { team, teamEditor } = TeamEditor(props.accutalTeam)
   const [TabFile, setTabFile] = useState({ IR: null, Status: null, TeamPicture: null });
   const [URLTeamPicture, setURLTeamPicture] = useState(undefined)
 

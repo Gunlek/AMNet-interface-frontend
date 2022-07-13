@@ -7,26 +7,19 @@ import RectangleLogo from "../../components/Card/RectangleLogo";
 import { StyledCardCampus } from "../../components/Card/style";
 import { Row } from "../../components/Container/style";
 import { BlackText } from "../../components/Text/style";
-import parseCookies from "../../components/Utils/cookie";
 import axios from "axios";
-import jwt_decode from "jwt-decode";
 import { user } from "../../components/Utils/types";
 import Modal from "../../components/Card/Modals/Modal";
+import getToken from "../../components/Utils/auth-token";
+import getConfig from "../../components/Utils/req-config";
 
-export async function getServerSideProps({ req, res }) {
-  const cookies = parseCookies(req)
+export async function getServerSideProps({ req }) {
+  const { access_token, userId } = getToken(req)
 
-  if (cookies.access_token) {
-    const userId = await jwt_decode(cookies.access_token)['id'];
-    const user = await axios.get(`http://localhost:3333/user/${userId}`)
-
-    if (res) {
-      if (Object.keys(cookies).length === 0 && cookies.constructor === Object) {
-        res.writeHead(301, { Location: "/" })
-        res.end()
-      }
-    }
-
+  if (access_token) {
+    const config = getConfig(access_token)
+    const user = await axios.get(`${process.env.NEXT_PUBLIC_API_HOST}/user/${userId}`)
+    
     return { props: { user: user.data as user } }
   }
   else {
@@ -44,7 +37,7 @@ export default function Unsubscribe(props: { user: user }) {
   
   const unsubscrive = async (e) => {
     e.preventDefault();
-    await axios.put(`http://localhost:3333/mail/user/${props.user.user_id}`)
+    await axios.put(`${process.env.NEXT_PUBLIC_API_HOST}/mail/user/${props.user.user_id}`)
     setShow(!show)
   }
 

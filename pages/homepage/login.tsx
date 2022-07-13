@@ -14,28 +14,22 @@ import PasswordInput from "../../components/Input/PasswordInput";
 import { useCookies } from "react-cookie"
 import axios from "axios";
 import { useRouter } from "next/router";
-import parseCookies from "../../components/Utils/cookie";
 import Modal from "../../components/Card/Modals/Modal";
+import getToken from "../../components/Utils/auth-token";
 
-export async function getServerSideProps({ req, res, query }) {
-  const cookies = parseCookies(req)
+export async function getServerSideProps({ req, query }) {
+  const { access_token } = getToken(req)
 
-  if (cookies.access_token) {
-    if (res) {
-      if (Object.keys(cookies).length === 0 && cookies.constructor === Object) {
-        res.writeHead(301, { Location: "/" })
-        res.end()
-      }
-    }
-
+  if (access_token) {
     return {
       redirect: {
         destination: '/',
         permanent: false,
-      },
+      }
     }
   }
-  else return { props: { modal: query.modal === "true" } }
+  
+  return { props: { modal: query.modal === "true" } }
 }
 
 export default function Login(props: { modal: boolean }) {
@@ -72,7 +66,8 @@ export default function Login(props: { modal: boolean }) {
       setCookie("access_token", access_token, {
         path: "/",
         maxAge: checked ? 60 * 60 * 24 * 365 * 10 : 3600,
-        sameSite: "strict"
+        sameSite: "strict",
+        secure: process.env.NODE_ENV !== 'development'
       })
 
       if (props.modal) router.push("/homepage/unsubscribe")

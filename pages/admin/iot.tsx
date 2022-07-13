@@ -10,47 +10,37 @@ import IoTAdminTable from "../../components/Table/Admin/IoT";
 import useMediaQuery from "../../components/MediaQueries/MediaQuery";
 import axios from "axios";
 import { adminAccess } from "../../components/Utils/types";
-import parseCookies from "../../components/Utils/cookie";
-import jwt_decode from "jwt-decode";
-import { user } from "../../components/Utils/types";
 import useTransition from "../../components/Table/Admin/TableTransition";
+import getToken from "../../components/Utils/auth-token";
+import getConfig from "../../components/Utils/req-config";
 
-export async function getServerSideProps({ req, res }) {
-  const cookies = parseCookies(req)
+export async function getServerSideProps({ req }) {
+  const { access_token, userId } = getToken(req)
 
-  if (cookies.access_token) {
-    const userId = await jwt_decode(cookies.access_token)['id'];
-    const user = await (await axios.get(`http://localhost:3333/user/${userId}`)).data as user;
+  if (access_token) {
+    const config = getConfig(access_token);
+    const user = await axios.get(`${process.env.NEXT_PUBLIC_API_HOST}/user/${userId}`, config);
 
-    if (user.user_rank === "admin") {
-      if (res) {
-        if (Object.keys(cookies).length === 0 && cookies.constructor === Object) {
-          res.writeHead(301, { Location: "/" })
-          res.end()
-        }
-      }
-
-      const access = await (await axios.get(`http://localhost:3333/access`)).data as adminAccess[]
-
+    if (user.data.user_rank === "admin") {
+      const access = await axios.get(`${process.env.NEXT_PUBLIC_API_HOST}/access`, config);
+      
       return {
-        props: { access }
+        props: { access: access.data }
       }
     }
-    else {
-      return {
-        redirect: {
-          destination: '/',
-          permanent: false,
-        },
+
+    return {
+      redirect: {
+        destination: '/',
+        permanent: false,
       }
     }
   }
-  else {
-    return {
-      redirect: {
-        destination: '/homepage',
-        permanent: false,
-      },
+
+  return {
+    redirect: {
+      destination: '/homepage',
+      permanent: false,
     }
   }
 }
@@ -79,12 +69,12 @@ export default function AdminIoT(props: { access: adminAccess[] }) {
           mobileMarginBottom="10px"
           style={{ flex: "1 0 0", minHeight: minWidth1000 ? "0" : "300px" }}
         >
-          <IoTAdminTable 
-            status={Tab} 
-            requests={props.access} 
-            display={Display} 
-            opacity={Opacity} 
-            mobileRef={mobileContainerRef} 
+          <IoTAdminTable
+            status={Tab}
+            requests={props.access}
+            display={Display}
+            opacity={Opacity}
+            mobileRef={mobileContainerRef}
           />
         </StyledCard>
 

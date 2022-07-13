@@ -8,17 +8,17 @@ import UserMenu from "../components/Menu/UserMenu";
 import { AdminNotifications, StateContribution } from "../components/Status/Status";
 import { BlackTitle, BlackText, NewsMessage } from "../components/Text/style";
 import axios from 'axios';
-import jwt_decode from "jwt-decode";
-import parseCookies from "../components/Utils/cookie";
 import { user } from "../components/Utils/types";
 import Modal from "../components/Card/Modals/Modal";
+import getToken from "../components/Utils/auth-token";
+import getConfig from "../components/Utils/req-config";
 
-export async function getServerSideProps({ req, res }) {
-  const cookies = parseCookies(req)
+export async function getServerSideProps({ req }) {
+  const { access_token, userId } = getToken(req)
 
-  if (cookies.access_token) {
-    const userId = await jwt_decode(cookies.access_token)['id'];
-    const user = await (await axios.get(`http://localhost:3333/user/${userId}`)).data;
+  if (access_token) {
+    const config = getConfig(access_token)
+    const user = await (await axios.get(`${process.env.NEXT_PUBLIC_API_HOST}/user/${userId}`, config)).data;
 
     const [
       news_message,
@@ -32,42 +32,34 @@ export async function getServerSideProps({ req, res }) {
       axios.get(`http://localhost:3333/settings/lydia_cotiz`)
     ])
 
-    if (res) {
-      if (Object.keys(cookies).length === 0 && cookies.constructor === Object) {
-        res.writeHead(301, { Location: "/" })
-        res.end()
-      }
-    }
-
     if (user.user_rank === 'admin') {
       return {
         props: {
           news_message: news_message.data,
           access_quantity: access_quantity.data,
           material_quantity: material_quantity.data,
-          access_token: cookies.access_token,
+          access_token: access_token,
           lydia_cotiz: lydia_cotiz.data,
           user: user
         }
       }
     }
-    else {
-      return {
-        props: {
-          news_message: news_message.data,
-          lydia_cotiz: lydia_cotiz.data,
-          user: user
-        }
-      }
-    }
-  }
-  else {
+
     return {
-      redirect: {
-        destination: '/homepage',
-        permanent: false,
-      },
+      props: {
+        news_message: news_message.data,
+        lydia_cotiz: lydia_cotiz.data,
+        user: user
+      }
     }
+
+  }
+
+  return {
+    redirect: {
+      destination: '/homepage',
+      permanent: false,
+    },
   }
 }
 

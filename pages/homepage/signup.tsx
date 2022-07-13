@@ -29,20 +29,12 @@ import useForm from "../../components/Input/useForm";
 import { useRouter } from "next/router";
 import axios, { AxiosResponse } from 'axios'
 import { useCookies } from "react-cookie";
-import parseCookies from "../../components/Utils/cookie";
+import getToken from "../../components/Utils/auth-token";
 
-export async function getServerSideProps({ req, res }) {
+export async function getServerSideProps({ req }) {
+  const { access_token } = getToken(req)
 
-  const cookies = parseCookies(req)
-
-  if (cookies.access_token) {
-    if (res) {
-      if (Object.keys(cookies).length === 0 && cookies.constructor === Object) {
-        res.writeHead(301, { Location: "/" })
-        res.end()
-      }
-    }
-
+  if (access_token) {
     return {
       redirect: {
         destination: '/',
@@ -50,16 +42,15 @@ export async function getServerSideProps({ req, res }) {
       },
     }
   }
-  else {
-    const [active_proms, usins_state, lydia_cotiz] = await Promise.all([
-      axios.get(`http://localhost:3333/settings/active_proms`),
-      axios.get(`http://localhost:3333/settings/usins_state`),
-      axios.get(`http://localhost:3333/settings/lydia_cotiz`)
-    ])
 
-    return {
-      props: { active_proms: active_proms.data, usins_state: usins_state.data, lydia_cotiz: lydia_cotiz.data }
-    }
+  const [active_proms, usins_state, lydia_cotiz] = await Promise.all([
+    axios.get(`${process.env.NEXT_PUBLIC_API_HOST}/settings/active_proms`),
+    axios.get(`${process.env.NEXT_PUBLIC_API_HOST}/settings/usins_state`),
+    axios.get(`${process.env.NEXT_PUBLIC_API_HOST}/settings/lydia_cotiz`)
+  ])
+
+  return {
+    props: { active_proms: active_proms.data, usins_state: usins_state.data, lydia_cotiz: lydia_cotiz.data }
   }
 }
 

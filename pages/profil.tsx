@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Head from "next/head";
 import { GreenButton } from "../components/Button/Buttons";
 import { HelpSection, Footer } from "../components/Card/Cards";
-import { StyledCancelImg } from "../components/Card/Images/style";
 import { DashboardContainer, ResponsiveRow, Column, Col6, Col3 } from "../components/Container/style";
 import { StyledInputLabel, StyledInput } from "../components/Input/style";
 import UserMenu from "../components/Menu/UserMenu";
@@ -11,46 +10,38 @@ import { BlackTitle, BlackText, GreenText } from "../components/Text/style";
 import PasswordInput from "../components/Input/PasswordInput";
 import axios, { AxiosResponse } from "axios";
 import useForm from "../components/Input/useForm";
-import jwt_decode from "jwt-decode";
 import PhoneInput from "../components/Input/PhoneInput";
-import parseCookies from "../components/Utils/cookie";
 import { user } from "../components/Utils/types";
+import getToken from "../components/Utils/auth-token";
+import getConfig from "../components/Utils/req-config";
 
-export async function getServerSideProps({ req, res }) {
-  const cookies = parseCookies(req)
+export async function getServerSideProps({ req }) {
+  const { access_token, userId } = getToken(req)
 
-  if (cookies.access_token) {
-    if (res) {
-      if (Object.keys(cookies).length === 0 && cookies.constructor === Object) {
-        res.writeHead(301, { Location: "/" })
-        res.end()
-      }
-    }
-
-    const userId = await jwt_decode(cookies.access_token)['id'];
+  if (access_token) {
+    const config = getConfig(access_token);
 
     const [user, active_proms, usins_state, lydia_cotiz] = await Promise.all([
-      axios.get(`http://localhost:3333/user/${userId}`),
-      axios.get(`http://localhost:3333/settings/active_proms`),
-      axios.get(`http://localhost:3333/settings/usins_state`),
-      axios.get(`http://localhost:3333/settings/lydia_cotiz`)
-    ])
+      axios.get(`${process.env.NEXT_PUBLIC_API_HOST}/user/${userId}`, config),
+      axios.get(`${process.env.NEXT_PUBLIC_API_HOST}/settings/active_proms`, config),
+      axios.get(`${process.env.NEXT_PUBLIC_API_HOST}/settings/usins_state`, config),
+      axios.get(`${process.env.NEXT_PUBLIC_API_HOST}/settings/lydia_cotiz`, config)
+    ]);
 
     return {
-      props: { 
-        user: user.data, 
-        active_proms: active_proms.data, 
-        usins_state: usins_state.data, 
-        lydia_cotiz: lydia_cotiz.data 
+      props: {
+        user: user.data,
+        active_proms: active_proms.data,
+        usins_state: usins_state.data,
+        lydia_cotiz: lydia_cotiz.data
       }
     }
   }
-  else {
-    return {
-      redirect: {
-        destination: '/homepage',
-        permanent: false,
-      },
+
+  return {
+    redirect: {
+      destination: '/homepage',
+      permanent: false,
     }
   }
 }
@@ -63,7 +54,6 @@ export default function Profil(props: {
 }) {
   const {
     form,
-    promotion,
     errorMessage,
     handleFormChange,
     handleFormErrors,

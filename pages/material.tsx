@@ -8,55 +8,47 @@ import UserMenu from "../components/Menu/UserMenu";
 import MaterialUserTable from "../components/Table/User/Material";
 import { BlackTitle, BlackP } from "../components/Text/style";
 import axios from "axios";
-import jwt_decode from "jwt-decode";
-import parseCookies from "../components/Utils/cookie";
 import { hardware, user } from "../components/Utils/types";
+import getToken from "../components/Utils/auth-token";
+import getConfig from "../components/Utils/req-config";
 
-export async function getServerSideProps({ req, res }) {
-  const cookies = parseCookies(req)
+export async function getServerSideProps({ req }) {
+  const { access_token, userId } = getToken(req)
 
-  if (cookies.access_token) {
-    const userId = await jwt_decode(cookies.access_token)['id'];
+  if (access_token) {
+    const config = getConfig(access_token)
 
     const [
       material,
       user
     ] = await Promise.all([
-      axios.get(`http://localhost:3333/hardware/user/${userId}`),
-      axios.get(`http://localhost:3333/user/${userId}`)
+      axios.get(`${process.env.NEXT_PUBLIC_API_HOST}/hardware/user/${userId}`, config),
+      axios.get(`${process.env.NEXT_PUBLIC_API_HOST}/user/${userId}`, config)
     ])
 
     if (user.data.user_pay_status) {
-      if (res) {
-        if (Object.keys(cookies).length === 0 && cookies.constructor === Object) {
-          res.writeHead(301, { Location: "/" })
-          res.end()
-        }
-      }
-
       return {
         props: {
           material: material.data as hardware[],
-          access_token: cookies.access_token as string,
+          access_token: access_token as string,
           user: user.data as user
         }
       }
     }
-    else {
-      return {
-        redirect: {
-          destination: '/',
-          permanent: false,
-        },
-      }
-    }
-  }
-  else {
+
     return {
       redirect: {
-        destination: '/homepage',
+        destination: '/',
         permanent: false,
-      },
+      }
+    }
+
+  }
+
+  return {
+    redirect: {
+      destination: '/homepage',
+      permanent: false,
     }
   }
 }

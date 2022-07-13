@@ -8,48 +8,38 @@ import RequestTab from "../../components/Card/RequestTab";
 import { Footer } from "../../components/Card/Cards";
 import MaterialAdminTable from "../../components/Table/Admin/Material";
 import useMediaQuery from "../../components/MediaQueries/MediaQuery";
-import parseCookies from "../../components/Utils/cookie";
-import jwt_decode from "jwt-decode";
-import { user } from "../../components/Utils/types";
 import axios from "axios";
 import useTransition from "../../components/Table/Admin/TableTransition";
+import getConfig from "../../components/Utils/req-config";
+import getToken from "../../components/Utils/auth-token";
 
-export async function getServerSideProps({ req, res }) {
-  const cookies = parseCookies(req)
+export async function getServerSideProps({ req }) {
+  const { access_token, userId } = getToken(req)
 
-  if (cookies.access_token) {
-    const userId = await jwt_decode(cookies.access_token)['id'];
-    const user = await (await axios.get(`http://localhost:3333/user/${userId}`)).data as user;
+  if (access_token) {
+    const config = getConfig(access_token)
+    const user = await axios.get(`${process.env.NEXT_PUBLIC_API_HOST}/user/${userId}`, config)
 
-    if (user.user_rank === "admin") {
-      if (res) {
-        if (Object.keys(cookies).length === 0 && cookies.constructor === Object) {
-          res.writeHead(301, { Location: "/" })
-          res.end()
-        }
-      }
-
-      const hardware = await axios.get(`http://localhost:3333/hardware`);
+    if (user.data.user_rank === "admin") {
+      const hardware = await axios.get(`${process.env.NEXT_PUBLIC_API_HOST}/hardware`, config)
 
       return {
         props: { hardware: hardware.data }
       }
     }
-    else {
-      return {
-        redirect: {
-          destination: '/',
-          permanent: false,
-        },
+
+    return {
+      redirect: {
+        destination: '/',
+        permanent: false,
       }
     }
   }
-  else {
-    return {
-      redirect: {
-        destination: '/homepage',
-        permanent: false,
-      },
+  
+  return {
+    redirect: {
+      destination: '/homepage',
+      permanent: false,
     }
   }
 }
@@ -58,7 +48,7 @@ export default function AdminMaterial(props: { hardware }) {
   const minWidth1000 = useMediaQuery('(min-width:1000px)');
   const mobileContainerRef = useRef(null)
   const { Display, Opacity, Tab, handleTabChange } = useTransition(mobileContainerRef)
-  
+
   return (
     <>
       <Head>

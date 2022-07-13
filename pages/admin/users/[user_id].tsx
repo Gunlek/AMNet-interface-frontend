@@ -12,20 +12,45 @@ import axios from "axios";
 import useForm from "../../../components/Input/useForm";
 import PhoneInput from "../../../components/Input/PhoneInput";
 import { user } from "../../../components/Utils/types";
+import getToken from "../../../components/Utils/auth-token";
+import getConfig from "../../../components/Utils/req-config";
 
-export async function getServerSideProps({ params }) {
-    const [user, active_proms, usins_state] = await Promise.all([
-        axios.get(`http://localhost:3333/user/${params.user_id}`),
-        axios.get(`http://localhost:3333/settings/active_proms`),
-        axios.get(`http://localhost:3333/settings/usins_state`),
-    ])
+export async function getServerSideProps({ req, params }) {
+    const { access_token, userId } = getToken(req)
 
-    if (user.data)
-        return {
-            props: { user: user.data, active_proms: active_proms.data, usins_state: usins_state.data }
+    if (access_token) {
+        const config = getConfig(access_token)
+        const user = await axios.get(`${process.env.NEXT_PUBLIC_API_HOST}/user/${userId}`, config);
+
+        if (user.data.user_rank === "admin") {
+            const [userProfile, active_proms, usins_state] = await Promise.all([
+                axios.get(`${process.env.NEXT_PUBLIC_API_HOST}/user/${params.user_id}`, config),
+                axios.get(`${process.env.NEXT_PUBLIC_API_HOST}/settings/active_proms`),
+                axios.get(`${process.env.NEXT_PUBLIC_API_HOST}/settings/usins_state`),
+            ])
+
+            if (userProfile.data)
+                return {
+                    props: { user: userProfile.data, active_proms: active_proms.data, usins_state: usins_state.data }
+                }
+
+            return { notFound: true };
         }
-    else
-        return { notFound: true };
+
+        return {
+            redirect: {
+                destination: '/',
+                permanent: false,
+            }
+        }
+    }
+
+    return {
+        redirect: {
+            destination: '/homepage',
+            permanent: false,
+        }
+    }
 }
 
 export default function User(props: {

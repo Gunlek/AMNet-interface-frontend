@@ -21,36 +21,36 @@ import Editor from "../../components/Input/Editor";
 import { EditorStyle } from "../../styles/editor";
 import MailModal from "../../components/Card/Modals/MailModal";
 import axios from "axios";
-import parseCookies from "../../components/Utils/cookie";
-import { user } from "../../components/Utils/types";
-import jwt_decode from "jwt-decode";
+import getConfig from "../../components/Utils/req-config";
+import getToken from "../../components/Utils/auth-token";
 
-export async function getServerSideProps({ req, res }) {
-  const cookies = parseCookies(req)
+export async function getServerSideProps({ req }) {
+  const { access_token, userId } = getToken(req)
 
-  if (cookies.access_token) {
-    const userId = await jwt_decode(cookies.access_token)['id'];
-    const user = await (await axios.get(`http://localhost:3333/user/${userId}`)).data as user;
+  if (access_token) {
+    const config = getConfig(access_token)
+    const user = await axios.get(`${process.env.NEXT_PUBLIC_API_HOST}/user/${userId}`, config)
 
-    if (user.user_rank === "admin") {
-      const [access_quantity, material_quantity, users_quantity, paid_users_quantity, lydia_cotiz, active_proms, usins_state, guest_access, news_message,] = await Promise.all([
-        axios.get(`http://localhost:3333/access/quantity`),
-        axios.get(`http://localhost:3333/hardware/quantity`),
-        axios.get(`http://localhost:3333/user/quantity`),
-        axios.get(`http://localhost:3333/user/quantity/paid`),
-        axios.get(`http://localhost:3333/settings/lydia_cotiz`),
-        axios.get(`http://localhost:3333/settings/active_proms`),
-        axios.get(`http://localhost:3333/settings/usins_state`),
-        axios.get(`http://localhost:3333/settings/guest_access`),
-        axios.get(`http://localhost:3333/settings/news_message`)
+    if (user.data.user_rank === "admin") {
+      const [
+        access_quantity,
+        material_quantity,
+        users_quantity,
+        lydia_cotiz,
+        active_proms,
+        usins_state,
+        guest_access,
+        news_message
+      ] = await Promise.all([
+        axios.get(`${process.env.NEXT_PUBLIC_API_HOST}/access/quantity`, config),
+        axios.get(`${process.env.NEXT_PUBLIC_API_HOST}/hardware/quantity`, config),
+        axios.get(`${process.env.NEXT_PUBLIC_API_HOST}/user/quantity`, config),
+        axios.get(`${process.env.NEXT_PUBLIC_API_HOST}/settings/lydia_cotiz`, config),
+        axios.get(`${process.env.NEXT_PUBLIC_API_HOST}/settings/active_proms`, config),
+        axios.get(`${process.env.NEXT_PUBLIC_API_HOST}/settings/usins_state`, config),
+        axios.get(`${process.env.NEXT_PUBLIC_API_HOST}/settings/guest_access`, config),
+        axios.get(`${process.env.NEXT_PUBLIC_API_HOST}/settings/news_message`, config)
       ])
-
-      if (res) {
-        if (Object.keys(cookies).length === 0 && cookies.constructor === Object) {
-          res.writeHead(301, { Location: "/" })
-          res.end()
-        }
-      }
 
       return {
         props: {
@@ -61,26 +61,23 @@ export async function getServerSideProps({ req, res }) {
           active_proms: active_proms.data,
           usins_state: usins_state.data,
           guest_access: guest_access.data,
-          news_message: news_message.data,
-          paid_users_quantity: paid_users_quantity.data
+          news_message: news_message.data
         }
       }
     }
-    else {
-      return {
-        redirect: {
-          destination: '/',
-          permanent: false,
-        },
-      }
-    }
-  }
-  else {
+
     return {
       redirect: {
-        destination: '/homepage',
+        destination: '/',
         permanent: false,
       },
+    }
+  }
+
+  return {
+    redirect: {
+      destination: '/homepage',
+      permanent: false,
     }
   }
 }
@@ -88,13 +85,12 @@ export async function getServerSideProps({ req, res }) {
 export default function Settings(props: {
   access_quantity: number,
   material_quantity: number,
-  users_quantity: number,
+  users_quantity: number[],
   lydia_cotiz: number,
   active_proms: number,
   usins_state: boolean,
   guest_access: boolean,
-  news_message: string,
-  paid_users_quantity: number
+  news_message: string
 }) {
   const [Checked, setChecked] = useState({
     "Contribution": false,
@@ -180,8 +176,8 @@ export default function Settings(props: {
             <StyledCard style={{ flex: "1" }}>
               <TitleCard>Etat des demandes</TitleCard>
               <BlackText>
-                Nombre d&apos;utilisateurs: {props.users_quantity} <br />
-                Nombre d&apos;utilisateurs ayant payé la cotiz&apos;: {props.paid_users_quantity} <br />
+                Nombre d&apos;utilisateurs: {props.users_quantity[0]} <br />
+                Nombre d&apos;utilisateurs ayant payé la cotiz&apos;: {props.users_quantity[1]} <br />
                 <br /><br />
                 Demandes d&apos;accès internet: {props.access_quantity}<br />
                 Demandes de matériel: {props.material_quantity}

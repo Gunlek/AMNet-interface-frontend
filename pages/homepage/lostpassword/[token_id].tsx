@@ -13,11 +13,16 @@ import { ErrorP } from "../../../components/Text/style";
 
 
 export async function getServerSideProps({ params }) {
-  const name = await (await axios.get(`http://localhost:3333/user/password/${params.token_id}`)).data
+  const name = await (await axios.get(`${process.env.NEXT_PUBLIC_API_HOST}/user/password/${params.token_id}`)).data
   const token = params.token_id;
-  return {
-    props: { name, token }
+
+  if (name) {
+    return {
+      props: { name, token }
+    }
   }
+
+  return { notFound: true };
 }
 
 export default function ResetPassword(props: { name: string, token: string }) {

@@ -6,59 +6,52 @@ import { StyledCard } from "../components/Card/style";
 import { DashboardContainer, ResponsiveRow, Column } from "../components/Container/style";
 import UserMenu from "../components/Menu/UserMenu";
 import IoTUserTable from "../components/Table/User/IoT";
-import { BlackTitle, BlackP, StyledLink, BlackText, BlackUl } from "../components/Text/style";
+import { BlackTitle, BlackP, StyledLink, BlackUl } from "../components/Text/style";
 import axios from "axios";
-import jwt_decode from "jwt-decode";
-import parseCookies from "../components/Utils/cookie";
 import { user, access } from "../components/Utils/types";
+import getToken from "../components/Utils/auth-token";
+import getConfig from "../components/Utils/req-config";
 
-export async function getServerSideProps({ req, res }) {
-  const cookies = parseCookies(req)
+export async function getServerSideProps({ req }) {
+  const { access_token, userId } = getToken(req)
 
-  if (cookies.access_token) {
-    const userId = await jwt_decode(cookies.access_token)['id'];
+  if (access_token) {
+    const config = getConfig(access_token)
 
     const [
       access,
       user
     ] = await Promise.all([
-      axios.get(`http://localhost:3333/access/user/${userId}`),
-      axios.get(`http://localhost:3333/user/${userId}`)
+      axios.get(`${process.env.NEXT_PUBLIC_API_HOST}/access/user/${userId}`, config),
+      axios.get(`${process.env.NEXT_PUBLIC_API_HOST}/user/${userId}`, config)
     ])
 
     if (user.data.user_pay_status) {
-      if (res) {
-        if (Object.keys(cookies).length === 0 && cookies.constructor === Object) {
-          res.writeHead(301, { Location: "/" })
-          res.end()
-        }
-      }
-
       return {
         props: {
-          access: access.data,
-          access_token: cookies.access_token,
-          user: user.data
+          access: access.data as access[],
+          access_token: access_token as string,
+          user: user.data as user
         }
       }
     }
-    else {
-      return {
-        redirect: {
-          destination: '/',
-          permanent: false,
-        },
-      }
-    }
-  }
-  else {
+
     return {
       redirect: {
-        destination: '/homepage',
+        destination: '/',
         permanent: false,
       },
     }
+
   }
+
+  return {
+    redirect: {
+      destination: '/homepage',
+      permanent: false,
+    },
+  }
+
 }
 
 export default function UserIoT(props: {
@@ -96,7 +89,7 @@ export default function UserIoT(props: {
               justifyContent: "center"
             }}
           >
-            <IoTModal userId={props.user.user_id} setAccess={setAccess} />
+            <IoTModal token={props.access_token} userId={props.user.user_id} setAccess={setAccess} />
           </div>
         </ResponsiveRow>
 

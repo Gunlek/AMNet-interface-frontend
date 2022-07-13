@@ -28,7 +28,7 @@ import { CampusGlobalStyle } from "../../components/Background/style";
 import axios from "axios";
 
 export async function getStaticProps() {
-  const accutalTeam = await axios.get('http://localhost:3333/settings/admin-list')
+  const accutalTeam = await axios.get(`${process.env.NEXT_PUBLIC_API_HOST}/settings/admin-list`)
 
   return {
     props: { accutalTeam: accutalTeam.data as { pseudo: string, id: string }[] },
