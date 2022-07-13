@@ -7,12 +7,13 @@ import { StyledInputLabel, StyledInput } from "../../Input/style";
 import useMediaQuery from "../../MediaQueries/MediaQuery";
 import { ErrorP, StyledLink } from "../../Text/style";
 import MacAddressVerification from "../../Utils/macaddress";
+import getConfig from "../../Utils/req-config";
 import { TitleCard } from "../Cards";
 import { StyledDeleteImg } from "../Images/style";
 import { ModalLogic } from "./ModalLogic";
 import { StyledBackgroundModal, StyledModal } from "./style";
 
-export default function IoTModal(props: { setAccess: Function, userId: Number }) {
+export default function IoTModal(props: { setAccess: Function, token: string, userId: Number }) {
     const minWidth1000 = useMediaQuery('(min-width: 1000px)')
     const { Display, Opacity, toggle } = ModalLogic()
     const [form, setForm] = useState({
@@ -75,17 +76,12 @@ export default function IoTModal(props: { setAccess: Function, userId: Number })
         setError(newError);
 
         if (!newError.access_proof && !newError.access_description && !newError.access_mac) {
-            await axios.post(
-                'http://localhost:3333/access',
-                form,
-                {
-                    headers: {
-                        "Content-Type": "multipart/form-data",
-                    }
-                })
+            const config = getConfig(props.token, 'multipart/form-data')
+            
+            await axios.post(`${process.env.NEXT_PUBLIC_API_HOST}/access`,form,config)
                 .then(async (res: AxiosResponse) => {
                     if (res.status === 200) {
-                        const access = await axios.get(`http://localhost:3333/access/user/${props.userId}`);
+                        const access = await axios.get(`${process.env.NEXT_PUBLIC_API_HOST}/access/user/${props.userId}`);
                         props.setAccess(access.data);
                         toggle()
                     }
