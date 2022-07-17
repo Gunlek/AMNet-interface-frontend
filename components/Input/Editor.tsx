@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import dynamic from "next/dynamic";
 import 'react-quill/dist/quill.snow.css';
-import { defaultProps } from "react-quill";
 const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 const QuillToolbar = dynamic(() => import("./toolbar"), { ssr: false });
 
