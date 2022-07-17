@@ -4,6 +4,11 @@ import { Quill } from "react-quill";
 const Size = Quill.import("formats/size");
 Size.whitelist = ["extra-small", "small", "medium", "large"];
 Quill.register(Size, true);
+Quill.register(Quill.import("attributors/style/direction"), true);
+Quill.register(Quill.import("attributors/style/align"), true);
+const Block = Quill.import('blots/block');
+Block.tagName = 'DIV';
+Quill.register(Block, true);
 
 export const QuillToolbar = (props: { id: string }) => (
     <div 
