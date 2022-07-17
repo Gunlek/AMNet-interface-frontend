@@ -53,11 +53,15 @@ export function StateRequest(props: { state: string, center?: boolean }) {
   }
 }
 
-export function StateInvite(props: { state?: boolean }) {
+export function StateInvite(props: { state: boolean, onChange: Function }) {
   const [state, setState] = useState(props.state);
 
   const handleValueChange = (elmt) => {
     setState(elmt.target.value == "enabled");
+    props.onChange({ 
+      currentTarget: { id: elmt.currentTarget.id }, 
+      target: { value: (elmt.target.value == "enabled") ? 1 : 0 } 
+    });
   }
 
   return (
@@ -65,6 +69,7 @@ export function StateInvite(props: { state?: boolean }) {
       status={state}
       onChange={handleValueChange}
       defaultValue={props.state ? "enabled" : "disabled"}
+      id="guest_access"
     >
       <option value="enabled">Activé</option>
       <option value="disabled">Désactivé</option>
@@ -72,11 +77,15 @@ export function StateInvite(props: { state?: boolean }) {
   );
 }
 
-export function StateIntegration(props: { state?: boolean }) {
+export function StateIntegration(props: { state: boolean, onChange: Function }) {
   const [state, setState] = useState(props.state);
 
   const handleValueChange = (elmt) => {
     setState(elmt.target.value == "enabled");
+    props.onChange({ 
+      currentTarget: { id: elmt.currentTarget.id }, 
+      target: { value: (elmt.target.value == "enabled") ? 1 : 0 } 
+    });
   }
 
   return (
@@ -84,6 +93,7 @@ export function StateIntegration(props: { state?: boolean }) {
       status={state}
       onChange={handleValueChange}
       defaultValue={props.state ? "enabled" : "disabled"}
+      id="usins_state"
     >
       <option value="enabled">Ayat&apos;s</option>
       <option value="disabled">Fini</option>
