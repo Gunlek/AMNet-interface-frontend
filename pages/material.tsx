@@ -30,7 +30,6 @@ export async function getServerSideProps({ req }) {
       return {
         props: {
           material: material.data as hardware[],
-          access_token: access_token as string,
           user: user.data as user
         }
       }
@@ -55,7 +54,6 @@ export async function getServerSideProps({ req }) {
 
 export default function UserMaterial(props: {
   material: hardware[],
-  access_token: string,
   user: user
 }) {
   const [material, setMaterial] = useState(props.material)

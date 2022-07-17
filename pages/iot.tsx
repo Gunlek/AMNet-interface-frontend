@@ -30,7 +30,6 @@ export async function getServerSideProps({ req }) {
       return {
         props: {
           access: access.data as access[],
-          access_token: access_token as string,
           user: user.data as user
         }
       }
@@ -56,7 +55,6 @@ export async function getServerSideProps({ req }) {
 
 export default function UserIoT(props: {
   access: access[],
-  access_token: string,
   user: user
 }) {
   const [access, setAccess] = useState(props.access)
@@ -89,7 +87,7 @@ export default function UserIoT(props: {
               justifyContent: "center"
             }}
           >
-            <IoTModal token={props.access_token} userId={props.user.user_id} setAccess={setAccess} />
+            <IoTModal userId={props.user.user_id} setAccess={setAccess} />
           </div>
         </ResponsiveRow>
 
