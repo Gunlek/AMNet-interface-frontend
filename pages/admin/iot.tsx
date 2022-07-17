@@ -23,7 +23,7 @@ export async function getServerSideProps({ req }) {
 
     if (user.data.user_rank === "admin") {
       const access = await axios.get(`${process.env.NEXT_PUBLIC_API_HOST}/access`, config);
-      
+
       return {
         props: { access: access.data }
       }
@@ -49,6 +49,7 @@ export default function AdminIoT(props: { access: adminAccess[] }) {
   const mobileContainerRef = useRef(null)
   const { Display, Opacity, Tab, handleTabChange } = useTransition(mobileContainerRef)
   const minWidth1000 = useMediaQuery('(min-width:1000px)');
+  const [access, setAccess] = useState(props.access)
 
   return (
     <>
@@ -71,10 +72,11 @@ export default function AdminIoT(props: { access: adminAccess[] }) {
         >
           <IoTAdminTable
             status={Tab}
-            requests={props.access}
+            requests={access}
             display={Display}
             opacity={Opacity}
             mobileRef={mobileContainerRef}
+            setTab={setAccess}
           />
         </StyledCard>
 

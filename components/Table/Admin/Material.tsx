@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { useState, useEffect, useRef } from "react";
 import { MediaContextProvider, Media } from "../../MediaQueries/MediaSSR";
 import Fail from "../../NavIcons/fail";
 import Succes from "../../NavIcons/succes";
@@ -10,7 +9,11 @@ import { StyledTr, StyledTd, MobileTbody, StyledTable, StyledHeadTr, StyledTh, T
 import { Buttons } from "./Buttons";
 import MaterialMobileLine from "./MobileLine/Material";
 
-function CreateTable({ requests, Display }: { requests: adminHardware[]; Display: any; }) {
+function CreateTable({ requests, Display, setTab }: {
+    requests: adminHardware[],
+    Display: any,
+    setTab: Function
+}) {
     let listHTML = { active: [], declined: [], pending: [] };
     let mobilelistHTML = { active: [], declined: [], pending: [] };
     let index = { active: 1, declined: 1, pending: 1 };
@@ -50,7 +53,12 @@ function CreateTable({ requests, Display }: { requests: adminHardware[]; Display
                             width: (value['material_state'] == "pending") ? "495px" : "320px"
                         }}
                     >
-                        <Buttons status={value['material_state']} requestType="hardware" />
+                        <Buttons
+                            id={value['material_id']}
+                            status={value['material_state']}
+                            requestType="hardware"
+                            setTab={setTab}
+                        />
                     </div>
                 </StyledTd>
             </StyledTr>
@@ -63,6 +71,7 @@ function CreateTable({ requests, Display }: { requests: adminHardware[]; Display
                 display={Display}
                 value={value}
                 status={value['material_state']}
+                setTab={setTab}
             />
         )
 
@@ -102,9 +111,14 @@ export default function MaterialAdminTable(props: {
     status: { old: string, new: string },
     display: { active: boolean, declined: boolean, pending: boolean },
     opacity: { active: string, declined: string, pending: string, head: string },
-    mobileRef: any
+    mobileRef: any,
+    setTab: Function
 }) {
-    const [listHTML, mobilelistHTML] = CreateTable({ requests: props.requests, Display: props.display })
+    const [listHTML, mobilelistHTML] = CreateTable({ 
+        requests: props.requests, 
+        Display: props.display,
+        setTab: props.setTab
+    })
 
     return (
         <MediaContextProvider>

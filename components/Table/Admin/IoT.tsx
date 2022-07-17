@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { useState, useEffect, useRef } from "react";
 import ProoveModal from "../../Card/Modals/AdminProoveModal";
 import { MediaContextProvider, Media } from "../../MediaQueries/MediaSSR";
 import Fail from "../../NavIcons/fail";
@@ -10,10 +9,13 @@ import { StyledTr, StyledTd, MobileTbody, StyledTable, StyledHeadTr, StyledTh, T
 import { Buttons } from "./Buttons";
 import MacAdressTd from "../../Input/MacAddressInput";
 import IoTMobileLine from "./MobileLine/IoT";
-import TableTransition from "./TableTransition";
 import { adminAccess } from "../../Utils/types";
 
-function CreateTable({ requests, Display }: { requests: adminAccess[]; Display: any; }) {
+function CreateTable({ requests, Display, setTab }: {
+    requests: adminAccess[],
+    Display: any,
+    setTab: Function
+}) {
     let listHTML = { active: [], declined: [], pending: [] };
     let mobilelistHTML = { active: [], declined: [], pending: [] };
     let index = { active: 1, declined: 1, pending: 1 };
@@ -39,7 +41,7 @@ function CreateTable({ requests, Display }: { requests: adminAccess[]; Display: 
                 <StyledTd>{value['access_description']}</StyledTd>
                 <MacAdressTd access_mac={value['access_mac']} />
                 <StyledTd style={{ textAlign: "center" }}>
-                    <ProoveModal request={value} link={value['access_proof']} />
+                    <ProoveModal request={value} link={value['access_proof']} setTab={setTab} />
                 </StyledTd>
                 <StyledTd>
                     <StateRequest state={value['access_state']} />
@@ -52,7 +54,12 @@ function CreateTable({ requests, Display }: { requests: adminAccess[]; Display: 
                             width: (value['access_state'] == "pending") ? "495px" : "320px",
                         }}
                     >
-                        <Buttons status={value['access_state']} id={value['access_id'].toString()} requestType="access" />
+                        <Buttons
+                            status={value['access_state']}
+                            id={value['access_id']}
+                            requestType="access"
+                            setTab={setTab}
+                        />
                     </div>
                 </StyledTd>
             </StyledTr>
@@ -65,6 +72,7 @@ function CreateTable({ requests, Display }: { requests: adminAccess[]; Display: 
                 value={value}
                 status={value['access_state']}
                 display={Display}
+                setTab={setTab}
             />
         );
 
@@ -103,9 +111,14 @@ export default function IoTAdminTable(props: {
     status: { old: string, new: string },
     display: { active: boolean, declined: boolean, pending: boolean },
     opacity: { active: string, declined: string, pending: string, head: string },
-    mobileRef: any
+    mobileRef: any,
+    setTab: Function
 }) {
-    const [listHTML, mobilelistHTML] = CreateTable({ requests: props.requests, Display: props.display })
+    const [listHTML, mobilelistHTML] = CreateTable({ 
+        requests: props.requests, 
+        Display: props.display,
+        setTab: props.setTab 
+    })
 
     return (
         <MediaContextProvider>

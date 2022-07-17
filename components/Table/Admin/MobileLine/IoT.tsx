@@ -10,11 +10,12 @@ import { StyledLink } from "../../../Text/style";
 import { adminAccess } from "../../../Utils/types";
 import MacAdressTd from "../../../Input/MacAddressInput";
 
-export const IoTMobileLine = ({ index, value, status, display, isLast }: {
+export const IoTMobileLine = ({ index, value, status, display, isLast, setTab }: {
     index: number,
     value: adminAccess,
     status: string,
     display: any,
+    setTab: Function,
     isLast?: boolean
 }) => {
     const [scrolled, setScrolled] = useState(false);
@@ -34,7 +35,7 @@ export const IoTMobileLine = ({ index, value, status, display, isLast }: {
                     transition: "0.3s linear",
                     overflowY: "hidden",
                     overflowX: scrolled ? "auto" : "hidden",
-                    marginBottom: isLast ? scrolled ? "0" : "5px" : "25px" 
+                    marginBottom: isLast ? scrolled ? "0" : "5px" : "25px"
                 }}
             >
                 <StyledTable style={{ tableLayout: "fixed" }}>
@@ -67,12 +68,12 @@ export const IoTMobileLine = ({ index, value, status, display, isLast }: {
                         </StyledTr>
                         <StyledTr>
                             <StyledTd>Adresse Mac</StyledTd>
-                            <MacAdressTd access_mac={value.access_mac}/>
+                            <MacAdressTd access_mac={value.access_mac} />
                         </StyledTr>
                         <StyledTr>
                             <StyledTd>Preuve</StyledTd>
                             <StyledTd style={{ textAlign: "center", whiteSpace: "normal" }}>
-                                <ProoveModal request={value} link="/static/images/campus.png" />
+                                <ProoveModal request={value} link="/static/images/campus.png" setTab={Function} />
                             </StyledTd>
                         </StyledTr>
                         <StyledTr>
@@ -92,7 +93,12 @@ export const IoTMobileLine = ({ index, value, status, display, isLast }: {
                                         transition: "height 0.1s ease-out 0.5s"
                                     }}
                                 >
-                                    <Buttons status={value['access_state']} requestType="access"/>
+                                    <Buttons
+                                        status={value['access_state']}
+                                        requestType="access"
+                                        id={value.access_id}
+                                        setTab={setTab}
+                                    />
                                 </div>
                             </StyledTd>
                         </StyledTr>

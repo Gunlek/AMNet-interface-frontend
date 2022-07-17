@@ -11,7 +11,7 @@ import ModalLogic from "./ModalLogic";
 import { StyledBackgroundModal, StyledModal } from "./style";
 import Image from 'next/image'
 
-export default function ProoveModal(props: { request: any, link: string }) {
+export default function ProoveModal(props: { request: any, link: string, setTab: Function }) {
     const minWidth1000 = useMediaQuery('(min-width: 1200px)')
     const { Display, Opacity, toggle } = ModalLogic()
 
@@ -90,7 +90,7 @@ export default function ProoveModal(props: { request: any, link: string }) {
                                                             flexDirection: "column"
                                                         }}
                                                     >
-                                                        <Buttons id={props.request['access_id']} status={props.request['access_state']} requestType="access" />
+                                                        <Buttons id={props.request['access_id']} status={props.request['access_state']} requestType="access" setTab={props.setTab} />
                                                     </div>
                                                 </StyledTd>
                                             </StyledTr>
