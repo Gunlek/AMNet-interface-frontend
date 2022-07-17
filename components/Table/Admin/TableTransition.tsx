@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 export default function useTransition(ContainerRef: any) {
     const [Display, setDisplay] = useState({ active: false, declined: false, pending: true })
