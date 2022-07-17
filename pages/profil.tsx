@@ -67,7 +67,7 @@ export default function Profil(props: {
     elmt.preventDefault()
 
     if (!errorMessage.password && !errorMessage.format_name && !errorMessage.phone) {
-      axios.put(`http://localhost:3333/user/${props.user.user_id}`, form, { validateStatus: () => true })
+      axios.put(`/user/${props.user.user_id}`, form)
         .then((res: AxiosResponse) => {
           if (res.status === 409) handleFormErrors(res.data['user_name'], res.data['user_email']);
           //add modal pour notifier lutilisateur du changement

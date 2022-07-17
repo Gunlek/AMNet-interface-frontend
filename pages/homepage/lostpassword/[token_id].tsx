@@ -32,7 +32,7 @@ export default function ResetPassword(props: { name: string, token: string }) {
   const changePassword = async (e) => {
     e.preventDefault();
     if (form.password1 === form.password2 && form.password1 !== "") {
-      await axios.put(`http://localhost:3333/user/password/${props.token}`, form)
+      await axios.put(`/user/password/${props.token}`, form)
     }
     else {
       setError(true)

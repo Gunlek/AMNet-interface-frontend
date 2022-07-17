@@ -60,7 +60,7 @@ export default function Login(props: { modal: boolean }) {
   const handleSignIn = async (e) => {
     e.preventDefault()
     try {
-      const response = await axios.post('http://localhost:3333/auth', form)
+      const response = await axios.post('/auth', form)
       const access_token = response.data['access_token']
 
       setCookie("access_token", access_token, {

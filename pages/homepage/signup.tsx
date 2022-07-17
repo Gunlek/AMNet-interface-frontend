@@ -88,11 +88,11 @@ export default function SignUp(props: { active_proms: number, usins_state: boole
     e.preventDefault()
 
     if (acceptRules && !errorMessage.password && !errorMessage.format_name && !errorMessage.phone) {
-      axios.post("http://localhost:3333/user", form, { validateStatus: () => true })
+      axios.post("/user", form, { validateStatus: () => true })
         .then(async (res: AxiosResponse) => {
           if (res.status == 200) {
             const response = await axios.post(
-              'http://localhost:3333/auth',
+              '/auth',
               { name: form.user_name, password: form.user_password }
             )
 

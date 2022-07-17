@@ -7,13 +7,12 @@ import { StyledInputLabel, StyledInput } from "../../Input/style";
 import useMediaQuery from "../../MediaQueries/MediaQuery";
 import { ErrorP, StyledLink } from "../../Text/style";
 import MacAddressVerification from "../../Utils/macaddress";
-import getConfig from "../../Utils/req-config";
 import { TitleCard } from "../Cards";
 import { StyledDeleteImg } from "../Images/style";
 import { ModalLogic } from "./ModalLogic";
 import { StyledBackgroundModal, StyledModal } from "./style";
 
-export default function IoTModal(props: { setAccess: Function, token: string, userId: Number }) {
+export default function IoTModal(props: { setAccess: Function, userId: Number }) {
     const minWidth1000 = useMediaQuery('(min-width: 1000px)')
     const { Display, Opacity, toggle } = ModalLogic()
     const [form, setForm] = useState({
@@ -76,16 +75,16 @@ export default function IoTModal(props: { setAccess: Function, token: string, us
         setError(newError);
 
         if (!newError.access_proof && !newError.access_description && !newError.access_mac) {
-            const config = getConfig(props.token, 'multipart/form-data')
-            
-            await axios.post(`${process.env.NEXT_PUBLIC_API_HOST}/access`,form,config)
+            const config = { headers: { 'Content-Type': 'multipart/form-data' } }
+
+            await axios.post(`/access`, form, config)
                 .then(async (res: AxiosResponse) => {
                     if (res.status === 200) {
-                        const access = await axios.get(`${process.env.NEXT_PUBLIC_API_HOST}/access/user/${props.userId}`);
+                        const access = await axios.get(`/access/user/${props.userId}`);
                         props.setAccess(access.data);
                         toggle()
                     }
-                    if(res.status === 409){
+                    if (res.status === 409) {
                         const newError = { ...error };
                         newError.access_mac_exist = true;
                         setError(newError)
