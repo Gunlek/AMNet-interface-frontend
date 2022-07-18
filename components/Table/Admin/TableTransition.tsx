@@ -25,7 +25,7 @@ export default function useTransition(ContainerRef: any) {
             newOpacity.head = "in"
             setOpacity(newOpacity)
             ContainerRef.current.scrollTo({ top: 0 })
-        }, 750);
+        }, 300);
 
         return () => clearTimeout(timer);
     }
