@@ -18,7 +18,7 @@ export async function getServerSideProps({ params }) {
 
   if (name) {
     return {
-      props: { name, token }
+      props: { name: name as string, token: token as string }
     }
   }
 
