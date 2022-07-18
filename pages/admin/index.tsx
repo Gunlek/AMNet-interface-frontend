@@ -70,7 +70,7 @@ export async function getServerSideProps({ req }) {
       redirect: {
         destination: '/',
         permanent: false,
-      },
+      }
     }
   }
 
@@ -90,7 +90,8 @@ export default function Settings(props: {
   active_proms: number,
   usins_state: boolean,
   guest_access: boolean,
-  news_message: string
+  news_message: string,
+  access_token: string
 }) {
   const [Checked, setChecked] = useState({
     "Contribution": false,
@@ -145,17 +146,33 @@ export default function Settings(props: {
 
   const [WelcomeMessageEditor, WelcomeMessageHTML] = Editor("2", props.news_message);
   const [MailEditor, MailHTML] = Editor("1");
+  const [subject, setSubject] = useState("");
+  const [settings, setSettings] = useState({
+    lydia_cotiz: props.lydia_cotiz,
+    active_proms: props.active_proms,
+    usins_state: props.usins_state,
+    guest_access: props.guest_access
+  });
 
-  const updateSettings = (e) => {
-    e.preventDefault();
+  const handleSettingsChange = (e) => {
+    const newSettings = { ...settings };
+    newSettings[e.currentTarget.id] = e.target.value;
+    setSettings(newSettings)
   }
 
-  const updateWelcomeMessage = (e) => {
+  const updateSettings = async (e) => {
     e.preventDefault();
+    await Promise.all([
+      axios.put(`/settings/lydia_cotiz`, { value: settings.lydia_cotiz }),
+      axios.put(`/settings/active_proms`, { value: settings.active_proms }),
+      axios.put(`/settings/usins_state`, { value: settings.usins_state }),
+      axios.put(`/settings/guest_access`, { value: settings.guest_access })
+    ]);
   }
 
-  const sendMail = (e) => {
+  const updateWelcomeMessage = async (e) => {
     e.preventDefault();
+    await axios.put(`/settings/news_message`, { value: WelcomeMessageHTML });
   }
 
   return (
@@ -193,7 +210,7 @@ export default function Settings(props: {
                   <GreenText style={{ marginBottom: "5px" }}>Compte Invité</GreenText>
                 </Col6>
                 <Col6 style={{ alignItems: "end" }}>
-                  <StateInvite state={props.guest_access} />
+                  <StateInvite state={props.guest_access} onChange={handleSettingsChange} />
                 </Col6>
               </Row>
 
@@ -202,18 +219,28 @@ export default function Settings(props: {
                   <GreenText style={{ marginBottom: "5px" }}>Usinage</GreenText>
                 </Col6>
                 <Col6 style={{ alignItems: "end" }}>
-                  <StateIntegration state={props.usins_state} />
+                  <StateIntegration state={props.usins_state} onChange={handleSettingsChange} />
                 </Col6>
               </Row>
 
               <div style={{ marginBottom: "20px" }}>
-                <StyledInputLabel htmlFor="AmountContribution">Montant de la cotisation</StyledInputLabel>
-                <StyledInput id="AmountContribution" type="number" defaultValue={props.lydia_cotiz} />
+                <StyledInputLabel htmlFor="lydia_cotiz">Montant de la cotisation</StyledInputLabel>
+                <StyledInput
+                  id="lydia_cotiz"
+                  type="number"
+                  defaultValue={props.lydia_cotiz}
+                  onChange={handleSettingsChange}
+                />
               </div>
 
               <div style={{ marginBottom: "20px" }}>
-                <StyledInputLabel htmlFor="SetActivePromotion">Promotion active</StyledInputLabel>
-                <StyledInput id="SetActivePromotion" type="number" defaultValue={props.active_proms} />
+                <StyledInputLabel htmlFor="active_proms">Promotion active</StyledInputLabel>
+                <StyledInput
+                  id="active_proms"
+                  type="number"
+                  defaultValue={props.active_proms}
+                  onChange={handleSettingsChange}
+                />
               </div>
 
               <Row style={{ justifyContent: "center" }}>
@@ -245,8 +272,8 @@ export default function Settings(props: {
               style={{ marginTop: "20px" }}
             >
               <Col4 style={{ paddingRight: "10px" }}>
-                <StyledInputLabel htmlFor="object">Objet</StyledInputLabel>
-                <StyledInput id="object" type="text" />
+                <StyledInputLabel htmlFor="object" >Objet</StyledInputLabel>
+                <StyledInput id="object" type="text" onChange={(e) => setSubject(e.target.value)} />
               </Col4>
               <Col2 paddingLeft="10px" mobileMarginBottom="30px">
                 <GreenText style={{ marginBottom: "5px" }}>Cotisation payée</GreenText>
@@ -301,7 +328,7 @@ export default function Settings(props: {
             </div>
 
             <Row style={{ justifyContent: "center" }}>
-              <MailModal html={MailHTML} />
+              <MailModal html={MailHTML} subject={subject} recipients={Checked}  />
             </Row>
           </StyledCard>
         </Row>
