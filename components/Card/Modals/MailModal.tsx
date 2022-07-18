@@ -7,10 +7,25 @@ import Image from 'next/image'
 import RectangleLogo from "../RectangleLogo"
 import { StyledLink } from "../../Text/style"
 import { Row } from "../../Container/style"
+import DOMPurify from 'isomorphic-dompurify';
+import axios from "axios"
 
-export default function MailModal(props: { html: any }) {
-    const minWidth1000 = useMediaQuery('(min-width: 1000px)')
-    const { Display, Opacity, toggle } = ModalLogic()
+export default function MailModal(props: { html: any, subject: string,  recipients: any  }) {
+    const minWidth1000 = useMediaQuery('(min-width: 1000px)');
+    const { Display, Opacity, toggle } = ModalLogic();
+    const html = DOMPurify.sanitize(props.html);
+    
+    const sendMail = async (e) => {
+      e.preventDefault();
+      await axios.post(
+        `/mail/info`,
+        {
+          subject: props.subject,
+          content: html,
+          recipients: props.recipients
+        }
+      );
+    }
 
     return (
         <>
@@ -35,77 +50,75 @@ export default function MailModal(props: { html: any }) {
                                 paddingBottom: "20px"
                             }}
                         >
-                            {Display &&
-                                <div style={{
-                                    display: "flex",
-                                    flexDirection: "column",
-                                    alignItems: "center",
-                                    justifyContent: "center"
-                                }}>
-                                    <Image
-                                        width={600}
-                                        height={77}
-                                        src="/static/images/template/info.png"
-                                        alt="template info"
-                                        layout="fixed"
-                                    />
+                            <div style={{
+                                display: "flex",
+                                flexDirection: "column",
+                                alignItems: "center",
+                                justifyContent: "center"
+                            }}>
+                                <Image
+                                    width={600}
+                                    height={77}
+                                    src="/static/images/template/info.png"
+                                    alt="template info"
+                                    layout="fixed"
+                                />
 
+                                <div
+                                    style={{
+                                        background: "url(/static/images/template/body.png)",
+                                        backgroundSize: "contain",
+                                        width: "600px",
+                                        padding: "0 40px",
+                                    }}
+                                >
                                     <div
+                                        dangerouslySetInnerHTML={{ __html: html || "" }}
                                         style={{
-                                            background: "url(/static/images/template/body.png)",
-                                            backgroundSize: "contain",
-                                            width: "600px",
-                                            padding: "0 40px",
+                                            width: "100%",
+                                            padding: "15px 30px",
+                                            fontSize: "18px"
                                         }}
-                                    >
-                                        <div
-                                            dangerouslySetInnerHTML={{ __html: props.html || "" }}
-                                            style={{
-                                                width: "100%",
-                                                padding: "0 30px",
-                                                fontSize: "18px"
-                                            }}
-                                        />
-
-                                        <div style={{ textAlign: "center" }}>
-                                            Besoin d&apos;assistance ?{" "}
-                                            <StyledLink
-                                                color="#096A09"
-                                                href="mailto:contact@amnet.fr"
-                                            >
-                                                contact@amnet.fr
-                                            </StyledLink>
-                                        </div>
-                                    </div>
-
-                                    <Image
-                                        width={600}
-                                        height={50}
-                                        alt="template bottom"
-                                        src="/static/images/template/bottom.png"
-                                        layout="fixed"
                                     />
 
-                                    <RectangleLogo />
-
-                                    <div style={{ fontSize: "12px", marginTop: "10px" }}>
-                                        Pour vous désabonner{" "}
+                                    <div style={{ textAlign: "center" }}>
+                                        Besoin d&apos;assistance ?{" "}
                                         <StyledLink
                                             color="#096A09"
-                                            href="/homepage/unsubscribe"
-                                            target="_blank"
-                                            rel="noreferrer"
-                                            style={{ fontSize: "12px" }}
+                                            href="mailto:contact@amnet.fr"
                                         >
-                                            Cliquez ici
+                                            contact@amnet.fr
                                         </StyledLink>
                                     </div>
                                 </div>
-                            }
+
+                                <Image
+                                    width={600}
+                                    height={50}
+                                    alt="template bottom"
+                                    src="/static/images/template/bottom.png"
+                                    layout="fixed"
+                                />
+
+                                <RectangleLogo />
+
+                                <div style={{ fontSize: "12px", marginTop: "10px" }}>
+                                    Pour vous désabonner{" "}
+                                    <StyledLink
+                                        color="#096A09"
+                                        href="/homepage/unsubscribe"
+                                        target="_blank"
+                                        rel="noreferrer"
+                                        style={{ fontSize: "12px" }}
+                                    >
+                                        Cliquez ici
+                                    </StyledLink>
+                                </div>
+                            </div>
                         </div>
 
                         <Row style={{ justifyContent: "center" }}>
-                            <GreenButton>Envoyer le Mail</GreenButton>
+                            <GreenButton onClick={sendMail}>Envoyer le Mail</GreenButton>
                         </Row>
                     </StyledModal>
                 </>
