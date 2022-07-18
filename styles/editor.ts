@@ -10,7 +10,7 @@ export const EditorStyle = createGlobalStyle`
         width: 100%;
         transition: border 0.3s, background-color 0.3s;
         font-size: 1.2rem;
-        padding: 5px;
+        padding: 10px;
     }
 
     #Editor2{
@@ -57,7 +57,8 @@ export const EditorStyle = createGlobalStyle`
     .ql-snow.ql-toolbar button.ql-active .ql-stroke,
     .ql-snow.ql-toolbar .ql-picker-item.ql-selected .ql-stroke,
     .ql-snow.ql-toolbar .ql-picker-item:hover,
-    .ql-snow.ql-toolbar .ql-picker-item:hover .ql-stroke
+    .ql-snow.ql-toolbar .ql-picker-item:hover .ql-stroke,
+    .ql-snow.ql-toolbar .ql-picker-label.ql-active
      {
         color: #096A09 !important;
         stroke: #096A09 !important;
