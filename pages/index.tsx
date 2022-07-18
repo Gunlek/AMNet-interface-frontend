@@ -12,6 +12,7 @@ import { user } from "../components/Utils/types";
 import Modal from "../components/Card/Modals/Modal";
 import getToken from "../components/Utils/auth-token";
 import getConfig from "../components/Utils/req-config";
+import DOMPurify from 'isomorphic-dompurify';
 
 export async function getServerSideProps({ req }) {
   const { access_token, userId } = getToken(req)
@@ -20,30 +21,37 @@ export async function getServerSideProps({ req }) {
     const config = getConfig(access_token)
     const user = await (await axios.get(`${process.env.NEXT_PUBLIC_API_HOST}/user/${userId}`, config)).data;
 
-    const [
-      news_message,
-      access_quantity,
-      material_quantity,
-      lydia_cotiz
-    ] = await Promise.all([
-      axios.get('http://localhost:3333/settings/news_message'),
-      axios.get(`http://localhost:3333/access/quantity`),
-      axios.get(`http://localhost:3333/hardware/quantity`),
-      axios.get(`http://localhost:3333/settings/lydia_cotiz`)
-    ])
-
     if (user.user_rank === 'admin') {
+      const [
+        news_message,
+        access_quantity,
+        material_quantity,
+        lydia_cotiz
+      ] = await Promise.all([
+        axios.get(`${process.env.NEXT_PUBLIC_API_HOST}/settings/news_message`),
+        axios.get(`${process.env.NEXT_PUBLIC_API_HOST}/access/quantity`, config),
+        axios.get(`${process.env.NEXT_PUBLIC_API_HOST}/hardware/quantity`, config),
+        axios.get(`${process.env.NEXT_PUBLIC_API_HOST}/settings/lydia_cotiz`)
+      ])
+
       return {
         props: {
           news_message: news_message.data,
           access_quantity: access_quantity.data,
           material_quantity: material_quantity.data,
-          access_token: access_token,
           lydia_cotiz: lydia_cotiz.data,
           user: user
         }
       }
     }
+
+    const [
+      news_message,
+      lydia_cotiz
+    ] = await Promise.all([
+      axios.get(`${process.env.NEXT_PUBLIC_API_HOST}/settings/news_message`),
+      axios.get(`${process.env.NEXT_PUBLIC_API_HOST}/settings/lydia_cotiz`)
+    ])
 
     return {
       props: {
@@ -68,7 +76,6 @@ export default function Dashboard(
     news_message: string,
     access_quantity: number,
     material_quantity: number,
-    access_token: string,
     user: user,
     lydia_cotiz: Number
   }
@@ -98,23 +105,17 @@ export default function Dashboard(
         <ResponsiveRow margin="1% 0" mobileMargin="20px 0">
           <Row mobileMarginBottom="20px" justify="space-between" mobileJustify="space-around" style={{ flex: "1", alignItems: "center" }}>
             <BlackTitle>Mon Espace AMNet</BlackTitle>
-            {!props.user.user_pay_status && props.user.user_rank === "admin" ?
-              <AdminNotifications
-                notifNumber={props.access_quantity + props.material_quantity}
-                unpaid={true}
-                access_quantity={props.access_quantity}
-                material_quantity={props.material_quantity}
-              /> : undefined
-            }
           </Row>
 
           <Row align="center" style={{ justifyContent: "center", width: "auto" }}>
-            {props.user.user_pay_status && props.user.user_rank === "admin" ?
+            {props.user.user_rank === "admin" ?
               <AdminNotifications
                 notifNumber={props.access_quantity + props.material_quantity}
                 access_quantity={props.access_quantity}
                 material_quantity={props.material_quantity}
-              /> : undefined
+              /> 
+              : 
+              undefined
             }
             <StateContribution status={props.user.user_pay_status ? "paid" : "unpaid"} lydia_cotiz={props.lydia_cotiz} />
           </Row>
@@ -122,7 +123,7 @@ export default function Dashboard(
 
         <StyledCard marginBottom="2%" mobileMarginBottom="30px" style={{ flex: "3" }}>
           <TitleCard>Actualité AMNet</TitleCard>
-          <NewsMessage style={{ textAlign: "justify" }} dangerouslySetInnerHTML={{ __html: props.news_message || "" }} />
+          <NewsMessage style={{ textAlign: "justify" }} dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(props.news_message) || "" }} />
         </StyledCard>
 
         <ResponsiveRow marginBottom="2%" mobileMarginBottom="30px" style={{ flex: "6" }}>
