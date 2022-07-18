@@ -8,53 +8,32 @@ export default function RequestTab(props: { status: string, TabChange: Function 
     const transform = "translateX(" + (active ? "140" : declined ? "235" : "0") + "%)"
 
     return (
-        <>
-            <Row
-                marginBottom="2%"
-                mobileMarginBottom="30px"
-                mobileJustify="center"
+        <Row
+            marginBottom="2%"
+            mobileMarginBottom="30px"
+            mobileJustify="center"
+            style={{
+                borderBottom: "2px solid rgba(0, 0, 0, 0.2)",
+                height: "46px",
+
+            }}
+        >
+            <StyledTabColumn
+                id="pending"
+                onClick={pending ? undefined : props.TabChange}
+                focus={pending}
                 style={{
-                    borderBottom: "2px solid rgba(0, 0, 0, 0.2)",
-                    height: "46px",
+                    width: "100px",
+                    marginRight: "40px",
                     position: "relative"
                 }}
             >
-                <StyledTabColumn
-                    id="pending"
-                    onClick={pending ? undefined : props.TabChange}
-                    focus={pending}
-                    style={{
-                        width: "100px",
-                        marginRight: "40px"
-                    }}
-                >
-                    En cours
-                </StyledTabColumn>
+                En cours
 
-                <StyledTabColumn
-                    id="active"
-                    onClick={active ? undefined : props.TabChange}
-                    focus={active}
-                    style={{
-                        width: "100px",
-                        marginRight: "40px"
-                    }}
-                >
-                    Validées
-                </StyledTabColumn>
-
-                <StyledTabColumn
-                    id="declined"
-                    focus={declined}
-                    onClick={declined ? undefined : props.TabChange}
-                    style={{ width: "125px" }}
-                >
-                    Révoquées
-                </StyledTabColumn>
                 <div
                     style={{
                         transform: transform,
-                        width: declined? "120px" : "100px",
+                        width: declined ? "120px" : "100px",
                         backgroundColor: "#096A09",
                         height: "4px",
                         transition: "transform 0.5s, width 0.5s",
@@ -63,9 +42,28 @@ export default function RequestTab(props: { status: string, TabChange: Function 
                         left: "0"
                     }}
                 />
-            </Row>
+            </StyledTabColumn>
 
-        </>
+            <StyledTabColumn
+                id="active"
+                onClick={active ? undefined : props.TabChange}
+                focus={active}
+                style={{
+                    width: "100px",
+                    marginRight: "40px"
+                }}
+            >
+                Validées
+            </StyledTabColumn>
 
+            <StyledTabColumn
+                id="declined"
+                focus={declined}
+                onClick={declined ? undefined : props.TabChange}
+                style={{ width: "125px" }}
+            >
+                Révoquées
+            </StyledTabColumn>
+        </Row>
     )
 }
