@@ -36,7 +36,7 @@ export default function UserProoveModal(props: { link: string }) {
                             <div style={{ position: "relative" }}>
                                 <Image
                                     style={{ borderRadius: "30px" }}
-                                    src={`${process.env.NEXT_PUBLIC_API_HOST}/${props.link}`}
+                                    src={`${process.env.NEXT_PUBLIC_API_HOST}/proof/${props.link}`}
                                     alt="Photo Proof"
                                     width={800}
                                     height={800 / ratio}
