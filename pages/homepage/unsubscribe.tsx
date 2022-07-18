@@ -18,27 +18,28 @@ export async function getServerSideProps({ req }) {
 
   if (access_token) {
     const config = getConfig(access_token)
-    const user = await axios.get(`${process.env.NEXT_PUBLIC_API_HOST}/user/${userId}`)
-    
+    const user = await axios.get(`${process.env.NEXT_PUBLIC_API_HOST}/user/${userId}`, config)
+
     return { props: { user: user.data as user } }
   }
-  else {
-    return {
-      redirect: {
-        destination: '/homepage/login?modal=true',
-        permanent: false,
-      }
+
+  return {
+    redirect: {
+      destination: '/homepage/login?modal=true',
+      permanent: false,
     }
   }
 }
 
 export default function Unsubscribe(props: { user: user }) {
-  const [show, setShow] = useState(false)
-  
+  const [show, setShow] = useState(false);
+  const [notification, setNotification] = useState(props.user.user_notification);
+
   const unsubscrive = async (e) => {
     e.preventDefault();
-    await axios.put(`${process.env.NEXT_PUBLIC_API_HOST}/mail/user/${props.user.user_id}`)
-    setShow(!show)
+    await axios.put(`/mail/user/${props.user.user_id}`)
+    setShow(!show);
+    setNotification(!notification)
   }
 
   return (
@@ -50,8 +51,17 @@ export default function Unsubscribe(props: { user: user }) {
 
       <Modal show={show} style={{ width: "500px", textAlign: "justify" }}>
         <BlackText>
-          Vous avez été <span style={{ color: "#096a09", fontWeight: "bold", display: "contents" }}>désabonné</span> de la liste de diffusion <br /><br />
-          Si vous souhaitez vous réabonner vous devez revenir sur cette page
+          {notification ?
+            <>
+              Vous avez été <span style={{ color: "#096a09", fontWeight: "bold", display: "contents" }}>ajouté</span> dans  la liste de diffusion <br /><br />
+              Si vous souhaitez vous désabonner vous devez revenir sur cette page
+            </>
+            :
+            <>
+              Vous avez été <span style={{ color: "#096a09", fontWeight: "bold", display: "contents" }}>retiré</span> de la liste de diffusion <br /><br />
+              Si vous souhaitez vous réabonner vous devez revenir sur cette page
+            </>
+          }
         </BlackText>
 
         <Row style={{ marginTop: "20px", display: "flex", justifyContent: "center" }}>
@@ -75,20 +85,21 @@ export default function Unsubscribe(props: { user: user }) {
 
           <TitleCard>Liste de diffusion</TitleCard>
           <BlackText style={{ marginBottom: "20px", textAlign: "justify" }}>
-            {props.user.user_notification ?
+            {notification ?
               <>
-                Vous souhaitez retirer l&apos;adresse <span style={{ color: "#096a09" }}>{props.user.user_email}</span> de notre liste de diffusion ? <br /><br />
-
-                Nous utilisons uniquement votre adresse e-mail pour vous communiquer des informations sur l&apos;AMNet, comme une maintenance potentielle ou sur l&apos;instabilité du réseau.
+                Vous souhaitez <span style={{ color: "#096a09", fontWeight: "bold" }}>retirer</span> l&apos;adresse <span style={{ color: "#096a09" }}>{props.user.user_email}</span> de notre liste de diffusion ?
               </>
               :
               <>
+                Vous souhaitez <span style={{ color: "#096a09", fontWeight: "bold" }}>ajouter</span> l&apos;adresse <span style={{ color: "#096a09" }}>{props.user.user_email}</span> à notre liste de diffusion ?
               </>
             }
+            <br /><br />
+            Nous utilisons uniquement votre adresse e-mail pour vous communiquer des informations sur l&apos;AMNet, comme une maintenance potentielle ou sur l&apos;instabilité du réseau.
           </BlackText>
 
           <Row style={{ justifyContent: "center" }}>
-            <GreenButton onClick={unsubscrive}>{props.user.user_notification ? "Se désabonner" : "Se réabonner"}</GreenButton>
+            <GreenButton onClick={unsubscrive}>{notification ? "Se désabonner" : "Se réabonner"}</GreenButton>
           </Row>
         </StyledCardCampus>
       </Row>
