@@ -94,7 +94,7 @@ export default function UserIoT(props: {
         <Column
           mobileMarginBottom="30px"
           marginBottom={empty ? "0" : "2%"}
-          style={{ flex: empty ? "1" : undefined }}
+          style={{ flex: "1" }}
         >
           <BlackP mobileMarginBottom="30px" marginBottom="2%">
             Bien qu&apos;il soit préférable de connecter vos appareils incompatibles avec AMNet Wi-Fi en filaire aux prises ethernet de votre logement, certains appareils ne proposent pas cette option.
