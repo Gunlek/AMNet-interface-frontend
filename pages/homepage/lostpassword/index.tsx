@@ -1,22 +1,25 @@
 import React, { useState } from "react";
 import Head from "next/head";
 import { CampusGlobalStyle } from "../../../components/Background/style";
-import { GreenButton } from "../../../components/Button/Buttons";
+import { ButtonLink, GreenButton } from "../../../components/Button/Buttons";
 import { TitleCard, HelpSection, Footer } from "../../../components/Card/Cards";
 import RectangleLogo from "../../../components/Card/RectangleLogo";
 import { StyledCardCampus } from "../../../components/Card/style";
 import { Row } from "../../../components/Container/style";
 import { StyledInputLabel, StyledInput } from "../../../components/Input/style";
-import axios from "axios";
+import axios, { AxiosResponse } from "axios";
+import Modal from "../../../components/Card/Modals/Modal";
 
 export default function LostPassword() {
-  const [mail, setMail] = useState("")
+  const [mail, setMail] = useState("");
+  const [show, setShow] = useState(false);
 
   const resetPassword = (e) => {
     e.preventDefault();
-    axios
-      .post(`${process.env.NEXT_PUBLIC_API_HOST}/mail/password-reset`, { user_email: mail })
-      .then()
+    axios.post(`${process.env.NEXT_PUBLIC_API_HOST}/mail/password-reset`, { user_email: mail })
+      .then((res: AxiosResponse) => {
+        if (res.status === 200) setShow(true)
+      })
   }
 
   return (
@@ -25,6 +28,12 @@ export default function LostPassword() {
         <title>Mot de passe oublié &bull; AMNet</title>
       </Head>
       <CampusGlobalStyle />
+
+      <Modal show={show} style={{ width: "400px" }}>
+        Nous venons de vous envoyer un mail <br/>
+        Pour réinitialiser votre mot de passe
+      </Modal>
+
       <Row
         mobileWidth="90%"
         style={{

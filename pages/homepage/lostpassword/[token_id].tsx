@@ -1,9 +1,10 @@
-import axios from "axios";
+import axios, { AxiosResponse } from "axios";
 import Head from "next/head";
 import { useState } from "react";
 import { CampusGlobalStyle } from "../../../components/Background/style";
-import { GreenButton } from "../../../components/Button/Buttons";
+import { ButtonLink, GreenButton } from "../../../components/Button/Buttons";
 import { TitleCard, HelpSection, Footer } from "../../../components/Card/Cards";
+import Modal from "../../../components/Card/Modals/Modal";
 import RectangleLogo from "../../../components/Card/RectangleLogo";
 import { StyledCardCampus } from "../../../components/Card/style";
 import { Row } from "../../../components/Container/style";
@@ -27,12 +28,16 @@ export async function getServerSideProps({ params }) {
 
 export default function ResetPassword(props: { name: string, token: string }) {
   const [form, setForm] = useState({ password1: "", password2: "" });
-  const [error, setError] = useState(false)
+  const [error, setError] = useState(false);
+  const [show, setShow] = useState(false);
 
   const changePassword = async (e) => {
     e.preventDefault();
     if (form.password1 === form.password2 && form.password1 !== "") {
       await axios.put(`/user/password/${props.token}`, form)
+        .then((res: AxiosResponse) => {
+          if (res.status === 200) setShow(true)
+        })
     }
     else {
       setError(true)
@@ -49,6 +54,15 @@ export default function ResetPassword(props: { name: string, token: string }) {
         <title>Réinitialisation &bull; AMNet</title>
       </Head>
       <CampusGlobalStyle />
+      
+      <Modal show={show} style={{ width: "350px" }}>
+        Votre mot de passe a été mis à jour
+
+        <Row style={{ marginTop: "20px" }}>
+          <ButtonLink href="/homepage/login">Se Connecter</ButtonLink>
+        </Row>
+      </Modal>
+      
       <Row
         mobileWidth="90%"
         style={{
