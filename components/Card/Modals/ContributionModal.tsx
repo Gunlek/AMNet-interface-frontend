@@ -1,3 +1,4 @@
+import axios from "axios"
 import { GreenButton } from "../../Button/Buttons"
 import useMediaQuery from "../../MediaQueries/MediaQuery"
 import { BlackText, StyledLink } from "../../Text/style"
@@ -5,9 +6,14 @@ import { TitleCard } from "../Cards"
 import ModalLogic from "./ModalLogic"
 import { StyledBackgroundModal, StyledModal } from "./style"
 
-export default function ContributionModal(props: { lydia_cotiz: Number }) {
+export default function ContributionModal(props: { lydia_cotiz: number, userId: number }) {
     const minWidth1000 = useMediaQuery('(min-width: 1000px)')
     const { Display, Opacity, toggle } = ModalLogic()
+
+    const startPayment = (e) => {
+        e.preventDefault();
+        axios.post(`/lydia/start/${props.userId}`);
+    }
 
     return (
         <>
@@ -22,7 +28,13 @@ export default function ContributionModal(props: { lydia_cotiz: Number }) {
                             <br /><br />
                             En cas de problème lors du paiement, n&apos;hésitez pas à nous en informer à  <StyledLink color="#096a09" href="mailto:contact@amnet.fr">contact@amnet.fr</StyledLink>
                         </BlackText>
-                        <GreenButton fontSize={minWidth1000 ? undefined : "16px"} width={minWidth1000 ? "80%" : "100%"}>Cliquez pour procéder au paiement</GreenButton>
+                        <GreenButton
+                            fontSize={minWidth1000 ? undefined : "16px"}
+                            width={minWidth1000 ? "80%" : "100%"}
+                            onClick={startPayment}
+                        >
+                            Cliquez pour procéder au paiement
+                        </GreenButton>
                     </StyledModal>
                 </>
             }
