@@ -71,7 +71,7 @@ export default function useForm(
     const handleFormChange = (elmt) => {
         const newForm = { ...form };
 
-        if (elmt.currentTarget.id == "user_proms2" && isOther) {
+        if (elmt.currentTarget.id == "user_proms2") {
             newForm.user_proms = elmt.target.value;
             newForm.user_campus = ""
         }
