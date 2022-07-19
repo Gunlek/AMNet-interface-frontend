@@ -109,12 +109,12 @@ export default function Login(props: { modal: boolean }) {
           <form onSubmit={handleSignIn}>
             <div style={{ marginBottom: "20px" }}>
               <StyledInputLabel htmlFor="name">Nom d&apos;utilisateur</StyledInputLabel>
-              <StyledInput id="name" type="text" onChange={handleFormChange} />
+              <StyledInput id="name" type="text" onChange={handleFormChange} required/>
             </div>
 
             <div style={{ marginBottom: "20px", position: "relative" }}>
               <StyledInputLabel htmlFor="password">Mot de passe</StyledInputLabel>
-              <PasswordInput id="password" onChange={handleFormChange} />
+              <PasswordInput id="password" onChange={handleFormChange} required/>
               {error &&
                 <ErrorP Fixed={true}>
                   Identifiant ou mot de passe invalide
