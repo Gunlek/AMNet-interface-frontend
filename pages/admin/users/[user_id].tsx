@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Head from "next/head";
 import { GreenButton, RedButton } from "../../../components/Button/Buttons";
 import { Footer } from "../../../components/Card/Cards";
@@ -8,12 +8,14 @@ import { BlackTitle, BlackText, GreenText } from "../../../components/Text/style
 import AdminMenu from "../../../components/Menu/AdminMenu";
 import { AdminStateContribution, AdminStateRank } from "../../../components/Status/Status";
 import PasswordInput from "../../../components/Input/PasswordInput";
-import axios from "axios";
+import axios, { AxiosResponse } from "axios";
 import useForm from "../../../components/Input/useForm";
 import PhoneInput from "../../../components/Input/PhoneInput";
 import { user } from "../../../components/Utils/types";
 import getToken from "../../../components/Utils/auth-token";
 import getConfig from "../../../components/Utils/req-config";
+import Modal from "../../../components/Card/Modals/Modal";
+import { useRouter } from "next/router";
 
 export async function getServerSideProps({ req, params }) {
     const { access_token, userId } = getToken(req)
@@ -67,7 +69,35 @@ export default function User(props: {
         handleNameChange,
         handlePhoneChange,
         blurPassword2
-    } = useForm(props.active_proms, props.usins_state, props.user)
+    } = useForm(props.active_proms, props.usins_state, props.user);
+    const [show, setShow] = useState(false);
+    const router = useRouter();
+
+    useEffect(() => {
+        router.prefetch('/admin/users');
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+
+    const editProfil = (elmt) => {
+        elmt.preventDefault();
+
+        if (!errorMessage.password && !errorMessage.format_name && !errorMessage.phone) {
+            axios.put(`/user/${props.user.user_id}`, form)
+                .then((res: AxiosResponse) => {
+                    if (res.status === 409) handleFormErrors(res.data['user_name'], res.data['user_email']);
+                    if (res.status === 200) setShow(!show)
+                });
+        }
+    };
+
+    const deleteUser = (elmt) => {
+        elmt.preventDefault();
+
+        axios.delete(`/user/${props.user.user_id}`)
+            .then((res: AxiosResponse) => {
+                if (res.status === 200) router.push('/admin/users')
+            });
+    };
 
     return (
         <>
@@ -75,6 +105,10 @@ export default function User(props: {
                 <title>Administration &bull; AMNet</title>
             </Head>
             <AdminMenu />
+
+            <Modal show={show} style={{ width: "350px" }}>
+                Le Profil a été mis à jour
+            </Modal>
 
             <DashboardContainer>
                 <ResponsiveRow margin="1% 0" mobileMargin="20px 0" mobileJustify="center">
@@ -233,8 +267,8 @@ export default function User(props: {
                             justifyContent: "space-around"
                         }}
                     >
-                        <RedButton width="300px" mobileMarginBottom="25px">Supprimer le profil</RedButton>
-                        <GreenButton width="300px">Editer le profil</GreenButton>
+                        <RedButton width="300px" mobileMarginBottom="25px" onClick={deleteUser}>Supprimer le profil</RedButton>
+                        <GreenButton width="300px" onClick={editProfil}>Editer le profil</GreenButton>
                     </ResponsiveRow>
                 </ResponsiveRow>
 
