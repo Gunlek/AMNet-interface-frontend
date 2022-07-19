@@ -14,7 +14,7 @@ import Succes from "../NavIcons/succes";
 import ContributionModal from "../Card/Modals/ContributionModal";
 import Link from "next/link";
 
-export function StateContribution(props: { status: string, lydia_cotiz: Number }) {
+export function StateContribution(props: { status: string, lydia_cotiz: number, userId: number }) {
   if (props.status == 'paid') {
     return (
       <StyledStateContribution>
@@ -35,7 +35,7 @@ export function StateContribution(props: { status: string, lydia_cotiz: Number }
           <BlackText style={{ paddingRight: "10px", fontSize: "18px" }}>Cotisation :</BlackText>
           <Fail />
         </StyledStateContribution>
-        <ContributionModal lydia_cotiz={props.lydia_cotiz} />
+        <ContributionModal lydia_cotiz={props.lydia_cotiz} userId={props.userId} />
       </Row>
     );
   }
