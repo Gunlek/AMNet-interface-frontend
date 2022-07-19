@@ -11,7 +11,6 @@ import { StyledInputLabel, StyledInput } from "../../components/Input/style";
 import { BlackText, ErrorP, StyledLink } from "../../components/Text/style";
 import Link from "next/link";
 import PasswordInput from "../../components/Input/PasswordInput";
-import { useCookies } from "react-cookie"
 import axios from "axios";
 import { useRouter } from "next/router";
 import Modal from "../../components/Card/Modals/Modal";
@@ -33,12 +32,13 @@ export async function getServerSideProps({ req, query }) {
 }
 
 export default function Login(props: { modal: boolean }) {
-  const [checked, setChecked] = useState(false);
-  const [form, setForm] = useState({ name: "", password: "" });
+  const [form, setForm] = useState({ name: "", password: "", checked: false });
   const [error, setError] = useState(false);
 
   const handleCheckboxChange = (elmt) => {
-    setChecked(elmt.target.checked);
+    const newForm = {...form};
+    newForm.checked = elmt.target.checked
+    setForm(newForm);
   };
 
   const handleFormChange = (elmt) => {
@@ -47,10 +47,7 @@ export default function Login(props: { modal: boolean }) {
     setForm(newForm);
   };
 
-  const [cookie, setCookie] = useCookies(["access_token"]);
   const router = useRouter();
-
-
   useEffect(() => {
     if (props.modal) router.prefetch('/homepage/unsubscribe')
     else router.prefetch('/');
@@ -60,15 +57,7 @@ export default function Login(props: { modal: boolean }) {
   const handleSignIn = async (e) => {
     e.preventDefault()
     try {
-      const response = await axios.post('/auth', form)
-      const access_token = response.data['access_token']
-
-      setCookie("access_token", access_token, {
-        path: "/",
-        maxAge: checked ? 60 * 60 * 24 * 365 * 10 : 3600,
-        sameSite: "strict",
-        secure: process.env.NODE_ENV !== 'development'
-      })
+      await axios.post('/auth', form)
 
       if (props.modal) router.push("/homepage/unsubscribe")
       else router.push("/")
@@ -123,7 +112,7 @@ export default function Login(props: { modal: boolean }) {
             </div>
 
             <label style={{ display: "flex", alignItems: "Center", marginBottom: "20px" }}>
-              <Checkbox checked={checked} onChange={handleCheckboxChange} />
+              <Checkbox checked={form.checked} onChange={handleCheckboxChange} />
               <BlackText style={{ marginLeft: "10px" }}>Rester connecté</BlackText>
             </label>
 
