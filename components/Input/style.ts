@@ -39,8 +39,8 @@ export const StyledInput = styled.input`
     outline: none;     
   }
 
-  &:valid ~ ${StyledSpan}{
-    display: flex;
+  & ~ ${StyledSpan}{
+    display: ${(props) => props.Empty ? "none" : "flex"};
   }
 
   @media screen and (max-width: 1000px){
