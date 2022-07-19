@@ -6,7 +6,7 @@ import { StyledCard } from "../components/Card/style";
 import { DashboardContainer, ResponsiveRow, Column, Col6, Row } from "../components/Container/style";
 import UserMenu from "../components/Menu/UserMenu";
 import { AdminNotifications, StateContribution } from "../components/Status/Status";
-import { BlackTitle, BlackText, NewsMessage } from "../components/Text/style";
+import { BlackTitle, BlackText, NewsMessage, StyledLink } from "../components/Text/style";
 import axios from 'axios';
 import { user } from "../components/Utils/types";
 import Modal from "../components/Card/Modals/Modal";
@@ -14,7 +14,7 @@ import getToken from "../components/Utils/auth-token";
 import getConfig from "../components/Utils/req-config";
 import DOMPurify from 'isomorphic-dompurify';
 
-export async function getServerSideProps({ req }) {
+export async function getServerSideProps({ req, query }) {
   const { access_token, userId } = getToken(req)
 
   if (access_token) {
@@ -40,7 +40,8 @@ export async function getServerSideProps({ req }) {
           access_quantity: access_quantity.data,
           material_quantity: material_quantity.data,
           lydia_cotiz: lydia_cotiz.data,
-          user: user
+          user: user,
+          payment_err: query.payment_err === "1"
         }
       }
     }
@@ -77,7 +78,8 @@ export default function Dashboard(
     access_quantity: number,
     material_quantity: number,
     user: user,
-    lydia_cotiz: Number
+    lydia_cotiz: number,
+    payment_err: boolean
   }
 ) {
   const [show, setShow] = useState(false)
@@ -90,6 +92,12 @@ export default function Dashboard(
 
       <Modal show={show} style={{ width: "450px", textAlign: "center" }}>
         Vous devez avoir payé votre cotisation <br />Pour accéder à cette page
+      </Modal>
+
+      <Modal show={props.payment_err} style={{ width: "600px", textAlign: "center" }}>
+        Le paiement de votre cotisation n'a pas pu aboutir <br/>
+        Si cela venait à se reproduire, merci de contacter  <br/> 
+        <StyledLink color="#096A09" href="mailto:contact@amnet.fr">contact@amnet.fr</StyledLink>
       </Modal>
 
       <UserMenu
@@ -113,11 +121,15 @@ export default function Dashboard(
                 notifNumber={props.access_quantity + props.material_quantity}
                 access_quantity={props.access_quantity}
                 material_quantity={props.material_quantity}
-              /> 
-              : 
+              />
+              :
               undefined
             }
-            <StateContribution status={props.user.user_pay_status ? "paid" : "unpaid"} lydia_cotiz={props.lydia_cotiz} />
+            <StateContribution
+              status={props.user.user_pay_status ? "paid" : "unpaid"}
+              lydia_cotiz={props.lydia_cotiz}
+              userId={props.user.user_id}
+            />
           </Row>
         </ResponsiveRow>
 
