@@ -5,7 +5,7 @@ import IndexIcon from "../NavIcons";
 import LogOutIcon from "../NavIcons/log_out";
 import MaterialIcon from "../NavIcons/material";
 import IoTIcon from "../NavIcons/iot";
-import ProfilIcon from "../NavIcons/profil";
+import ProfileIcon from "../NavIcons/profile";
 import AdminIcon from "../NavIcons/admin";
 import BurgerMenu from "../NavIcons/burgermenu";
 import { useEffect, useState } from "react";
@@ -80,7 +80,7 @@ export default function UserMenu(props: {
           </Row>
 
           <Row style={positionning}>
-            <ProfilIcon page={props.page} />
+            <ProfileIcon page={props.page} />
           </Row>
 
           {props.user.pay_status ?

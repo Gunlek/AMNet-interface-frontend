@@ -1,12 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import Head from "next/head";
 import { GreenButton } from "../components/Button/Buttons";
 import { HelpSection, Footer } from "../components/Card/Cards";
-import { DashboardContainer, ResponsiveRow, Column, Col6, Col3 } from "../components/Container/style";
+import { DashboardContainer, ResponsiveRow, Column, Col6, Col3, Row } from "../components/Container/style";
 import { StyledInputLabel, StyledInput } from "../components/Input/style";
 import UserMenu from "../components/Menu/UserMenu";
 import { StateContribution } from "../components/Status/Status";
-import { BlackTitle, BlackText, GreenText } from "../components/Text/style";
+import { BlackTitle, BlackText, GreenText, StyledLink } from "../components/Text/style";
 import PasswordInput from "../components/Input/PasswordInput";
 import axios, { AxiosResponse } from "axios";
 import useForm from "../components/Input/useForm";
@@ -14,8 +14,9 @@ import PhoneInput from "../components/Input/PhoneInput";
 import { user } from "../components/Utils/types";
 import getToken from "../components/Utils/auth-token";
 import getConfig from "../components/Utils/req-config";
+import Modal from "../components/Card/Modals/Modal";
 
-export async function getServerSideProps({ req }) {
+export async function getServerSideProps({ req, query }) {
   const { access_token, userId } = getToken(req)
 
   if (access_token) {
@@ -33,7 +34,8 @@ export async function getServerSideProps({ req }) {
         user: user.data,
         active_proms: active_proms.data,
         usins_state: usins_state.data,
-        lydia_cotiz: lydia_cotiz.data
+        lydia_cotiz: lydia_cotiz.data,
+        phone_err: query.phone_err === "1"
       }
     }
   }
@@ -50,7 +52,8 @@ export default function Profil(props: {
   user: user,
   active_proms: number,
   usins_state: boolean,
-  lydia_cotiz: Number
+  lydia_cotiz: number,
+  phone_err: boolean
 }) {
   const {
     form,
@@ -62,18 +65,18 @@ export default function Profil(props: {
     handlePhoneChange,
     blurPassword2
   } = useForm(props.active_proms, props.usins_state, props.user)
+  const [show, setShow] = useState(false);
 
-  const editPorifl = (elmt) => {
+  const editProfil = (elmt) => {
     elmt.preventDefault()
 
     if (!errorMessage.password && !errorMessage.format_name && !errorMessage.phone) {
       axios.put(`/user/${props.user.user_id}`, form)
         .then((res: AxiosResponse) => {
           if (res.status === 409) handleFormErrors(res.data['user_name'], res.data['user_email']);
-          //add modal pour notifier lutilisateur du changement
+          if (res.status === 200) setShow(!show)
         })
     }
-
   }
 
   return (
@@ -81,6 +84,17 @@ export default function Profil(props: {
       <Head>
         <title>Mon Profil &bull; AMNet</title>
       </Head>
+
+      <Modal show={show} style={{ width: "350px" }}>
+        Votre Profil a été mis à jour
+      </Modal>
+
+      <Modal show={props.phone_err} style={{ width: "640px", textAlign: "center" }}>
+        Le paiement de votre cotisation n'a pas pu aboutir <br />
+        Votre numéro de téléphone n'est pas <span style={{ fontWeight: "bold", color: "#096A09", display: "contents" }}>valide</span> <br />
+        Vous devez le modifier avant de faire une nouvelle tentative
+      </Modal>
+
       <UserMenu
         page="profil"
         user={{
@@ -97,15 +111,19 @@ export default function Profil(props: {
           </Column>
 
           <Column align="end" mobileAlign="center" style={{ flex: "1", justifyContent: "center" }}>
-            <StateContribution status={props.user.user_pay_status ? "paid" : "unpaid"} lydia_cotiz={props.lydia_cotiz} />
+            <StateContribution
+              status={props.user.user_pay_status ? "paid" : "unpaid"}
+              lydia_cotiz={props.lydia_cotiz}
+              userId={props.user.user_id}
+            />
           </Column>
         </ResponsiveRow>
 
-        <form style={{ width: "100%", flex: "1", display: "flex", flexDirection: "column" }} onSubmit={editPorifl}>
+        <form style={{ width: "100%", flex: "1", display: "flex", flexDirection: "column" }} onSubmit={editProfil}>
           <ResponsiveRow style={{ alignItems: "center", marginBottom: "20px" }}>
             <Col6 mobileMarginBottom="20px" paddingRight="10px" style={{ width: "100%", position: "relative" }}>
               <StyledInputLabel htmlFor="user_name">Nom d&apos;utilisateur</StyledInputLabel>
-              <StyledInput id="user_name" type="text" onChange={handleNameChange} defaultValue={form.user_name} />
+              <StyledInput id="user_name" type="text" onChange={handleNameChange} defaultValue={form.user_name} required />
               {errorMessage.name}
               {errorMessage.format_name}
             </Col6>
@@ -135,7 +153,7 @@ export default function Profil(props: {
             </Col3>
             <Col6 paddingLeft="10px" style={{ position: "relative" }}>
               <StyledInputLabel htmlFor="user_email">Adresse e-mail</StyledInputLabel>
-              <StyledInput id="user_email" type="email" onChange={handleFormChange} defaultValue={form.user_email} />
+              <StyledInput id="user_email" type="email" onChange={handleFormChange} defaultValue={form.user_email} required />
               {errorMessage.email}
             </Col6>
           </ResponsiveRow>
@@ -148,9 +166,9 @@ export default function Profil(props: {
             </Col6>
 
             <Col6 paddingLeft="10px">
-              <StyledInputLabel htmlFor="user_promotion">Promotion</StyledInputLabel>
+              <StyledInputLabel htmlFor="user_proms2">Promotion</StyledInputLabel>
               <StyledInput
-                id="user_proms"
+                id="user_proms2"
                 type="text"
                 onChange={handleFormChange}
                 defaultValue={form.user_proms}
