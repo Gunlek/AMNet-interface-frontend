@@ -16,7 +16,7 @@ import getToken from "../components/Utils/auth-token";
 import getConfig from "../components/Utils/req-config";
 import Modal from "../components/Card/Modals/Modal";
 
-export async function getServerSideProps({ req, query }) {
+export async function getServerSideProps({ req }) {
   const { access_token, userId } = getToken(req)
 
   if (access_token) {
@@ -35,7 +35,6 @@ export async function getServerSideProps({ req, query }) {
         active_proms: active_proms.data,
         usins_state: usins_state.data,
         lydia_cotiz: lydia_cotiz.data,
-        phone_err: query.phone_err === "1"
       }
     }
   }
@@ -87,12 +86,6 @@ export default function Profil(props: {
 
       <Modal show={show} style={{ width: "350px" }}>
         Votre Profil a été mis à jour
-      </Modal>
-
-      <Modal show={props.phone_err} style={{ width: "640px", textAlign: "center" }}>
-        Le paiement de votre cotisation n'a pas pu aboutir <br />
-        Votre numéro de téléphone n'est pas <span style={{ fontWeight: "bold", color: "#096A09", display: "contents" }}>valide</span> <br />
-        Vous devez le modifier avant de faire une nouvelle tentative
       </Modal>
 
       <UserMenu
