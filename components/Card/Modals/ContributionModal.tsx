@@ -1,4 +1,4 @@
-import axios from "axios"
+import axios, { AxiosResponse } from "axios"
 import { GreenButton } from "../../Button/Buttons"
 import useMediaQuery from "../../MediaQueries/MediaQuery"
 import { BlackText, StyledLink } from "../../Text/style"
@@ -7,13 +7,16 @@ import ModalLogic from "./ModalLogic"
 import { StyledBackgroundModal, StyledModal } from "./style"
 
 export default function ContributionModal(props: { lydia_cotiz: number, userId: number }) {
-    const minWidth1000 = useMediaQuery('(min-width: 1000px)')
-    const { Display, Opacity, toggle } = ModalLogic()
+    const minWidth1000 = useMediaQuery('(min-width: 1000px)');
+    const { Display, Opacity, toggle } = ModalLogic();
 
     const startPayment = (e) => {
         e.preventDefault();
-        axios.post(`/lydia/start/${props.userId}`);
-    }
+        axios.post(`/lydia/start/${props.userId}`)
+        .then((res: AxiosResponse) =>{ 
+            window.location.replace(res.data);
+        })
+    };
 
     return (
         <>
