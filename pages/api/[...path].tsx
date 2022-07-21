@@ -26,6 +26,7 @@ export default (req: NextApiRequest, res: NextApiResponse) => {
         const isLogin = pathname === '/api/auth'
         const cookies = new Cookies(req, res);
         const access_token = cookies.get('access_token');
+        let checked = null;
         req.url = req.url.replace(/^\/api/, process.env.NEXT_PUBLIC_API_HOST);
         req.headers.cookie = '';
 
@@ -34,7 +35,7 @@ export default (req: NextApiRequest, res: NextApiResponse) => {
         };
 
         if (isLogin) {
-            proxy.once('proxyRes', interceptLoginResponse)
+            proxy.once('proxyRes', interceptLoginResponse);
         };
 
         proxy.once('error', reject);
@@ -45,8 +46,8 @@ export default (req: NextApiRequest, res: NextApiResponse) => {
             selfHandleResponse: isLogin
         });
 
-        const checked = JSON.parse((await buffer(req)).toString('utf8')).checked;
-       
+        if(isLogin) checked = JSON.parse((await buffer(req)).toString('utf8')).checked;
+   
         function interceptLoginResponse(proxyRes: any, req: NextApiRequest, res: NextApiResponse) {
             let body = [];
             proxyRes.on('data', (chunk) => {
@@ -63,7 +64,7 @@ export default (req: NextApiRequest, res: NextApiResponse) => {
                         sameSite: "strict",
                         path: "/",
                         secure: process.env.NODE_ENV !== 'development',
-                        maxAge: checked ? 3600 * 24 * 365 * 10000 : 3600
+                        maxAge: checked ? 1000 * 3600 * 24 * 365 * 10 : 1000 * 3600
                     });
 
                     res.status(200).json({ loggedIn: true })
