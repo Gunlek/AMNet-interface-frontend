@@ -68,7 +68,7 @@ export const IoTMobileLine = ({ index, value, status, display, isLast, setTab }:
                         </StyledTr>
                         <StyledTr>
                             <StyledTd>Adresse Mac</StyledTd>
-                            <MacAdressTd access_mac={value.access_mac} />
+                            <MacAdressTd access_mac={value.access_mac} access_id={value.access_id} />
                         </StyledTr>
                         <StyledTr>
                             <StyledTd>Preuve</StyledTd>

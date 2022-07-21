@@ -39,7 +39,7 @@ function CreateTable({ requests, Display, setTab }: {
                     {value['user_pay_status'] ? <Succes marginRight="15px" /> : <Fail marginRight="15px" />}
                 </StyledTd>
                 <StyledTd>{value['access_description']}</StyledTd>
-                <MacAdressTd access_mac={value['access_mac']} />
+                <MacAdressTd access_mac={value['access_mac']} access_id={value.access_id} />
                 <StyledTd style={{ textAlign: "center" }}>
                     <ProoveModal request={value} link={value['access_proof']} setTab={setTab} />
                 </StyledTd>

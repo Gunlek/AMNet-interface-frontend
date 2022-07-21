@@ -72,7 +72,7 @@ export default function ProoveModal(props: { request: any, link: string, setTab:
                                             </StyledTr>
                                             <StyledTr>
                                                 <StyledTd>Adresse Mac</StyledTd>
-                                                <MacAdressTd access_mac={props.request['access_mac']} />
+                                                <MacAdressTd access_mac={props.request['access_mac']} access_id={props.request.access_id} />
                                             </StyledTr>
                                             <StyledTr>
                                                 <StyledTd>Etat</StyledTd>

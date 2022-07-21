@@ -3,9 +3,10 @@ import MacAddressVerification from "../Utils/macaddress";
 import { MacTooltip, StyledTd } from "../Table/style";
 import { useLongPress } from "react-use";
 import useMediaQuery from "../MediaQueries/MediaQuery";
+import axios from "axios";
 
-export default function MacAdressTd(props: { access_mac: string }) {
-    const minWidth1000 = !useMediaQuery('(min-width:1000px)'); 
+export default function MacAdressTd(props: { access_mac: string, access_id: number }) {
+    const minWidth1000 = !useMediaQuery('(min-width:1000px)');
     const [input, setInput] = useState(false)
     const [mac, setMac] = useState(props.access_mac)
     const [tooltip, setTooltip] = useState({ display: false, opacity: "" })
@@ -30,7 +31,8 @@ export default function MacAdressTd(props: { access_mac: string }) {
                 }, 3000);
             }
             else {
-                setMac(verifiedMac)
+                axios.put(`/access/${props.access_id}`, { access_mac: verifiedMac });
+                setMac(verifiedMac);
             }
             setInput(false)
         }
@@ -49,7 +51,7 @@ export default function MacAdressTd(props: { access_mac: string }) {
                 position: tooltip.display ? "relative" : undefined
             }}
             onDoubleClick={handleDoubleClick}
-            {...minWidth1000 && {...longPressEvent}}
+            {...minWidth1000 && { ...longPressEvent }}
         >
             {input ?
                 <input
