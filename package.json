@@ -40,6 +40,7 @@
     "@types/http-proxy": "^1.17.9",
     "@types/node": "^16.11.11",
     "@types/react": "^17.0.37",
+    "@types/regenerator-runtime": "^0.13.1",
     "babel-plugin-styled-components": "^2.0.2",
     "cz-emoji": "^1.3.1",
     "eslint": "7.32.0",
