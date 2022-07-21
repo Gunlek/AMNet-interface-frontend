@@ -93,7 +93,7 @@ export default function UserMaterial(props: {
         <Column
           mobileMarginBottom="30px"
           marginBottom={empty ? "0" : "2%"}
-          style={{ flex: "1" }}
+          style={{ flex: empty ? "1" : undefined }}
         >
           <BlackP>
             Pour compléter votre installation, vous pouvez avoir besoin d&apos;un écran, d&apos;un cable ethernet ou de matériel informatique.
@@ -102,7 +102,7 @@ export default function UserMaterial(props: {
         </Column>
 
         {!empty &&
-          <StyledCard mobileMarginBottom="30px" marginBottom="2%">
+          <StyledCard style={{ flex: "1" }} mobileMarginBottom="30px" marginBottom="2%">
             <MaterialUserTable requests={material} />
           </StyledCard>
         }

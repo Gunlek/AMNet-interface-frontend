@@ -94,7 +94,7 @@ export default function UserIoT(props: {
         <Column
           mobileMarginBottom="30px"
           marginBottom={empty ? "0" : "2%"}
-          style={{ flex: "1" }}
+          style={{ flex: empty ? "1" : undefined }}
         >
           <BlackP mobileMarginBottom="30px" marginBottom="2%">
             Bien qu&apos;il soit préférable de connecter vos appareils incompatibles avec AMNet Wi-Fi en filaire aux prises ethernet de votre logement, certains appareils ne proposent pas cette option.
@@ -122,7 +122,7 @@ export default function UserIoT(props: {
         </Column>
 
         {!empty &&
-          <StyledCard mobileMarginBottom="30px" marginBottom="2%">
+          <StyledCard style={{ flex: "1" }} mobileMarginBottom="30px" marginBottom="2%">
             <IoTUserTable requests={access} setAccess={setAccess} userId={props.user.user_id} />
           </StyledCard>
         }
