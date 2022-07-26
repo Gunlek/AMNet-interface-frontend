@@ -1,5 +1,13 @@
 import React, { forwardRef, useCallback, useEffect, useMemo, useRef, useState } from 'react'
-import { useTable, useFilters, useGlobalFilter, useAsyncDebounce, useRowSelect, useSortBy, useBlockLayout, useFlexLayout } from 'react-table'
+import {
+  useTable,
+  useFilters,
+  useGlobalFilter,
+  useAsyncDebounce,
+  useRowSelect,
+  useSortBy,
+  useFlexLayout
+} from 'react-table'
 import { CheckboxRow, Row } from '../../Container/style';
 import Checkbox from '../../Input/Checkbox';
 import { StyledInput, StyledLabel } from '../../Input/style';
@@ -118,6 +126,14 @@ export function UsersTable(data: any[]) {
   } = useTable({
     columns,
     data,
+    autoResetPage: false,
+    autoResetExpanded: false,
+    autoResetGroupBy: false,
+    autoResetSelectedRows: false,
+    autoResetSortBy: false,
+    autoResetFilters: false,
+    autoResetGlobalFilter: false,
+    autoResetRowState: false,
     initialState: {
       hiddenColumns: [
         'user_phone',
@@ -161,7 +177,7 @@ export function UsersTable(data: any[]) {
       const remainder = index % 2;
 
       return (
-        <StyledUsersTr as="div"  {...row.getRowProps({ style })}>
+        <StyledUsersTr {...row.getRowProps({ style })} className={"testTTT"}>
           {row.cells.map((cell, index) => {
             const replaceBySvg = (cell.column['id'] == 'user_pay_status' || cell.column['id'] == 'user_is_gadz' || cell.column['id'] == 'user_notification')
             return (
