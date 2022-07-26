@@ -222,10 +222,12 @@ export const MinecraftContainer = styled.div`
    position: relative; 
    width: 90%; 
    height: 90%;
+   display: flex;
+   align-items: center;
    
    @media screen and (max-width: 1000px){
-    height: 120px;
-    width: 120px;
+    height: 130px;
+    width: 130px;
     margin-top: 20px;
   } 
 `;
