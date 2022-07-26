@@ -1,3 +1,4 @@
+import axios, { AxiosResponse } from "axios";
 import React from "react";
 import { SmallRedButton } from "../../Button/Buttons";
 import { MediaContextProvider, Media } from "../../MediaQueries/MediaSSR";
@@ -5,14 +6,25 @@ import { StateRequest } from "../../Status/Status";
 import { hardware } from "../../Utils/types";
 import { StyledTr, StyledTd, StyledFlexTd, StyledHeadTr, StyledTh, StyledTable } from "../style";
 
-export default function MaterialUserTable(props: { requests: hardware[] }) {
+export default function MaterialUserTable(props: { requests: hardware[], setHardware: Function, userId: Number }) {
     let listHTML = [];
     let mobilelistHTML = [];
     const containerStyle = {
         height: "100%",
         width: "100%",
         overflow: "auto"
-    }
+    };
+
+    const deleteMaterial = async (e, materialId: Number) => {
+        e.preventDefault();
+        axios.delete(`http://localhost:3333/access/${materialId}`)
+            .then(async (res: AxiosResponse) => {
+                if (res.status === 200) {
+                    const hardware = await axios.get(`http://localhost:3333/access/user/${props.userId}`);
+                    props.setHardware(hardware.data);
+                }
+            });
+    };
 
     props.requests.map((value, index) => {
         listHTML.push(
@@ -28,7 +40,7 @@ export default function MaterialUserTable(props: { requests: hardware[] }) {
                     <StateRequest state={value['material_state']} />
                 </StyledTd>
                 <StyledTd>
-                    <SmallRedButton>Supprimer</SmallRedButton>
+                    <SmallRedButton onClick={(e) => deleteMaterial(e, value.material_id)}>Supprimer</SmallRedButton>
                 </StyledTd>
             </StyledTr>
         );
@@ -49,7 +61,11 @@ export default function MaterialUserTable(props: { requests: hardware[] }) {
                 </StyledTr>
                 <StyledTr style={{ borderBottom: props.requests.length == (index + 1) ? undefined : "2px solid transparent" }}>
                     <StyledTd>Action</StyledTd>
-                    <StyledTd style={{ textAlign: "center" }}><SmallRedButton>Supprimer</SmallRedButton></StyledTd>
+                    <StyledTd style={{ textAlign: "center" }}>
+                        <SmallRedButton onClick={(e) => deleteMaterial(e, value.material_id)}>
+                            Supprimer
+                        </SmallRedButton>
+                    </StyledTd>
                 </StyledTr>
             </React.Fragment>
         )
@@ -62,7 +78,7 @@ export default function MaterialUserTable(props: { requests: hardware[] }) {
                     <tbody>{mobilelistHTML}</tbody>
                 </StyledTable>
             </Media>
-            
+
             <Media greaterThan="sm" style={containerStyle}>
                 <StyledTable>
                     <thead>
