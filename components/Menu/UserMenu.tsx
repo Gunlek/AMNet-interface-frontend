@@ -31,11 +31,13 @@ export default function UserMenu(props: {
   const [open, SetOpen] = useState(false);
   const isGadz = props.user.pay_status ? props.user.is_gadz : false;
   const isAdmin = props.user.rank === "admin";
+  const inactiveFaq = (process.env.NEXT_PUBLIC_FAQ_STATE === 'inactive');
 
-  let NumHiddenIcon = 0
-  if (!isGadz) NumHiddenIcon++
-  if (props.user.rank === "user") NumHiddenIcon++
-  if (!props.user.pay_status) NumHiddenIcon = NumHiddenIcon + 2
+  let NumHiddenIcon = 0;
+  if (!isGadz) NumHiddenIcon++;
+  if (props.user.rank === "user") NumHiddenIcon++;
+  if (!props.user.pay_status) NumHiddenIcon = NumHiddenIcon + 2;
+  if(inactiveFaq) NumHiddenIcon++;
 
   const mobileHeight = (Math.ceil((7 - NumHiddenIcon) / 3) * 95 + 95).toString()
 
@@ -105,7 +107,7 @@ export default function UserMenu(props: {
             undefined
           }
 
-          {!(process.env.NEXT_PUBLIC_FAQ_STATE === 'inactive') &&
+          {!inactiveFaq &&
             <Row style={positionning}>
               <FAQIcon page={props.page} />
             </Row>
