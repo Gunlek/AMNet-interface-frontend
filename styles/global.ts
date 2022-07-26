@@ -54,10 +54,6 @@ export const GlobalStyle = createGlobalStyle`
         width: 100%;
         padding: 0 2%;
         min-height: 100vh;
-
-        @media screen and (max-width: 1000px){
-            padding: 0;
-        }
     }
 
     a {
