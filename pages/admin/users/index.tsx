@@ -57,9 +57,14 @@ export default function Users(props: { users: user[] }) {
   const deleteUsers = async (e) => {
     e.preventDefault();
 
-    await SelectedRows.forEach(async (id: number) => {
-      await axios.delete(`/user/${id}`)
-    });
+    if (SelectedRows.length === users.length) {
+      await axios.delete(`/user/all`);
+    }
+    else {
+      await SelectedRows.forEach(async (id: number) => {
+        await axios.delete(`/user/${id}`);
+      });
+    }
 
     handleUsersChange();
   }
@@ -67,9 +72,12 @@ export default function Users(props: { users: user[] }) {
   const cancelPayment = async (e) => {
     e.preventDefault();
 
-    await SelectedRows.forEach(async (id: number) => {
-      await axios.put(`/user/unpay/${id}`)
-    });
+    if (SelectedRows.length === users.length) {
+      await axios.put(`/user/unpay/all`);
+    }
+    else {
+      await axios.put(`/user/unpay/several`, { Ids: SelectedRows });
+    }
 
     handleUsersChange();
   }
@@ -77,9 +85,12 @@ export default function Users(props: { users: user[] }) {
   const confirmPayment = async (e) => {
     e.preventDefault();
 
-    await SelectedRows.forEach(async (id: number) => {
-      await axios.put(`/user/pay/${id}`)
-    });
+    if (SelectedRows.length === users.length) {
+      await axios.put(`/user/pay/all`);
+    }
+    else {
+      await axios.put(`/user/pay/several`, { Ids: SelectedRows });
+    }
 
     handleUsersChange();
   }
@@ -87,9 +98,12 @@ export default function Users(props: { users: user[] }) {
   const changeStatut = async (e) => {
     e.preventDefault();
 
-    await SelectedRows.forEach(async (id: number) => {
-      await axios.put(`/user/statut/${id}`)
-    });
+    if (SelectedRows.length === users.length) {
+      await axios.put(`/user/statut/all`);
+    }
+    else {
+      await axios.put(`/user/statut/several`, { Ids: SelectedRows });
+    }
 
     handleUsersChange();
   }
