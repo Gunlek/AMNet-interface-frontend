@@ -95,7 +95,7 @@ export default function Dashboard(
       </Modal>
 
       <Modal show={props.payment_err} style={{ width: "600px", textAlign: "center" }}>
-        Le paiement de votre cotisation n'a pas pu aboutir <br/>
+        Le paiement de votre cotisation n&apos;a pas pu aboutir <br/>
         Si cela venait à se reproduire, merci de contacter  <br/> 
         <StyledLink color="#096A09" href="mailto:contact@amnet.fr">contact@amnet.fr</StyledLink>
       </Modal>
