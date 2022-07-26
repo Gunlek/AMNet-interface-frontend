@@ -100,7 +100,7 @@ export default function Login(props: { modal: boolean }) {
               <StyledInput id="name" type="text" onChange={handleFormChange} required />
             </div>
 
-            <div style={{ marginBottom: "20px", position: "relative" }}>
+            <div style={{ marginBottom: "23px", position: "relative" }}>
               <StyledInputLabel htmlFor="password">Mot de passe</StyledInputLabel>
               <PasswordInput id="password" onChange={handleFormChange} required />
               {error &&
