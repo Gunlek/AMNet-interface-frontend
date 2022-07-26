@@ -32,8 +32,8 @@ export const EditorStyle = createGlobalStyle`
     }
 
     .ql-snow.ql-toolbar button{
-        width: 32px !important;
-        height: 27px !important;
+        width: 40px !important;
+        height: 36px !important;
     }
 
     .ql-snow .ql-stroke {
@@ -58,14 +58,45 @@ export const EditorStyle = createGlobalStyle`
     .ql-snow.ql-toolbar .ql-picker-item.ql-selected .ql-stroke,
     .ql-snow.ql-toolbar .ql-picker-item:hover,
     .ql-snow.ql-toolbar .ql-picker-item:hover .ql-stroke,
-    .ql-snow.ql-toolbar .ql-picker-label.ql-active
+    .ql-snow.ql-toolbar .ql-picker-label.ql-active,
+    .ql-snow.ql-toolbar .ql-picker-label.ql-active .ql-stroke,
+    .ql-snow.ql-toolbar button.ql-active
      {
         color: #096A09 !important;
         stroke: #096A09 !important;
     }
 
     .ql-snow.ql-toolbar button:hover .ql-fill,
-    .ql-snow.ql-toolbar button.ql-active{
+    .ql-snow.ql-toolbar button.ql-active,
+    .ql-snow.ql-toolbar button.ql-active .ql-fill{
         fill: #096A09 !important;
+    }
+    .ql-snow.ql-toolbar button svg{
+        width: 30px !important;
+        height: 30px !important;
+    }
+
+    .ql-snow .ql-icon-picker, .ql-snow .ql-color-picker{
+        width: 35px !important;
+    }
+
+    .ql-snow .ql-picker:not(.ql-color-picker):not(.ql-icon-picker) svg{
+        width: 35px !important;
+        margin-top: 0 !important;
+        transform: translateY(-50%);
+    }
+
+    .ql-picker-label svg {
+        right: -15px !important;
+        stroke-width: 2 !important;
+    }
+
+    .ql-snow .ql-picker.ql-size, .ql-picker.ql-header, .ql-picker.ql-expanded .ql-picker-label {
+        width: 110px !important;
+        border-color: transparent !important;
+    }
+
+    .ql-snow .ql-picker-label::before {
+        transform: translateY(-20%);
     }
 `
