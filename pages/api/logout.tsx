@@ -1,7 +1,7 @@
 import Cookies from 'cookies'
 import type { NextApiRequest, NextApiResponse } from 'next'
 
-export default (req: NextApiRequest, res: NextApiResponse) => {
+const logOut = (req: NextApiRequest, res: NextApiResponse) => {
     return new Promise<void>(async () => {
         const cookies = new Cookies(req, res);
         const access_token = cookies.get('access_token');
@@ -12,4 +12,6 @@ export default (req: NextApiRequest, res: NextApiResponse) => {
         }
         else res.status(400).json({ loggedOut: false });
     })
-}
+};
+
+export default logOut

@@ -19,7 +19,7 @@ async function buffer(readable: Readable) {
     return Buffer.concat(chunks);
 }
 
-export default (req: NextApiRequest, res: NextApiResponse) => {
+const path = (req: NextApiRequest, res: NextApiResponse) => {
     return new Promise<void>(async (resolve, reject) => {
         const url = new URL(req.url, process.env.NEXT_PUBLIC_API_HOST);
         const pathname = url.pathname
@@ -46,8 +46,8 @@ export default (req: NextApiRequest, res: NextApiResponse) => {
             selfHandleResponse: isLogin
         });
 
-        if(isLogin) checked = JSON.parse((await buffer(req)).toString('utf8')).checked;
-   
+        if (isLogin) checked = JSON.parse((await buffer(req)).toString('utf8')).checked;
+
         function interceptLoginResponse(proxyRes: any, req: NextApiRequest, res: NextApiResponse) {
             let body = [];
             proxyRes.on('data', (chunk) => {
@@ -61,7 +61,7 @@ export default (req: NextApiRequest, res: NextApiResponse) => {
 
                     cookies.set('access_token', access_token, {
                         httpOnly: true,
-                        sameSite: "strict",
+                        sameSite: "lax",
                         path: "/",
                         secure: process.env.NODE_ENV !== 'development',
                         maxAge: checked ? 1000 * 3600 * 24 * 365 * 10 : 1000 * 3600
@@ -75,5 +75,7 @@ export default (req: NextApiRequest, res: NextApiResponse) => {
             })
         }
     }
-)
-}
+    )
+};
+
+export default path;
