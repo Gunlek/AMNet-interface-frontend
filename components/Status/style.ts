@@ -95,7 +95,7 @@ export const StyledConteneurNotif = styled.div`
 export const StyledNotification = styled(StyledCard)`
   opacity : ${(props) => props.Display ? props.Opacity ? "1" : "0" : "0"};
   transition: width 0.3s, height 0.3s, border-radius 0.3s, padding 0.3s, z-index 0.3s, opacity 0.3s;
-  height: ${(props) => props.Display ? "92.6px" : "43.8px"}; 
+  height: ${(props) => props.Display ? "108px" : "43.8px"}; 
   position: absolute;
   top: 180%;
   left: 50%;
