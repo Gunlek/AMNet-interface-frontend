@@ -8,11 +8,12 @@ export default function LogOut(props: { id: string }) {
     const logOut = async (e) => {
         e.preventDefault();
         await axios.post('/logout');
-        router.push('/homepage/login')
+        router.push('/homepage/login');
     }
 
     useEffect(() => {
-        router.prefetch('/homepage/login')
+        router.prefetch('/homepage/login');
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     return (
@@ -36,4 +37,3 @@ export default function LogOut(props: { id: string }) {
         </StyledBackLogOut>
     )
 };
-
