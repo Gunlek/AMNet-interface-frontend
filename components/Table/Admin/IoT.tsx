@@ -41,7 +41,7 @@ function CreateTable({ requests, Display, setTab }: {
                 <StyledTd>{value['access_description']}</StyledTd>
                 <MacAdressTd access_mac={value['access_mac']} access_id={value.access_id} />
                 <StyledTd style={{ textAlign: "center" }}>
-                    <ProoveModal request={value} link={value['access_proof']} setTab={setTab} />
+                    <ProoveModal request={value} setTab={setTab} />
                 </StyledTd>
                 <StyledTd>
                     <StateRequest state={value['access_state']} />

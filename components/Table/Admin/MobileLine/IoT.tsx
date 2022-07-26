@@ -73,7 +73,7 @@ export const IoTMobileLine = ({ index, value, status, display, isLast, setTab }:
                         <StyledTr>
                             <StyledTd>Preuve</StyledTd>
                             <StyledTd style={{ textAlign: "center", whiteSpace: "normal" }}>
-                                <ProoveModal request={value} link="/static/images/campus.png" setTab={Function} />
+                                <ProoveModal request={value} setTab={Function} />
                             </StyledTd>
                         </StyledTr>
                         <StyledTr>
