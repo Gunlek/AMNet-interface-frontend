@@ -62,12 +62,15 @@ export default function Profil(props: {
     handlePasswordChange,
     handleNameChange,
     handlePhoneChange,
-    blurPassword2
+    blurPassword2,
+    blurPhone
   } = useForm(props.active_proms, props.usins_state, props.user)
   const [show, setShow] = useState(false);
 
   const editProfil = (elmt) => {
-    elmt.preventDefault()
+    elmt.preventDefault();
+    blurPassword2();
+    blurPhone();
 
     if (!errorMessage.password && !errorMessage.format_name && !errorMessage.phone) {
       axios.put(`/user/${props.user.user_id}`, form)
@@ -154,7 +157,7 @@ export default function Profil(props: {
           <ResponsiveRow style={{ marginBottom: "20px" }}>
             <Col6 paddingRight="10px" mobileMarginBottom="20px" style={{ position: "relative" }}>
               <StyledInputLabel htmlFor="user_phone">Téléphone</StyledInputLabel>
-              <PhoneInput value={form.user_phone} onChange={handlePhoneChange} />
+              <PhoneInput value={form.user_phone} onChange={handlePhoneChange} onBlur={blurPhone}/>
               {errorMessage.phone}
             </Col6>
 

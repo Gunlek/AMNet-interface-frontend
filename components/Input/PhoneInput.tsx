@@ -6,7 +6,7 @@ import PhoneStyle from "../../styles/phone";
 import startsWith from 'lodash.startswith';
 import { isPossiblePhoneNumber } from 'react-phone-number-input'
 
-export default function PhoneInput(props: { value: string, onChange: any }) {
+export default function PhoneInput(props: { value: string, onChange: any, onBlur: any }) {
     const onChange = (value: string, country: { dialCode: any; }) => {
         props.onChange(value, isPossiblePhoneNumber("+" + value) && startsWith(value, country.dialCode))
     }
@@ -24,6 +24,7 @@ export default function PhoneInput(props: { value: string, onChange: any }) {
                 buttonStyle={{ background: "transparent", border: "none", marginLeft: "20px" }}
                 placeholder=""
                 onChange={onChange}
+                onBlur={props.onBlur}
                 inputProps={{ required: true, id: "user_phone" }}
             />
         </>

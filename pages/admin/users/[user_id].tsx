@@ -68,7 +68,8 @@ export default function User(props: {
         handlePasswordChange,
         handleNameChange,
         handlePhoneChange,
-        blurPassword2
+        blurPassword2,
+        blurPhone
     } = useForm(props.active_proms, props.usins_state, props.user);
     const [show, setShow] = useState(false);
     const router = useRouter();
@@ -80,7 +81,9 @@ export default function User(props: {
 
     const editProfil = (elmt) => {
         elmt.preventDefault();
-
+        blurPhone();
+        blurPassword2();
+        
         if (!errorMessage.password && !errorMessage.format_name && !errorMessage.phone) {
             axios.put(`/user/${props.user.user_id}`, form)
                 .then((res: AxiosResponse) => {
@@ -167,7 +170,7 @@ export default function User(props: {
                 <ResponsiveRow style={{ marginBottom: "20px" }}>
                     <Col6 paddingRight="10px" mobileMarginBottom="20px" style={{ position: "relative" }}>
                         <StyledInputLabel htmlFor="user_phone">Téléphone</StyledInputLabel>
-                        <PhoneInput value={form.user_phone} onChange={handlePhoneChange} />
+                        <PhoneInput value={form.user_phone} onChange={handlePhoneChange} onBlur={blurPhone}/>
                         {errorMessage.phone}
                     </Col6>
                     <Col3 paddingLeft="10px" paddingRight="10px" mobileMarginBottom="20px">
@@ -183,7 +186,15 @@ export default function User(props: {
 
                     <Col3 paddingLeft="10px">
                         <StyledInputLabel htmlFor="user_is_gadz">Gadz</StyledInputLabel>
-                        <StyledInput id="user_is_gadz" as="select" onChange={handleFormChange} value={form.user_is_gadz ? "Yes" : "No"}>
+                        <StyledInput
+                            id="user_is_gadz"
+                            as="select"
+                            onChange={(elmt) => handleFormChange({
+                                currentTarget: { id: elmt.currentTarget.id },
+                                target: { value: elmt.target.value === "Yes" }
+                            })}
+                            defaultValue={form.user_is_gadz ? "Yes" : "No"}
+                        >
                             <option value="Yes">Oui</option>
                             <option value="No">Non</option>
                         </StyledInput>
@@ -195,7 +206,7 @@ export default function User(props: {
                     MobileHiehgt={form.user_is_gadz ? "264.6px" : "0px"}
                     style={{
                         transition: "height 0.3s linear",
-                        overflowY: "clip",
+                        overflowY: "clip"
                     }}
                 >
                     <Col6 paddingRight="10px" mobileMarginBottom="20px">
