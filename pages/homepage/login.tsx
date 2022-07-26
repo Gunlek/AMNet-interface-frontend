@@ -27,7 +27,7 @@ export async function getServerSideProps({ req, query }) {
       }
     }
   }
-  
+
   return { props: { modal: query.modal === "true" } }
 }
 
@@ -36,8 +36,8 @@ export default function Login(props: { modal: boolean }) {
   const [error, setError] = useState(false);
 
   const handleCheckboxChange = (elmt) => {
-    const newForm = {...form};
-    newForm.checked = elmt.target.checked
+    const newForm = { ...form };
+    newForm.checked = elmt.target.checked;
     setForm(newForm);
   };
 
@@ -49,7 +49,7 @@ export default function Login(props: { modal: boolean }) {
 
   const router = useRouter();
   useEffect(() => {
-    if (props.modal) router.prefetch('/homepage/unsubscribe')
+    if (props.modal) router.prefetch('/homepage/unsubscribe');
     else router.prefetch('/');
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
@@ -57,14 +57,13 @@ export default function Login(props: { modal: boolean }) {
   const handleSignIn = async (e) => {
     e.preventDefault()
     try {
-      await axios.post('/auth', form)
+      await axios.post('/auth', form);
 
-      if (props.modal) router.push("/homepage/unsubscribe")
-      else router.push("/")
+      if (props.modal) router.push("/homepage/unsubscribe");
+      else router.push("/");
 
     } catch (err: any) {
-      if (err.response.status === 401) setError(true)
-      else console.log(err)
+      if (err.response.status === 401) setError(true);
     }
   };
 
@@ -98,12 +97,12 @@ export default function Login(props: { modal: boolean }) {
           <form onSubmit={handleSignIn}>
             <div style={{ marginBottom: "20px" }}>
               <StyledInputLabel htmlFor="name">Nom d&apos;utilisateur</StyledInputLabel>
-              <StyledInput id="name" type="text" onChange={handleFormChange} required/>
+              <StyledInput id="name" type="text" onChange={handleFormChange} required />
             </div>
 
             <div style={{ marginBottom: "20px", position: "relative" }}>
               <StyledInputLabel htmlFor="password">Mot de passe</StyledInputLabel>
-              <PasswordInput id="password" onChange={handleFormChange} required/>
+              <PasswordInput id="password" onChange={handleFormChange} required />
               {error &&
                 <ErrorP Fixed={true}>
                   Identifiant ou mot de passe invalide
@@ -127,7 +126,7 @@ export default function Login(props: { modal: boolean }) {
                 <StyledLink hovercolor="#096A09"> Pas encore inscrit ? Inscrivez-vous en cliquant ici</StyledLink>
               </Link>
             </div>
-
+  
             <Row style={{ justifyContent: "center" }}>
               <GreenButton type="submit">Connexion</GreenButton>
             </Row>
