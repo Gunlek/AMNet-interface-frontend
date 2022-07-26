@@ -159,7 +159,7 @@ export default function IoTAdminTable(props: {
                                         style={{
                                             width: (props.status.new == "pending") ? "500px" : "325px",
                                             paddingLeft: "5px",
-                                            transition: "width 0s linear 0.75s"
+                                            transition: "width 0s linear 0.3s"
                                         }}
                                     >
                                         Actions
