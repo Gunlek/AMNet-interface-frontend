@@ -54,15 +54,15 @@ export default function ResetPassword(props: { name: string, token: string }) {
         <title>Réinitialisation &bull; AMNet</title>
       </Head>
       <CampusGlobalStyle />
-      
-      <Modal show={show} style={{ width: "350px" }}>
+
+      <Modal show={show} style={{ width: "450px" }}>
         Votre mot de passe a été mis à jour
 
-        <Row style={{ marginTop: "20px" }}>
-          <ButtonLink href="/homepage/login">Se Connecter</ButtonLink>
+        <Row style={{ marginTop: "20px", justifyContent: "center" }}>
+          <ButtonLink width="300px" href="/homepage/login">Se Connecter</ButtonLink>
         </Row>
       </Modal>
-      
+
       <Row
         mobileWidth="90%"
         style={{

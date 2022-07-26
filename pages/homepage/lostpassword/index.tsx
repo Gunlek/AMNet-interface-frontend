@@ -29,7 +29,7 @@ export default function LostPassword() {
       </Head>
       <CampusGlobalStyle />
 
-      <Modal show={show} style={{ width: "400px" }}>
+      <Modal show={show} style={{ width: "450px", textAlign: "center" }}>
         Nous venons de vous envoyer un mail <br/>
         Pour réinitialiser votre mot de passe
       </Modal>
