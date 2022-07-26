@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import dynamic from "next/dynamic";
 import 'react-quill/dist/quill.snow.css';
-const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 const QuillToolbar = dynamic(() => import("./toolbar"), { ssr: false });
+const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 
 export default function Editor(id: string, html?: string) {
     const [value, setValue] = useState(html || "");
