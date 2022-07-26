@@ -13,8 +13,8 @@ import { ModalLogic } from "./ModalLogic";
 import { StyledBackgroundModal, StyledModal } from "./style";
 
 export default function IoTModal(props: { setAccess: Function, userId: Number }) {
-    const minWidth1000 = useMediaQuery('(min-width: 1000px)')
-    const { Display, Opacity, toggle } = ModalLogic()
+    const minWidth1000 = useMediaQuery('(min-width: 1000px)');
+    const { Display, Opacity, toggle } = ModalLogic();
     const [form, setForm] = useState({
         access_mac: "",
         access_description: "",
@@ -42,7 +42,7 @@ export default function IoTModal(props: { setAccess: Function, userId: Number })
         if (id) newForm[id] = elmt
         else newForm[elmt.currentTarget.id] = elmt.target.value;
         setForm(newForm);
-    }
+    };
 
     const verification = (elmt) => {
         const newError = { ...error };
@@ -51,7 +51,7 @@ export default function IoTModal(props: { setAccess: Function, userId: Number })
         else newError.access_description = elmt.target.value === "";
 
         setError(newError)
-    }
+    };
 
     const deleteFile = (elmt) => {
         elmt.preventDefault();
@@ -62,7 +62,7 @@ export default function IoTModal(props: { setAccess: Function, userId: Number })
         const Newerror = { ...error };
         Newerror.access_proof = true;
         setError(Newerror);
-    }
+    };
 
     const SendReq = async (e) => {
         e.preventDefault();
@@ -82,16 +82,16 @@ export default function IoTModal(props: { setAccess: Function, userId: Number })
                     if (res.status === 200) {
                         const access = await axios.get(`/access/user/${props.userId}`);
                         props.setAccess(access.data);
-                        toggle()
+                        toggle();
                     }
                     if (res.status === 409) {
                         const newError = { ...error };
                         newError.access_mac_exist = true;
-                        setError(newError)
+                        setError(newError);
                     }
-                })
+                });
         }
-    }
+    };
 
     return (
         <>
@@ -101,82 +101,84 @@ export default function IoTModal(props: { setAccess: Function, userId: Number })
                     <StyledBackgroundModal onClick={toggle} Opacity={Opacity} />
                     <StyledModal width={minWidth1000 ? "900px" : undefined} Opacity={Opacity}>
                         <TitleCard hideLine={!minWidth1000}>Demande d&apos;accès pour un objet connecté</TitleCard>
-                        <div style={{ width: "100%", position: "relative" }}>
-                            <StyledInputLabel htmlFor="access_mac">Adresse Physique</StyledInputLabel>
-                            <StyledInput
-                                border="2px solid rgba(0, 159, 0, 0.15)"
-                                id="access_mac"
-                                placeholder="Par exemple: 5E:FF:56:A2:AF:15"
-                                onChange={handleFormChange}
-                                onBlur={verification}
-                            />
-                            {error.access_mac &&
-                                <ErrorP Fixed={true}>
-                                    L&apos;adresse physique est invalide
-                                </ErrorP>
-                            }
-                            {error.access_mac_exist &&
-                                <ErrorP Fixed={true}>
-                                    L&apos;adresse physique est déjà utilisée par un autre appareil
-                                </ErrorP>
-                            }
-                        </div>
-
-                        <div style={{ marginTop: "20px", width: "100%", position: "relative" }}>
-                            <StyledInputLabel htmlFor="access_description">Description</StyledInputLabel>
-                            <StyledInput
-                                border="2px solid rgba(0, 159, 0, 0.15)"
-                                id="access_description"
-                                placeholder="Par exemple: Chromecast"
-                                onChange={handleFormChange}
-                                onBlur={verification}
-                            />
-                            {error.access_description &&
-                                <ErrorP Fixed={true}>
-                                    La description est obligatoire
-                                </ErrorP>
-                            }
-                        </div>
-
-                        <div style={{ marginBottom: "30px", width: "100%", marginTop: "20px", position: "relative" }}>
-                            <StyledInputLabel
-                                style={{ display: "block" }}
-                                htmlFor="access_proof"
-                            >
-                                Photo de l&apos;objet
-                            </StyledInputLabel>
-                            <ResponsiveRow style={{ alignItems: "center" }}>
-                                <FileUploader id="access_proof" setfile={handleFormChange} accept=".jpeg, .jpg, .png, .svg" />
-                                {form.access_proof &&
-                                    <div
-                                        style={{
-                                            marginLeft: minWidth1000 && "10px",
-                                            marginTop: !minWidth1000 && "10px",
-                                            display: "flex",
-                                            alignItems: "center"
-                                        }}
-                                    >
-                                        <StyledLink
-                                            color="black"
-                                            hovercolor="#2E8A21"
-                                            target="_blank"
-                                            href={URL.createObjectURL(form.access_proof)}
-                                        >
-                                            {form.access_proof["name"]}
-                                        </StyledLink>
-                                        <StyledDeleteImg onClick={deleteFile} />
-                                    </div>
+                        <form onSubmit={SendReq}>
+                            <div style={{ width: "100%", position: "relative" }}>
+                                <StyledInputLabel htmlFor="access_mac">Adresse Physique</StyledInputLabel>
+                                <StyledInput
+                                    border="2px solid rgba(0, 159, 0, 0.15)"
+                                    id="access_mac"
+                                    placeholder="Par exemple: 5E:FF:56:A2:AF:15"
+                                    onChange={handleFormChange}
+                                    onBlur={verification}
+                                />
+                                {error.access_mac &&
+                                    <ErrorP Fixed={true}>
+                                        L&apos;adresse physique est invalide
+                                    </ErrorP>
                                 }
-                            </ResponsiveRow>
-                            {error.access_proof &&
-                                <ErrorP Fixed={true}>
-                                    La photo est obligatoire
-                                </ErrorP>
-                            }
-                        </div>
-                        <Row style={{ justifyContent: "center" }}>
-                            <GreenButton onClick={SendReq} width="350px">Envoyer la demande</GreenButton>
-                        </Row>
+                                {error.access_mac_exist &&
+                                    <ErrorP Fixed={true}>
+                                        L&apos;adresse physique est déjà utilisée par un autre appareil
+                                    </ErrorP>
+                                }
+                            </div>
+
+                            <div style={{ marginTop: "20px", width: "100%", position: "relative" }}>
+                                <StyledInputLabel htmlFor="access_description">Description</StyledInputLabel>
+                                <StyledInput
+                                    border="2px solid rgba(0, 159, 0, 0.15)"
+                                    id="access_description"
+                                    placeholder="Par exemple: Chromecast"
+                                    onChange={handleFormChange}
+                                    onBlur={verification}
+                                />
+                                {error.access_description &&
+                                    <ErrorP Fixed={true}>
+                                        La description est obligatoire
+                                    </ErrorP>
+                                }
+                            </div>
+
+                            <div style={{ marginBottom: "30px", width: "100%", marginTop: "20px", position: "relative" }}>
+                                <StyledInputLabel
+                                    style={{ display: "block" }}
+                                    htmlFor="access_proof"
+                                >
+                                    Photo de l&apos;objet
+                                </StyledInputLabel>
+                                <ResponsiveRow style={{ alignItems: "center" }}>
+                                    <FileUploader id="access_proof" setfile={handleFormChange} accept=".jpeg, .jpg, .png, .svg" />
+                                    {form.access_proof &&
+                                        <div
+                                            style={{
+                                                marginLeft: minWidth1000 && "10px",
+                                                marginTop: !minWidth1000 && "10px",
+                                                display: "flex",
+                                                alignItems: "center"
+                                            }}
+                                        >
+                                            <StyledLink
+                                                color="black"
+                                                hovercolor="#2E8A21"
+                                                target="_blank"
+                                                href={URL.createObjectURL(form.access_proof)}
+                                            >
+                                                {form.access_proof["name"]}
+                                            </StyledLink>
+                                            <StyledDeleteImg onClick={deleteFile} />
+                                        </div>
+                                    }
+                                </ResponsiveRow>
+                                {error.access_proof &&
+                                    <ErrorP Fixed={true}>
+                                        La photo est obligatoire
+                                    </ErrorP>
+                                }
+                            </div>
+                            <Row style={{ justifyContent: "center" }}>
+                                <GreenButton type="submit" width="350px">Envoyer la demande</GreenButton>
+                            </Row>
+                        </form>
                     </StyledModal>
                 </>
             }
