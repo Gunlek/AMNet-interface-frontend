@@ -16,9 +16,10 @@ import useMediaQuery from "../../components/MediaQueries/MediaQuery";
 import FileUploader from "../../components/Input/FileUploader";
 import TeamPicture from "../../components/Card/TeamPicture";
 import { StyledDeleteImg } from "../../components/Card/Images/style";
-import axios from "axios";
+import axios, { AxiosResponse } from "axios";
 import getToken from "../../components/Utils/auth-token";
 import getConfig from "../../components/Utils/req-config";
+import Modal from "../../components/Card/Modals/Modal";
 
 export async function getServerSideProps({ req }) {
   const { access_token, userId } = getToken(req)
@@ -57,36 +58,70 @@ export default function Edition(props: { accutalTeam: { pseudo: string, id: stri
   const minWidth1000 = useMediaQuery('(min-width:1000px)');
   const { team, teamEditor } = TeamEditor(props.accutalTeam)
   const [TabFile, setTabFile] = useState({ IR: null, Status: null, TeamPicture: null });
-  const [URLTeamPicture, setURLTeamPicture] = useState(undefined)
-
+  const [modal, setModal] = useState({ show: false, content: <></> });
+  const config = { headers: { 'Content-Type': 'multipart/form-data' } };
   useEffect(() => {
-    const IRinput = document.getElementById("IR") as HTMLInputElement;
-    const StatusInput = document.getElementById("Status") as HTMLInputElement;
-    const TeamPictureInput = document.getElementById("TeamPicture") as HTMLInputElement;
-
-    IRinput.value = null;
-    StatusInput.value = null;
-    TeamPictureInput.value = null;
+    (document.getElementById("IR") as HTMLInputElement).value = null;
+    (document.getElementById("Status") as HTMLInputElement).value = null;
+    (document.getElementById("TeamPicture") as HTMLInputElement).value = null;
   }, []);
 
-  useEffect(() => {
-    if (TabFile.TeamPicture && TabFile.TeamPicture["size"] <= 102400)
-      setURLTeamPicture(URL.createObjectURL(TabFile.TeamPicture))
-    else
-      setURLTeamPicture(undefined)
-  }, [TabFile]);
-
   const SetFile = (file: File, id: string) => {
-    let NemTabFile = { ...TabFile };
+    const NemTabFile = { ...TabFile };
     NemTabFile[id] = file;
     setTabFile(NemTabFile);
-  }
+  };
 
-  const DeleteFile = (id: string) => {
+  const DeleteFile = (id: string, id2?: string) => {
     (document.getElementById(id) as HTMLInputElement).value = null;
     const NemTabFile = { ...TabFile };
     NemTabFile[id] = null;
+
+    if (id2) {
+      (document.getElementById(id2) as HTMLInputElement).value = null;
+      NemTabFile[id2] = null;
+    }
+    
     setTabFile(NemTabFile);
+  };
+
+  const updateDocs = (e) => {
+    e.preventDefault();
+    let promise = [];
+
+    if (TabFile.IR || TabFile.Status) {
+      if (TabFile.IR) promise.push(axios.put('/settings/doc/RI-AMNet', { doc: TabFile.IR }, config));
+      if (TabFile.Status) promise.push(axios.put('/settings/doc/Statuts-AMNet', { doc: TabFile.Status }, config));
+
+      Promise.all(promise)
+        .then((res: any) => {
+          if (res[0].status == 200 && (!res[1] || res[1].status == 200)) {
+            const newModal = {
+              show: !modal.show,
+              content: <>Les Documents administratifs ont été mis à jour</>
+            };
+
+            DeleteFile("IR", "Status");
+            setModal(newModal);
+          }
+        })
+    }
+  };
+
+  const updateTeamList = async (e) => {
+    e.preventDefault();
+
+    axios.put('/settings/admin-list', { team: team, team_picture: TabFile.TeamPicture }, config)
+      .then((res: AxiosResponse) => {
+        if (res.status == 200) {
+          const newModal = {
+            show: !modal.show,
+            content: <>La Page d&apos;accueil à été mise à jour<br />Il faut 1h pour que le changement des bucques s&apos;affiche</>
+          }
+
+          setModal(newModal)
+        }
+      })
   }
 
   return (
@@ -94,6 +129,7 @@ export default function Edition(props: { accutalTeam: { pseudo: string, id: stri
       <Head>
         <title>Administration &bull; AMNet</title>
       </Head>
+      <Modal style={{ width: "625px", textAlign: "center" }} show={modal.show}>{modal.content}</Modal>
       <AdminMenu page="edition" />
 
       <DashboardContainer>
@@ -112,7 +148,7 @@ export default function Edition(props: { accutalTeam: { pseudo: string, id: stri
                     color="black"
                     hovercolor="#2E8A21"
                     target="_blank"
-                    href="/static/docs/Reglement_Interieur_AMNet.pdf"
+                    href={`${process.env.NEXT_PUBLIC_API_HOST}/RI-AMNet.pdf`}
                   >
                     Voir le Réglement Intérieur actuel
                   </StyledLink>
@@ -158,7 +194,7 @@ export default function Edition(props: { accutalTeam: { pseudo: string, id: stri
                     color="black"
                     hovercolor="#2E8A21"
                     target="_blank"
-                    href="/static/docs/Statuts_AMNet.pdf"
+                    href={`${process.env.NEXT_PUBLIC_API_HOST}/Statuts-AMNet.pdf`}
                   >
                     Voir les statuts actuels
                   </StyledLink>
@@ -194,7 +230,7 @@ export default function Edition(props: { accutalTeam: { pseudo: string, id: stri
             </div>
 
             <Row style={{ justifyContent: "center" }}>
-              <GreenButton>Mettre à jour</GreenButton>
+              <GreenButton onClick={updateDocs}>Mettre à jour</GreenButton>
             </Row>
           </form>
         </StyledCard>
@@ -209,14 +245,14 @@ export default function Edition(props: { accutalTeam: { pseudo: string, id: stri
                   <StyledLink
                     color="black"
                     target="_blank"
-                    href="/static/images/homepage/team.jpg"
+                    href={`${process.env.NEXT_PUBLIC_API_HOST}/team.jpeg`}
                   >
                     Voir la photo actuelle
                   </StyledLink>
                 </Row>
 
                 <ResponsiveRow style={{ alignItems: "center", width: "auto" }}>
-                  <FileUploader id="TeamPicture" setfile={SetFile} accept=".jpeg, .jpg" />
+                  <FileUploader id="TeamPicture" setfile={SetFile} accept=".jpeg, .jpg, .png" />
 
                   {TabFile.TeamPicture &&
                     <BlackText
@@ -227,45 +263,18 @@ export default function Edition(props: { accutalTeam: { pseudo: string, id: stri
                         alignItems: "center"
                       }}
                     >
-                      {TabFile.TeamPicture["size"] <= 102400 ?
-                        <>
-                          <StyledLink
-                            color="#096a09"
-                            target="_blank"
-                            href={URLTeamPicture}
-                          >
-                            {TabFile.TeamPicture["name"]}
-                          </StyledLink>
-                          <StyledDeleteImg onClick={() => (DeleteFile("TeamPicture"))} />
-                        </>
-                        :
-                        <>
-                          Fichier trop volumineux
-                        </>
-                      }
+                      <StyledLink
+                        color="#096a09"
+                        target="_blank"
+                        href={URL.createObjectURL(TabFile.TeamPicture)}
+                      >
+                        {TabFile.TeamPicture["name"]}
+                      </StyledLink>
+                      <StyledDeleteImg onClick={() => (DeleteFile("TeamPicture"))} />
                     </BlackText>
                   }
                 </ResponsiveRow>
               </ResponsiveRow>
-
-              <BlackText
-                style={{
-                  textAlign: "center",
-                  fontSize: "12px",
-                  marginBottom: "20px"
-                }}
-              >
-                Pour optimiser le chargement de la homepage, la photo de la Team ne doit pas dépasser les 100Ko.
-                <br /> Petite thuysse : largeur maximum 1000px, en .jpg ou .jpeg et utilisez{" "}
-                <StyledLink
-                  color="#096a09"
-                  target="_blank"
-                  href="https://compressor.io/"
-                  style={{ fontSize: "12px" }}
-                >
-                  ce site
-                </StyledLink>
-              </BlackText>
 
               {teamEditor()}
             </Col6>
@@ -275,13 +284,13 @@ export default function Edition(props: { accutalTeam: { pseudo: string, id: stri
               <TeamPicture
                 Team={team}
                 outline="3px solid #096a09"
-                background={URLTeamPicture}
+                background={TabFile.TeamPicture ? URL.createObjectURL(TabFile.TeamPicture) : undefined}
               />
             </Col6>
           </ResponsiveRow>
 
           <Row style={{ marginTop: "20px", justifyContent: "center" }}>
-            <GreenButton>Mettre à jour</GreenButton>
+            <GreenButton onClick={updateTeamList}>Mettre à jour</GreenButton>
           </Row>
         </StyledCard>
         <Footer marginTop="0" />
