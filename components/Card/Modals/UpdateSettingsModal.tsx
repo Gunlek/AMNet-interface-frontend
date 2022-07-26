@@ -20,7 +20,7 @@ export default function SettingsModal(props: {
     console.log(props.settings.guest_access );
     const updateSettings = async (e) => {
         e.preventDefault();
-        console.log("test")
+        
         await Promise.all([
             axios.put(`/settings/lydia_cotiz`, { value: props.settings.lydia_cotiz }),
             axios.put(`/settings/active_proms`, { value: props.settings.active_proms }),
