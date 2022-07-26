@@ -86,7 +86,7 @@ export default function UserMaterial(props: {
               justifyContent: "center"
             }}
           >
-            <MaterialModal />
+            <MaterialModal setHardware={setMaterial} userId={props.user.user_id} />
           </div>
         </ResponsiveRow>
 
@@ -103,7 +103,7 @@ export default function UserMaterial(props: {
 
         {!empty &&
           <StyledCard style={{ flex: "1" }} mobileMarginBottom="30px" marginBottom="2%">
-            <MaterialUserTable requests={material} />
+            <MaterialUserTable requests={material} setHardware={setMaterial} userId={props.user.user_id} />
           </StyledCard>
         }
 
