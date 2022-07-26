@@ -54,19 +54,23 @@ export default function Users(props: { users: user[] }) {
       });
   };
 
-  const deleteUsers = async (e) => {
+
+  const deleteUsers = (e) => {
     e.preventDefault();
 
     if (SelectedRows.length === users.length) {
-      await axios.delete(`/user/all`);
+      axios.delete(`/user/all`)
+        .then(() => { handleUsersChange() });
     }
     else {
-      await SelectedRows.forEach(async (id: number) => {
-        await axios.delete(`/user/${id}`);
+      let promise = []
+      SelectedRows.forEach((id: number) => {
+        promise.push(axios.delete(`/user/${id}`));
       });
-    }
 
-    handleUsersChange();
+      Promise.all(promise)
+        .then(() => { handleUsersChange() });
+    }
   }
 
   const cancelPayment = async (e) => {
