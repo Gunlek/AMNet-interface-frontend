@@ -20,9 +20,11 @@ import {
 import Editor from "../../components/Input/Editor";
 import { EditorStyle } from "../../styles/editor";
 import MailModal from "../../components/Card/Modals/MailModal";
-import axios from "axios";
+import axios, { AxiosResponse } from "axios";
 import getConfig from "../../components/Utils/req-config";
 import getToken from "../../components/Utils/auth-token";
+import Modal from "../../components/Card/Modals/Modal";
+import SettingsModal from "../../components/Card/Modals/UpdateSettingsModal";
 
 export async function getServerSideProps({ req }) {
   const { access_token, userId } = getToken(req)
@@ -103,16 +105,19 @@ export default function Settings(props: {
     "AllSelect": false
   });
 
+  const [show, setShow] = useState(false);
+
   const handleAllCheckboxChange = () => {
-    const NewChecked = Checked.AllSelect ? {
-      "Contribution": false,
-      "NoContribution": false,
-      "OldPromotion": false,
-      "ActivePromotion": false,
-      "NewPromotion": false,
-      "Other": false,
-      "AllSelect": false
-    }
+    const NewChecked = Checked.AllSelect ?
+      {
+        "Contribution": false,
+        "NoContribution": false,
+        "OldPromotion": false,
+        "ActivePromotion": false,
+        "NewPromotion": false,
+        "Other": false,
+        "AllSelect": false
+      }
       :
       {
         "Contribution": true,
@@ -160,23 +165,17 @@ export default function Settings(props: {
     setSettings(newSettings)
   }
 
-  const updateSettings = async (e) => {
-    e.preventDefault();
-    await Promise.all([
-      axios.put(`/settings/lydia_cotiz`, { value: settings.lydia_cotiz }),
-      axios.put(`/settings/active_proms`, { value: settings.active_proms }),
-      axios.put(`/settings/usins_state`, { value: settings.usins_state }),
-      axios.put(`/settings/guest_access`, { value: settings.guest_access })
-    ]);
-  }
-
   const updateWelcomeMessage = async (e) => {
     e.preventDefault();
-    await axios.put(`/settings/news_message`, { value: WelcomeMessageHTML });
+    axios.put(`/settings/news_message`, { value: WelcomeMessageHTML })
+      .then((res: AxiosResponse) => {
+        if (res.status == 200) setShow(!show)
+      });
   }
 
   return (
     <>
+      <Modal show={show} style={{ width: "450px" }}>Le Message d&apos;actualité a été mis à jour</Modal>
       <EditorStyle />
       <Head>
         <title>Administration &bull; AMNet</title>
@@ -244,7 +243,11 @@ export default function Settings(props: {
               </div>
 
               <Row style={{ justifyContent: "center" }}>
-                <GreenButton onClick={updateSettings}>Mettre à jour</GreenButton>
+                <SettingsModal
+                  settings={settings}
+                  original_usins_state={props.usins_state}
+                  active_proms={props.active_proms}
+                />
               </Row>
             </StyledCard>
           </Col6>
@@ -328,7 +331,7 @@ export default function Settings(props: {
             </div>
 
             <Row style={{ justifyContent: "center" }}>
-              <MailModal html={MailHTML} subject={subject} recipients={Checked}  />
+              <MailModal html={MailHTML} subject={subject} recipients={Checked} />
             </Row>
           </StyledCard>
         </Row>
