@@ -163,7 +163,7 @@ export default function useForm(
     useEffect(() => {
         if (error.user_name) document.getElementById("user_name").focus();
         else if (error.user_email) document.getElementById("user_email").focus();
-    }, [error]);
+    }, [error.user_name, error.user_email]);
 
     return {
         form,
