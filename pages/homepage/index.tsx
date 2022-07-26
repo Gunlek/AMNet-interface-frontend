@@ -98,7 +98,7 @@ export default function Homepage(props: { accutalTeam: { pseudo: string, id: str
                 }}
               >
                 <MinecraftContainer>
-                  <Image layout="fill" src="/static/logo/mc_logo.png" alt="Logo Minecraft"/>
+                  <Image width={145} height={145} src="/static/logo/mc_logo.png" alt="Logo Minecraft"/>
                 </MinecraftContainer>
               </Col2>
 
