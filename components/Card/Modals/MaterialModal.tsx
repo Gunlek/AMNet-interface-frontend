@@ -53,7 +53,7 @@ export default function MaterialModal(props: { setHardware: Function, userId: Nu
                     <StyledBackgroundModal onClick={toggle} Opacity={Opacity} />
                     <StyledModal width={minWidth1000 ? "800px" : undefined} Opacity={Opacity}>
                         <TitleCard>Demande de matériel</TitleCard>
-                        <form onSubmit={SendReq}>
+                        <form onSubmit={SendReq} style={{ width: "100%" }}>
                             <div style={{ marginBottom: "20px", width: "100%", position: "relative" }}>
                                 <StyledInputLabel htmlFor="material_description">Description</StyledInputLabel>
                                 <StyledInput

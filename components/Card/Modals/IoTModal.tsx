@@ -101,7 +101,7 @@ export default function IoTModal(props: { setAccess: Function, userId: Number })
                     <StyledBackgroundModal onClick={toggle} Opacity={Opacity} />
                     <StyledModal width={minWidth1000 ? "900px" : undefined} Opacity={Opacity}>
                         <TitleCard hideLine={!minWidth1000}>Demande d&apos;accès pour un objet connecté</TitleCard>
-                        <form onSubmit={SendReq}>
+                        <form onSubmit={SendReq} style={{ width: "100%"}}>
                             <div style={{ width: "100%", position: "relative" }}>
                                 <StyledInputLabel htmlFor="access_mac">Adresse Physique</StyledInputLabel>
                                 <StyledInput
