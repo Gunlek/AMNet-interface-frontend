@@ -58,9 +58,9 @@ export function StateInvite(props: { state: boolean, onChange: Function }) {
 
   const handleValueChange = (elmt) => {
     setState(elmt.target.value == "enabled");
-    props.onChange({ 
-      currentTarget: { id: elmt.currentTarget.id }, 
-      target: { value: (elmt.target.value == "enabled") ? 1 : 0 } 
+    props.onChange({
+      currentTarget: { id: elmt.currentTarget.id },
+      target: { value: (elmt.target.value == "enabled") ? 1 : 0 }
     });
   }
 
@@ -82,9 +82,9 @@ export function StateIntegration(props: { state: boolean, onChange: Function }) 
 
   const handleValueChange = (elmt) => {
     setState(elmt.target.value == "enabled");
-    props.onChange({ 
-      currentTarget: { id: elmt.currentTarget.id }, 
-      target: { value: (elmt.target.value == "enabled") ? 1 : 0 } 
+    props.onChange({
+      currentTarget: { id: elmt.currentTarget.id },
+      target: { value: (elmt.target.value == "enabled") ? 1 : 0 }
     });
   }
 
@@ -103,11 +103,10 @@ export function StateIntegration(props: { state: boolean, onChange: Function }) 
 
 export function AdminStateContribution(props: { state: boolean, id: string, onChange: Function }) {
   const handleChange = (elmt) => {
-    const newElmt = { ...elmt };
-    newElmt.target.value = elmt.target.value === "enabled";
-    console.log(elmt);
-    console.log(newElmt)
-    props.onChange(newElmt);
+    props.onChange({
+      currentTarget: { id: elmt.currentTarget.id },
+      target: { value: elmt.target.value === "enabled" }
+    });
   }
 
   return (
