@@ -17,10 +17,10 @@ export default function SettingsModal(props: {
 }) {
     const minWidth1000 = useMediaQuery('(min-width: 1000px)');
     const { Display, Opacity, toggle } = ModalLogic();
-    console.log(props.settings.guest_access );
+    
     const updateSettings = async (e) => {
         e.preventDefault();
-        
+
         await Promise.all([
             axios.put(`/settings/lydia_cotiz`, { value: props.settings.lydia_cotiz }),
             axios.put(`/settings/active_proms`, { value: props.settings.active_proms }),
