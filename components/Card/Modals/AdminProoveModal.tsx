@@ -10,10 +10,11 @@ import { TitleCard } from "../Cards";
 import ModalLogic from "./ModalLogic";
 import { StyledBackgroundModal, StyledModal } from "./style";
 import Image from 'next/image'
+import { useState } from "react";
 
-export default function ProoveModal(props: { request: any, link: string, setTab: Function }) {
-    const minWidth1000 = useMediaQuery('(min-width: 1200px)')
-    const { Display, Opacity, toggle } = ModalLogic()
+export default function ProoveModal(props: { request: any, setTab: Function }) {
+    const minWidth1000 = useMediaQuery('(min-width: 1200px)');
+    const { Display, Opacity, toggle } = ModalLogic();
 
     return (
         <>
@@ -46,6 +47,7 @@ export default function ProoveModal(props: { request: any, link: string, setTab:
                                             src={`${process.env.NEXT_PUBLIC_API_HOST}/proof/${props.request['access_proof']}`}
                                             quality="50"
                                             layout="fill"
+                                            objectFit="contain"
                                         />
                                     </div>
                                 </Col8>
