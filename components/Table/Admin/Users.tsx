@@ -129,7 +129,6 @@ export function UsersTable(data: any[]) {
     autoResetPage: false,
     autoResetExpanded: false,
     autoResetGroupBy: false,
-    autoResetSelectedRows: false,
     autoResetSortBy: false,
     autoResetFilters: false,
     autoResetGlobalFilter: false,
