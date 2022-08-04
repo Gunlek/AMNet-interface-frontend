@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import Input from 'react-phone-input-2'
 import 'react-phone-input-2/lib/high-res.css'
 import fr from 'react-phone-input-2/lang/fr.json'
@@ -26,6 +26,7 @@ export default function PhoneInput(props: { value: string, onChange: any, onBlur
                 onChange={onChange}
                 onBlur={props.onBlur}
                 inputProps={{ required: true, id: "user_phone" }}
+                specialLabel=""
             />
         </>
     )
