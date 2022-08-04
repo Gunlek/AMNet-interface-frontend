@@ -21,6 +21,7 @@ import SmallLogo from "../NavIcons/smallLogo";
 
 export default function UserMenu(props: {
   page: string,
+  localNetwork: boolean,
   user: {
     "is_gadz": boolean,
     "rank": string,
@@ -101,7 +102,7 @@ export default function UserMenu(props: {
 
           {isGadz ?
             <Row style={positionning}>
-              <GadzflixIcon />
+              <GadzflixIcon localNetwork={props.localNetwork} />
             </Row>
             :
             undefined
