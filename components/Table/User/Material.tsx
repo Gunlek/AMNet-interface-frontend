@@ -17,10 +17,10 @@ export default function MaterialUserTable(props: { requests: hardware[], setHard
 
     const deleteMaterial = async (e, materialId: Number) => {
         e.preventDefault();
-        axios.delete(`http://localhost:3333/access/${materialId}`)
+        axios.delete(`/hardware/${materialId}`)
             .then(async (res: AxiosResponse) => {
                 if (res.status === 200) {
-                    const hardware = await axios.get(`http://localhost:3333/access/user/${props.userId}`);
+                    const hardware = await axios.get(`/hardware/user/${props.userId}`);
                     props.setHardware(hardware.data);
                 }
             });

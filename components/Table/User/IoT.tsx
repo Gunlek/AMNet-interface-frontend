@@ -23,14 +23,12 @@ export default function IoTUserTable(props: { requests: access[], setAccess: Fun
         overflow: "auto"
     }
 
-    const deleteAccess = async (e, accessId: Number) =>{
+    const deleteAccess = async (e, accessId: Number) => {
         e.preventDefault();
-        await axios.delete(
-            `http://localhost:3333/access/${accessId}`,
-           )
+        await axios.delete(`/access/${accessId}`)
             .then(async (res: AxiosResponse) => {
                 if (res.status === 200) {
-                    const access = await axios.get(`http://localhost:3333/access/user/${props.userId}`);
+                    const access = await axios.get(`/access/user/${props.userId}`);
                     props.setAccess(access.data);
                 }
             })
@@ -42,8 +40,8 @@ export default function IoTUserTable(props: { requests: access[], setAccess: Fun
                 <StyledTd>{index + 1}</StyledTd>
                 <StyledFlexTd>{value.access_description}</StyledFlexTd>
                 <StyledTd>{value.access_mac}</StyledTd>
-                <StyledTd>
-                    <UserProoveModal link={value.access_proof}/>
+                <StyledTd style={{ textAlign: "center" }}>
+                    <UserProoveModal link={value.access_proof} />
                 </StyledTd>
                 <StyledTd>
                     <StateRequest state={value.access_state} />
@@ -69,7 +67,7 @@ export default function IoTUserTable(props: { requests: access[], setAccess: Fun
                 <StyledTr>
                     <StyledTd>Preuve</StyledTd>
                     <StyledTd style={{ textAlign: "center", whiteSpace: "normal" }}>
-                        <UserProoveModal link={value.access_proof}/>
+                        <UserProoveModal link={value.access_proof} />
                     </StyledTd>
                 </StyledTr>
                 <StyledTr>
