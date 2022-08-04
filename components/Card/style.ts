@@ -79,7 +79,6 @@ export const StyledFooter = styled.footer`
   justify-content: end;
   align-items: center;
   margin: 0;
-  margin-right: -2%;
   padding: 0 5px;
   margin-top: ${(props) => props.marginTop || "10px"};
   margin-bottom: 6px;
@@ -89,7 +88,7 @@ export const StyledFooter = styled.footer`
     margin-right: 0;
     margin-top: 15px;
     margin-bottom: 10px;
-    padding: 0;
+    padding: 0 5%;
   } 
 `;
 
@@ -127,4 +126,19 @@ export const StyledTabColumn = styled(Column)`
     background-color: ${(props) => !props.focus && "rgba(0, 0, 0, 0.1)"};
     color: black;
   }
+`;
+
+export const StyledActive = styled.div`
+  transform: ${(props) => props.Transform};
+  width: ${(props) => props.Declined ? "120px" : "100px"};
+  background-color: #096A09;
+  height: 4px;
+  transition: transform 0.5s, width 0.5s;
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+
+  @media screen and (max-width: 440px){
+    width: 100%;
+  } 
 `;

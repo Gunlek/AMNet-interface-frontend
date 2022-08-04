@@ -1,5 +1,5 @@
 import { Row } from "../Container/style";
-import { StyledTabColumn } from "./style";
+import { StyledActive, StyledTabColumn } from "./style";
 
 export default function RequestTab(props: { status: string, TabChange: Function }) {
     const pending = (props.status == "pending");
@@ -29,19 +29,7 @@ export default function RequestTab(props: { status: string, TabChange: Function 
                 }}
             >
                 En cours
-
-                <div
-                    style={{
-                        transform: transform,
-                        width: declined ? "120px" : "100px",
-                        backgroundColor: "#096A09",
-                        height: "4px",
-                        transition: "transform 0.5s, width 0.5s",
-                        position: "absolute",
-                        bottom: "-2px",
-                        left: "0"
-                    }}
-                />
+                <StyledActive Transform={transform} Declined={declined} />
             </StyledTabColumn>
 
             <StyledTabColumn
