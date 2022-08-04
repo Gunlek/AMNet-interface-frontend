@@ -3,8 +3,8 @@ import { BlackText, GreenText } from "../Text/style";
 import { GreenCard } from "./Cards";
 import { StyledTeamPicture, StyledCardCampus } from "./style";
 
-export default function TeamPicture(props: { Team: { pseudo: string, id: string }[], background?: string, outline?: string }) {
-  const promotion = "220"
+export default function TeamPicture(props: { Team: { pseudo: string, id: string }[], background?: string, outline?: string, promotion: string }) {
+  const promotion = props.promotion;
 
   const Flex = {
     flex: (12 / props.Team.length).toString(),
