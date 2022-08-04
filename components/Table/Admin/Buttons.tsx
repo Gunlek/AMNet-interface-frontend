@@ -9,7 +9,6 @@ export const Buttons = (props: {
 }) => {
     const handleTabChange = async () => {
         const newTab = await (await axios.get(`/${props.requestType}`)).data
-        console.log(newTab)
         props.setTab(newTab);
     }
 
