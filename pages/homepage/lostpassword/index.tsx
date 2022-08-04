@@ -9,6 +9,8 @@ import { Row } from "../../../components/Container/style";
 import { StyledInputLabel, StyledInput } from "../../../components/Input/style";
 import axios, { AxiosResponse } from "axios";
 import Modal from "../../../components/Card/Modals/Modal";
+import { motion } from "framer-motion";
+import { variants } from "../../../components/Utils/animation-variants";
 
 export default function LostPassword() {
   const [mail, setMail] = useState("");
@@ -30,41 +32,49 @@ export default function LostPassword() {
       <CampusGlobalStyle />
 
       <Modal show={show} style={{ width: "450px", textAlign: "center" }}>
-        Nous venons de vous envoyer un mail <br/>
+        Nous venons de vous envoyer un mail <br />
         Pour réinitialiser votre mot de passe
       </Modal>
 
-      <Row
-        mobileWidth="90%"
-        style={{
-          flex: "1",
-          justifyContent: "center",
-          alignItems: "center",
-          margin: "20px 0"
-        }}
+      <motion.main
+        variants={variants("left", "right")}
+        initial="hidden"
+        animate="enter"
+        exit="exit"
+        transition={{ type: 'linear' }}
       >
-        <StyledCardCampus width="45%">
-          <Row style={{ marginBottom: "20px", marginTop: "10px", justifyContent: "center" }}>
-            <RectangleLogo />
-          </Row>
-
-          <TitleCard>Mot de passe oublié</TitleCard>
-
-          <form onSubmit={resetPassword}>
-            <div style={{ marginBottom: "20px" }}>
-              <StyledInputLabel htmlFor="user_mail">Adresse e-mail associée au compte</StyledInputLabel>
-              <StyledInput id="user_mail" type="email" onChange={(e) => setMail(e.target.value)} />
-            </div>
-
-            <Row style={{ justifyContent: "center" }}>
-              <GreenButton type="submit">Envoyez un mail de récuperation</GreenButton>
+        <Row
+          mobileWidth="90%"
+          style={{
+            flex: "1",
+            justifyContent: "center",
+            alignItems: "center",
+            margin: "20px 0"
+          }}
+        >
+          <StyledCardCampus width="45%">
+            <Row style={{ marginBottom: "20px", marginTop: "10px", justifyContent: "center" }}>
+              <RectangleLogo />
             </Row>
-          </form>
-        </StyledCardCampus>
-      </Row>
 
-      <HelpSection padding="0 5%" />
-      <Footer page="campus" />
+            <TitleCard>Mot de passe oublié</TitleCard>
+
+            <form onSubmit={resetPassword}>
+              <div style={{ marginBottom: "20px" }}>
+                <StyledInputLabel htmlFor="user_mail">Adresse e-mail associée au compte</StyledInputLabel>
+                <StyledInput id="user_mail" type="email" onChange={(e) => setMail(e.target.value)} />
+              </div>
+
+              <Row style={{ justifyContent: "center" }}>
+                <GreenButton type="submit">Envoyez un mail de récuperation</GreenButton>
+              </Row>
+            </form>
+          </StyledCardCampus>
+        </Row>
+
+        <HelpSection padding="0 5%" />
+        <Footer page="campus" />
+      </motion.main>
     </>
   );
 }

@@ -1,4 +1,11 @@
 import styled from "styled-components";
+import { motion } from "framer-motion";
+
+const variants = {
+  hidden: { opacity: 0, x: 0, y: 100 },
+  enter: { opacity: 1, x: 0, y: 0 },
+  exit: { opacity: 0, x: 0, y: -100 },
+};
 
 export const Column = styled.div`
   display: flex;
@@ -171,8 +178,6 @@ export const DashboardContainer = styled.div`
   height: 100%;
   display: flex;
   flex-direction: column;
-  margin-left: 85px;
-  padding-top: 1%;
   flex: 1 0 0;
   max-width: fill-available;
   
@@ -180,13 +185,38 @@ export const DashboardContainer = styled.div`
     width: 100%;
     margin-left: 0;
     margin-top: 95px;
-    padding: 0 5%;
     height: auto;
     max-width: none;
   }
 
   @media screen and (max-width: 1000px ) and (min-width: 801px){
     margin-top: 112.5px;
+  }
+`;
+
+export const Dashboard = styled.div.attrs((props) => ({
+  as: motion.div,
+  variants: variants,
+  initial: props.initial || "hidden",
+  animate: "enter",
+  exit: "exit",
+  transition: { type: 'linear' }
+}))`
+  padding-top: 1%;
+  min-height: 0;
+  padding-right: 2.1%;
+  display: flex;
+  flex-direction: column;
+  flex: 1 0 0;
+  width: 100%;
+  overflow-x: clip;
+  overflow-y: auto;
+  margin-bottom: 1%;
+  padding-left: 85px;
+
+  @media screen and (max-width: 1000px){
+    margin-bottom: 10px;
+    padding: 0 5%;
   }
 `;
 

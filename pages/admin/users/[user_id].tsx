@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Head from "next/head";
 import { GreenButton, RedButton } from "../../../components/Button/Buttons";
 import { Footer } from "../../../components/Card/Cards";
-import { DashboardContainer, ResponsiveRow, Col6, Col3, Col, Row } from "../../../components/Container/style";
+import { DashboardContainer, ResponsiveRow, Col6, Col3, Col, Row, Dashboard } from "../../../components/Container/style";
 import { StyledInputLabel, StyledInput } from "../../../components/Input/style";
 import { BlackTitle, BlackText, GreenText } from "../../../components/Text/style";
 import AdminMenu from "../../../components/Menu/AdminMenu";
@@ -83,7 +83,7 @@ export default function User(props: {
         elmt.preventDefault();
         blurPhone();
         blurPassword2();
-        
+
         if (!errorMessage.password && !errorMessage.format_name && !errorMessage.phone) {
             axios.put(`/user/${props.user.user_id}`, form)
                 .then((res: AxiosResponse) => {
@@ -98,7 +98,7 @@ export default function User(props: {
 
         axios.delete(`/user/${props.user.user_id}`)
             .then((res: AxiosResponse) => {
-                if (res.status === 200) router.push('/admin/users')
+                if (res.status === 200) router.push('/admin/users', null, { scroll: false })
             });
     };
 
@@ -114,175 +114,175 @@ export default function User(props: {
             </Modal>
 
             <DashboardContainer>
-                <ResponsiveRow margin="1% 0" mobileMargin="20px 0" mobileJustify="center">
-                    <Col mobileMarginBottom="20px" style={{ justifyContent: "center", flex: "1" }}>
-                        <BlackTitle>Editer le Profil &bull; {props.user.user_name}</BlackTitle>
-                    </Col>
+                <Dashboard>
+                    <ResponsiveRow margin="1% 0" mobileMargin="20px 0" mobileJustify="center">
+                        <Col mobileMarginBottom="20px" style={{ justifyContent: "center", flex: "1" }}>
+                            <BlackTitle>Editer le Profil &bull; {props.user.user_name}</BlackTitle>
+                        </Col>
 
-                    <Row width="auto">
-                        <Col6 style={{ paddingRight: "10px" }}>
-                            <StyledInputLabel htmlFor="user_pay_status">Cotisation</StyledInputLabel>
-                            <AdminStateContribution id="user_pay_status" onChange={handleFormChange} state={form.user_pay_status} />
+                        <Row width="auto">
+                            <Col6 style={{ paddingRight: "10px" }}>
+                                <StyledInputLabel htmlFor="user_pay_status">Cotisation</StyledInputLabel>
+                                <AdminStateContribution id="user_pay_status" onChange={handleFormChange} state={form.user_pay_status} />
+                            </Col6>
+                            <Col6 style={{ paddingLeft: "10px" }}>
+                                <StyledInputLabel htmlFor="user_rank">Rang</StyledInputLabel>
+                                <AdminStateRank id="user_rank" onChange={handleFormChange} state={form.user_rank} />
+                            </Col6>
+                        </Row>
+                    </ResponsiveRow>
+
+                    <ResponsiveRow style={{ alignItems: "center", marginBottom: "20px" }}>
+                        <Col6 mobileMarginBottom="20px" paddingRight="10px" style={{ width: "100%", position: "relative" }}>
+                            <StyledInputLabel htmlFor="user_name">Nom d&apos;utilisateur</StyledInputLabel>
+                            <StyledInput id="user_name" type="text" defaultValue={form.user_name} onChange={handleNameChange} />
+                            {errorMessage.name}
+                            {errorMessage.format_name}
                         </Col6>
-                        <Col6 style={{ paddingLeft: "10px" }}>
-                            <StyledInputLabel htmlFor="user_rank">Rang</StyledInputLabel>
-                            <AdminStateRank id="user_rank" onChange={handleFormChange} state={form.user_rank} />
-                        </Col6>
-                    </Row>
-                </ResponsiveRow>
-
-                <ResponsiveRow style={{ alignItems: "center", marginBottom: "20px" }}>
-                    <Col6 mobileMarginBottom="20px" paddingRight="10px" style={{ width: "100%", position: "relative" }}>
-                        <StyledInputLabel htmlFor="user_name">Nom d&apos;utilisateur</StyledInputLabel>
-                        <StyledInput id="user_name" type="text" defaultValue={form.user_name} onChange={handleNameChange} />
-                        {errorMessage.name}
-                        {errorMessage.format_name}
-                    </Col6>
-                    <Col6
-                        paddingLeft="10px" mobileAlign="center"
-                        style={{
-                            justifyContent: "center",
-                            height: "100%"
-                        }}
-                    >
-                        <BlackText mobileAlignTxt="justify">
-                            Le nom d&apos;utilisateur ne doit contenir
-                            que des lettres, des chiffres ou des espaces.
-                        </BlackText>
-                    </Col6>
-                </ResponsiveRow>
-
-                <ResponsiveRow style={{ marginBottom: "20px" }}>
-                    <Col3 paddingRight="10px" mobileMarginBottom="20px">
-                        <StyledInputLabel htmlFor="user_firstname">Prénom</StyledInputLabel>
-                        <StyledInput id="user_firstname" type="text" defaultValue={form.user_firstname} />
-                    </Col3>
-                    <Col3 paddingLeft="10px" paddingRight="10px" mobileMarginBottom="20px">
-                        <StyledInputLabel htmlFor="user_lastname">Nom</StyledInputLabel>
-                        <StyledInput id="user_lastname" type="text" defaultValue={form.user_lastname} />
-                    </Col3>
-                    <Col6 paddingLeft="10px">
-                        <StyledInputLabel htmlFor="user_email">Adresse e-mail</StyledInputLabel>
-                        <StyledInput id="user_email" type="email" defaultValue={form.user_email} />
-                    </Col6>
-                </ResponsiveRow>
-
-                <ResponsiveRow style={{ marginBottom: "20px" }}>
-                    <Col6 paddingRight="10px" mobileMarginBottom="20px" style={{ position: "relative" }}>
-                        <StyledInputLabel htmlFor="user_phone">Téléphone</StyledInputLabel>
-                        <PhoneInput value={form.user_phone} onChange={handlePhoneChange} onBlur={blurPhone}/>
-                        {errorMessage.phone}
-                    </Col6>
-                    <Col3 paddingLeft="10px" paddingRight="10px" mobileMarginBottom="20px">
-                        <StyledInputLabel htmlFor="user_proms">Promotion</StyledInputLabel>
-                        <StyledInput
-                            id="user_proms"
-                            type="text"
-                            onChange={handleFormChange}
-                            defaultValue={form.user_proms}
-                            required
-                        />
-                    </Col3>
-
-                    <Col3 paddingLeft="10px">
-                        <StyledInputLabel htmlFor="user_is_gadz">Gadz</StyledInputLabel>
-                        <StyledInput
-                            id="user_is_gadz"
-                            as="select"
-                            onChange={(elmt) => handleFormChange({
-                                currentTarget: { id: elmt.currentTarget.id },
-                                target: { value: elmt.target.value === "Yes" }
-                            })}
-                            defaultValue={form.user_is_gadz ? "Yes" : "No"}
+                        <Col6
+                            paddingLeft="10px" mobileAlign="center"
+                            style={{
+                                justifyContent: "center",
+                                height: "100%"
+                            }}
                         >
-                            <option value="Yes">Oui</option>
-                            <option value="No">Non</option>
-                        </StyledInput>
-                    </Col3>
-                </ResponsiveRow>
+                            <BlackText mobileAlignTxt="justify">
+                                Le nom d&apos;utilisateur ne doit contenir
+                                que des lettres, des chiffres ou des espaces.
+                            </BlackText>
+                        </Col6>
+                    </ResponsiveRow>
 
-                <ResponsiveRow
-                    Height={form.user_is_gadz ? "93px" : "0px"}
-                    MobileHiehgt={form.user_is_gadz ? "264.6px" : "0px"}
-                    style={{
-                        transition: "height 0.3s linear",
-                        overflowY: "clip"
-                    }}
-                >
-                    <Col6 paddingRight="10px" mobileMarginBottom="20px">
-                        <StyledInputLabel htmlFor="user_bucque">Bucque</StyledInputLabel>
-                        <StyledInput id="user_bucque" type="text" defaultValue={form.user_bucque} />
-                    </Col6>
-                    <Col3 paddingRight="10px" paddingLeft="10px" mobileMarginBottom="20px">
-                        <StyledInputLabel htmlFor="user_fams">Fam&apos;s</StyledInputLabel>
-                        <StyledInput id="user_fams" type="text" defaultValue={form.user_fams} />
-                    </Col3>
-                    <Col3 paddingLeft="10px" mobileMarginBottom="20px">
-                        <StyledInputLabel htmlFor="user_campus">Tabagn&apos;s</StyledInputLabel>
-                        <StyledInput id="user_campus" name="tbk" as="select" defaultValue={form.user_campus}>
-                            <option value="li">Birse</option>
-                            <option value="an">Boquette</option>
-                            <option value="bo">Bordel&apos;s</option>
-                            <option value="ch">Chalon&apos;s</option>
-                            <option value="cl">Clun&apos;s</option>
-                            <option value="kin">KIN</option>
-                            <option value="pa">P3</option>
-                            <option value="me">Siber&apos;s</option>
-                        </StyledInput>
-                    </Col3>
-                </ResponsiveRow>
+                    <ResponsiveRow style={{ marginBottom: "20px" }}>
+                        <Col3 paddingRight="10px" mobileMarginBottom="20px">
+                            <StyledInputLabel htmlFor="user_firstname">Prénom</StyledInputLabel>
+                            <StyledInput id="user_firstname" type="text" defaultValue={form.user_firstname} />
+                        </Col3>
+                        <Col3 paddingLeft="10px" paddingRight="10px" mobileMarginBottom="20px">
+                            <StyledInputLabel htmlFor="user_lastname">Nom</StyledInputLabel>
+                            <StyledInput id="user_lastname" type="text" defaultValue={form.user_lastname} />
+                        </Col3>
+                        <Col6 paddingLeft="10px">
+                            <StyledInputLabel htmlFor="user_email">Adresse e-mail</StyledInputLabel>
+                            <StyledInput id="user_email" type="email" defaultValue={form.user_email} />
+                        </Col6>
+                    </ResponsiveRow>
 
-                <ResponsiveRow>
-                    <Col6 paddingRight="10px" mobileMarginBottom="20px">
-                        <StyledInputLabel htmlFor="user_password">Mot de passe</StyledInputLabel>
-                        <PasswordInput id="user_password" onChange={handlePasswordChange} />
-                    </Col6>
-                    <Col6 mobileMarginBottom={form.user_is_gadz ? undefined : "10px"} paddingLeft="10px">
-                        <StyledInputLabel htmlFor="user_password2">Confirmez le Mot de passe</StyledInputLabel>
-                        <PasswordInput id="user_password2" onChange={handlePasswordChange} onBlur={blurPassword2} />
-                    </Col6>
-                </ResponsiveRow>
-                {errorMessage.password}
+                    <ResponsiveRow style={{ marginBottom: "20px" }}>
+                        <Col6 paddingRight="10px" mobileMarginBottom="20px" style={{ position: "relative" }}>
+                            <StyledInputLabel htmlFor="user_phone">Téléphone</StyledInputLabel>
+                            <PhoneInput value={form.user_phone} onChange={handlePhoneChange} onBlur={blurPhone} />
+                            {errorMessage.phone}
+                        </Col6>
+                        <Col3 paddingLeft="10px" paddingRight="10px" mobileMarginBottom="20px">
+                            <StyledInputLabel htmlFor="user_proms">Promotion</StyledInputLabel>
+                            <StyledInput
+                                id="user_proms"
+                                type="text"
+                                onChange={handleFormChange}
+                                defaultValue={form.user_proms}
+                                required
+                            />
+                        </Col3>
 
-                <ResponsiveRow
-                    marginBottom={form.user_is_gadz ? "0" : "20px"}
-                    mobileMarginBottom="10px"
-                    style={{ flex: "1", transition: "margin-bottom 0.3s linear", marginTop: "20px" }}
-                >
-                    <Col6 paddingRight="10px"
-                        mobileMarginBottom={form.user_is_gadz ? "30px" : "0"}
-                        mobileFlex={form.user_is_gadz ? undefined : "none !important"}
+                        <Col3 paddingLeft="10px">
+                            <StyledInputLabel htmlFor="user_is_gadz">Gadz</StyledInputLabel>
+                            <StyledInput
+                                id="user_is_gadz"
+                                as="select"
+                                onChange={(elmt) => handleFormChange({
+                                    currentTarget: { id: elmt.currentTarget.id },
+                                    target: { value: elmt.target.value === "Yes" }
+                                })}
+                                defaultValue={form.user_is_gadz ? "Yes" : "No"}
+                            >
+                                <option value="Yes">Oui</option>
+                                <option value="No">Non</option>
+                            </StyledInput>
+                        </Col3>
+                    </ResponsiveRow>
+
+                    <ResponsiveRow
+                        Height={form.user_is_gadz ? "93px" : "0px"}
+                        MobileHiehgt={form.user_is_gadz ? "244.6px" : "0px"}
                         style={{
-                            height: form.user_is_gadz ? "93px" : "0",
                             transition: "height 0.3s linear",
                             overflowY: "clip"
                         }}
                     >
-                        <GreenText style={{ marginBottom: "5px" }}>Identifiants gadzariques</GreenText>
-                        <StyledInput
-                            style={{ border: "2px solid transparent", backgroundColor: "rgba(255, 255, 255, 0.6)" }}
-                            readOnly value={form.user_bucque + " " + form.user_fams + form.user_campus + form.user_proms}
-                            type="text"
-                        />
-                    </Col6>
+                        <Col6 paddingRight="10px" mobileMarginBottom="20px">
+                            <StyledInputLabel htmlFor="user_bucque">Bucque</StyledInputLabel>
+                            <StyledInput id="user_bucque" type="text" defaultValue={form.user_bucque} />
+                        </Col6>
+                        <Col3 paddingRight="10px" paddingLeft="10px" mobileMarginBottom="20px">
+                            <StyledInputLabel htmlFor="user_fams">Fam&apos;s</StyledInputLabel>
+                            <StyledInput id="user_fams" type="text" defaultValue={form.user_fams} />
+                        </Col3>
+                        <Col3 paddingLeft="10px" mobileMarginBottom="20px">
+                            <StyledInputLabel htmlFor="user_campus">Tabagn&apos;s</StyledInputLabel>
+                            <StyledInput id="user_campus" name="tbk" as="select" defaultValue={form.user_campus}>
+                                <option value="li">Birse</option>
+                                <option value="an">Boquette</option>
+                                <option value="bo">Bordel&apos;s</option>
+                                <option value="ch">Chalon&apos;s</option>
+                                <option value="cl">Clun&apos;s</option>
+                                <option value="kin">KIN</option>
+                                <option value="pa">P3</option>
+                                <option value="me">Siber&apos;s</option>
+                            </StyledInput>
+                        </Col3>
+                    </ResponsiveRow>
+
+                    <ResponsiveRow>
+                        <Col6 paddingRight="10px" mobileMarginBottom="20px">
+                            <StyledInputLabel htmlFor="user_password">Mot de passe</StyledInputLabel>
+                            <PasswordInput id="user_password" onChange={handlePasswordChange} />
+                        </Col6>
+                        <Col6 mobileMarginBottom={form.user_is_gadz ? undefined : "10px"} paddingLeft="10px">
+                            <StyledInputLabel htmlFor="user_password2">Confirmez le Mot de passe</StyledInputLabel>
+                            <PasswordInput id="user_password2" onChange={handlePasswordChange} onBlur={blurPassword2} />
+                        </Col6>
+                    </ResponsiveRow>
+                    {errorMessage.password}
 
                     <ResponsiveRow
-                        paddingLeft="10px"
-                        align="end"
-                        mobileAlign="center"
-                        paddingBottom={form.user_is_gadz ? "20px" : "0"}
-                        style={{
-                            transition: "padding-bottom 0.3s linear",
-                            width: "auto",
-                            flex: "6",
-                            justifyContent: "space-around"
-                        }}
+                        marginBottom={form.user_is_gadz ? "0" : "1%"}
+                        style={{ flex: "1", transition: "margin-bottom 0.3s linear", marginTop: "20px" }}
                     >
-                        <RedButton width="300px" mobileMarginBottom="25px" onClick={deleteUser}>Supprimer le profil</RedButton>
-                        <GreenButton width="300px" onClick={editProfil}>Editer le profil</GreenButton>
-                    </ResponsiveRow>
-                </ResponsiveRow>
+                        <Col6 paddingRight="10px"
+                            mobileMarginBottom={form.user_is_gadz ? "30px" : "0"}
+                            mobileFlex={form.user_is_gadz ? undefined : "none !important"}
+                            style={{
+                                height: form.user_is_gadz ? "93px" : "0",
+                                transition: "height 0.3s linear",
+                                overflowY: "clip"
+                            }}
+                        >
+                            <GreenText style={{ marginBottom: "5px" }}>Identifiants gadzariques</GreenText>
+                            <StyledInput
+                                style={{ border: "2px solid transparent", backgroundColor: "rgba(255, 255, 255, 0.6)" }}
+                                readOnly value={form.user_bucque + " " + form.user_fams + form.user_campus + form.user_proms}
+                                type="text"
+                            />
+                        </Col6>
 
+                        <ResponsiveRow
+                            paddingLeft="10px"
+                            align="end"
+                            mobileAlign="center"
+                            style={{
+                                transition: "padding-bottom 0.3s linear",
+                                width: "auto",
+                                flex: "6",
+                                justifyContent: "space-around"
+                            }}
+                        >
+                            <RedButton width="300px" mobileMarginBottom="25px" onClick={deleteUser}>Supprimer le profil</RedButton>
+                            <GreenButton width="300px" onClick={editProfil}>Sauvegarder le profil</GreenButton>
+                        </ResponsiveRow>
+                    </ResponsiveRow>
+                </Dashboard>
+                
                 <Footer marginTop="0" />
             </DashboardContainer>
         </>

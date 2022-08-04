@@ -52,7 +52,7 @@ export const GlobalStyle = createGlobalStyle`
         display: flex;
         flex-Direction: row;
         width: 100%;
-        padding: 0 2%;
+        padding-left: 2%;
         min-height: 100vh;
     }
 

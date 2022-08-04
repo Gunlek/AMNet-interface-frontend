@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 import Head from "next/head";
-import { Row, DashboardContainer } from "../../components/Container/style";
+import { Row, DashboardContainer, Dashboard } from "../../components/Container/style";
 import { StyledCard } from "../../components/Card/style";
 import AdminMenu from "../../components/Menu/AdminMenu";
 import { BlackTitle } from "../../components/Text/style";
@@ -58,26 +58,27 @@ export default function AdminMaterial(props: { hardware }) {
       <AdminMenu page="material" />
 
       <DashboardContainer>
-        <Row margin="1% 0" mobileMargin="20px 0" mobileJustify="center">
-          <BlackTitle>Demandes de matériel </BlackTitle>
-        </Row>
+        <Dashboard>
+          <Row margin="1% 0" mobileMargin="20px 0" mobileJustify="center">
+            <BlackTitle>Demandes de matériel </BlackTitle>
+          </Row>
 
-        <RequestTab status={Tab.new} TabChange={handleTabChange} />
+          <RequestTab status={Tab.new} TabChange={handleTabChange} />
 
-        <StyledCard
-          marginBottom="2%"
-          mobileMarginBottom="10px"
-          style={{ flex: "1 0 0", minHeight: minWidth1000 ? "0" : "300px" }}
-        >
-          <MaterialAdminTable
-            status={Tab}
-            requests={hardware}
-            display={Display}
-            opacity={Opacity}
-            mobileRef={mobileContainerRef}
-            setTab={setHardware}
-          />
-        </StyledCard>
+          <StyledCard
+            marginBottom="1%"
+            style={{ flex: "1 0 0", minHeight: minWidth1000 ? "0" : "300px" }}
+          >
+            <MaterialAdminTable
+              status={Tab}
+              requests={hardware}
+              display={Display}
+              opacity={Opacity}
+              mobileRef={mobileContainerRef}
+              setTab={setHardware}
+            />
+          </StyledCard>
+        </Dashboard>
 
         <Footer marginTop="0" />
       </DashboardContainer>

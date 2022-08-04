@@ -15,7 +15,8 @@ import {
   ResponsiveRow,
   CheckboxRow,
   Col2,
-  Col4
+  Col4,
+  Dashboard
 } from "../../components/Container/style";
 import Editor from "../../components/Input/Editor";
 import { EditorStyle } from "../../styles/editor";
@@ -183,158 +184,160 @@ export default function Settings(props: {
       <AdminMenu page="admin" />
 
       <DashboardContainer>
-        <Row margin="1% 0" mobileMargin="20px 0" mobileJustify="center">
-          <BlackTitle>Espace d&apos;administration</BlackTitle>
-        </Row>
+        <Dashboard>
+          <Row margin="1% 0" mobileMargin="20px 0" mobileJustify="center">
+            <BlackTitle>Espace d&apos;administration</BlackTitle>
+          </Row>
 
-        <ResponsiveRow marginBottom="2%" mobileMarginBottom="30px">
-          <Col6 paddingRight="1%" mobileMarginBottom="30px">
-            <StyledCard style={{ flex: "1" }}>
-              <TitleCard>Etat des demandes</TitleCard>
-              <BlackText>
-                Nombre d&apos;utilisateurs: {props.users_quantity[0]} <br />
-                Nombre d&apos;utilisateurs ayant payé la cotiz&apos;: {props.users_quantity[1]} <br />
-                <br /><br />
-                Demandes d&apos;accès internet: {props.access_quantity}<br />
-                Demandes de matériel: {props.material_quantity}
-              </BlackText>
-            </StyledCard>
-          </Col6>
+          <ResponsiveRow marginBottom="2%" mobileMarginBottom="30px">
+            <Col6 paddingRight="1%" mobileMarginBottom="30px">
+              <StyledCard style={{ flex: "1" }}>
+                <TitleCard>Etat des demandes</TitleCard>
+                <BlackText>
+                  Nombre d&apos;utilisateurs: {props.users_quantity[0]} <br />
+                  Nombre d&apos;utilisateurs ayant payé la cotiz&apos;: {props.users_quantity[1]} <br />
+                  <br /><br />
+                  Demandes d&apos;accès internet: {props.access_quantity}<br />
+                  Demandes de matériel: {props.material_quantity}
+                </BlackText>
+              </StyledCard>
+            </Col6>
 
-          <Col6 paddingLeft="1%">
-            <StyledCard>
-              <TitleCard>Paramètres</TitleCard>
-              <Row style={{ marginBottom: "20px" }}>
-                <Col6>
-                  <GreenText style={{ marginBottom: "5px" }}>Compte Invité</GreenText>
-                </Col6>
-                <Col6 style={{ alignItems: "end" }}>
-                  <StateInvite state={props.guest_access} onChange={handleSettingsChange} />
-                </Col6>
-              </Row>
-
-              <Row style={{ marginBottom: "20px" }}>
-                <Col6>
-                  <GreenText style={{ marginBottom: "5px" }}>Usinage</GreenText>
-                </Col6>
-                <Col6 style={{ alignItems: "end" }}>
-                  <StateIntegration state={props.usins_state} onChange={handleSettingsChange} />
-                </Col6>
-              </Row>
-
-              <div style={{ marginBottom: "20px" }}>
-                <StyledInputLabel htmlFor="lydia_cotiz">Montant de la cotisation</StyledInputLabel>
-                <StyledInput
-                  id="lydia_cotiz"
-                  type="number"
-                  defaultValue={props.lydia_cotiz}
-                  onChange={handleSettingsChange}
-                />
-              </div>
-
-              <div style={{ marginBottom: "20px" }}>
-                <StyledInputLabel htmlFor="active_proms">Promotion active</StyledInputLabel>
-                <StyledInput
-                  id="active_proms"
-                  type="number"
-                  defaultValue={props.active_proms}
-                  onChange={handleSettingsChange}
-                />
-              </div>
-
-              <Row style={{ justifyContent: "center" }}>
-                <SettingsModal
-                  settings={settings}
-                  original_usins_state={props.usins_state}
-                  active_proms={props.active_proms}
-                />
-              </Row>
-            </StyledCard>
-          </Col6>
-        </ResponsiveRow>
-
-        <Row marginBottom="2%" mobileMarginBottom="30px">
-          <StyledCard style={{ height: "100%" }}>
-            <TitleCard>Message d&apos;actualité</TitleCard>
-            <div style={{ marginBottom: "20px" }}>
-              {WelcomeMessageEditor}
-            </div>
-
-            <Row style={{ justifyContent: "center" }}>
-              <GreenButton onClick={updateWelcomeMessage}>Mettre à jour</GreenButton>
-            </Row>
-          </StyledCard>
-        </Row>
-
-        <Row marginBottom="2%" mobileMarginBottom="10px">
-          <StyledCard>
-            <TitleCard>Système de mail</TitleCard>
-            <ResponsiveRow
-              direction="column-reverse"
-              marginBottom="20px"
-              style={{ marginTop: "20px" }}
-            >
-              <Col4 style={{ paddingRight: "10px" }}>
-                <StyledInputLabel htmlFor="object" >Objet</StyledInputLabel>
-                <StyledInput id="object" type="text" onChange={(e) => setSubject(e.target.value)} />
-              </Col4>
-              <Col2 paddingLeft="10px" mobileMarginBottom="30px">
-                <GreenText style={{ marginBottom: "5px" }}>Cotisation payée</GreenText>
-                <CheckboxRow mobileColWidth="125px" colWidth="85px" style={{ flex: "1", alignItems: "center" }}>
-                  <StyledLabel style={{ width: "fit-content" }}>
-                    <Checkbox id="Contribution" checked={Checked["Contribution"]} onChange={handleCheckboxChange} />
-                    <BlackText style={{ marginLeft: "10px" }}>Oui</BlackText>
-                  </StyledLabel>
-                  <StyledLabel style={{ width: "fit-content" }}>
-                    <Checkbox id="NoContribution" checked={Checked["NoContribution"]} onChange={handleCheckboxChange} />
-                    <BlackText style={{ marginLeft: "10px" }}>Non</BlackText>
-                  </StyledLabel>
-                </CheckboxRow>
-              </Col2>
-
-              <Col6 paddingLeft="1%" mobileMarginBottom="30px">
-                <Row>
+            <Col6 paddingLeft="1%">
+              <StyledCard>
+                <TitleCard>Paramètres</TitleCard>
+                <Row style={{ marginBottom: "20px" }}>
                   <Col6>
-                    <GreenText style={{ marginBottom: "5px" }}>Prom&apos;s</GreenText>
+                    <GreenText style={{ marginBottom: "5px" }}>Compte Invité</GreenText>
                   </Col6>
-                  <Col6>
-                    <StyledLabel style={{ width: "fit-content" }}>
-                      <Checkbox id="AllSelect" checked={Checked["AllSelect"]} onChange={handleAllCheckboxChange} />
-                      <BlackText style={{ marginLeft: "10px" }}>Tout sélectionner</BlackText>
-                    </StyledLabel>
+                  <Col6 style={{ alignItems: "end" }}>
+                    <StateInvite state={props.guest_access} onChange={handleSettingsChange} />
                   </Col6>
                 </Row>
 
-                <CheckboxRow colWidth="140px" mobileColWidth="125px" style={{ flex: "1", alignItems: "center" }}>
-                  <StyledLabel style={{ width: "fit-content" }}>
-                    <Checkbox id="NewPromotion" checked={Checked["NewPromotion"]} onChange={handleCheckboxChange} />
-                    <BlackText style={{ marginLeft: "10px" }}>{props.usins_state ? props.active_proms + 1801 : props.active_proms + 1}</BlackText>
-                  </StyledLabel>
-                  <StyledLabel style={{ width: "fit-content" }}>
-                    <Checkbox id="ActivePromotion" checked={Checked["ActivePromotion"]} onChange={handleCheckboxChange} />
-                    <BlackText style={{ marginLeft: "10px" }}>{props.active_proms}</BlackText>
-                  </StyledLabel>
-                  <StyledLabel style={{ width: "fit-content" }}>
-                    <Checkbox id="OldPromotion" checked={Checked["OldPromotion"]} onChange={handleCheckboxChange} />
-                    <BlackText style={{ marginLeft: "10px" }}>{props.active_proms - 1}</BlackText>
-                  </StyledLabel>
-                  <StyledLabel style={{ width: "fit-content" }}>
-                    <Checkbox id="Other" checked={Checked["Other"]} onChange={handleCheckboxChange} />
-                    <BlackText style={{ marginLeft: "10px" }}>Autres</BlackText>
-                  </StyledLabel>
-                </CheckboxRow>
-              </Col6>
-            </ResponsiveRow>
-            <StyledInputLabel htmlFor="Mail">Corps du Mail</StyledInputLabel>
-            <div style={{ marginBottom: "20px" }}>
-              {MailEditor}
-            </div>
+                <Row style={{ marginBottom: "20px" }}>
+                  <Col6>
+                    <GreenText style={{ marginBottom: "5px" }}>Usinage</GreenText>
+                  </Col6>
+                  <Col6 style={{ alignItems: "end" }}>
+                    <StateIntegration state={props.usins_state} onChange={handleSettingsChange} />
+                  </Col6>
+                </Row>
 
-            <Row style={{ justifyContent: "center" }}>
-              <MailModal html={MailHTML} subject={subject} recipients={Checked} />
-            </Row>
-          </StyledCard>
-        </Row>
+                <div style={{ marginBottom: "20px" }}>
+                  <StyledInputLabel htmlFor="lydia_cotiz">Montant de la cotisation</StyledInputLabel>
+                  <StyledInput
+                    id="lydia_cotiz"
+                    type="number"
+                    defaultValue={props.lydia_cotiz}
+                    onChange={handleSettingsChange}
+                  />
+                </div>
+
+                <div style={{ marginBottom: "20px" }}>
+                  <StyledInputLabel htmlFor="active_proms">Promotion active</StyledInputLabel>
+                  <StyledInput
+                    id="active_proms"
+                    type="number"
+                    defaultValue={props.active_proms}
+                    onChange={handleSettingsChange}
+                  />
+                </div>
+
+                <Row style={{ justifyContent: "center" }}>
+                  <SettingsModal
+                    settings={settings}
+                    original_usins_state={props.usins_state}
+                    active_proms={props.active_proms}
+                  />
+                </Row>
+              </StyledCard>
+            </Col6>
+          </ResponsiveRow>
+
+          <Row marginBottom="2%" mobileMarginBottom="30px">
+            <StyledCard style={{ height: "100%" }}>
+              <TitleCard>Message d&apos;actualité</TitleCard>
+              <div style={{ marginBottom: "20px" }}>
+                {WelcomeMessageEditor}
+              </div>
+
+              <Row style={{ justifyContent: "center" }}>
+                <GreenButton onClick={updateWelcomeMessage}>Mettre à jour</GreenButton>
+              </Row>
+            </StyledCard>
+          </Row>
+
+          <Row marginBottom="1%">
+            <StyledCard>
+              <TitleCard>Système de mail</TitleCard>
+              <ResponsiveRow
+                direction="column-reverse"
+                marginBottom="20px"
+                style={{ marginTop: "20px" }}
+              >
+                <Col4 style={{ paddingRight: "10px" }}>
+                  <StyledInputLabel htmlFor="object" >Objet</StyledInputLabel>
+                  <StyledInput id="object" type="text" onChange={(e) => setSubject(e.target.value)} />
+                </Col4>
+                <Col2 paddingLeft="10px" mobileMarginBottom="30px">
+                  <GreenText style={{ marginBottom: "5px" }}>Cotisation payée</GreenText>
+                  <CheckboxRow mobileColWidth="125px" colWidth="85px" style={{ flex: "1", alignItems: "center" }}>
+                    <StyledLabel style={{ width: "fit-content" }}>
+                      <Checkbox id="Contribution" checked={Checked["Contribution"]} onChange={handleCheckboxChange} />
+                      <BlackText style={{ marginLeft: "10px" }}>Oui</BlackText>
+                    </StyledLabel>
+                    <StyledLabel style={{ width: "fit-content" }}>
+                      <Checkbox id="NoContribution" checked={Checked["NoContribution"]} onChange={handleCheckboxChange} />
+                      <BlackText style={{ marginLeft: "10px" }}>Non</BlackText>
+                    </StyledLabel>
+                  </CheckboxRow>
+                </Col2>
+
+                <Col6 paddingLeft="1%" mobileMarginBottom="30px">
+                  <Row>
+                    <Col6>
+                      <GreenText style={{ marginBottom: "5px" }}>Prom&apos;s</GreenText>
+                    </Col6>
+                    <Col6>
+                      <StyledLabel style={{ width: "fit-content" }}>
+                        <Checkbox id="AllSelect" checked={Checked["AllSelect"]} onChange={handleAllCheckboxChange} />
+                        <BlackText style={{ marginLeft: "10px" }}>Tout sélectionner</BlackText>
+                      </StyledLabel>
+                    </Col6>
+                  </Row>
+
+                  <CheckboxRow colWidth="140px" mobileColWidth="125px" style={{ flex: "1", alignItems: "center" }}>
+                    <StyledLabel style={{ width: "fit-content" }}>
+                      <Checkbox id="NewPromotion" checked={Checked["NewPromotion"]} onChange={handleCheckboxChange} />
+                      <BlackText style={{ marginLeft: "10px" }}>{props.usins_state ? props.active_proms + 1801 : props.active_proms + 1}</BlackText>
+                    </StyledLabel>
+                    <StyledLabel style={{ width: "fit-content" }}>
+                      <Checkbox id="ActivePromotion" checked={Checked["ActivePromotion"]} onChange={handleCheckboxChange} />
+                      <BlackText style={{ marginLeft: "10px" }}>{props.active_proms}</BlackText>
+                    </StyledLabel>
+                    <StyledLabel style={{ width: "fit-content" }}>
+                      <Checkbox id="OldPromotion" checked={Checked["OldPromotion"]} onChange={handleCheckboxChange} />
+                      <BlackText style={{ marginLeft: "10px" }}>{props.active_proms - 1}</BlackText>
+                    </StyledLabel>
+                    <StyledLabel style={{ width: "fit-content" }}>
+                      <Checkbox id="Other" checked={Checked["Other"]} onChange={handleCheckboxChange} />
+                      <BlackText style={{ marginLeft: "10px" }}>Autres</BlackText>
+                    </StyledLabel>
+                  </CheckboxRow>
+                </Col6>
+              </ResponsiveRow>
+              <StyledInputLabel htmlFor="Mail">Corps du Mail</StyledInputLabel>
+              <div style={{ marginBottom: "20px" }}>
+                {MailEditor}
+              </div>
+
+              <Row style={{ justifyContent: "center" }}>
+                <MailModal html={MailHTML} subject={subject} recipients={Checked} />
+              </Row>
+            </StyledCard>
+          </Row>
+        </Dashboard>
 
         <Footer marginTop="0" />
       </DashboardContainer>

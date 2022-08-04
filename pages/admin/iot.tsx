@@ -2,7 +2,7 @@ import React, { useRef, useState } from "react";
 import Head from "next/head";
 import { StyledCard } from "../../components/Card/style";
 import AdminMenu from "../../components/Menu/AdminMenu";
-import { DashboardContainer, Row } from "../../components/Container/style";
+import { Dashboard, DashboardContainer, Row } from "../../components/Container/style";
 import { BlackTitle } from "../../components/Text/style";
 import RequestTab from "../../components/Card/RequestTab";
 import { Footer } from "../../components/Card/Cards";
@@ -59,26 +59,27 @@ export default function AdminIoT(props: { access: adminAccess[] }) {
       <AdminMenu page="iot" />
 
       <DashboardContainer>
-        <Row margin="1% 0" mobileMargin="20px 0" mobileJustify="center">
-          <BlackTitle>Demandes d&apos;accès à AMNet IoT</BlackTitle>
-        </Row>
+        <Dashboard>
+          <Row margin="1% 0" mobileMargin="20px 0" mobileJustify="center">
+            <BlackTitle>Demandes d&apos;accès à AMNet IoT</BlackTitle>
+          </Row>
 
-        <RequestTab status={Tab.new} TabChange={handleTabChange} />
+          <RequestTab status={Tab.new} TabChange={handleTabChange} />
 
-        <StyledCard
-          marginBottom="2%"
-          mobileMarginBottom="10px"
-          style={{ flex: "1 0 0", minHeight: minWidth1000 ? "0" : "300px" }}
-        >
-          <IoTAdminTable
-            status={Tab}
-            requests={access}
-            display={Display}
-            opacity={Opacity}
-            mobileRef={mobileContainerRef}
-            setTab={setAccess}
-          />
-        </StyledCard>
+          <StyledCard
+            marginBottom="1%"
+            style={{ flex: "1 0 0", minHeight: minWidth1000 ? "0" : "300px" }}
+          >
+            <IoTAdminTable
+              status={Tab}
+              requests={access}
+              display={Display}
+              opacity={Opacity}
+              mobileRef={mobileContainerRef}
+              setTab={setAccess}
+            />
+          </StyledCard>
+        </Dashboard>
 
         <Footer marginTop="0" />
       </DashboardContainer>

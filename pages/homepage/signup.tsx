@@ -29,6 +29,8 @@ import useForm from "../../components/Input/useForm";
 import { useRouter } from "next/router";
 import axios, { AxiosResponse } from 'axios';
 import getToken from "../../components/Utils/auth-token";
+import { motion } from "framer-motion";
+import { variants } from "../../components/Utils/animation-variants";
 
 export async function getServerSideProps({ req }) {
   const { access_token } = getToken(req)
@@ -54,9 +56,9 @@ export async function getServerSideProps({ req }) {
 }
 
 export default function SignUp(props: { active_proms: number, usins_state: boolean, lydia_cotiz: number }) {
-  const minWidth1000 = useMediaQuery('(min-width:1000px)');
   const [acceptRules, setacceptRules] = useState({ state: false, error: false });
   const router = useRouter();
+  const [direction, setDirection] = useState("left");
 
   useEffect(() => {
     router.prefetch('/');
@@ -96,7 +98,7 @@ export default function SignUp(props: { active_proms: number, usins_state: boole
               { name: form.user_name, password: form.user_password }
             )
 
-            router.push("/")
+            router.push("/", null, { scroll: false })
           }
           if (res.status === 409) handleFormErrors(res.data['user_name'], res.data['user_email']);
         })
@@ -114,202 +116,212 @@ export default function SignUp(props: { active_proms: number, usins_state: boole
       </Head>
 
       <CampusGlobalStyle />
-      <Row
-        mobileWidth="90%"
-        style={{
-          flex: 1,
-          justifyContent: "center",
-          alignItems: "center",
-          margin: "20px 0"
-        }}
+
+      <motion.main
+        variants={variants("left", "right")}
+        initial="hidden"
+        animate="enter"
+        exit="exit"
+        transition={{ type: 'linear' }}
       >
-        <StyledCardCampus width="75%">
-          <Row style={{ marginBottom: "20px", marginTop: "10px", justifyContent: "center" }}>
-            <RectangleLogo height="125px" />
-          </Row>
+        <Row
+          mobileWidth="90%"
+          style={{
+            flex: 1,
+            justifyContent: "center",
+            alignItems: "center",
+            margin: "20px 0"
+          }}
+        >
+          <StyledCardCampus width="75%">
+            <Row style={{ marginBottom: "20px", marginTop: "10px", justifyContent: "center" }}>
+              <RectangleLogo height="125px" />
+            </Row>
 
-          <TitleCard>Inscription</TitleCard>
+            <TitleCard>Inscription</TitleCard>
 
-          <form onSubmit={createUser}>
-            <ResponsiveRow style={{ alignItems: "center", marginBottom: "20px" }}>
-              <Col6
-                mobileMarginBottom="20px"
-                paddingRight="10px"
-                style={{
-                  width: "100%",
-                  position: "relative"
-                }}
-              >
-                <StyledInputLabel htmlFor="user_name">Nom d&apos;utilisateur</StyledInputLabel>
-                <StyledInput onChange={handleNameChange} id="user_name" type="text" required />
-                {errorMessage.name}
-                {errorMessage.format_name}
-              </Col6>
+            <form onSubmit={createUser}>
+              <ResponsiveRow style={{ alignItems: "center", marginBottom: "20px" }}>
+                <Col6
+                  mobileMarginBottom="20px"
+                  paddingRight="10px"
+                  style={{
+                    width: "100%",
+                    position: "relative"
+                  }}
+                >
+                  <StyledInputLabel htmlFor="user_name">Nom d&apos;utilisateur</StyledInputLabel>
+                  <StyledInput onChange={handleNameChange} id="user_name" type="text" required />
+                  {errorMessage.name}
+                  {errorMessage.format_name}
+                </Col6>
 
-              <Col6
-                paddingLeft="10px" mobileAlign="center"
-                style={{
-                  justifyContent: "end",
-                  height: "100%"
-                }}
-              >
-                <BlackText mobileAlignTxt="justify">
-                  Votre nom d&apos;utilisateur ne doit contenir
-                  que des lettres, des chiffres ou des espaces.
-                </BlackText>
-              </Col6>
-            </ResponsiveRow>
+                <Col6
+                  paddingLeft="10px" mobileAlign="center"
+                  style={{
+                    justifyContent: "end",
+                    height: "100%"
+                  }}
+                >
+                  <BlackText mobileAlignTxt="justify">
+                    Votre nom d&apos;utilisateur ne doit contenir
+                    que des lettres, des chiffres ou des espaces.
+                  </BlackText>
+                </Col6>
+              </ResponsiveRow>
 
-            <ResponsiveRow style={{ marginBottom: "20px" }}>
-              <Col3 paddingRight="10px" mobileMarginBottom="20px">
-                <StyledInputLabel htmlFor="user_firstname">Prénom</StyledInputLabel>
-                <StyledInput onChange={handleFormChange} id="user_firstname" type="text" required />
-              </Col3>
+              <ResponsiveRow style={{ marginBottom: "20px" }}>
+                <Col3 paddingRight="10px" mobileMarginBottom="20px">
+                  <StyledInputLabel htmlFor="user_firstname">Prénom</StyledInputLabel>
+                  <StyledInput onChange={handleFormChange} id="user_firstname" type="text" required />
+                </Col3>
 
-              <Col3
-                paddingRight="10px"
-                paddingLeft="10px"
-                mobileMarginBottom="20px"
-              >
-                <StyledInputLabel htmlFor="user_lastname">Nom</StyledInputLabel>
-                <StyledInput onChange={handleFormChange} id="user_lastname" type="text" required />
-              </Col3>
+                <Col3
+                  paddingRight="10px"
+                  paddingLeft="10px"
+                  mobileMarginBottom="20px"
+                >
+                  <StyledInputLabel htmlFor="user_lastname">Nom</StyledInputLabel>
+                  <StyledInput onChange={handleFormChange} id="user_lastname" type="text" required />
+                </Col3>
 
-              <Col6 paddingLeft="10px" style={{ position: "relative" }}>
-                <StyledInputLabel htmlFor="user_email">Adresse e-mail</StyledInputLabel>
-                <StyledInput onChange={handleFormChange} id="user_email" type="email" required />
-                {errorMessage.email}
-              </Col6>
-            </ResponsiveRow>
+                <Col6 paddingLeft="10px" style={{ position: "relative" }}>
+                  <StyledInputLabel htmlFor="user_email">Adresse e-mail</StyledInputLabel>
+                  <StyledInput onChange={handleFormChange} id="user_email" type="email" required />
+                  {errorMessage.email}
+                </Col6>
+              </ResponsiveRow>
 
-            <ResponsiveRow style={{ marginBottom: "20px" }}>
-              <Col6 paddingRight="10px" mobileMarginBottom="20px" style={{ position: "relative" }}>
-                <StyledInputLabel htmlFor="user_phone">Téléphone</StyledInputLabel>
-                <PhoneInput value={form.user_phone} onChange={handlePhoneChange} onBlur={blurPhone} />
-                {errorMessage.phone}
-              </Col6>
+              <ResponsiveRow style={{ marginBottom: "20px" }}>
+                <Col6 paddingRight="10px" mobileMarginBottom="20px" style={{ position: "relative" }}>
+                  <StyledInputLabel htmlFor="user_phone">Téléphone</StyledInputLabel>
+                  <PhoneInput value={form.user_phone} onChange={handlePhoneChange} onBlur={blurPhone} />
+                  {errorMessage.phone}
+                </Col6>
 
-              <Col6 paddingLeft="10px">
-                <StyledInputLabel htmlFor={isOther ? "user_proms2" : "user_proms"}>Promotion</StyledInputLabel>
-                {isOther ?
-                  <div style={{ display: "flex", alignItems: "center" }} >
+                <Col6 paddingLeft="10px">
+                  <StyledInputLabel htmlFor={isOther ? "user_proms2" : "user_proms"}>Promotion</StyledInputLabel>
+                  {isOther ?
+                    <div style={{ display: "flex", alignItems: "center" }} >
+                      <StyledInput
+                        id="user_proms2"
+                        type="text"
+                        onChange={handleFormChange}
+                        required
+                      />
+                      <StyledCancelImg onClick={cancelOther} />
+                    </div>
+                    :
                     <StyledInput
-                      id="user_proms2"
-                      type="text"
+                      id="user_proms"
+                      as="select"
                       onChange={handleFormChange}
-                      required
-                    />
-                    <StyledCancelImg onClick={cancelOther} />
-                  </div>
-                  :
-                  <StyledInput
-                    id="user_proms"
-                    as="select"
-                    onChange={handleFormChange}
-                    defaultValue={promotion.new}
-                  >
-                    <option value={promotion.old}>{promotion.old}</option>
-                    <option value={promotion.active}>{promotion.active}</option>
-                    <option value={promotion.new}>{promotion.new}</option>
-                    <option value="Other">Autre</option>
-                  </StyledInput>
-                }
-              </Col6>
-            </ResponsiveRow>
+                      defaultValue={promotion.new}
+                    >
+                      <option value={promotion.old}>{promotion.old}</option>
+                      <option value={promotion.active}>{promotion.active}</option>
+                      <option value={promotion.new}>{promotion.new}</option>
+                      <option value="Other">Autre</option>
+                    </StyledInput>
+                  }
+                </Col6>
+              </ResponsiveRow>
 
-            <ResponsiveRow
-              style={{
-                height: form.user_is_gadz ? minWidth1000 ? "93px" : "244.6px" : "0px",
-                transition: "height 0.3s linear",
-                overflowY: "clip",
-              }}
-              mobileMarginBottom={form.user_is_gadz ? "20px" : undefined}
-            >
-              <Col6 paddingRight="10px" mobileMarginBottom="20px">
-                <StyledInputLabel htmlFor="user_bucque">Bucque</StyledInputLabel>
-                <StyledInput onChange={handleFormChange} id="user_bucque" type="text" />
-              </Col6>
-
-              <Col3
-                paddingRight="10px"
-                paddingLeft="10px"
-                mobileMarginBottom="20px"
-              >
-                <StyledInputLabel htmlFor="user_fams">Fam&apos;s</StyledInputLabel>
-                <StyledInput onChange={handleFormChange} id="user_fams" type="text" />
-              </Col3>
-
-              <Col3 paddingLeft="10px">
-                <StyledInputLabel htmlFor="user_campus">Tabagn&apos;s</StyledInputLabel>
-                <StyledInput onChange={handleFormChange} id="user_campus" as="select" defaultValue="Li">
-                  <option value="Li">Birse</option>
-                  <option value="An">Boquette</option>
-                  <option value="Bo">Bordel&apos;s</option>
-                  <option value="Ch">Chalon&apos;s</option>
-                  <option value="Cl">Clun&apos;s</option>
-                  <option value="KIN">KIN</option>
-                  <option value="Pa">P3</option>
-                  <option value="Me">Siber&apos;s</option>
-                </StyledInput>
-              </Col3>
-            </ResponsiveRow>
-
-            <ResponsiveRow>
-              <Col6 paddingRight="10px" mobileMarginBottom="20px">
-                <StyledInputLabel htmlFor="user_password">Mot de passe</StyledInputLabel>
-                <PasswordInput onChange={handlePasswordChange} id="user_password" />
-              </Col6>
-
-              <Col6 paddingLeft="10px">
-                <StyledInputLabel htmlFor="user_password2">Confirmez votre Mot de passe</StyledInputLabel>
-                <PasswordInput onChange={handlePasswordChange} onBlur={blurPassword2} id="user_password2" />
-              </Col6>
-            </ResponsiveRow>
-            {errorMessage.password}
-
-            <Column style={{ alignItems: "start", marginBottom: "20px", marginTop: "20px" }} >
-              <GreenText>Réglementation</GreenText>
-              <BlackText style={{ marginTop: "5px", marginBottom: "1.2rem" }}>
-                Consultez <StyledLink color="#096a09" target="_blank" href={`${process.env.NEXT_PUBLIC_API_HOST}/Statuts-AMNet.pdf`}>les Statuts de l&apos;association</StyledLink>
-                <br />
-                Consultez <StyledLink color="#096a09" target="_blank" href={`${process.env.NEXT_PUBLIC_API_HOST}/RI-AMNet.pdf`}>le Règlement intérieur de l&apos;association</StyledLink>
-              </BlackText>
-              <BlackP>
-                AMNet Birse est une association Loi 1901, vous devez en accepter les statuts et le réglement intérieur. La validation de ce formulaire et le réglement de la cotisation annuelle ({props.lydia_cotiz}€) valent pour adhésion à l&apos;association.
-              </BlackP>
-            </Column>
-
-            <Row style={{ justifyContent: "center" }}>
-              <label
-                htmlFor="accept_rules"
+              <ResponsiveRow
+                Height={form.user_is_gadz ? "93px" : "0px"}
+                MobileHiehgt={form.user_is_gadz ? "244.6px" : "0px"}
                 style={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center"
+                  transition: "height 0.3s linear",
+                  overflowY: "clip",
                 }}
+                mobileMarginBottom={form.user_is_gadz ? "20px" : undefined}
               >
-                <RoundCheckbox id="accept_rules" checked={acceptRules.state} onChange={handleRadioChange} />
-                <BlackText mobileAlignTxt="center" style={{ paddingLeft: "10px", userSelect: "none" }}>
-                  Accepter les Statuts et le Réglement interieur
+                <Col6 paddingRight="10px" mobileMarginBottom="20px">
+                  <StyledInputLabel htmlFor="user_bucque">Bucque</StyledInputLabel>
+                  <StyledInput onChange={handleFormChange} id="user_bucque" type="text" />
+                </Col6>
+
+                <Col3
+                  paddingRight="10px"
+                  paddingLeft="10px"
+                  mobileMarginBottom="20px"
+                >
+                  <StyledInputLabel htmlFor="user_fams">Fam&apos;s</StyledInputLabel>
+                  <StyledInput onChange={handleFormChange} id="user_fams" type="text" />
+                </Col3>
+
+                <Col3 paddingLeft="10px">
+                  <StyledInputLabel htmlFor="user_campus">Tabagn&apos;s</StyledInputLabel>
+                  <StyledInput onChange={handleFormChange} id="user_campus" as="select" defaultValue="Li">
+                    <option value="Li">Birse</option>
+                    <option value="An">Boquette</option>
+                    <option value="Bo">Bordel&apos;s</option>
+                    <option value="Ch">Chalon&apos;s</option>
+                    <option value="Cl">Clun&apos;s</option>
+                    <option value="KIN">KIN</option>
+                    <option value="Pa">P3</option>
+                    <option value="Me">Siber&apos;s</option>
+                  </StyledInput>
+                </Col3>
+              </ResponsiveRow>
+
+              <ResponsiveRow>
+                <Col6 paddingRight="10px" mobileMarginBottom="20px">
+                  <StyledInputLabel htmlFor="user_password">Mot de passe</StyledInputLabel>
+                  <PasswordInput onChange={handlePasswordChange} id="user_password" />
+                </Col6>
+
+                <Col6 paddingLeft="10px">
+                  <StyledInputLabel htmlFor="user_password2">Confirmez votre Mot de passe</StyledInputLabel>
+                  <PasswordInput onChange={handlePasswordChange} onBlur={blurPassword2} id="user_password2" />
+                </Col6>
+              </ResponsiveRow>
+              {errorMessage.password}
+
+              <Column style={{ alignItems: "start", marginBottom: "20px", marginTop: "20px" }} >
+                <GreenText>Réglementation</GreenText>
+                <BlackText style={{ marginTop: "5px", marginBottom: "1.2rem" }}>
+                  Consultez <StyledLink color="#096a09" target="_blank" href={`${process.env.NEXT_PUBLIC_API_HOST}/Statuts-AMNet.pdf`}>les Statuts de l&apos;association</StyledLink>
+                  <br />
+                  Consultez <StyledLink color="#096a09" target="_blank" href={`${process.env.NEXT_PUBLIC_API_HOST}/RI-AMNet.pdf`}>le Règlement intérieur de l&apos;association</StyledLink>
                 </BlackText>
-              </label>
-            </Row>
+                <BlackP>
+                  AMNet Birse est une association Loi 1901, vous devez en accepter les statuts et le réglement intérieur. La validation de ce formulaire et le réglement de la cotisation annuelle ({props.lydia_cotiz}€) valent pour adhésion à l&apos;association.
+                </BlackP>
+              </Column>
 
-            {acceptRules.error &&
-              <ErrorP>
-                Vous devez les accepter pour vous inscrire !
-              </ErrorP>
-            }
+              <Row style={{ justifyContent: "center" }}>
+                <label
+                  htmlFor="accept_rules"
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center"
+                  }}
+                >
+                  <RoundCheckbox id="accept_rules" checked={acceptRules.state} onChange={handleRadioChange} />
+                  <BlackText mobileAlignTxt="center" style={{ paddingLeft: "10px", userSelect: "none" }}>
+                    Accepter les Statuts et le Réglement interieur
+                  </BlackText>
+                </label>
+              </Row>
 
-            <Row style={{ justifyContent: "center", marginTop: "20px" }}>
-              <GreenButton type="submit">Inscription</GreenButton>
-            </Row>
-          </form>
-        </StyledCardCampus>
-      </Row>
+              {acceptRules.error &&
+                <ErrorP>
+                  Vous devez les accepter pour vous inscrire !
+                </ErrorP>
+              }
 
-      <HelpSection padding="0 5%" />
-      <Footer page="campus" />
+              <Row style={{ justifyContent: "center", marginTop: "20px" }}>
+                <GreenButton type="submit">Inscription</GreenButton>
+              </Row>
+            </form>
+          </StyledCardCampus>
+        </Row>
+
+        <HelpSection padding="0 5%" />
+        <Footer page="campus" />
+      </motion.main>
     </>
   );
 }

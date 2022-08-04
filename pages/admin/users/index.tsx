@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Head from "next/head";
 import { GreenButton, OrangeButton, RedButton } from "../../../components/Button/Buttons";
-import { ButtonsRow, DashboardContainer, ResponsiveRow, Row } from "../../../components/Container/style";
+import { ButtonsRow, Dashboard, DashboardContainer, ResponsiveRow, Row } from "../../../components/Container/style";
 import { StyledCard } from "../../../components/Card/style";
 import AdminMenu from "../../../components/Menu/AdminMenu";
 import { BlackTitle } from "../../../components/Text/style";
@@ -120,36 +120,38 @@ export default function Users(props: { users: user[] }) {
       <AdminMenu page="users" />
 
       <DashboardContainer>
-        <ResponsiveRow margin="1% 0" mobileMargin="20px 0 30px">
-          <Row mobileJustify="center" mobileMarginBottom="10px">
-            <BlackTitle>Liste des adhérents</BlackTitle>
-          </Row>
-          <ResponsiveRow style={{ flex: "1", alignItems: "center", justifyContent: "end" }}>
-            {Filter}
+        <Dashboard>
+          <ResponsiveRow margin="1% 0" mobileMargin="20px 0 30px">
+            <Row mobileJustify="center" mobileMarginBottom="10px">
+              <BlackTitle>Liste des adhérents</BlackTitle>
+            </Row>
+            <ResponsiveRow style={{ flex: "1", alignItems: "center", justifyContent: "end" }}>
+              {Filter}
+            </ResponsiveRow>
           </ResponsiveRow>
-        </ResponsiveRow>
 
-        {Checkboxs}
+          {Checkboxs}
 
-        <ButtonsRow
-          marginBottom="2%"
-          mobileMarginBottom="30px"
-        >
-          <GreenButton width="300px" onClick={confirmPayment}>Confirmer le paiement</GreenButton>
-          <RedButton width="300px" onClick={cancelPayment}>Annuler le paiement</RedButton>
-          <OrangeButton width="300px" onClick={changeStatut}>Changer de statut Gadz</OrangeButton>
-          <RedButton width="300px" onClick={deleteUsers}>Supprimer</RedButton>
-        </ButtonsRow>
+          <ButtonsRow
+            marginBottom="2%"
+            mobileMarginBottom="30px"
+          >
+            <GreenButton width="300px" onClick={confirmPayment}>Confirmer le paiement</GreenButton>
+            <RedButton width="300px" onClick={cancelPayment}>Annuler le paiement</RedButton>
+            <OrangeButton width="300px" onClick={changeStatut}>Changer de statut Gadz</OrangeButton>
+            <RedButton width="300px" onClick={deleteUsers}>Supprimer</RedButton>
+          </ButtonsRow>
 
-        <StyledCard
-          marginBottom="2%"
-          mobileMarginBottom="10px"
-          minHeight="0"
-          mobileMinHeight="600px"
-          style={{ flex: "1 0 0" }}
-        >
-          {Table()}
-        </StyledCard>
+          <StyledCard
+            marginBottom="1%"
+            minHeight="0"
+            mobileMinHeight="600px"
+            style={{ flex: "1 0 0" }}
+          >
+            {Table()}
+          </StyledCard>
+        </Dashboard>
+        
         <Footer marginTop="0" />
       </DashboardContainer>
     </>
