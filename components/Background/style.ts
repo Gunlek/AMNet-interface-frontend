@@ -28,11 +28,18 @@ export const CampusGlobalStyle = createGlobalStyle`
   }
 
   #__next{
+    padding: 0;
+  }
+
+  main{
     justify-content: space-between;
     align-items: center; 
     padding: ${(props) => props.padding || "0"};
     flex-direction: column;
-
+    height: 100%;
+    width: 100%;
+    display: flex;
+    
     @media screen and (max-width: 1000px){
       position: absolute;
       z-index: 2;
