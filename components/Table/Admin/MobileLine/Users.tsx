@@ -12,7 +12,6 @@ export const UsersMobileLine = ({ row, columnsNumber, isLast }: {
 }) => {
 
     const [scrolled, setScrolled] = useState(false);
-    
     return (
         <div
             style={{
@@ -40,8 +39,8 @@ export const UsersMobileLine = ({ row, columnsNumber, isLast }: {
                                     <StyledTd>
                                         {isUserName ? cell.column['id'] == 'user_name' &&
                                             <div style={{ width: "60px", display: "flex", justifyContent: "space-between" }}>
-                                                    {row.cells[0].render('Cell')}
-                                                    {row.cells[1].render('Cell')}
+                                                {row.cells[0].render('Cell')}
+                                                {row.cells[1].render('Cell')}
                                             </div>
                                             :
                                             cell.column.render('Header')
@@ -51,11 +50,11 @@ export const UsersMobileLine = ({ row, columnsNumber, isLast }: {
                                         {isUserName ?
                                             <Link href={{
                                                 pathname: '/admin/users/[user_id]',
-                                                query: { user_id: row.allCells[14].value },
+                                                query: { user_id: row.original.user_id},
                                             }}
                                                 passHref
                                             >
-                                                <StyledLink color="#096a09">
+                                                <StyledLink color="#096a09" style={{ pointerEvents: scrolled ? undefined : "none" }}>
                                                     {cell.render('Cell')}
                                                 </StyledLink>
                                             </Link>
