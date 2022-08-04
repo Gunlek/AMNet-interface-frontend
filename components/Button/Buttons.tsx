@@ -139,7 +139,7 @@ export function ButtonLink(props: {
   }
 
   return (
-    <Link href={props.href} passHref>
+    <Link href={props.href} passHref scroll={false}>
       <StyledGreenButton
         as="a"
         width={props.width}

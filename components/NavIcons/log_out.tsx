@@ -8,7 +8,7 @@ export default function LogOut(props: { id: string }) {
     const logOut = async (e) => {
         e.preventDefault();
         await axios.post('/logout');
-        router.push('/homepage/login');
+        router.push('/homepage/login', null, { scroll: false });
     }
 
     useEffect(() => {

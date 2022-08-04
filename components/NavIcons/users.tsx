@@ -16,7 +16,7 @@ export default function Users(props: { page: string }) {
     }
     else {
         return (
-            <Link href="/admin/users" passHref>
+            <Link href="/admin/users" passHref scroll={false}>
                 <StyledBackIcon tooltip={content} >
                     <StyledIcon width="34" height="34" xmlns="http://www.w3.org/2000/svg">
                         <path d="M17 13.722a5.777 5.777 0 1 0 0-11.555 5.777 5.777 0 0 0 0 11.555ZM28.688 13.722a3.652 3.652 0 1 0 0-7.305 3.652 3.652 0 0 0 0 7.305ZM5.313 13.722a3.652 3.652 0 1 0 0-7.305 3.652 3.652 0 0 0 0 7.305ZM8.911 17.001c-1.438-1.178-2.74-1.022-4.402-1.022C2.023 15.98 0 17.99 0 20.461v7.252c0 1.073.876 1.946 1.953 1.946 4.65 0 4.09.084 4.09-.2 0-5.14-.609-8.908 2.868-12.458Z" />
