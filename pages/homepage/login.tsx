@@ -39,7 +39,7 @@ export default function Login(props: { modal: boolean, from: string }) {
   const [error, setError] = useState(false);
   const [login, setLogin] = useState(false);
   const [variant, setVariant] = useState(variants(
-    props.from === "/homepage" ? "left" : props.from.match(/\/homepage\/\w/) ? "right" : "",
+    props.from === "/homepage" ? "left" : (/\/homepage\/\w/).test(props.from) ? "right" : "",
     "left"
   ));
 
@@ -102,7 +102,7 @@ export default function Login(props: { modal: boolean, from: string }) {
         transition={{ type: 'linear' }}
       >
         <motion.div
-          variants={{ exit: { opacity: 0, x: login ? 100 : 0 } }}
+          variants={{ exit: { opacity: 0, x: login ? -100 : 0 } }}
           exit="exit"
           transition={{ type: 'linear' }}
           style={{
