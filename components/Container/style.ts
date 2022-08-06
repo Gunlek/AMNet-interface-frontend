@@ -173,12 +173,21 @@ export const Col1 = styled(Col)`
   }
 `;
 
-export const DashboardContainer = styled.div`
-  padding-left: 2%; 
+export const DashboardContainer = styled.div.attrs((props) => ({
+  as: motion.div,
+  variants: variants,
+  initial: props.initial || "hidden",
+  animate: "enter",
+  exit: props.exit || "exit",
+  transition: { type: 'linear' }
+}))`
+  padding: 0 2%; 
+  padding-top: 1%;
+  margin-left: 85px;
   height: 100%;
   display: flex;
   flex-direction: column;
-  flex: 1 0 0;
+  flex: 1;
   max-width: fill-available;
   
   @media screen and (max-width: 1000px){
@@ -187,6 +196,7 @@ export const DashboardContainer = styled.div`
     margin-top: 95px;
     height: auto;
     max-width: none;
+    padding: 0 5%;
   }
 
   @media screen and (max-width: 1000px ) and (min-width: 801px){
@@ -194,30 +204,17 @@ export const DashboardContainer = styled.div`
   }
 `;
 
-export const Dashboard = styled.div.attrs((props) => ({
-  as: motion.div,
-  variants: variants,
-  initial: props.initial || "hidden",
+export const StyledMain = styled.main.attrs((props) => ({
+  as: motion.main,
+  variants: props.variants,
+  initial: "hidden",
   animate: "enter",
   exit: "exit",
   transition: { type: 'linear' }
 }))`
-  padding-top: 1%;
-  min-height: 0;
-  padding-right: 2.1%;
   display: flex;
-  flex-direction: column;
-  flex: 1 0 0;
-  width: 100%;
-  overflow-x: clip;
-  overflow-y: auto;
-  margin-bottom: 1%;
-  padding-left: 85px;
-
-  @media screen and (max-width: 1000px){
-    margin-bottom: 10px;
-    padding: 0 5%;
-  }
+  flex: 1;
+  height: 100%;
 `;
 
 export const CheckboxRow = styled(Row)`
