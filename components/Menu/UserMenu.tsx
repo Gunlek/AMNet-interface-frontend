@@ -18,27 +18,31 @@ import {
   StyledMenu
 } from "./style";
 import SmallLogo from "../NavIcons/smallLogo";
+import useMediaQuery from "../MediaQueries/MediaQuery";
+import { motion } from "framer-motion";
 
 export default function UserMenu(props: {
   page: string,
-  localNetwork: boolean,
   user: {
     "is_gadz": boolean,
     "rank": string,
     "pay_status": boolean
-  }
+  },
+  localNetwork: boolean,
+  setTransition: Function
 }) {
   const [scroll, scrolled, top] = useScrollingUp()
   const [open, SetOpen] = useState(false);
   const isGadz = props.user.pay_status ? props.user.is_gadz : false;
   const isAdmin = props.user.rank === "admin";
   const inactiveFaq = (process.env.NEXT_PUBLIC_FAQ_STATE === 'inactive');
+  const minWidth1000 = useMediaQuery('(min-width: 1000px)');
 
   let NumHiddenIcon = 0;
   if (!isGadz) NumHiddenIcon++;
   if (props.user.rank === "user") NumHiddenIcon++;
   if (!props.user.pay_status) NumHiddenIcon = NumHiddenIcon + 2;
-  if(inactiveFaq) NumHiddenIcon++;
+  if (inactiveFaq) NumHiddenIcon++;
 
   const mobileHeight = (Math.ceil((7 - NumHiddenIcon) / 3) * 95 + 95).toString()
 
@@ -59,8 +63,20 @@ export default function UserMenu(props: {
   };
 
   return (
-    <MenuContener id="menu" timeTransform={open ? "0.5s" : "0.3s"} top={top} scroll={scroll} sticky={scrolled}>
-      <StyledMenu Shadow={open}>
+    <MenuContener
+      id="menu"
+      timeTransform={open ? "0.5s" : "0.3s"}
+      top={top}
+      scroll={scroll}
+      sticky={scrolled}
+      Shadow={top || scrolled}
+    >
+      <StyledMenu
+        as={motion.div}
+        variants={minWidth1000 ? undefined : { exit: { height: "95px" } }}
+        exit="exit"
+        transition={{ type: 'linear' }}
+      >
         <StyledIconContener as="nav" maxHeight={(690 - NumHiddenIcon * 70).toString() + "px"} mobileHeight={open ? mobileHeight : "95"}>
           <Row
             Display="none"
@@ -110,14 +126,14 @@ export default function UserMenu(props: {
 
           {!inactiveFaq &&
             <Row style={positionning}>
-              <FAQIcon page={props.page} />
+              <FAQIcon />
             </Row>
           }
 
 
           {isAdmin &&
             <Row style={positionning}>
-              <AdminIcon page={props.page} />
+              <AdminIcon page={props.page} setTransition={props.setTransition}/>
             </Row>
           }
 
