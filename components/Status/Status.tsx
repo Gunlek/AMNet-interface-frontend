@@ -176,8 +176,7 @@ export function AdminNotifications(props: { notifNumber: number, unpaid?: boolea
           <Link href="/admin/iot" passHref>
             <StyledLink
               style={{
-                width: "max-content",
-                marginBottom: "10px"
+                width: "max-content"
               }}
             >
               Demandes d&apos;accès internet: {props.access_quantity}

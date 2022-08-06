@@ -108,17 +108,20 @@ export const StyledNotification = styled(StyledCard)`
   overflow: hidden;
   pointer-events: ${(props) => props.Display ? undefined : "none"};
   
+  a:first-child{
+    margin-bottom: 10px;
+  }
 
   @media screen and (max-width: 1000px){
     transition: opacity 0.3s, z-index 0.3s,;
     left: ${(props) => props.Unpaid ? "-300%" : "285%"};
     width: max-content;
     height: auto;
-    border-radius: 30px;
-    padding: 20px;
+    border-radius: 20px;
+    padding: 15px;
 
-    span{
-      opacity: 1
+    a:first-child{
+      margin-bottom: 0;
     }
   }
   
