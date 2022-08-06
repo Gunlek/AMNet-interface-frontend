@@ -17,11 +17,13 @@ import {
   StyledMenu
 } from "./style";
 import SmallLogo from "../NavIcons/smallLogo";
+import { motion } from "framer-motion";
+import useMediaQuery from "../MediaQueries/MediaQuery";
 
-
-export default function AdminMenu(props: { page?: string }) {
+export default function AdminMenu(props: { page?: string, setTranstion: Function }) {
   const [scroll, scrolled, top] = useScrollingUp()
   const [open, SetOpen] = useState(false);
+  const minWidth1000 = useMediaQuery('(min-width: 1000px)');
 
   function handleChange() {
     SetOpen(!open);
@@ -40,8 +42,20 @@ export default function AdminMenu(props: { page?: string }) {
   };
 
   return (
-    <MenuContener id="menu" timeTransform={open ? "0.5s" : "0.3s"} top={top} scroll={scroll} sticky={scrolled}>
-      <StyledMenu Shadow={open}>
+    <MenuContener
+      id="menu"
+      timeTransform={open ? "0.5s" : "0.3s"}
+      top={top}
+      scroll={scroll}
+      sticky={scrolled}
+      Shadow={top || scrolled}
+    >
+      <StyledMenu
+        as={motion.div}
+        variants={minWidth1000 ? undefined : { exit: { height: "95px" } }}
+        exit="exit"
+        transition={{ type: 'linear' }}
+      >
         <StyledIconContener as="nav" maxHeight={"615px"} mobileHeight={open ? "285" : "95"}>
           <Row
             Display="none"
@@ -80,7 +94,7 @@ export default function AdminMenu(props: { page?: string }) {
           </Row>
 
           <Row style={positionning}>
-            <IndexIcon page={props.page} />
+            <IndexIcon page={props.page} setTranstion={props.setTranstion} />
           </Row>
 
           <StyledDivLogOut

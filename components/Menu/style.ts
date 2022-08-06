@@ -11,18 +11,13 @@ export const StyledMenu = styled(StyledCard)`
   z-index: 4;
 
   @media screen and (max-width: 1000px){
-    transition: box-shadow 0.3s linear;
-    box-shadow: ${(props) => !props.Shadow && "none"};
-  }
-
-  @media screen and (max-width: 1000px){
     width: 100%;
     background: white;
     padding: 0px;
     border-top-left-radius: 0px;
     border-top-right-radius: 0px;
     transition: box-shadow 0.3s linear;
-    box-shadow: ${(props) => !props.Shadow && "none"};
+    box-shadow: none;
   }
 `;
 
@@ -39,8 +34,11 @@ export const MenuContener = styled.div`
     height: auto;
     width: 100%;
     position: ${(props) => props.top ? "absolute" : "fixed"};
-    transition: transform ${(props) => (props.scroll < 115 && props.scroll > 100 ) ? "0s" : props.timeTransform };
-    transform: ${(props) => ((!props.top) && !props.sticky)? 'translateY(-100%)' : 'translateY(0)'};
+    transition: transform ${(props) => (props.scroll < 115 && props.scroll > 100) ? "0s" : props.timeTransform};
+    transform: ${(props) => ((!props.top) && !props.sticky) ? 'translateY(-100%)' : 'translateY(0)'};
+    box-shadow: ${(props) => props.Shadow ? "0px 4px 14px rgba(0,0,0,0.06)" : "none"};
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
   }  
 `;
 
@@ -95,7 +93,7 @@ export const StyledIconContener = styled(Column)`
     overflow: hidden;
     transition: height 0.3s linear;
     grid-auto-rows: auto 95px 95px 95px;
-    height: ${(props) => props.mobileHeight+"px"};
+    height: ${(props) => props.mobileHeight + "px"};
   }
 
   @media screen and (max-height: ${(props) => props.maxHeight}) and (min-width: 1000px){
