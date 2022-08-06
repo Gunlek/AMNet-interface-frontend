@@ -82,6 +82,7 @@ export const StyledFooter = styled.footer`
   padding: 0 5px;
   margin-top: ${(props) => props.marginTop || "10px"};
   margin-bottom: 6px;
+  margin-right: -1.8%;
   
   @media screen and (max-width: 1000px){
     text-align: center;
@@ -139,6 +140,6 @@ export const StyledActive = styled.div`
   left: 0;
 
   @media screen and (max-width: 440px){
-    width: 100%;
+    width: ${(props) => props.Declined ? "130%" : "105%"};
   } 
 `;
