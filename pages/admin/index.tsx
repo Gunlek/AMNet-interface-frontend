@@ -18,7 +18,7 @@ import {
   Col4,
   StyledMain,
 } from "../../components/Container/style";
-import Editor from "../../components/Input/Editor";
+import Editor from "../../components/Input/Editor/Editor";
 import { EditorStyle } from "../../styles/editor";
 import MailModal from "../../components/Card/Modals/MailModal";
 import axios, { AxiosResponse } from "axios";
@@ -27,6 +27,7 @@ import getToken from "../../components/Utils/auth-token";
 import Modal from "../../components/Card/Modals/Modal";
 import SettingsModal from "../../components/Card/Modals/UpdateSettingsModal";
 import oldURL from "../../components/Utils/oldURL";
+import { motion } from "framer-motion";
 
 export async function getServerSideProps({ req }) {
   const { access_token, userId, } = getToken(req)
@@ -89,7 +90,7 @@ export async function getServerSideProps({ req }) {
 
 
 
-export default function Settings(props: {
+export default function Admin(props: {
   access_quantity: number,
   material_quantity: number,
   users_quantity: number[],
