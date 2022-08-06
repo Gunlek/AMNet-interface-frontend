@@ -16,7 +16,7 @@ import {
   CheckboxRow,
   Col2,
   Col4,
-  Dashboard
+  StyledMain,
 } from "../../components/Container/style";
 import Editor from "../../components/Input/Editor";
 import { EditorStyle } from "../../styles/editor";
@@ -26,9 +26,10 @@ import getConfig from "../../components/Utils/req-config";
 import getToken from "../../components/Utils/auth-token";
 import Modal from "../../components/Card/Modals/Modal";
 import SettingsModal from "../../components/Card/Modals/UpdateSettingsModal";
+import oldURL from "../../components/Utils/oldURL";
 
 export async function getServerSideProps({ req }) {
-  const { access_token, userId } = getToken(req)
+  const { access_token, userId, } = getToken(req)
 
   if (access_token) {
     const config = getConfig(access_token)
@@ -64,7 +65,8 @@ export async function getServerSideProps({ req }) {
           active_proms: active_proms.data,
           usins_state: usins_state.data,
           guest_access: guest_access.data,
-          news_message: news_message.data
+          news_message: news_message.data,
+          fromIndex: !(/\/admin(\/\w*)?/).test(oldURL(req)),
         }
       }
     }
@@ -85,6 +87,8 @@ export async function getServerSideProps({ req }) {
   }
 }
 
+
+
 export default function Settings(props: {
   access_quantity: number,
   material_quantity: number,
@@ -94,7 +98,8 @@ export default function Settings(props: {
   usins_state: boolean,
   guest_access: boolean,
   news_message: string,
-  access_token: string
+  access_token: string,
+  fromIndex: boolean
 }) {
   const [Checked, setChecked] = useState({
     "Contribution": false,
@@ -107,6 +112,17 @@ export default function Settings(props: {
   });
 
   const [show, setShow] = useState(false);
+  const [roadToIndex, setRoadToIndex] = useState(false);
+
+  const variants = {
+    hidden: { opacity: 0, x: -100, y: 0 },
+    enter: { opacity: 1, x: 0, y: 0 },
+    exit: roadToIndex ? { opacity: 0, x: -100, y: 0 } : null
+  };
+
+  const roadIndex = () => {
+    setRoadToIndex(true);
+  };
 
   const handleAllCheckboxChange = () => {
     const NewChecked = Checked.AllSelect ?
@@ -181,10 +197,12 @@ export default function Settings(props: {
       <Head>
         <title>Administration &bull; AMNet</title>
       </Head>
-      <AdminMenu page="admin" />
 
-      <DashboardContainer>
-        <Dashboard>
+      <StyledMain variants={props.fromIndex || roadToIndex ? variants : undefined}>
+        <AdminMenu page="admin" setTranstion={roadIndex} />
+
+        <DashboardContainer initial={props.fromIndex ? "false" : undefined} exit={variants.exit ? "false" : undefined}>
+
           <Row margin="1% 0" mobileMargin="20px 0" mobileJustify="center">
             <BlackTitle>Espace d&apos;administration</BlackTitle>
           </Row>
@@ -268,7 +286,7 @@ export default function Settings(props: {
             </StyledCard>
           </Row>
 
-          <Row marginBottom="1%">
+          <Row marginBottom="2%" mobileMarginBottom="10px">
             <StyledCard>
               <TitleCard>Système de mail</TitleCard>
               <ResponsiveRow
@@ -337,10 +355,10 @@ export default function Settings(props: {
               </Row>
             </StyledCard>
           </Row>
-        </Dashboard>
 
-        <Footer marginTop="0" />
-      </DashboardContainer>
+          <Footer marginTop="0" />
+        </DashboardContainer>
+      </StyledMain>
     </>
   );
 }

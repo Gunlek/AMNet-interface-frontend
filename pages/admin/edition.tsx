@@ -5,7 +5,7 @@ import {
   DashboardContainer,
   ResponsiveRow,
   Col6,
-  Dashboard
+  StyledMain
 } from "../../components/Container/style";
 import { StyledCard } from "../../components/Card/style";
 import AdminMenu from "../../components/Menu/AdminMenu";
@@ -21,6 +21,7 @@ import axios, { AxiosResponse } from "axios";
 import getToken from "../../components/Utils/auth-token";
 import getConfig from "../../components/Utils/req-config";
 import Modal from "../../components/Card/Modals/Modal";
+import useRoad from "../../components/Utils/useRoad";
 
 export async function getServerSideProps({ req }) {
   const { access_token, userId } = getToken(req)
@@ -62,6 +63,7 @@ export default function Edition(props: { accutalTeam: { pseudo: string, id: stri
   const [TabFile, setTabFile] = useState({ IR: null, Status: null, TeamPicture: null });
   const [modal, setModal] = useState({ show: false, content: <></> });
   const config = { headers: { 'Content-Type': 'multipart/form-data' } };
+  const { roadTo, roadVariants } = useRoad('left');
 
   useEffect(() => {
     (document.getElementById("IR") as HTMLInputElement).value = null;
@@ -133,10 +135,11 @@ export default function Edition(props: { accutalTeam: { pseudo: string, id: stri
         <title>Administration &bull; AMNet</title>
       </Head>
       <Modal style={{ width: "625px", textAlign: "center" }} show={modal.show}>{modal.content}</Modal>
-      <AdminMenu page="edition" />
 
-      <DashboardContainer>
-        <Dashboard>
+      <StyledMain variants={roadVariants}>
+        <AdminMenu page="edition" setTranstion={roadTo} />
+
+        <DashboardContainer exit={roadVariants.exit ? "false" : undefined}>
           <Row margin="1% 0" mobileMargin="20px 0" mobileJustify="center">
             <BlackTitle>Edition</BlackTitle>
           </Row>
@@ -239,7 +242,7 @@ export default function Edition(props: { accutalTeam: { pseudo: string, id: stri
             </form>
           </StyledCard>
 
-          <StyledCard marginBottom="1%">
+          <StyledCard marginBottom="2%" mobileMarginBottom="10px">
             <TitleCard>Page d&apos;accueil</TitleCard>
             <ResponsiveRow style={{ marginTop: "20px" }}>
               <Col6 marginRight="1%" mobileMarginBottom="20px">
@@ -298,10 +301,10 @@ export default function Edition(props: { accutalTeam: { pseudo: string, id: stri
               <GreenButton onClick={updateTeamList}>Mettre à jour</GreenButton>
             </Row>
           </StyledCard>
-        </Dashboard>
-        
-        <Footer marginTop="0" />
-      </DashboardContainer>
+
+          <Footer marginTop="0" />
+        </DashboardContainer>
+      </StyledMain>
     </>
   );
 }

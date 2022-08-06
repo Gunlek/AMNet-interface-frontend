@@ -3,7 +3,7 @@ import Head from "next/head";
 import { ButtonLink } from "../components/Button/Buttons";
 import { TitleCard, HelpSection, Footer } from "../components/Card/Cards";
 import { StyledCard } from "../components/Card/style";
-import { DashboardContainer, ResponsiveRow, Column, Col6, Row, Dashboard } from "../components/Container/style";
+import { DashboardContainer, ResponsiveRow, Column, Col6, Row, StyledMain } from "../components/Container/style";
 import UserMenu from "../components/Menu/UserMenu";
 import { AdminNotifications, StateContribution } from "../components/Status/Status";
 import { BlackTitle, BlackText, NewsMessage, StyledLink } from "../components/Text/style";
@@ -14,7 +14,6 @@ import getToken from "../components/Utils/auth-token";
 import getConfig from "../components/Utils/req-config";
 import DOMPurify from 'isomorphic-dompurify';
 import oldURL from "../components/Utils/oldURL";
-import { motion } from "framer-motion";
 
 export async function getServerSideProps({ req, query }) {
   const { access_token, userId, localNetwork } = getToken(req);
@@ -31,7 +30,7 @@ export async function getServerSideProps({ req, query }) {
         news_message: news_message.data,
         user: user.data,
         payment_err: query.payment_err === "1",
-        fromLogin: oldURL(req) == "/homepage/login" || oldURL(req) == "/homepage/signup",
+        fromLogin: (/\/homepage(\/\w*)?/).test(oldURL(req)) || (/\/admin(\/\w*)?/).test(oldURL(req)),
         localNetwork: localNetwork
       }
     }
@@ -60,11 +59,6 @@ export async function getServerSideProps({ req, query }) {
   }
 }
 
-const loginVariants = {
-  hidden: { opacity: 0, x: -100, y: 0 },
-  enter: { opacity: 1, x: 0, y: 0 }
-};
-
 export default function Index(
   props: {
     news_message: string,
@@ -77,6 +71,17 @@ export default function Index(
   }
 ) {
   const [show, setShow] = useState(false);
+  const [roadToAdmin, setRoadToAdmin] = useState(false);
+
+  const loginVariants = {
+    hidden: { opacity: 0, x: 100, y: 0 },
+    enter: { opacity: 1, x: 0, y: 0 },
+    exit: roadToAdmin ? { opacity: 0, x: 100, y: 0 } : null
+  };
+
+  const roadAdmin = () => {
+    setRoadToAdmin(true);
+  };
 
   return (
     <>
@@ -94,12 +99,7 @@ export default function Index(
         <StyledLink color="#096A09" href="mailto:contact@amnet.fr">contact@amnet.fr</StyledLink>
       </Modal>
 
-      <motion.main
-        variants={props.fromLogin ? loginVariants : undefined}
-        initial="hidden"
-        animate="enter"
-        transition={{ type: 'linear' }}
-      >
+      <StyledMain variants={(props.fromLogin || roadToAdmin) ? loginVariants : undefined}>
         <UserMenu
           page="index"
           user={{
@@ -108,105 +108,107 @@ export default function Index(
             pay_status: props.user.user_pay_status
           }}
           localNetwork={props.localNetwork}
+          setTransition={roadAdmin}
         />
 
-        <DashboardContainer>
-          <Dashboard initial={props.fromLogin ? "false" : undefined}>
-            <ResponsiveRow margin="1% 0" mobileMargin="20px 0">
-              <Row
-                mobileMarginBottom="20px"
-                justify="space-between"
-                mobileJustify="space-around"
-                style={{ flex: "1", alignItems: "center" }}
-              >
-                <BlackTitle>Mon Espace AMNet</BlackTitle>
-              </Row>
+        <DashboardContainer
+          initial={props.fromLogin ? "false" : undefined}
+          exit={loginVariants.exit ? "false" : undefined}
+        >
+          <ResponsiveRow margin="1% 0" mobileMargin="20px 0">
+            <Row
+              mobileMarginBottom="20px"
+              justify="space-between"
+              mobileJustify="space-around"
+              style={{ flex: "1", alignItems: "center" }}
+            >
+              <BlackTitle>Mon Espace AMNet</BlackTitle>
+            </Row>
 
-              <Row align="center" style={{ justifyContent: "center", width: "auto" }}>
-                {props.user.user_rank === "admin" ?
-                  <AdminNotifications
-                    notifNumber={props.access_quantity + props.material_quantity}
-                    access_quantity={props.access_quantity}
-                    material_quantity={props.material_quantity}
-                  />
-                  :
-                  undefined
-                }
-                <StateContribution
-                  status={props.user.user_pay_status ? "paid" : "unpaid"}
-                  userId={props.user.user_id}
+            <Row align="center" style={{ justifyContent: "center", width: "auto" }}>
+              {props.user.user_rank === "admin" ?
+                <AdminNotifications
+                  notifNumber={props.access_quantity + props.material_quantity}
+                  access_quantity={props.access_quantity}
+                  material_quantity={props.material_quantity}
                 />
-              </Row>
-            </ResponsiveRow>
-
-            <StyledCard marginBottom="2%" mobileMarginBottom="30px" style={{ flex: "3" }}>
-              <TitleCard>Actualité AMNet</TitleCard>
-              <NewsMessage
-                style={{ textAlign: "justify" }}
-                dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(props.news_message || "") }}
+                :
+                undefined
+              }
+              <StateContribution
+                status={props.user.user_pay_status ? "paid" : "unpaid"}
+                userId={props.user.user_id}
               />
-            </StyledCard>
+            </Row>
+          </ResponsiveRow>
 
-            <ResponsiveRow marginBottom="1%" mobileMarginBottom="20px" style={{ flex: "6" }}>
-              <Col6 paddingRight="1%" mobileMarginBottom="30px">
-                <StyledCard style={{ height: "100%" }}>
-                  <TitleCard>Objets connectés</TitleCard>
-                  <BlackText style={{ textAlign: "justify" }}>
-                    Faites vos demandes d&apos;ajouts spécifiques
-                    (Objets connectés (IoT), consoles, etc...)
-                    depuis cette page
-                  </BlackText>
+          <StyledCard marginBottom="2%" mobileMarginBottom="30px" style={{ flex: "3" }}>
+            <TitleCard>Actualité AMNet</TitleCard>
+            <NewsMessage
+              style={{ textAlign: "justify" }}
+              dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(props.news_message || "") }}
+            />
+          </StyledCard>
 
-                  <Row
+          <ResponsiveRow marginBottom="2%" mobileMarginBottom="30px" style={{ flex: "6" }}>
+            <Col6 paddingRight="1%" mobileMarginBottom="30px">
+              <StyledCard style={{ height: "100%" }}>
+                <TitleCard>Objets connectés</TitleCard>
+                <BlackText style={{ textAlign: "justify" }}>
+                  Faites vos demandes d&apos;ajouts spécifiques
+                  (Objets connectés (IoT), consoles, etc...)
+                  depuis cette page
+                </BlackText>
+
+                <Row
+                  style={{
+                    flex: "1",
+                    justifyContent: "center",
+                    alignItems: "end",
+                    marginTop: "20px",
+                  }}
+                >
+                  <ButtonLink
+                    onClick={!props.user.user_pay_status ? () => setShow(!show) : undefined}
                     style={{
-                      flex: "1",
-                      justifyContent: "center",
-                      alignItems: "end",
-                      marginTop: "20px",
+                      position: "relative",
+                      zIndex: "3"
                     }}
+                    href="/iot"
                   >
-                    <ButtonLink
-                      onClick={!props.user.user_pay_status ? () => setShow(!show) : undefined}
-                      style={{
-                        position: "relative",
-                        zIndex: "3"
-                      }}
-                      href="/iot"
-                    >
-                      Accéder
-                    </ButtonLink>
-                  </Row>
-                </StyledCard>
-              </Col6>
+                    Accéder
+                  </ButtonLink>
+                </Row>
+              </StyledCard>
+            </Col6>
 
-              <Col6 paddingLeft="1%">
-                <StyledCard style={{ height: "100%" }}>
-                  <TitleCard>FAQ</TitleCard>
-                  <BlackText style={{ textAlign: "justify" }}>
-                    Vous vous posez une question sur notre association?
-                    Sur comment se connecter à notre réseau?
-                    Trouvez toutes vos réponses ici !
-                  </BlackText>
+            <Col6 paddingLeft="1%">
+              <StyledCard style={{ height: "100%" }}>
+                <TitleCard>FAQ</TitleCard>
+                <BlackText style={{ textAlign: "justify" }}>
+                  Vous vous posez une question sur notre association?
+                  Sur comment se connecter à notre réseau?
+                  Trouvez toutes vos réponses ici !
+                </BlackText>
 
-                  <Row
-                    style={{
-                      flex: "1",
-                      justifyContent: "center",
-                      alignItems: "end",
-                      marginTop: "20px",
-                    }}
-                  >
-                    <ButtonLink style={{ position: "relative", zIndex: "3" }} href="/homepage/faq">Accéder</ButtonLink>
-                  </Row>
-                </StyledCard>
-              </Col6>
-            </ResponsiveRow>
-          </Dashboard>
+                <Row
+                  style={{
+                    flex: "1",
+                    justifyContent: "center",
+                    alignItems: "end",
+                    marginTop: "20px",
+                  }}
+                >
+                  <ButtonLink style={{ position: "relative", zIndex: "3" }} href="/homepage/faq">Accéder</ButtonLink>
+                </Row>
+              </StyledCard>
+            </Col6>
+          </ResponsiveRow>
 
           <HelpSection color="#096A09" />
           <Footer />
         </DashboardContainer>
-      </motion.main>
+      </StyledMain>
     </>
   );
 }

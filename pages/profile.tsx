@@ -2,11 +2,11 @@ import React, { useState } from "react";
 import Head from "next/head";
 import { GreenButton } from "../components/Button/Buttons";
 import { HelpSection, Footer } from "../components/Card/Cards";
-import { DashboardContainer, ResponsiveRow, Column, Col6, Col3, Row, Dashboard } from "../components/Container/style";
+import { DashboardContainer, ResponsiveRow, Column, Col6, Col3, StyledMain } from "../components/Container/style";
 import { StyledInputLabel, StyledInput } from "../components/Input/style";
 import UserMenu from "../components/Menu/UserMenu";
 import { StateContribution } from "../components/Status/Status";
-import { BlackTitle, BlackText, GreenText, StyledLink } from "../components/Text/style";
+import { BlackTitle, BlackText, GreenText } from "../components/Text/style";
 import PasswordInput from "../components/Input/PasswordInput";
 import axios, { AxiosResponse } from "axios";
 import useForm from "../components/Input/useForm";
@@ -15,6 +15,7 @@ import { user } from "../components/Utils/types";
 import getToken from "../components/Utils/auth-token";
 import getConfig from "../components/Utils/req-config";
 import Modal from "../components/Card/Modals/Modal";
+import useRoad from "../components/Utils/useRoad";
 
 export async function getServerSideProps({ req }) {
   const { access_token, userId, localNetwork } = getToken(req)
@@ -67,7 +68,7 @@ export default function Profil(props: {
     blurPhone
   } = useForm(props.active_proms, props.usins_state, props.user)
   const [show, setShow] = useState(false);
-
+  const { roadTo, roadVariants } = useRoad('right');
   const editProfil = (elmt) => {
     elmt.preventDefault();
     blurPassword2();
@@ -92,18 +93,19 @@ export default function Profil(props: {
         Votre Profil a été mis à jour
       </Modal>
 
-      <UserMenu
-        page="profil"
-        user={{
-          is_gadz: props.user.user_is_gadz,
-          rank: props.user.user_rank,
-          pay_status: props.user.user_pay_status
-        }}
-        localNetwork={props.localNetwork}
-      />
+      <StyledMain variants={roadVariants}>
+        <UserMenu
+          page="profil"
+          user={{
+            is_gadz: props.user.user_is_gadz,
+            rank: props.user.user_rank,
+            pay_status: props.user.user_pay_status
+          }}
+          localNetwork={props.localNetwork}
+          setTransition={roadTo}
+        />
 
-      <DashboardContainer>
-        <Dashboard style={{ marginBottom: "0" }}>
+        <DashboardContainer exit={roadVariants.exit ? "false" : undefined}>
           <ResponsiveRow margin="1% 0" mobileMargin="20px 0" mobileJustify="center">
             <Column mobileMarginBottom="20px" style={{ justifyContent: "center" }}>
               <BlackTitle>Editer mon Profil</BlackTitle>
@@ -221,7 +223,7 @@ export default function Profil(props: {
 
             <ResponsiveRow
               marginBottom="1%"
-              mobileMarginBottom="10px"
+              mobileMarginBottom="20px"
               style={{ flex: "1", transition: "margin-bottom 0.3s linear", marginTop: "20px" }}
             >
               <Col6 paddingRight="10px"
@@ -251,11 +253,11 @@ export default function Profil(props: {
               </Col6>
             </ResponsiveRow>
           </form>
-        </Dashboard>
 
-        <HelpSection color="#096A09" />
-        <Footer />
-      </DashboardContainer>
+          <HelpSection color="#096A09" />
+          <Footer />
+        </DashboardContainer>
+      </StyledMain>
     </>
   );
 }

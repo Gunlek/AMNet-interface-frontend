@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Head from "next/head";
 import { GreenButton, RedButton } from "../../../components/Button/Buttons";
 import { Footer } from "../../../components/Card/Cards";
-import { DashboardContainer, ResponsiveRow, Col6, Col3, Col, Row, Dashboard } from "../../../components/Container/style";
+import { DashboardContainer, ResponsiveRow, Col6, Col3, Col, Row, StyledMain } from "../../../components/Container/style";
 import { StyledInputLabel, StyledInput } from "../../../components/Input/style";
 import { BlackTitle, BlackText, GreenText } from "../../../components/Text/style";
 import AdminMenu from "../../../components/Menu/AdminMenu";
@@ -16,6 +16,7 @@ import getToken from "../../../components/Utils/auth-token";
 import getConfig from "../../../components/Utils/req-config";
 import Modal from "../../../components/Card/Modals/Modal";
 import { useRouter } from "next/router";
+import useRoad from "../../../components/Utils/useRoad";
 
 export async function getServerSideProps({ req, params }) {
     const { access_token, userId } = getToken(req)
@@ -73,6 +74,7 @@ export default function User(props: {
     } = useForm(props.active_proms, props.usins_state, props.user);
     const [show, setShow] = useState(false);
     const router = useRouter();
+    const { roadTo, roadVariants } = useRoad('left');
 
     useEffect(() => {
         router.prefetch('/admin/users');
@@ -107,14 +109,15 @@ export default function User(props: {
             <Head>
                 <title>Administration &bull; AMNet</title>
             </Head>
-            <AdminMenu />
 
             <Modal show={show} style={{ width: "350px" }}>
                 Le Profil a été mis à jour
             </Modal>
 
-            <DashboardContainer>
-                <Dashboard>
+            <StyledMain variants={roadVariants} >
+                <AdminMenu setTranstion={roadTo} />
+
+                <DashboardContainer exit={roadVariants.exit ? "false" : undefined}>
                     <ResponsiveRow margin="1% 0" mobileMargin="20px 0" mobileJustify="center">
                         <Col mobileMarginBottom="20px" style={{ justifyContent: "center", flex: "1" }}>
                             <BlackTitle>Editer le Profil &bull; {props.user.user_name}</BlackTitle>
@@ -246,7 +249,7 @@ export default function User(props: {
                     {errorMessage.password}
 
                     <ResponsiveRow
-                        marginBottom={form.user_is_gadz ? "0" : "1%"}
+                        marginBottom={form.user_is_gadz ? "0" : "2%"}
                         style={{ flex: "1", transition: "margin-bottom 0.3s linear", marginTop: "20px" }}
                     >
                         <Col6 paddingRight="10px"
@@ -281,10 +284,10 @@ export default function User(props: {
                             <GreenButton width="300px" onClick={editProfil}>Sauvegarder le profil</GreenButton>
                         </ResponsiveRow>
                     </ResponsiveRow>
-                </Dashboard>
-                
-                <Footer marginTop="0" />
-            </DashboardContainer>
+
+                    <Footer marginTop="0" />
+                </DashboardContainer>
+            </StyledMain>
         </>
     );
 }

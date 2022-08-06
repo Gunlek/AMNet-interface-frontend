@@ -3,7 +3,7 @@ import Head from "next/head";
 import { HelpSection, Footer } from "../components/Card/Cards";
 import IoTModal from "../components/Card/Modals/IoTModal";
 import { StyledCard } from "../components/Card/style";
-import { DashboardContainer, ResponsiveRow, Column, Dashboard } from "../components/Container/style";
+import { DashboardContainer, ResponsiveRow, Column, StyledMain } from "../components/Container/style";
 import UserMenu from "../components/Menu/UserMenu";
 import IoTUserTable from "../components/Table/User/IoT";
 import { BlackTitle, BlackP, StyledLink, BlackUl } from "../components/Text/style";
@@ -11,6 +11,7 @@ import axios from "axios";
 import { user, access } from "../components/Utils/types";
 import getToken from "../components/Utils/auth-token";
 import getConfig from "../components/Utils/req-config";
+import useRoad from "../components/Utils/useRoad";
 
 export async function getServerSideProps({ req }) {
   const { access_token, userId, localNetwork } = getToken(req)
@@ -61,24 +62,27 @@ export default function UserIoT(props: {
 }) {
   const [access, setAccess] = useState(props.access)
   const empty = (access.length === 0);
+  const { roadTo, roadVariants } = useRoad('right');
 
   return (
     <>
       <Head>
         <title>Mes demandes &bull; AMNet</title>
       </Head>
-      <UserMenu
-        page="iot"
-        user={{
-          is_gadz: props.user.user_is_gadz,
-          rank: props.user.user_rank,
-          pay_status: props.user.user_pay_status
-        }}
-        localNetwork={props.localNetwork}
-      />
 
-      <DashboardContainer>
-        <Dashboard>
+      <StyledMain variants={roadVariants}>
+        <UserMenu
+          page="iot"
+          user={{
+            is_gadz: props.user.user_is_gadz,
+            rank: props.user.user_rank,
+            pay_status: props.user.user_pay_status
+          }}
+          localNetwork={props.localNetwork}
+          setTransition={roadTo}
+        />
+
+        <DashboardContainer exit={roadVariants.exit ? "false" : undefined}>
           <ResponsiveRow margin="1% 0" mobileMargin="20px 0" style={{ alignItems: "center" }}>
             <Column mobileMarginBottom="20px" style={{ justifyContent: "center" }}>
               <BlackTitle>Mes demandes d&apos;accès à AMNet IoT</BlackTitle>
@@ -96,8 +100,8 @@ export default function UserIoT(props: {
           </ResponsiveRow>
 
           <Column
-            mobileMarginBottom={empty ? "20px" : "30px"}
-            marginBottom={empty ? "0" : "1%"}
+            mobileMarginBottom="30px"
+            marginBottom={empty ? "0" : "2%"}
             style={{ flex: empty ? "1" : undefined }}
           >
             <BlackP mobileMarginBottom="30px" marginBottom="2%">
@@ -126,15 +130,15 @@ export default function UserIoT(props: {
           </Column>
 
           {!empty &&
-            <StyledCard style={{ flex: "1" }} mobileMarginBottom="20px" marginBottom="1%">
+            <StyledCard style={{ flex: "1" }} mobileMarginBottom="30px" marginBottom="2%">
               <IoTUserTable requests={access} setAccess={setAccess} userId={props.user.user_id} />
             </StyledCard>
           }
-        </Dashboard>
 
-        <HelpSection color="#096A09" />
-        <Footer />
-      </DashboardContainer>
+          <HelpSection color="#096A09" />
+          <Footer />
+        </DashboardContainer>
+      </StyledMain>
     </>
   );
 }

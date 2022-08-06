@@ -2,7 +2,7 @@ import React, { useRef, useState } from "react";
 import Head from "next/head";
 import { StyledCard } from "../../components/Card/style";
 import AdminMenu from "../../components/Menu/AdminMenu";
-import { Dashboard, DashboardContainer, Row } from "../../components/Container/style";
+import { DashboardContainer, Row, StyledMain } from "../../components/Container/style";
 import { BlackTitle } from "../../components/Text/style";
 import RequestTab from "../../components/Card/RequestTab";
 import { Footer } from "../../components/Card/Cards";
@@ -13,6 +13,7 @@ import { adminAccess } from "../../components/Utils/types";
 import useTransition from "../../components/Table/Admin/TableTransition";
 import getToken from "../../components/Utils/auth-token";
 import getConfig from "../../components/Utils/req-config";
+import useRoad from "../../components/Utils/useRoad";
 
 export async function getServerSideProps({ req }) {
   const { access_token, userId } = getToken(req)
@@ -50,16 +51,18 @@ export default function AdminIoT(props: { access: adminAccess[] }) {
   const { Display, Opacity, Tab, handleTabChange } = useTransition(mobileContainerRef)
   const minWidth1000 = useMediaQuery('(min-width:1000px)');
   const [access, setAccess] = useState(props.access)
+  const { roadTo, roadVariants } = useRoad('left');
 
   return (
     <>
       <Head>
         <title>Administration &bull; AMNet</title>
       </Head>
-      <AdminMenu page="iot" />
 
-      <DashboardContainer>
-        <Dashboard>
+      <StyledMain variants={roadVariants}>
+        <AdminMenu page="iot" setTranstion={roadTo} />
+
+        <DashboardContainer exit={roadVariants.exit ? "false" : undefined}>
           <Row margin="1% 0" mobileMargin="20px 0" mobileJustify="center">
             <BlackTitle>Demandes d&apos;accès à AMNet IoT</BlackTitle>
           </Row>
@@ -67,7 +70,8 @@ export default function AdminIoT(props: { access: adminAccess[] }) {
           <RequestTab status={Tab.new} TabChange={handleTabChange} />
 
           <StyledCard
-            marginBottom="1%"
+            marginBottom="2%"
+            mobileMarginBottom="10px"
             style={{ flex: "1 0 0", minHeight: minWidth1000 ? "0" : "300px" }}
           >
             <IoTAdminTable
@@ -79,10 +83,10 @@ export default function AdminIoT(props: { access: adminAccess[] }) {
               setTab={setAccess}
             />
           </StyledCard>
-        </Dashboard>
 
-        <Footer marginTop="0" />
-      </DashboardContainer>
+          <Footer marginTop="0" />
+        </DashboardContainer>
+      </StyledMain>
     </>
   );
 }

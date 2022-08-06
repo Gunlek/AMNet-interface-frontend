@@ -3,7 +3,7 @@ import Head from "next/head";
 import { HelpSection, Footer } from "../components/Card/Cards";
 import MaterialModal from "../components/Card/Modals/MaterialModal";
 import { StyledCard } from "../components/Card/style";
-import { DashboardContainer, ResponsiveRow, Column, Dashboard } from "../components/Container/style";
+import { DashboardContainer, ResponsiveRow, Column, StyledMain } from "../components/Container/style";
 import UserMenu from "../components/Menu/UserMenu";
 import MaterialUserTable from "../components/Table/User/Material";
 import { BlackTitle, BlackP } from "../components/Text/style";
@@ -11,6 +11,7 @@ import axios from "axios";
 import { hardware, user } from "../components/Utils/types";
 import getToken from "../components/Utils/auth-token";
 import getConfig from "../components/Utils/req-config";
+import useRoad from "../components/Utils/useRoad";
 
 export async function getServerSideProps({ req }) {
   const { access_token, userId, localNetwork } = getToken(req)
@@ -55,29 +56,32 @@ export async function getServerSideProps({ req }) {
 
 export default function UserMaterial(props: {
   material: hardware[],
-  user: user, 
+  user: user,
   localNetwork: boolean
 }) {
   const [material, setMaterial] = useState(props.material)
   const empty = (material.length === 0);
+  const { roadTo, roadVariants } = useRoad('right');
 
   return (
     <>
       <Head>
         <title>Mes demandes &bull; AMNet</title>
       </Head>
-      <UserMenu
-        page="material"
-        user={{
-          is_gadz: props.user.user_is_gadz,
-          rank: props.user.user_rank,
-          pay_status: props.user.user_pay_status
-        }}
-        localNetwork={props.localNetwork}
-      />
 
-      <DashboardContainer>
-        <Dashboard>
+      <StyledMain variants={roadVariants}>
+        <UserMenu
+          page="material"
+          user={{
+            is_gadz: props.user.user_is_gadz,
+            rank: props.user.user_rank,
+            pay_status: props.user.user_pay_status
+          }}
+          localNetwork={props.localNetwork}
+          setTransition={roadTo}
+        />
+
+        <DashboardContainer exit={roadVariants.exit ? "false" : undefined}>
           <ResponsiveRow margin="1% 0" mobileMargin="20px 0" style={{ alignItems: "center" }}>
             <Column mobileMarginBottom="20px" style={{ justifyContent: "center" }}>
               <BlackTitle>Mes demandes de matériel</BlackTitle>
@@ -95,8 +99,8 @@ export default function UserMaterial(props: {
           </ResponsiveRow>
 
           <Column
-            mobileMarginBottom={empty ? "20px" : "30px"}
-            marginBottom={empty ? "0" : "1%"}
+            mobileMarginBottom="30px"
+            marginBottom={empty ? "0" : "2%"}
             style={{ flex: empty ? "1" : undefined }}
           >
             <BlackP>
@@ -106,15 +110,15 @@ export default function UserMaterial(props: {
           </Column>
 
           {!empty &&
-            <StyledCard style={{ flex: "1" }} mobileMarginBottom="20px" marginBottom="1%">
+            <StyledCard style={{ flex: "1" }} mobileMarginBottom="30px" marginBottom="2%">
               <MaterialUserTable requests={material} setHardware={setMaterial} userId={props.user.user_id} />
             </StyledCard>
           }
-        </Dashboard>
 
-        <HelpSection color="#096A09" />
-        <Footer />
-      </DashboardContainer>
+          <HelpSection color="#096A09" />
+          <Footer />
+        </DashboardContainer>
+      </StyledMain>
     </>
   );
 }

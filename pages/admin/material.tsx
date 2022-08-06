@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 import Head from "next/head";
-import { Row, DashboardContainer, Dashboard } from "../../components/Container/style";
+import { Row, DashboardContainer, StyledMain } from "../../components/Container/style";
 import { StyledCard } from "../../components/Card/style";
 import AdminMenu from "../../components/Menu/AdminMenu";
 import { BlackTitle } from "../../components/Text/style";
@@ -12,6 +12,7 @@ import axios from "axios";
 import useTransition from "../../components/Table/Admin/TableTransition";
 import getConfig from "../../components/Utils/req-config";
 import getToken from "../../components/Utils/auth-token";
+import useRoad from "../../components/Utils/useRoad";
 
 export async function getServerSideProps({ req }) {
   const { access_token, userId } = getToken(req)
@@ -49,16 +50,18 @@ export default function AdminMaterial(props: { hardware }) {
   const mobileContainerRef = useRef(null)
   const { Display, Opacity, Tab, handleTabChange } = useTransition(mobileContainerRef)
   const [hardware, setHardware] = useState(props.hardware)
+  const { roadTo, roadVariants } = useRoad('left');
 
   return (
     <>
       <Head>
         <title>Administration &bull; AMNet</title>
       </Head>
-      <AdminMenu page="material" />
 
-      <DashboardContainer>
-        <Dashboard>
+      <StyledMain variants={roadVariants}>
+        <AdminMenu page="material" setTranstion={roadTo} />
+
+        <DashboardContainer exit={roadVariants.exit ? "false" : undefined}>
           <Row margin="1% 0" mobileMargin="20px 0" mobileJustify="center">
             <BlackTitle>Demandes de matériel </BlackTitle>
           </Row>
@@ -66,7 +69,8 @@ export default function AdminMaterial(props: { hardware }) {
           <RequestTab status={Tab.new} TabChange={handleTabChange} />
 
           <StyledCard
-            marginBottom="1%"
+            marginBottom="2%"
+            mobileMarginBottom="10px"
             style={{ flex: "1 0 0", minHeight: minWidth1000 ? "0" : "300px" }}
           >
             <MaterialAdminTable
@@ -78,10 +82,10 @@ export default function AdminMaterial(props: { hardware }) {
               setTab={setHardware}
             />
           </StyledCard>
-        </Dashboard>
 
-        <Footer marginTop="0" />
-      </DashboardContainer>
+          <Footer marginTop="0" />
+        </DashboardContainer>
+      </StyledMain>
     </>
   );
 }
