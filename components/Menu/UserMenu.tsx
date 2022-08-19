@@ -29,7 +29,8 @@ export default function UserMenu(props: {
     "pay_status": boolean
   },
   localNetwork: boolean,
-  setTransition: Function
+  setTransition: Function,
+  setHomeTransition: Function
 }) {
   const [scroll, scrolled, top] = useScrollingUp()
   const [open, SetOpen] = useState(false);
@@ -59,7 +60,8 @@ export default function UserMenu(props: {
     minHeight: (70 + NumHiddenIcon * 5).toString() + "px",
     justifyContent: "center",
     alignItems: "center",
-    userSelect: "none"
+    userSelect: "none",
+    position: "relative"
   };
 
   return (
@@ -87,11 +89,11 @@ export default function UserMenu(props: {
             <BurgerMenu open={open} onClick={handleChange} />
           </Row>
           <StyledDivLogo>
-            <SmallLogo />
+            <SmallLogo setTransition={props.setHomeTransition} />
           </StyledDivLogo>
 
           <StyledDivLogOut Display="none" mobileDisplay="flex">
-            <LogOutIcon id="1" />
+            <LogOutIcon setTransition={props.setHomeTransition} id="1" />
           </StyledDivLogOut>
 
           <Row style={positionning}>
@@ -142,7 +144,7 @@ export default function UserMenu(props: {
             mobileDisplay="none"
             flex={NumHiddenIcon + 2}
           >
-            <LogOutIcon id="2" />
+            <LogOutIcon id="2" setTransition={props.setHomeTransition}/>
           </StyledDivLogOut>
         </StyledIconContener>
       </StyledMenu>

@@ -70,7 +70,7 @@ export default function Login(props: { modal: boolean, from: string }) {
 
       if (!props.modal) {
         const newVariant = { ...variant };
-        newVariant.exit = { opacity: 1, x: 0, y: 0, backgroundColor: "#E8EFEA" };
+        newVariant.exit = { opacity: 1, x: 0, backgroundColor: "#E8EFEA" };
         setVariant(newVariant);
         setLogin(true);
       }

@@ -29,6 +29,7 @@ import axios from "axios";
 import getToken from "../../components/Utils/auth-token";
 import { motion } from "framer-motion";
 import { variants } from "../../components/Utils/animation-variants";
+import oldURL from "../../components/Utils/oldURL";
 
 export async function getServerSideProps({ req }) {
   const { userId } = getToken(req)
@@ -42,7 +43,8 @@ export async function getServerSideProps({ req }) {
     props: {
       accutalTeam: accutalTeam.data as { pseudo: string, id: string }[],
       promotion: promotion.data as string,
-      isLogged: userId ? true : false
+      isLogged: userId ? true : false,
+      from: oldURL(req)
     }
   }
 }
@@ -50,7 +52,8 @@ export async function getServerSideProps({ req }) {
 export default function Homepage(props: {
   accutalTeam: { pseudo: string, id: string }[],
   promotion: string,
-  isLogged: boolean
+  isLogged: boolean,
+  from: string
 }) {
   return (
     <>
@@ -60,15 +63,26 @@ export default function Homepage(props: {
       <CampusGlobalStyle padding="0 5%" />
 
       <motion.main
-        variants={variants("right", props.isLogged ? "" : "left", props.isLogged ? "#E8EFEA" : null)}
+        variants={variants(
+          (/\/homepage\/\w/).test(props.from) ? "right" : "",
+          props.isLogged ? "" : "left",
+          props.isLogged ? "#E8EFEA" : null,
+          (/\/homepage\/\w/).test(props.from) ? null : "#E8EFEA"
+        )}
         initial="hidden"
         animate="enter"
         exit="exit"
         transition={{ type: 'linear' }}
       >
         <motion.div
-          variants={{ exit: { opacity: 0, x: props.isLogged ? 100 : 0 } }}
+          variants={{
+            exit: { opacity: props.isLogged ? 1 : 0, x: props.isLogged ? -100 : 100 },
+            hidden: { x: (/\/homepage\/\w/).test(props.from) ? null : - 100 },
+            enter: { x: (/\/homepage\/\w/).test(props.from) ? null : 0 },
+          }}
           exit="exit"
+          initial="hidden"
+          animate="enter"
           transition={{ type: 'linear' }}
           style={{ width: "100%", height: "100%", display: "flex", flexDirection: "column" }}
         >

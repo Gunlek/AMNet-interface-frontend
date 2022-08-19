@@ -72,11 +72,16 @@ export default function Index(
 ) {
   const [show, setShow] = useState(false);
   const [roadToAdmin, setRoadToAdmin] = useState(false);
+  const [roadToHomePage, setRoadToHomePage] = useState(false);
 
-  const loginVariants = {
-    hidden: { opacity: 0, x: 100, y: 0 },
-    enter: { opacity: 1, x: 0, y: 0 },
-    exit: roadToAdmin ? { opacity: 0, x: 100, y: 0 } : null
+  const variants = {
+    hidden: { opacity: 0, x: 100 },
+    enter: { opacity: 1, x: 0 },
+    exit: roadToAdmin ? { opacity: 0, x: -100 } : roadToHomePage ? { opacity: 0, x: 100 } : null
+  };
+
+  const roadHomePage = () => {
+    setRoadToHomePage(true);
   };
 
   const roadAdmin = () => {
@@ -99,7 +104,7 @@ export default function Index(
         <StyledLink color="#096A09" href="mailto:contact@amnet.fr">contact@amnet.fr</StyledLink>
       </Modal>
 
-      <StyledMain variants={(props.fromLogin || roadToAdmin) ? loginVariants : undefined}>
+      <StyledMain variants={(props.fromLogin || roadToAdmin) ? variants : undefined}>
         <UserMenu
           page="index"
           user={{
@@ -109,11 +114,12 @@ export default function Index(
           }}
           localNetwork={props.localNetwork}
           setTransition={roadAdmin}
+          setHomeTransition={roadHomePage}
         />
 
         <DashboardContainer
           initial={props.fromLogin ? "false" : undefined}
-          exit={loginVariants.exit ? "false" : undefined}
+          exit={variants.exit ? "false" : undefined}
         >
           <ResponsiveRow margin="1% 0" mobileMargin="20px 0">
             <Row

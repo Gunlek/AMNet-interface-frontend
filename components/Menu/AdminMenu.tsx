@@ -20,7 +20,7 @@ import SmallLogo from "../NavIcons/smallLogo";
 import { motion } from "framer-motion";
 import useMediaQuery from "../MediaQueries/MediaQuery";
 
-export default function AdminMenu(props: { page?: string, setTranstion: Function }) {
+export default function AdminMenu(props: { page?: string, setTranstion: Function, setHomeTransition: Function }) {
   const [scroll, scrolled, top] = useScrollingUp()
   const [open, SetOpen] = useState(false);
   const minWidth1000 = useMediaQuery('(min-width: 1000px)');
@@ -38,7 +38,8 @@ export default function AdminMenu(props: { page?: string, setTranstion: Function
     minHeight: "70px",
     justifyContent: "center",
     alignItems: "center",
-    userSelect: "none"
+    userSelect: "none",
+    position: "relative"
   };
 
   return (
@@ -66,11 +67,11 @@ export default function AdminMenu(props: { page?: string, setTranstion: Function
             <BurgerMenu open={open} onClick={handleChange} />
           </Row>
           <StyledDivLogo>
-            <SmallLogo />
+            <SmallLogo setTransition={props.setHomeTransition} />
           </StyledDivLogo>
 
           <StyledDivLogOut Display="none" mobileDisplay="flex">
-            <LogOutIcon id="1" />
+            <LogOutIcon id="1" setTransition={props.setHomeTransition} />
           </StyledDivLogOut>
 
           <Row style={positionning}>
@@ -102,7 +103,7 @@ export default function AdminMenu(props: { page?: string, setTranstion: Function
             Display="flex"
             mobileDisplay="none"
           >
-            <LogOutIcon id="2" />
+            <LogOutIcon id="2" setTransition={props.setHomeTransition} />
           </StyledDivLogOut>
         </StyledIconContener>
       </StyledMenu>

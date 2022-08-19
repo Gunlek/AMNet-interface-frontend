@@ -114,15 +114,20 @@ export default function Admin(props: {
 
   const [show, setShow] = useState(false);
   const [roadToIndex, setRoadToIndex] = useState(false);
+  const [roadToHomePage, setRoadToHomePage] = useState(false);
 
   const variants = {
-    hidden: { opacity: 0, x: -100, y: 0 },
-    enter: { opacity: 1, x: 0, y: 0 },
-    exit: roadToIndex ? { opacity: 0, x: -100, y: 0 } : null
+    hidden: { opacity: 0, x: 100, y: 0 },
+    enter: { opacity: 1, x: 0},
+    exit: roadToIndex ? { opacity: 0, x: -100 } : roadToHomePage? { opacity: 0, x: 100 }  : null
   };
 
   const roadIndex = () => {
     setRoadToIndex(true);
+  };
+
+  const roadHomePage = () => {
+    setRoadToHomePage(true);
   };
 
   const handleAllCheckboxChange = () => {
@@ -200,7 +205,7 @@ export default function Admin(props: {
       </Head>
 
       <StyledMain variants={props.fromIndex || roadToIndex ? variants : undefined}>
-        <AdminMenu page="admin" setTranstion={roadIndex} />
+        <AdminMenu page="admin" setTranstion={roadIndex} setHomeTransition={roadHomePage} />
 
         <DashboardContainer initial={props.fromIndex ? "false" : undefined} exit={variants.exit ? "false" : undefined}>
 
