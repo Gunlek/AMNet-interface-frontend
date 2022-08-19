@@ -1,0 +1,96 @@
+import axios, { AxiosResponse } from "axios"
+import { useEffect, useState } from "react"
+import { GreenButton } from "../../Button/Buttons"
+import { Row } from "../../Container/style"
+import { StyledInputLabel, StyledInput, StyledTextArea } from "../../Input/style"
+import useMediaQuery from "../../MediaQueries/MediaQuery"
+import { ErrorP } from "../../Text/style"
+import { TitleCard } from "../Cards"
+import { ModalLogic } from "./ModalLogic"
+import { StyledBackgroundModal, StyledModal } from "./style"
+
+export default function MaterialModal(props: { setHardware: Function, userId: Number }) {
+    const minWidth1000 = useMediaQuery('(min-width: 1000px)');
+    const { Display, Opacity, toggle } = ModalLogic();
+
+    const [form, setForm] = useState({
+        material_description: "",
+        material_reason: "",
+        material_user: props.userId
+    });
+
+    const [error, setError] = useState({ material_description: false, material_reason: false });
+
+    const handleFormChange = (elmt) => {
+        const newForm = { ...form };
+        newForm[elmt.currentTarget.id] = elmt.target.value;
+        setForm(newForm);
+    };
+
+
+    const SendReq = async (e) => {
+        e.preventDefault();
+        const newError = { material_description: form.material_description === "", material_reason: form.material_reason === "" };
+        setError(newError);
+
+        if (!newError.material_description && !newError.material_reason) {
+            await axios.post(`/access`, form)
+                .then(async (res: AxiosResponse) => {
+                    if (res.status === 200) {
+                        const access = await axios.get(`/hardware/user/${props.userId}`);
+                        props.setHardware(access.data);
+                        toggle();
+                    }
+                })
+        }
+    };
+
+    return (
+        <>
+            <GreenButton width="280px" onClick={toggle}>Nouvelle demande</GreenButton>
+            {Display &&
+                <>
+                    <StyledBackgroundModal onClick={toggle} Opacity={Opacity} />
+                    <StyledModal width={minWidth1000 ? "800px" : undefined} Opacity={Opacity}>
+                        <TitleCard>Demande de matériel</TitleCard>
+                        <form onSubmit={SendReq} style={{ width: "100%" }}>
+                            <div style={{ marginBottom: "20px", width: "100%", position: "relative" }}>
+                                <StyledInputLabel htmlFor="material_description">Description</StyledInputLabel>
+                                <StyledInput
+                                    border="2px solid rgba(0, 159, 0, 0.15)"
+                                    id="material_description"
+                                    placeholder="Par exemple: 1 écran"
+                                    onChange={handleFormChange}
+                                />
+                                {error.material_description &&
+                                    <ErrorP Fixed={true}>
+                                        La description est obligatoire
+                                    </ErrorP>
+                                }
+                            </div>
+
+                            <div style={{ marginBottom: "30px", width: "100%", position: "relative" }}>
+                                <StyledInputLabel htmlFor="material_reason">Détails</StyledInputLabel>
+                                <StyledTextArea
+                                    border="2px solid rgba(0, 159, 0, 0.15)"
+                                    id="material_reason"
+                                    placeholder="Par exemple: Je souhaite avoir un second écran pour faire de la CAO"
+                                    onChange={handleFormChange}
+                                />
+                                {error.material_description &&
+                                    <ErrorP Fixed={true}>
+                                        La raison est obligatoire pour comprendre au mieux votre besoin
+                                    </ErrorP>
+                                }
+                            </div>
+
+                            <Row style={{ justifyContent: "center" }}>
+                                <GreenButton type="submit" width="350px">Envoyer la demande</GreenButton>
+                            </Row>
+                        </form>
+                    </StyledModal>
+                </>
+            }
+        </>
+    )
+}

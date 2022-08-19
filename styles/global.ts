@@ -3,11 +3,6 @@ import { createGlobalStyle } from "styled-components";
 export const GlobalStyle = createGlobalStyle`
     *{
         scrollbar-width: thin;
-        scrollbar-color: #C4C4C4 #E8EFEA;
-        -moz-user-select: none; /* Firefox */
-        -webkit-user-select: none; /* Chrome, Safari, Opéra depuis la version 15 */
-        -ms-user-select: none; /* Internet explorer depuis la version 10 et Edge */
-        user-select: none; /* Propriété standard */
         font-family: "Poppins", sans-serif;
         box-sizing: border-box;
     }
@@ -17,23 +12,27 @@ export const GlobalStyle = createGlobalStyle`
         padding: 0;
         margin: 0;
         background-color: #E8EFEA;
+
+        @media screen and (max-width: 1000px){
+            font-size:13px;
+            padding: 0;
+        }
     }
 
     body{
         min-height: 100vh;
-        padding: 0 2%;
         display: flex;
-    }
+        background-image: none;
 
-    input[type="text"], textarea, td, a{
-        -moz-user-select: text; /* Firefox */
-        -webkit-user-select: text; /* Chrome, Safari, Opéra depuis la version 15 */
-        -ms-user-select: text; /* Internet explorer depuis la version 10 et Edge */
-        user-select: text; /* Propriété standard */
+        @media screen and (max-width: 1000px){
+            &::before{
+                content: none;
+            }
+        }
     }
 
     ::selection{
-        background-color: #2E8A21;
+        background-color: #287c1d;
         color: white;
     }
 
@@ -51,14 +50,18 @@ export const GlobalStyle = createGlobalStyle`
 
     #__next{
         display: flex;
-        flex-Direction: column;
+        flex-Direction: row;
         width: 100%;
+        padding-left: 2%;
         min-height: 100vh;
     }
 
     a {
         color: inherit;
         text-decoration: none;
+        border: transparent;
+        -webkit-tap-highlight-color: transparent;
+        outline: none !important;
     }
 
     ::-webkit-scrollbar {
@@ -76,13 +79,21 @@ export const GlobalStyle = createGlobalStyle`
     ::-webkit-scrollbar-thumb {
         -webkit-border-radius: 5px;
         border-radius: 5px;
-        background: #c4c4c4;
+        background-color: #c4c4c4;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+        background-color: #797979;
     }
 
     @media screen and (max-width: 1000px){
         html, 
         body{
             font-size:13px;
+            padding: 0;
+        }
+
+        #__next{
             padding: 0;
         }
     }

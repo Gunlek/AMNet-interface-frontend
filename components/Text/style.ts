@@ -3,6 +3,11 @@ import styled from "styled-components";
 export const WhiteText = styled.div`
   color: white;
   font-size: 1.2rem;
+
+  @media screen and (max-width: 1000px){
+    margin-bottom: ${(props) => props.mobileMarginBottom};
+    text-align: ${(props) => props.mobileAlignTxt};
+  }
 `;
 
 export const GreenText = styled(WhiteText)`
@@ -12,6 +17,18 @@ export const GreenText = styled(WhiteText)`
 export const BlackText = styled(WhiteText)`
   color: black;
 `;
+
+export const NewsMessage = styled(BlackText)`
+  a{
+    color: #096a09;
+    transition: color 0.3s;
+
+    &:hover{
+      color: #67bc45 !important;
+      cursor: pointer;
+    }
+  }
+`
 
 export const BlackTitle = styled.h1`
   margin: 0;
@@ -49,11 +66,28 @@ export const WhiteP = styled.p`
 
   @media screen and (max-width: 1000px){
     margin-bottom: ${(props) => props.mobileMarginBottom};
+    text-align: ${(props) => props.mobileAlignTxt};
   } 
 `;
 
 export const BlackP = styled(WhiteP)`
   color: black;
+`
+
+export const ErrorP = styled(WhiteP)`
+  color: red;
+  font-size: 1rem;
+  text-align: center;
+  width: 100%;
+  margin-top: ${(props) => !props.Fixed && "5px"};
+  position: ${(props) => props.Fixed && "absolute"};
+  bottom:  ${(props) => props.Fixed && "-27px"};
+  left: ${(props) => props.Fixed && "50%"};
+  transform: ${(props) => props.Fixed && "translateX(-50%)"};
+
+  @media screen and (max-width: 1000px){
+    bottom:  ${(props) => props.Fixed && "-22px"};
+  } 
 `
 
 export const BlackUl = styled.ul`
@@ -84,14 +118,5 @@ export const StyledLink = styled.a`
   &:hover{
     color: ${(props) => props.hovercolor || "#67bc45"};
     cursor: pointer;
-  }
-`;
-
-export const StyledLinkButton = styled.a`
-  @media screen and (max-width: 420px){
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
   }
 `;

@@ -5,8 +5,8 @@ import IndexIcon from "../NavIcons";
 import LogOutIcon from "../NavIcons/log_out";
 import MaterialIcon from "../NavIcons/material";
 import IoTIcon from "../NavIcons/iot";
-import ProfilIcon from "../NavIcons/profil";
-import SettingsIcon from "../NavIcons/settings";
+import ProfileIcon from "../NavIcons/profile";
+import AdminIcon from "../NavIcons/admin";
 import BurgerMenu from "../NavIcons/burgermenu";
 import { useEffect, useState } from "react";
 import useScrollingUp from "./scroll";
@@ -14,165 +14,140 @@ import {
   MenuContener,
   StyledDivLogo,
   StyledDivLogOut,
-  StyledMenu,
+  StyledIconContener,
+  StyledMenu
 } from "./style";
-import { MediaContextProvider, Media } from "../MediaQueries/MediaSSR";
+import SmallLogo from "../NavIcons/smallLogo";
+import useMediaQuery from "../MediaQueries/MediaQuery";
+import { motion } from "framer-motion";
 
-export default function UserMenu(props: { page: string }) {
-  const [scroll, scrolled, top] = useScrollingUp();
+export default function UserMenu(props: {
+  page: string,
+  user: {
+    "is_gadz": boolean,
+    "rank": string,
+    "pay_status": boolean
+  },
+  localNetwork: boolean,
+  setTransition: Function,
+  setHomeTransition: Function
+}) {
+  const [scroll, scrolled, top] = useScrollingUp()
   const [open, SetOpen] = useState(false);
+  const isGadz = props.user.pay_status ? props.user.is_gadz : false;
+  const isAdmin = props.user.rank === "admin";
+  const inactiveFaq = (process.env.NEXT_PUBLIC_FAQ_STATE === 'inactive');
+  const minWidth1000 = useMediaQuery('(min-width: 1000px)');
+
+  let NumHiddenIcon = 0;
+  if (!isGadz) NumHiddenIcon++;
+  if (props.user.rank === "user") NumHiddenIcon++;
+  if (!props.user.pay_status) NumHiddenIcon = NumHiddenIcon + 2;
+  if (inactiveFaq) NumHiddenIcon++;
+
+  const mobileHeight = (Math.ceil((7 - NumHiddenIcon) / 3) * 95 + 95).toString()
 
   function handleChange() {
     SetOpen(!open);
   }
 
   useEffect(() => {
-    if (!scrolled) if (open) handleChange();
-  }, [scrolled]);
+    if (!scrolled) if (open) setTimeout(() => { SetOpen(!open); }, 525);
+  }, [scrolled, open])
 
   const positionning = {
     flex: "1",
-    minHeight: "70px",
+    minHeight: (70 + NumHiddenIcon * 5).toString() + "px",
     justifyContent: "center",
     alignItems: "center",
+    userSelect: "none",
+    position: "relative"
   };
 
   return (
-    <MediaContextProvider>
-      <Media at="sm">
-        <MenuContener
-          timeTransform={open ? "0.6s" : "0.3s"}
-          top={top}
-          scroll={scroll}
-          sticky={scrolled}
-        >
-          <StyledMenu>
-            <Row
-              style={{
-                flex: "1",
-                margin: "5px 0",
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-            >
-              <BurgerMenu open={open} onClick={handleChange} />
-            </Row>
+    <MenuContener
+      id="menu"
+      timeTransform={open ? "0.5s" : "0.3s"}
+      top={top}
+      scroll={scroll}
+      sticky={scrolled}
+      Shadow={top || scrolled}
+    >
+      <StyledMenu
+        as={motion.div}
+        variants={minWidth1000 ? undefined : { exit: { height: "95px" } }}
+        exit="exit"
+        transition={{ type: 'linear' }}
+      >
+        <StyledIconContener as="nav" maxHeight={(690 - NumHiddenIcon * 70).toString() + "px"} mobileHeight={open ? mobileHeight : "95"}>
+          <Row
+            Display="none"
+            mobileDisplay="flex"
+            justify="center"
+            align="center"
+          >
+            <BurgerMenu open={open} onClick={handleChange} />
+          </Row>
+          <StyledDivLogo>
+            <SmallLogo setTransition={props.setHomeTransition} />
+          </StyledDivLogo>
 
-            <StyledDivLogo>
-              <a
-                href="../"
-                style={{ display: "flex", justifyContent: "center" }}
-              >
-                <img
-                  style={{ width: "75px", height: "75px" }}
-                  src="/static/logo/small_logo.svg"
-                />
-              </a>
-            </StyledDivLogo>
+          <StyledDivLogOut Display="none" mobileDisplay="flex">
+            <LogOutIcon setTransition={props.setHomeTransition} id="1" />
+          </StyledDivLogOut>
 
-            <StyledDivLogOut>
-              <LogOutIcon />
-            </StyledDivLogOut>
+          <Row style={positionning}>
+            <IndexIcon page={props.page} />
+          </Row>
 
-            <div
-              style={{
-                display: "grid",
-                gridTemplateColumns: "1fr 1fr 1fr",
-                gridAutoRows: "95px",
-                gridColumnStart: "1",
-                gridColumnEnd: "4",
-                height: open ? "295px" : "0",
-                overflow: "hidden",
-                transition: "height 0.3s linear, padding-bottom 0.3s linear",
-                paddingBottom: open ? "10px" : "0",
-              }}
-            >
+          <Row style={positionning}>
+            <ProfileIcon page={props.page} />
+          </Row>
+
+          {props.user.pay_status ?
+            <>
               <Row style={positionning}>
-                <IndexIcon page={props.page} />
+                <IoTIcon page={props.page} />
               </Row>
 
               <Row style={positionning}>
-                <ProfilIcon page={props.page} />
+                <MaterialIcon page={props.page} />
               </Row>
+            </>
+            :
+            undefined
+          }
 
-              <Row style={positionning}>
-                <IoTIcon page={props.page} location="dashboard" />
-              </Row>
-
-              <Row style={positionning}>
-                <MaterialIcon page={props.page} location="dashboard" />
-              </Row>
-
-              <Row style={positionning}>
-                <GadzflixIcon />
-              </Row>
-
-              <Row style={positionning}>
-                <FAQIcon page={props.page} />
-              </Row>
-
-              <Row style={positionning}>
-                <SettingsIcon page={props.page} />
-              </Row>
-            </div>
-          </StyledMenu>
-        </MenuContener>
-      </Media>
-
-      <Media greaterThan="sm">
-        <MenuContener
-          timeTransform="0.3s"
-          top={top}
-          scroll={scroll}
-          sticky={scrolled}
-        >
-          <StyledMenu>
-            <StyledDivLogo>
-              <a
-                href="../"
-                style={{ display: "flex", justifyContent: "center" }}
-              >
-                <img
-                  style={{ width: "75px", height: "75px" }}
-                  src="/static/logo/small_logo.svg"
-                />
-              </a>
-            </StyledDivLogo>
-
+          {isGadz ?
             <Row style={positionning}>
-              <IndexIcon page={props.page} />
+              <GadzflixIcon localNetwork={props.localNetwork} />
             </Row>
+            :
+            undefined
+          }
 
+          {!inactiveFaq &&
             <Row style={positionning}>
-              <ProfilIcon page={props.page} />
+              <FAQIcon />
             </Row>
+          }
 
+
+          {isAdmin &&
             <Row style={positionning}>
-              <IoTIcon page={props.page} location="dashboard" />
+              <AdminIcon page={props.page} setTransition={props.setTransition}/>
             </Row>
+          }
 
-            <Row style={positionning}>
-              <MaterialIcon page={props.page} location="dashboard" />
-            </Row>
-
-            <Row style={positionning}>
-              <GadzflixIcon />
-            </Row>
-
-            <Row style={positionning}>
-              <FAQIcon page={props.page} />
-            </Row>
-
-            <Row style={positionning}>
-              <SettingsIcon page={props.page} />
-            </Row>
-
-            <StyledDivLogOut>
-              <LogOutIcon />
-            </StyledDivLogOut>
-          </StyledMenu>
-        </MenuContener>
-      </Media>
-    </MediaContextProvider>
-  );
+          <StyledDivLogOut
+            Display="flex"
+            mobileDisplay="none"
+            flex={NumHiddenIcon + 2}
+          >
+            <LogOutIcon id="2" setTransition={props.setHomeTransition}/>
+          </StyledDivLogOut>
+        </StyledIconContener>
+      </StyledMenu>
+    </MenuContener >
+  )
 }

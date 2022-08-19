@@ -26,6 +26,7 @@ const StyledCheckbox = styled.div`
     height: 25px;
     border-radius: 50%;
     border: solid #096A09 2px;
+    transition: box-shadow 0.2s;
 
     &::before{
         width: 15px;
@@ -37,7 +38,7 @@ const StyledCheckbox = styled.div`
         border-radius: 50%;   
     }
 
-    &:hover{
+    label:hover &, &:hover{
         box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
     }
 `

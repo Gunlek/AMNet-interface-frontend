@@ -1,13 +1,24 @@
 import styled from "styled-components";
+import { motion } from "framer-motion";
+
+const variants = {
+  hidden: { opacity: 0, x: 0, y: 100 },
+  enter: { opacity: 1, x: 0, y: 0 },
+  exit: { opacity: 0, x: 0, y: -100 },
+};
 
 export const Column = styled.div`
   display: flex;
   flex-direction: column;
-  width: 100%;
+  width: ${(props) => props.width || "100%"};
   margin: ${(props) => props.margin};
   margin-bottom: ${(props) => props.marginBottom};
   justify-content: ${(props) => props.justify};
   align-items: ${(props) => props.align};
+  display: ${(props) => props.Display};
+  padding-left: ${(props) => props.paddingLeft};
+  padding-bottom: ${(props) => props.paddingBottom};
+  height: ${(props) => props.Height};
 
   @media screen and (max-width: 1000px) {
     width: ${(props) => props.mobileWidth};
@@ -15,6 +26,13 @@ export const Column = styled.div`
     margin-bottom: ${(props) => props.mobileMarginBottom};
     justify-content: ${(props) => props.mobileJustify};
     align-items: ${(props) => props.mobileAlign};
+    padding-left: 0;
+    padding-bottom: 0;
+    height: ${(props) => props.MobileHeight};
+  }
+
+  @media screen and (max-width: 800px){
+    display: ${(props) => props.mobileDisplay};
   }
 `;
 
@@ -32,9 +50,9 @@ export const Row = styled(Column)`
 `;
 
 export const ResponsiveRow = styled(Row)`
-  @media screen and (max-width: 1000px) {
-    flex-direction: column;
-  }
+  @media screen and (max-width: 1000px){
+    flex-direction: ${(props) => props.direction || "column"};
+  } 
 `;
 
 export const Col = styled.div`
@@ -57,6 +75,7 @@ export const Col = styled.div`
     margin-bottom: ${(props) => props.mobileMarginBottom};
     justify-content: ${(props) => props.mobileJustify};
     align-items: ${(props) => props.mobileAlign};
+    flex: ${(props) => props.mobileFlex};
   }
 `;
 
@@ -164,30 +183,53 @@ export const Col1 = styled(Col)`
   }
 `;
 
-export const DashboardContainer = styled.div`
-  padding-left: 2%;
-  width: calc(100% - 85px);
+export const DashboardContainer = styled.div.attrs((props) => ({
+  as: motion.div,
+  variants: variants,
+  initial: props.initial || "hidden",
+  animate: "enter",
+  exit: props.exit || "exit",
+  transition: { type: 'linear' }
+}))`
+  padding: 0 2%; 
+  padding-top: 1%;
+  margin-left: 85px;
+  height: 100%;
   display: flex;
   flex-direction: column;
-  margin-left: 85px;
-  margin-top: 1%;
   flex: 1;
-
-  @media screen and (max-width: 1000px) {
+  max-width: fill-available;
+  
+  @media screen and (max-width: 1000px){
     width: 100%;
     margin-left: 0;
-    padding-left: 0;
     margin-top: 95px;
-    padding: 0 5% 2.5%;
+    height: auto;
+    max-width: none;
+    padding: 0 5%;
   }
+
+  @media screen and (max-width: 1000px ) and (min-width: 801px){
+    margin-top: 112.5px;
+  }
+`;
+
+export const StyledMain = styled.main.attrs((props) => ({
+  as: motion.main,
+  variants: props.variants,
+  initial: "hidden",
+  animate: "enter",
+  exit: "exit",
+  transition: { type: 'linear' }
+}))`
+  display: flex;
+  flex: 1;
+  height: 100%;
 `;
 
 export const CheckboxRow = styled(Row)`
   display: grid;
-  grid-template-columns: repeat(
-    auto-fill,
-    minmax(${(props) => props.width || "125px"}, 1fr)
-  );
+  grid-template-columns: repeat(auto-fill,minmax(${(props) => props.colWidth || "125px"}, 1fr));
   align-items: center;
   gap: 15px 0;
   margin-bottom: ${(props) => props.marginBottom};
@@ -195,5 +237,34 @@ export const CheckboxRow = styled(Row)`
   @media screen and (max-width: 1000px) {
     justify-items: ${(props) => props.justify};
     margin-bottom: ${(props) => props.mobileMarginBottom};
-  }
+    grid-template-columns: repeat(auto-fill,minmax(${(props) => props.mobileColWidth}, 1fr));
+  } 
+`;
+
+export const ButtonsRow = styled(Row)`
+  display: grid;
+  grid-Template-Columns: repeat(auto-fill,minmax(425px, 1fr));
+  grid-Auto-Rows: 70px;
+  border: none;
+  justify-items: center;
+  align-items: center;
+  gap: 20px 0;
+
+  @media screen and (max-width: 1700px){
+    grid-Template-Columns: repeat(auto-fill,minmax(300px, 1fr))
+  } 
+`;
+
+export const MinecraftContainer = styled.div`
+   position: relative; 
+   width: 90%; 
+   height: 90%;
+   display: flex;
+   align-items: center;
+   
+   @media screen and (max-width: 1000px){
+    height: 130px;
+    width: 130px;
+    margin-top: 20px;
+  } 
 `;

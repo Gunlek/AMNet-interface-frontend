@@ -1,160 +1,220 @@
-import React from "react";
+import React, { useState } from "react";
 import Head from "next/head";
-import { CampusGlobalStyle } from "../components/Background/style";
-import { GreenButton } from "../components/Button/Buttons";
-import { HelpSection, TitleCard } from "../components/Card/Cards";
-import {
-  Col10,
-  Col2,
-  Col5,
-  Col6,
-  Col7,
-  ResponsiveRow,
-  Row,
-} from "../components/Container/style";
-import { StyledCardCampus, StyledMinImg } from "../components/Card/style";
-import {
-  WhiteP,
-  BlackP,
-  BlackText,
-  StyledLink,
-} from "../components/Text/style";
-import useMediaQuery from "../components/MediaQueries/MediaQuery";
-import RectangleLogo from "../components/Card/RectangleLogo";
-import TeamPicture from "../components/Card/TeamPicture";
-import GitHub from "../components/NavIcons/github";
+import { ButtonLink } from "../components/Button/Buttons";
+import { TitleCard, HelpSection, Footer } from "../components/Card/Cards";
+import { StyledCard } from "../components/Card/style";
+import { DashboardContainer, ResponsiveRow, Column, Col6, Row, StyledMain } from "../components/Container/style";
+import UserMenu from "../components/Menu/UserMenu";
+import { AdminNotifications, StateContribution } from "../components/Status/Status";
+import { BlackTitle, BlackText, NewsMessage, StyledLink } from "../components/Text/style";
+import axios from 'axios';
+import { user } from "../components/Utils/types";
+import Modal from "../components/Card/Modals/Modal";
+import getToken from "../components/Utils/auth-token";
+import getConfig from "../components/Utils/req-config";
+import DOMPurify from 'isomorphic-dompurify';
+import oldURL from "../components/Utils/oldURL";
 
-const accutalTeam = [
-  {
-    pseudo: "Trobotyk'ss (ML)°",
-    id: "47Li220",
-  },
-  {
-    pseudo: "Sdoosh",
-    id: "96Li220",
-  },
-  {
-    pseudo: "Nem'O",
-    id: "74Li220",
-  },
-];
-export default function Homepage() {
-  const minWidth1000 = useMediaQuery("(min-width:1000px)");
-  const minWidth500 = useMediaQuery("(min-width:500px)");
+export async function getServerSideProps({ req, query }) {
+  const { access_token, userId, localNetwork } = getToken(req);
+
+  if (access_token) {
+    const config = getConfig(access_token);
+    const [user, news_message] = await Promise.all([
+      axios.get(`${process.env.NEXT_PUBLIC_API_HOST}/user/${userId}`, config),
+      axios.get(`${process.env.NEXT_PUBLIC_API_HOST}/settings/news_message`)
+    ]);
+
+    const props = {
+      props: {
+        news_message: news_message.data,
+        user: user.data,
+        payment_err: query.payment_err === "1",
+        fromLogin: (/\/homepage(\/\w*)?/).test(oldURL(req)) || (/\/admin(\/\w*)?/).test(oldURL(req)),
+        localNetwork: localNetwork
+      }
+    }
+
+    if (user.data.user_rank === 'admin') {
+      const [
+        access_quantity,
+        material_quantity
+      ] = await Promise.all([
+        axios.get(`${process.env.NEXT_PUBLIC_API_HOST}/access/quantity`, config),
+        axios.get(`${process.env.NEXT_PUBLIC_API_HOST}/hardware/quantity`, config)
+      ]);
+
+      props.props['access_quantity'] = access_quantity.data;
+      props.props['material_quantity'] = material_quantity.data;
+    }
+
+    return props
+  }
+
+  return {
+    redirect: {
+      destination: '/homepage',
+      permanent: false
+    },
+  }
+}
+
+export default function Index(
+  props: {
+    news_message: string,
+    access_quantity?: number,
+    material_quantity?: number,
+    localNetwork: boolean,
+    user?: user,
+    payment_err?: boolean,
+    fromLogin?: boolean
+  }
+) {
+  const [show, setShow] = useState(false);
+  const [roadToAdmin, setRoadToAdmin] = useState(false);
+  const [roadToHomePage, setRoadToHomePage] = useState(false);
+
+  const variants = {
+    hidden: { opacity: 0, x: 100 },
+    enter: { opacity: 1, x: 0 },
+    exit: roadToAdmin ? { opacity: 0, x: -100 } : roadToHomePage ? { opacity: 0, x: 100 } : null
+  };
+
+  const roadHomePage = () => {
+    setRoadToHomePage(true);
+  };
+
+  const roadAdmin = () => {
+    setRoadToAdmin(true);
+  };
 
   return (
     <>
       <Head>
-        <title>Accueil &bull; AMNet</title>
+        <title>Mon Espace &bull; AMNet</title>
       </Head>
-      <CampusGlobalStyle padding="0 5%" />
 
-      <Row margin="20px 0" mobileMargin="30px 0" direction="column">
-        <Col6 mobileMarginBottom="30px" justify="center" mobileAlign="center">
-          <RectangleLogo color="white" />
-        </Col6>
-        <Col6 align="end" mobileAlign="center" justify="center">
-          <a href="./login" style={{ borderRadius: "30px" }}>
-            <GreenButton width="300px">Se Connecter / S'inscrire</GreenButton>
-          </a>
-        </Col6>
-      </Row>
+      <Modal show={show} style={{ width: "450px", textAlign: "center" }}>
+        Vous devez avoir payé votre cotisation <br />Pour accéder à cette page
+      </Modal>
 
-      <ResponsiveRow
-        marginBottom="20px"
-        mobileMarginBottom="30px"
-        style={{ flex: "2" }}
-      >
-        <Col7
-          paddingRight="15px"
-          mobileMarginBottom="30px"
-          style={{
-            paddingTop: "0px",
-            justifyContent: "space-between",
+      <Modal show={props.payment_err} style={{ width: "600px", textAlign: "center" }}>
+        Le paiement de votre cotisation n&apos;a pas pu aboutir <br />
+        Si cela venait à se reproduire, merci de contacter  <br />
+        <StyledLink color="#096A09" href="mailto:contact@amnet.fr">contact@amnet.fr</StyledLink>
+      </Modal>
+
+      <StyledMain variants={(props.fromLogin || roadToAdmin) ? variants : undefined}>
+        <UserMenu
+          page="index"
+          user={{
+            is_gadz: props.user.user_is_gadz,
+            rank: props.user.user_rank,
+            pay_status: props.user.user_pay_status
           }}
+          localNetwork={props.localNetwork}
+          setTransition={roadAdmin}
+          setHomeTransition={roadHomePage}
+        />
+
+        <DashboardContainer
+          initial={props.fromLogin ? "false" : undefined}
+          exit={variants.exit ? "false" : undefined}
         >
-          <div style={{ marginBottom: "30px" }}>
-            <WhiteP style={{ marginBottom: "1.2rem" }}>
-              <span style={{ paddingLeft: "4rem" }}>L’AMNet</span> est une
-              association gérée par les étudiants qui a pour but d’administrer
-              le réseau internet de la résidence Jacques Pagliero des Arts et
-              Métiers du campus de Lille. Elle est totalement indépendante de
-              l’administration de la résidence ou de l’école.
-            </WhiteP>
-            <WhiteP>
-              <span style={{ paddingLeft: "4rem" }}>Votre</span> cotisation sert
-              à améliorer l’installation ainsi qu’à payer les abonnements
-              Internet. Chaque année, 80% des cotisations est utilisé
-              directement et les 20% restants servent à créer une trésorerie
-              pour des investissements futurs.
-            </WhiteP>
-          </div>
-
-          <StyledCardCampus>
-            <ResponsiveRow>
-              <Col2
-                style={{
-                  alignItems: "center",
-                  justifyContent: "center",
-                }}
-              >
-                <StyledMinImg
-                  src="/static/logo/mc_logo.png"
-                  alt="Logo Minecraft"
-                />
-              </Col2>
-
-              <Col10 style={{ marginLeft: "2%" }}>
-                <TitleCard>Serveur Minecraft</TitleCard>
-                <BlackP style={{ marginBottom: "1.2rem" }}>
-                  En plus de fournir un accès internet aux résidents nous
-                  offrons une multitude de services, un serveur Minecraft :{" "}
-                  <span style={{ color: "#096A09", userSelect: "text" }}>
-                    minecraft.amnet.fr
-                  </span>{" "}
-                  et d'autres que nous vous laisserons découvrir un jour ...
-                </BlackP>
-                <BlackP>
-                  Si vous avez des idées de services que nous pourrions proposer
-                  hésitez pas à nous{" "}
-                  <StyledLink color="#096A09" href="mailto:contact@amnet.fr">
-                    contacter
-                  </StyledLink>{" "}
-                  !
-                </BlackP>
-              </Col10>
-            </ResponsiveRow>
-          </StyledCardCampus>
-        </Col7>
-
-        <Col5 marginLeft="15px" style={{ justifyContent: "space-between" }}>
-          <TeamPicture Team={accutalTeam} />
-
-          <StyledCardCampus style={{ marginTop: "30px" }}>
-            <TitleCard>A propos</TitleCard>
-            <Row style={{ marginBottom: "1.2rem" }}>
-              <BlackP
-                style={{
-                  textAlign: minWidth1000 ? undefined : "center",
-                  marginRight: "20px",
-                }}
-              >
-                Projet développé et maintenu par Hard Win'∫ 58Li218, Squall'∫
-                4Li218 et Mac Nhat'∫ 47-102Li219 &bull; Version 2.0.1
-              </BlackP>
-              <GitHub height="30px" margin="0" />
+          <ResponsiveRow margin="1% 0" mobileMargin="20px 0">
+            <Row
+              mobileMarginBottom="20px"
+              justify="space-between"
+              mobileJustify="space-around"
+              style={{ flex: "1", alignItems: "center" }}
+            >
+              <BlackTitle>Mon Espace AMNet</BlackTitle>
             </Row>
-            <BlackText style={{ textAlign: "right" }}>
-              Design et UI pensés avec l'aide de Cou'∫
-              <span style={{ marginLeft: "1.5px" }}>'</span>tal 141Li219
-            </BlackText>
-          </StyledCardCampus>
-        </Col5>
-      </ResponsiveRow>
 
-      <Row style={{ flex: "1", alignItems: "end" }}>
-        <HelpSection mobileMarginBottom="30px" marginBottom="20px" />
-      </Row>
+            <Row align="center" style={{ justifyContent: "center", width: "auto" }}>
+              {props.user.user_rank === "admin" ?
+                <AdminNotifications
+                  notifNumber={props.access_quantity + props.material_quantity}
+                  access_quantity={props.access_quantity}
+                  material_quantity={props.material_quantity}
+                />
+                :
+                undefined
+              }
+              <StateContribution
+                status={props.user.user_pay_status ? "paid" : "unpaid"}
+                userId={props.user.user_id}
+              />
+            </Row>
+          </ResponsiveRow>
+
+          <StyledCard marginBottom="2%" mobileMarginBottom="30px" style={{ flex: "3" }}>
+            <TitleCard>Actualité AMNet</TitleCard>
+            <NewsMessage
+              style={{ textAlign: "justify" }}
+              dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(props.news_message || "") }}
+            />
+          </StyledCard>
+
+          <ResponsiveRow marginBottom="2%" mobileMarginBottom="30px" style={{ flex: "6" }}>
+            <Col6 paddingRight="1%" mobileMarginBottom="30px">
+              <StyledCard style={{ height: "100%" }}>
+                <TitleCard>Objets connectés</TitleCard>
+                <BlackText style={{ textAlign: "justify" }}>
+                  Faites vos demandes d&apos;ajouts spécifiques
+                  (Objets connectés (IoT), consoles, etc...)
+                  depuis cette page
+                </BlackText>
+
+                <Row
+                  style={{
+                    flex: "1",
+                    justifyContent: "center",
+                    alignItems: "end",
+                    marginTop: "20px",
+                  }}
+                >
+                  <ButtonLink
+                    onClick={!props.user.user_pay_status ? () => setShow(!show) : undefined}
+                    style={{
+                      position: "relative",
+                      zIndex: "3"
+                    }}
+                    href="/iot"
+                  >
+                    Accéder
+                  </ButtonLink>
+                </Row>
+              </StyledCard>
+            </Col6>
+
+            <Col6 paddingLeft="1%">
+              <StyledCard style={{ height: "100%" }}>
+                <TitleCard>FAQ</TitleCard>
+                <BlackText style={{ textAlign: "justify" }}>
+                  Vous vous posez une question sur notre association?
+                  Sur comment se connecter à notre réseau?
+                  Trouvez toutes vos réponses ici !
+                </BlackText>
+
+                <Row
+                  style={{
+                    flex: "1",
+                    justifyContent: "center",
+                    alignItems: "end",
+                    marginTop: "20px",
+                  }}
+                >
+                  <ButtonLink style={{ position: "relative", zIndex: "3" }} href="/homepage/faq">Accéder</ButtonLink>
+                </Row>
+              </StyledCard>
+            </Col6>
+          </ResponsiveRow>
+
+          <HelpSection color="#096A09" />
+          <Footer />
+        </DashboardContainer>
+      </StyledMain>
     </>
   );
 }

@@ -1,4 +1,4 @@
-import styled, { keyframes } from "styled-components";
+import styled from "styled-components";
 import { Column } from "../Container/style";
 
 export const StyledCard = styled.div`
@@ -12,9 +12,11 @@ export const StyledCard = styled.div`
   flex-direction: column;
   scrollbar-color: #C4C4C4 rgba(255, 255, 255, 0.6);
   margin-bottom: ${(props) => props.marginBottom};
+  min-height: ${(props) => props.minHeight};
 
   @media screen and (max-width: 1000px){
     margin-bottom: ${(props) => props.mobileMarginBottom};
+    min-height: ${(props) => props.mobileMinHeight};
   } 
 `;
 
@@ -24,7 +26,6 @@ export const StyledCardCampus = styled(StyledCard)`
   
   @media screen and (max-width: 1000px){
     width: 100%;
-    margin-bottom: ${(props) => props.mobileMarginBottom};
   } 
 `;
 
@@ -33,12 +34,12 @@ export const StyledGreenCard = styled.div`
   border-radius: 13px 20px 20px 0px;
   color: #ffffff;
   width: 99%;
-  padding: 5px 40px;
-  font-size: 1.2em;
+  padding: 5px 0 5px 40px;
+  font-size: 1.2rem;
 `;
 
 export const StyledTeamPicture = styled(Column)`
-  background-image: url(${props => props.background || "/static/images/team.jpg"});
+  background-image: url(${props => props.background || process.env.NEXT_PUBLIC_API_HOST + '/team.jpeg'});
   outline: ${props => props.outline};
   background-repeat: no-repeat;
   background-position: 50% 0%;
@@ -78,16 +79,17 @@ export const StyledFooter = styled.footer`
   justify-content: end;
   align-items: center;
   margin: 0;
-  margin-right: -2%;
-  padding-right: 5px;
-  margin-top: 10px;
-  padding-top: 5px;
-  padding-bottom: 5px;
-
+  padding: 0 5px;
+  margin-top: ${(props) => props.marginTop || "10px"};
+  margin-bottom: 6px;
+  margin-right: -1.8%;
+  
   @media screen and (max-width: 1000px){
     text-align: center;
-    padding-top:10px;
-    padding-bottom:10px;
+    margin-right: 0;
+    margin-top: 15px;
+    margin-bottom: 10px;
+    padding: 0 5%;
   } 
 `;
 
@@ -95,6 +97,10 @@ export const StyledCampusFooter = styled(StyledFooter)`
   background: rgba(255, 255, 255, 0.9);
   width: 100%;
   margin-right: 0;
+  padding-top: 6px;
+  padding-bottom: 6px;
+  margin-bottom: 0;
+  padding-right: 0.6%;
   
   @media screen and (max-width: 1000px){
     padding-right: 10px;
@@ -113,70 +119,27 @@ export const StyledTabColumn = styled(Column)`
   display: flex;
   flex-direction: column;
   align-items: center;
+  user-select: none;
   cursor: ${(props) => !props.focus && "pointer"};
-
+  -webkit-tap-highlight-color: transparent;
+  
   &:hover{
     background-color: ${(props) => !props.focus && "rgba(0, 0, 0, 0.1)"};
     color: black;
   }
-
-  &:after{
-    transform: translateY(50%);
-    content: "";
-    width: 100%;
-    background-color: ${(props) => props.afterBackground};;
-    height: 4px;
-    transition: background-color 0.3s;
-  }
 `;
 
-export const StyledImg = styled.img`
-  border-radius: ${(props) => props.shadow ? "8px" : "50%"};
-  transition: 0.3s;
-  margin-left: ${(props) => props.marginLeft || "10px"};
-  width: ${(props) => props.width || "1.4rem"};
-  padding: ${(props) => props.padding || "0.2rem"};
-  cursor: pointer;
+export const StyledActive = styled.div`
+  transform: ${(props) => props.Transform};
+  width: ${(props) => props.Declined ? "120px" : "100px"};
+  background-color: #096A09;
+  height: 4px;
+  transition: transform 0.5s, width 0.5s;
+  position: absolute;
+  bottom: -2px;
+  left: 0;
 
-  &:hover{
-    background: ${(props) => !props.shadow && "rgba(0, 0, 0, 0.1)"};
-    box-shadow: ${(props) => props.shadow && "0px 2px 10px rgba(0, 0, 0, 0.4)"};
-  }
-`
-
-export const StyledBackgroundModal = styled.div`
-  background: rgba(0, 0, 0, 0.5); 
-  position: fixed; 
-  height: 150%; 
-  width: 100%; 
-  left: 0; 
-  top: 0;  
-  transition: ${props => (!props.reveal && "z-index 0.3s linear")}, opacity 0.3s linear;
-  z-index: ${props => props.reveal ? "3" : "-1"};
-  opacity: ${props => props.reveal ? "1" : "0"};
-`;
-
-export const StyledModal = styled(StyledCardCampus)`
-  width: ${props => props.width || "90%"};
-  align-items: center; 
-  justify-content: center;
-  padding: 30px; 
-  position: fixed; 
-  top: 50%; 
-  left: 50%;
-  transition: ${props => (!props.reveal && "z-index 0.3s linear")}, opacity 0.3s linear;
-  transform: translate(-50%, -50%);
-  z-index: ${props => (props.reveal ? "4" : "-1")};
-  opacity: ${props => (props.reveal ? "1" : "0")};
-`
-
-export const StyledMinImg = styled.img`
-  width: 90%;
-  height: auto;
-  aspect-ratio: 1 / 1; 
-
-  @media screen and (max-width: 1000px){
-    width: auto; 
-    height: 80%; 
+  @media screen and (max-width: 440px){
+    width: ${(props) => props.Declined ? "130%" : "105%"};
   } 
-`
+`;

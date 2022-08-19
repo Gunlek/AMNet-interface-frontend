@@ -1,6 +1,6 @@
 import { createMedia } from "@artsy/fresnel"
 
-const ExampleAppMedia = createMedia({
+const AppMedia = createMedia({
     breakpoints: {
         sm: 0,
         lg: 800,
@@ -9,7 +9,7 @@ const ExampleAppMedia = createMedia({
   })
   
   // Make styles for injection into the header of the page
-const mediaStyles = ExampleAppMedia.createMediaStyle()
-export const { Media, MediaContextProvider } = ExampleAppMedia
+const mediaStyles = AppMedia.createMediaStyle()
+export const { Media, MediaContextProvider } = AppMedia
 
 export default mediaStyles
