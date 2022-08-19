@@ -12,7 +12,7 @@ import axios from "axios";
 import useTransition from "../../components/Table/Admin/TableTransition";
 import getConfig from "../../components/Utils/req-config";
 import getToken from "../../components/Utils/auth-token";
-import useRoad from "../../components/Utils/useRoad";
+import usePageTransition from "../../components/Utils/usePageTransition";
 
 export async function getServerSideProps({ req }) {
   const { access_token, userId } = getToken(req)
@@ -50,7 +50,7 @@ export default function AdminMaterial(props: { hardware }) {
   const mobileContainerRef = useRef(null)
   const { Display, Opacity, Tab, handleTabChange } = useTransition(mobileContainerRef)
   const [hardware, setHardware] = useState(props.hardware)
-  const { roadTo, roadVariants } = useRoad('left');
+  const { roadTo, pageTransition, roadToHome } = usePageTransition('user');
 
   return (
     <>
@@ -58,10 +58,10 @@ export default function AdminMaterial(props: { hardware }) {
         <title>Administration &bull; AMNet</title>
       </Head>
 
-      <StyledMain variants={roadVariants}>
-        <AdminMenu page="material" setTranstion={roadTo} />
+      <StyledMain variants={pageTransition}>
+        <AdminMenu page="material" setTranstion={roadTo} setHomeTransition={roadToHome} />
 
-        <DashboardContainer exit={roadVariants.exit ? "false" : undefined}>
+        <DashboardContainer exit={pageTransition.exit ? "false" : undefined}>
           <Row margin="1% 0" mobileMargin="20px 0" mobileJustify="center">
             <BlackTitle>Demandes de matériel </BlackTitle>
           </Row>

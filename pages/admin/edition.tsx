@@ -21,7 +21,7 @@ import axios, { AxiosResponse } from "axios";
 import getToken from "../../components/Utils/auth-token";
 import getConfig from "../../components/Utils/req-config";
 import Modal from "../../components/Card/Modals/Modal";
-import useRoad from "../../components/Utils/useRoad";
+import usePageTransition from "../../components/Utils/usePageTransition";
 
 export async function getServerSideProps({ req }) {
   const { access_token, userId } = getToken(req)
@@ -63,7 +63,7 @@ export default function Edition(props: { accutalTeam: { pseudo: string, id: stri
   const [TabFile, setTabFile] = useState({ IR: null, Status: null, TeamPicture: null });
   const [modal, setModal] = useState({ show: false, content: <></> });
   const config = { headers: { 'Content-Type': 'multipart/form-data' } };
-  const { roadTo, roadVariants } = useRoad('left');
+  const { roadTo, pageTransition, roadToHome } = usePageTransition('user');
 
   useEffect(() => {
     (document.getElementById("IR") as HTMLInputElement).value = null;
@@ -136,10 +136,10 @@ export default function Edition(props: { accutalTeam: { pseudo: string, id: stri
       </Head>
       <Modal style={{ width: "625px", textAlign: "center" }} show={modal.show}>{modal.content}</Modal>
 
-      <StyledMain variants={roadVariants}>
-        <AdminMenu page="edition" setTranstion={roadTo} />
+      <StyledMain variants={pageTransition}>
+        <AdminMenu page="edition" setTranstion={roadTo} setHomeTransition={roadToHome} />
 
-        <DashboardContainer exit={roadVariants.exit ? "false" : undefined}>
+        <DashboardContainer exit={pageTransition.exit ? "false" : undefined}>
           <Row margin="1% 0" mobileMargin="20px 0" mobileJustify="center">
             <BlackTitle>Edition</BlackTitle>
           </Row>

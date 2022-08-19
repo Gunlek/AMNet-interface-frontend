@@ -11,7 +11,7 @@ import axios, { AxiosResponse } from "axios";
 import { user } from "../../../components/Utils/types";
 import getToken from "../../../components/Utils/auth-token";
 import getConfig from "../../../components/Utils/req-config";
-import useRoad from "../../../components/Utils/useRoad";
+import usePageTransition from "../../../components/Utils/usePageTransition";
 
 export async function getServerSideProps({ req }) {
   const { access_token, userId } = getToken(req)
@@ -47,7 +47,7 @@ export async function getServerSideProps({ req }) {
 export default function Users(props: { users: user[] }) {
   const [users, setUsers] = useState(props.users);
   const [Filter, Checkboxs, SelectedRows, Table] = UsersTable(users);
-  const { roadTo, roadVariants } = useRoad('left');
+  const { roadTo, pageTransition, roadToHome } = usePageTransition('user');
 
   const handleUsersChange = () => {
     axios.get(`/user`)
@@ -119,10 +119,10 @@ export default function Users(props: { users: user[] }) {
         <title>Administration &bull; AMNet</title>
       </Head>
 
-      <StyledMain variants={roadVariants}>
-        <AdminMenu page="users" setTranstion={roadTo} />
+      <StyledMain variants={pageTransition}>
+        <AdminMenu page="users" setTranstion={roadTo} setHomeTransition={roadToHome}/>
 
-        <DashboardContainer exit={roadVariants.exit ? "false" : undefined}>
+        <DashboardContainer exit={pageTransition.exit ? "false" : undefined}>
           <ResponsiveRow margin="1% 0" mobileMargin="20px 0 30px">
             <Row mobileJustify="center" mobileMarginBottom="10px">
               <BlackTitle>Liste des adhérents</BlackTitle>

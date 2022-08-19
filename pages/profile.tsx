@@ -15,7 +15,7 @@ import { user } from "../components/Utils/types";
 import getToken from "../components/Utils/auth-token";
 import getConfig from "../components/Utils/req-config";
 import Modal from "../components/Card/Modals/Modal";
-import useRoad from "../components/Utils/useRoad";
+import usePageTransition from "../components/Utils/usePageTransition";
 
 export async function getServerSideProps({ req }) {
   const { access_token, userId, localNetwork } = getToken(req)
@@ -68,7 +68,7 @@ export default function Profil(props: {
     blurPhone
   } = useForm(props.active_proms, props.usins_state, props.user)
   const [show, setShow] = useState(false);
-  const { roadTo, roadVariants } = useRoad('right');
+  const { roadTo, pageTransition, roadToHome } = usePageTransition('admin');
   const editProfil = (elmt) => {
     elmt.preventDefault();
     blurPassword2();
@@ -93,7 +93,7 @@ export default function Profil(props: {
         Votre Profil a été mis à jour
       </Modal>
 
-      <StyledMain variants={roadVariants}>
+      <StyledMain variants={pageTransition}>
         <UserMenu
           page="profil"
           user={{
@@ -103,9 +103,10 @@ export default function Profil(props: {
           }}
           localNetwork={props.localNetwork}
           setTransition={roadTo}
+          setHomeTransition={roadToHome}
         />
 
-        <DashboardContainer exit={roadVariants.exit ? "false" : undefined}>
+        <DashboardContainer exit={pageTransition.exit ? "false" : undefined}>
           <ResponsiveRow margin="1% 0" mobileMargin="20px 0" mobileJustify="center">
             <Column mobileMarginBottom="20px" style={{ justifyContent: "center" }}>
               <BlackTitle>Editer mon Profil</BlackTitle>

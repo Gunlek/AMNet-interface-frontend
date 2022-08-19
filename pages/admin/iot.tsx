@@ -13,7 +13,7 @@ import { adminAccess } from "../../components/Utils/types";
 import useTransition from "../../components/Table/Admin/TableTransition";
 import getToken from "../../components/Utils/auth-token";
 import getConfig from "../../components/Utils/req-config";
-import useRoad from "../../components/Utils/useRoad";
+import usePageTransition from "../../components/Utils/usePageTransition";
 
 export async function getServerSideProps({ req }) {
   const { access_token, userId } = getToken(req)
@@ -51,7 +51,7 @@ export default function AdminIoT(props: { access: adminAccess[] }) {
   const { Display, Opacity, Tab, handleTabChange } = useTransition(mobileContainerRef)
   const minWidth1000 = useMediaQuery('(min-width:1000px)');
   const [access, setAccess] = useState(props.access)
-  const { roadTo, roadVariants } = useRoad('left');
+  const { roadTo, pageTransition, roadToHome } = usePageTransition('user');
 
   return (
     <>
@@ -59,10 +59,10 @@ export default function AdminIoT(props: { access: adminAccess[] }) {
         <title>Administration &bull; AMNet</title>
       </Head>
 
-      <StyledMain variants={roadVariants}>
-        <AdminMenu page="iot" setTranstion={roadTo} />
+      <StyledMain variants={pageTransition}>
+        <AdminMenu page="iot" setTranstion={roadTo} setHomeTransition={roadToHome} />
 
-        <DashboardContainer exit={roadVariants.exit ? "false" : undefined}>
+        <DashboardContainer exit={pageTransition.exit ? "false" : undefined}>
           <Row margin="1% 0" mobileMargin="20px 0" mobileJustify="center">
             <BlackTitle>Demandes d&apos;accès à AMNet IoT</BlackTitle>
           </Row>

@@ -11,7 +11,7 @@ import axios from "axios";
 import { user, access } from "../components/Utils/types";
 import getToken from "../components/Utils/auth-token";
 import getConfig from "../components/Utils/req-config";
-import useRoad from "../components/Utils/useRoad";
+import usePageTransition from "../components/Utils/usePageTransition";
 
 export async function getServerSideProps({ req }) {
   const { access_token, userId, localNetwork } = getToken(req)
@@ -62,7 +62,7 @@ export default function UserIoT(props: {
 }) {
   const [access, setAccess] = useState(props.access)
   const empty = (access.length === 0);
-  const { roadTo, roadVariants } = useRoad('right');
+  const { roadTo, pageTransition, roadToHome } = usePageTransition('admin');
 
   return (
     <>
@@ -70,7 +70,7 @@ export default function UserIoT(props: {
         <title>Mes demandes &bull; AMNet</title>
       </Head>
 
-      <StyledMain variants={roadVariants}>
+      <StyledMain variants={pageTransition}>
         <UserMenu
           page="iot"
           user={{
@@ -80,9 +80,10 @@ export default function UserIoT(props: {
           }}
           localNetwork={props.localNetwork}
           setTransition={roadTo}
+          setHomeTransition={roadToHome}  
         />
 
-        <DashboardContainer exit={roadVariants.exit ? "false" : undefined}>
+        <DashboardContainer exit={pageTransition.exit ? "false" : undefined}>
           <ResponsiveRow margin="1% 0" mobileMargin="20px 0" style={{ alignItems: "center" }}>
             <Column mobileMarginBottom="20px" style={{ justifyContent: "center" }}>
               <BlackTitle>Mes demandes d&apos;accès à AMNet IoT</BlackTitle>

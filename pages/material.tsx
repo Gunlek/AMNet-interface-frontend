@@ -11,7 +11,7 @@ import axios from "axios";
 import { hardware, user } from "../components/Utils/types";
 import getToken from "../components/Utils/auth-token";
 import getConfig from "../components/Utils/req-config";
-import useRoad from "../components/Utils/useRoad";
+import usePageTransition from "../components/Utils/usePageTransition";
 
 export async function getServerSideProps({ req }) {
   const { access_token, userId, localNetwork } = getToken(req)
@@ -61,7 +61,7 @@ export default function UserMaterial(props: {
 }) {
   const [material, setMaterial] = useState(props.material)
   const empty = (material.length === 0);
-  const { roadTo, roadVariants } = useRoad('right');
+  const { roadTo, pageTransition, roadToHome } = usePageTransition('admin');
 
   return (
     <>
@@ -69,7 +69,7 @@ export default function UserMaterial(props: {
         <title>Mes demandes &bull; AMNet</title>
       </Head>
 
-      <StyledMain variants={roadVariants}>
+      <StyledMain variants={pageTransition}>
         <UserMenu
           page="material"
           user={{
@@ -78,10 +78,11 @@ export default function UserMaterial(props: {
             pay_status: props.user.user_pay_status
           }}
           localNetwork={props.localNetwork}
-          setTransition={roadTo}
+          setTransition={roadTo} 
+          setHomeTransition={roadToHome}          
         />
 
-        <DashboardContainer exit={roadVariants.exit ? "false" : undefined}>
+        <DashboardContainer exit={pageTransition.exit ? "false" : undefined}>
           <ResponsiveRow margin="1% 0" mobileMargin="20px 0" style={{ alignItems: "center" }}>
             <Column mobileMarginBottom="20px" style={{ justifyContent: "center" }}>
               <BlackTitle>Mes demandes de matériel</BlackTitle>

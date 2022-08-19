@@ -16,7 +16,7 @@ import getToken from "../../../components/Utils/auth-token";
 import getConfig from "../../../components/Utils/req-config";
 import Modal from "../../../components/Card/Modals/Modal";
 import { useRouter } from "next/router";
-import useRoad from "../../../components/Utils/useRoad";
+import usePageTransition from "../../../components/Utils/usePageTransition";
 
 export async function getServerSideProps({ req, params }) {
     const { access_token, userId } = getToken(req)
@@ -74,7 +74,7 @@ export default function User(props: {
     } = useForm(props.active_proms, props.usins_state, props.user);
     const [show, setShow] = useState(false);
     const router = useRouter();
-    const { roadTo, roadVariants } = useRoad('left');
+    const { roadTo, pageTransition, roadToHome } = usePageTransition('user');
 
     useEffect(() => {
         router.prefetch('/admin/users');
@@ -114,10 +114,10 @@ export default function User(props: {
                 Le Profil a été mis à jour
             </Modal>
 
-            <StyledMain variants={roadVariants} >
-                <AdminMenu setTranstion={roadTo} />
+            <StyledMain variants={pageTransition} >
+                <AdminMenu setTranstion={roadTo} setHomeTransition={roadToHome}/>
 
-                <DashboardContainer exit={roadVariants.exit ? "false" : undefined}>
+                <DashboardContainer exit={pageTransition.exit ? "false" : undefined}>
                     <ResponsiveRow margin="1% 0" mobileMargin="20px 0" mobileJustify="center">
                         <Col mobileMarginBottom="20px" style={{ justifyContent: "center", flex: "1" }}>
                             <BlackTitle>Editer le Profil &bull; {props.user.user_name}</BlackTitle>
