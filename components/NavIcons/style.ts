@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import styled from "styled-components";
 
 export const StyledBackIcon = styled.a`
@@ -42,24 +43,7 @@ export const StyledBackIcon = styled.a`
     pointer-events: none;
     box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.06);
     z-index: 3;
-  }
-
-  &:hover::after{
-    opacity: 1;
-  }
-
-  @media screen and (max-width: 1000px){
-    margin: 7.5px 5px 10px;
-
-    &::after{
-      left: 50%;
-      top: 85%;
-      opacity: 1;
-      box-shadow: none;
-      background: none;
-      transform: translateX(-50%);
-    }
-  }
+  }  
 `;
 
 export const StyledBackBurger = styled.div`
@@ -91,7 +75,12 @@ export const StyledBackBurger = styled.div`
   }
 `;
 
-export const StyledActiveIcon = styled.div`
+export const StyledActiveIcon = styled.div.attrs({
+  as: motion.div,
+  variants: { exit: { opacity: 0 } },
+  exit: "exit",
+  transition: { type: 'linear' }
+})`
   height: 60px; 
   width: 60px; 
   background: linear-gradient(135deg, #67BC45 5.67%, #096A09 94.96%); 
@@ -99,24 +88,10 @@ export const StyledActiveIcon = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  position: relative;
+  position: absolute;
 
   @media screen and (max-width: 1000px){
     margin: 7.5px 5px 10px;
-
-    &::after{
-      position: absolute;
-      content:  ${(props) => props.tooltip && '"' + props.tooltip + '"'};
-      border-radius: 15px;
-      padding: 10px;
-      width: max-content;
-      pointer-events: none;
-      z-index: 2;
-      left: 50%;
-      top: 85%;
-      opacity: 1;
-      transform: translateX(-50%);
-    }
   }
 `;
 
@@ -133,6 +108,18 @@ export const StyledIcon = styled.svg`
   }
 `;
 
+export const StyledActiveSVG = styled.svg.attrs({
+  as: motion.svg,
+  variants: { exit: { fill: "#C5C7C6"}, initial: { fill: "#FFFFFF"} },
+  initial: "initial",
+  animate: "initial",
+  exit: "exit",
+  transition: { type: 'linear' }
+})`
+  position: relative;
+`;
+
+
 export const StyledBackLogOut = styled.a`
   display: flex;
   justify-content: center;
@@ -141,33 +128,42 @@ export const StyledBackLogOut = styled.a`
   height: 60px;
   position: relative;
 
-  &::after{
-    position: absolute;
-    content:  "Déconnexion";
-    top: 60%;
-    left: 115%;
-    transform: translateY(-50%);
-    transition: opacity 0.2s linear;
-    opacity: 0;
-    border-radius: 15px;
-    padding: 10px;
-    background: white;
-    width: max-content;
-    pointer-events: none;
-    box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.06);
-    z-index: 3;
+  @media screen and (max-width: 1000px){
+    align-items: center;
   }
+`;
 
-  &:hover::after{
-    opacity: 1;
+export const StyledTooltip = styled.div.attrs({
+  as: motion.div,
+  variants: { exit: { opacity: "0" } },
+  exit: "exit",
+  transition: { type: 'linear' }
+})`
+  position: absolute;
+  top: 50%;
+  left: 135%;
+  transform: translateY(-50%);
+  transition: opacity 0.2s linear;
+  opacity: 0;
+  border-radius: 15px;
+  padding: 10px;
+  background: white;
+  width: max-content;
+  pointer-events: none;
+  box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.06);
+  z-index: 3;
+
+  ${StyledBackIcon}:hover &, ${StyledBackLogOut}:hover & {
+    opacity: 1;   
   }
 
   @media screen and (max-width: 1000px){
-    align-items: center;
-
-    &::after{
-      content: none;
-    }
+    left: 50%;
+    top: 85%;
+    opacity: 1;
+    box-shadow: none;
+    background: none;
+    transform: translateX(-50%);
   }
 `;
 

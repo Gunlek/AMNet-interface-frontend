@@ -1,20 +1,25 @@
 import axios from "axios";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
-import { StyledBackLogOut, StyledLogOut } from "./style";
+import useMediaQuery from "../MediaQueries/MediaQuery";
+import { StyledBackLogOut, StyledLogOut, StyledTooltip } from "./style";
 
-export default function LogOut(props: { id: string }) {
-    const router = useRouter()
+export default function LogOut(props: { id: string, setTransition: Function }) {
+    const router = useRouter();
+    const minWidth1000 = useMediaQuery('(min-width: 1000px)');
+
     const logOut = async (e) => {
         e.preventDefault();
-        await axios.post('/logout');
-        router.push('/homepage/login', null, { scroll: false });
-    }
+        axios.post('/logout').then(() => {
+            props.setTransition();
+            router.push('/homepage/login', null, { scroll: false });
+        });
+    };
 
     useEffect(() => {
         router.prefetch('/homepage/login');
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [])
+    }, []);
 
     return (
         <StyledBackLogOut href="/homepage/login" onClick={logOut}>
@@ -34,6 +39,7 @@ export default function LogOut(props: { id: string }) {
 
                 <path d="m39.512 15.488-6.667-6.666A1.667 1.667 0 0 0 30 10v5h-6.667a1.667 1.667 0 0 0 0 3.333H30v5a1.667 1.667 0 0 0 2.845 1.178l6.667-6.666a1.665 1.665 0 0 0 0-2.357Z" />
             </svg>
+            {minWidth1000 && <StyledTooltip style={{ top: "60%", left: "115%" }}>Déconnexion</StyledTooltip>}
         </StyledBackLogOut>
     )
 };
