@@ -63,7 +63,8 @@ const path = (req: NextApiRequest, res: NextApiResponse) => {
                         httpOnly: true,
                         sameSite: "lax",
                         path: "/",
-                        maxAge: checked ? 1000 * 3600 * 24 * 365 * 10 : 1000 * 3600
+                        maxAge: checked ? 1000 * 3600 * 24 * 365 * 10 : 1000 * 3600,
+                        secure: process.env.NODE_ENV === "production"
                     });
 
                     res.status(200).json({ loggedIn: true })
