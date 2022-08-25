@@ -45,4 +45,10 @@ export const CampusGlobalStyle = createGlobalStyle`
       z-index: 2;
     }
   }
-`
+`;
+
+export const GlobalStyle404 = createGlobalStyle` 
+  #__next{
+    flex-direction: column;
+  }
+`;
