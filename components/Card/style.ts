@@ -36,6 +36,10 @@ export const StyledGreenCard = styled.div`
   width: 99%;
   padding: 5px 0 5px 40px;
   font-size: 1.2rem;
+
+  @media screen and (max-width: 1000px){
+    padding: 5px 10px 5px 20px;
+  }
 `;
 
 export const StyledTeamPicture = styled(Column)`
