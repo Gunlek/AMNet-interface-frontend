@@ -49,6 +49,7 @@ export const StyledTeamPicture = styled(Column)`
   
   @media screen and (max-width: 1000px){
     height: 400px;
+    aspect-ratio: auto;
   } 
 `;
 
@@ -89,7 +90,7 @@ export const StyledFooter = styled.footer`
     margin-right: 0;
     margin-top: 15px;
     margin-bottom: 10px;
-    padding: 0 5%;
+    padding: 0;
   } 
 `;
 
