@@ -207,7 +207,7 @@ export default function User(props: {
 
                     <ResponsiveRow
                         Height={form.user_is_gadz ? "93px" : "0px"}
-                        MobileHiehgt={form.user_is_gadz ? "244.6px" : "0px"}
+                        MobileHeight={form.user_is_gadz ? "244.6px" : "0px"}
                         style={{
                             transition: "height 0.3s linear",
                             overflowY: "clip"
@@ -224,14 +224,14 @@ export default function User(props: {
                         <Col3 paddingLeft="10px" mobileMarginBottom="20px">
                             <StyledInputLabel htmlFor="user_campus">Tabagn&apos;s</StyledInputLabel>
                             <StyledInput id="user_campus" name="tbk" as="select" defaultValue={form.user_campus}>
-                                <option value="li">Birse</option>
-                                <option value="an">Boquette</option>
-                                <option value="bo">Bordel&apos;s</option>
+                                <option value="Li">Birse</option>
+                                <option value="An">Boquette</option>
+                                <option value="Bo">Bordel&apos;s</option>
                                 <option value="ch">Chalon&apos;s</option>
                                 <option value="cl">Clun&apos;s</option>
-                                <option value="kin">KIN</option>
-                                <option value="pa">P3</option>
-                                <option value="me">Siber&apos;s</option>
+                                <option value="KIN">KIN</option>
+                                <option value="Pa">P3</option>
+                                <option value="Me">Siber&apos;s</option>
                             </StyledInput>
                         </Col3>
                     </ResponsiveRow>
@@ -249,7 +249,6 @@ export default function User(props: {
                     {errorMessage.password}
 
                     <ResponsiveRow
-                        marginBottom={form.user_is_gadz ? "0" : "2%"}
                         style={{ flex: "1", transition: "margin-bottom 0.3s linear", marginTop: "20px" }}
                     >
                         <Col6 paddingRight="10px"
@@ -273,8 +272,8 @@ export default function User(props: {
                             paddingLeft="10px"
                             align="end"
                             mobileAlign="center"
+                            paddingBottom="20px"
                             style={{
-                                transition: "padding-bottom 0.3s linear",
                                 width: "auto",
                                 flex: "6",
                                 justifyContent: "space-around"
