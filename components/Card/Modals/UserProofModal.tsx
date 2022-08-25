@@ -6,7 +6,7 @@ import { StyledBackgroundModal, StyledModal } from "./style"
 import Image from 'next/image'
 import { useState } from "react"
 
-export default function UserProoveModal(props: { link: string }) {
+export default function UserProofModal(props: { link: string }) {
     const minWidth1000 = useMediaQuery('(min-width: 1200px)')
     const { Display, Opacity, toggle } = ModalLogic()
     const [ratio, setRatio] = useState(16/9)

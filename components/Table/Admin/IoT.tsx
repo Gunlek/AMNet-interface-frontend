@@ -1,5 +1,5 @@
 import Link from "next/link";
-import ProoveModal from "../../Card/Modals/AdminProoveModal";
+import ProofModal from "../../Card/Modals/AdminProofModal";
 import { MediaContextProvider, Media } from "../../MediaQueries/MediaSSR";
 import Fail from "../../NavIcons/fail";
 import Succes from "../../NavIcons/succes";
@@ -41,7 +41,7 @@ function CreateTable({ requests, Display, setTab }: {
                 <StyledTd>{value['access_description']}</StyledTd>
                 <MacAdressTd access_mac={value['access_mac']} access_id={value.access_id} />
                 <StyledTd style={{ textAlign: "center" }}>
-                    <ProoveModal request={value} setTab={setTab} />
+                    <ProofModal request={value} setTab={setTab} />
                 </StyledTd>
                 <StyledTd>
                     <StateRequest state={value['access_state']} />

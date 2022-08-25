@@ -10,9 +10,8 @@ import { TitleCard } from "../Cards";
 import ModalLogic from "./ModalLogic";
 import { StyledBackgroundModal, StyledModal } from "./style";
 import Image from 'next/image'
-import { useState } from "react";
 
-export default function ProoveModal(props: { request: any, setTab: Function }) {
+export default function ProofModal(props: { request: any, setTab: Function }) {
     const minWidth1000 = useMediaQuery('(min-width: 1200px)');
     const { Display, Opacity, toggle } = ModalLogic();
 

@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import { Buttons } from "../Buttons";
 import Fail from "../../../NavIcons/fail";
 import Succes from "../../../NavIcons/succes";
-import ProoveModal from "../../../Card/Modals/AdminProoveModal";
+import ProofModal from "../../../Card/Modals/AdminProofModal";
 import Link from "next/link";
 import { StyledLink } from "../../../Text/style";
 import { adminAccess } from "../../../Utils/types";
@@ -73,7 +73,7 @@ export const IoTMobileLine = ({ index, value, status, display, isLast, setTab }:
                         <StyledTr>
                             <StyledTd>Preuve</StyledTd>
                             <StyledTd style={{ textAlign: "center", whiteSpace: "normal" }}>
-                                <ProoveModal request={value} setTab={Function} />
+                                <ProofModal request={value} setTab={Function} />
                             </StyledTd>
                         </StyledTr>
                         <StyledTr>

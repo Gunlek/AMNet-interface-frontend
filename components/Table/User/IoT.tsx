@@ -1,7 +1,7 @@
 import axios, { AxiosResponse } from "axios";
 import React from "react";
 import { SmallRedButton } from "../../Button/Buttons";
-import UserProoveModal from "../../Card/Modals/UserProoveModal";
+import UserProofModal from "../../Card/Modals/UserProofModal";
 import { MediaContextProvider, Media } from "../../MediaQueries/MediaSSR";
 import { StateRequest } from "../../Status/Status";
 import { access } from "../../Utils/types";
@@ -41,7 +41,7 @@ export default function IoTUserTable(props: { requests: access[], setAccess: Fun
                 <StyledFlexTd>{value.access_description}</StyledFlexTd>
                 <StyledTd>{value.access_mac}</StyledTd>
                 <StyledTd style={{ textAlign: "center" }}>
-                    <UserProoveModal link={value.access_proof} />
+                    <UserProofModal link={value.access_proof} />
                 </StyledTd>
                 <StyledTd>
                     <StateRequest state={value.access_state} />
@@ -67,7 +67,7 @@ export default function IoTUserTable(props: { requests: access[], setAccess: Fun
                 <StyledTr>
                     <StyledTd>Preuve</StyledTd>
                     <StyledTd style={{ textAlign: "center", whiteSpace: "normal" }}>
-                        <UserProoveModal link={value.access_proof} />
+                        <UserProofModal link={value.access_proof} />
                     </StyledTd>
                 </StyledTr>
                 <StyledTr>
