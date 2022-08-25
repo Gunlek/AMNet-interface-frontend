@@ -74,7 +74,7 @@ export default function useForm(
 
         if (elmt.currentTarget.id == "user_proms2") {
             newForm.user_proms = elmt.target.value;
-            newForm.user_campus = "";
+            if(isOther) newForm.user_campus = "";
         }
         else if (elmt.currentTarget.id == "user_proms") {
             newForm.user_is_gadz = (elmt.target.value == promotion.old || elmt.target.value == promotion.active);
