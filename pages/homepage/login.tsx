@@ -66,7 +66,7 @@ export default function Login(props: { modal: boolean, from: string }) {
   const handleSignIn = async (e) => {
     e.preventDefault()
     try {
-      await axios.post('/auth', form);
+      await axios.post('/login', form);
 
       if (!props.modal) {
         const newVariant = { ...variant };
