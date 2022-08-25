@@ -196,7 +196,7 @@ export const DashboardContainer = styled.div.attrs((props) => ({
     margin-top: 95px;
     height: auto;
     max-width: none;
-    padding: 0;
+    padding: 0 5%;
   }
 
   @media screen and (max-width: 1000px ) and (min-width: 801px){
