@@ -1,4 +1,3 @@
-import { motion } from "framer-motion";
 import Link from "next/link";
 import { StyledActiveIcon, StyledActiveSVG, StyledBackIcon, StyledIcon, StyledTooltip } from "./style"
 
