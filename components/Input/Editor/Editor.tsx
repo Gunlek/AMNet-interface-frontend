@@ -38,16 +38,18 @@ export default function Editor(id: string, html?: string) {
     return [
         <>
             <QuillToolbar id={id} />
-            <ReactQuill
-                id={"Editor" + id}
-                className={focus? "focused" : undefined}
-                onBlur={() =>{setFocus(false)}}
-                onFocus={() => {setFocus(true)}}
-                modules={modules}
-                formats={formats}
-                value={value}
-                onChange={setValue}
-            />
+            {QuillToolbar &&
+                <ReactQuill
+                    id={"Editor" + id}
+                    className={focus ? "focused" : undefined}
+                    onBlur={() => { setFocus(false) }}
+                    onFocus={() => { setFocus(true) }}
+                    modules={modules}
+                    formats={formats}
+                    value={value}
+                    onChange={setValue}
+                />
+            }
         </>
         ,
         value
