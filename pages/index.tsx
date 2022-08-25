@@ -131,9 +131,17 @@ export default function Index(
               <BlackTitle>Mon Espace AMNet</BlackTitle>
             </Row>
 
-            <Row align="center" style={{ justifyContent: "center", width: "auto" }}>
+            <Row
+              align="center"
+              style={{
+                justifyContent: "center",
+                width: "auto",
+                flexDirection: props.user.user_rank === "admin" && !props.user.user_pay_status ? "column" : undefined
+              }}
+            >
               {props.user.user_rank === "admin" ?
                 <AdminNotifications
+                  unpaid={!props.user.user_pay_status}
                   notifNumber={props.access_quantity + props.material_quantity}
                   access_quantity={props.access_quantity}
                   material_quantity={props.material_quantity}

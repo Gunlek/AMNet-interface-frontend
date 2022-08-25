@@ -139,7 +139,12 @@ export function AdminStateRank(props: { state: string, id: string, onChange: Fun
   );
 }
 
-export function AdminNotifications(props: { notifNumber: number, unpaid?: boolean, access_quantity: number, material_quantity: number }) {
+export function AdminNotifications(props: {
+  notifNumber: number,
+  unpaid?: boolean,
+  access_quantity: number,
+  material_quantity: number
+}) {
   const notifNumber = props.notifNumber !== 0 ? props.notifNumber : undefined;
   const [Display, setDisplay] = useState(false);
   const [Opacity, setOpacity] = useState(true);
@@ -157,7 +162,12 @@ export function AdminNotifications(props: { notifNumber: number, unpaid?: boolea
   }
   return (
     <>
-      <StyledConteneurNotif onClick={() => setDisplay(!Display)} Display={Display} notifNumber={notifNumber}>
+      <StyledConteneurNotif
+        onClick={() => setDisplay(!Display)}
+        Display={Display}
+        notifNumber={notifNumber}
+        Unpaid={props.unpaid}
+      >
         <StyledSVG width="42px" height="30px" viewBox="0 0 16 20" version="1.1" xmlns="http://www.w3.org/2000/svg">
           <g stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
             <g transform="translate(-444.000000, -4100.000000)">
