@@ -43,7 +43,7 @@ export default function MailModal(props: { html: any, subject: string, recipient
 
     return (
         <>
-            <GreenButton onClick={toggle}>Pré-visualiser le Mail</GreenButton>
+            <GreenButton mobileWidth="100%" onClick={toggle}>Pré-visualiser le Mail</GreenButton>
             {Display &&
                 <>
                     <StyledBackgroundModal onClick={(e) => { toggle(e); setSend(false); }} Opacity={Opacity} />

@@ -24,6 +24,10 @@ export const StyledButton = styled.button`
   @media screen and (max-width: 1000px){
     margin-bottom: ${(props) => props.mobileMarginBottom};
   }
+
+  @media screen and (max-width: 400px){
+    width: ${(props) => props.mobileWidth};
+  }
 `;
 
 export const StyledGreenButton = styled(StyledButton)`

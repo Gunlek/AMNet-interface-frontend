@@ -17,7 +17,7 @@ export default function SettingsModal(props: {
 }) {
     const minWidth1000 = useMediaQuery('(min-width: 1000px)');
     const { Display, Opacity, toggle } = ModalLogic();
-    
+
     const updateSettings = async (e) => {
         e.preventDefault();
 
@@ -33,7 +33,12 @@ export default function SettingsModal(props: {
 
     return (
         <>
-            <GreenButton onClick={showModal ? toggle : (e) => { updateSettings(e); toggle(e) }}>Mettre à jour</GreenButton>
+            <GreenButton
+                mobileWidth="100%"
+                onClick={showModal ? toggle : (e) => { updateSettings(e); toggle(e) }}
+            >
+                Mettre à jour
+            </GreenButton>
             {Display &&
                 <>
                     <StyledBackgroundModal onClick={toggle} Opacity={Opacity} />
@@ -46,7 +51,7 @@ export default function SettingsModal(props: {
                                     <span style={{ fontWeight: "bold", color: "#096a09" }}>
                                         Fini
                                     </span><br />
-                                    Si valides cette modification cela va transformer la Prom&apos;s
+                                    Si tu valides cette modification cela va transformer la Prom&apos;s
                                     <div
                                         style={{
                                             fontWeight: "bold",

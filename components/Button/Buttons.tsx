@@ -17,7 +17,8 @@ type ButtonProps = {
   onClick?: Function, 
   type?: string, 
   fontSize?: string, 
-  mobileMarginBottom?: string 
+  mobileMarginBottom?: string,
+  mobileWidth?: string
 };
 
 export function GreenButton(props: ButtonProps) {
@@ -29,6 +30,7 @@ export function GreenButton(props: ButtonProps) {
       onClick={props.onClick}
       mobileMarginBottom={props.mobileMarginBottom}
       fontSize={props.fontSize}
+      mobileWidth={props.mobileWidth}
     >
       {props.children}
     </StyledGreenButton>
@@ -58,6 +60,7 @@ export function RedButton(props: ButtonProps) {
       onClick={props.onClick}
       mobileMarginBottom={props.mobileMarginBottom}
       fontSize={props.fontSize}
+      mobileWidth={props.mobileWidth}
     >
       {props.children}
     </StyledRedButton>);
@@ -87,6 +90,7 @@ export function OrangeButton(props: ButtonProps) {
       onClick={props.onClick}
       mobileMarginBottom={props.mobileMarginBottom}
       fontSize={props.fontSize}
+      mobileWidth={props.mobileWidth}
     >
       {props.children}
     </StyledOrangeButton>);
@@ -147,6 +151,7 @@ export function ButtonLink(props: {
         lineHeight={props.height || "60px"}
         style={props.style}
         onClick={props.onClick ? onClick : undefined}
+        mobileWidth="100%"
       >
         {props.children}
       </StyledGreenButton>

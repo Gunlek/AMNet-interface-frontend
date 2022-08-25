@@ -287,7 +287,7 @@ export default function Admin(props: {
               </div>
 
               <Row style={{ justifyContent: "center" }}>
-                <GreenButton onClick={updateWelcomeMessage}>Mettre à jour</GreenButton>
+                <GreenButton onClick={updateWelcomeMessage} mobileWidth="100%">Mettre à jour</GreenButton>
               </Row>
             </StyledCard>
           </Row>
