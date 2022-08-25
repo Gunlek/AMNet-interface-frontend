@@ -196,7 +196,7 @@ export const DashboardContainer = styled.div.attrs((props) => ({
     margin-top: 95px;
     height: auto;
     max-width: none;
-    padding: 0 5%;
+    padding: 0;
   }
 
   @media screen and (max-width: 1000px ) and (min-width: 801px){
@@ -215,6 +215,7 @@ export const StyledMain = styled.main.attrs((props) => ({
   display: flex;
   flex: 1;
   height: 100%;
+  max-width: fill-available;
 `;
 
 export const CheckboxRow = styled(Row)`
