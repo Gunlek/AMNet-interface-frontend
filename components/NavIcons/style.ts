@@ -92,6 +92,18 @@ export const StyledActiveIcon = styled.div.attrs({
 
   @media screen and (max-width: 1000px){
     margin: 7.5px 5px 10px;
+
+    &::after{
+      position: absolute;
+      content:  ${(props) => props.tooltip && '"' + props.tooltip + '"'};
+      border-radius: 15px;
+      padding: 10px;
+      width: max-content;
+      z-index: 3;
+      left: 50%;
+      top: 85%;
+      transform: translateX(-50%);
+    }  
   }
 `;
 
@@ -110,7 +122,7 @@ export const StyledIcon = styled.svg`
 
 export const StyledActiveSVG = styled.svg.attrs({
   as: motion.svg,
-  variants: { exit: { fill: "#C5C7C6"}, initial: { fill: "#FFFFFF"} },
+  variants: { exit: { fill: "#C5C7C6" }, initial: { fill: "#FFFFFF" } },
   initial: "initial",
   animate: "initial",
   exit: "exit",
