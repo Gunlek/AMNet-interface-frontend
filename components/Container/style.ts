@@ -29,6 +29,7 @@ export const Column = styled.div`
     padding-left: 0;
     padding-bottom: 0;
     height: ${(props) => props.MobileHeight};
+    flex-direction: ${(props) => props.MobileFlexDirection};
   }
 
   @media screen and (max-width: 800px){

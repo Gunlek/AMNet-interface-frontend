@@ -133,10 +133,14 @@ export default function Index(
 
             <Row
               align="center"
+              MobileFlexDirection={props.user.user_rank === "admin" && !props.user.user_pay_status ?
+                "column !important"
+                :
+                undefined
+              }
               style={{
                 justifyContent: "center",
-                width: "auto",
-                flexDirection: props.user.user_rank === "admin" && !props.user.user_pay_status ? "column" : undefined
+                width: "auto"
               }}
             >
               {props.user.user_rank === "admin" ?
