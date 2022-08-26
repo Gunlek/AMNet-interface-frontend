@@ -164,7 +164,7 @@ export default function Index(
             <TitleCard>Actualité AMNet</TitleCard>
             <NewsMessage
               style={{ textAlign: "justify" }}
-              dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(props.news_message || "") }}
+              dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(props.news_message || "", { ADD_ATTR: ['target'] }) }}
             />
           </StyledCard>
 
