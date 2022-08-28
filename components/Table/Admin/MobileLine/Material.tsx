@@ -53,6 +53,7 @@ export const MaterialMobileLine = ({ index, value, status, display, isLast, setT
                                     query: { user_id: value['material_user'] },
                                 }}
                                 passHref
+                                scroll={false}
                             >
                                 <StyledLink color="#096a09">{value['user_name']}</StyledLink>
                             </Link>

@@ -31,6 +31,7 @@ function CreateTable({ requests, Display, setTab }: {
                             query: { user_id: value['access_user'] },
                         }}
                         passHref
+                        scroll={false}
                     >
                         <StyledLink color="#096a09">{value['user_name']}</StyledLink>
                     </Link>
