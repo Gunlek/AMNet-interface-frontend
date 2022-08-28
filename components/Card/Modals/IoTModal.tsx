@@ -11,6 +11,7 @@ import { TitleCard } from "../Cards";
 import { StyledDeleteImg } from "../Images/style";
 import { ModalLogic } from "./ModalLogic";
 import { StyledBackgroundModal, StyledModal } from "./style";
+import { validateImage } from "image-validator";
 
 export default function IoTModal(props: { setAccess: Function, userId: Number }) {
     const minWidth1000 = useMediaQuery('(min-width: 1000px)');
@@ -26,7 +27,8 @@ export default function IoTModal(props: { setAccess: Function, userId: Number })
         access_mac: false,
         access_mac_exist: false,
         access_description: false,
-        access_proof: false
+        access_proof: false,
+        type_access_proof: false
     });
 
     useEffect(() => {
@@ -37,9 +39,15 @@ export default function IoTModal(props: { setAccess: Function, userId: Number })
         }
     }, [error, form]);
 
-    const handleFormChange = (elmt, id?: string) => {
+    const handleFormChange = async (elmt, id?: string) => {
         const newForm = { ...form };
-        if (id) newForm[id] = elmt
+        if (id) {
+            newForm[id] = elmt;
+            const Newerror = { ...error };
+            Newerror.access_proof = false;
+            Newerror.type_access_proof = !(await validateImage(URL.createObjectURL(elmt)));
+            setError(Newerror);
+        }
         else newForm[elmt.currentTarget.id] = elmt.target.value;
         setForm(newForm);
     };
@@ -61,6 +69,7 @@ export default function IoTModal(props: { setAccess: Function, userId: Number })
         setForm(newForm);
         const Newerror = { ...error };
         Newerror.access_proof = true;
+        Newerror.type_access_proof = false;
         setError(Newerror);
     };
 
@@ -70,11 +79,12 @@ export default function IoTModal(props: { setAccess: Function, userId: Number })
             access_mac: MacAddressVerification(form.access_mac) === "",
             access_description: form.access_description === "",
             access_proof: form.access_proof === null,
-            access_mac_exist: false
+            access_mac_exist: false,
+            type_access_proof: error.type_access_proof
         };
         setError(newError);
 
-        if (!newError.access_proof && !newError.access_description && !newError.access_mac) {
+        if (!newError.access_proof && !newError.access_description && !newError.access_mac && !error.type_access_proof) {
             const config = { headers: { 'Content-Type': 'multipart/form-data' } }
 
             await axios.post(`/access`, form, config)
@@ -101,7 +111,7 @@ export default function IoTModal(props: { setAccess: Function, userId: Number })
                     <StyledBackgroundModal onClick={toggle} Opacity={Opacity} />
                     <StyledModal width={minWidth1000 ? "900px" : undefined} Opacity={Opacity}>
                         <TitleCard hideLine={!minWidth1000}>Demande d&apos;accès pour un objet connecté</TitleCard>
-                        <form onSubmit={SendReq} style={{ width: "100%"}}>
+                        <form onSubmit={SendReq} style={{ width: "100%" }}>
                             <div style={{ width: "100%", position: "relative" }}>
                                 <StyledInputLabel htmlFor="access_mac">Adresse Physique</StyledInputLabel>
                                 <StyledInput
@@ -172,6 +182,11 @@ export default function IoTModal(props: { setAccess: Function, userId: Number })
                                 {error.access_proof &&
                                     <ErrorP Fixed={true}>
                                         La photo est obligatoire
+                                    </ErrorP>
+                                }
+                                {error.type_access_proof &&
+                                    <ErrorP Fixed={true}>
+                                        Le fichier n'est pas une image
                                     </ErrorP>
                                 }
                             </div>
