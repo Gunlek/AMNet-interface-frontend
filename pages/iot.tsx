@@ -80,7 +80,7 @@ export default function UserIoT(props: {
           }}
           localNetwork={props.localNetwork}
           setTransition={roadTo}
-          setHomeTransition={roadToHome}  
+          setHomeTransition={roadToHome}
         />
 
         <DashboardContainer exit={pageTransition.exit ? "false" : undefined}>
@@ -89,13 +89,7 @@ export default function UserIoT(props: {
               <BlackTitle>Mes demandes d&apos;accès à AMNet IoT</BlackTitle>
             </Column>
 
-            <div
-              style={{
-                flex: "1",
-                alignItems: "end",
-                justifyContent: "center"
-              }}
-            >
+            <div style={{ flex: "1" }}>
               <IoTModal userId={props.user.user_id} setAccess={setAccess} />
             </div>
           </ResponsiveRow>
