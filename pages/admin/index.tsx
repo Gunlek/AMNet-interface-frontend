@@ -118,8 +118,8 @@ export default function Admin(props: {
 
   const variants = {
     hidden: { opacity: 0, x: 100, y: 0 },
-    enter: { opacity: 1, x: 0},
-    exit: roadToIndex ? { opacity: 0, x: -100 } : roadToHomePage? { opacity: 0, x: 100 }  : null
+    enter: { opacity: 1, x: 0 },
+    exit: roadToIndex || roadToHomePage ? { opacity: 0, x: 100 } : null
   };
 
   const roadIndex = () => {

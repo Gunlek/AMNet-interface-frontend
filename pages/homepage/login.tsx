@@ -39,7 +39,7 @@ export default function Login(props: { modal: boolean, from: string }) {
   const [error, setError] = useState(false);
   const [login, setLogin] = useState(false);
   const [variant, setVariant] = useState(variants(
-    props.from === "/homepage" ? "left" : (/\/homepage\/\w/).test(props.from) ? "right" : "",
+    props.from === "/homepage" ? "left" : "right",
     "left"
   ));
 
