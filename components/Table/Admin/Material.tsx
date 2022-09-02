@@ -20,7 +20,7 @@ function CreateTable({ requests, Display, setTab }: {
 
     requests.map((value) => {
         listHTML[value['material_state']].push(
-            <StyledTr key={index[value['material_state']]} style={{ padding: "10px 0 10px 30px" }}>
+            <StyledTr key={value.material_id} style={{ padding: "10px 0 10px 30px" }}>
                 <StyledTd>{index[value['material_state']]}</StyledTd>
                 <StyledTd>
                     <Link
@@ -67,7 +67,7 @@ function CreateTable({ requests, Display, setTab }: {
 
         mobilelistHTML[value['material_state']].push(
             <MaterialMobileLine
-                key={index[value['material_state']]}
+                key={value.material_id}
                 index={index[value['material_state']]}
                 display={Display}
                 value={value}
@@ -82,7 +82,7 @@ function CreateTable({ requests, Display, setTab }: {
     if (mobilelistHTML.active.length > 0) {
         mobilelistHTML.active[mobilelistHTML.active.length - 1] = <MaterialMobileLine
             {...mobilelistHTML.active[mobilelistHTML.active.length - 1].props}
-            key={mobilelistHTML.active[mobilelistHTML.pending.length - 1]}
+            key={"last"}
             isLast={true}
         />
     }
@@ -90,7 +90,7 @@ function CreateTable({ requests, Display, setTab }: {
     if (mobilelistHTML.pending.length > 0) {
         mobilelistHTML.pending[mobilelistHTML.pending.length - 1] = <MaterialMobileLine
             {...mobilelistHTML.pending[mobilelistHTML.pending.length - 1].props}
-            key={mobilelistHTML.pending[mobilelistHTML.pending.length - 1]}
+            key={"last"}
             isLast={true}
         />
     }
@@ -98,7 +98,7 @@ function CreateTable({ requests, Display, setTab }: {
     if (mobilelistHTML.declined.length > 0) {
         mobilelistHTML.declined[mobilelistHTML.declined.length - 1] = <MaterialMobileLine
             {...mobilelistHTML.declined[mobilelistHTML.declined.length - 1].props}
-            key={mobilelistHTML.declined[mobilelistHTML.pending.length - 1]}
+            key={"last"}
             isLast={true}
         />
     }

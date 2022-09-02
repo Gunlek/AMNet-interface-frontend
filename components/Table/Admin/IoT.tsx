@@ -22,7 +22,7 @@ function CreateTable({ requests, Display, setTab }: {
 
     requests.map((value, id) => {
         listHTML[value['access_state']].push(
-            <StyledTr key={index[value['access_state']]}>
+            <StyledTr key={value.access_id}>
                 <StyledTd>{index[value['access_state']]}</StyledTd>
                 <StyledTd>
                     <Link
@@ -68,7 +68,7 @@ function CreateTable({ requests, Display, setTab }: {
 
         mobilelistHTML[value['access_state']].push(
             <IoTMobileLine
-                key={index[value['access_state']]}
+                key={value.access_id}
                 index={index[value['access_state']]}
                 value={value}
                 status={value['access_state']}
@@ -83,7 +83,7 @@ function CreateTable({ requests, Display, setTab }: {
     if (mobilelistHTML.active.length > 0) {
         mobilelistHTML.active[mobilelistHTML.active.length - 1] = <IoTMobileLine
             {...mobilelistHTML.active[mobilelistHTML.active.length - 1].props}
-            key={mobilelistHTML.active[mobilelistHTML.pending.length - 1]}
+            key={"last"}
             isLast={true}
         />
     }
@@ -91,7 +91,7 @@ function CreateTable({ requests, Display, setTab }: {
     if (mobilelistHTML.pending.length > 0) {
         mobilelistHTML.pending[mobilelistHTML.pending.length - 1] = <IoTMobileLine
             {...mobilelistHTML.pending[mobilelistHTML.pending.length - 1].props}
-            key={mobilelistHTML.pending[mobilelistHTML.pending.length - 1]}
+            key={"last"}
             isLast={true}
         />
     }
@@ -99,7 +99,7 @@ function CreateTable({ requests, Display, setTab }: {
     if (mobilelistHTML.declined.length > 0) {
         mobilelistHTML.declined[mobilelistHTML.declined.length - 1] = <IoTMobileLine
             {...mobilelistHTML.declined[mobilelistHTML.declined.length - 1].props}
-            key={mobilelistHTML.declined[mobilelistHTML.pending.length - 1]}
+            key={"last"}
             isLast={true}
         />
     }
