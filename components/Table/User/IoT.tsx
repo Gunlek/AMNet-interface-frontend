@@ -2,6 +2,7 @@ import axios, { AxiosResponse } from "axios";
 import React from "react";
 import { SmallRedButton } from "../../Button/Buttons";
 import UserProofModal from "../../Card/Modals/UserProofModal";
+import MacAdressTd from "../../Input/MacAddressInput";
 import { MediaContextProvider, Media } from "../../MediaQueries/MediaSSR";
 import { StateRequest } from "../../Status/Status";
 import { access } from "../../Utils/types";
@@ -14,7 +15,7 @@ import {
     StyledHeadTr
 } from "../style";
 
-export default function IoTUserTable(props: { requests: access[], setAccess: Function, userId: Number }) {
+export default function IoTUserTable(props: { requests: access[], setAccess: Function, userId: Number | string }) {
     let listHTML = [];
     let mobilelistHTML = [];
     const containerStyle = {
@@ -39,7 +40,11 @@ export default function IoTUserTable(props: { requests: access[], setAccess: Fun
             <StyledTr key={index}>
                 <StyledTd>{index + 1}</StyledTd>
                 <StyledFlexTd>{value.access_description}</StyledFlexTd>
-                <StyledTd>{value.access_mac}</StyledTd>
+                {props.userId === "aeg" ?
+                    <MacAdressTd access_mac={value.access_mac} access_id={value.access_id} />
+                    :
+                    <StyledTd>{value.access_mac}</StyledTd>
+                }
                 <StyledTd style={{ textAlign: "center" }}>
                     <UserProofModal link={value.access_proof} />
                 </StyledTd>
@@ -62,7 +67,11 @@ export default function IoTUserTable(props: { requests: access[], setAccess: Fun
                 </StyledHeadTr>
                 <StyledTr>
                     <StyledTd>Adresse Mac </StyledTd>
-                    <StyledTd style={{ textAlign: "center" }}>{value.access_mac}</StyledTd>
+                    {props.userId === "aeg" ?
+                        <MacAdressTd access_mac={value.access_mac} access_id={value.access_id} />
+                        :
+                        <StyledTd>{value.access_mac}</StyledTd>
+                    }
                 </StyledTr>
                 <StyledTr>
                     <StyledTd>Preuve</StyledTd>
@@ -100,7 +109,7 @@ export default function IoTUserTable(props: { requests: access[], setAccess: Fun
                         <StyledHeadTr>
                             <StyledTh scope="col">#</StyledTh>
                             <StyledTh scope="col">Description</StyledTh>
-                            <StyledTh scope="col">Adresse Mac</StyledTh>
+                            <StyledTh style={{ width: "230px", textAlign: "center" }} scope="col">Adresse Mac</StyledTh>
                             <StyledTh scope="col">Preuve</StyledTh>
                             <StyledTh scope="col"><span style={{ paddingLeft: "5px" }}>Etat</span></StyledTh>
                             <StyledTh scope="col"><span style={{ paddingLeft: "5px" }}>Action</span></StyledTh>
