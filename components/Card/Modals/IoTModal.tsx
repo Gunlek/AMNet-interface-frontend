@@ -13,7 +13,7 @@ import { ModalLogic } from "./ModalLogic";
 import { StyledBackgroundModal, StyledModal } from "./style";
 import { validateImage } from "image-validator";
 
-export default function IoTModal(props: { setAccess: Function, userId: Number }) {
+export default function IoTModal(props: { setAccess: Function, userId: Number | string }) {
     const minWidth1000 = useMediaQuery('(min-width: 1000px)');
     const { Display, Opacity, toggle } = ModalLogic();
     const [form, setForm] = useState({
@@ -85,9 +85,9 @@ export default function IoTModal(props: { setAccess: Function, userId: Number })
         setError(newError);
 
         if (!newError.access_proof && !newError.access_description && !newError.access_mac && !error.type_access_proof) {
-            const config = { headers: { 'Content-Type': 'multipart/form-data' } }
+            const config = { headers: { 'Content-Type': 'multipart/form-data' } };
 
-            await axios.post(`/access`, form, config)
+            axios.post(`/access`, form, config)
                 .then(async (res: AxiosResponse) => {
                     if (res.status === 200) {
                         const access = await axios.get(`/access/user/${props.userId}`);
