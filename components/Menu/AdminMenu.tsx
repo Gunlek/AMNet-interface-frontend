@@ -111,4 +111,3 @@ export default function AdminMenu(props: { page?: string, setTranstion: Function
     </MenuContener>
   )
 }
-
