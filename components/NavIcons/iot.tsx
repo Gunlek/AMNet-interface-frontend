@@ -2,7 +2,7 @@ import Link from "next/link"
 import { StyledActiveIcon, StyledActiveSVG, StyledBackIcon, StyledIcon, StyledTooltip } from "./style"
 
 export default function IoT(props: { page: string, admin?: boolean }) {
-    const content = "AMNet Iot"
+    const content = "AMNet IoT"
     if (props.page == 'iot') {
         return (
             <>
