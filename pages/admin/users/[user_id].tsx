@@ -279,8 +279,8 @@ export default function User(props: {
                                 justifyContent: "space-around"
                             }}
                         >
-                            <RedButton width="300px" mobileMarginBottom="25px" onClick={deleteUser}>Supprimer le profil</RedButton>
-                            <GreenButton width="300px" onClick={editProfil}>Sauvegarder le profil</GreenButton>
+                            <RedButton mobileWidth="100%" width="300px" mobileMarginBottom="25px" onClick={deleteUser}>Supprimer le profil</RedButton>
+                            <GreenButton mobileWidth="100%" width="300px" onClick={editProfil}>Sauvegarder le profil</GreenButton>
                         </ResponsiveRow>
                     </ResponsiveRow>
 
