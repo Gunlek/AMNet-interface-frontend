@@ -14,7 +14,8 @@ export default function Page404() {
       <Head>
         <title>404 &bull; AMNet</title>
       </Head>
-      <CampusGlobalStyle />
+      <CampusGlobalStyle flexDirection="column" />
+
       <Row
         mobileWidth="90%"
         style={{

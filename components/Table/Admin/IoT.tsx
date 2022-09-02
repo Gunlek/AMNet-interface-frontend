@@ -1,5 +1,5 @@
 import Link from "next/link";
-import ProoveModal from "../../Card/Modals/AdminProoveModal";
+import ProofModal from "../../Card/Modals/AdminProofModal";
 import { MediaContextProvider, Media } from "../../MediaQueries/MediaSSR";
 import Fail from "../../NavIcons/fail";
 import Succes from "../../NavIcons/succes";
@@ -22,7 +22,7 @@ function CreateTable({ requests, Display, setTab }: {
 
     requests.map((value, id) => {
         listHTML[value['access_state']].push(
-            <StyledTr key={index[value['access_state']]}>
+            <StyledTr key={value.access_id}>
                 <StyledTd>{index[value['access_state']]}</StyledTd>
                 <StyledTd>
                     <Link
@@ -31,6 +31,7 @@ function CreateTable({ requests, Display, setTab }: {
                             query: { user_id: value['access_user'] },
                         }}
                         passHref
+                        scroll={false}
                     >
                         <StyledLink color="#096a09">{value['user_name']}</StyledLink>
                     </Link>
@@ -41,7 +42,7 @@ function CreateTable({ requests, Display, setTab }: {
                 <StyledTd>{value['access_description']}</StyledTd>
                 <MacAdressTd access_mac={value['access_mac']} access_id={value.access_id} />
                 <StyledTd style={{ textAlign: "center" }}>
-                    <ProoveModal request={value} setTab={setTab} />
+                    <ProofModal request={value} setTab={setTab} />
                 </StyledTd>
                 <StyledTd>
                     <StateRequest state={value['access_state']} />
@@ -67,7 +68,7 @@ function CreateTable({ requests, Display, setTab }: {
 
         mobilelistHTML[value['access_state']].push(
             <IoTMobileLine
-                key={index[value['access_state']]}
+                key={value.access_id}
                 index={index[value['access_state']]}
                 value={value}
                 status={value['access_state']}
@@ -82,7 +83,7 @@ function CreateTable({ requests, Display, setTab }: {
     if (mobilelistHTML.active.length > 0) {
         mobilelistHTML.active[mobilelistHTML.active.length - 1] = <IoTMobileLine
             {...mobilelistHTML.active[mobilelistHTML.active.length - 1].props}
-            key={mobilelistHTML.active[mobilelistHTML.pending.length - 1]}
+            key={"last"}
             isLast={true}
         />
     }
@@ -90,7 +91,7 @@ function CreateTable({ requests, Display, setTab }: {
     if (mobilelistHTML.pending.length > 0) {
         mobilelistHTML.pending[mobilelistHTML.pending.length - 1] = <IoTMobileLine
             {...mobilelistHTML.pending[mobilelistHTML.pending.length - 1].props}
-            key={mobilelistHTML.pending[mobilelistHTML.pending.length - 1]}
+            key={"last"}
             isLast={true}
         />
     }
@@ -98,7 +99,7 @@ function CreateTable({ requests, Display, setTab }: {
     if (mobilelistHTML.declined.length > 0) {
         mobilelistHTML.declined[mobilelistHTML.declined.length - 1] = <IoTMobileLine
             {...mobilelistHTML.declined[mobilelistHTML.declined.length - 1].props}
-            key={mobilelistHTML.declined[mobilelistHTML.pending.length - 1]}
+            key={"last"}
             isLast={true}
         />
     }

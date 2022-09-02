@@ -15,7 +15,6 @@ export default function RequestTab(props: { status: string, TabChange: Function 
             style={{
                 borderBottom: "2px solid rgba(0, 0, 0, 0.2)",
                 height: "46px",
-
             }}
         >
             <StyledTabColumn
@@ -23,8 +22,8 @@ export default function RequestTab(props: { status: string, TabChange: Function 
                 onClick={pending ? undefined : props.TabChange}
                 focus={pending}
                 style={{
-                    width: "100px",
-                    marginRight: "40px",
+                    width: "6.25rem",
+                    marginRight: "2.5rem",
                     position: "relative"
                 }}
             >
@@ -37,8 +36,8 @@ export default function RequestTab(props: { status: string, TabChange: Function 
                 onClick={active ? undefined : props.TabChange}
                 focus={active}
                 style={{
-                    width: "100px",
-                    marginRight: "40px"
+                    width: "6.25rem",
+                    marginRight: "2.5rem"
                 }}
             >
                 Validées
@@ -48,7 +47,7 @@ export default function RequestTab(props: { status: string, TabChange: Function 
                 id="declined"
                 focus={declined}
                 onClick={declined ? undefined : props.TabChange}
-                style={{ width: "125px" }}
+                style={{ width: "7.8rem" }}
             >
                 Révoquées
             </StyledTabColumn>

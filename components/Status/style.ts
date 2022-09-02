@@ -90,6 +90,11 @@ export const StyledConteneurNotif = styled.div`
     top: 0;
     transform: translate(25%, -25%);
   }
+
+  @media screen and (max-width: 1000px){
+    margin-right: ${(props) => props.Unpaid && "0"};
+    margin-bottom: ${(props) => props.Unpaid && "20px"};
+  }
 `;
 
 export const StyledNotification = styled(StyledCard)`
@@ -114,7 +119,7 @@ export const StyledNotification = styled(StyledCard)`
 
   @media screen and (max-width: 1000px){
     transition: opacity 0.3s, z-index 0.3s,;
-    left: ${(props) => props.Unpaid ? "-300%" : "285%"};
+    left: ${(props) => props.Unpaid ? "50%" : "285%"};
     width: max-content;
     height: auto;
     border-radius: 20px;

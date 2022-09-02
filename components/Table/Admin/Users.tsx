@@ -197,6 +197,7 @@ export function UsersTable(data: any[]) {
                         query: { user_id: row.allCells[15].value }
                       }}
                       passHref
+                      scroll={false}
                     >
                       <StyledLink color="#096a09">
                         {cell.render('Cell')}

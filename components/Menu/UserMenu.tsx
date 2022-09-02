@@ -85,8 +85,9 @@ export default function UserMenu(props: {
             mobileDisplay="flex"
             justify="center"
             align="center"
+            onClick={handleChange}
           >
-            <BurgerMenu open={open} onClick={handleChange} />
+            <BurgerMenu open={open} />
           </Row>
           <StyledDivLogo>
             <SmallLogo setTransition={props.setHomeTransition} />
@@ -135,7 +136,7 @@ export default function UserMenu(props: {
 
           {isAdmin &&
             <Row style={positionning}>
-              <AdminIcon page={props.page} setTransition={props.setTransition}/>
+              <AdminIcon page={props.page} setTransition={props.setTransition} />
             </Row>
           }
 
@@ -144,7 +145,7 @@ export default function UserMenu(props: {
             mobileDisplay="none"
             flex={NumHiddenIcon + 2}
           >
-            <LogOutIcon id="2" setTransition={props.setHomeTransition}/>
+            <LogOutIcon id="2" setTransition={props.setHomeTransition} />
           </StyledDivLogOut>
         </StyledIconContener>
       </StyledMenu>

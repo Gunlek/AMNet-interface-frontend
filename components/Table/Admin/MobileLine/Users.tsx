@@ -53,6 +53,7 @@ export const UsersMobileLine = ({ row, columnsNumber, isLast }: {
                                                 query: { user_id: row.original.user_id},
                                             }}
                                                 passHref
+                                                scroll={false}
                                             >
                                                 <StyledLink color="#096a09" style={{ pointerEvents: scrolled ? undefined : "none" }}>
                                                     {cell.render('Cell')}

@@ -6,17 +6,26 @@ import { Col6, Column, Row } from "../../components/Container/style";
 import RectangleLogo from "../../components/Card/RectangleLogo";
 import { ButtonLink } from "../../components/Button/Buttons";
 import { StyledCardCampus } from "../../components/Card/style";
-import Image from 'next/image'
+import Image from 'next/image';
+import getToken from "../../components/Utils/auth-token";
 
-export default function FAQ() {
-  const isLogged = false;
+export async function getServerSideProps({ req }) {
+  const { userId } = getToken(req);
 
+  return {
+    props: {
+      isLogged: userId ? true : false
+    }
+  }
+}
+
+export default function FAQ(props: { isLogged: boolean }) {
   return (
     <>
       <Head>
         <title>FAQ &bull; AMNet</title>
       </Head>
-      <CampusGlobalStyle />
+      <CampusGlobalStyle flexDirection="column" />
 
       <Column style={{ padding: "0 5%" }}>
         <Row margin="20px 0" mobileMargin="30px 0" direction="column">
@@ -24,14 +33,14 @@ export default function FAQ() {
             <RectangleLogo color="white" />
           </Col6>
           <Col6 align="end" mobileAlign="center" justify="center">
-            <ButtonLink href={isLogged ? "/" : "/homepage/login"} width="300px">Accéder à Mon Compte</ButtonLink>
+            <ButtonLink href={props.isLogged ? "/" : "/homepage/login"} width="300px">Accéder à Mon Compte</ButtonLink>
           </Col6>
         </Row>
       </Column>
 
       <Column style={{ padding: "0 5%", flex: "1", justifyContent: "center", alignItems: "center" }}>
         <StyledCardCampus style={{ display: "block", width: "fit-content" }}>
-          <Image src="/static/images/inconstruction.png" width={440} height={343} alt="Construction Site Plot"/>
+          <Image src="/static/images/inconstruction.png" width={440} height={343} alt="Construction Site Plot" />
         </StyledCardCampus>
       </Column>
 

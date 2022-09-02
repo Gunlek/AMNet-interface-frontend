@@ -29,6 +29,7 @@ export const Column = styled.div`
     padding-left: 0;
     padding-bottom: 0;
     height: ${(props) => props.MobileHeight};
+    flex-direction: ${(props) => props.MobileFlexDirection};
   }
 
   @media screen and (max-width: 800px){
@@ -225,6 +226,7 @@ export const StyledMain = styled.main.attrs((props) => ({
   display: flex;
   flex: 1;
   height: 100%;
+  max-width: fill-available;
 `;
 
 export const CheckboxRow = styled(Row)`

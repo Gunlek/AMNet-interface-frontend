@@ -94,7 +94,7 @@ export default function SignUp(props: { active_proms: number, usins_state: boole
         .then(async (res: AxiosResponse) => {
           if (res.status == 200) {
             await axios.post(
-              '/auth',
+              '/login',
               { name: form.user_name, password: form.user_password }
             )
 
@@ -229,7 +229,7 @@ export default function SignUp(props: { active_proms: number, usins_state: boole
 
               <ResponsiveRow
                 Height={form.user_is_gadz ? "93px" : "0px"}
-                MobileHiehgt={form.user_is_gadz ? "244.6px" : "0px"}
+                MobileHeight={form.user_is_gadz ? "244.6px" : "0px"}
                 style={{
                   transition: "height 0.3s linear",
                   overflowY: "clip",

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Head from "next/head";
 import { CampusGlobalStyle } from "../../../components/Background/style";
-import { ButtonLink, GreenButton } from "../../../components/Button/Buttons";
+import { GreenButton } from "../../../components/Button/Buttons";
 import { TitleCard, HelpSection, Footer } from "../../../components/Card/Cards";
 import RectangleLogo from "../../../components/Card/RectangleLogo";
 import { StyledCardCampus } from "../../../components/Card/style";
@@ -15,12 +15,14 @@ import { variants } from "../../../components/Utils/animation-variants";
 export default function LostPassword() {
   const [mail, setMail] = useState("");
   const [show, setShow] = useState(false);
+  const [error, setError] = useState(false);
 
   const resetPassword = (e) => {
     e.preventDefault();
-    axios.post(`${process.env.NEXT_PUBLIC_API_HOST}/mail/password-reset`, { user_email: mail })
+    axios.post(`/mail/password-reset`, { user_email: mail })
       .then((res: AxiosResponse) => {
         if (res.status === 200) setShow(true)
+        if (res.status === 204) { setShow(true); setError(true) }
       })
   }
 
@@ -31,9 +33,17 @@ export default function LostPassword() {
       </Head>
       <CampusGlobalStyle />
 
-      <Modal show={show} style={{ width: "450px", textAlign: "center" }}>
-        Nous venons de vous envoyer un mail <br />
-        Pour réinitialiser votre mot de passe
+      <Modal show={show} style={{ width: "450px", textAlign: "center", color: error ? "red" : undefined }}>
+        {error ?
+          <>
+            Cette adresse e-mail n'est associée à aucun compte
+          </>
+          :
+          <>
+            Nous venons de vous envoyer un mail <br />
+            Pour réinitialiser votre mot de passe
+          </>
+        }
       </Modal>
 
       <motion.main
@@ -66,7 +76,7 @@ export default function LostPassword() {
               </div>
 
               <Row style={{ justifyContent: "center" }}>
-                <GreenButton type="submit">Envoyez un mail de récuperation</GreenButton>
+                <GreenButton type="submit">Envoyer un mail de réinitialisation</GreenButton>
               </Row>
             </form>
           </StyledCardCampus>

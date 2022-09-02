@@ -32,13 +32,13 @@ export default function MaterialModal(props: { setHardware: Function, userId: Nu
         e.preventDefault();
         const newError = { material_description: form.material_description === "", material_reason: form.material_reason === "" };
         setError(newError);
-
+        
         if (!newError.material_description && !newError.material_reason) {
-            await axios.post(`/access`, form)
+            await axios.post(`/hardware`, form)
                 .then(async (res: AxiosResponse) => {
                     if (res.status === 200) {
-                        const access = await axios.get(`/hardware/user/${props.userId}`);
-                        props.setHardware(access.data);
+                        const hardware = await axios.get(`/hardware/user/${props.userId}`);
+                        props.setHardware(hardware.data);
                         toggle();
                     }
                 })

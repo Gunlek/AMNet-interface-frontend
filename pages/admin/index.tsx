@@ -118,8 +118,8 @@ export default function Admin(props: {
 
   const variants = {
     hidden: { opacity: 0, x: 100, y: 0 },
-    enter: { opacity: 1, x: 0},
-    exit: roadToIndex ? { opacity: 0, x: -100 } : roadToHomePage? { opacity: 0, x: 100 }  : null
+    enter: { opacity: 1, x: 0 },
+    exit: roadToIndex || roadToHomePage ? { opacity: 0, x: 100 } : null
   };
 
   const roadIndex = () => {
@@ -173,7 +173,7 @@ export default function Admin(props: {
   };
 
   const [WelcomeMessageEditor, WelcomeMessageHTML] = Editor("2", props.news_message);
-  const [MailEditor, MailHTML] = Editor("1");
+  const [MailEditor, MailHTML, setHTML] = Editor("1");
   const [subject, setSubject] = useState("");
   const [settings, setSettings] = useState({
     lydia_cotiz: props.lydia_cotiz,
@@ -287,7 +287,7 @@ export default function Admin(props: {
               </div>
 
               <Row style={{ justifyContent: "center" }}>
-                <GreenButton onClick={updateWelcomeMessage}>Mettre à jour</GreenButton>
+                <GreenButton onClick={updateWelcomeMessage} mobileWidth="100%">Mettre à jour</GreenButton>
               </Row>
             </StyledCard>
           </Row>
@@ -357,7 +357,7 @@ export default function Admin(props: {
               </div>
 
               <Row style={{ justifyContent: "center" }}>
-                <MailModal html={MailHTML} subject={subject} recipients={Checked} />
+                <MailModal html={MailHTML} subject={subject} recipients={Checked} setHTML={setHTML} />
               </Row>
             </StyledCard>
           </Row>

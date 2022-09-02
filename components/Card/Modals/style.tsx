@@ -24,7 +24,7 @@ const opacityOut = keyframes`
 export const StyledBackgroundModal = styled.div`
   background: rgba(0, 0, 0, 0.5); 
   position: fixed; 
-  height: 150%; 
+  height: 100vh; 
   width: 100%; 
   left: 0; 
   top: 0;

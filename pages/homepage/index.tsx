@@ -55,6 +55,7 @@ export default function Homepage(props: {
   isLogged: boolean,
   from: string
 }) {
+  const fromHomePage = (/\/homepage\/\w/).test(props.from);
   return (
     <>
       <Head>
@@ -63,12 +64,21 @@ export default function Homepage(props: {
       <CampusGlobalStyle padding="0 5%" />
 
       <motion.main
-        variants={variants(
-          (/\/homepage\/\w/).test(props.from) ? "right" : "",
-          props.isLogged ? "" : "left",
-          props.isLogged ? "#E8EFEA" : null,
-          (/\/homepage\/\w/).test(props.from) ? null : "#E8EFEA"
-        )}
+        variants={{
+          hidden: {
+            opacity: fromHomePage ? 0 : 1,
+            x: fromHomePage ? -100 : 0,
+            backgroundColor: fromHomePage ? null : "#E8EFEA"
+          },
+          enter: {
+            opacity: 1,
+            x: 0,
+            backgroundColor: fromHomePage ? null : "rgba(0, 0, 0, 0)"
+          },
+          exit: {
+            backgroundColor: props.isLogged ? "#E8EFEA" : null
+          }
+        }}
         initial="hidden"
         animate="enter"
         exit="exit"
@@ -76,9 +86,12 @@ export default function Homepage(props: {
       >
         <motion.div
           variants={{
-            exit: { opacity: props.isLogged ? 1 : 0, x: props.isLogged ? -100 : 100 },
-            hidden: { x: (/\/homepage\/\w/).test(props.from) ? null : - 100 },
-            enter: { x: (/\/homepage\/\w/).test(props.from) ? null : 0 },
+            hidden: { x: fromHomePage ? null : - 100, opacity: fromHomePage ? null : 0 },
+            enter: { x: fromHomePage ? null : 0, opacity: 1 },
+            exit: {
+              opacity: 0,
+              x: -100
+            }
           }}
           exit="exit"
           initial="hidden"

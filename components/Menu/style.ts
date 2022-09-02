@@ -32,7 +32,7 @@ export const MenuContener = styled.div`
 
   @media screen and (max-width: 1000px){  
     height: auto;
-    width: 100%;
+    width: 100vw;
     position: ${(props) => props.top ? "absolute" : "fixed"};
     transition: transform ${(props) => (props.scroll < 115 && props.scroll > 100) ? "0s" : props.timeTransform};
     transform: ${(props) => ((!props.top) && !props.sticky) ? 'translateY(-100%)' : 'translateY(0)'};

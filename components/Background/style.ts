@@ -29,6 +29,7 @@ export const CampusGlobalStyle = createGlobalStyle`
 
   #__next{
     padding: 0;
+    flex-direction: ${(props) => props.flexDirection};
   }
 
   main{

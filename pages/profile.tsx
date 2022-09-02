@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Head from "next/head";
-import { GreenButton } from "../components/Button/Buttons";
+import { GreenButton, RedButton } from "../components/Button/Buttons";
 import { HelpSection, Footer } from "../components/Card/Cards";
 import { DashboardContainer, ResponsiveRow, Column, Col6, Col3, StyledMain } from "../components/Container/style";
 import { StyledInputLabel, StyledInput } from "../components/Input/style";
@@ -16,6 +16,8 @@ import getToken from "../components/Utils/auth-token";
 import getConfig from "../components/Utils/req-config";
 import Modal from "../components/Card/Modals/Modal";
 import usePageTransition from "../components/Utils/usePageTransition";
+import { useRouter } from "next/router";
+import DeleteUserModal from "../components/Card/Modals/DeleteUserModal";
 
 export async function getServerSideProps({ req }) {
   const { access_token, userId, localNetwork } = getToken(req)
@@ -53,7 +55,6 @@ export default function Profil(props: {
   user: user,
   active_proms: number,
   usins_state: boolean,
-  phone_err?: boolean,
   localNetwork: boolean
 }) {
   const {
@@ -66,9 +67,11 @@ export default function Profil(props: {
     handlePhoneChange,
     blurPassword2,
     blurPhone
-  } = useForm(props.active_proms, props.usins_state, props.user)
+  } = useForm(props.active_proms, props.usins_state, props.user);
   const [show, setShow] = useState(false);
   const { roadTo, pageTransition, roadToHome } = usePageTransition('admin');
+
+
   const editProfil = (elmt) => {
     elmt.preventDefault();
     blurPassword2();
@@ -81,7 +84,7 @@ export default function Profil(props: {
           if (res.status === 200) setShow(!show)
         })
     }
-  }
+  };
 
   return (
     <>
@@ -244,14 +247,21 @@ export default function Profil(props: {
                   type="text"
                 />
               </Col6>
-              <Col6
+
+              <ResponsiveRow
                 paddingLeft="10px"
                 align="end"
                 mobileAlign="center"
-                style={{ justifyContent: "end" }}
+                paddingBottom="20px"
+                style={{
+                  width: "auto",
+                  flex: "6",
+                  justifyContent: "space-around"
+                }}
               >
-                <GreenButton type="submit">Sauvegarder mon profil</GreenButton>
-              </Col6>
+                <DeleteUserModal userId={props.user.user_id} />
+                <GreenButton mobileWidth="100%" type="submit">Sauvegarder mon profil</GreenButton>
+              </ResponsiveRow>
             </ResponsiveRow>
           </form>
 

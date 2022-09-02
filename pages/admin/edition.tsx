@@ -237,7 +237,7 @@ export default function Edition(props: { accutalTeam: { pseudo: string, id: stri
               </div>
 
               <Row style={{ justifyContent: "center" }}>
-                <GreenButton onClick={updateDocs}>Mettre à jour</GreenButton>
+                <GreenButton mobileWidth="100%" onClick={updateDocs}>Mettre à jour</GreenButton>
               </Row>
             </form>
           </StyledCard>
@@ -298,7 +298,7 @@ export default function Edition(props: { accutalTeam: { pseudo: string, id: stri
             </ResponsiveRow>
 
             <Row style={{ marginTop: "20px", justifyContent: "center" }}>
-              <GreenButton onClick={updateTeamList}>Mettre à jour</GreenButton>
+              <GreenButton mobileWidth="100%" onClick={updateTeamList}>Mettre à jour</GreenButton>
             </Row>
           </StyledCard>
 

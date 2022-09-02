@@ -30,7 +30,7 @@ export async function getServerSideProps({ req, query }) {
         news_message: news_message.data,
         user: user.data,
         payment_err: query.payment_err === "1",
-        fromLogin: (/\/homepage(\/\w*)?/).test(oldURL(req)) || (/\/admin(\/\w*)?/).test(oldURL(req)),
+        from: oldURL(req),
         localNetwork: localNetwork
       }
     }
@@ -67,15 +67,17 @@ export default function Index(
     localNetwork: boolean,
     user?: user,
     payment_err?: boolean,
-    fromLogin?: boolean
+    from?: string
   }
 ) {
   const [show, setShow] = useState(false);
   const [roadToAdmin, setRoadToAdmin] = useState(false);
   const [roadToHomePage, setRoadToHomePage] = useState(false);
+  const fromLogin = (/\/homepage(\/\w*)?/).test(props.from);
+  const fromAdmin = (/\/admin(\/\w*)?/).test(props.from);
 
   const variants = {
-    hidden: { opacity: 0, x: 100 },
+    hidden: { opacity: 0, x: fromAdmin ? -100 : 100 },
     enter: { opacity: 1, x: 0 },
     exit: roadToAdmin ? { opacity: 0, x: -100 } : roadToHomePage ? { opacity: 0, x: 100 } : null
   };
@@ -104,7 +106,7 @@ export default function Index(
         <StyledLink color="#096A09" href="mailto:contact@amnet.fr">contact@amnet.fr</StyledLink>
       </Modal>
 
-      <StyledMain variants={(props.fromLogin || roadToAdmin) ? variants : undefined}>
+      <StyledMain variants={(fromLogin || roadToAdmin || fromAdmin) ? variants : undefined}>
         <UserMenu
           page="index"
           user={{
@@ -118,7 +120,7 @@ export default function Index(
         />
 
         <DashboardContainer
-          initial={props.fromLogin ? "false" : undefined}
+          initial={fromLogin || fromAdmin ? "false" : undefined}
           exit={variants.exit ? "false" : undefined}
         >
           <ResponsiveRow margin="1% 0" mobileMargin="20px 0">
@@ -131,9 +133,21 @@ export default function Index(
               <BlackTitle>Mon Espace AMNet</BlackTitle>
             </Row>
 
-            <Row align="center" style={{ justifyContent: "center", width: "auto" }}>
+            <Row
+              align="center"
+              MobileFlexDirection={props.user.user_rank === "admin" && !props.user.user_pay_status ?
+                "column !important"
+                :
+                undefined
+              }
+              style={{
+                justifyContent: "center",
+                width: "auto"
+              }}
+            >
               {props.user.user_rank === "admin" ?
                 <AdminNotifications
+                  unpaid={!props.user.user_pay_status}
                   notifNumber={props.access_quantity + props.material_quantity}
                   access_quantity={props.access_quantity}
                   material_quantity={props.material_quantity}
@@ -152,7 +166,7 @@ export default function Index(
             <TitleCard>Actualité AMNet</TitleCard>
             <NewsMessage
               style={{ textAlign: "justify" }}
-              dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(props.news_message || "") }}
+              dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(props.news_message || "", { ADD_ATTR: ['target'] }) }}
             />
           </StyledCard>
 

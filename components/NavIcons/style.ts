@@ -46,29 +46,20 @@ export const StyledBackIcon = styled.a`
   }  
 `;
 
-export const StyledBackBurger = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
+export const StyledBackBurger = styled.div.attrs({
+  as: motion.div,
+  variants: { exit: { opacity: 0 } },
+  exit: "exit",
+  transition: { type: 'linear' }
+})`
   height: 60px;
   width: 60px;
-  
-  z-index: 1;
-  position: relative;
-
-  &::before{
-    position: absolute;
-    content: "";
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    background: linear-gradient(135deg, #67BC45 5.67%, #096A09 94.96%);
-    z-index: -1;
-    transition: opacity 0.2s linear;
-    opacity: ${(props) => props.Opacity || "0"};
-    border-radius: 15px;
-  }
+  position: absolute;
+  z-index: -1;
+  background: linear-gradient(135deg, #67BC45 5.67%, #096A09 94.96%);
+  border-radius: 15px;
+  transition: opacity 0.2s linear;
+  opacity: 0;
 
   @media screen and (max-width: 1000px){
     margin: 0 5px;
@@ -92,6 +83,18 @@ export const StyledActiveIcon = styled.div.attrs({
 
   @media screen and (max-width: 1000px){
     margin: 7.5px 5px 10px;
+
+    &::after{
+      position: absolute;
+      content:  ${(props) => props.tooltip && '"' + props.tooltip + '"'};
+      border-radius: 15px;
+      padding: 10px;
+      width: max-content;
+      z-index: 3;
+      left: 50%;
+      top: 85%;
+      transform: translateX(-50%);
+    }  
   }
 `;
 
@@ -110,7 +113,7 @@ export const StyledIcon = styled.svg`
 
 export const StyledActiveSVG = styled.svg.attrs({
   as: motion.svg,
-  variants: { exit: { fill: "#C5C7C6"}, initial: { fill: "#FFFFFF"} },
+  variants: { exit: { fill: "#C5C7C6" }, initial: { fill: "#FFFFFF" } },
   initial: "initial",
   animate: "initial",
   exit: "exit",

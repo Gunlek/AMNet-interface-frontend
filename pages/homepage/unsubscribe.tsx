@@ -47,7 +47,7 @@ export default function Unsubscribe(props: { user: user }) {
       <Head>
         <title>Liste de diffusion &bull; AMNet</title>
       </Head>
-      <CampusGlobalStyle />
+      <CampusGlobalStyle flexDirection="column" />
 
       <Modal show={show} style={{ width: "500px", textAlign: "justify" }}>
         <BlackText>

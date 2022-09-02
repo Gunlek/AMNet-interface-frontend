@@ -36,6 +36,10 @@ export const StyledGreenCard = styled.div`
   width: 99%;
   padding: 5px 0 5px 40px;
   font-size: 1.2rem;
+
+  @media screen and (max-width: 1000px){
+    padding: 5px 10px 5px 20px;
+  }
 `;
 
 export const StyledTeamPicture = styled(Column)`
@@ -49,6 +53,7 @@ export const StyledTeamPicture = styled(Column)`
   
   @media screen and (max-width: 1000px){
     height: 400px;
+    aspect-ratio: auto;
   } 
 `;
 
@@ -89,7 +94,7 @@ export const StyledFooter = styled.footer`
     margin-right: 0;
     margin-top: 15px;
     margin-bottom: 10px;
-    padding: 0 5%;
+    padding: 0;
   } 
 `;
 
@@ -131,7 +136,7 @@ export const StyledTabColumn = styled(Column)`
 
 export const StyledActive = styled.div`
   transform: ${(props) => props.Transform};
-  width: ${(props) => props.Declined ? "120px" : "100px"};
+  width: ${(props) => props.Declined ? "7.5rem" : "6.25rem"};
   background-color: #096A09;
   height: 4px;
   transition: transform 0.5s, width 0.5s;
@@ -139,7 +144,35 @@ export const StyledActive = styled.div`
   bottom: -2px;
   left: 0;
 
-  @media screen and (max-width: 440px){
-    width: ${(props) => props.Declined ? "130%" : "105%"};
+  @media screen and (max-width: 365px){
+    width: ${(props) => props.Declined ? "125%" : "100%"};
   } 
+`;
+
+export const ContainerAdminToolTip = styled.div`
+  margin-left: 10px; 
+  display: flex;
+  cursor: pointer;
+`;
+
+export const StyledAdminToolTip = styled(StyledCardCampus)`
+  position: absolute;
+  top: 70px;
+  left: 100%;
+  transform: translateX(-50%);
+  width: max-content;
+  font-size: 1.2rem;
+  opacity: 0;
+  z-index: -1;
+  transition: opacity 0.3s, z-index 0.3s;
+
+  @media screen and (max-width: 1000px){
+    width: 90vw;
+    left: 50%;
+  } 
+
+  ${ContainerAdminToolTip}:hover &{
+    opacity: 1;
+    z-index: 2;
+  }
 `;
