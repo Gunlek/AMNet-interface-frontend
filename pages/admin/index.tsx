@@ -173,7 +173,7 @@ export default function Admin(props: {
   };
 
   const [WelcomeMessageEditor, WelcomeMessageHTML] = Editor("2", props.news_message);
-  const [MailEditor, MailHTML] = Editor("1");
+  const [MailEditor, MailHTML, setHTML] = Editor("1");
   const [subject, setSubject] = useState("");
   const [settings, setSettings] = useState({
     lydia_cotiz: props.lydia_cotiz,
@@ -357,7 +357,7 @@ export default function Admin(props: {
               </div>
 
               <Row style={{ justifyContent: "center" }}>
-                <MailModal html={MailHTML} subject={subject} recipients={Checked} />
+                <MailModal html={MailHTML} subject={subject} recipients={Checked} setHTML={setHTML} />
               </Row>
             </StyledCard>
           </Row>

@@ -52,7 +52,8 @@ export default function Editor(id: string, html?: string) {
             }
         </>
         ,
-        value
+        value, 
+        setValue
     ]
 }
 

@@ -11,7 +11,7 @@ import DOMPurify from 'isomorphic-dompurify';
 import axios, { AxiosResponse } from "axios"
 import { useState } from "react"
 
-export default function MailModal(props: { html: any, subject: string, recipients: any }) {
+export default function MailModal(props: { html: any, subject: string, recipients: any, setHTML: any }) {
     const minWidth1000 = useMediaQuery('(min-width: 1000px)');
     const { Display, Opacity, toggle } = ModalLogic();
     const [send, setSend] = useState(false)
@@ -37,7 +37,7 @@ export default function MailModal(props: { html: any, subject: string, recipient
             }
         )
             .then((res: AxiosResponse) => {
-                if (res.status == 200) setSend(true);
+                if (res.status == 200) { setSend(true); props.setHTML(""); }
             });
     }
 
