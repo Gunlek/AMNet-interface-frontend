@@ -186,7 +186,7 @@ export default function IoTModal(props: { setAccess: Function, userId: Number | 
                                 }
                                 {error.type_access_proof &&
                                     <ErrorP Fixed={true}>
-                                        Le fichier n'est pas une image
+                                        Le fichier n&apos;est pas une image
                                     </ErrorP>
                                 }
                             </div>
