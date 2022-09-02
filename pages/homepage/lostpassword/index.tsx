@@ -36,7 +36,7 @@ export default function LostPassword() {
       <Modal show={show} style={{ width: "450px", textAlign: "center", color: error ? "red" : undefined }}>
         {error ?
           <>
-            Cette adresse e-mail n'est associée à aucun compte
+            Cette adresse e-mail n&apos;est associée à aucun compte
           </>
           :
           <>

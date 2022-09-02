@@ -91,7 +91,7 @@ export function InfoAdmin() {
 		c20.886,0,37.826,16.935,37.826,37.829s-16.94,37.829-37.826,37.829C226.853,143.756,209.93,126.822,209.93,105.927z"/>
       </svg>
       <StyledAdminToolTip>
-        Petite thuysse pour éditer l'adresse MAC d'une personne : <br />
+        Petite thuysse pour éditer l&apos;adresse MAC d&apos;une personne : <br />
         &bull; sur PC tu fais un double-clic dessus<br />
         &bull; sur Téléphone tu fais un appui long
       </StyledAdminToolTip>
