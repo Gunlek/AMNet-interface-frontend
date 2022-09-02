@@ -29,6 +29,7 @@ export const CampusGlobalStyle = createGlobalStyle`
 
   #__next{
     padding: 0;
+    flex-direction: ${(props) => props.flexDirection};
   }
 
   main{
@@ -44,11 +45,5 @@ export const CampusGlobalStyle = createGlobalStyle`
       position: absolute;
       z-index: 2;
     }
-  }
-`;
-
-export const GlobalStyle404 = createGlobalStyle` 
-  #__next{
-    flex-direction: column;
   }
 `;

@@ -1,6 +1,6 @@
 import React from "react";
 import Head from "next/head";
-import { CampusGlobalStyle, GlobalStyle404 } from "../components/Background/style";
+import { CampusGlobalStyle } from "../components/Background/style";
 import { ButtonLink } from "../components/Button/Buttons";
 import { TitleCard, HelpSection, Footer } from "../components/Card/Cards";
 import RectangleLogo from "../components/Card/RectangleLogo";
@@ -14,8 +14,8 @@ export default function Page404() {
       <Head>
         <title>404 &bull; AMNet</title>
       </Head>
-      <CampusGlobalStyle />
-      <GlobalStyle404 />
+      <CampusGlobalStyle flexDirection="column" />
+
       <Row
         mobileWidth="90%"
         style={{

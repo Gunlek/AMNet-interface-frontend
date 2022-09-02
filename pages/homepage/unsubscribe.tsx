@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Head from "next/head";
-import { CampusGlobalStyle, GlobalStyle404 } from "../../components/Background/style";
+import { CampusGlobalStyle } from "../../components/Background/style";
 import { ButtonLink, GreenButton } from "../../components/Button/Buttons";
 import { TitleCard, HelpSection, Footer } from "../../components/Card/Cards";
 import RectangleLogo from "../../components/Card/RectangleLogo";
@@ -47,8 +47,8 @@ export default function Unsubscribe(props: { user: user }) {
       <Head>
         <title>Liste de diffusion &bull; AMNet</title>
       </Head>
-      <CampusGlobalStyle />
-      <GlobalStyle404 />
+      <CampusGlobalStyle flexDirection="column" />
+
       <Modal show={show} style={{ width: "500px", textAlign: "justify" }}>
         <BlackText>
           {notification ?
