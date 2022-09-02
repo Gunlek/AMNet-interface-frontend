@@ -63,8 +63,9 @@ export default function AdminMenu(props: { page?: string, setTranstion: Function
             mobileDisplay="flex"
             justify="center"
             align="center"
+            onClick={handleChange}
           >
-            <BurgerMenu open={open} onClick={handleChange} />
+            <BurgerMenu open={open} />
           </Row>
           <StyledDivLogo>
             <SmallLogo setTransition={props.setHomeTransition} />
