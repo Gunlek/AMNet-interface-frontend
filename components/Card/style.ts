@@ -165,6 +165,7 @@ export const StyledAdminToolTip = styled(StyledCardCampus)`
   opacity: 0;
   z-index: -1;
   transition: opacity 0.3s, z-index 0.3s;
+  background: white;
 
   @media screen and (max-width: 1000px){
     width: 90vw;
