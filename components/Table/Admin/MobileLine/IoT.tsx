@@ -42,7 +42,7 @@ export const IoTMobileLine = ({ index, value, status, display, isLast, setTab }:
                     <thead>
                         <StyledHeadTr onClick={() => setScrolled(!scrolled)}>
                             <StyledTh style={{ width: "130px" }}>Equipement {index}</StyledTh>
-                            <StyledTh style={{ textAlign: "center" }}>{value['accesss_description']}</StyledTh>
+                            <StyledTh style={{ textAlign: "center" }}>{value.access_description}</StyledTh>
                         </StyledHeadTr>
                     </thead>
                     <tbody>

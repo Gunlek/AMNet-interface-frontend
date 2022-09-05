@@ -18,7 +18,7 @@ export const MaterialMobileLine = ({ index, value, status, display, isLast, setT
 }) => {
     const [scrolled, setScrolled] = useState(false);
     const elementRef = useRef(null);
-    const height = status === "pending" ? 480 + elementRef.current?.clientHeight : 410 + elementRef.current?.clientHeight
+    const height = status === "pending" ? 460 + elementRef.current?.clientHeight : 410 + elementRef.current?.clientHeight
 
     useEffect(() => {
         setTimeout(() => {
