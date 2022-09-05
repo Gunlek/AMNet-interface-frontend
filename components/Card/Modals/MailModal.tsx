@@ -146,7 +146,7 @@ export default function MailModal(props: { html: any, subject: string, recipient
                                     </ErrorP>
                                 }
 
-                                {props.subject === "" &&
+                                {props.subject == "" &&
                                     <ErrorP style={{ marginBottom: "30px" }}>
                                         <strong>Attention</strong> tu n&apos;as pas rempli l&apos;Objet du mail
                                     </ErrorP>
