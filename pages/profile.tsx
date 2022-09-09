@@ -256,10 +256,9 @@ export default function Profil(props: {
                 style={{
                   width: "auto",
                   flex: "6",
-                  justifyContent: "space-around"
+                  justifyContent: "end"
                 }}
               >
-                <DeleteUserModal userId={props.user.user_id} />
                 <GreenButton mobileWidth="100%" type="submit">Sauvegarder mon profil</GreenButton>
               </ResponsiveRow>
             </ResponsiveRow>
