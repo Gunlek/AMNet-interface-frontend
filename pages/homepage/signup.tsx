@@ -31,6 +31,7 @@ import axios, { AxiosResponse } from 'axios';
 import getToken from "../../components/Utils/auth-token";
 import { motion } from "framer-motion";
 import { variants } from "../../components/Utils/animation-variants";
+import CampusBackground from "../../components/Background/CampusBackground";
 
 export async function getServerSideProps({ req }) {
   const { access_token } = getToken(req)
@@ -118,9 +119,11 @@ export default function SignUp(props: { active_proms: number, usins_state: boole
     <>
       <Head>
         <title>Inscirption &bull; AMNet</title>
+        <meta name="description" content="Inscription : créez votre espace personnel pour accéder au réseau de la résidence Jacques Pagliero du campus Arts et Métiers de Lille" />
       </Head>
 
       <CampusGlobalStyle />
+      <CampusBackground />
 
       <motion.main
         variants={variant}

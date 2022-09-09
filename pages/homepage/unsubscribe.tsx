@@ -12,6 +12,7 @@ import { user } from "../../components/Utils/types";
 import Modal from "../../components/Card/Modals/Modal";
 import getToken from "../../components/Utils/auth-token";
 import getConfig from "../../components/Utils/req-config";
+import CampusBackground from "../../components/Background/CampusBackground";
 
 export async function getServerSideProps({ req }) {
   const { access_token, userId } = getToken(req)
@@ -48,6 +49,7 @@ export default function Unsubscribe(props: { user: user }) {
         <title>Liste de diffusion &bull; AMNet</title>
       </Head>
       <CampusGlobalStyle flexDirection="column" />
+      <CampusBackground />
 
       <Modal show={show} style={{ width: "500px", textAlign: "justify" }}>
         <BlackText>
@@ -69,43 +71,45 @@ export default function Unsubscribe(props: { user: user }) {
         </Row>
       </Modal>
 
-      <Row
-        mobileWidth="90%"
-        style={{
-          flex: "1",
-          justifyContent: "center",
-          alignItems: "center",
-          margin: "20px 0"
-        }}
-      >
-        <StyledCardCampus width="715px">
-          <Row style={{ marginBottom: "20px", marginTop: "10px", justifyContent: "center" }}>
-            <RectangleLogo />
-          </Row>
+      <main>
+        <Row
+          mobileWidth="90%"
+          style={{
+            flex: "1",
+            justifyContent: "center",
+            alignItems: "center",
+            margin: "20px 0"
+          }}
+        >
+          <StyledCardCampus width="715px">
+            <Row style={{ marginBottom: "20px", marginTop: "10px", justifyContent: "center" }}>
+              <RectangleLogo />
+            </Row>
 
-          <TitleCard>Liste de diffusion</TitleCard>
-          <BlackText style={{ marginBottom: "20px", textAlign: "justify" }}>
-            {notification ?
-              <>
-                Vous souhaitez <span style={{ color: "#096a09", fontWeight: "bold" }}>retirer</span> l&apos;adresse <span style={{ color: "#096a09" }}>{props.user.user_email}</span> de notre liste de diffusion ?
-              </>
-              :
-              <>
-                Vous souhaitez <span style={{ color: "#096a09", fontWeight: "bold" }}>ajouter</span> l&apos;adresse <span style={{ color: "#096a09" }}>{props.user.user_email}</span> à notre liste de diffusion ?
-              </>
-            }
-            <br /><br />
-            Nous utilisons uniquement votre adresse e-mail pour vous communiquer des informations sur l&apos;AMNet, comme une maintenance potentielle ou sur l&apos;instabilité du réseau.
-          </BlackText>
+            <TitleCard>Liste de diffusion</TitleCard>
+            <BlackText style={{ marginBottom: "20px", textAlign: "justify" }}>
+              {notification ?
+                <>
+                  Vous souhaitez <span style={{ color: "#096a09", fontWeight: "bold" }}>retirer</span> l&apos;adresse <span style={{ color: "#096a09" }}>{props.user.user_email}</span> de notre liste de diffusion ?
+                </>
+                :
+                <>
+                  Vous souhaitez <span style={{ color: "#096a09", fontWeight: "bold" }}>ajouter</span> l&apos;adresse <span style={{ color: "#096a09" }}>{props.user.user_email}</span> à notre liste de diffusion ?
+                </>
+              }
+              <br /><br />
+              Nous utilisons uniquement votre adresse e-mail pour vous communiquer des informations sur l&apos;AMNet, comme une maintenance potentielle ou sur l&apos;instabilité du réseau.
+            </BlackText>
 
-          <Row style={{ justifyContent: "center" }}>
-            <GreenButton onClick={unsubscrive}>{notification ? "Se désabonner" : "Se réabonner"}</GreenButton>
-          </Row>
-        </StyledCardCampus>
-      </Row>
+            <Row style={{ justifyContent: "center" }}>
+              <GreenButton onClick={unsubscrive}>{notification ? "Se désabonner" : "Se réabonner"}</GreenButton>
+            </Row>
+          </StyledCardCampus>
+        </Row>
 
-      <HelpSection padding="0 5%" />
-      <Footer page="campus" />
+        <HelpSection padding="0 5%" />
+        <Footer page="campus" />
+      </main>
     </>
   );
 }

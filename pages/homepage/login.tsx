@@ -18,6 +18,7 @@ import getToken from "../../components/Utils/auth-token";
 import { motion } from "framer-motion";
 import { variants } from "../../components/Utils/animation-variants";
 import oldURL from "../../components/Utils/oldURL";
+import CampusBackground from "../../components/Background/CampusBackground";
 
 export async function getServerSideProps({ req, query }) {
   const { access_token } = getToken(req)
@@ -87,9 +88,11 @@ export default function Login(props: { modal: boolean, from: string }) {
     <>
       <Head>
         <title>Connexion &bull; AMNet</title>
+        <meta name="description" content="Connexion : accédez à votre espace personnel pour gérer votre compte AMNet et vos appareils connectés" />
       </Head>
       <CampusGlobalStyle />
-
+      <CampusBackground/>
+      
       <Modal show={props.modal} style={{ width: "425px", textAlign: "justify" }}>
         Vous devez être connecté pour vous désinscrire de la liste de diffusion
       </Modal>
