@@ -36,20 +36,20 @@ export const StyledGreenCard = styled.div`
   width: 99%;
   padding: 5px 0 5px 40px;
   font-size: 1.2rem;
-
+  position: relative;
+  z-index: 2;
   @media screen and (max-width: 1000px){
     padding: 5px 10px 5px 20px;
   }
 `;
 
 export const StyledTeamPicture = styled(Column)`
-  background-image: url(${props => props.background || process.env.NEXT_PUBLIC_API_HOST + '/team.jpeg'});
   outline: ${props => props.outline};
-  background-repeat: no-repeat;
-  background-position: 50% 0%;
-  background-size: cover;
   aspect-ratio: 16 / 9;
   border-radius: 30px;
+  z-index: 2;
+  position: relative;
+  overflow: hidden;
   
   @media screen and (max-width: 1000px){
     height: 400px;

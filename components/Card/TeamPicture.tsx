@@ -2,6 +2,7 @@ import { Column } from "../Container/style";
 import { BlackText, GreenText } from "../Text/style";
 import { GreenCard } from "./Cards";
 import { StyledTeamPicture, StyledCardCampus } from "./style";
+import Image from 'next/image';
 
 export default function TeamPicture(props: { Team: { pseudo: string, id: string }[], background?: string, outline?: string, promotion: string }) {
   const promotion = props.promotion;
@@ -35,8 +36,13 @@ export default function TeamPicture(props: { Team: { pseudo: string, id: string 
         justifyContent: "space-between"
       }}
     >
+      <Image 
+        src={props.background || `${process.env.NEXT_PUBLIC_API_HOST}/team.jpeg`} 
+        alt="Team AMNet Résidence Arts et Métiers Lille"
+        objectFit="cover" 
+        layout="fill"/>
       <GreenCard promotion={promotion} />
-      <StyledCardCampus style={{ alignItems: "center", flexDirection: "row" }}>
+      <StyledCardCampus style={{ alignItems: "center", flexDirection: "row", position: "relative", zIndex: "2" }}>
         {Team}
       </StyledCardCampus>
     </StyledTeamPicture>
