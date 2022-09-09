@@ -93,7 +93,14 @@ export default function ProofModal(props: { request: any, setTab: Function }) {
                                                             flexDirection: "column"
                                                         }}
                                                     >
-                                                        <Buttons id={props.request['access_id']} status={props.request['access_state']} requestType="access" setTab={props.setTab} />
+                                                        <Buttons
+                                                            id={props.request['access_id']}
+                                                            status={props.request['access_state']}
+                                                            requestType="access"
+                                                            setTab={props.setTab}
+                                                            inProof={true}
+                                                            toggleProofModal={toggle}
+                                                        />
                                                     </div>
                                                 </StyledTd>
                                             </StyledTr>
