@@ -1,8 +1,9 @@
 import axios, { AxiosResponse } from "axios"
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { GreenButton } from "../../Button/Buttons"
 import { Row } from "../../Container/style"
 import { StyledInputLabel, StyledInput, StyledTextArea } from "../../Input/style"
+import AutoTextArea from "../../Input/TextArea"
 import useMediaQuery from "../../MediaQueries/MediaQuery"
 import { ErrorP } from "../../Text/style"
 import { TitleCard } from "../Cards"
@@ -32,7 +33,7 @@ export default function MaterialModal(props: { setHardware: Function, userId: Nu
         e.preventDefault();
         const newError = { material_description: form.material_description === "", material_reason: form.material_reason === "" };
         setError(newError);
-        
+
         if (!newError.material_description && !newError.material_reason) {
             await axios.post(`/hardware`, form)
                 .then(async (res: AxiosResponse) => {
@@ -71,8 +72,7 @@ export default function MaterialModal(props: { setHardware: Function, userId: Nu
 
                             <div style={{ marginBottom: "30px", width: "100%", position: "relative" }}>
                                 <StyledInputLabel htmlFor="material_reason">Détails</StyledInputLabel>
-                                <StyledTextArea
-                                    border="2px solid rgba(0, 159, 0, 0.15)"
+                                <AutoTextArea
                                     id="material_reason"
                                     placeholder="Par exemple: Je souhaite avoir un second écran pour faire de la CAO"
                                     onChange={handleFormChange}
