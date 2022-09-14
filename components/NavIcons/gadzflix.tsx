@@ -15,7 +15,7 @@ export function Gadzflix(props: { localNetwork: boolean }) {
     return (
         <>
             <Modal show={show} style={{textAlign: "center", width: "500px"}}>
-                Tu dois être connecté au réseau de L&apos;AMNet<br /> Pour profiter de Gadzflix
+                Tu dois être connecté au réseau de L&apos;AMNet<br />pour profiter de Gadzflix
             </Modal>
             <StyledBackIcon onClick={props.localNetwork ? undefined : onClick} tooltip="Gadzflix" target="_blank" href="https://gadzflix.fr">
                 <StyledIcon xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 8.996 8.996">
