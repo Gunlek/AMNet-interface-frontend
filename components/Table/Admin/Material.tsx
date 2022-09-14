@@ -6,7 +6,7 @@ import { StateRequest } from "../../Status/Status";
 import { StyledLink } from "../../Text/style";
 import { adminHardware } from "../../Utils/types";
 import { StyledTr, StyledTd, MobileTbody, StyledTable, StyledHeadTr, StyledTh, Tbody, Thead } from "../style";
-import { Buttons } from "./Buttons";
+import Buttons from "./Buttons";
 import MaterialMobileLine from "./MobileLine/Material";
 
 function CreateTable({ requests, Display, setTab }: {
