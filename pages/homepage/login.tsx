@@ -1,15 +1,14 @@
 import React, { useEffect, useState } from "react";
 import Head from "next/head";
 import { CampusGlobalStyle } from "../../components/Background/style";
-import { GreenButton } from "../../components/Button/Buttons";
+import { GreenButton, SmallButtonLink } from "../../components/Button/Buttons";
 import { TitleCard, HelpSection, Footer } from "../../components/Card/Cards";
 import RectangleLogo from "../../components/Card/RectangleLogo";
 import { StyledCardCampus } from "../../components/Card/style";
-import { Row } from "../../components/Container/style";
+import { ResponsiveRow, Row } from "../../components/Container/style";
 import Checkbox from "../../components/Input/Checkbox";
 import { StyledInputLabel, StyledInput } from "../../components/Input/style";
-import { BlackText, ErrorP, StyledLink } from "../../components/Text/style";
-import Link from "next/link";
+import { BlackText, ErrorP } from "../../components/Text/style";
 import PasswordInput from "../../components/Input/PasswordInput";
 import axios from "axios";
 import { useRouter } from "next/router";
@@ -91,8 +90,8 @@ export default function Login(props: { modal: boolean, from: string }) {
         <meta name="description" content="Connexion : accédez à votre espace personnel pour gérer votre compte AMNet et vos appareils connectés" />
       </Head>
       <CampusGlobalStyle />
-      <CampusBackground/>
-      
+      <CampusBackground />
+
       <Modal show={props.modal} style={{ width: "425px", textAlign: "justify" }}>
         Vous devez être connecté pour vous désinscrire de la liste de diffusion
       </Modal>
@@ -153,22 +152,22 @@ export default function Login(props: { modal: boolean, from: string }) {
                   <BlackText style={{ marginLeft: "10px" }}>Rester connecté</BlackText>
                 </label>
 
-                <div style={{ marginBottom: "5px" }}>
-                  <Link href="/homepage/lostpassword" passHref scroll={false}>
-                    <StyledLink hovercolor="#096A09" >Mot de passe / Identifiant oublié</StyledLink>
-                  </Link>
-                </div>
-
-                <div style={{ marginBottom: "20px" }}>
-                  <Link href="/homepage/signup" passHref scroll={false}>
-                    <StyledLink hovercolor="#096A09"> Pas encore inscrit ? Inscrivez-vous en cliquant ici</StyledLink>
-                  </Link>
-                </div>
-
                 <Row style={{ justifyContent: "center" }}>
-                  <GreenButton type="submit">Connexion</GreenButton>
+                  <GreenButton width="300px" type="submit">Connexion</GreenButton>
                 </Row>
               </form>
+
+              <ResponsiveRow
+                mediaWidth="500px"
+                style={{
+                  justifyContent: "space-around",
+                  marginTop: "30px",
+                  alignItems: "center"
+                }}
+              >
+                <SmallButtonLink href="/homepage/signup" mobileMarginBottom="30px">Inscription</SmallButtonLink>
+                <SmallButtonLink width="220px" href="/homepage/lostpassword">Identifiants oubliés</SmallButtonLink>
+              </ResponsiveRow>
             </StyledCardCampus>
           </Row>
 
