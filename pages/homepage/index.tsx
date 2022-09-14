@@ -107,7 +107,7 @@ export default function Homepage(props: {
               <RectangleLogo color="white" easter={true} />
             </Col6>
             <Col6 align="end" mobileAlign="center" justify="center">
-              <ButtonLink href={props.isLogged ? "/" : "/homepage/login"} width="300px">Connexion / Inscription</ButtonLink>
+              <ButtonLink href={props.isLogged ? "/" : "/homepage/login"} width="300px">{props.isLogged ? "Mon Espace" : "Connexion / Inscription"}</ButtonLink>
             </Col6>
           </Row>
 
