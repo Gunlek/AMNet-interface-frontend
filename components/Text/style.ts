@@ -74,19 +74,23 @@ export const BlackP = styled(WhiteP)`
   color: black;
 `
 
-export const ErrorP = styled(WhiteP)`
+export const ErrorPNoFixed = styled(WhiteP)`
   color: red;
   font-size: 1rem;
   text-align: center;
   width: 100%;
-  margin-top: ${(props) => !props.Fixed && "5px"};
-  position: ${(props) => props.Fixed && "absolute"};
-  bottom:  ${(props) => props.Fixed && "-27px"};
-  left: ${(props) => props.Fixed && "50%"};
-  transform: ${(props) => props.Fixed && "translateX(-50%)"};
+  margin-top: 5px;
+`
+
+export const ErrorP = styled(ErrorPNoFixed)`
+  margin-top: 0;
+  position: absolute;
+  bottom: -27px;
+  left: 50%;
+  transform: translateX(-50%);
 
   @media screen and (max-width: 1000px){
-    bottom:  ${(props) => props.Fixed && "-22px"};
+    bottom:  -22px;
   } 
 `
 
