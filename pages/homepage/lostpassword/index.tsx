@@ -31,6 +31,7 @@ export default function LostPassword() {
     <>
       <Head>
         <title>Mot de passe oublié &bull; AMNet</title>
+        <meta name="description" content="Identifiants oubliés : recevez un mail contenant votre identifiant et la possibilité de réinitialiser votre mot de passe" />
       </Head>
       <CampusGlobalStyle />
       <CampusBackground/>
