@@ -51,4 +51,6 @@ export const Buttons = (props: {
             <SmallRedButton onClick={Delete}>Supprimer</SmallRedButton>
         </>
     )
-}
+};
+
+export default Buttons;
