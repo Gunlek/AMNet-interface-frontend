@@ -6,7 +6,7 @@ const logIn = (req: NextApiRequest, res: NextApiResponse) => {
     return new Promise<void>(async () => {
         try {
             const { access_token } = await (await axios.post(`${process.env.NEXT_PUBLIC_API_HOST}/auth`, req.body)).data;
-            const cookies = new Cookies(req, res);
+            const cookies = new Cookies(req, res, { secure: process.env.NODE_ENV !== "development" });
 
             cookies.set('access_token', access_token, {
                 httpOnly: true,
