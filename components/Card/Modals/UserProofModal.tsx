@@ -6,7 +6,7 @@ import { StyledBackgroundModal, StyledModal } from "./style"
 import Image from 'next/image'
 import { useState } from "react"
 
-export default function UserProofModal(props: { link: string }) {
+export default function UserProofModal(props: { link: string, alt: string }) {
     const minWidth1000 = useMediaQuery('(min-width: 1200px)')
     const { Display, Opacity, toggle } = ModalLogic()
     const [ratio, setRatio] = useState(16/9)
@@ -37,7 +37,7 @@ export default function UserProofModal(props: { link: string }) {
                                 <Image
                                     style={{ borderRadius: "30px" }}
                                     src={`${process.env.NEXT_PUBLIC_API_HOST}/proof/${props.link}`}
-                                    alt="Photo Proof"
+                                    alt={props.alt}
                                     width={800}
                                     height={800 / ratio}
                                     layout="responsive"
