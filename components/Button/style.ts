@@ -58,6 +58,19 @@ export const SmallStyledButton = styled(StyledButton)`
   }
 `;
 
+export const SmallStyledLinkButton = styled(SmallStyledButton)`
+  background: linear-gradient(90deg, var(--c1, #f6d365), var(--c2, #fda085) 51%, var(--c1, #f6d365)) var(--x, 0)/ 200%;
+  transition: 0.3s linear, box-shadow 0.3s;
+  font-size: 19px;
+  --c1: #67bc45;
+  --c2: #096a09;
+
+  @media screen and (max-width: 500px){
+    width: 230px;
+    margin-bottom: ${(props) => props.MobileMarginBottom};
+  }
+`;
+
 export const SmallStyledGreenButton = styled(SmallStyledButton)`
   background-color: #67BC45;
   
