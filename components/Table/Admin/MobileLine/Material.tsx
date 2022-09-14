@@ -4,8 +4,8 @@ import Link from "next/link";
 import { StyledLink } from "../../../Text/style";
 import { adminHardware } from "../../../Utils/types";
 import dynamic from "next/dynamic";
-const Buttons = dynamic(() => import("../Buttons").then((mod) => mod.Buttons));
-const StateRequest = dynamic(() => import("../../../Status/Status").then((mod) => mod.StateRequest));
+const Buttons = dynamic(() => import("../Buttons"));
+const StateRequest = dynamic<{ center: boolean, state: string }>(() => import("../../../Status/Status").then((mod) => mod.StateRequest));
 const Fail = dynamic(() => import("../../../NavIcons/fail"));
 const Succes = dynamic(() => import("../../../NavIcons/succes"));
 

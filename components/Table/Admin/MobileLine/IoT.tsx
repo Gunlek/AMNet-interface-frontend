@@ -10,8 +10,8 @@ const ProofModal = dynamic(() => import("../../../Card/Modals/AdminProofModal"),
 const MacAdressTd = dynamic(() => import("../../../Input/MacAddressInput"));
 const Fail = dynamic(() => import("../../../NavIcons/fail"));
 const Succes = dynamic(() => import("../../../NavIcons/succes"));
-const Buttons = dynamic(() => import("../Buttons").then((mod) => mod.Buttons));
-const StateRequest = dynamic(() => import("../../../Status/Status").then((mod) => mod.StateRequest));
+const Buttons = dynamic(() => import("../Buttons"));
+const StateRequest = dynamic<{ center: boolean, state: string }>(() => import("../../../Status/Status").then((mod) => mod.StateRequest));
 
 export const IoTMobileLine = ({ index, value, status, display, isLast, setTab }: {
     index: number,

@@ -5,7 +5,7 @@ import Succes from "../../NavIcons/succes";
 import { StateRequest } from "../../Status/Status";
 import { StyledLink } from "../../Text/style";
 import { StyledTr, StyledTd, MobileTbody, StyledTable, StyledHeadTr, StyledTh, Tbody, Thead } from "../style";
-import { Buttons } from "./Buttons";
+import Buttons from "./Buttons";
 import MacAdressTd from "../../Input/MacAddressInput";
 import IoTMobileLine from "./MobileLine/IoT";
 import { adminAccess } from "../../Utils/types";
