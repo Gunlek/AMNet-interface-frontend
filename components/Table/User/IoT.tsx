@@ -1,5 +1,5 @@
 import axios, { AxiosResponse } from "axios";
-import React from "react";
+import React, { useState } from "react";
 import { SmallRedButton } from "../../Button/Buttons";
 import UserProofModal from "../../Card/Modals/UserProofModal";
 import MacAdressTd from "../../Input/MacAddressInput";
@@ -18,6 +18,8 @@ import {
 export default function IoTUserTable(props: { requests: access[], setAccess: Function, userId: Number | string }) {
     let listHTML = [];
     let mobilelistHTML = [];
+    const [declinedExist, setDeclinedExist] = useState(false);
+
     const containerStyle = {
         height: "100%",
         width: "100%",
@@ -36,17 +38,20 @@ export default function IoTUserTable(props: { requests: access[], setAccess: Fun
     }
 
     props.requests.map((value, index) => {
+        if (value.access_state === "declined" && !declinedExist) setDeclinedExist(true);
+
         listHTML.push(
             <StyledTr key={index}>
                 <StyledTd>{index + 1}</StyledTd>
                 <StyledFlexTd>{value.access_description}</StyledFlexTd>
+                {declinedExist && <StyledTd>{value.declined_reason}</StyledTd>}
                 {props.userId === "aeg" ?
                     <MacAdressTd access_mac={value.access_mac} access_id={value.access_id} />
                     :
-                    <StyledTd>{value.access_mac}</StyledTd>
+                    <StyledTd style={{ textAlign: "center" }}>{value.access_mac}</StyledTd>
                 }
                 <StyledTd style={{ textAlign: "center" }}>
-                    <UserProofModal link={value.access_proof} />
+                    <UserProofModal link={value.access_proof} alt={value.access_description} />
                 </StyledTd>
                 <StyledTd>
                     <StateRequest state={value.access_state} />
@@ -65,8 +70,14 @@ export default function IoTUserTable(props: { requests: access[], setAccess: Fun
                     <StyledTh>Equipement {index + 1}</StyledTh>
                     <StyledTh style={{ textAlign: "center", paddingRight: "10px" }}>{value.access_description}</StyledTh>
                 </StyledHeadTr>
+                {value.access_state === "declined" &&
+                    <StyledTr>
+                        <StyledTd>Motif du Refus</StyledTd>
+                        <StyledTd>{value.declined_reason}</StyledTd>
+                    </StyledTr>
+                }
                 <StyledTr>
-                    <StyledTd>Adresse Mac </StyledTd>
+                    <StyledTd>Adresse Mac</StyledTd>
                     {props.userId === "aeg" ?
                         <MacAdressTd access_mac={value.access_mac} access_id={value.access_id} />
                         :
@@ -76,7 +87,7 @@ export default function IoTUserTable(props: { requests: access[], setAccess: Fun
                 <StyledTr>
                     <StyledTd>Preuve</StyledTd>
                     <StyledTd style={{ textAlign: "center", whiteSpace: "normal" }}>
-                        <UserProofModal link={value.access_proof} />
+                        <UserProofModal link={value.access_proof} alt={value.access_description} />
                     </StyledTd>
                 </StyledTr>
                 <StyledTr>
@@ -109,6 +120,7 @@ export default function IoTUserTable(props: { requests: access[], setAccess: Fun
                         <StyledHeadTr>
                             <StyledTh scope="col">#</StyledTh>
                             <StyledTh scope="col">Description</StyledTh>
+                            {declinedExist && <StyledTh scope="col">Motif du Refus</StyledTh>}
                             <StyledTh style={{ width: "230px", textAlign: "center" }} scope="col">Adresse Mac</StyledTh>
                             <StyledTh scope="col">Preuve</StyledTh>
                             <StyledTh scope="col"><span style={{ paddingLeft: "5px" }}>Etat</span></StyledTh>

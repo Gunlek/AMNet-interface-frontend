@@ -1,6 +1,6 @@
 import { StyledHeadTr, StyledTable, StyledTd, StyledTh, StyledTr } from "../../style";
 import { StateRequest } from "../../../Status/Status";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Buttons } from "../Buttons";
 import Fail from "../../../NavIcons/fail";
 import Succes from "../../../NavIcons/succes";
@@ -19,26 +19,25 @@ export const IoTMobileLine = ({ index, value, status, display, isLast, setTab }:
     isLast?: boolean
 }) => {
     const [scrolled, setScrolled] = useState(false);
-    const height = status == "pending" ? "530px" : "470px";
+    const elementRef = useRef(null);
 
     useEffect(() => {
         setTimeout(() => {
             setScrolled(false)
         }, 500);
     }, [display])
-
     return (
         <>
             <div
                 style={{
-                    height: scrolled ? height : "53px",
+                    height: scrolled ? `${elementRef.current?.clientHeight - 5}px` : "53px",
                     transition: "0.3s linear",
                     overflowY: "hidden",
                     overflowX: scrolled ? "auto" : "hidden",
-                    marginBottom: isLast ? scrolled ? "0" : "5px" : "25px"
+                    marginBottom: isLast ? scrolled ? "0" : "5px" : scrolled ? "15px" : "25px"
                 }}
             >
-                <StyledTable style={{ tableLayout: "fixed" }}>
+                <StyledTable ref={elementRef}>
                     <thead>
                         <StyledHeadTr onClick={() => setScrolled(!scrolled)}>
                             <StyledTh style={{ width: "130px" }}>Equipement {index}</StyledTh>
@@ -67,6 +66,14 @@ export const IoTMobileLine = ({ index, value, status, display, isLast, setTab }:
                                 {value['user_pay_status'] ? <Succes /> : <Fail />}
                             </StyledTd>
                         </StyledTr>
+                        {value.access_state === "declined" &&
+                            <StyledTr>
+                                <StyledTd>Motif du Refus</StyledTd>
+                                <StyledTd style={{ textAlign: "center", whiteSpace: "normal" }}>
+                                    {value.declined_reason}
+                                </StyledTd>
+                            </StyledTr>
+                        }
                         <StyledTr>
                             <StyledTd>Adresse Mac</StyledTd>
                             <MacAdressTd access_mac={value.access_mac} access_id={value.access_id} />
@@ -74,7 +81,7 @@ export const IoTMobileLine = ({ index, value, status, display, isLast, setTab }:
                         <StyledTr>
                             <StyledTd>Preuve</StyledTd>
                             <StyledTd style={{ textAlign: "center", whiteSpace: "normal" }}>
-                                <ProofModal request={value} setTab={Function} />
+                                <ProofModal request={value} setTab={setTab} />
                             </StyledTd>
                         </StyledTr>
                         <StyledTr>
@@ -91,7 +98,7 @@ export const IoTMobileLine = ({ index, value, status, display, isLast, setTab }:
                                         alignItems: "center",
                                         justifyContent: "space-between",
                                         flexDirection: "column",
-                                        transition: "height 0.1s ease-out 0.5s"
+                                        transition: "height 0.1s ease-out 0.6s"
                                     }}
                                 >
                                     <Buttons

@@ -18,7 +18,6 @@ export const MaterialMobileLine = ({ index, value, status, display, isLast, setT
 }) => {
     const [scrolled, setScrolled] = useState(false);
     const elementRef = useRef(null);
-    const height = status === "pending" ? 460 + elementRef.current?.clientHeight : 410 + elementRef.current?.clientHeight
 
     useEffect(() => {
         setTimeout(() => {
@@ -29,18 +28,18 @@ export const MaterialMobileLine = ({ index, value, status, display, isLast, setT
     return (
         <div
             style={{
-                height: scrolled ? height.toString() + "px" : "53px",
+                height: scrolled ? `${elementRef.current?.clientHeight-5}px` : "53px",
                 transition: "height 0.3s linear, margin-bottom 0.3s linear",
                 overflowY: "hidden",
                 overflowX: scrolled ? "auto" : "hidden",
-                marginBottom: isLast ? scrolled ? "0" : "5px" : "25px"
+                marginBottom: isLast ? scrolled ? "0" : "5px" : scrolled ? "15px" : "25px"
             }}
         >
-            <StyledTable>
+            <StyledTable ref={elementRef}>
                 <thead>
                     <StyledHeadTr onClick={() => setScrolled(!scrolled)}>
                         <StyledTh style={{ width: "130px" }}>Demande {index}</StyledTh>
-                        <StyledTh style={{ textAlign: "center", paddingRight: "10px" }}>{value['material_description']}</StyledTh>
+                        <StyledTh style={{ textAlign: "center", paddingRight: "10px"}}>{value['material_description']}</StyledTh>
                     </StyledHeadTr>
                 </thead>
                 <tbody>
@@ -68,9 +67,17 @@ export const MaterialMobileLine = ({ index, value, status, display, isLast, setT
                     <StyledTr>
                         <StyledTd>Détails</StyledTd>
                         <StyledTd style={{ textAlign: "center", whiteSpace: "normal" }}>
-                            <div ref={elementRef}>{value['material_reason']}</div>
+                            {value['material_reason']}
                         </StyledTd>
                     </StyledTr>
+                    {value.material_state === "declined" &&
+                        <StyledTr>
+                            <StyledTd>Motif du Refus</StyledTd>
+                            <StyledTd style={{ textAlign: "center", whiteSpace: "normal" }}>
+                                {value.declined_reason}
+                            </StyledTd>
+                        </StyledTr>
+                    }
                     <StyledTr>
                         <StyledTd>Etat</StyledTd>
                         <StyledTd><StateRequest center={true} state={value['material_state']} /></StyledTd>
@@ -85,14 +92,14 @@ export const MaterialMobileLine = ({ index, value, status, display, isLast, setT
                                     alignItems: "center",
                                     justifyContent: "space-between",
                                     flexDirection: "column",
-                                    transition: "height 0.1s ease-out 0.5s"
+                                    transition: "height 0s ease-out 0.6s"
                                 }}
                             >
                                 <Buttons
                                     status={value['material_state']}
                                     requestType="hardware"
                                     id={value.material_id}
-                                    setTab={setTab}                                
+                                    setTab={setTab}
                                 />
                             </div>
                         </StyledTd>
