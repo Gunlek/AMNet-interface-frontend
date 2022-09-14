@@ -1,11 +1,12 @@
 import axios, { AxiosResponse } from "axios";
+import dynamic from "next/dynamic";
 import React, { useState } from "react";
 import { SmallRedButton } from "../../Button/Buttons";
-import { StyledMaterialToolTip } from "../../Card/style";
 import { MediaContextProvider, Media } from "../../MediaQueries/MediaSSR";
 import { StateRequest } from "../../Status/Status";
 import { hardware } from "../../Utils/types";
 import { StyledTr, StyledTd, StyledFlexTd, StyledHeadTr, StyledTh, StyledTable } from "../style";
+const StyledMaterialToolTip = dynamic(() => import("../../Card/style").then((mod) => mod.StyledMaterialToolTip))
 
 export default function MaterialUserTable(props: { requests: hardware[], setHardware: Function, userId: Number }) {
     let listHTML = [];

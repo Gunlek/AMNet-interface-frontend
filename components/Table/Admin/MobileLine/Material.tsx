@@ -1,12 +1,13 @@
 import { StyledHeadTr, StyledTable, StyledTd, StyledTh, StyledTr } from "../../style";
-import { StateRequest } from "../../../Status/Status";
 import React, { useEffect, useRef, useState } from "react";
-import { Buttons } from "../Buttons";
-import Fail from "../../../NavIcons/fail";
-import Succes from "../../../NavIcons/succes";
 import Link from "next/link";
 import { StyledLink } from "../../../Text/style";
 import { adminHardware } from "../../../Utils/types";
+import dynamic from "next/dynamic";
+const Buttons = dynamic(() => import("../Buttons").then((mod) => mod.Buttons));
+const StateRequest = dynamic(() => import("../../../Status/Status").then((mod) => mod.StateRequest));
+const Fail = dynamic(() => import("../../../NavIcons/fail"));
+const Succes = dynamic(() => import("../../../NavIcons/succes"));
 
 export const MaterialMobileLine = ({ index, value, status, display, isLast, setTab }: {
     index: number,

@@ -2,13 +2,14 @@ import axios, { AxiosResponse } from "axios"
 import { useState } from "react"
 import { GreenButton } from "../../Button/Buttons"
 import { Row } from "../../Container/style"
-import { StyledInputLabel, StyledInput, StyledTextArea } from "../../Input/style"
+import { StyledInputLabel, StyledInput } from "../../Input/style"
 import AutoTextArea from "../../Input/TextArea"
 import useMediaQuery from "../../MediaQueries/MediaQuery"
-import { ErrorP } from "../../Text/style"
 import { TitleCard } from "../Cards"
 import { ModalLogic } from "./ModalLogic"
 import { StyledBackgroundModal, StyledModal } from "./style"
+import dynamic from "next/dynamic";
+const ErrorP = dynamic(() => import("../../Text/style").then((mod) => mod.ErrorP));
 
 export default function MaterialModal(props: { setHardware: Function, userId: Number }) {
     const minWidth1000 = useMediaQuery('(min-width: 1000px)');
@@ -64,7 +65,7 @@ export default function MaterialModal(props: { setHardware: Function, userId: Nu
                                     onChange={handleFormChange}
                                 />
                                 {error.material_description &&
-                                    <ErrorP Fixed={true}>
+                                    <ErrorP>
                                         La description est obligatoire
                                     </ErrorP>
                                 }
@@ -78,7 +79,7 @@ export default function MaterialModal(props: { setHardware: Function, userId: Nu
                                     onChange={handleFormChange}
                                 />
                                 {error.material_description &&
-                                    <ErrorP Fixed={true}>
+                                    <ErrorP>
                                         La raison est obligatoire pour comprendre au mieux votre besoin
                                     </ErrorP>
                                 }

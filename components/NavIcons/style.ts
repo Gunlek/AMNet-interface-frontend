@@ -170,6 +170,11 @@ export const StyledTooltip = styled.div.attrs({
   }
 `;
 
+export const StyledLogOutTooltip = styled(StyledTooltip)`
+  top: 60%;
+  left: 115%;
+`;
+
 export const StyledLogOut = styled.svg`
   position: absolute;
   opacity: 1;

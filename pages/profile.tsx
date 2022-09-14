@@ -1,23 +1,25 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Head from "next/head";
-import { GreenButton, RedButton } from "../components/Button/Buttons";
+import { GreenButton } from "../components/Button/Buttons";
 import { HelpSection, Footer } from "../components/Card/Cards";
 import { DashboardContainer, ResponsiveRow, Column, Col6, Col3, StyledMain } from "../components/Container/style";
 import { StyledInputLabel, StyledInput } from "../components/Input/style";
 import UserMenu from "../components/Menu/UserMenu";
 import { StateContribution } from "../components/Status/Status";
 import { BlackTitle, BlackText, GreenText } from "../components/Text/style";
-import PasswordInput from "../components/Input/PasswordInput";
 import axios, { AxiosResponse } from "axios";
 import useForm from "../components/Input/useForm";
 import PhoneInput from "../components/Input/PhoneInput";
 import { user } from "../components/Utils/types";
 import getToken from "../components/Utils/auth-token";
 import getConfig from "../components/Utils/req-config";
-import Modal from "../components/Card/Modals/Modal";
 import usePageTransition from "../components/Utils/usePageTransition";
-import { useRouter } from "next/router";
-import DeleteUserModal from "../components/Card/Modals/DeleteUserModal";
+import dynamic from "next/dynamic";
+const PasswordInput = dynamic(() => import("../components/Input/PasswordInput"), {
+  loading: () => <StyledInput/>
+});
+
+const Modal = dynamic(() => import("../components/Card/Modals/Modal"));
 
 export async function getServerSideProps({ req }) {
   const { access_token, userId, localNetwork } = getToken(req)
@@ -70,7 +72,6 @@ export default function Profil(props: {
   } = useForm(props.active_proms, props.usins_state, props.user);
   const [show, setShow] = useState(false);
   const { roadTo, pageTransition, roadToHome } = usePageTransition('admin');
-
 
   const editProfil = (elmt) => {
     elmt.preventDefault();

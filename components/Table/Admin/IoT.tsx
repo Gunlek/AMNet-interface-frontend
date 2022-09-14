@@ -1,5 +1,4 @@
 import Link from "next/link";
-import ProofModal from "../../Card/Modals/AdminProofModal";
 import { MediaContextProvider, Media } from "../../MediaQueries/MediaSSR";
 import Fail from "../../NavIcons/fail";
 import Succes from "../../NavIcons/succes";
@@ -10,6 +9,10 @@ import { Buttons } from "./Buttons";
 import MacAdressTd from "../../Input/MacAddressInput";
 import IoTMobileLine from "./MobileLine/IoT";
 import { adminAccess } from "../../Utils/types";
+import dynamic from "next/dynamic";
+const ProofModal = dynamic(() => import("../../Card/Modals/AdminProofModal"), {
+    loading: () => <StyledLink color="#096a09">Image</StyledLink>
+});
 
 function CreateTable({ requests, Display, setTab }: {
     requests: adminAccess[],

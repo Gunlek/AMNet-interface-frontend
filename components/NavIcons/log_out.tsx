@@ -2,7 +2,9 @@ import axios from "axios";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import useMediaQuery from "../MediaQueries/MediaQuery";
-import { StyledBackLogOut, StyledLogOut, StyledTooltip } from "./style";
+import { StyledBackLogOut, StyledLogOut } from "./style";
+import dynamic from "next/dynamic";
+const StyledLogOutTooltip = dynamic(() => import("./style").then((mod) => mod.StyledLogOutTooltip));
 
 export default function LogOut(props: { id: string, setTransition: Function }) {
     const router = useRouter();
@@ -39,7 +41,7 @@ export default function LogOut(props: { id: string, setTransition: Function }) {
 
                 <path d="m39.512 15.488-6.667-6.666A1.667 1.667 0 0 0 30 10v5h-6.667a1.667 1.667 0 0 0 0 3.333H30v5a1.667 1.667 0 0 0 2.845 1.178l6.667-6.666a1.665 1.665 0 0 0 0-2.357Z" />
             </svg>
-            {minWidth1000 && <StyledTooltip style={{ top: "60%", left: "115%" }}>Déconnexion</StyledTooltip>}
+            {minWidth1000 && <StyledLogOutTooltip>Déconnexion</StyledLogOutTooltip>}
         </StyledBackLogOut>
     )
 };

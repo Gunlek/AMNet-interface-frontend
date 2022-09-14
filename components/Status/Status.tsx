@@ -11,8 +11,12 @@ import {
 } from "./style";
 import Fail from "../NavIcons/fail";
 import Succes from "../NavIcons/succes";
-import ContributionModal from "../Card/Modals/ContributionModal";
 import Link from "next/link";
+import dynamic from "next/dynamic";
+import { StyledGreenButton } from "../Button/style";
+const ContributionModal = dynamic(() => import("../Card/Modals/ContributionModal"), {
+    loading: () => <StyledGreenButton width="150px" height="50px">Payer</StyledGreenButton>
+});
 
 export function StateContribution(props: { status: string, userId: number }) {
   if (props.status == 'paid') {

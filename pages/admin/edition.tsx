@@ -20,8 +20,9 @@ import { StyledDeleteImg } from "../../components/Card/Images/style";
 import axios, { AxiosResponse } from "axios";
 import getToken from "../../components/Utils/auth-token";
 import getConfig from "../../components/Utils/req-config";
-import Modal from "../../components/Card/Modals/Modal";
 import usePageTransition from "../../components/Utils/usePageTransition";
+import dynamic from "next/dynamic";
+const Modal = dynamic(() => import("../../components/Card/Modals/Modal"));
 
 export async function getServerSideProps({ req }) {
   const { access_token, userId } = getToken(req)

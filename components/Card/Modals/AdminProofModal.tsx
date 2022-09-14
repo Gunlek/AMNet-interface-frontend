@@ -1,5 +1,4 @@
 import Link from "next/link";
-import dynamic from 'next/dynamic';
 import { ResponsiveRow, Col8, Col4 } from "../../Container/style";
 import useMediaQuery from "../../MediaQueries/MediaQuery";
 import { StateRequest } from "../../Status/Status";
@@ -10,8 +9,7 @@ import { StyledLink } from "../../Text/style";
 import { TitleCard } from "../Cards";
 import ModalLogic from "./ModalLogic";
 import { StyledBackgroundModal, StyledModal } from "./style";
-
-const Image = dynamic(() => import('next/image'));
+import Image from 'next/image';
 
 export default function ProofModal(props: { request: any, setTab: Function }) {
     const minWidth1000 = useMediaQuery('(min-width: 1200px)');

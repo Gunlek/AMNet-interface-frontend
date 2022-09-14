@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { ErrorP } from "../Text/style";
 import { user } from "../../components/Utils/types";
+import dynamic from "next/dynamic";
+const ErrorP = dynamic(() => import("../Text/style").then((mod) => mod.ErrorP));
 
 export default function useForm(
     active_proms: number,
@@ -123,27 +124,27 @@ export default function useForm(
     const errorMessage = {
         name:
             error.user_name &&
-            <ErrorP Fixed={true}>
+            <ErrorP>
                 Ce nom d&apos;utilisateur est déjà utilisé
             </ErrorP>,
         format_name: error.user_name_format &&
-            <ErrorP Fixed={true}>
+            <ErrorP>
                 Ce nom d&apos;utilisateur n&apos;a pas le bon format
             </ErrorP>,
         email:
             error.user_email &&
-            <ErrorP Fixed={true}>
+            <ErrorP>
                 Cette adresse mail est déjà utilisée
             </ErrorP>,
         password:
             error.user_password && onBlurPassword &&
             <div style={{ position: "relative" }}>
-                <ErrorP Fixed={true}>
+                <ErrorP>
                     Les mots de passe saisis ne sont pas identiques !
                 </ErrorP>
             </div>,
         phone: error.phone && onBlurPhone &&
-            <ErrorP Fixed={true}>
+            <ErrorP>
                 Ce numéro de téléphone n&apos;a pas le bon format
             </ErrorP>
     };

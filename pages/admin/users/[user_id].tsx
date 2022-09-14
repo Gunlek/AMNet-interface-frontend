@@ -7,16 +7,20 @@ import { StyledInputLabel, StyledInput } from "../../../components/Input/style";
 import { BlackTitle, BlackText, GreenText } from "../../../components/Text/style";
 import AdminMenu from "../../../components/Menu/AdminMenu";
 import { AdminStateContribution, AdminStateRank } from "../../../components/Status/Status";
-import PasswordInput from "../../../components/Input/PasswordInput";
 import axios, { AxiosResponse } from "axios";
 import useForm from "../../../components/Input/useForm";
 import PhoneInput from "../../../components/Input/PhoneInput";
 import { user } from "../../../components/Utils/types";
 import getToken from "../../../components/Utils/auth-token";
 import getConfig from "../../../components/Utils/req-config";
-import Modal from "../../../components/Card/Modals/Modal";
 import { useRouter } from "next/router";
 import usePageTransition from "../../../components/Utils/usePageTransition";
+import dynamic from "next/dynamic";
+const PasswordInput = dynamic(() => import("../../../components/Input/PasswordInput"), {
+  loading: () => <StyledInput/>
+});
+
+const Modal = dynamic(() => import("../../../components/Card/Modals/Modal"));
 
 export async function getServerSideProps({ req, params }) {
     const { access_token, userId } = getToken(req)

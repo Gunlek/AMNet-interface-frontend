@@ -9,10 +9,13 @@ import { Row } from "../../components/Container/style";
 import { BlackText } from "../../components/Text/style";
 import axios from "axios";
 import { user } from "../../components/Utils/types";
-import Modal from "../../components/Card/Modals/Modal";
 import getToken from "../../components/Utils/auth-token";
 import getConfig from "../../components/Utils/req-config";
 import CampusBackground from "../../components/Background/CampusBackground";
+import dynamic from "next/dynamic";
+import { motion } from "framer-motion";
+import { variants } from "../../components/Utils/animation-variants";
+const Modal = dynamic(() => import("../../components/Card/Modals/Modal"));
 
 export async function getServerSideProps({ req }) {
   const { access_token, userId } = getToken(req)
@@ -71,7 +74,12 @@ export default function Unsubscribe(props: { user: user }) {
         </Row>
       </Modal>
 
-      <main>
+      <motion.main
+        variants={variants("left", "right")}
+        initial="hidden"
+        animate="enter"
+        exit="exit"
+        transition={{ type: 'linear' }}>
         <Row
           mobileWidth="90%"
           style={{
@@ -109,7 +117,7 @@ export default function Unsubscribe(props: { user: user }) {
 
         <HelpSection padding="0 5%" />
         <Footer page="campus" />
-      </main>
+      </motion.main>
     </>
   );
 }

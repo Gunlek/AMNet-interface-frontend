@@ -1,5 +1,7 @@
 import Link from "next/link";
-import { StyledActiveIcon, StyledActiveSVG, StyledBackIcon, StyledIcon, StyledTooltip } from "./style"
+import { StyledActiveIcon, StyledActiveSVG, StyledBackIcon, StyledIcon } from "./style"
+import dynamic from "next/dynamic";
+const StyledTooltip = dynamic(() => import("./style").then((mod) => mod.StyledTooltip));
 
 export default function Admin(props: { page: string, setTransition?: Function }) {
     const content = "Administration";

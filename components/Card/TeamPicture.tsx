@@ -40,7 +40,11 @@ export default function TeamPicture(props: { Team: { pseudo: string, id: string 
         src={props.background || `${process.env.NEXT_PUBLIC_API_HOST}/team.jpeg`} 
         alt="Team AMNet Résidence Arts et Métiers Lille"
         objectFit="cover" 
-        layout="fill"/>
+        objectPosition="50% 50%"
+        layout="fill"
+        sizes="(max-width: 1000px) 90vw, 40vw"
+        priority={true}
+        />
       <GreenCard promotion={promotion} />
       <StyledCardCampus style={{ alignItems: "center", flexDirection: "row", position: "relative", zIndex: "2" }}>
         {Team}

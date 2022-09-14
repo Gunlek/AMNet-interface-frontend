@@ -4,7 +4,6 @@ import {
   GreenLine,
   StyledFooter,
   StyledCampusFooter,
-  StyledAdminToolTip,
   ContainerAdminToolTip,
   StyledInfoSVG
 } from "./style";
@@ -14,6 +13,9 @@ import {
   GreenTitle
 } from "../Text/style";
 import GitHub from "../NavIcons/github";
+import dynamic from "next/dynamic";
+const StyledAdminToolTip = dynamic(() => import("./style").then((mod) => mod.StyledAdminToolTip));
+const StyledGuestToolTip = dynamic(() => import("./style").then((mod) => mod.StyledGuestToolTip));
 
 export function HelpSection(props: { color?: string, marginBottom?: string, mobileMarginBottom?: string, padding?: string }) {
   return (
@@ -114,11 +116,11 @@ export function GuestLogin() {
 		h36.186C318.413,380.938,319.536,382.048,319.536,383.42z M209.93,105.927c0-20.895,16.929-37.829,37.829-37.829
 		c20.886,0,37.826,16.935,37.826,37.829s-16.94,37.829-37.826,37.829C226.853,143.756,209.93,126.822,209.93,105.927z"/>
       </StyledInfoSVG>
-      <StyledAdminToolTip Left="50%" Top="40px">
+      <StyledGuestToolTip>
         Les identifiants du compte invité pour AMNet Wi-Fi :<br />
         &bull; Identifiant : {process.env.NEXT_PUBLIC_GUEST_LOGIN}<br />
         &bull; Mot de passe : {process.env.NEXT_PUBLIC_GUEST_PASSWORD}
-      </StyledAdminToolTip>
+      </StyledGuestToolTip>
     </ContainerAdminToolTip>
   )
 }
