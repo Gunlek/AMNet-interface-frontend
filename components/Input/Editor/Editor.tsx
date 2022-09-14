@@ -34,10 +34,9 @@ export default function Editor(id: string, html?: string) {
         "color",
     ];
 
-
     return [
         <>
-            <QuillToolbar id={id} />
+            {ReactQuill && < QuillToolbar id={id} />}
             {QuillToolbar &&
                 <ReactQuill
                     id={"Editor" + id}
@@ -52,7 +51,7 @@ export default function Editor(id: string, html?: string) {
             }
         </>
         ,
-        value, 
+        value,
         setValue
     ]
 }

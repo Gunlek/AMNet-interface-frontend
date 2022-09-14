@@ -32,16 +32,16 @@ function ModalBody(reveal: boolean, scrolled: number, minWidth1000: boolean) {
     const menu = document.getElementById("menu");
     const barWidth = scrollbarWidth();
 
-    document.body.style.width = reveal ? "100%" : "";
-    document.body.style.position = reveal ? "fixed" : "";
-    document.body.style.height = reveal ? "100vh" : "";
-    document.body.style.overflowY = reveal ? "hidden" : "";
-    document.body.style.top = reveal ? "-" + scrolled.toString() + "px" : "";
-    document.body.style.paddingRight = reveal ? barWidth.toString() + "px " : "";
+    document.body.style.width = reveal ? "100%" : null;
+    document.body.style.position = reveal ? "fixed" : null;
+    document.body.style.height = reveal ? "100vh" : null;
+    document.body.style.overflowY = reveal ? "hidden" : null;
+    document.body.style.top = reveal ? "-" + scrolled.toString() + "px" : null;
+    document.body.style.paddingRight = reveal ? barWidth.toString() + "px " : null;
 
     if(menu){
-        menu.style.top = reveal ? "0" : "";
-        menu.style.paddingRight = reveal ? minWidth1000 ? "" : barWidth.toString() + "px" : "";
+        menu.style.top = reveal ? "0" : null;
+        menu.style.paddingRight = reveal ? minWidth1000 ? null : barWidth.toString() + "px" : null;
     }
 }
 

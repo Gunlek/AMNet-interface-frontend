@@ -40,6 +40,7 @@ function CreateTable({ requests, Display, setTab }: {
                     {value['user_pay_status'] ? <Succes marginRight="15px" /> : <Fail marginRight="15px" />}
                 </StyledTd>
                 <StyledTd>{value['access_description']}</StyledTd>
+                {value.access_state === "declined" && <StyledTd>{value.declined_reason}</StyledTd>}
                 <MacAdressTd access_mac={value['access_mac']} access_id={value.access_id} />
                 <StyledTd style={{ textAlign: "center" }}>
                     <ProofModal request={value} setTab={setTab} />
@@ -115,10 +116,10 @@ export default function IoTAdminTable(props: {
     mobileRef: any,
     setTab: Function
 }) {
-    const [listHTML, mobilelistHTML] = CreateTable({ 
-        requests: props.requests, 
+    const [listHTML, mobilelistHTML] = CreateTable({
+        requests: props.requests,
         Display: props.display,
-        setTab: props.setTab 
+        setTab: props.setTab
     })
 
     return (
@@ -152,6 +153,7 @@ export default function IoTAdminTable(props: {
                                 <StyledTh scope="col">Utilisateur</StyledTh>
                                 <StyledTh scope="col">Cotisation</StyledTh>
                                 <StyledTh scope="col">Description</StyledTh>
+                                {props.display.declined && <StyledTh scope="col">Motif du Refus</StyledTh>}
                                 <StyledTh style={{ width: "230px", textAlign: "center" }} scope="col">Adresse Mac</StyledTh>
                                 <StyledTh scope="col">Preuve</StyledTh>
                                 <StyledTh scope="col"><span style={{ paddingLeft: "5px" }}>Etat</span></StyledTh>
@@ -160,7 +162,7 @@ export default function IoTAdminTable(props: {
                                         style={{
                                             width: (props.status.new == "pending") ? "500px" : "325px",
                                             paddingLeft: "5px",
-                                            transition: "width 0s linear 0.3s"
+                                            transition: "width 0s linear 0.6s"
                                         }}
                                     >
                                         Actions

@@ -8,6 +8,7 @@ import { ButtonLink } from "../../components/Button/Buttons";
 import { StyledCardCampus } from "../../components/Card/style";
 import Image from 'next/image';
 import getToken from "../../components/Utils/auth-token";
+import CampusBackground from "../../components/Background/CampusBackground";
 
 export async function getServerSideProps({ req }) {
   const { userId } = getToken(req);
@@ -26,27 +27,30 @@ export default function FAQ(props: { isLogged: boolean }) {
         <title>FAQ &bull; AMNet</title>
       </Head>
       <CampusGlobalStyle flexDirection="column" />
+      <CampusBackground />
 
-      <Column style={{ padding: "0 5%" }}>
-        <Row margin="20px 0" mobileMargin="30px 0" direction="column">
-          <Col6 mobileMarginBottom="30px" justify="center" mobileAlign="center">
-            <RectangleLogo color="white" />
-          </Col6>
-          <Col6 align="end" mobileAlign="center" justify="center">
-            <ButtonLink href={props.isLogged ? "/" : "/homepage/login"} width="300px">Accéder à Mon Compte</ButtonLink>
-          </Col6>
-        </Row>
-      </Column>
+      <main>
+        <Column style={{ padding: "0 5%" }}>
+          <Row margin="20px 0" mobileMargin="30px 0" direction="column">
+            <Col6 mobileMarginBottom="30px" justify="center" mobileAlign="center">
+              <RectangleLogo color="white" />
+            </Col6>
+            <Col6 align="end" mobileAlign="center" justify="center">
+              <ButtonLink href={props.isLogged ? "/" : "/homepage/login"} width="300px">Accéder à Mon Compte</ButtonLink>
+            </Col6>
+          </Row>
+        </Column>
 
-      <Column style={{ padding: "0 5%", flex: "1", justifyContent: "center", alignItems: "center" }}>
-        <StyledCardCampus style={{ display: "block", width: "fit-content" }}>
-          <Image src="/static/images/inconstruction.png" width={440} height={343} alt="Construction Site Plot" />
-        </StyledCardCampus>
-      </Column>
+        <Column style={{ padding: "0 5%", flex: "1", justifyContent: "center", alignItems: "center" }}>
+          <StyledCardCampus style={{ display: "block", width: "fit-content" }}>
+            <Image src="/static/images/inconstruction.png" width={440} height={343} alt="Construction Site Plot" />
+          </StyledCardCampus>
+        </Column>
 
 
-      <HelpSection />
-      <Footer page="campus" />
+        <HelpSection />
+        <Footer page="campus" />
+      </main>
     </>
   );
 }

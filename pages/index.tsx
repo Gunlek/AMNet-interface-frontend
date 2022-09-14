@@ -151,6 +151,7 @@ export default function Index(
                   notifNumber={props.access_quantity + props.material_quantity}
                   access_quantity={props.access_quantity}
                   material_quantity={props.material_quantity}
+                  setTransition={roadAdmin}
                 />
                 :
                 undefined

@@ -15,6 +15,7 @@ import getToken from "../../../components/Utils/auth-token";
 import getConfig from "../../../components/Utils/req-config";
 import usePageTransition from "../../../components/Utils/usePageTransition";
 import { ButtonLink } from "../../../components/Button/Buttons";
+import oldURL from "../../../components/Utils/oldURL";
 
 export async function getServerSideProps({ req }) {
   const { access_token, userId } = getToken(req)
@@ -27,7 +28,7 @@ export async function getServerSideProps({ req }) {
       const access = await axios.get(`${process.env.NEXT_PUBLIC_API_HOST}/access`, config);
 
       return {
-        props: { access: access.data }
+        props: { access: access.data, fromIndex: (oldURL(req)) === "/" }
       }
     }
 
@@ -47,12 +48,20 @@ export async function getServerSideProps({ req }) {
   }
 }
 
-export default function AdminIoT(props: { access: adminAccess[] }) {
+export default function AdminIoT(props: { access: adminAccess[], fromIndex: boolean }) {
   const mobileContainerRef = useRef(null)
   const { Display, Opacity, Tab, handleTabChange } = useTransition(mobileContainerRef)
   const minWidth1000 = useMediaQuery('(min-width:1000px)');
   const [access, setAccess] = useState(props.access)
   const { roadTo, pageTransition, roadToHome } = usePageTransition('user');
+
+  const variants = props.fromIndex ?
+    {
+      hidden: { opacity: 0, x: 100 },
+      enter: { opacity: 1, x: 0 }
+    }
+    :
+    pageTransition;
 
   return (
     <>
@@ -60,14 +69,17 @@ export default function AdminIoT(props: { access: adminAccess[] }) {
         <title>Administration &bull; AMNet</title>
       </Head>
 
-      <StyledMain variants={pageTransition}>
+      <StyledMain variants={variants}>
         <AdminMenu page="iot" setTranstion={roadTo} setHomeTransition={roadToHome} />
 
-        <DashboardContainer exit={pageTransition.exit ? "false" : undefined}>
+        <DashboardContainer
+          initial={props.fromIndex ? "false" : undefined}
+          exit={pageTransition.exit ? "false" : undefined}
+        >
           <ResponsiveRow margin="1% 0" mobileMargin="20px 0" style={{ alignItems: "center" }}>
             <Row mobileMarginBottom="20px" style={{ justifyContent: "center", width: "fit-content", alignItems: "center", position: "relative" }}>
               <BlackTitle>Demandes d&apos;accès à AMNet IoT</BlackTitle>
-              <InfoAdmin/>
+              <InfoAdmin />
             </Row>
 
             <div

@@ -78,6 +78,12 @@ export default function User(props: {
 
     useEffect(() => {
         router.prefetch('/admin/users');
+        document.body.style.width = null;
+        document.body.style.position = null;
+        document.body.style.height = null;
+        document.body.style.overflowY = null;
+        document.body.style.top = null;
+        document.body.style.paddingRight = null;
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
@@ -115,7 +121,7 @@ export default function User(props: {
             </Modal>
 
             <StyledMain variants={pageTransition} >
-                <AdminMenu setTranstion={roadTo} setHomeTransition={roadToHome}/>
+                <AdminMenu setTranstion={roadTo} setHomeTransition={roadToHome} />
 
                 <DashboardContainer exit={pageTransition.exit ? "false" : undefined}>
                     <ResponsiveRow margin="1% 0" mobileMargin="20px 0" mobileJustify="center">

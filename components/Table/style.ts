@@ -131,7 +131,7 @@ const opacityOut = keyframes`
 `;
 
 export const Tbody = styled.tbody`
-  animation: ${(props) => props.Opacity == "in" ? opacityIn : props.Opacity == "out" ? opacityOut : undefined} 0.4s linear;
+  animation: ${(props) => props.Opacity == "in" ? opacityIn : props.Opacity == "out" ? opacityOut : undefined} 0.6s linear;
   position: relative;
 `;
 

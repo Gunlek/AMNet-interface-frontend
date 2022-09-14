@@ -143,7 +143,8 @@ export function AdminNotifications(props: {
   notifNumber: number,
   unpaid?: boolean,
   access_quantity: number,
-  material_quantity: number
+  material_quantity: number,
+  setTransition: Function
 }) {
   const notifNumber = props.notifNumber !== 0 ? props.notifNumber : undefined;
   const [Display, setDisplay] = useState(false);
@@ -188,12 +189,20 @@ export function AdminNotifications(props: {
               style={{
                 width: "max-content"
               }}
+              color="#096a09"
+              onClick={props.setTransition}
             >
               Demandes d&apos;accès internet: {props.access_quantity}
             </StyledLink>
           </Link>
           <Link href="/admin/material" passHref>
-            <StyledLink style={{ width: "max-content" }}>Demandes de matériel: {props.material_quantity}</StyledLink>
+            <StyledLink
+              style={{ width: "max-content" }}
+              color="#096a09"
+              onClick={props.setTransition}
+            >
+              Demandes de matériel: {props.material_quantity}
+            </StyledLink>
           </Link>
         </StyledNotification>
       </StyledConteneurNotif>

@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { SmallStyledRedButton } from "../Button/style";
 import { Column } from "../Container/style";
 
 export const StyledCard = styled.div`
@@ -36,20 +37,20 @@ export const StyledGreenCard = styled.div`
   width: 99%;
   padding: 5px 0 5px 40px;
   font-size: 1.2rem;
-
+  position: relative;
+  z-index: 2;
   @media screen and (max-width: 1000px){
     padding: 5px 10px 5px 20px;
   }
 `;
 
 export const StyledTeamPicture = styled(Column)`
-  background-image: url(${props => props.background || process.env.NEXT_PUBLIC_API_HOST + '/team.jpeg'});
   outline: ${props => props.outline};
-  background-repeat: no-repeat;
-  background-position: 50% 0%;
-  background-size: cover;
   aspect-ratio: 16 / 9;
   border-radius: 30px;
+  z-index: 2;
+  position: relative;
+  overflow: hidden;
   
   @media screen and (max-width: 1000px){
     height: 400px;
@@ -139,7 +140,7 @@ export const StyledActive = styled.div`
   width: ${(props) => props.Declined ? "7.5rem" : "6.25rem"};
   background-color: #096A09;
   height: 4px;
-  transition: transform 0.5s, width 0.5s;
+  transition: transform 0.75s, width 0.75s;
   position: absolute;
   bottom: -2px;
   left: 0;
@@ -153,12 +154,13 @@ export const ContainerAdminToolTip = styled.div`
   margin-left: 10px; 
   display: flex;
   cursor: pointer;
+  padding: 5px;
 `;
 
 export const StyledAdminToolTip = styled(StyledCardCampus)`
   position: absolute;
-  top: 70px;
-  left: 100%;
+  top: ${(props) => props.Top || "70px"};
+  left: ${(props) => props.Left || "100%"};
   transform: translateX(-50%);
   width: max-content;
   font-size: 1.2rem;
@@ -173,6 +175,42 @@ export const StyledAdminToolTip = styled(StyledCardCampus)`
   } 
 
   ${ContainerAdminToolTip}:hover &{
+    opacity: 1;
+    z-index: 2;
+  }
+`;
+
+export const StyledInfoSVG = styled.svg`
+  fill: #096A09;
+  width:20px;
+  height: 20px;
+  transition: fill 0.2s;
+
+  ${ContainerAdminToolTip}:hover &{
+    fill: #67bc45;
+  }
+`;
+
+export const StyledMaterialToolTip = styled(StyledCardCampus)`
+  position: absolute;
+  top: 70px;
+  left: 0;
+  transform: translateX(-50%);
+  width: max-content;
+  font-size: 1.2rem;
+  opacity: 0;
+  z-index: -2;
+  transition: opacity 0.3s, z-index 0.3s;
+  background: white;
+  color: black;
+
+  @media screen and (max-width: 1000px){
+    top: -20%;
+    left: 0;
+    transform: translateX(-30%);
+  } 
+
+  ${SmallStyledRedButton}:hover &{
     opacity: 1;
     z-index: 2;
   }

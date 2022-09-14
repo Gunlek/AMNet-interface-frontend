@@ -2,6 +2,7 @@ import axios, { AxiosResponse } from "axios";
 import { motion } from "framer-motion";
 import Head from "next/head";
 import { useState } from "react";
+import CampusBackground from "../../../components/Background/CampusBackground";
 import { CampusGlobalStyle } from "../../../components/Background/style";
 import { ButtonLink, GreenButton } from "../../../components/Button/Buttons";
 import { TitleCard, HelpSection, Footer } from "../../../components/Card/Cards";
@@ -55,7 +56,8 @@ export default function ResetPassword(props: { name: string, token: string }) {
         <title>Réinitialisation &bull; AMNet</title>
       </Head>
       <CampusGlobalStyle />
-
+      <CampusBackground/>
+      
       <Modal show={show} style={{ width: "450px" }}>
         Votre mot de passe a été mis à jour
 

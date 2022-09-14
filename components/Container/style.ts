@@ -44,6 +44,7 @@ export const Row = styled(Column)`
   @media screen and (max-width: 1000px){
     width: ${(props) => props.mobileWidth};
     margin: ${(props) => props.mobileMargin};
+  }
   
   @media screen and (max-width: 600px){
     flex-direction: ${(props) => props.direction};
@@ -51,7 +52,7 @@ export const Row = styled(Column)`
 `;
 
 export const ResponsiveRow = styled(Row)`
-  @media screen and (max-width: 1000px){
+  @media screen and (max-width: ${(props) => props.mediaWidth || "1000px"}){
     flex-direction: ${(props) => props.direction || "column"};
   } 
 `;

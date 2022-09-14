@@ -2,7 +2,7 @@ import React from "react";
 import Head from "next/head";
 import { ButtonLink } from "../../components/Button/Buttons";
 import { TitleCard, HelpSection } from "../../components/Card/Cards";
-import Image from 'next/image'
+import Image from 'next/image';
 import RectangleLogo from "../../components/Card/RectangleLogo";
 import { StyledCardCampus } from "../../components/Card/style";
 import TeamPicture from "../../components/Card/TeamPicture";
@@ -28,8 +28,8 @@ import { CampusGlobalStyle } from "../../components/Background/style";
 import axios from "axios";
 import getToken from "../../components/Utils/auth-token";
 import { motion } from "framer-motion";
-import { variants } from "../../components/Utils/animation-variants";
 import oldURL from "../../components/Utils/oldURL";
+import CampusBackground from "../../components/Background/CampusBackground";
 
 export async function getServerSideProps({ req }) {
   const { userId } = getToken(req)
@@ -60,8 +60,11 @@ export default function Homepage(props: {
     <>
       <Head>
         <title>Accueil &bull; AMNet</title>
+        <meta name="description" content="L'AMNet est l'association étudiante qui administre le réseau internet de la résidence Jacques Pagliero des Arts et Métiers du campus de Lille." />
+        <meta name="google-site-verification" content="hTWlEMheQA9AdpDfVqKR_u_h_xZetTsWS8uqQ1eYJDQ" />
       </Head>
       <CampusGlobalStyle padding="0 5%" />
+      <CampusBackground />
 
       <motion.main
         variants={{
@@ -104,7 +107,7 @@ export default function Homepage(props: {
               <RectangleLogo color="white" easter={true} />
             </Col6>
             <Col6 align="end" mobileAlign="center" justify="center">
-              <ButtonLink href={props.isLogged ? "/" : "/homepage/login"} width="300px">Accéder à Mon Compte</ButtonLink>
+              <ButtonLink href={props.isLogged ? "/" : "/homepage/login"} width="300px">Connexion / Inscription</ButtonLink>
             </Col6>
           </Row>
 
@@ -119,8 +122,14 @@ export default function Homepage(props: {
                 <WhiteP style={{ marginBottom: "1.2rem" }}>
                   <span style={{ paddingLeft: "4rem" }}>L’AMNet</span> est une association gérée par les étudiants qui a pour but
                   d’administrer le réseau internet de la résidence Jacques Pagliero des Arts et Métiers du campus de Lille.
-                  Elle est totalement indépendante de l’administration de la résidence ou de l’école.
+                  Elle est totalement indépendante de l’administration de la résidence ou de l’école. <br />
+
                 </WhiteP>
+
+                <WhiteP style={{ marginBottom: "1.2rem" }}>
+                  <span style={{ paddingLeft: "4rem" }}>Vous</span> pouvez vous rendre sur le <StyledLink href="https://artsetmetiers.fr/fr/campus/lille" target="_blank" rel="noreferrer" color="#67bc45" hovercolor="white">site</StyledLink> de la résidence pour toute question à propos des logements. Vous pouvez également contacter le gestionnaire de la résidence par <StyledLink color="#67bc45" hovercolor="white" href="mailto:residence.lille@ensam.eu">mail</StyledLink>.
+                </WhiteP>
+
                 <WhiteP>
                   <span style={{ paddingLeft: "4rem" }}>Votre</span> cotisation sert à améliorer l’installation ainsi
                   qu’à payer les abonnements Internet. Chaque année, 80% des
@@ -131,7 +140,7 @@ export default function Homepage(props: {
 
             </Col7>
 
-            <Col5 marginLeft="15px" style={{ justifyContent: "space-between" }}>
+            <Col5 marginLeft="15px">
               <TeamPicture Team={props.accutalTeam} promotion={props.promotion} />
             </Col5>
           </ResponsiveRow>
@@ -143,7 +152,7 @@ export default function Homepage(props: {
                 justifyContent: "space-between"
               }}
             >
-              <StyledCardCampus>
+              <StyledCardCampus style={{ flex: "1" }}>
                 <TitleCard>Serveur Minecraft</TitleCard>
                 <ResponsiveRow direction="column-reverse">
                   <Col2

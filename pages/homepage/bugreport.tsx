@@ -13,6 +13,7 @@ import { StyledDeleteImg } from "../../components/Card/Images/style";
 import FileUploader from "../../components/Input/FileUploader";
 import useMediaQuery from "../../components/MediaQueries/MediaQuery";
 import Checkbox from "../../components/Input/Checkbox";
+import CampusBackground from "../../components/Background/CampusBackground";
 
 
 export default function BugReport() {
@@ -43,7 +44,8 @@ export default function BugReport() {
                 <title>Rapport Problème &bull; AMNet</title>
             </Head>
             <CampusGlobalStyle />
-
+            <CampusBackground/>
+            
             <Row
                 mobileWidth="90%"
                 style={{

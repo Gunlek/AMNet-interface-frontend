@@ -21,6 +21,7 @@ export type access = {
     access_mac: string;
     access_proof: string;
     access_state: string;
+    declined_reason: string
 }
 
 export type hardware = {
@@ -28,6 +29,7 @@ export type hardware = {
     material_description: string;
     material_reason: string;
     material_state: string;
+    declined_reason: string
 }
 
 export type adminAccess = {
@@ -38,7 +40,8 @@ export type adminAccess = {
     access_state: string;
     access_user: number,
     user_name: number,
-    user_pay_status: boolean
+    user_pay_status: boolean;
+    declined_reason: string
 }
 
 export type adminHardware = {
@@ -48,5 +51,6 @@ export type adminHardware = {
     material_state: string;
     material_user: number,
     user_name: number,
-    user_pay_status: boolean
+    user_pay_status: boolean;
+    declined_reason: string
 }

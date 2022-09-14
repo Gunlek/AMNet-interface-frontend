@@ -14,7 +14,7 @@ Quill.register({ "formats/indent": IndentStyle }, true)
 
 export const QuillToolbar = (props: { id: string }) => (
     <div 
-        id={"toolbar" + props.id} 
+        id={`toolbar${props.id}`} 
         style={{
                 textAlign: "center", 
                 fontSize: "1.2rem", 

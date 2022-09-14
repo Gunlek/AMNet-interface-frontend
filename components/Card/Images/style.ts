@@ -28,6 +28,7 @@ export const StyledCancelImg = styled.img.attrs({ src: "/static/icons/cancel.svg
 export const StyledLogo = styled.svg`
   height: ${props => (props.height || "100px")};
   aspect-ratio: 19 / 8.5; 
+  pointer-events: none;
 
   @media screen and (max-width: 1000px){
     height: 100px; 

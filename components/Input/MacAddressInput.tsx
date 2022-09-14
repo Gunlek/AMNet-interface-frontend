@@ -11,7 +11,7 @@ export default function MacAdressTd(props: { access_mac: string, access_id: numb
     const [mac, setMac] = useState(props.access_mac)
     const [tooltip, setTooltip] = useState({ display: false, opacity: "" })
     const verifiedMac = MacAddressVerification(mac)
-    const longPressEvent = useLongPress(handleDoubleClick, { isPreventDefault: true, delay: 2000 });
+    const longPressEvent = useLongPress(handleDoubleClick, { isPreventDefault: true, delay: 1000 });
 
     function handleDoubleClick() {
         setInput(true)

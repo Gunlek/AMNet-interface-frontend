@@ -32,6 +32,7 @@ const AutoTextArea = (props: TextareaHTMLAttributes<HTMLTextAreaElement>) => {
 			{...props}
 			ref={textAreaRef}
 			rows={1}
+			border="2px solid rgba(0, 159, 0, 0.15)"
 			style={{
 				height: textAreaHeight,
 			}}

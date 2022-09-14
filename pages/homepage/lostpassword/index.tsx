@@ -11,6 +11,7 @@ import axios, { AxiosResponse } from "axios";
 import Modal from "../../../components/Card/Modals/Modal";
 import { motion } from "framer-motion";
 import { variants } from "../../../components/Utils/animation-variants";
+import CampusBackground from "../../../components/Background/CampusBackground";
 
 export default function LostPassword() {
   const [mail, setMail] = useState("");
@@ -32,7 +33,8 @@ export default function LostPassword() {
         <title>Mot de passe oublié &bull; AMNet</title>
       </Head>
       <CampusGlobalStyle />
-
+      <CampusBackground/>
+      
       <Modal show={show} style={{ width: "450px", textAlign: "center", color: error ? "red" : undefined }}>
         {error ?
           <>

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Head from "next/head";
 import { GreenButton } from "../../components/Button/Buttons";
-import { Footer, TitleCard } from "../../components/Card/Cards"
+import { Footer, GuestLogin, TitleCard } from "../../components/Card/Cards"
 import { StyledCard } from "../../components/Card/style";
 import AdminMenu from "../../components/Menu/AdminMenu";
 import { StateIntegration, StateInvite } from "../../components/Status/Status";
@@ -30,7 +30,7 @@ import oldURL from "../../components/Utils/oldURL";
 import { motion } from "framer-motion";
 
 export async function getServerSideProps({ req }) {
-  const { access_token, userId, } = getToken(req)
+  const { access_token, userId } = getToken(req)
 
   if (access_token) {
     const config = getConfig(access_token)
@@ -67,7 +67,7 @@ export async function getServerSideProps({ req }) {
           usins_state: usins_state.data,
           guest_access: guest_access.data,
           news_message: news_message.data,
-          fromIndex: !(/\/admin(\/\w*)?/).test(oldURL(req)),
+          fromIndex: !(/\/admin(\/\w*)?/).test(oldURL(req))
         }
       }
     }
@@ -230,9 +230,10 @@ export default function Admin(props: {
             <Col6 paddingLeft="1%">
               <StyledCard>
                 <TitleCard>Paramètres</TitleCard>
-                <Row style={{ marginBottom: "20px" }}>
-                  <Col6>
-                    <GreenText style={{ marginBottom: "5px" }}>Compte Invité</GreenText>
+                <Row style={{ marginBottom: "20px", position: "relative", }}>
+                  <Col6 style={{ marginBottom: "5px", flexDirection: "row", alignItems: "center" }}>
+                    <GreenText>Compte Invité</GreenText>
+                    <GuestLogin />
                   </Col6>
                   <Col6 style={{ alignItems: "end" }}>
                     <StateInvite state={props.guest_access} onChange={handleSettingsChange} />

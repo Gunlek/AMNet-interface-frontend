@@ -43,6 +43,7 @@ function CreateTable({ requests, Display, setTab }: {
                         {value['material_reason']}
                     </div>
                 </StyledTd>
+                {value.material_state === "declined" && <StyledTd>{value.declined_reason}</StyledTd>}
                 <StyledTd>
                     <StateRequest state={value['material_state']} />
                 </StyledTd>
@@ -153,13 +154,14 @@ export default function MaterialAdminTable(props: {
                                 <StyledTh scope="col">Cotisation</StyledTh>
                                 <StyledTh scope="col">Description</StyledTh>
                                 <StyledTh scope="col">Détails</StyledTh>
+                                {props.display.declined && <StyledTh scope="col">Motif du Refus</StyledTh>}
                                 <StyledTh scope="col"><span style={{ paddingLeft: "5px" }}>Etat</span></StyledTh>
                                 <StyledTh scope="col">
                                     <div
                                         style={{
                                             width: (props.status.new == "pending") ? "500px" : "325px",
                                             paddingLeft: "5px",
-                                            transition: "width 0s linear 0.3s"
+                                            transition: "width 0s linear 0.6s"
                                         }}
                                     >
                                         Actions

@@ -7,18 +7,20 @@ import {
   SmallStyledRedButton,
   StyledOrangeButton,
   SmallStyledOrangeButton,
-  StyledBackArrow
+  StyledBackArrow,
+  SmallStyledLinkButton
 } from "./style";
 
-type ButtonProps = { 
-  children: React.ReactNode; 
-  width?: string, 
-  height?: string, 
-  onClick?: Function, 
-  type?: string, 
-  fontSize?: string, 
+type ButtonProps = {
+  children: React.ReactNode;
+  width?: string,
+  height?: string,
+  onClick?: Function,
+  type?: string,
+  fontSize?: string,
   mobileMarginBottom?: string,
-  mobileWidth?: string
+  mobileWidth?: string,
+  style?: React.CSSProperties
 };
 
 export function GreenButton(props: ButtonProps) {
@@ -74,6 +76,7 @@ export function SmallRedButton(props: ButtonProps) {
       height={props.height}
       onClick={props.onClick}
       fontSize={props.fontSize}
+      style={props.style}
     >
       {props.children}
     </SmallStyledRedButton>
@@ -157,4 +160,24 @@ export function ButtonLink(props: {
       </StyledGreenButton>
     </Link>
   );
-}
+};
+
+export function SmallButtonLink(props: {
+  children: React.ReactNode;
+  width?: string,
+  href: string,
+  mobileMarginBottom?: string
+}) {
+  return (
+    <Link href={props.href} passHref scroll={false}>
+      <SmallStyledLinkButton
+        as="a"
+        width={props.width}
+        lineHeight="40px"
+        MobileMarginBottom={props.mobileMarginBottom}
+      >
+        {props.children}
+      </SmallStyledLinkButton>
+    </Link>
+  );
+};
