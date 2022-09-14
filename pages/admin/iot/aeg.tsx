@@ -12,8 +12,12 @@ import { access } from "../../../components/Utils/types";
 import getToken from "../../../components/Utils/auth-token";
 import getConfig from "../../../components/Utils/req-config";
 import usePageTransition from "../../../components/Utils/usePageTransition";
-import IoTModal from "../../../components/Card/Modals/IoTModal";
 import IoTUserTable from "../../../components/Table/User/IoT";
+import dynamic from "next/dynamic";
+import { StyledGreenButton } from "../../../components/Button/style";
+const IoTModal = dynamic(() => import("../../../components/Card/Modals/IoTModal"), {
+    loading: () => <StyledGreenButton width="280px">Nouvelle demande</StyledGreenButton>
+})
 
 export async function getServerSideProps({ req }) {
     const { access_token, userId } = getToken(req)

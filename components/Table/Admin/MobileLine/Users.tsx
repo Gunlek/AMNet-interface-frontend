@@ -1,9 +1,10 @@
 import { StyledTable, StyledTd, StyledTr } from "../../style";
 import React, { useState } from "react";
-import Fail from "../../../NavIcons/fail";
-import Succes from "../../../NavIcons/succes";
 import Link from "next/link";
 import { StyledLink } from "../../../Text/style";
+import dynamic from "next/dynamic";
+const Fail = dynamic(() => import("../../../NavIcons/fail"));
+const Succes = dynamic(() => import("../../../NavIcons/succes"));
 
 export const UsersMobileLine = ({ row, columnsNumber, isLast }: {
     columnsNumber: number,

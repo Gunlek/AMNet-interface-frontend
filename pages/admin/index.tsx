@@ -20,14 +20,19 @@ import {
 } from "../../components/Container/style";
 import Editor from "../../components/Input/Editor/Editor";
 import { EditorStyle } from "../../styles/editor";
-import MailModal from "../../components/Card/Modals/MailModal";
 import axios, { AxiosResponse } from "axios";
 import getConfig from "../../components/Utils/req-config";
 import getToken from "../../components/Utils/auth-token";
-import Modal from "../../components/Card/Modals/Modal";
-import SettingsModal from "../../components/Card/Modals/UpdateSettingsModal";
 import oldURL from "../../components/Utils/oldURL";
-import { motion } from "framer-motion";
+import dynamic from "next/dynamic";
+import { StyledGreenButton } from "../../components/Button/style";
+const Modal = dynamic(() => import("../../components/Card/Modals/Modal"));
+const MailModal = dynamic(() => import("../../components/Card/Modals/MailModal"), {
+  loading: () =><StyledGreenButton mobileWidth="100%">Pré-visualiser le Mail</StyledGreenButton>
+});
+const SettingsModal = dynamic(() => import("../../components/Card/Modals/UpdateSettingsModal"), {
+  loading: () => <StyledGreenButton mobileWidth="100%">Mettre à jour</StyledGreenButton>
+});
 
 export async function getServerSideProps({ req }) {
   const { access_token, userId } = getToken(req)
@@ -87,8 +92,6 @@ export async function getServerSideProps({ req }) {
     }
   }
 }
-
-
 
 export default function Admin(props: {
   access_quantity: number,

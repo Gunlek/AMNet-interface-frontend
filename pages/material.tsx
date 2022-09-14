@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import Head from "next/head";
 import { HelpSection, Footer } from "../components/Card/Cards";
-import MaterialModal from "../components/Card/Modals/MaterialModal";
 import { StyledCard } from "../components/Card/style";
 import { DashboardContainer, ResponsiveRow, Column, StyledMain } from "../components/Container/style";
 import UserMenu from "../components/Menu/UserMenu";
@@ -12,6 +11,11 @@ import { hardware, user } from "../components/Utils/types";
 import getToken from "../components/Utils/auth-token";
 import getConfig from "../components/Utils/req-config";
 import usePageTransition from "../components/Utils/usePageTransition";
+import dynamic from "next/dynamic";
+import { StyledGreenButton } from "../components/Button/style";
+const MaterialModal = dynamic(() => import("../components/Card/Modals/MaterialModal"), {
+  loading: () => <StyledGreenButton width="280px">Nouvelle demande</StyledGreenButton>
+})
 
 export async function getServerSideProps({ req }) {
   const { access_token, userId, localNetwork } = getToken(req)

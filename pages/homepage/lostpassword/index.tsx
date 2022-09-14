@@ -8,10 +8,11 @@ import { StyledCardCampus } from "../../../components/Card/style";
 import { Row } from "../../../components/Container/style";
 import { StyledInputLabel, StyledInput } from "../../../components/Input/style";
 import axios, { AxiosResponse } from "axios";
-import Modal from "../../../components/Card/Modals/Modal";
 import { motion } from "framer-motion";
 import { variants } from "../../../components/Utils/animation-variants";
 import CampusBackground from "../../../components/Background/CampusBackground";
+import dynamic from "next/dynamic";
+const Modal = dynamic(() => import("../../../components/Card/Modals/Modal"));
 
 export default function LostPassword() {
   const [mail, setMail] = useState("");
@@ -31,7 +32,7 @@ export default function LostPassword() {
     <>
       <Head>
         <title>Mot de passe oublié &bull; AMNet</title>
-        <meta name="description" content="Identifiants oubliés : recevez un mail contenant votre identifiant et la possibilité de réinitialiser votre mot de passe" />
+        <meta name="description" content="Identifiants oubliés : Recevoir son identifiant et reinitialiser son mot de passe" />
       </Head>
       <CampusGlobalStyle />
       <CampusBackground/>

@@ -5,13 +5,15 @@ import { ResponsiveRow, Row } from "../../Container/style";
 import FileUploader from "../../Input/FileUploader";
 import { StyledInputLabel, StyledInput } from "../../Input/style";
 import useMediaQuery from "../../MediaQueries/MediaQuery";
-import { ErrorP, StyledLink } from "../../Text/style";
+import { StyledLink } from "../../Text/style";
 import MacAddressVerification from "../../Utils/macaddress";
 import { TitleCard } from "../Cards";
 import { StyledDeleteImg } from "../Images/style";
 import { ModalLogic } from "./ModalLogic";
 import { StyledBackgroundModal, StyledModal } from "./style";
 import { validateImage } from "image-validator";
+import dynamic from "next/dynamic";
+const ErrorP = dynamic(() => import("../../Text/style").then((mod) => mod.ErrorP));
 
 export default function IoTModal(props: { setAccess: Function, userId: Number | string }) {
     const minWidth1000 = useMediaQuery('(min-width: 1000px)');
@@ -122,12 +124,12 @@ export default function IoTModal(props: { setAccess: Function, userId: Number | 
                                     onBlur={verification}
                                 />
                                 {error.access_mac &&
-                                    <ErrorP Fixed={true}>
+                                    <ErrorP>
                                         L&apos;adresse physique est invalide
                                     </ErrorP>
                                 }
                                 {error.access_mac_exist &&
-                                    <ErrorP Fixed={true}>
+                                    <ErrorP>
                                         L&apos;adresse physique est déjà utilisée par un autre appareil
                                     </ErrorP>
                                 }
@@ -143,7 +145,7 @@ export default function IoTModal(props: { setAccess: Function, userId: Number | 
                                     onBlur={verification}
                                 />
                                 {error.access_description &&
-                                    <ErrorP Fixed={true}>
+                                    <ErrorP>
                                         La description est obligatoire
                                     </ErrorP>
                                 }
@@ -180,12 +182,12 @@ export default function IoTModal(props: { setAccess: Function, userId: Number | 
                                     }
                                 </ResponsiveRow>
                                 {error.access_proof &&
-                                    <ErrorP Fixed={true}>
+                                    <ErrorP>
                                         La photo est obligatoire
                                     </ErrorP>
                                 }
                                 {error.type_access_proof &&
-                                    <ErrorP Fixed={true}>
+                                    <ErrorP>
                                         Le fichier n&apos;est pas une image
                                     </ErrorP>
                                 }

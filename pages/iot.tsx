@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Head from "next/head";
+import dynamic from 'next/dynamic'
 import { HelpSection, Footer } from "../components/Card/Cards";
-import IoTModal from "../components/Card/Modals/IoTModal";
 import { StyledCard } from "../components/Card/style";
 import { DashboardContainer, ResponsiveRow, Column, StyledMain } from "../components/Container/style";
 import UserMenu from "../components/Menu/UserMenu";
@@ -12,6 +12,10 @@ import { user, access } from "../components/Utils/types";
 import getToken from "../components/Utils/auth-token";
 import getConfig from "../components/Utils/req-config";
 import usePageTransition from "../components/Utils/usePageTransition";
+import { StyledGreenButton } from "../components/Button/style";
+const IoTModal = dynamic(() => import("../components/Card/Modals/IoTModal"), {
+  loading: () => <StyledGreenButton width="280px">Nouvelle demande</StyledGreenButton>
+})
 
 export async function getServerSideProps({ req }) {
   const { access_token, userId, localNetwork } = getToken(req)

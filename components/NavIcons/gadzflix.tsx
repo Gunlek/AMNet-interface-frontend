@@ -1,6 +1,8 @@
 import { useState } from "react";
-import Modal from "../Card/Modals/Modal";
-import { StyledBackIcon, StyledIcon, StyledTooltip } from "./style";
+import { StyledBackIcon, StyledIcon } from "./style";
+import dynamic from "next/dynamic";
+const Modal = dynamic(() => import("../Card/Modals/Modal"));
+const StyledTooltip = dynamic(() => import("./style").then((mod) => mod.StyledTooltip));
 
 export function Gadzflix(props: { localNetwork: boolean }) {
     const [show, setShow] = useState(false);

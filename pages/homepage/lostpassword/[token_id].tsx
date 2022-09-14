@@ -6,14 +6,17 @@ import CampusBackground from "../../../components/Background/CampusBackground";
 import { CampusGlobalStyle } from "../../../components/Background/style";
 import { ButtonLink, GreenButton } from "../../../components/Button/Buttons";
 import { TitleCard, HelpSection, Footer } from "../../../components/Card/Cards";
-import Modal from "../../../components/Card/Modals/Modal";
 import RectangleLogo from "../../../components/Card/RectangleLogo";
 import { StyledCardCampus } from "../../../components/Card/style";
 import { Row } from "../../../components/Container/style";
-import PasswordInput from "../../../components/Input/PasswordInput";
-import { StyledInputLabel } from "../../../components/Input/style";
+import { StyledInput, StyledInputLabel } from "../../../components/Input/style";
 import { ErrorP } from "../../../components/Text/style";
 import { variants } from "../../../components/Utils/animation-variants";
+import dynamic from "next/dynamic";
+const Modal = dynamic(() => import("../../../components/Card/Modals/Modal"));
+const PasswordInput = dynamic(() => import("../../../components/Input/PasswordInput"), {
+  loading: () => <StyledInput/>
+});
 
 export async function getServerSideProps({ params }) {
   const name = await (await axios.get(`${process.env.NEXT_PUBLIC_API_HOST}/user/password/${params.token_id}`)).data

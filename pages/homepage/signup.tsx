@@ -8,7 +8,6 @@ import RectangleLogo from "../../components/Card/RectangleLogo";
 import { StyledCardCampus } from "../../components/Card/style";
 import RoundCheckbox from "../../components/Input/RoundCheckbox";
 import { StyledInputLabel, StyledInput } from "../../components/Input/style";
-import useMediaQuery from "../../components/MediaQueries/MediaQuery";
 import {
   Row,
   ResponsiveRow,
@@ -20,10 +19,8 @@ import {
   BlackText,
   GreenText,
   StyledLink,
-  BlackP,
-  ErrorP
+  BlackP
 } from "../../components/Text/style";
-import PasswordInput from "../../components/Input/PasswordInput";
 import PhoneInput from "../../components/Input/PhoneInput";
 import useForm from "../../components/Input/useForm";
 import { useRouter } from "next/router";
@@ -32,6 +29,11 @@ import getToken from "../../components/Utils/auth-token";
 import { motion } from "framer-motion";
 import { variants } from "../../components/Utils/animation-variants";
 import CampusBackground from "../../components/Background/CampusBackground";
+import dynamic from "next/dynamic";
+const ErrorPNoFixed = dynamic(() => import("../../components/Text/style").then((mod) => mod.ErrorPNoFixed));
+const PasswordInput = dynamic(() => import("../../components/Input/PasswordInput"), {
+  loading: () => <StyledInput/>
+});
 
 export async function getServerSideProps({ req }) {
   const { access_token } = getToken(req)
@@ -327,9 +329,9 @@ export default function SignUp(props: { active_proms: number, usins_state: boole
                 </Row>
 
                 {acceptRules.error &&
-                  <ErrorP>
+                  <ErrorPNoFixed>
                     Vous devez les accepter pour vous inscrire !
-                  </ErrorP>
+                  </ErrorPNoFixed>
                 }
 
                 <Row style={{ justifyContent: "center", marginTop: "20px" }}>

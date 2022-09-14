@@ -1,14 +1,17 @@
 import { StyledHeadTr, StyledTable, StyledTd, StyledTh, StyledTr } from "../../style";
-import { StateRequest } from "../../../Status/Status";
 import React, { useEffect, useRef, useState } from "react";
-import { Buttons } from "../Buttons";
-import Fail from "../../../NavIcons/fail";
-import Succes from "../../../NavIcons/succes";
-import ProofModal from "../../../Card/Modals/AdminProofModal";
 import Link from "next/link";
 import { StyledLink } from "../../../Text/style";
 import { adminAccess } from "../../../Utils/types";
-import MacAdressTd from "../../../Input/MacAddressInput";
+import dynamic from "next/dynamic";
+const ProofModal = dynamic(() => import("../../../Card/Modals/AdminProofModal"), {
+    loading: () => <StyledLink color="#096a09">Image</StyledLink>
+});
+const MacAdressTd = dynamic(() => import("../../../Input/MacAddressInput"));
+const Fail = dynamic(() => import("../../../NavIcons/fail"));
+const Succes = dynamic(() => import("../../../NavIcons/succes"));
+const Buttons = dynamic(() => import("../Buttons").then((mod) => mod.Buttons));
+const StateRequest = dynamic(() => import("../../../Status/Status").then((mod) => mod.StateRequest));
 
 export const IoTMobileLine = ({ index, value, status, display, isLast, setTab }: {
     index: number,

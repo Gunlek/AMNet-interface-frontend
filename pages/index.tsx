@@ -9,11 +9,12 @@ import { AdminNotifications, StateContribution } from "../components/Status/Stat
 import { BlackTitle, BlackText, NewsMessage, StyledLink } from "../components/Text/style";
 import axios from 'axios';
 import { user } from "../components/Utils/types";
-import Modal from "../components/Card/Modals/Modal";
 import getToken from "../components/Utils/auth-token";
 import getConfig from "../components/Utils/req-config";
 import DOMPurify from 'isomorphic-dompurify';
 import oldURL from "../components/Utils/oldURL";
+import dynamic from "next/dynamic";
+const Modal = dynamic(() => import("../components/Card/Modals/Modal"));
 
 export async function getServerSideProps({ req, query }) {
   const { access_token, userId, localNetwork } = getToken(req);

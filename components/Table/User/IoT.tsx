@@ -1,10 +1,11 @@
 import axios, { AxiosResponse } from "axios";
+import dynamic from "next/dynamic";
 import React, { useState } from "react";
 import { SmallRedButton } from "../../Button/Buttons";
-import UserProofModal from "../../Card/Modals/UserProofModal";
 import MacAdressTd from "../../Input/MacAddressInput";
 import { MediaContextProvider, Media } from "../../MediaQueries/MediaSSR";
 import { StateRequest } from "../../Status/Status";
+import { StyledLink } from "../../Text/style";
 import { access } from "../../Utils/types";
 import {
     StyledTr,
@@ -14,6 +15,9 @@ import {
     StyledTh,
     StyledHeadTr
 } from "../style";
+const UserProofModal = dynamic(() => import("../../Card/Modals/UserProofModal"), {
+    loading: () => <StyledLink color="#096a09">Image</StyledLink>
+})
 
 export default function IoTUserTable(props: { requests: access[], setAccess: Function, userId: Number | string }) {
     let listHTML = [];

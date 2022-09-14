@@ -8,16 +8,20 @@ import { StyledCardCampus } from "../../components/Card/style";
 import { ResponsiveRow, Row } from "../../components/Container/style";
 import Checkbox from "../../components/Input/Checkbox";
 import { StyledInputLabel, StyledInput } from "../../components/Input/style";
-import { BlackText, ErrorP } from "../../components/Text/style";
-import PasswordInput from "../../components/Input/PasswordInput";
+import { BlackText } from "../../components/Text/style";
 import axios from "axios";
 import { useRouter } from "next/router";
-import Modal from "../../components/Card/Modals/Modal";
 import getToken from "../../components/Utils/auth-token";
 import { motion } from "framer-motion";
 import { variants } from "../../components/Utils/animation-variants";
 import oldURL from "../../components/Utils/oldURL";
 import CampusBackground from "../../components/Background/CampusBackground";
+import dynamic from "next/dynamic";
+const ErrorP = dynamic(() => import("../../components/Text/style").then((mod) => mod.ErrorP));
+const PasswordInput = dynamic(() => import("../../components/Input/PasswordInput"), {
+  loading: () => <StyledInput/>
+});
+const Modal = dynamic(() => import("../../components/Card/Modals/Modal"));
 
 export async function getServerSideProps({ req, query }) {
   const { access_token } = getToken(req)
@@ -141,7 +145,7 @@ export default function Login(props: { modal: boolean, from: string }) {
                   <StyledInputLabel htmlFor="password">Mot de passe</StyledInputLabel>
                   <PasswordInput id="password" onChange={handleFormChange} required />
                   {error &&
-                    <ErrorP Fixed={true}>
+                    <ErrorP>
                       Identifiant ou mot de passe invalide
                     </ErrorP>
                   }
