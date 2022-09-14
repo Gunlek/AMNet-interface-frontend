@@ -35,12 +35,12 @@ export default function MaterialUserTable(props: { requests: hardware[], setHard
             <StyledTr key={index}>
                 <StyledTd>{index + 1}</StyledTd>
                 <StyledTd>{value['material_description']}</StyledTd>
-                {declinedExist && <StyledTd>{value.declined_reason}</StyledTd>}
                 <StyledFlexTd style={{ whiteSpace: "normal" }}>
                     <div style={{ minWidth: "100%", width: "400px", maxWidth: "max-content" }}>
                         {value['material_reason']}
                     </div>
                 </StyledFlexTd>
+                {declinedExist && <StyledTd>{value.declined_reason}</StyledTd>}
                 <StyledTd>
                     <StateRequest state={value['material_state']} />
                 </StyledTd>
@@ -70,16 +70,16 @@ export default function MaterialUserTable(props: { requests: hardware[], setHard
                     <StyledTh>Demande {index + 1} </StyledTh>
                     <StyledTh style={{ textAlign: "center", paddingRight: "10px" }}>{value['material_description']}</StyledTh>
                 </StyledHeadTr>
+                <StyledTr>
+                    <StyledTd>Détails</StyledTd>
+                    <StyledTd style={{ textAlign: "center", whiteSpace: "normal" }}>{value['material_reason']}</StyledTd>
+                </StyledTr>
                 {value.material_state === "declined" &&
                     <StyledTr>
                         <StyledTd>Motif du Refus</StyledTd>
                         <StyledTd>{value.declined_reason}</StyledTd>
                     </StyledTr>
                 }
-                <StyledTr>
-                    <StyledTd>Détails</StyledTd>
-                    <StyledTd style={{ textAlign: "center", whiteSpace: "normal" }}>{value['material_reason']}</StyledTd>
-                </StyledTr>
                 <StyledTr>
                     <StyledTd>Etat</StyledTd>
                     <StyledTd><StateRequest center={true} state={value['material_state']} /></StyledTd>
@@ -122,8 +122,8 @@ export default function MaterialUserTable(props: { requests: hardware[], setHard
                         <StyledHeadTr>
                             <StyledTh scope="col">#</StyledTh>
                             <StyledTh scope="col">Description</StyledTh>
-                            {declinedExist && <StyledTh scope="col">Motif de Refus</StyledTh>}
                             <StyledTh scope="col">Détails</StyledTh>
+                            {declinedExist && <StyledTh scope="col">Motif du Refus</StyledTh>}
                             <StyledTh scope="col"><span style={{ paddingLeft: "5px" }}>Etat</span></StyledTh>
                             <StyledTh scope="col"><span style={{ paddingLeft: "5px" }}>Action</span></StyledTh>
                         </StyledHeadTr>
