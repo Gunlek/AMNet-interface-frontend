@@ -159,8 +159,8 @@ export const ContainerAdminToolTip = styled.div`
 
 export const StyledAdminToolTip = styled(StyledCardCampus)`
   position: absolute;
-  top: ${(props) => props.Top || "70px"};
-  left: ${(props) => props.Left || "100%"};
+  top: 70px;
+  left: 100%;
   transform: translateX(-50%);
   width: max-content;
   font-size: 1.2rem;
@@ -178,6 +178,11 @@ export const StyledAdminToolTip = styled(StyledCardCampus)`
     opacity: 1;
     z-index: 2;
   }
+`;
+
+export const StyledGuestToolTip = styled(StyledAdminToolTip)`
+  left: 50%;
+  top: 40px;
 `;
 
 export const StyledInfoSVG = styled.svg`
