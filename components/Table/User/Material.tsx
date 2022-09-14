@@ -35,12 +35,12 @@ export default function MaterialUserTable(props: { requests: hardware[], setHard
             <StyledTr key={index}>
                 <StyledTd>{index + 1}</StyledTd>
                 <StyledTd>{value['material_description']}</StyledTd>
-                {declinedExist && <StyledTd>{value.declined_reason}</StyledTd>}
                 <StyledFlexTd style={{ whiteSpace: "normal" }}>
                     <div style={{ minWidth: "100%", width: "400px", maxWidth: "max-content" }}>
                         {value['material_reason']}
                     </div>
                 </StyledFlexTd>
+                {declinedExist && <StyledTd>{value.declined_reason}</StyledTd>}
                 <StyledTd>
                     <StateRequest state={value['material_state']} />
                 </StyledTd>
@@ -123,7 +123,7 @@ export default function MaterialUserTable(props: { requests: hardware[], setHard
                             <StyledTh scope="col">#</StyledTh>
                             <StyledTh scope="col">Description</StyledTh>
                             <StyledTh scope="col">Détails</StyledTh>
-                            {declinedExist && <StyledTh scope="col">Motif de Refus</StyledTh>}
+                            {declinedExist && <StyledTh scope="col">Motif du Refus</StyledTh>}
                             <StyledTh scope="col"><span style={{ paddingLeft: "5px" }}>Etat</span></StyledTh>
                             <StyledTh scope="col"><span style={{ paddingLeft: "5px" }}>Action</span></StyledTh>
                         </StyledHeadTr>
