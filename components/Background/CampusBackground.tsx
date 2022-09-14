@@ -7,23 +7,25 @@ export default function CampusBackground() {
     <MediaContextProvider>
       <Media at="sm" >
         <Image
-          src="/static/images/homepage/mobileCampus.jpg"
+          src="/static/images/homepage/mobileCampus.webp"
           alt="AMNet Résidence Arts et Métiers Lille"
           objectFit="cover"
           layout="fill"
           objectPosition="50% 50%"
           sizes="100vw"
+          priority={true}
         />
       </Media>
 
       <Media greaterThan="sm" >
         <Image
-          src="/static/images/homepage/campus.jpg"
+          src="/static/images/homepage/campus.webp"
           alt="AMNet Résidence Arts et Métiers Lille"
           objectFit="cover"
           layout="fill"
           objectPosition="50% 50%"
           sizes="100vw"
+          priority={true}
         />
       </Media>
     </MediaContextProvider>
