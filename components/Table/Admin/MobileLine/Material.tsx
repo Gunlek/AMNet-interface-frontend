@@ -18,19 +18,28 @@ export const MaterialMobileLine = ({ index, value, status, display, isLast, setT
     isLast?: boolean
 }) => {
     const [scrolled, setScrolled] = useState(false);
+    const [duration, setDuration] = useState(0.3);
     const elementRef = useRef(null);
 
     useEffect(() => {
         setTimeout(() => {
-            setScrolled(false)
-        }, 500);
+            setScrolled(false);
+        }, 600);
     }, [display])
+
+    useEffect(() => {
+        setDuration(0);
+        setScrolled(false);
+        setTimeout(() => {
+            setDuration(0.3);
+        }, 600);
+    }, [value])
 
     return (
         <div
             style={{
-                height: scrolled ? `${elementRef.current?.clientHeight-5}px` : "53px",
-                transition: "height 0.3s linear, margin-bottom 0.3s linear",
+                height: scrolled ? `${elementRef.current?.clientHeight - 5}px` : "53px",
+                transition: `height ${duration}s linear, margin-bottom ${duration}s linear`,
                 overflowY: "hidden",
                 overflowX: scrolled ? "auto" : "hidden",
                 marginBottom: isLast ? scrolled ? "0" : "5px" : scrolled ? "15px" : "25px"
@@ -40,7 +49,7 @@ export const MaterialMobileLine = ({ index, value, status, display, isLast, setT
                 <thead>
                     <StyledHeadTr onClick={() => setScrolled(!scrolled)}>
                         <StyledTh style={{ width: "130px" }}>Demande {index}</StyledTh>
-                        <StyledTh style={{ textAlign: "center", paddingRight: "10px"}}>{value['material_description']}</StyledTh>
+                        <StyledTh style={{ textAlign: "center", paddingRight: "10px" }}>{value['material_description']}</StyledTh>
                     </StyledHeadTr>
                 </thead>
                 <tbody>
