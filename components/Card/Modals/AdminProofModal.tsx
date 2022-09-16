@@ -47,6 +47,7 @@ export default function ProofModal(props: { request: any, setTab: Function }) {
                                             quality="50"
                                             layout="fill"
                                             objectFit="contain"
+                                            sizes="(max-width: 1000px) 85vw, 800px"
                                         />
                                     </div>
                                 </Col8>
