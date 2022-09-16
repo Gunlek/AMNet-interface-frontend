@@ -5,7 +5,7 @@ import ModalLogic from "./ModalLogic"
 import { StyledBackgroundModal, StyledModal } from "./style"
 import Image from 'next/image'
 import RectangleLogo from "../RectangleLogo"
-import { ErrorP, StyledLink } from "../../Text/style"
+import { ErrorPNoFixed, StyledLink } from "../../Text/style"
 import { Row } from "../../Container/style"
 import DOMPurify from 'isomorphic-dompurify';
 import axios, { AxiosResponse } from "axios"
@@ -139,17 +139,17 @@ export default function MailModal(props: { html: any, subject: string, recipient
                                 </div>
 
                                 {noRecipients &&
-                                    <ErrorP style={{ marginBottom: "30px" }}>
+                                    <ErrorPNoFixed style={{ marginBottom: "30px" }}>
                                         Tu n&apos;as pas sélectionné assez des casses pour créer une liste de diffusion<br />
                                         C&apos;est au moins une casse dans <strong>Cotisation payée</strong><br />
                                         Et au moins une casse dans <strong>Prom&apos;s</strong>
-                                    </ErrorP>
+                                    </ErrorPNoFixed>
                                 }
 
                                 {props.subject == "" &&
-                                    <ErrorP style={{ marginBottom: "30px" }}>
+                                    <ErrorPNoFixed style={{ marginBottom: "30px" }}>
                                         <strong>Attention</strong> tu n&apos;as pas rempli l&apos;Objet du mail
-                                    </ErrorP>
+                                    </ErrorPNoFixed>
                                 }
                                 
                                 <Row style={{ justifyContent: "center" }}>

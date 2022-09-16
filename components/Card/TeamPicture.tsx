@@ -37,7 +37,7 @@ export default function TeamPicture(props: { Team: { pseudo: string, id: string 
       }}
     >
       <Image 
-        src={props.background || `${process.env.NEXT_PUBLIC_API_HOST}/team.jpeg`} 
+        src={props.background || `${process.env.NEXT_PUBLIC_API_HOST}/team.webp`} 
         alt="Team AMNet Résidence Arts et Métiers Lille"
         objectFit="cover" 
         objectPosition="50% 50%"

@@ -13,6 +13,7 @@ import getConfig from "../components/Utils/req-config";
 import usePageTransition from "../components/Utils/usePageTransition";
 import dynamic from "next/dynamic";
 import { StyledGreenButton } from "../components/Button/style";
+import { AnimatePresence, motion } from "framer-motion";
 const MaterialModal = dynamic(() => import("../components/Card/Modals/MaterialModal"), {
   loading: () => <StyledGreenButton width="280px">Nouvelle demande</StyledGreenButton>
 })
@@ -82,8 +83,8 @@ export default function UserMaterial(props: {
             pay_status: props.user.user_pay_status
           }}
           localNetwork={props.localNetwork}
-          setTransition={roadTo} 
-          setHomeTransition={roadToHome}          
+          setTransition={roadTo}
+          setHomeTransition={roadToHome}
         />
 
         <DashboardContainer exit={pageTransition.exit ? "false" : undefined}>
@@ -103,22 +104,31 @@ export default function UserMaterial(props: {
             </div>
           </ResponsiveRow>
 
-          <Column
-            mobileMarginBottom="30px"
-            marginBottom={empty ? "0" : "2%"}
-            style={{ flex: empty ? "1" : undefined }}
-          >
+          <Column mobileMarginBottom="30px" marginBottom="2%">
             <BlackP>
               Pour compléter votre installation, vous pouvez avoir besoin d&apos;un écran, d&apos;un cable ethernet ou de matériel informatique.
               <br /><span style={{ color: "#096a09", fontWeight: "bold" }}>Cette page</span> page vous permet de formuler vos besoins dans la limite de nos stocks. Nous reviendrons vers vous dès que votre demande aura été étudiée !
             </BlackP>
           </Column>
 
-          {!empty &&
-            <StyledCard style={{ flex: "1" }} mobileMarginBottom="30px" marginBottom="2%">
-              <MaterialUserTable requests={material} setHardware={setMaterial} userId={props.user.user_id} />
-            </StyledCard>
-          }
+          <div style={{ flex: "1", display: "flex" }}>
+            <AnimatePresence initial={false}>
+              {!empty &&
+                <StyledCard
+                  style={{ flex: "1" }}
+                  mobileMarginBottom="30px"
+                  marginBottom="2%"
+                  as={motion.div}
+                  initial={{ opacity: 0, scale: 0 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0 }}
+                  transition={{ type: 'linear' }}
+                >
+                  <MaterialUserTable requests={material} setHardware={setMaterial} userId={props.user.user_id} />
+                </StyledCard>
+              }
+            </AnimatePresence>
+          </div>
 
           <HelpSection color="#096A09" />
           <Footer />

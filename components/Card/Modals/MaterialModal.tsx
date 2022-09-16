@@ -25,8 +25,11 @@ export default function MaterialModal(props: { setHardware: Function, userId: Nu
 
     const handleFormChange = (elmt) => {
         const newForm = { ...form };
+        const Newerror = { ...error };
         newForm[elmt.currentTarget.id] = elmt.target.value;
+        Newerror[elmt.currentTarget.id] = elmt.target.value === "";
         setForm(newForm);
+        setError(Newerror);
     };
 
 
@@ -78,7 +81,7 @@ export default function MaterialModal(props: { setHardware: Function, userId: Nu
                                     placeholder="Par exemple: Je souhaite avoir un second écran pour faire de la CAO"
                                     onChange={handleFormChange}
                                 />
-                                {error.material_description &&
+                                {error.material_reason &&
                                     <ErrorP>
                                         La raison est obligatoire pour comprendre au mieux votre besoin
                                     </ErrorP>
