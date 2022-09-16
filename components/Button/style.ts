@@ -25,7 +25,7 @@ export const StyledButton = styled.button`
     margin-bottom: ${(props) => props.mobileMarginBottom};
   }
 
-  @media screen and (max-width: 400px){
+  @media screen and (max-width: ${(props) => props.mediaBreakPoint || "400px"}){
     width: ${(props) => props.mobileWidth};
   }
 `;

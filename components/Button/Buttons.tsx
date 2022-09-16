@@ -138,7 +138,8 @@ export function ButtonLink(props: {
   height?: string,
   href: string,
   style?: React.CSSProperties,
-  onClick?: Function
+  onClick?: Function,
+  mediaBreakPoint?: string
 }) {
   const onClick = (e) => {
     e.preventDefault();
@@ -155,6 +156,7 @@ export function ButtonLink(props: {
         style={props.style}
         onClick={props.onClick ? onClick : undefined}
         mobileWidth="100%"
+        mediaBreakPoint={props.mediaBreakPoint}
       >
         {props.children}
       </StyledGreenButton>
