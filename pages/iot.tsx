@@ -13,6 +13,7 @@ import getToken from "../components/Utils/auth-token";
 import getConfig from "../components/Utils/req-config";
 import usePageTransition from "../components/Utils/usePageTransition";
 import { StyledGreenButton } from "../components/Button/style";
+import { AnimatePresence, motion } from "framer-motion";
 const IoTModal = dynamic(() => import("../components/Card/Modals/IoTModal"), {
   loading: () => <StyledGreenButton width="280px">Nouvelle demande</StyledGreenButton>
 })
@@ -100,8 +101,7 @@ export default function UserIoT(props: {
 
           <Column
             mobileMarginBottom="30px"
-            marginBottom={empty ? "0" : "2%"}
-            style={{ flex: empty ? "1" : undefined }}
+            marginBottom="2%"
           >
             <BlackP mobileMarginBottom="30px" marginBottom="2%">
               Bien qu&apos;il soit préférable de connecter vos appareils incompatibles avec AMNet Wi-Fi en filaire aux prises ethernet de votre logement, certains appareils ne proposent pas cette option.
@@ -128,11 +128,24 @@ export default function UserIoT(props: {
             </BlackUl>
           </Column>
 
-          {!empty &&
-            <StyledCard style={{ flex: "1" }} mobileMarginBottom="30px" marginBottom="2%">
-              <IoTUserTable requests={access} setAccess={setAccess} userId={props.user.user_id} />
-            </StyledCard>
-          }
+          <div style={{ flex: "1", display: "flex" }}>
+            <AnimatePresence initial={false}>
+              {!empty &&
+                <StyledCard
+                  style={{ flex: "1" }}
+                  mobileMarginBottom="30px"
+                  marginBottom="2%"
+                  as={motion.div}
+                  initial={{ opacity: 0, scale: 0 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0 }}
+                  transition={{ type: 'linear' }}
+                >
+                  <IoTUserTable requests={access} setAccess={setAccess} userId={props.user.user_id} />
+                </StyledCard>
+              }
+            </AnimatePresence>
+          </div>
 
           <HelpSection color="#096A09" />
           <Footer />
