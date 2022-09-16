@@ -49,8 +49,8 @@ export async function getServerSideProps({ req }) {
 export default function AdminMaterial(props: { hardware: any, fromIndex: boolean }) {
   const minWidth1000 = useMediaQuery('(min-width:1000px)');
   const mobileContainerRef = useRef(null);
-  const { Display, Opacity, Tab, handleTabChange } = useTransition(mobileContainerRef)
-  const [hardware, setHardware] = useState(props.hardware)
+  const [hardware, setHardware] = useState(props.hardware);
+  const { Display, Opacity, Tab, handleTabChange } = useTransition(mobileContainerRef, hardware);
   const { roadTo, pageTransition, roadToHome } = usePageTransition('user');
 
   const variants = props.fromIndex ?
