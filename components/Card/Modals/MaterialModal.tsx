@@ -30,7 +30,6 @@ export default function MaterialModal(props: { setHardware: Function, userId: Nu
         Newerror[elmt.currentTarget.id] = elmt.target.value === "";
         setForm(newForm);
         setError(Newerror);
-        console.log(Newerror)
     };
 
 
