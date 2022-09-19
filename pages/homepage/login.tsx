@@ -105,12 +105,12 @@ export default function Login(props: { modal: boolean, from: string }) {
         initial="hidden"
         animate="enter"
         exit="exit"
-        transition={{ type: 'linear' }}
+        transition={{ ease: "linear" }}
       >
         <motion.div
           variants={{ exit: { opacity: 0, x: login ? -100 : 0 } }}
           exit="exit"
-          transition={{ type: 'linear' }}
+          transition={{ ease: "linear" }}
           style={{
             display: "flex",
             flexDirection: "column",

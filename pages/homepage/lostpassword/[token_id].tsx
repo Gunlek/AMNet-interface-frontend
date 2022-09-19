@@ -74,7 +74,7 @@ export default function ResetPassword(props: { name: string, token: string }) {
         initial="hidden"
         animate="enter"
         exit="exit"
-        transition={{ type: 'linear' }}
+        transition={{ ease: "linear" }}
       >
         <Row
           mobileWidth="90%"

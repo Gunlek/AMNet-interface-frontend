@@ -191,7 +191,7 @@ export const DashboardContainer = styled.div.attrs((props) => ({
   initial: props.initial || "hidden",
   animate: "enter",
   exit: props.exit || "exit",
-  transition: { type: 'linear' }
+  transition: { ease: "linear" }
 }))`
   padding: 0 2%; 
   padding-top: 1%;
@@ -222,7 +222,7 @@ export const StyledMain = styled.main.attrs((props) => ({
   initial: "hidden",
   animate: "enter",
   exit: "exit",
-  transition: { type: 'linear' }
+  transition: { ease: "linear" }
 }))`
   display: flex;
   flex: 1;

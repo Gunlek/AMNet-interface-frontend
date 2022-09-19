@@ -79,7 +79,7 @@ export default function Unsubscribe(props: { user: user }) {
         initial="hidden"
         animate="enter"
         exit="exit"
-        transition={{ type: 'linear' }}>
+        transition={{ ease: "linear" }}>
         <Row
           mobileWidth="90%"
           style={{

@@ -77,7 +77,7 @@ export default function UserMenu(props: {
         as={motion.div}
         variants={minWidth1000 ? undefined : { exit: { height: "95px" } }}
         exit="exit"
-        transition={{ type: 'linear' }}
+        transition={{ ease: "linear" }}
       >
         <StyledIconContener as="nav" maxHeight={(690 - NumHiddenIcon * 70).toString() + "px"} mobileHeight={open ? mobileHeight : "95"}>
           <Row

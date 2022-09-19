@@ -55,7 +55,7 @@ export default function LostPassword() {
         initial="hidden"
         animate="enter"
         exit="exit"
-        transition={{ type: 'linear' }}
+        transition={{ ease: "linear" }}
       >
         <Row
           mobileWidth="90%"
