@@ -238,8 +238,8 @@ export default function User(props: {
                                 <option value="Li">Birse</option>
                                 <option value="An">Boquette</option>
                                 <option value="Bo">Bordel&apos;s</option>
-                                <option value="ch">Chalon&apos;s</option>
-                                <option value="cl">Clun&apos;s</option>
+                                <option value="Ch">Chalon&apos;s</option>
+                                <option value="Cl">Clun&apos;s</option>
                                 <option value="KIN">KIN</option>
                                 <option value="Pa">P3</option>
                                 <option value="Me">Siber&apos;s</option>
