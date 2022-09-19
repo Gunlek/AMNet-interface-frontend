@@ -4,6 +4,7 @@ import Link from "next/link";
 import { StyledLink } from "../../../Text/style";
 import { adminHardware } from "../../../Utils/types";
 import dynamic from "next/dynamic";
+import { motion } from "framer-motion";
 const Buttons = dynamic(() => import("../Buttons"));
 const StateRequest = dynamic<{ center: boolean, state: string }>(() => import("../../../Status/Status").then((mod) => mod.StateRequest));
 const Fail = dynamic(() => import("../../../NavIcons/fail"));
@@ -18,8 +19,6 @@ export const MaterialMobileLine = ({ index, value, status, display, isLast, setT
     isLast?: boolean
 }) => {
     const [scrolled, setScrolled] = useState(false);
-    const [duration, setDuration] = useState(0.3);
-    const elementRef = useRef(null);
 
     useEffect(() => {
         setTimeout(() => {
@@ -27,25 +26,19 @@ export const MaterialMobileLine = ({ index, value, status, display, isLast, setT
         }, 600);
     }, [display])
 
-    useEffect(() => {
-        setDuration(0);
-        setScrolled(false);
-        setTimeout(() => {
-            setDuration(0.3);
-        }, 600);
-    }, [value])
-
     return (
-        <div
+        <motion.div
+            key={value.material_id}
+            exit={{ opacity: 0, height: 0 }}
+            layout
+            transition={{ ease: "linear", duration: 0.3 }}
             style={{
-                height: scrolled ? `${elementRef.current?.clientHeight - 5}px` : "53px",
-                transition: `height ${duration}s linear, margin-bottom ${duration}s linear`,
-                overflowY: "hidden",
-                overflowX: scrolled ? "auto" : "hidden",
-                marginBottom: isLast ? scrolled ? "0" : "5px" : scrolled ? "15px" : "25px"
+                height: scrolled ? `auto` : "53px",
+                overflow: "hidden",
+                marginBottom: isLast ? 0 : scrolled ? "10px" : "25px"
             }}
         >
-            <StyledTable ref={elementRef}>
+            <StyledTable as={motion.table} layout>
                 <thead>
                     <StyledHeadTr onClick={() => setScrolled(!scrolled)}>
                         <StyledTh style={{ width: "130px" }}>Demande {index}</StyledTh>
@@ -92,7 +85,7 @@ export const MaterialMobileLine = ({ index, value, status, display, isLast, setT
                         <StyledTd>Etat</StyledTd>
                         <StyledTd><StateRequest center={true} state={value['material_state']} /></StyledTd>
                     </StyledTr>
-                    <StyledTr>
+                    <StyledTr style={{ borderBottom: "2px solid rgba(0,0,0,0)" }}>
                         <StyledTd>Actions</StyledTd>
                         <StyledTd style={{ textAlign: "center" }}>
                             <div
@@ -116,7 +109,7 @@ export const MaterialMobileLine = ({ index, value, status, display, isLast, setT
                     </StyledTr>
                 </tbody>
             </StyledTable>
-        </div>
+        </motion.div>
     );
 }
 

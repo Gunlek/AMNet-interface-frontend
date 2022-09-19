@@ -4,6 +4,7 @@ import Link from "next/link";
 import { StyledLink } from "../../../Text/style";
 import { adminAccess } from "../../../Utils/types";
 import dynamic from "next/dynamic";
+import { motion } from "framer-motion";
 const ProofModal = dynamic(() => import("../../../Card/Modals/AdminProofModal"), {
     loading: () => <StyledLink color="#096a09">Image</StyledLink>
 });
@@ -22,8 +23,6 @@ export const IoTMobileLine = ({ index, value, status, display, isLast, setTab }:
     isLast?: boolean
 }) => {
     const [scrolled, setScrolled] = useState(false);
-    const [duration, setDuration] = useState(0.3);
-    const elementRef = useRef(null);
 
     useEffect(() => {
         setTimeout(() => {
@@ -31,25 +30,19 @@ export const IoTMobileLine = ({ index, value, status, display, isLast, setTab }:
         }, 600);
     }, [display])
 
-    useEffect(() => {
-        setDuration(0);
-        setScrolled(false);
-        setTimeout(() => {
-            setDuration(0.3);
-        }, 600);
-    }, [value])
-
     return (
-        <div
+        <motion.div
+            key={value.access_id}
+            exit={{ opacity: 0, height: 0 }}
+            layout
+            transition={{ ease: "linear", duration: 0.3 }}
             style={{
-                height: scrolled ? `${elementRef.current?.clientHeight - 5}px` : "53px",
-                transition: `height ${duration}s linear, margin-bottom ${duration}s linear`,
-                overflowY: "hidden",
-                overflowX: scrolled ? "auto" : "hidden",
+                height: scrolled ? `auto` : "53px",
+                overflow: "hidden",
                 marginBottom: isLast ? scrolled ? "0" : "5px" : scrolled ? "15px" : "25px"
             }}
         >
-            <StyledTable ref={elementRef}>
+            <StyledTable as={motion.table} layout>
                 <thead>
                     <StyledHeadTr onClick={() => setScrolled(!scrolled)}>
                         <StyledTh style={{ width: "130px" }}>Equipement {index}</StyledTh>
@@ -100,7 +93,7 @@ export const IoTMobileLine = ({ index, value, status, display, isLast, setTab }:
                         <StyledTd>Etat</StyledTd>
                         <StyledTd><StateRequest center={true} state={value['access_state']} /></StyledTd>
                     </StyledTr>
-                    <StyledTr>
+                    <StyledTr style={{ borderBottom: "2px solid rgba(0,0,0,0)" }}>
                         <StyledTd>Actions</StyledTd>
                         <StyledTd style={{ textAlign: "center" }}>
                             <div
@@ -124,7 +117,7 @@ export const IoTMobileLine = ({ index, value, status, display, isLast, setTab }:
                     </StyledTr>
                 </tbody>
             </StyledTable>
-        </div>
+        </motion.div>
     );
 }
 

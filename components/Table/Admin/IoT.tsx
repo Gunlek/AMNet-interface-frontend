@@ -4,12 +4,14 @@ import Fail from "../../NavIcons/fail";
 import Succes from "../../NavIcons/succes";
 import { StateRequest } from "../../Status/Status";
 import { StyledLink } from "../../Text/style";
-import { StyledTr, StyledTd, MobileTbody, StyledTable, StyledHeadTr, StyledTh, Tbody, Thead } from "../style";
+import { StyledTr, StyledTd } from "../style";
 import Buttons from "./Buttons";
 import MacAdressTd from "../../Input/MacAddressInput";
 import IoTMobileLine from "./MobileLine/IoT";
 import { adminAccess } from "../../Utils/types";
 import dynamic from "next/dynamic";
+import { AnimatePresence, motion } from "framer-motion";
+import { MobileAdminTable, AdminTable } from "./TableTransition";
 const ProofModal = dynamic(() => import("../../Card/Modals/AdminProofModal"), {
     loading: () => <StyledLink color="#096a09">Image</StyledLink>
 });
@@ -25,7 +27,14 @@ function CreateTable({ requests, Display, setTab }: {
 
     requests.map((value, id) => {
         listHTML[value['access_state']].push(
-            <StyledTr key={value.access_id}>
+            <StyledTr
+                as={motion.tr}
+                key={value.access_id}
+                initial={{ opacity: 0, borderBottom: "2px solid rgba(0,0,0,0)" }}
+                animate={{ opacity: 1, borderBottom: "2px solid rgba(0,0,0,0.1)" }}
+                exit={{ opacity: 0, borderBottom: "2px solid rgba(0,0,0,0)" }}
+                transition={{ ease: "linear" }}
+            >
                 <StyledTd>{index[value['access_state']]}</StyledTd>
                 <StyledTd>
                     <Link
@@ -115,7 +124,6 @@ export default function IoTAdminTable(props: {
     requests: adminAccess[],
     status: { old: string, new: string },
     display: { active: boolean, declined: boolean, pending: boolean },
-    opacity: { active: string, declined: string, pending: string, head: string },
     mobileRef: any,
     setTab: Function
 }) {
@@ -123,73 +131,51 @@ export default function IoTAdminTable(props: {
         requests: props.requests,
         Display: props.display,
         setTab: props.setTab
-    })
+    });
 
     return (
         <MediaContextProvider>
             <div ref={props.mobileRef} style={{ height: "100%", width: "100%", overflow: "auto" }}>
                 <Media at="sm">
-                    {props.display.pending &&
-                        <MobileTbody Opacity={props.opacity.pending}>
-                            {mobilelistHTML.pending}
-                        </MobileTbody>
-                    }
+                    <AnimatePresence initial={false} exitBeforeEnter>
+                        {props.display.pending &&
+                            <MobileAdminTable key="pending">
+                                {mobilelistHTML.pending}
+                            </MobileAdminTable>
+                        }
 
-                    {props.display.active &&
-                        <MobileTbody Opacity={props.opacity.active}>
-                            {mobilelistHTML.active}
-                        </MobileTbody>
-                    }
+                        {props.display.active &&
+                            <MobileAdminTable key="active">
+                                {mobilelistHTML.active}
+                            </MobileAdminTable>
+                        }
 
-                    {props.display.declined &&
-                        <MobileTbody Opacity={props.opacity.declined} >
-                            {mobilelistHTML.declined}
-                        </MobileTbody>
-                    }
+                        {props.display.declined &&
+                            <MobileAdminTable key="declined">
+                                {mobilelistHTML.declined}
+                            </MobileAdminTable>
+                        }
+                    </AnimatePresence>
                 </Media>
 
                 <Media greaterThan="sm">
-                    <StyledTable>
-                        <Thead Opacity={props.opacity.head} style={{ position: "sticky", top: "0", zIndex: "2" }}>
-                            <StyledHeadTr>
-                                <StyledTh scope="col">#</StyledTh>
-                                <StyledTh scope="col">Utilisateur</StyledTh>
-                                <StyledTh scope="col">Cotisation</StyledTh>
-                                <StyledTh scope="col">Description</StyledTh>
-                                {props.display.declined && <StyledTh scope="col">Motif du Refus</StyledTh>}
-                                <StyledTh style={{ width: "230px", textAlign: "center" }} scope="col">Adresse Mac</StyledTh>
-                                <StyledTh scope="col">Preuve</StyledTh>
-                                <StyledTh scope="col"><span style={{ paddingLeft: "5px" }}>Etat</span></StyledTh>
-                                <StyledTh scope="col">
-                                    <div
-                                        style={{
-                                            width: (props.status.new == "pending") ? "500px" : "325px",
-                                            paddingLeft: "5px",
-                                            transition: "width 0s linear 0.6s"
-                                        }}
-                                    >
-                                        Actions
-                                    </div>
-                                </StyledTh>
-                            </StyledHeadTr>
-                        </Thead>
-
+                    <AnimatePresence initial={false} exitBeforeEnter>
                         {props.display.pending &&
-                            <Tbody Opacity={props.opacity.pending}>
-                                {listHTML.pending}
-                            </Tbody>
+                            <AdminTable key="pending" status={props.status} display={props.display}>
+                                <AnimatePresence initial={false}>{listHTML.pending}</AnimatePresence>
+                            </AdminTable>
                         }
                         {props.display.active &&
-                            <Tbody Opacity={props.opacity.active}>
-                                {listHTML.active}
-                            </Tbody>
+                            <AdminTable key="active" status={props.status} display={props.display}>
+                                <AnimatePresence initial={false}>{listHTML.active}</AnimatePresence>
+                            </AdminTable>
                         }
                         {props.display.declined &&
-                            <Tbody Opacity={props.opacity.declined} >
-                                {listHTML.declined}
-                            </Tbody>
+                            <AdminTable key="declined" status={props.status} display={props.display}>
+                                <AnimatePresence initial={false}>{listHTML.declined}</AnimatePresence>
+                            </AdminTable>
                         }
-                    </StyledTable>
+                    </AnimatePresence>
                 </Media>
             </div>
         </MediaContextProvider>

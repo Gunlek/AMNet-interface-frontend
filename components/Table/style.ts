@@ -130,15 +130,6 @@ const opacityOut = keyframes`
   }
 `;
 
-export const Tbody = styled.tbody`
-  animation: ${(props) => props.Opacity == "in" ? opacityIn : props.Opacity == "out" ? opacityOut : undefined} 0.6s linear;
-  position: relative;
-`;
-
-export const Thead = styled(Tbody).attrs({ as: 'thead' })``;
-
-export const MobileTbody = styled(Tbody).attrs({ as: 'div' })``;
-
 export const MacTooltip = styled.div`
   position: absolute;
   bottom: -70px;
