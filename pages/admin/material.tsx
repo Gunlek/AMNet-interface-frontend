@@ -50,7 +50,7 @@ export default function AdminMaterial(props: { hardware: any, fromIndex: boolean
   const minWidth1000 = useMediaQuery('(min-width:1000px)');
   const mobileContainerRef = useRef(null);
   const [hardware, setHardware] = useState(props.hardware);
-  const { Display, Opacity, Tab, handleTabChange } = useTransition(mobileContainerRef, hardware);
+  const { Display, Tab, handleTabChange } = useTransition(mobileContainerRef, hardware);
   const { roadTo, pageTransition, roadToHome } = usePageTransition('user');
 
   const variants = props.fromIndex ?
@@ -64,7 +64,7 @@ export default function AdminMaterial(props: { hardware: any, fromIndex: boolean
   return (
     <>
       <Head>
-        <title>Administration &bull; AMNet</title>
+        <title>Demandes de Matériel &bull; AMNet</title>
       </Head>
 
       <StyledMain variants={variants}>
@@ -75,7 +75,7 @@ export default function AdminMaterial(props: { hardware: any, fromIndex: boolean
           exit={pageTransition.exit ? "false" : undefined}
         >
           <Row margin="1% 0" mobileMargin="20px 0" mobileJustify="center">
-            <BlackTitle>Demandes de matériel </BlackTitle>
+            <BlackTitle>Demandes de matériel</BlackTitle>
           </Row>
 
           <RequestTab status={Tab.new} TabChange={handleTabChange} />
@@ -89,7 +89,6 @@ export default function AdminMaterial(props: { hardware: any, fromIndex: boolean
               status={Tab}
               requests={hardware}
               display={Display}
-              opacity={Opacity}
               mobileRef={mobileContainerRef}
               setTab={setHardware}
             />

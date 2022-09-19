@@ -116,7 +116,7 @@ export default function Users(props: { users: user[] }) {
   return (
     <>
       <Head>
-        <title>Administration &bull; AMNet</title>
+        <title>Utilisateurs &bull; AMNet</title>
       </Head>
 
       <StyledMain variants={pageTransition}>

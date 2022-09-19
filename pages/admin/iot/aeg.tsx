@@ -68,7 +68,7 @@ export default function AdminIoT(props: { access: adminAccess[] }) {
     return (
         <>
             <Head>
-                <title>Administration &bull; AMNet</title>
+                <title>Accès IoT AEG&bull; AMNet</title>
             </Head>
 
             <StyledMain variants={pageTransition}>

@@ -133,7 +133,7 @@ export default function Edition(props: { accutalTeam: { pseudo: string, id: stri
   return (
     <>
       <Head>
-        <title>Administration &bull; AMNet</title>
+        <title>Edition &bull; AMNet</title>
       </Head>
       <Modal style={{ width: "625px", textAlign: "center" }} show={modal.show}>{modal.content}</Modal>
 

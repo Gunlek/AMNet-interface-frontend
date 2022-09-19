@@ -16,6 +16,7 @@ import getConfig from "../../../components/Utils/req-config";
 import { useRouter } from "next/router";
 import usePageTransition from "../../../components/Utils/usePageTransition";
 import dynamic from "next/dynamic";
+import { userInfo } from "os";
 const PasswordInput = dynamic(() => import("../../../components/Input/PasswordInput"), {
   loading: () => <StyledInput/>
 });
@@ -117,7 +118,7 @@ export default function User(props: {
     return (
         <>
             <Head>
-                <title>Administration &bull; AMNet</title>
+                <title>Editer le Profil &bull; {props.user.user_name}</title>
             </Head>
 
             <Modal show={show} style={{ width: "350px" }}>

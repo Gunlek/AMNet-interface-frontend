@@ -52,7 +52,7 @@ export default function AdminIoT(props: { access: adminAccess[], fromIndex: bool
   const mobileContainerRef = useRef(null)
   const minWidth1000 = useMediaQuery('(min-width:1000px)');
   const [access, setAccess] = useState(props.access);
-  const { Display, Opacity, Tab, handleTabChange } = useTransition(mobileContainerRef, access);
+  const { Display, Tab, handleTabChange } = useTransition(mobileContainerRef, access);
   const { roadTo, pageTransition, roadToHome } = usePageTransition('user');
 
   const variants = props.fromIndex ?
@@ -66,7 +66,7 @@ export default function AdminIoT(props: { access: adminAccess[], fromIndex: bool
   return (
     <>
       <Head>
-        <title>Administration &bull; AMNet</title>
+        <title>Accès IoT &bull; AMNet</title>
       </Head>
 
       <StyledMain variants={variants}>
@@ -105,7 +105,6 @@ export default function AdminIoT(props: { access: adminAccess[], fromIndex: bool
               status={Tab}
               requests={access}
               display={Display}
-              opacity={Opacity}
               mobileRef={mobileContainerRef}
               setTab={setAccess}
             />
