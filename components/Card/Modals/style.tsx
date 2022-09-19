@@ -29,7 +29,6 @@ export const StyledBackgroundModal = styled.div`
   left: 0; 
   top: 0;
   z-index: 5;
-  animation: ${(props) => props.Opacity ? opacityIn : opacityOut}  0.3s linear;  
 `;
 
 export const StyledModal = styled(StyledCardCampus)`
@@ -43,8 +42,9 @@ export const StyledModal = styled(StyledCardCampus)`
   left: 50%;
   z-index: 6;
   transform: translate(-50%, -50%);
-  animation: ${(props) => props.Opacity ? opacityIn : opacityOut}  0.3s linear;
   font-size:  1.2rem;
+  overflow: scroll;
+  max-height: 90vh;
   
   @media screen and (max-width: 1000px){
     width: 90% !important;

@@ -39,47 +39,41 @@ function ModalBody(reveal: boolean, scrolled: number, minWidth1000: boolean) {
     document.body.style.top = reveal ? "-" + scrolled.toString() + "px" : null;
     document.body.style.paddingRight = reveal ? barWidth.toString() + "px " : null;
 
-    if(menu){
+    if (menu) {
         menu.style.top = reveal ? "0" : null;
         menu.style.paddingRight = reveal ? minWidth1000 ? null : barWidth.toString() + "px" : null;
     }
 }
 
 export const ModalLogic = (onMount?: boolean) => {
-    const [Display, setDisplay] = useState(onMount ? true : false)
-    const [Opacity, setOpacity] = useState(onMount ? true : false)
-    const [top, setTop] = useState(0)
-    const scrolled = Scroll()
-    const minWidth1000 = useMediaQuery('(min-width: 1000px)')
+    const [Display, setDisplay] = useState(onMount ? true : false);
+    const [top, setTop] = useState(0);
+    const scrolled = Scroll();
+    const minWidth1000 = useMediaQuery('(min-width: 1000px)');
 
     const toggle = (e?) => {
-        const menu = document.getElementById("menu")
-        if(e) e.preventDefault();
+        const menu = document.getElementById("menu");
+        if (e) e.preventDefault();
 
         if (Display) {
-            setOpacity(false)
-            setTimeout(() => {
-                setDisplay(false)
-                ModalBody(false, scrolled, minWidth1000)
-                if(menu) menu.style.transition = "none";
-                window.scrollTo(0, Math.round(top));
+            setDisplay(false);
+            ModalBody(false, scrolled, minWidth1000);
+            if (menu) menu.style.transition = "none";
+            window.scrollTo(0, Math.round(top));
 
-                setTimeout(() => {
-                    if(menu) menu.style.transition = "";
-                }, 100);
-            }, 280);
+            setTimeout(() => {
+                if (menu) menu.style.transition = null;
+            }, 100);
         }
         else {
-            setTop(scrolled)
-            ModalBody(true, scrolled, minWidth1000)
-            setDisplay(true)
-            setOpacity(true)
+            setTop(scrolled);
+            ModalBody(true, scrolled, minWidth1000);
+            setDisplay(true);
         }
     }
 
     return {
         Display,
-        Opacity,
         toggle
     }
 }
