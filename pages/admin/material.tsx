@@ -47,7 +47,6 @@ export async function getServerSideProps({ req }) {
 }
 
 export default function AdminMaterial(props: { hardware: any, fromIndex: boolean }) {
-  const minWidth1000 = useMediaQuery('(min-width:1000px)');
   const mobileContainerRef = useRef(null);
   const [hardware, setHardware] = useState(props.hardware);
   const { Display, Tab, handleTabChange } = useTransition(mobileContainerRef, hardware);
@@ -83,7 +82,8 @@ export default function AdminMaterial(props: { hardware: any, fromIndex: boolean
           <StyledCard
             marginBottom="2%"
             mobileMarginBottom="10px"
-            style={{ flex: "1 0 0", minHeight: minWidth1000 ? "0" : "300px" }}
+            mobileMinHeight="300px"
+            style={{ flex: "1 0 0" }}
           >
             <MaterialAdminTable
               status={Tab}

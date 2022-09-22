@@ -49,8 +49,7 @@ export async function getServerSideProps({ req }) {
 }
 
 export default function AdminIoT(props: { access: adminAccess[], fromIndex: boolean }) {
-  const mobileContainerRef = useRef(null)
-  const minWidth1000 = useMediaQuery('(min-width:1000px)');
+  const mobileContainerRef = useRef(null);
   const [access, setAccess] = useState(props.access);
   const { Display, Tab, handleTabChange } = useTransition(mobileContainerRef, access);
   const { roadTo, pageTransition, roadToHome } = usePageTransition('user');
@@ -99,7 +98,8 @@ export default function AdminIoT(props: { access: adminAccess[], fromIndex: bool
           <StyledCard
             marginBottom="2%"
             mobileMarginBottom="10px"
-            style={{ flex: "1 0 0", minHeight: minWidth1000 ? "0" : "300px" }}
+            mobileMinHeight="300px"
+            style={{ flex: "1 0 0" }}
           >
             <IoTAdminTable
               status={Tab}
