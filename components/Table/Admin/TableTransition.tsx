@@ -23,7 +23,8 @@ export default function useTransition(ContainerRef: any, Requests: any[]) {
 export function AdminTable(props: {
     children: React.ReactNode,
     status: { new: string },
-    display: { declined: boolean }
+    display: { declined: boolean },
+    type?: string
 }) {
     const tBodyProps = {
         as: motion.table,
@@ -41,8 +42,14 @@ export function AdminTable(props: {
                     <StyledTh scope="col">Utilisateur</StyledTh>
                     <StyledTh scope="col">Cotisation</StyledTh>
                     <StyledTh scope="col">Description</StyledTh>
-                    <StyledTh scope="col">Détails</StyledTh>
+                    {!(props.type === "access") && <StyledTh scope="col">Détails</StyledTh>}
                     {props.display.declined && <StyledTh scope="col">Motif du Refus</StyledTh>}
+                    {props.type === "access" &&
+                        <>
+                            <StyledTh style={{ width: "230px", textAlign: "center" }} scope="col">Adresse Mac</StyledTh>
+                            <StyledTh scope="col">Preuve</StyledTh>
+                        </>
+                    }
                     <StyledTh scope="col"><span style={{ paddingLeft: "5px" }}>Etat</span></StyledTh>
                     <StyledTh scope="col">
                         <div
