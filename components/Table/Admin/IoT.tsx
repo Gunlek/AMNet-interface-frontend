@@ -137,7 +137,10 @@ export default function IoTAdminTable(props: {
         <MediaContextProvider>
             <div ref={props.mobileRef} style={{ height: "100%", width: "100%", overflow: "auto" }}>
                 <Media at="sm">
-                    <AnimatePresence initial={false} exitBeforeEnter>
+                    <AnimatePresence
+                        initial={false}
+                        exitBeforeEnter={props.status.old ? mobilelistHTML[props.status.old].length > 0 : mobilelistHTML.pending.length > 0}
+                    >
                         {props.display.pending &&
                             <MobileAdminTable key="pending">
                                 {mobilelistHTML.pending}
@@ -161,17 +164,17 @@ export default function IoTAdminTable(props: {
                 <Media greaterThan="sm">
                     <AnimatePresence initial={false} exitBeforeEnter>
                         {props.display.pending &&
-                            <AdminTable key="pending" status={props.status} display={props.display}>
+                            <AdminTable key="pending" status={props.status} display={props.display} type="access">
                                 <AnimatePresence initial={false}>{listHTML.pending}</AnimatePresence>
                             </AdminTable>
                         }
                         {props.display.active &&
-                            <AdminTable key="active" status={props.status} display={props.display}>
+                            <AdminTable key="active" status={props.status} display={props.display} type="access">
                                 <AnimatePresence initial={false}>{listHTML.active}</AnimatePresence>
                             </AdminTable>
                         }
                         {props.display.declined &&
-                            <AdminTable key="declined" status={props.status} display={props.display}>
+                            <AdminTable key="declined" status={props.status} display={props.display} type="access">
                                 <AnimatePresence initial={false}>{listHTML.declined}</AnimatePresence>
                             </AdminTable>
                         }

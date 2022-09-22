@@ -134,7 +134,10 @@ export default function MaterialAdminTable(props: {
         <MediaContextProvider>
             <div ref={props.mobileRef} style={{ height: "100%", width: "100%", overflow: "auto" }}>
                 <Media at="sm">
-                    <AnimatePresence initial={false} exitBeforeEnter>
+                    <AnimatePresence
+                        initial={false}
+                        exitBeforeEnter={props.status.old ? mobilelistHTML[props.status.old].length > 0 : mobilelistHTML.pending.length > 0}
+                    >
                         {props.display.pending &&
                             <MobileAdminTable key="pending">
                                 {mobilelistHTML.pending}
