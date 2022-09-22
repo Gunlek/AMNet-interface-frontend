@@ -30,10 +30,11 @@ import { motion } from "framer-motion";
 import { variants } from "../../components/Utils/animation-variants";
 import CampusBackground from "../../components/Background/CampusBackground";
 import dynamic from "next/dynamic";
-const ErrorPNoFixed = dynamic(() => import("../../components/Text/style").then((mod) => mod.ErrorPNoFixed));
+const ErrorPNoFixed = dynamic<any>(() => import("../../components/Text/style").then((mod) => mod.ErrorPNoFixed));
 const PasswordInput = dynamic(() => import("../../components/Input/PasswordInput"), {
-  loading: () => <StyledInput/>
+  loading: () => <StyledInput />
 });
+const AnimatePresence = dynamic(() => import("framer-motion").then((mod) => mod.AnimatePresence));
 
 export async function getServerSideProps({ req }) {
   const { access_token } = getToken(req)
@@ -77,6 +78,7 @@ export default function SignUp(props: { active_proms: number, usins_state: boole
     form,
     isOther,
     promotion,
+    error,
     errorMessage,
     handleFormChange,
     handleFormErrors,
@@ -92,10 +94,12 @@ export default function SignUp(props: { active_proms: number, usins_state: boole
     e.preventDefault();
     blurPhone();
     blurPassword2();
-
-    if (acceptRules && !errorMessage.password && !errorMessage.format_name && !errorMessage.phone) {
+    
+    if (acceptRules && !error.user_password && !error.user_name_format && !error.phone) {
+      console.log("test")
       axios.post("/user", form, { validateStatus: () => true })
         .then(async (res: AxiosResponse) => {
+          console.log(res)
           if (res.status == 200) {
             await axios.post(
               '/login',
@@ -249,43 +253,57 @@ export default function SignUp(props: { active_proms: number, usins_state: boole
                   </Col6>
                 </ResponsiveRow>
 
-                <ResponsiveRow
-                  Height={form.user_is_gadz ? "93px" : "0px"}
-                  MobileHeight={form.user_is_gadz ? "244.6px" : "0px"}
-                  style={{
-                    transition: "height 0.3s linear",
-                    overflowY: "clip",
-                  }}
-                  mobileMarginBottom={form.user_is_gadz ? "20px" : undefined}
-                >
-                  <Col6 paddingRight="10px" mobileMarginBottom="20px">
-                    <StyledInputLabel htmlFor="user_bucque">Bucque</StyledInputLabel>
-                    <StyledInput onChange={handleFormChange} id="user_bucque" type="text" />
-                  </Col6>
-
-                  <Col3
-                    paddingRight="10px"
-                    paddingLeft="10px"
-                    mobileMarginBottom="20px"
-                  >
-                    <StyledInputLabel htmlFor="user_fams">Fam&apos;s</StyledInputLabel>
-                    <StyledInput onChange={handleFormChange} id="user_fams" type="text" />
-                  </Col3>
-
-                  <Col3 paddingLeft="10px">
-                    <StyledInputLabel htmlFor="user_campus">Tabagn&apos;s</StyledInputLabel>
-                    <StyledInput onChange={handleFormChange} id="user_campus" as="select" defaultValue="Li">
-                      <option value="Li">Birse</option>
-                      <option value="An">Boquette</option>
-                      <option value="Bo">Bordel&apos;s</option>
-                      <option value="Ch">Chalon&apos;s</option>
-                      <option value="Cl">Clun&apos;s</option>
-                      <option value="KIN">KIN</option>
-                      <option value="Pa">P3</option>
-                      <option value="Me">Siber&apos;s</option>
-                    </StyledInput>
-                  </Col3>
-                </ResponsiveRow>
+                <AnimatePresence initial={false}>
+                  {form.user_is_gadz &&
+                    <ResponsiveRow
+                      as={motion.div}
+                      initial={{ height: 0, marginBottom: 0, overflowY: "clip" }}
+                      animate={{ height: "auto", marginBottom: "20px" }}
+                      exit={{ height: 0, marginBottom: 0, overflowY: "clip" }}
+                      transition={{ ease: "linear" }}
+                      style={{ overflowY: "clip" }}
+                      layout
+                    >
+                      <Col6 paddingRight="10px" mobileMarginBottom="20px">
+                        <StyledInputLabel htmlFor="user_bucque">Bucque</StyledInputLabel>
+                        <StyledInput
+                          id="user_bucque"
+                          type="text"
+                          defaultValue={form.user_bucque}
+                          onChange={handleFormChange}
+                        />
+                      </Col6>
+                      <Col3 paddingRight="10px" paddingLeft="10px" mobileMarginBottom="20px">
+                        <StyledInputLabel htmlFor="user_fams">Fam&apos;s</StyledInputLabel>
+                        <StyledInput
+                          id="user_fams"
+                          type="text"
+                          defaultValue={form.user_fams}
+                          onChange={handleFormChange}
+                        />
+                      </Col3>
+                      <Col3 paddingLeft="10px">
+                        <StyledInputLabel htmlFor="user_campus">Tabagn&apos;s</StyledInputLabel>
+                        <StyledInput
+                          id="user_campus"
+                          name="tbk"
+                          as="select"
+                          defaultValue={form.user_campus}
+                          onChange={handleFormChange}
+                        >
+                          <option value="Li">Birse</option>
+                          <option value="An">Boquette</option>
+                          <option value="Bo">Bordel&apos;s</option>
+                          <option value="Ch">Chalon&apos;s</option>
+                          <option value="Cl">Clun&apos;s</option>
+                          <option value="KIN">KIN</option>
+                          <option value="Pa">P3</option>
+                          <option value="Me">Siber&apos;s</option>
+                        </StyledInput>
+                      </Col3>
+                    </ResponsiveRow>
+                  }
+                </AnimatePresence>
 
                 <ResponsiveRow>
                   <Col6 paddingRight="10px" mobileMarginBottom="20px">
@@ -328,11 +346,20 @@ export default function SignUp(props: { active_proms: number, usins_state: boole
                   </label>
                 </Row>
 
-                {acceptRules.error &&
-                  <ErrorPNoFixed>
-                    Vous devez les accepter pour vous inscrire !
-                  </ErrorPNoFixed>
-                }
+                <AnimatePresence>
+                  {acceptRules.error &&
+                    <ErrorPNoFixed
+                      as={motion.p}
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ ease: "linear", duration: 0.2 }}
+                      layout
+                    >
+                      Vous devez les accepter pour vous inscrire !
+                    </ErrorPNoFixed>
+                  }
+                </AnimatePresence>
 
                 <Row style={{ justifyContent: "center", marginTop: "20px" }}>
                   <GreenButton type="submit">Inscription</GreenButton>

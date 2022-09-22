@@ -16,9 +16,9 @@ import getConfig from "../../../components/Utils/req-config";
 import { useRouter } from "next/router";
 import usePageTransition from "../../../components/Utils/usePageTransition";
 import dynamic from "next/dynamic";
-import { userInfo } from "os";
+import { AnimatePresence, motion } from "framer-motion";
 const PasswordInput = dynamic(() => import("../../../components/Input/PasswordInput"), {
-  loading: () => <StyledInput/>
+    loading: () => <StyledInput />
 });
 
 const Modal = dynamic(() => import("../../../components/Card/Modals/Modal"));
@@ -69,6 +69,7 @@ export default function User(props: {
     const {
         form,
         errorMessage,
+        error,
         handleFormChange,
         handleFormErrors,
         handlePasswordChange,
@@ -97,7 +98,7 @@ export default function User(props: {
         blurPhone();
         blurPassword2();
 
-        if (!errorMessage.password && !errorMessage.format_name && !errorMessage.phone) {
+        if (!error.user_password && !error.user_name_format && !error.phone) {
             axios.put(`/user/${props.user.user_id}`, form)
                 .then((res: AxiosResponse) => {
                     if (res.status === 409) handleFormErrors(res.data['user_name'], res.data['user_email']);
@@ -118,7 +119,7 @@ export default function User(props: {
     return (
         <>
             <Head>
-                <title>Editer le Profil &bull; {props.user.user_name}</title>
+                <title>Profil {props.user.user_name} &bull; AMNet</title>
             </Head>
 
             <Modal show={show} style={{ width: "350px" }}>
@@ -170,15 +171,15 @@ export default function User(props: {
                     <ResponsiveRow style={{ marginBottom: "20px" }}>
                         <Col3 paddingRight="10px" mobileMarginBottom="20px">
                             <StyledInputLabel htmlFor="user_firstname">Prénom</StyledInputLabel>
-                            <StyledInput id="user_firstname" type="text" defaultValue={form.user_firstname} />
+                            <StyledInput id="user_firstname" type="text" defaultValue={form.user_firstname} onChange={handleFormChange} />
                         </Col3>
                         <Col3 paddingLeft="10px" paddingRight="10px" mobileMarginBottom="20px">
                             <StyledInputLabel htmlFor="user_lastname">Nom</StyledInputLabel>
-                            <StyledInput id="user_lastname" type="text" defaultValue={form.user_lastname} />
+                            <StyledInput id="user_lastname" type="text" defaultValue={form.user_lastname} onChange={handleFormChange} />
                         </Col3>
                         <Col6 paddingLeft="10px">
                             <StyledInputLabel htmlFor="user_email">Adresse e-mail</StyledInputLabel>
-                            <StyledInput id="user_email" type="email" defaultValue={form.user_email} />
+                            <StyledInput id="user_email" type="email" defaultValue={form.user_email} onChange={handleFormChange} />
                         </Col6>
                     </ResponsiveRow>
 
@@ -216,36 +217,56 @@ export default function User(props: {
                         </Col3>
                     </ResponsiveRow>
 
-                    <ResponsiveRow
-                        Height={form.user_is_gadz ? "93px" : "0px"}
-                        MobileHeight={form.user_is_gadz ? "244.6px" : "0px"}
-                        style={{
-                            transition: "height 0.3s linear",
-                            overflowY: "clip"
-                        }}
-                    >
-                        <Col6 paddingRight="10px" mobileMarginBottom="20px">
-                            <StyledInputLabel htmlFor="user_bucque">Bucque</StyledInputLabel>
-                            <StyledInput id="user_bucque" type="text" defaultValue={form.user_bucque} />
-                        </Col6>
-                        <Col3 paddingRight="10px" paddingLeft="10px" mobileMarginBottom="20px">
-                            <StyledInputLabel htmlFor="user_fams">Fam&apos;s</StyledInputLabel>
-                            <StyledInput id="user_fams" type="text" defaultValue={form.user_fams} />
-                        </Col3>
-                        <Col3 paddingLeft="10px" mobileMarginBottom="20px">
-                            <StyledInputLabel htmlFor="user_campus">Tabagn&apos;s</StyledInputLabel>
-                            <StyledInput id="user_campus" name="tbk" as="select" defaultValue={form.user_campus}>
-                                <option value="Li">Birse</option>
-                                <option value="An">Boquette</option>
-                                <option value="Bo">Bordel&apos;s</option>
-                                <option value="Ch">Chalon&apos;s</option>
-                                <option value="Cl">Clun&apos;s</option>
-                                <option value="KIN">KIN</option>
-                                <option value="Pa">P3</option>
-                                <option value="Me">Siber&apos;s</option>
-                            </StyledInput>
-                        </Col3>
-                    </ResponsiveRow>
+                    <AnimatePresence initial={false}>
+                        {form.user_is_gadz &&
+                            <ResponsiveRow
+                                as={motion.div}
+                                initial={{ height: 0, marginBottom: 0, overflowY: "clip" }}
+                                animate={{ height: "auto", marginBottom: "20px" }}
+                                exit={{ height: 0, marginBottom: 0, overflowY: "clip" }}
+                                transition={{ ease: "linear" }}
+                                layout
+                            >
+                                <Col6 paddingRight="10px" mobileMarginBottom="20px">
+                                    <StyledInputLabel htmlFor="user_bucque">Bucque</StyledInputLabel>
+                                    <StyledInput
+                                        id="user_bucque"
+                                        type="text"
+                                        defaultValue={form.user_bucque}
+                                        onChange={handleFormChange}
+                                    />
+                                </Col6>
+                                <Col3 paddingRight="10px" paddingLeft="10px" mobileMarginBottom="20px">
+                                    <StyledInputLabel htmlFor="user_fams">Fam&apos;s</StyledInputLabel>
+                                    <StyledInput
+                                        id="user_fams"
+                                        type="text"
+                                        defaultValue={form.user_fams}
+                                        onChange={handleFormChange}
+                                    />
+                                </Col3>
+                                <Col3 paddingLeft="10px">
+                                    <StyledInputLabel htmlFor="user_campus">Tabagn&apos;s</StyledInputLabel>
+                                    <StyledInput
+                                        id="user_campus"
+                                        name="tbk"
+                                        as="select"
+                                        defaultValue={form.user_campus}
+                                        onChange={handleFormChange}
+                                    >
+                                        <option value="Li">Birse</option>
+                                        <option value="An">Boquette</option>
+                                        <option value="Bo">Bordel&apos;s</option>
+                                        <option value="Ch">Chalon&apos;s</option>
+                                        <option value="Cl">Clun&apos;s</option>
+                                        <option value="KIN">KIN</option>
+                                        <option value="Pa">P3</option>
+                                        <option value="Me">Siber&apos;s</option>
+                                    </StyledInput>
+                                </Col3>
+                            </ResponsiveRow>
+                        }
+                    </AnimatePresence>
 
                     <ResponsiveRow>
                         <Col6 paddingRight="10px" mobileMarginBottom="20px">
@@ -265,25 +286,33 @@ export default function User(props: {
                         <Col6 paddingRight="10px"
                             mobileMarginBottom={form.user_is_gadz ? "30px" : "0"}
                             mobileFlex={form.user_is_gadz ? undefined : "none !important"}
-                            style={{
-                                height: form.user_is_gadz ? "93px" : "0",
-                                transition: "height 0.3s linear",
-                                overflowY: "clip"
-                            }}
                         >
-                            <GreenText style={{ marginBottom: "5px" }}>Identifiants gadzariques</GreenText>
-                            <StyledInput
-                                style={{ border: "2px solid transparent", backgroundColor: "rgba(255, 255, 255, 0.6)" }}
-                                readOnly value={form.user_bucque + " " + form.user_fams + form.user_campus + form.user_proms}
-                                type="text"
-                            />
-                        </Col6>
+                            <AnimatePresence>
+                                {form.user_is_gadz &&
+                                    <motion.div
+                                        initial={{ height: 0, overflowY: "clip" }}
+                                        animate={{ height: "auto" }}
+                                        exit={{ height: 0, overflowY: "clip" }}
+                                        transition={{ ease: "linear" }}
+                                        layout
+                                    >
+                                        <GreenText style={{ marginBottom: "5px" }}>Identifiants gadzariques</GreenText>
+                                        <StyledInput
+                                            style={{ border: "2px solid transparent", backgroundColor: "rgba(255, 255, 255, 0.6)" }}
+                                            readOnly
+                                            value={form.user_bucque + " " + form.user_fams + form.user_campus + form.user_proms}
+                                            type="text"
+                                        />
+                                    </motion.div>
 
+                                }
+                            </AnimatePresence>
+                        </Col6>
                         <ResponsiveRow
                             paddingLeft="10px"
                             align="end"
                             mobileAlign="center"
-                            paddingBottom="20px"
+                            paddingBottom="10px"
                             style={{
                                 width: "auto",
                                 flex: "6",

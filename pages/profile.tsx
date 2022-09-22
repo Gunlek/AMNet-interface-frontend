@@ -16,7 +16,7 @@ import getConfig from "../components/Utils/req-config";
 import usePageTransition from "../components/Utils/usePageTransition";
 import dynamic from "next/dynamic";
 const PasswordInput = dynamic(() => import("../components/Input/PasswordInput"), {
-  loading: () => <StyledInput/>
+  loading: () => <StyledInput />
 });
 
 const Modal = dynamic(() => import("../components/Card/Modals/Modal"));
@@ -62,6 +62,7 @@ export default function Profil(props: {
   const {
     form,
     errorMessage,
+    error,
     handleFormChange,
     handleFormErrors,
     handlePasswordChange,
@@ -78,7 +79,7 @@ export default function Profil(props: {
     blurPassword2();
     blurPhone();
 
-    if (!errorMessage.password && !errorMessage.format_name && !errorMessage.phone) {
+    if (!error.user_password && !error.user_name_format && !error.phone) {
       axios.put(`/user/${props.user.user_id}`, form)
         .then((res: AxiosResponse) => {
           if (res.status === 409) handleFormErrors(res.data['user_name'], res.data['user_email']);
@@ -182,37 +183,50 @@ export default function Profil(props: {
               </Col6>
             </ResponsiveRow>
 
-            <ResponsiveRow
-              mobileMarginBottom={form.user_is_gadz ? "20px" : undefined}
-              Height={form.user_is_gadz ? "93px" : "0px"}
-              MobileHeight={form.user_is_gadz ? "244.6px" : "0px"}
-              style={{
-                transition: "height 0.3s linear",
-                overflowY: "clip",
-              }}
-            >
-              <Col6 paddingRight="10px" mobileMarginBottom="20px">
-                <StyledInputLabel htmlFor="user_bucque">Bucque</StyledInputLabel>
-                <StyledInput id="user_bucque" type="text" onChange={handleFormChange} defaultValue={form.user_bucque} />
-              </Col6>
-              <Col3 paddingRight="10px" paddingLeft="10px" mobileMarginBottom="20px">
-                <StyledInputLabel htmlFor="user_fams">Fam&apos;s</StyledInputLabel>
-                <StyledInput id="user_fams" type="text" onChange={handleFormChange} defaultValue={form.user_fams} />
-              </Col3>
-              <Col3 paddingLeft="10px">
-                <StyledInputLabel htmlFor="user_campus">Tabagn&apos;s</StyledInputLabel>
-                <StyledInput id="user_campus" name="tbk" as="select" onChange={handleFormChange} defaultValue={form.user_campus}>
-                  <option value="Li">Birse</option>
-                  <option value="An">Boquette</option>
-                  <option value="Bo">Bordel&apos;s</option>
-                  <option value="Ch">Chalon&apos;s</option>
-                  <option value="Cl">Clun&apos;s</option>
-                  <option value="KIN">KIN</option>
-                  <option value="Pa">P3</option>
-                  <option value="Me">Siber&apos;s</option>
-                </StyledInput>
-              </Col3>
-            </ResponsiveRow>
+            {form.user_is_gadz &&
+              <ResponsiveRow
+                style={{ marginBottom: "20px" }}
+              >
+                <Col6 paddingRight="10px" mobileMarginBottom="20px">
+                  <StyledInputLabel htmlFor="user_bucque">Bucque</StyledInputLabel>
+                  <StyledInput
+                    id="user_bucque"
+                    type="text"
+                    defaultValue={form.user_bucque}
+                    onChange={handleFormChange}
+                  />
+                </Col6>
+                <Col3 paddingRight="10px" paddingLeft="10px" mobileMarginBottom="20px">
+                  <StyledInputLabel htmlFor="user_fams">Fam&apos;s</StyledInputLabel>
+                  <StyledInput
+                    id="user_fams"
+                    type="text"
+                    defaultValue={form.user_fams}
+                    onChange={handleFormChange}
+                  />
+                </Col3>
+                <Col3 paddingLeft="10px">
+                  <StyledInputLabel htmlFor="user_campus">Tabagn&apos;s</StyledInputLabel>
+                  <StyledInput
+                    id="user_campus"
+                    name="tbk"
+                    as="select"
+                    defaultValue={form.user_campus}
+                    onChange={handleFormChange}
+                  >
+                    <option value="Li">Birse</option>
+                    <option value="An">Boquette</option>
+                    <option value="Bo">Bordel&apos;s</option>
+                    <option value="Ch">Chalon&apos;s</option>
+                    <option value="Cl">Clun&apos;s</option>
+                    <option value="KIN">KIN</option>
+                    <option value="Pa">P3</option>
+                    <option value="Me">Siber&apos;s</option>
+                  </StyledInput>
+                </Col3>
+              </ResponsiveRow>
+            }
+
 
             <ResponsiveRow>
               <Col6 paddingRight="10px" mobileMarginBottom="20px">
