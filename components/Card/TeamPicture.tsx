@@ -17,10 +17,10 @@ export default function TeamPicture(props: { Team: { pseudo: string, id: string 
   props.Team.map((value, index) => {
     Team.push(
       <Column key={index} style={Flex}>
-        <BlackText>
+        <BlackText fontSize={`${3.6 / props.Team.length}rem`}>
           {value['pseudo']}
         </BlackText>
-        <GreenText>
+        <GreenText fontSize={`${3.6 / props.Team.length}rem`}>
           {value.id}
         </GreenText>
       </Column>
@@ -36,17 +36,19 @@ export default function TeamPicture(props: { Team: { pseudo: string, id: string 
         justifyContent: "space-between"
       }}
     >
-      <Image 
-        src={props.background || `${process.env.NEXT_PUBLIC_API_HOST}/team.webp`} 
+      <Image
+        src={props.background || `${process.env.NEXT_PUBLIC_API_HOST}/team.webp`}
         alt="Team AMNet Résidence Arts et Métiers Lille"
-        objectFit="cover" 
+        objectFit="cover"
         objectPosition="50% 50%"
         layout="fill"
         sizes="(max-width: 1000px) 90vw, 40vw"
         priority={true}
-        />
+      />
       <GreenCard promotion={promotion} />
-      <StyledCardCampus style={{ alignItems: "center", flexDirection: "row", position: "relative", zIndex: "2" }}>
+      <StyledCardCampus
+        
+        style={{ alignItems: "center", flexDirection: "row", position: "relative", zIndex: "2" }}>
         {Team}
       </StyledCardCampus>
     </StyledTeamPicture>

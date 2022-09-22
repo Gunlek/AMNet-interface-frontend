@@ -39,8 +39,22 @@ export const StyledGreenCard = styled.div`
   font-size: 1.2rem;
   position: relative;
   z-index: 2;
+  
   @media screen and (max-width: 1000px){
     padding: 5px 10px 5px 20px;
+  }
+
+  @media screen and (max-width: 1450px){
+    font-size: 15px;
+  }
+
+  @media screen and (max-width: 1450px) and (min-width: 1000px){
+    font-size: 13px;
+  }
+
+  @media screen and (max-width: 500px){
+    margin-top: 0px;
+    font-size: 12px;
   }
 `;
 
@@ -55,6 +69,18 @@ export const StyledTeamPicture = styled(Column)`
   @media screen and (max-width: 1000px){
     height: 400px;
     aspect-ratio: auto;
+  } 
+
+  @media screen and (max-width: 500px){
+    height: 300px;
+
+    span{
+      img{
+        object-fit: contain;
+        border-top-left-radius: 30px;
+        border-top-right-radius: 30px;
+      }
+    }
   } 
 `;
 
