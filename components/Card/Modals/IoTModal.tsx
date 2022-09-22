@@ -14,6 +14,7 @@ import { validateImage } from "image-validator";
 import dynamic from "next/dynamic";
 import { DefaultModal } from "./Modal";
 const ErrorP = dynamic(() => import("../../Text/style").then((mod) => mod.ErrorP));
+const AnimatePresence = dynamic(() => import("framer-motion").then((mod) => mod.AnimatePresence));
 
 export default function IoTModal(props: { setAccess: Function, userId: Number | string }) {
     const minWidth1000 = useMediaQuery('(min-width: 1000px)');
@@ -123,17 +124,20 @@ export default function IoTModal(props: { setAccess: Function, userId: Number | 
                             placeholder="Par exemple: 5E:FF:56:A2:AF:15"
                             onChange={handleFormChange}
                             onBlur={verification}
+                            required
                         />
-                        {error.access_mac &&
-                            <ErrorP>
-                                L&apos;adresse physique est invalide
-                            </ErrorP>
-                        }
-                        {error.access_mac_exist &&
-                            <ErrorP>
-                                L&apos;adresse physique est déjà utilisée par un autre appareil
-                            </ErrorP>
-                        }
+                        <AnimatePresence>
+                            {error.access_mac &&
+                                <ErrorP key="invalid">
+                                    L&apos;adresse physique est invalide
+                                </ErrorP>
+                            }
+                            {error.access_mac_exist &&
+                                <ErrorP key="exist">
+                                    L&apos;adresse physique est déjà utilisée par un autre appareil
+                                </ErrorP>
+                            }
+                        </AnimatePresence>
                     </div>
 
                     <div style={{ marginTop: "20px", width: "100%", position: "relative" }}>
@@ -144,12 +148,15 @@ export default function IoTModal(props: { setAccess: Function, userId: Number | 
                             placeholder="Par exemple: Chromecast"
                             onChange={handleFormChange}
                             onBlur={verification}
+                            required
                         />
-                        {error.access_description &&
-                            <ErrorP>
-                                La description est obligatoire
-                            </ErrorP>
-                        }
+                        <AnimatePresence>
+                            {error.access_description &&
+                                <ErrorP>
+                                    La description est obligatoire
+                                </ErrorP>
+                            }
+                        </AnimatePresence>
                     </div>
 
                     <div style={{ marginBottom: "30px", width: "100%", marginTop: "20px", position: "relative" }}>
@@ -182,16 +189,18 @@ export default function IoTModal(props: { setAccess: Function, userId: Number | 
                                 </div>
                             }
                         </ResponsiveRow>
-                        {error.access_proof &&
-                            <ErrorP>
-                                La photo est obligatoire
-                            </ErrorP>
-                        }
-                        {error.type_access_proof &&
-                            <ErrorP>
-                                Le fichier n&apos;est pas une image
-                            </ErrorP>
-                        }
+                        <AnimatePresence>
+                            {error.access_proof &&
+                                <ErrorP key="required">
+                                    La photo est obligatoire
+                                </ErrorP>
+                            }
+                            {error.type_access_proof &&
+                                <ErrorP key="picture">
+                                    Le fichier n&apos;est pas une image
+                                </ErrorP>
+                            }
+                        </AnimatePresence>
                     </div>
                     <Row style={{ justifyContent: "center" }}>
                         <GreenButton type="submit" width="350px">Envoyer la demande</GreenButton>

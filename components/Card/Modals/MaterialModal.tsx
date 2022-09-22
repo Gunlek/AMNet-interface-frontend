@@ -9,6 +9,7 @@ import { TitleCard } from "../Cards"
 import { ModalLogic } from "./ModalLogic"
 import dynamic from "next/dynamic";
 import { DefaultModal } from "./Modal"
+const AnimatePresence = dynamic(() => import("framer-motion").then((mod) => mod.AnimatePresence));
 const ErrorP = dynamic(() => import("../../Text/style").then((mod) => mod.ErrorP));
 
 export default function MaterialModal(props: { setHardware: Function, userId: Number }) {
@@ -39,7 +40,11 @@ export default function MaterialModal(props: { setHardware: Function, userId: Nu
         setError(newError);
 
         if (!newError.material_description && !newError.material_reason) {
-            await axios.post(`/hardware`, form)
+            await axios.post(`/hardware`, {
+                material_description: form.material_description,
+                material_reason: form.material_reason.replaceAll('\n', '<br>'),
+                material_user: form.material_user
+            })
                 .then(async (res: AxiosResponse) => {
                     if (res.status === 200) {
                         const hardware = await axios.get(`/hardware/user/${props.userId}`);
@@ -68,12 +73,15 @@ export default function MaterialModal(props: { setHardware: Function, userId: Nu
                             id="material_description"
                             placeholder="Par exemple: 1 écran"
                             onChange={handleFormChange}
+                            required
                         />
-                        {error.material_description &&
-                            <ErrorP>
-                                La description est obligatoire
-                            </ErrorP>
-                        }
+                        <AnimatePresence>
+                            {error.material_description &&
+                                <ErrorP>
+                                    La description est obligatoire
+                                </ErrorP>
+                            }
+                        </AnimatePresence>
                     </div>
 
                     <div style={{ marginBottom: "30px", width: "100%", position: "relative" }}>
@@ -82,12 +90,15 @@ export default function MaterialModal(props: { setHardware: Function, userId: Nu
                             id="material_reason"
                             placeholder="Par exemple: Je souhaite avoir un second écran pour faire de la CAO"
                             onChange={handleFormChange}
+                            required
                         />
-                        {error.material_reason &&
-                            <ErrorP>
-                                La raison est obligatoire pour comprendre au mieux votre besoin
-                            </ErrorP>
-                        }
+                        <AnimatePresence>
+                            {error.material_reason &&
+                                <ErrorP>
+                                    La raison est obligatoire pour comprendre au mieux votre besoin
+                                </ErrorP>
+                            }
+                        </AnimatePresence>
                     </div>
 
                     <Row style={{ justifyContent: "center" }}>
