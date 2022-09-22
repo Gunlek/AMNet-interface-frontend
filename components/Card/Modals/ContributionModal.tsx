@@ -24,7 +24,7 @@ export default function ContributionModal(props: { userId: number }) {
     return (
         <>
             <GreenButton width="150px" height="50px" onClick={toggle}>Payer</GreenButton>
-            <DefaultModal style={{ width: minWidth1000 ? "650px" : undefined }} toggle={toggle} Display={Display}>
+            <DefaultModal style={{ width: "650px" }} toggle={toggle} Display={Display}>
                 <TitleCard>Cotisation</TitleCard>
                 <BlackText style={{ marginBottom: "30px", textAlign: "justify" }}>
                     Le paiement de la cotisation (<span style={{ color: "#096a09" }}>{cotiz}€</span>) s&apos;effectue en utilisant Lydia. Il vous sera proposé d&apos;utiliser votre compte Lydia pour régler votre cotisation. Si vous n&apos;êtes pas titulaire d&apos;un compte Lydia, il vous sera possible de réaliser le paiement en utilisant votre carte bancaire.

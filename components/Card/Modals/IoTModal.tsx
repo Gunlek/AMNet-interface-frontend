@@ -110,7 +110,7 @@ export default function IoTModal(props: { setAccess: Function, userId: Number | 
         <>
             <GreenButton width="280px" onClick={toggle}>Nouvelle demande</GreenButton>
             <DefaultModal
-                style={{ width: minWidth1000 ? "900px" : undefined }}
+                style={{ width: "900px" }}
                 toggle={toggle}
                 Display={Display}
             >

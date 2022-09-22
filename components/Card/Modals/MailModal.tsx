@@ -13,7 +13,6 @@ import { DefaultModal } from "./Modal"
 import { AnimatePresence, motion } from "framer-motion"
 
 export default function MailModal(props: { html: any, subject: string, recipients: any, setHTML: any }) {
-    const minWidth1000 = useMediaQuery('(min-width: 1000px)');
     const { Display, toggle } = ModalLogic();
     const [send, setSend] = useState(false)
     const html = DOMPurify.sanitize(props.html);
@@ -53,7 +52,7 @@ export default function MailModal(props: { html: any, subject: string, recipient
         <>
             <GreenButton mobileWidth="100%" onClick={toggle}>Pré-visualiser le Mail</GreenButton>
             <DefaultModal
-                style={{ width: minWidth1000 ? "800px" : undefined, maxHeight: "90vh" }}
+                style={{ width: "800px", maxHeight: "90vh" }}
                 Display={Display}
                 toggle={(e) => { toggle(e); setSend(false); }}
             >

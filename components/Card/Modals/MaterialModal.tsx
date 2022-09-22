@@ -13,7 +13,6 @@ const AnimatePresence = dynamic(() => import("framer-motion").then((mod) => mod.
 const ErrorP = dynamic(() => import("../../Text/style").then((mod) => mod.ErrorP));
 
 export default function MaterialModal(props: { setHardware: Function, userId: Number }) {
-    const minWidth1000 = useMediaQuery('(min-width: 1000px)');
     const { Display, toggle } = ModalLogic();
 
     const [form, setForm] = useState({
@@ -59,7 +58,7 @@ export default function MaterialModal(props: { setHardware: Function, userId: Nu
         <>
             <GreenButton width="280px" onClick={toggle}>Nouvelle demande</GreenButton>
             <DefaultModal
-                style={{ width: minWidth1000 ? "800px" : undefined }}
+                style={{ width: "800px" }}
                 toggle={toggle}
                 Display={Display}
 
