@@ -88,6 +88,7 @@ export default function AdminIoT(props: { access: adminAccess[] }) {
                         marginBottom="2%"
                         mobileMarginBottom="10px"
                         mobileMinHeight="300px"
+                        minHeight="0"
                         style={{ flex: "1 0 0" }}
                     >
                         <IoTUserTable requests={access} setAccess={setAccess} userId="aeg" />
