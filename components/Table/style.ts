@@ -101,35 +101,6 @@ export const StyledUsersTr = styled(StyledTeamTr).attrs({as: "div"})`
   border-bottom: none;
 `;
 
-export const StyledUsersBody = styled.div`
-  position : relative;
-  font-size: 1.2rem;
-`;
-
-export const StyledMobileContainerRow = styled.div`
-  min-width: 0 !important;
-`;
-
-const opacityIn = keyframes`
-  from {
-    opacity: 0;
-  }
-
-  to {
-    opacity: 1;
-  }
-`;
-
-const opacityOut = keyframes`
-  from {
-    opacity: 1;
-  }
-
-  to {
-    opacity: 0;
-  }
-`;
-
 export const MacTooltip = styled.div`
   position: absolute;
   bottom: -70px;
@@ -142,6 +113,5 @@ export const MacTooltip = styled.div`
   padding: 10px;
   border-radius: 15px;
   z-index: 7;
-  animation: ${(props) => props.Opacity == "in" ? opacityIn : props.Opacity == "out" ? opacityOut : undefined} 0.4s;
 `;
 
