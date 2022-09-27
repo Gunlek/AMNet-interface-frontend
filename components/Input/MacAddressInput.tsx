@@ -4,6 +4,7 @@ import { MacTooltip, StyledTd } from "../Table/style";
 import { useLongPress } from "react-use";
 import useMediaQuery from "../MediaQueries/MediaQuery";
 import axios from "axios";
+import { AnimatePresence, motion } from "framer-motion";
 
 export default function MacAdressTd(props: { access_mac: string, access_id: number }) {
     const minWidth1000 = !useMediaQuery('(min-width:1000px)');
@@ -76,11 +77,19 @@ export default function MacAdressTd(props: { access_mac: string, access_id: numb
                 mac
             }
 
-            {tooltip.display &&
-                <MacTooltip Opacity={tooltip.opacity}>
-                    L&apos;adresse physique<br />entrée est invalide
-                </MacTooltip>
-            }
+            <AnimatePresence>
+                {tooltip.display &&
+                    <MacTooltip
+                        as={motion.div}
+                        intial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 1 }}
+                        transition={{ ease: "linear" }}
+                    >
+                        L&apos;adresse physique<br />entrée est invalide
+                    </MacTooltip>
+                }
+            </AnimatePresence>
         </StyledTd>
     )
 };
