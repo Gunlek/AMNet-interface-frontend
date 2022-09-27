@@ -158,7 +158,9 @@ export default function MailModal(props: { html: any, subject: string, recipient
                             }
 
                             <Row style={{ justifyContent: "center" }}>
-                                <GreenButton onClick={noRecipients ? undefined : sendMail}>Envoyer le Mail</GreenButton>
+                                <GreenButton onClick={noRecipients || props.subject == "" ? undefined : sendMail}>
+                                    Envoyer le Mail
+                                </GreenButton>
                             </Row>
                         </motion.div>
                     }
