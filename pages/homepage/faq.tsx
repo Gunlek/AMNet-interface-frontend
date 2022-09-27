@@ -25,7 +25,7 @@ export default function FAQ(props: { isLogged: boolean }) {
     <>
       <Head>
         <title>FAQ &bull; AMNet</title>
-        <meta name="description" content="FAQ : trouvez toutes les réponses à vos questions concernant l'AMNet" />
+        <meta name="description" content="FAQ AMNet : trouvez toutes les réponses à vos questions concernant l'AMNet" />
       </Head>
       <CampusGlobalStyle flexDirection="column" />
       <CampusBackground />
