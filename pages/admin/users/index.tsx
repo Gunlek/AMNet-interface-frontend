@@ -5,7 +5,7 @@ import { ButtonsRow, DashboardContainer, ResponsiveRow, Row, StyledMain } from "
 import { StyledCard } from "../../../components/Card/style";
 import AdminMenu from "../../../components/Menu/AdminMenu";
 import { BlackTitle } from "../../../components/Text/style";
-import { UsersTable } from "../../../components/Table/Admin/Users";
+import { UsersTable } from "../../../components/Table/Admin/Users/Users";
 import { Footer } from "../../../components/Card/Cards";
 import axios, { AxiosResponse } from "axios";
 import { user } from "../../../components/Utils/types";
@@ -46,7 +46,7 @@ export async function getServerSideProps({ req }) {
 
 export default function Users(props: { users: user[] }) {
   const [users, setUsers] = useState(props.users);
-  const [Filter, Checkboxs, SelectedRows, Table] = UsersTable(users);
+  const { checkboxRow, globalFilter, idSelected, table } = UsersTable(users);
   const { roadTo, pageTransition, roadToHome } = usePageTransition('user');
 
   const handleUsersChange = () => {
@@ -59,13 +59,13 @@ export default function Users(props: { users: user[] }) {
   const deleteUsers = (e) => {
     e.preventDefault();
 
-    if (SelectedRows.length === users.length) {
+    if (idSelected.length === users.length) {
       axios.delete(`/user/all`)
         .then(() => { handleUsersChange() });
     }
     else {
       let promise = []
-      SelectedRows.forEach((id: number) => {
+      idSelected.forEach((id: number) => {
         promise.push(axios.delete(`/user/${id}`));
       });
 
@@ -77,11 +77,11 @@ export default function Users(props: { users: user[] }) {
   const cancelPayment = async (e) => {
     e.preventDefault();
 
-    if (SelectedRows.length === users.length) {
+    if (idSelected.length === users.length) {
       await axios.put(`/user/unpay/all`);
     }
     else {
-      await axios.put(`/user/unpay/several`, { Ids: SelectedRows });
+      await axios.put(`/user/unpay/several`, { Ids: idSelected });
     }
 
     handleUsersChange();
@@ -90,11 +90,11 @@ export default function Users(props: { users: user[] }) {
   const confirmPayment = async (e) => {
     e.preventDefault();
 
-    if (SelectedRows.length === users.length) {
+    if (idSelected.length === users.length) {
       await axios.put(`/user/pay/all`);
     }
     else {
-      await axios.put(`/user/pay/several`, { Ids: SelectedRows });
+      await axios.put(`/user/pay/several`, { Ids: idSelected });
     }
 
     handleUsersChange();
@@ -103,11 +103,11 @@ export default function Users(props: { users: user[] }) {
   const changeStatut = async (e) => {
     e.preventDefault();
 
-    if (SelectedRows.length === users.length) {
+    if (idSelected.length === users.length) {
       await axios.put(`/user/statut/all`);
     }
     else {
-      await axios.put(`/user/statut/several`, { Ids: SelectedRows });
+      await axios.put(`/user/statut/several`, { Ids: idSelected });
     }
 
     handleUsersChange();
@@ -120,7 +120,7 @@ export default function Users(props: { users: user[] }) {
       </Head>
 
       <StyledMain variants={pageTransition}>
-        <AdminMenu page="users" setTranstion={roadTo} setHomeTransition={roadToHome}/>
+        <AdminMenu page="users" setTranstion={roadTo} setHomeTransition={roadToHome} />
 
         <DashboardContainer exit={pageTransition.exit ? "false" : undefined}>
           <ResponsiveRow margin="1% 0" mobileMargin="20px 0 30px">
@@ -128,11 +128,11 @@ export default function Users(props: { users: user[] }) {
               <BlackTitle>Liste des adhérents</BlackTitle>
             </Row>
             <ResponsiveRow style={{ flex: "1", alignItems: "center", justifyContent: "end" }}>
-              {Filter}
+              {globalFilter}
             </ResponsiveRow>
           </ResponsiveRow>
 
-          {Checkboxs}
+          {checkboxRow}
 
           <ButtonsRow
             marginBottom="2%"
@@ -151,7 +151,7 @@ export default function Users(props: { users: user[] }) {
             mobileMinHeight="600px"
             style={{ flex: "1 0 0" }}
           >
-            {Table()}
+            {table}
           </StyledCard>
 
           <Footer marginTop="0" />
