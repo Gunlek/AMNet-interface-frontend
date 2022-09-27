@@ -14,13 +14,14 @@ const Succes = dynamic(() => import("../../../NavIcons/succes"));
 const Buttons = dynamic(() => import("../Buttons"));
 const StateRequest = dynamic<{ center: boolean, state: string }>(() => import("../../../Status/Status").then((mod) => mod.StateRequest));
 
-export const IoTMobileLine = ({ index, value, status, display, isLast, setTab }: {
+export const IoTMobileLine = ({ index, value, status, display, isLast, setTab, style }: {
     index: number,
     value: adminAccess,
     status: string,
     display: any,
     setTab: Function,
-    isLast?: boolean
+    isLast?: boolean,
+    style?: React.CSSProperties
 }) => {
     const [scrolled, setScrolled] = useState(false);
 
@@ -30,6 +31,10 @@ export const IoTMobileLine = ({ index, value, status, display, isLast, setTab }:
         }, 600);
     }, [display])
 
+    useEffect(() => {
+        setScrolled(false);
+    }, [value]);
+
     return (
         <motion.div
             key={value.access_id}
@@ -38,7 +43,7 @@ export const IoTMobileLine = ({ index, value, status, display, isLast, setTab }:
             transition={{ ease: "linear", duration: 0.3 }}
             style={{
                 height: scrolled ? `auto` : "53px",
-                overflow: "hidden",
+                overflow: "clip",
                 marginBottom: isLast ? scrolled ? "0" : "5px" : scrolled ? "15px" : "25px"
             }}
         >
