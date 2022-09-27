@@ -162,11 +162,9 @@ export const StyledTabColumn = styled(Column)`
 `;
 
 export const StyledActive = styled.div`
-  transform: ${(props) => props.Transform};
-  width: ${(props) => props.Declined ? "7.5rem" : "6.25rem"};
+  width: 6.25rem;
   background-color: #096A09;
   height: 4px;
-  transition: transform 0.75s, width 0.75s;
   position: absolute;
   bottom: -2px;
   left: 0;
@@ -174,6 +172,10 @@ export const StyledActive = styled.div`
   @media screen and (max-width: 365px){
     width: ${(props) => props.Declined ? "125%" : "100%"};
   } 
+`;
+
+export const StyledDeclinedAtive = styled(StyledActive)`
+  width: 7.5rem;
 `;
 
 export const ContainerAdminToolTip = styled.div`
