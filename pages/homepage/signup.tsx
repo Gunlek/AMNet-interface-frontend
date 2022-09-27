@@ -125,7 +125,7 @@ export default function SignUp(props: { active_proms: number, usins_state: boole
     <>
       <Head>
         <title>Inscirption &bull; AMNet</title>
-        <meta name="description" content="Inscription : créez votre espace personnel pour accéder au réseau de la résidence Jacques Pagliero du campus Arts et Métiers de Lille" />
+        <meta name="description" content="Inscription AMNet : créez votre espace personnel pour accéder au réseau de la résidence Jacques Pagliero du campus Arts et Métiers de Lille" />
       </Head>
 
       <CampusGlobalStyle />
