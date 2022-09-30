@@ -12,7 +12,7 @@ import Image from 'next/image';
 import { DefaultModal } from "./Modal";
 
 export default function ProofModal(props: { request: any, setTab: Function }) {
-    const minWidth1000 = useMediaQuery('(min-width: 1200px)');
+    const minWidth1000 = useMediaQuery('(min-width: 1250px)');
     const { Display, toggle } = ModalLogic();
 
     return (
@@ -23,7 +23,7 @@ export default function ProofModal(props: { request: any, setTab: Function }) {
                 style={{
                     padding: minWidth1000 ? "30px" : "20px",
                     paddingRight: minWidth1000 ? "17.5px" : "7.5px",
-                    width: minWidth1000 ? "1200px" : undefined
+                    width: minWidth1000 ? "1250px" : undefined
                 }}
                 Display={Display}
             >
