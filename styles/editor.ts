@@ -13,7 +13,7 @@ export const EditorStyle = createGlobalStyle`
         padding: 10px;
     }
 
-    #Editor2{
+    #Editor1{
         a{
             color: #096a09;
             transition: color 0.3s;
