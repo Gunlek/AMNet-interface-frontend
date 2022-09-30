@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from "react";
 import MacAddressVerification from "../Utils/macaddress";
-import { MacTooltip, StyledTd } from "../Table/style";
 import { useLongPress } from "react-use";
 import useMediaQuery from "../MediaQueries/MediaQuery";
 import axios from "axios";
 import { AnimatePresence, motion } from "framer-motion";
+import { StyledTd } from "../Table/style";
+import dynamic from "next/dynamic";
+import { AdminMotionDiv } from "../Table/MotionDiv";
+const MacTooltip = dynamic<any>(() => import("./style").then(mod => mod.MacTooltip));
 
-export default function MacAdressTd(props: { access_mac: string, access_id: number }) {
+export default function MacAdressTd(props: { access_mac: string, access_id: number, isScrolling?: boolean }) {
     const minWidth1000 = !useMediaQuery('(min-width:1000px)');
     const [input, setInput] = useState(false)
     const [mac, setMac] = useState(props.access_mac)
@@ -74,7 +77,7 @@ export default function MacAdressTd(props: { access_mac: string, access_id: numb
                     onBlur={handleChange}
                 />
                 :
-                mac
+                <AdminMotionDiv isScrolling={props.isScrolling}>{mac}</AdminMotionDiv>
             }
 
             <AnimatePresence>
