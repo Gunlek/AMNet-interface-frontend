@@ -91,7 +91,7 @@ export default function AdminIoT(props: { access: adminAccess[], fromIndex: bool
             </div>
           </ResponsiveRow>
 
-          <RequestTab status={Tab.new} TabChange={handleTabChange} />
+          <RequestTab status={Tab.new} TabChange={handleTabChange} name="IoT"/>
 
           <StyledCard
             marginBottom="2%"

@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { Row } from "../Container/style";
 import { StyledActive, StyledDeclinedAtive, StyledTabColumn } from "./style";
 
-export default function RequestTab(props: { status: string, TabChange: Function }) {
+export default function RequestTab(props: { status: string, TabChange: Function, name: string }) {
     const pending = (props.status == "pending");
     const active = (props.status == "active");
     const declined = (props.status == "declined");
@@ -28,7 +28,7 @@ export default function RequestTab(props: { status: string, TabChange: Function 
                 }}
             >
                 En cours
-                {pending && <StyledActive as={motion.div} layoutId="underline" />}
+                {pending && <StyledActive as={motion.div} layoutId={`underline${props.name}`} />}
             </StyledTabColumn>
 
             <StyledTabColumn
@@ -42,7 +42,7 @@ export default function RequestTab(props: { status: string, TabChange: Function 
                 }}
             >
                 Validées
-                {active && <StyledActive as={motion.div} layoutId="underline" />}
+                {active && <StyledActive as={motion.div} layoutId={`underline${props.name}`} />}
             </StyledTabColumn>
 
             <StyledTabColumn
@@ -52,7 +52,7 @@ export default function RequestTab(props: { status: string, TabChange: Function 
                 style={{ width: "7.8rem", position: "relative" }}
             >
                 Révoquées
-                {declined && <StyledDeclinedAtive as={motion.div} layoutId="underline" />}
+                {declined && <StyledDeclinedAtive as={motion.div} layoutId={`underline${props.name}`} />}
             </StyledTabColumn>
         </Row>
     )

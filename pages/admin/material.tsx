@@ -75,7 +75,7 @@ export default function AdminMaterial(props: { hardware: any, fromIndex: boolean
             <BlackTitle>Demandes de matériel</BlackTitle>
           </Row>
 
-          <RequestTab status={Tab.new} TabChange={handleTabChange} />
+          <RequestTab status={Tab.new} TabChange={handleTabChange} name="Hardware" />
 
           <StyledCard
             marginBottom="2%"
