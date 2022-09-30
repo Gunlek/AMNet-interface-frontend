@@ -100,9 +100,9 @@ export function UsersTable(users: any[]) {
   const style = { width: "100%", height: "100%", overflow: "clip" };
 
   const table = <MediaContextProvider>
-    <Media at="sm" style={style}>
+    <Media at="sm" style={{ width: "100%", height: "100%", overflow: "clip", display: "flex", flexDirection: "column" }}>
       <UserMobileTable
-        count={data.length}
+        count={rows.length}
         headerGroups={headerGroups}
         selectedRowIds={selectedRowIds}
         rows={rows}
@@ -112,7 +112,7 @@ export function UsersTable(users: any[]) {
 
     <Media greaterThan="sm" style={style}>
       <UserDeskopTable
-        count={data.length}
+        count={rows.length}
         headerGroups={headerGroups}
         selectedRowIds={selectedRowIds}
         rows={rows}
