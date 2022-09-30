@@ -94,7 +94,7 @@ export default function SignUp(props: { active_proms: number, usins_state: boole
     e.preventDefault();
     blurPhone();
     blurPassword2();
-    
+
     if (acceptRules && !error.user_password && !error.user_name_format && !error.phone) {
       console.log("test")
       axios.post("/user", form, { validateStatus: () => true })
@@ -257,11 +257,13 @@ export default function SignUp(props: { active_proms: number, usins_state: boole
                   {form.user_is_gadz &&
                     <ResponsiveRow
                       as={motion.div}
-                      initial={{ height: 0, marginBottom: 0, overflowY: "clip" }}
-                      animate={{ height: "auto", marginBottom: "20px" }}
-                      exit={{ height: 0, marginBottom: 0, overflowY: "clip" }}
-                      transition={{ ease: "linear" }}
-                      style={{ overflowY: "clip" }}
+                      variants={{
+                        initial: { height: 0, marginBottom: 0, overflowY: "clip" },
+                        animate: { height: "auto", marginBottom: "20px", overflowY: "visible", transition: { overflowY: { delay: 0.3 } } },
+                        exit: { height: 0, marginBottom: 0, overflowY: "clip" }
+                      }}
+                      initial="initial" animate="animate" exit="exit"
+                      transition={{ ease: "linear", duration: 0.3 }}
                       layout
                     >
                       <Col6 paddingRight="10px" mobileMarginBottom="20px">

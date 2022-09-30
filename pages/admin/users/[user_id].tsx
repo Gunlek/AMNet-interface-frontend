@@ -221,10 +221,13 @@ export default function User(props: {
                         {form.user_is_gadz &&
                             <ResponsiveRow
                                 as={motion.div}
-                                initial={{ height: 0, marginBottom: 0, overflowY: "clip" }}
-                                animate={{ height: "auto", marginBottom: "20px" }}
-                                exit={{ height: 0, marginBottom: 0, overflowY: "clip" }}
-                                transition={{ ease: "linear" }}
+                                variants={{
+                                    initial: { height: 0, marginBottom: 0, overflowY: "clip" },
+                                    animate: { height: "auto", marginBottom: "20px", overflowY: "visible", transition: { overflowY: { delay: 0.3 } } },
+                                    exit: { height: 0, marginBottom: 0, overflowY: "clip" }
+                                }}
+                                initial="initial" animate="animate" exit="exit"
+                                transition={{ ease: "linear", duration: 0.3 }}
                                 layout
                             >
                                 <Col6 paddingRight="10px" mobileMarginBottom="20px">
@@ -287,13 +290,16 @@ export default function User(props: {
                             mobileMarginBottom={form.user_is_gadz ? "30px" : "0"}
                             mobileFlex={form.user_is_gadz ? undefined : "none !important"}
                         >
-                            <AnimatePresence>
+                            <AnimatePresence initial={false}>
                                 {form.user_is_gadz &&
                                     <motion.div
-                                        initial={{ height: 0, overflowY: "clip" }}
-                                        animate={{ height: "auto" }}
-                                        exit={{ height: 0, overflowY: "clip" }}
-                                        transition={{ ease: "linear" }}
+                                        variants={{
+                                            initial: { height: 0, marginBottom: 0, overflowY: "clip" },
+                                            animate: { height: "auto", marginBottom: "20px", overflowY: "visible", transition: { overflowY: { delay: 0.3 } } },
+                                            exit: { height: 0, marginBottom: 0, overflowY: "clip" }
+                                        }}
+                                        initial="initial" animate="animate" exit="exit"
+                                        transition={{ ease: "linear", duration: 0.3 }}
                                         layout
                                     >
                                         <GreenText style={{ marginBottom: "5px" }}>Identifiants gadzariques</GreenText>
