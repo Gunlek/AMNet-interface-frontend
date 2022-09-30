@@ -106,7 +106,7 @@ export function UserMobileTable({ headerGroups, selectedRowIds, rows, prepareRow
             </Row>
 
             <Virtuoso
-                style={{ height: "100%" }}
+                style={{ flex: "1" }}
                 increaseViewportBy={{ bottom: 300, top: 0 }}
                 totalCount={count}
                 initialItemCount={10}
@@ -118,7 +118,12 @@ export function UserMobileTable({ headerGroups, selectedRowIds, rows, prepareRow
                         if (row) {
                             prepareRow(row);
                             return (
-                                <UsersMobileLine virtuosoProps={props} key={props['data-index']} row={row} />
+                                <UsersMobileLine
+                                    virtuosoProps={props}
+                                    key={props['data-index']}
+                                    row={row}
+                                    isLast={props['data-index'] + 1 == rows.length}
+                                />
                             )
                         }
 
