@@ -16,7 +16,7 @@ import IndeterminateCheckbox from './RowCheckbox';
 import GlobalFilter from './GlobalFilter';
 import { UserDeskopTable, UserMobileTable } from './Table';
 
-export function UsersTable(users: any[], count: number) {
+export function UsersTable(users: any[]) {
   const columns = useMemo(
     () => [
       { Header: '#', accessor: (_row, i) => i + 1, width: 90 },
@@ -100,9 +100,9 @@ export function UsersTable(users: any[], count: number) {
   const style = { width: "100%", height: "100%", overflow: "clip" };
 
   const table = <MediaContextProvider>
-    <Media at="sm" style={style}>
+    <Media at="sm" style={{ width: "100%", height: "100%", overflow: "clip", display: "flex", flexDirection: "column" }}>
       <UserMobileTable
-        count={count}
+        count={rows.length}
         headerGroups={headerGroups}
         selectedRowIds={selectedRowIds}
         rows={rows}
@@ -112,7 +112,7 @@ export function UsersTable(users: any[], count: number) {
 
     <Media greaterThan="sm" style={style}>
       <UserDeskopTable
-        count={count}
+        count={rows.length}
         headerGroups={headerGroups}
         selectedRowIds={selectedRowIds}
         rows={rows}

@@ -24,7 +24,7 @@ export async function getServerSideProps({ req }) {
       const users = await axios.get(`${process.env.NEXT_PUBLIC_API_HOST}/user`, config);
 
       return {
-        props: { users: users.data.slice(0, 10), count: users.data.length }
+        props: { users: users.data.slice(0, 10) }
       }
     }
 
@@ -44,9 +44,9 @@ export async function getServerSideProps({ req }) {
   }
 }
 
-export default function Users(props: { users: user[], count: number }) {
+export default function Users(props: { users: user[] }) {
   const [users, setUsers] = useState(props.users);
-  const { checkboxRow, globalFilter, idSelected, table } = UsersTable(users, props.count);
+  const { checkboxRow, globalFilter, idSelected, table } = UsersTable(users);
   const { roadTo, pageTransition, roadToHome } = usePageTransition('user');
   useEffect(() => {
     axios.get(`/user`)
