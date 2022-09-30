@@ -7,9 +7,9 @@ import { useState } from "react"
 import { DefaultModal } from "./Modal"
 
 export default function UserProofModal(props: { link: string, alt: string }) {
-    const minWidth1000 = useMediaQuery('(min-width: 1200px)')
-    const { Display, toggle } = ModalLogic()
-    const [ratio, setRatio] = useState(16 / 9)
+    const minWidth1000 = useMediaQuery('(min-width: 1200px)');
+    const { Display, toggle } = ModalLogic();
+    const [ratio, setRatio] = useState(16 / 9);
 
     return (
         <>
@@ -19,8 +19,7 @@ export default function UserProofModal(props: { link: string, alt: string }) {
                 Display={Display}
                 style={{
                     width: minWidth1000 ? "800px" : undefined,
-                    padding: minWidth1000 ? "30px" : "20px",
-                    paddingRight: minWidth1000 ? "17.5px" : "7.5px"
+                    padding: minWidth1000 ? "30px" : "20px"
                 }}
             >
                 <div
