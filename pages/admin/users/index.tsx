@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Head from "next/head";
 import { GreenButton, OrangeButton, RedButton } from "../../../components/Button/Buttons";
 import { ButtonsRow, DashboardContainer, ResponsiveRow, Row, StyledMain } from "../../../components/Container/style";
@@ -24,7 +24,7 @@ export async function getServerSideProps({ req }) {
       const users = await axios.get(`${process.env.NEXT_PUBLIC_API_HOST}/user`, config);
 
       return {
-        props: { users: users.data }
+        props: { users: users.data.slice(0, 10), count: users.data.length }
       }
     }
 
@@ -44,15 +44,21 @@ export async function getServerSideProps({ req }) {
   }
 }
 
-export default function Users(props: { users: user[] }) {
+export default function Users(props: { users: user[], count: number }) {
   const [users, setUsers] = useState(props.users);
-  const { checkboxRow, globalFilter, idSelected, table } = UsersTable(users);
+  const { checkboxRow, globalFilter, idSelected, table } = UsersTable(users, props.count);
   const { roadTo, pageTransition, roadToHome } = usePageTransition('user');
+  useEffect(() => {
+    axios.get(`/user`)
+      .then((res: AxiosResponse) => {
+        if (res.status == 200) setUsers(res.data);
+      });
+  }, []);
 
   const handleUsersChange = () => {
     axios.get(`/user`)
       .then((res: AxiosResponse) => {
-        if (res.status == 200) setUsers(res.data)
+        if (res.status == 200) setUsers(res.data);
       });
   };
 
