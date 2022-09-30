@@ -7,52 +7,55 @@ import Fail from "../../../NavIcons/fail";
 import Succes from "../../../NavIcons/succes";
 import { StateRequest } from "../../../Status/Status";
 import { StyledLink } from "../../../Text/style";
-import {  hardware } from "../../../Utils/types";
+import { hardware } from "../../../Utils/types";
+import { AdminMotionDiv } from "../../MotionDiv";
 import { StyledTr, StyledTd } from "../../style";
 import Buttons from "../Buttons";
 
 export const DesktopMaterialRow = (props: {
     value: hardware,
     setTab: Function,
-    index: { active: number, declined: number, pending: number },
-    style?: React.CSSProperties
+    index: number,
+    virtuosoProps: any,
+    isScrolling: boolean
 }) => {
     return (
         <StyledTr
             as={motion.tr}
-            initial={{ opacity: 0, borderBottom: "2px solid rgba(0,0,0,0)" }}
-            animate={{ opacity: 1, borderBottom: "2px solid rgba(0,0,0,0.1)" }}
-            exit={{ opacity: 0, borderBottom: "2px solid rgba(0,0,0,0)" }}
+            exit={props.isScrolling ? null : { opacity: 0, borderBottom: "2px solid rgba(0,0,0,0)" }}
             transition={{ ease: "linear" }}
+            {...props.virtuosoProps}
         >
-            <StyledTd>{props.index[props.value['material_state']]}</StyledTd>
+            <StyledTd><AdminMotionDiv isScrolling={props.isScrolling}>{props.index}</AdminMotionDiv></StyledTd>
             <StyledTd>
-                <Link
-                    href={{
-                        pathname: '/admin/users/[user_id]',
-                        query: { user_id: props.value['material_user'] },
-                    }}
-                    passHref
-                    scroll={false}
-                >
-                    <StyledLink color="#096a09">{props.value['user_name']}</StyledLink>
-                </Link>
+                <AdminMotionDiv isScrolling={props.isScrolling}>
+                    <Link
+                        href={{
+                            pathname: '/admin/users/[user_id]',
+                            query: { user_id: props.value['material_user'] },
+                        }}
+                        passHref
+                        scroll={false}
+                    >
+                        <StyledLink color="#096a09">{props.value['user_name']}</StyledLink>
+                    </Link>
+                </AdminMotionDiv>
             </StyledTd>
             <StyledTd style={{ textAlign: "center" }}>
-                {props.value['user_pay_status'] ? <Succes marginRight="15px" /> : <Fail marginRight="15px" />}
+                <AdminMotionDiv isScrolling={props.isScrolling}>
+                    {props.value['user_pay_status'] ? <Succes marginRight="15px" /> : <Fail marginRight="15px" />}
+                </AdminMotionDiv>
             </StyledTd>
-            <StyledTd>{props.value['material_description']}</StyledTd>
+            <StyledTd><AdminMotionDiv isScrolling={props.isScrolling}>{props.value['material_description']}</AdminMotionDiv></StyledTd>
             <StyledTd style={{ whiteSpace: "normal" }}>
-                <div style={{ width: "400px" }}>
-                    {props.value['material_reason']}
-                </div>
+                <AdminMotionDiv isScrolling={props.isScrolling}>{props.value['material_reason']}</AdminMotionDiv>
             </StyledTd>
-            {props.value.material_state === "declined" && <StyledTd>{props.value.declined_reason}</StyledTd>}
+            {props.value.material_state === "declined" && <StyledTd><AdminMotionDiv isScrolling={props.isScrolling}>{props.value.declined_reason}</AdminMotionDiv></StyledTd>}
             <StyledTd>
-                <StateRequest state={props.value['material_state']} />
+                <AdminMotionDiv isScrolling={props.isScrolling}><StateRequest state={props.value['material_state']} /></AdminMotionDiv>
             </StyledTd>
             <StyledTd style={{ paddingRight: "5px" }}>
-                <div
+                <AdminMotionDiv
                     style={{
                         display: "flex",
                         justifyContent: "space-between",
@@ -65,7 +68,7 @@ export const DesktopMaterialRow = (props: {
                         requestType="hardware"
                         setTab={props.setTab}
                     />
-                </div>
+                </AdminMotionDiv>
             </StyledTd>
         </StyledTr>
     )

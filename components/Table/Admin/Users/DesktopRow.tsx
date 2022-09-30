@@ -3,7 +3,7 @@ import React from "react";
 import Fail from "../../../NavIcons/fail";
 import Succes from "../../../NavIcons/succes";
 import { StyledLink } from "../../../Text/style";
-import { StyledUsersTr, StyledTd } from "../../style";
+import { StyledTd, StyledUsersTr } from "../../style";
 
 const UsersDesktopRow = ({
     remainder,
@@ -21,7 +21,6 @@ const UsersDesktopRow = ({
                         textAlign={replaceBySvg ? "center" : undefined}
                         BackgroundColor={remainder ? "rgba(0, 0, 0, 0.075)" : undefined}
                         {...cell.getCellProps()}
-                        as="div"
                     >
                         {replaceBySvg ?
                             cell.value ? <Succes /> : <Fail />

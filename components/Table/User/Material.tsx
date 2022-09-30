@@ -6,6 +6,7 @@ import { SmallRedButton } from "../../Button/Buttons";
 import { MediaContextProvider, Media } from "../../MediaQueries/MediaSSR";
 import { StateRequest } from "../../Status/Status";
 import { hardware } from "../../Utils/types";
+import {UserMotionDiv} from "../MotionDiv";
 import { StyledTr, StyledTd, StyledFlexTd, StyledHeadTr, StyledTh, StyledTable } from "../style";
 const StyledMaterialToolTip = dynamic(() => import("../../Card/style").then((mod) => mod.StyledMaterialToolTip))
 
@@ -43,33 +44,35 @@ export default function MaterialUserTable(props: { requests: hardware[], setHard
                 exit={{ opacity: 0, borderBottom: "2px solid rgba(0,0,0,0)" }}
                 transition={{ ease: "linear" }}
             >
-                <StyledTd>{index + 1}</StyledTd>
-                <StyledTd>{value['material_description']}</StyledTd>
+                <StyledTd><UserMotionDiv>{index + 1}</UserMotionDiv></StyledTd>
+                <StyledTd><UserMotionDiv>{value['material_description']}</UserMotionDiv></StyledTd>
                 <StyledFlexTd style={{ whiteSpace: "normal" }}>
-                    <div style={{ minWidth: "100%", width: "400px", maxWidth: "max-content" }}>
+                    <UserMotionDiv style={{ minWidth: "100%", width: "400px", maxWidth: "max-content" }}>
                         {value['material_reason']}
-                    </div>
+                    </UserMotionDiv>
                 </StyledFlexTd>
-                {declinedExist && <StyledTd>{value.declined_reason}</StyledTd>}
+                {declinedExist && <StyledTd><UserMotionDiv>{value.declined_reason}</UserMotionDiv></StyledTd>}
                 <StyledTd>
-                    <StateRequest state={value['material_state']} />
+                    <UserMotionDiv><StateRequest state={value['material_state']} /></UserMotionDiv>
                 </StyledTd>
                 <StyledTd style={{ position: "relative" }}>
-                    <SmallRedButton
-                        onClick={value['material_state'] !== 'active' ? (e) => deleteMaterial(e, value.material_id) : undefined}
-                        style={{
-                            backgroundColor: value['material_state'] === 'active' ? "rgba(242,50,50, 0.5)" : undefined,
-                            boxShadow: value['material_state'] === 'active' ? "0px 0px 0px rgba(0, 0, 0, 0)" : undefined
-                        }}
-                    >
-                        Supprimer
-                        {value['material_state'] === 'active' &&
-                            <StyledMaterialToolTip>
-                                Vous ne pouvez pas supprimer <br />
-                                une demande acceptée
-                            </StyledMaterialToolTip>
-                        }
-                    </SmallRedButton>
+                    <UserMotionDiv>
+                        <SmallRedButton
+                            onClick={value['material_state'] !== 'active' ? (e) => deleteMaterial(e, value.material_id) : undefined}
+                            style={{
+                                backgroundColor: value['material_state'] === 'active' ? "rgba(242,50,50, 0.5)" : undefined,
+                                boxShadow: value['material_state'] === 'active' ? "0px 0px 0px rgba(0, 0, 0, 0)" : undefined
+                            }}
+                        >
+                            Supprimer
+                            {value['material_state'] === 'active' &&
+                                <StyledMaterialToolTip>
+                                    Vous ne pouvez pas supprimer <br />
+                                    une demande acceptée
+                                </StyledMaterialToolTip>
+                            }
+                        </SmallRedButton>
+                    </UserMotionDiv>
                 </StyledTd>
             </StyledTr>
         );

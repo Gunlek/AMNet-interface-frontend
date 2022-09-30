@@ -8,6 +8,7 @@ import { MediaContextProvider, Media } from "../../MediaQueries/MediaSSR";
 import { StateRequest } from "../../Status/Status";
 import { StyledLink } from "../../Text/style";
 import { access } from "../../Utils/types";
+import { UserMotionDiv } from "../MotionDiv";
 import {
     StyledTr,
     StyledTd,
@@ -55,24 +56,26 @@ export default function IoTUserTable(props: { requests: access[], setAccess: Fun
                 exit={{ opacity: 0, borderBottom: "2px solid rgba(0,0,0,0)" }}
                 transition={{ ease: "linear" }}
             >
-                <StyledTd>{index + 1}</StyledTd>
-                <StyledFlexTd>{value.access_description}</StyledFlexTd>
+                <StyledTd><UserMotionDiv>{index + 1}</UserMotionDiv></StyledTd>
+                <StyledFlexTd><UserMotionDiv>{value.access_description}</UserMotionDiv></StyledFlexTd>
                 {declinedExist && <StyledTd>{value.declined_reason}</StyledTd>}
                 {props.userId === "aeg" ?
                     <MacAdressTd access_mac={value.access_mac} access_id={value.access_id} />
                     :
-                    <StyledTd style={{ textAlign: "center" }}>{value.access_mac}</StyledTd>
+                    <StyledTd style={{ textAlign: "center" }}><UserMotionDiv>{value.access_mac}</UserMotionDiv></StyledTd>
                 }
                 <StyledTd style={{ textAlign: "center" }}>
-                    <UserProofModal link={value.access_proof} alt={value.access_description} />
+                    <UserMotionDiv><UserProofModal link={value.access_proof} alt={value.access_description} /></UserMotionDiv>
                 </StyledTd>
                 <StyledTd>
-                    <StateRequest state={value.access_state} />
+                    <UserMotionDiv><StateRequest state={value.access_state} /></UserMotionDiv>
                 </StyledTd>
                 <StyledTd>
-                    <SmallRedButton onClick={(e) => deleteAccess(e, value.access_id)}>
-                        Supprimer
-                    </SmallRedButton>
+                    <UserMotionDiv>
+                        <SmallRedButton onClick={(e) => deleteAccess(e, value.access_id)}>
+                            Supprimer
+                        </SmallRedButton>
+                    </UserMotionDiv>
                 </StyledTd>
             </StyledTr>
         );

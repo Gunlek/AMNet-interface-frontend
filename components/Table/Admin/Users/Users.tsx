@@ -16,7 +16,7 @@ import IndeterminateCheckbox from './RowCheckbox';
 import GlobalFilter from './GlobalFilter';
 import { UserDeskopTable, UserMobileTable } from './Table';
 
-export function UsersTable(data: any[]) {
+export function UsersTable(users: any[], count: number) {
   const columns = useMemo(
     () => [
       { Header: '#', accessor: (_row, i) => i + 1, width: 90 },
@@ -38,7 +38,7 @@ export function UsersTable(data: any[]) {
     ,
     []
   );
-
+  const data = useMemo(() => users, [users]);
   const {
     headerGroups,
     rows,
@@ -97,15 +97,27 @@ export function UsersTable(data: any[]) {
   const idSelected = selectedFlatRows.map(d => d.original["user_id"]);
   idSelected.displayName = "idSelected";
 
-  const style = { width: "100%", height: "100%", overflow: ' scroll hidden', fontSize: "1.2rem" };
+  const style = { width: "100%", height: "100%", overflow: "clip" };
 
   const table = <MediaContextProvider>
     <Media at="sm" style={style}>
-      <UserMobileTable headerGroups={headerGroups} selectedRowIds={selectedRowIds} rows={rows} prepareRow={prepareRow} />
+      <UserMobileTable
+        count={count}
+        headerGroups={headerGroups}
+        selectedRowIds={selectedRowIds}
+        rows={rows}
+        prepareRow={prepareRow}
+      />
     </Media>
 
     <Media greaterThan="sm" style={style}>
-      <UserDeskopTable headerGroups={headerGroups} selectedRowIds={selectedRowIds} rows={rows} prepareRow={prepareRow} />
+      <UserDeskopTable
+        count={count}
+        headerGroups={headerGroups}
+        selectedRowIds={selectedRowIds}
+        rows={rows}
+        prepareRow={prepareRow}
+      />
     </Media>
   </MediaContextProvider>;
 

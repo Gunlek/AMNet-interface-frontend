@@ -10,6 +10,7 @@ import { StyledLink } from "../../../Text/style";
 import { access } from "../../../Utils/types";
 import { StyledTr, StyledTd } from "../../style";
 import Buttons from "../Buttons";
+import { AdminMotionDiv } from "../../MotionDiv";
 const ProofModal = dynamic(() => import("../../../Card/Modals/AdminProofModal"), {
     loading: () => <StyledLink color="#096a09">Image</StyledLink>
 });
@@ -17,44 +18,51 @@ const ProofModal = dynamic(() => import("../../../Card/Modals/AdminProofModal"),
 const DesktopIoTRow = (props: {
     value: access,
     setTab: Function,
-    index: number
+    index: number,
+    virtuosoProps: any,
+    isScrolling: boolean
 }) => {
     return (
         <StyledTr
             as={motion.tr}
-            initial={{ opacity: 0, borderBottom: "2px solid rgba(0,0,0,0)" }}
-            animate={{ opacity: 1, borderBottom: "2px solid rgba(0,0,0,0.1)" }}
-            exit={{ opacity: 0, borderBottom: "2px solid rgba(0,0,0,0)" }}
+            exit={props.isScrolling ? null : { opacity: 0, borderBottom: "2px solid rgba(0,0,0,0)" }}
             transition={{ ease: "linear" }}
-            {...props}
+            {...props.virtuosoProps}
         >
-            <StyledTd>{props.index}</StyledTd>
+            <StyledTd><AdminMotionDiv isScrolling={props.isScrolling}>{props.index}</AdminMotionDiv></StyledTd>
             <StyledTd>
-                <Link
-                    href={{
-                        pathname: '/admin/users/[user_id]',
-                        query: { user_id: props.value['access_user'] },
-                    }}
-                    passHref
-                    scroll={false}
-                >
-                    <StyledLink color="#096a09">{props.value['user_name']}</StyledLink>
-                </Link>
+                <AdminMotionDiv isScrolling={props.isScrolling}>
+                    <Link
+                        href={{
+                            pathname: '/admin/users/[user_id]',
+                            query: { user_id: props.value['access_user'] },
+                        }}
+                        passHref
+                        scroll={false}
+                    >
+                        <StyledLink color="#096a09">{props.value['user_name']}</StyledLink>
+                    </Link>
+                </AdminMotionDiv>
             </StyledTd>
             <StyledTd style={{ textAlign: "center" }}>
-                {props.value['user_pay_status'] ? <Succes marginRight="15px" /> : <Fail marginRight="15px" />}
+                <AdminMotionDiv isScrolling={props.isScrolling}>
+                    {props.value['user_pay_status'] ? <Succes marginRight="15px" /> : <Fail marginRight="15px" />}
+                </AdminMotionDiv>
             </StyledTd>
-            <StyledTd>{props.value['access_description']}</StyledTd>
+            <StyledTd><AdminMotionDiv isScrolling={props.isScrolling}>{props.value['access_description']}</AdminMotionDiv></StyledTd>
             {props.value.access_state === "declined" && <StyledTd>{props.value.declined_reason}</StyledTd>}
             <MacAdressTd access_mac={props.value['access_mac']} access_id={props.value.access_id} />
             <StyledTd style={{ textAlign: "center" }}>
-                <ProofModal request={props.value} setTab={props.setTab} />
+                <AdminMotionDiv isScrolling={props.isScrolling}><ProofModal request={props.value} setTab={props.setTab} /></AdminMotionDiv>
             </StyledTd>
             <StyledTd>
-                <StateRequest state={props.value['access_state']} />
+                <AdminMotionDiv isScrolling={props.isScrolling}>
+                    <StateRequest state={props.value['access_state']} />
+                </AdminMotionDiv>
             </StyledTd>
             <StyledTd>
-                <div
+                <AdminMotionDiv
+                    isScrolling={props.isScrolling}
                     style={{
                         display: "flex",
                         justifyContent: "space-between",
@@ -67,10 +75,10 @@ const DesktopIoTRow = (props: {
                         requestType="access"
                         setTab={props.setTab}
                     />
-                </div>
+                </AdminMotionDiv>
             </StyledTd>
         </StyledTr>
     )
-}
+};
 
 export default DesktopIoTRow 
