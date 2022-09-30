@@ -7,15 +7,15 @@ import { motion } from "framer-motion";
 const Fail = dynamic(() => import("../../../NavIcons/fail"));
 const Succes = dynamic(() => import("../../../NavIcons/succes"));
 
-export const UsersMobileLine = ({ row, virtuosoProps }: {
+export const UsersMobileLine = ({ row, virtuosoProps, isLast }: {
     row: any,
-    virtuosoProps: any
+    virtuosoProps: any,
+    isLast: boolean
 }) => {
-
     const [scrolled, setScrolled] = useState(false);
 
     return (
-        <div {...virtuosoProps} style={{ paddingBottom: "30px", overflowAnchor: "none" }}>
+        <div {...virtuosoProps} style={{ paddingBottom: isLast? "0" : "30px", overflowAnchor: "none" }}>
             <motion.div
                 style={{
                     height: scrolled ? "auto" : "55px",
