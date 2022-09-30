@@ -35,8 +35,8 @@ const SettingsModal = dynamic(() => import("../../components/Card/Modals/UpdateS
 });
 
 export async function getServerSideProps({ req }) {
-  const { access_token, userId } = getToken(req)
-
+  const { access_token, userId } = getToken(req);
+  
   if (access_token) {
     const config = getConfig(access_token)
     const user = await axios.get(`${process.env.NEXT_PUBLIC_API_HOST}/user/${userId}`, config)
@@ -175,8 +175,8 @@ export default function Admin(props: {
     setChecked(NewChecked)
   };
 
-  const [WelcomeMessageEditor, WelcomeMessageHTML] = Editor("2", props.news_message);
-  const [MailEditor, MailHTML, setHTML] = Editor("1");
+  const [WelcomeMessageEditor, WelcomeMessageHTML] = Editor("1", props.news_message);
+  const [MailEditor, MailHTML, setHTML] = Editor("2");
   const [subject, setSubject] = useState("");
   const [settings, setSettings] = useState({
     lydia_cotiz: props.lydia_cotiz,

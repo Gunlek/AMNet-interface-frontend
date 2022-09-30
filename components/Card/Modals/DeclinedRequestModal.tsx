@@ -4,8 +4,8 @@ import { OrangeButton, SmallOrangeButton } from "../../Button/Buttons"
 import { Row } from "../../Container/style"
 import AutoTextArea from "../../Input/TextArea"
 import { TitleCard } from "../Cards"
+import { DefaultModal } from "./Modal"
 import ModalLogic from "./ModalLogic"
-import { StyledBackgroundModal, StyledModal } from "./style"
 
 export default function DeclinedRequestModal(props: {
     handleTabChange: Function,
@@ -13,7 +13,7 @@ export default function DeclinedRequestModal(props: {
     id: Number,
     inProof: boolean
 }) {
-    const { Display, Opacity, toggle } = ModalLogic();
+    const { Display, toggle } = ModalLogic();
     const [reason, setReason] = useState("");
 
     const Disable = async (e) => {
@@ -28,23 +28,23 @@ export default function DeclinedRequestModal(props: {
             <SmallOrangeButton onClick={toggle}>
                 Revoquer
             </SmallOrangeButton>
-            {Display &&
-                <>
-                    <StyledBackgroundModal onClick={toggle} Opacity={Opacity} style={{ height: "100%", borderRadius: props.inProof ? "30px" : undefined }} />
-                    <StyledModal width="450px" Opacity={Opacity}>
-                        <TitleCard>Motif du refus</TitleCard>
-                        <div style={{ marginBottom: "30px", width: "100%", position: "relative" }}>
-                            <AutoTextArea onChange={(elmt) => setReason(elmt.target.value)} />
-                        </div>
+            <DefaultModal
+                style={{ width: "450px" }}
+                toggle={toggle}
+                Display={Display}
+                backgroundStyle={{ height: "100%", borderRadius: props.inProof ? "30px" : undefined }}
+            >
+                <TitleCard>Motif du refus</TitleCard>
+                <div style={{ marginBottom: "30px", width: "100%", position: "relative" }}>
+                    <AutoTextArea onChange={(elmt) => setReason(elmt.target.value)} />
+                </div>
 
-                        <Row style={{ justifyContent: "center" }}>
-                            <OrangeButton width="300px" mobileWidth="100%" onClick={Disable}>
-                                Revoquer
-                            </OrangeButton>
-                        </Row>
-                    </StyledModal>
-                </>
-            }
+                <Row style={{ justifyContent: "center" }}>
+                    <OrangeButton width="300px" mobileWidth="100%" onClick={Disable}>
+                        Revoquer
+                    </OrangeButton>
+                </Row>
+            </DefaultModal>
         </>
     )
 }

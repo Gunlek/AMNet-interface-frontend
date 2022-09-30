@@ -55,7 +55,7 @@ export default function AdminMenu(props: { page?: string, setTranstion: Function
         as={motion.div}
         variants={minWidth1000 ? undefined : { exit: { height: "95px" } }}
         exit="exit"
-        transition={{ type: 'linear' }}
+        transition={{ ease: "linear" }}
       >
         <StyledIconContener as="nav" maxHeight={"615px"} mobileHeight={open ? "285" : "95"}>
           <Row

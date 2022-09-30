@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { user } from "../../components/Utils/types";
 import dynamic from "next/dynamic";
 const ErrorP = dynamic(() => import("../Text/style").then((mod) => mod.ErrorP));
+const AnimatePresence = dynamic(() => import("framer-motion").then((mod) => mod.AnimatePresence));
+const MotionDiv = dynamic<any>(() => import("framer-motion").then((mod) => mod.motion.div));
 
 export default function useForm(
     active_proms: number,
@@ -57,7 +59,6 @@ export default function useForm(
         user_name: false,
         user_name_format: false,
         user_email: false,
-        user_phone: false,
         user_password: false,
         phone: false,
     });
@@ -75,7 +76,7 @@ export default function useForm(
 
         if (elmt.currentTarget.id == "user_proms2") {
             newForm.user_proms = elmt.target.value;
-            if(isOther) newForm.user_campus = "";
+            if (isOther) newForm.user_campus = "";
         }
         else if (elmt.currentTarget.id == "user_proms") {
             newForm.user_is_gadz = (elmt.target.value == promotion.old || elmt.target.value == promotion.active);
@@ -123,30 +124,53 @@ export default function useForm(
 
     const errorMessage = {
         name:
-            error.user_name &&
-            <ErrorP>
-                Ce nom d&apos;utilisateur est déjà utilisé
-            </ErrorP>,
-        format_name: error.user_name_format &&
-            <ErrorP>
-                Ce nom d&apos;utilisateur n&apos;a pas le bon format
-            </ErrorP>,
+            <AnimatePresence>
+                {error.user_name &&
+                    <ErrorP>
+                        Ce nom d&apos;utilisateur est déjà utilisé
+                    </ErrorP>
+                }
+            </AnimatePresence>,
+        format_name:
+            <AnimatePresence>
+                {error.user_name_format &&
+                    <ErrorP>
+                        Ce nom d&apos;utilisateur n&apos;a pas le bon format
+                    </ErrorP>
+                }
+            </AnimatePresence>,
         email:
-            error.user_email &&
-            <ErrorP>
-                Cette adresse mail est déjà utilisée
-            </ErrorP>,
+            <AnimatePresence>
+                {error.user_email &&
+                    <ErrorP>
+                        Cette adresse mail est déjà utilisée
+                    </ErrorP>
+                }
+            </AnimatePresence>,
         password:
-            error.user_password && onBlurPassword &&
-            <div style={{ position: "relative" }}>
-                <ErrorP>
-                    Les mots de passe saisis ne sont pas identiques !
-                </ErrorP>
-            </div>,
-        phone: error.phone && onBlurPhone &&
-            <ErrorP>
-                Ce numéro de téléphone n&apos;a pas le bon format
-            </ErrorP>
+            <AnimatePresence>
+                {error.user_password && onBlurPassword &&
+                    <MotionDiv
+                        style={{ position: "relative" }}
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        transition={{ ease: 'linear' }}
+                    >
+                        <ErrorP>
+                            Les mots de passe saisis ne sont pas identiques !
+                        </ErrorP>
+                    </MotionDiv>
+                }
+            </AnimatePresence>,
+        phone:
+            <AnimatePresence>
+                {error.phone && onBlurPhone &&
+                    <ErrorP>
+                        Ce numéro de téléphone n&apos;a pas le bon format
+                    </ErrorP>
+                }
+            </AnimatePresence>
     };
 
     const handleFormErrors = (user_name: boolean, user_email: boolean) => {
@@ -170,6 +194,7 @@ export default function useForm(
         form,
         isOther,
         promotion,
+        error,
         errorMessage,
         handleFormChange,
         handleFormErrors,

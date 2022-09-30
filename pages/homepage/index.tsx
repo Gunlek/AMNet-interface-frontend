@@ -85,7 +85,7 @@ export default function Homepage(props: {
         initial="hidden"
         animate="enter"
         exit="exit"
-        transition={{ type: 'linear' }}
+        transition={{ ease: "linear" }}
       >
         <motion.div
           variants={{
@@ -99,7 +99,7 @@ export default function Homepage(props: {
           exit="exit"
           initial="hidden"
           animate="enter"
-          transition={{ type: 'linear' }}
+          transition={{ ease: "linear" }}
           style={{ width: "100%", height: "100%", display: "flex", flexDirection: "column" }}
         >
           <Row margin="20px 0" mobileMargin="30px 0" direction="column">
@@ -124,7 +124,7 @@ export default function Homepage(props: {
                 justifyContent: "space-between"
               }}
             >
-              <div style={{ marginBottom: "30px" }}>
+              <div>
                 <WhiteP style={{ marginBottom: "1.2rem" }}>
                   <span style={{ paddingLeft: "4rem" }}>L’AMNet</span> est une association gérée par les étudiants qui a pour but
                   d’administrer le réseau internet de la résidence Jacques Pagliero des Arts et Métiers du campus de Lille.

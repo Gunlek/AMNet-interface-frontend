@@ -48,9 +48,8 @@ export const StyledBackIcon = styled.a`
 
 export const StyledBackBurger = styled.div.attrs({
   as: motion.div,
-  variants: { exit: { opacity: 0 } },
-  exit: "exit",
-  transition: { type: 'linear' }
+  exit: { opacity: 0},
+  transition: { ease: "linear", duration: 0.2 }
 })`
   height: 60px;
   width: 60px;
@@ -58,8 +57,6 @@ export const StyledBackBurger = styled.div.attrs({
   z-index: -1;
   background: linear-gradient(135deg, #67BC45 5.67%, #096A09 94.96%);
   border-radius: 15px;
-  transition: opacity 0.2s linear;
-  opacity: 0;
 
   @media screen and (max-width: 1000px){
     margin: 0 5px;
@@ -70,7 +67,7 @@ export const StyledActiveIcon = styled.div.attrs({
   as: motion.div,
   variants: { exit: { opacity: 0 } },
   exit: "exit",
-  transition: { type: 'linear' }
+  transition: { ease: "linear" }
 })`
   height: 60px; 
   width: 60px; 
@@ -117,7 +114,7 @@ export const StyledActiveSVG = styled.svg.attrs({
   initial: "initial",
   animate: "initial",
   exit: "exit",
-  transition: { type: 'linear' }
+  transition: { ease: "linear" }
 })`
   position: relative;
 `;
@@ -140,7 +137,7 @@ export const StyledTooltip = styled.div.attrs({
   as: motion.div,
   variants: { exit: { opacity: "0" } },
   exit: "exit",
-  transition: { type: 'linear' }
+  transition: { ease: "linear" }
 })`
   position: absolute;
   top: 50%;

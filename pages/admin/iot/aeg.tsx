@@ -51,7 +51,6 @@ export async function getServerSideProps({ req }) {
 }
 
 export default function AdminIoT(props: { access: adminAccess[] }) {
-    const minWidth1000 = useMediaQuery('(min-width:1000px)');
     const [access, setAccess] = useState(props.access);
     const { roadTo, pageTransition, roadToHome } = usePageTransition('user');
 
@@ -68,7 +67,7 @@ export default function AdminIoT(props: { access: adminAccess[] }) {
     return (
         <>
             <Head>
-                <title>Administration &bull; AMNet</title>
+                <title>Accès AEG &bull; AMNet</title>
             </Head>
 
             <StyledMain variants={pageTransition}>
@@ -88,7 +87,9 @@ export default function AdminIoT(props: { access: adminAccess[] }) {
                     <StyledCard
                         marginBottom="2%"
                         mobileMarginBottom="10px"
-                        style={{ flex: "1 0 0", minHeight: minWidth1000 ? "0" : "300px" }}
+                        mobileMinHeight="300px"
+                        minHeight="0"
+                        style={{ flex: "1 0 0" }}
                     >
                         <IoTUserTable requests={access} setAccess={setAccess} userId="aeg" />
                     </StyledCard>

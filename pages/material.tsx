@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Head from "next/head";
 import { HelpSection, Footer } from "../components/Card/Cards";
-import { StyledCard } from "../components/Card/style";
+import { StyledRequestsContainer } from "../components/Card/style";
 import { DashboardContainer, ResponsiveRow, Column, StyledMain } from "../components/Container/style";
 import UserMenu from "../components/Menu/UserMenu";
 import MaterialUserTable from "../components/Table/User/Material";
@@ -114,18 +114,16 @@ export default function UserMaterial(props: {
           <div style={{ flex: "1", display: "flex" }}>
             <AnimatePresence initial={false}>
               {!empty &&
-                <StyledCard
+                <StyledRequestsContainer
                   style={{ flex: "1" }}
-                  mobileMarginBottom="30px"
-                  marginBottom="2%"
                   as={motion.div}
-                  initial={{ opacity: 0, scale: 0 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0 }}
-                  transition={{ type: 'linear' }}
+                  initial={{ opacity: 0, height: 0 }}
+                  animate={{ opacity: 1, height: "auto" }}
+                  exit={{ opacity: 0, height: 0 }}
+                  transition={{ ease: "linear" }}
                 >
                   <MaterialUserTable requests={material} setHardware={setMaterial} userId={props.user.user_id} />
-                </StyledCard>
+                </StyledRequestsContainer>
               }
             </AnimatePresence>
           </div>

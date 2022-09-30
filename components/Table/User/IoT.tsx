@@ -1,4 +1,5 @@
 import axios, { AxiosResponse } from "axios";
+import { AnimatePresence, motion } from "framer-motion";
 import dynamic from "next/dynamic";
 import React, { useState } from "react";
 import { SmallRedButton } from "../../Button/Buttons";
@@ -7,6 +8,7 @@ import { MediaContextProvider, Media } from "../../MediaQueries/MediaSSR";
 import { StateRequest } from "../../Status/Status";
 import { StyledLink } from "../../Text/style";
 import { access } from "../../Utils/types";
+import { UserMotionDiv } from "../MotionDiv";
 import {
     StyledTr,
     StyledTd,
@@ -45,77 +47,96 @@ export default function IoTUserTable(props: { requests: access[], setAccess: Fun
         if (value.access_state === "declined" && !declinedExist) setDeclinedExist(true);
 
         listHTML.push(
-            <StyledTr key={index}>
-                <StyledTd>{index + 1}</StyledTd>
-                <StyledFlexTd>{value.access_description}</StyledFlexTd>
+            <StyledTr
+                layout
+                key={index}
+                as={motion.tr}
+                initial={{ opacity: 0, borderBottom: "2px solid rgba(0,0,0,0)" }}
+                animate={{ opacity: 1, borderBottom: "2px solid rgba(0,0,0,0.1)" }}
+                exit={{ opacity: 0, borderBottom: "2px solid rgba(0,0,0,0)" }}
+                transition={{ ease: "linear" }}
+            >
+                <StyledTd><UserMotionDiv>{index + 1}</UserMotionDiv></StyledTd>
+                <StyledFlexTd><UserMotionDiv>{value.access_description}</UserMotionDiv></StyledFlexTd>
                 {declinedExist && <StyledTd>{value.declined_reason}</StyledTd>}
                 {props.userId === "aeg" ?
                     <MacAdressTd access_mac={value.access_mac} access_id={value.access_id} />
                     :
-                    <StyledTd style={{ textAlign: "center" }}>{value.access_mac}</StyledTd>
+                    <StyledTd style={{ textAlign: "center" }}><UserMotionDiv>{value.access_mac}</UserMotionDiv></StyledTd>
                 }
                 <StyledTd style={{ textAlign: "center" }}>
-                    <UserProofModal link={value.access_proof} alt={value.access_description} />
+                    <UserMotionDiv><UserProofModal link={value.access_proof} alt={value.access_description} /></UserMotionDiv>
                 </StyledTd>
                 <StyledTd>
-                    <StateRequest state={value.access_state} />
+                    <UserMotionDiv><StateRequest state={value.access_state} /></UserMotionDiv>
                 </StyledTd>
                 <StyledTd>
-                    <SmallRedButton onClick={(e) => deleteAccess(e, value.access_id)}>
-                        Supprimer
-                    </SmallRedButton>
+                    <UserMotionDiv>
+                        <SmallRedButton onClick={(e) => deleteAccess(e, value.access_id)}>
+                            Supprimer
+                        </SmallRedButton>
+                    </UserMotionDiv>
                 </StyledTd>
             </StyledTr>
         );
 
         mobilelistHTML.push(
-            <React.Fragment key={index}>
-                <StyledHeadTr>
-                    <StyledTh>Equipement {index + 1}</StyledTh>
-                    <StyledTh style={{ textAlign: "center", paddingRight: "10px" }}>{value.access_description}</StyledTh>
-                </StyledHeadTr>
-                {value.access_state === "declined" &&
-                    <StyledTr>
-                        <StyledTd>Motif du Refus</StyledTd>
-                        <StyledTd>{value.declined_reason}</StyledTd>
-                    </StyledTr>
-                }
-                <StyledTr>
-                    <StyledTd>Adresse Mac</StyledTd>
-                    {props.userId === "aeg" ?
-                        <MacAdressTd access_mac={value.access_mac} access_id={value.access_id} />
-                        :
-                        <StyledTd>{value.access_mac}</StyledTd>
-                    }
-                </StyledTr>
-                <StyledTr>
-                    <StyledTd>Preuve</StyledTd>
-                    <StyledTd style={{ textAlign: "center", whiteSpace: "normal" }}>
-                        <UserProofModal link={value.access_proof} alt={value.access_description} />
-                    </StyledTd>
-                </StyledTr>
-                <StyledTr>
-                    <StyledTd>Etat</StyledTd>
-                    <StyledTd><StateRequest center={true} state={value.access_state} /></StyledTd>
-                </StyledTr>
-                <StyledTr style={{ borderBottom: props.requests.length == (index + 1) ? undefined : "2px solid transparent" }}>
-                    <StyledTd>Action</StyledTd>
-                    <StyledTd style={{ textAlign: "center" }}>
-                        <SmallRedButton onClick={(e) => deleteAccess(e, value.access_id)}>
-                            Supprimer
-                        </SmallRedButton>
-                    </StyledTd>
-                </StyledTr>
-            </React.Fragment>
+            <motion.div
+                key={index}
+                initial={{ opacity: 0, height: 0 }}
+                animate={{ opacity: 1, height: "auto" }}
+                exit={{ opacity: 0, height: 0 }}
+                transition={{ ease: "linear" }}
+            >
+                <StyledTable>
+                    <thead>
+                        <StyledHeadTr>
+                            <StyledTh>Equipement {index + 1}</StyledTh>
+                            <StyledTh style={{ textAlign: "center", paddingRight: "10px" }}>{value.access_description}</StyledTh>
+                        </StyledHeadTr>
+                    </thead>
+                    <tbody>
+                        {value.access_state === "declined" &&
+                            <StyledTr>
+                                <StyledTd>Motif du Refus</StyledTd>
+                                <StyledTd>{value.declined_reason}</StyledTd>
+                            </StyledTr>
+                        }
+                        <StyledTr>
+                            <StyledTd>Adresse Mac</StyledTd>
+                            {props.userId === "aeg" ?
+                                <MacAdressTd access_mac={value.access_mac} access_id={value.access_id} />
+                                :
+                                <StyledTd>{value.access_mac}</StyledTd>
+                            }
+                        </StyledTr>
+                        <StyledTr>
+                            <StyledTd>Preuve</StyledTd>
+                            <StyledTd style={{ textAlign: "center", whiteSpace: "normal" }}>
+                                <UserProofModal link={value.access_proof} alt={value.access_description} />
+                            </StyledTd>
+                        </StyledTr>
+                        <StyledTr>
+                            <StyledTd>Etat</StyledTd>
+                            <StyledTd><StateRequest center={true} state={value.access_state} /></StyledTd>
+                        </StyledTr>
+                        <StyledTr style={{ borderBottom: props.requests.length == (index + 1) ? undefined : "2px solid transparent" }}>
+                            <StyledTd>Action</StyledTd>
+                            <StyledTd style={{ textAlign: "center" }}>
+                                <SmallRedButton onClick={(e) => deleteAccess(e, value.access_id)}>
+                                    Supprimer
+                                </SmallRedButton>
+                            </StyledTd>
+                        </StyledTr></tbody>
+                </StyledTable>
+            </motion.div>
         )
     })
 
     return (
         <MediaContextProvider>
             <Media at="sm" style={containerStyle}>
-                <StyledTable>
-                    <tbody>{mobilelistHTML}</tbody>
-                </StyledTable>
+                <AnimatePresence initial={false}>{mobilelistHTML}</AnimatePresence>
             </Media>
 
             <Media greaterThan="sm" style={containerStyle}>
@@ -131,7 +152,7 @@ export default function IoTUserTable(props: { requests: access[], setAccess: Fun
                             <StyledTh scope="col"><span style={{ paddingLeft: "5px" }}>Action</span></StyledTh>
                         </StyledHeadTr>
                     </thead>
-                    <tbody>{listHTML}</tbody>
+                    <tbody><AnimatePresence initial={false}>{listHTML}</AnimatePresence></tbody>
                 </StyledTable>
             </Media>
         </MediaContextProvider>

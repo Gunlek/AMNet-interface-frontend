@@ -1,9 +1,10 @@
 import axios from "axios"
+import { AnimatePresence, motion } from "framer-motion"
+import { useState } from "react"
 import { GreenButton } from "../../Button/Buttons"
-import useMediaQuery from "../../MediaQueries/MediaQuery"
 import { TitleCard } from "../Cards"
+import { DefaultModal } from "./Modal"
 import ModalLogic from "./ModalLogic"
-import { StyledBackgroundModal, StyledModal } from "./style"
 
 export default function SettingsModal(props: {
     settings: {
@@ -15,66 +16,99 @@ export default function SettingsModal(props: {
     original_usins_state: boolean,
     active_proms: number
 }) {
-    const minWidth1000 = useMediaQuery('(min-width: 1000px)');
-    const { Display, Opacity, toggle } = ModalLogic();
+    const { Display, toggle } = ModalLogic();
+    const [message, setMessage] = useState(true);
+    const showMessage = message ?
+        !props.settings.usins_state && props.settings.usins_state !== props.original_usins_state
+        :
+        false;
 
-    const updateSettings = async (e) => {
+    const divProps = {
+        initial: { opacity: 0, height: 89 },
+        animate: { opacity: 1, height: "auto" },
+        exit: { opacity: 0, height: 89 },
+        transition: { ease: "linear" }
+    };
+
+    const updateSettings = async (e, modal?: boolean) => {
         e.preventDefault();
 
-        await Promise.all([
-            axios.put(`/settings/lydia_cotiz`, { value: props.settings.lydia_cotiz }),
-            axios.put(`/settings/active_proms`, { value: props.settings.active_proms }),
-            axios.put(`/settings/usins_state`, { value: props.settings.usins_state }),
-            axios.put(`/settings/guest_access`, { value: props.settings.guest_access })
-        ]);
+        if (!showMessage || modal) {
+            Promise.all([
+                axios.put(`/settings/lydia_cotiz`, { value: props.settings.lydia_cotiz }),
+                axios.put(`/settings/active_proms`, { value: props.settings.active_proms }),
+                axios.put(`/settings/guest_access`, { value: props.settings.guest_access }),
+                axios.put(`/settings/usins_state`, { value: props.settings.usins_state })
+            ]).then(([res1, res2, res3, res4]) => {
+                if (res1.status === 200 &&
+                    res2.status === 200 &&
+                    res3.status === 200 &&
+                    res4.status === 200 ) {
+                    if(modal) setMessage(false);
+                    else toggle(e);
+                }
+            });
+        }
+        else toggle(e)
+
     }
-
-    const showModal = !props.settings.usins_state && props.settings.usins_state !== props.original_usins_state;
-
     return (
         <>
             <GreenButton
                 mobileWidth="100%"
-                onClick={showModal ? toggle : (e) => { updateSettings(e); toggle(e) }}
+                onClick={updateSettings}
             >
                 Mettre à jour
             </GreenButton>
-            {Display &&
-                <>
-                    <StyledBackgroundModal onClick={toggle} Opacity={Opacity} />
-                    <StyledModal width={showModal ? "675px" : "450px"} Opacity={Opacity}>
-                        {showModal ?
-                            <>
-                                <TitleCard hideLine={!minWidth1000}>Modification du statut de l&apos;usinage</TitleCard>
-                                <div style={{ marginBottom: "20px", width: "100%" }}>
-                                    Tu as modifié le statut de l&apos;usinage en :{" "}
-                                    <span style={{ fontWeight: "bold", color: "#096a09" }}>
-                                        Fini
-                                    </span><br />
-                                    Si tu valides cette modification cela va transformer la Prom&apos;s
-                                    <div
-                                        style={{
-                                            fontWeight: "bold",
-                                            color: "#096a09",
-                                            fontSize: "1.4rem",
-                                            textAlign: "center",
-                                            margin: "5px"
-                                        }}
-                                    >
-                                        {props.active_proms + 1801} en {props.active_proms + 1}
-                                    </div>
-                                    Et update leur statut en Gadz, ils auront donc accès à Gadzflix.
+            <DefaultModal
+                style={{ width: "575px", transition: "width 0.3s linear" }}
+                toggle={toggle}
+                Display={Display}
+
+            >
+                <AnimatePresence initial={false} exitBeforeEnter>
+                    {showMessage ?
+                        <motion.div
+                            {...divProps}
+                            key="modification"
+                            style={{
+                                display: "flex",
+                                flexDirection: "column",
+                                alignItems: "center"
+                            }}
+                        >
+                            <TitleCard hideLine={true}>Modification du statut de l&apos;usinage</TitleCard>
+                            <div style={{ marginBottom: "20px", width: "100%", textAlign: "center" }}>
+                                Tu as modifié le statut de l&apos;usinage en :{" "}
+                                <span style={{ fontWeight: "bold", color: "#096a09" }}>
+                                    Fini
+                                </span><br />
+                                Si tu valides cette modification cela va transformer
+                                <div
+                                    style={{
+                                        fontWeight: "bold",
+                                        color: "#096a09",
+                                        fontSize: "1.6rem",
+                                        textAlign: "center",
+                                        margin: "10px"
+                                    }}
+                                >
+                                    {props.active_proms + 1801} en {props.active_proms + 1}
                                 </div>
+                                Et update leur statut en Gadz, <br />
+                                ils auront donc accès à Gadzflix.
+                            </div>
 
-                                <GreenButton onClick={updateSettings}>Mettre à jour</GreenButton>
-                            </>
-                            :
-                            <>Les Paramètres ont été mis à jour</>
-                        }
-
-                    </StyledModal>
-                </>
-            }
+                            <GreenButton
+                                onClick={(e) => { updateSettings(e, true) }}>
+                                Mettre à jour
+                            </GreenButton>
+                        </motion.div>
+                        :
+                        <motion.div {...divProps} key="message">Les Paramètres ont été mis à jour</motion.div>
+                    }
+                </AnimatePresence>
+            </DefaultModal>
         </>
     )
 }

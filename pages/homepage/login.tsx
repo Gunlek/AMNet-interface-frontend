@@ -91,7 +91,7 @@ export default function Login(props: { modal: boolean, from: string }) {
     <>
       <Head>
         <title>Connexion &bull; AMNet</title>
-        <meta name="description" content="Connexion : accédez à votre espace personnel pour gérer votre compte AMNet et vos appareils connectés" />
+        <meta name="description" content="Connexion AMNet : accédez à votre espace personnel pour gérer votre compte AMNet et vos appareils connectés" />
       </Head>
       <CampusGlobalStyle />
       <CampusBackground />
@@ -105,12 +105,12 @@ export default function Login(props: { modal: boolean, from: string }) {
         initial="hidden"
         animate="enter"
         exit="exit"
-        transition={{ type: 'linear' }}
+        transition={{ ease: "linear" }}
       >
         <motion.div
           variants={{ exit: { opacity: 0, x: login ? -100 : 0 } }}
           exit="exit"
-          transition={{ type: 'linear' }}
+          transition={{ ease: "linear" }}
           style={{
             display: "flex",
             flexDirection: "column",

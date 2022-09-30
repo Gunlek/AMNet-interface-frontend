@@ -21,7 +21,6 @@ export const StyledHeadTr = styled(StyledTr)`
 
 export const StyledTd = styled.td`
   padding : 15px 25px;
-  white-space: nowrap;
   transition: background-color 0.2s;
   background-color: ${(props) => props.BackgroundColor};
   text-align: ${(props) => props.textAlign};
@@ -97,60 +96,6 @@ export const StyledTh = styled.th`
   }
 `;
 
-export const StyledUsersTr = styled(StyledTeamTr).attrs({as: "div"})`
+export const StyledUsersTr = styled(StyledTeamTr)`
   border-bottom: none;
 `;
-
-export const StyledUsersBody = styled.div`
-  position : relative;
-  font-size: 1.2rem;
-`;
-
-export const StyledMobileContainerRow = styled.div`
-  min-width: 0 !important;
-`;
-
-const opacityIn = keyframes`
-  from {
-    opacity: 0;
-  }
-
-  to {
-    opacity: 1;
-  }
-`;
-
-const opacityOut = keyframes`
-  from {
-    opacity: 1;
-  }
-
-  to {
-    opacity: 0;
-  }
-`;
-
-export const Tbody = styled.tbody`
-  animation: ${(props) => props.Opacity == "in" ? opacityIn : props.Opacity == "out" ? opacityOut : undefined} 0.6s linear;
-  position: relative;
-`;
-
-export const Thead = styled(Tbody).attrs({ as: 'thead' })``;
-
-export const MobileTbody = styled(Tbody).attrs({ as: 'div' })``;
-
-export const MacTooltip = styled.div`
-  position: absolute;
-  bottom: -70px;
-  left: 50%;
-  transform: translateX(-50%);
-  color: red;
-  border: 2px solid red;
-  background: white;
-  width: auto;
-  padding: 10px;
-  border-radius: 15px;
-  z-index: 7;
-  animation: ${(props) => props.Opacity == "in" ? opacityIn : props.Opacity == "out" ? opacityOut : undefined} 0.4s;
-`;
-

@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import styled from "styled-components";
 
 export const WhiteText = styled.div`
@@ -7,6 +8,14 @@ export const WhiteText = styled.div`
   @media screen and (max-width: 1000px){
     margin-bottom: ${(props) => props.mobileMarginBottom};
     text-align: ${(props) => props.mobileAlignTxt};
+  }
+
+  @media screen and (max-width: 500px){
+    font-size: ${props => props.fontSize};
+  }
+
+  @media screen and (max-width: 1450px) and (min-width: 1000px){
+    font-size: ${props => props.fontSize}
   }
 `;
 
@@ -82,7 +91,13 @@ export const ErrorPNoFixed = styled(WhiteP)`
   margin-top: 5px;
 `
 
-export const ErrorP = styled(ErrorPNoFixed)`
+export const ErrorP = styled(ErrorPNoFixed).attrs({
+  as: motion.p,
+  initial: { opacity: 0 },
+  animate: { opacity: 1 },
+  exit: { opacity: 0 },
+  transition: { ease: "linear" }
+})`
   margin-top: 0;
   position: absolute;
   bottom: -27px;

@@ -2,20 +2,22 @@ import { GreenButton } from "../../Button/Buttons"
 import useMediaQuery from "../../MediaQueries/MediaQuery"
 import { TitleCard } from "../Cards"
 import ModalLogic from "./ModalLogic"
-import { StyledBackgroundModal, StyledModal } from "./style"
 import Image from 'next/image'
 import RectangleLogo from "../RectangleLogo"
 import { ErrorPNoFixed, StyledLink } from "../../Text/style"
 import { Row } from "../../Container/style"
 import DOMPurify from 'isomorphic-dompurify';
 import axios, { AxiosResponse } from "axios"
-import { useState } from "react"
+import React, { useState } from "react"
+import { DefaultModal } from "./Modal"
+import { AnimatePresence, motion } from "framer-motion"
 
 export default function MailModal(props: { html: any, subject: string, recipients: any, setHTML: any }) {
-    const minWidth1000 = useMediaQuery('(min-width: 1000px)');
-    const { Display, Opacity, toggle } = ModalLogic();
+    const { Display, toggle } = ModalLogic();
     const [send, setSend] = useState(false)
     const html = DOMPurify.sanitize(props.html);
+    const minWidth740 = useMediaQuery('(min-width: 740px)');
+
     const noRecipients = !(
         (props.recipients.Contribution || props.recipients.NoContribution) &&
         (
@@ -25,6 +27,13 @@ export default function MailModal(props: { html: any, subject: string, recipient
             props.recipients.Other
         )
     );
+
+    const divProps = {
+        initial: { opacity: 0, height: 58 },
+        animate: { opacity: 1, height: "auto" },
+        exit: { opacity: 0, height: 58 },
+        transition: { ease: "linear" }
+    }
 
     const sendMail = async (e) => {
         e.preventDefault();
@@ -39,26 +48,25 @@ export default function MailModal(props: { html: any, subject: string, recipient
             .then((res: AxiosResponse) => {
                 if (res.status == 200) { setSend(true); props.setHTML(""); }
             });
-    }
+    };
 
     return (
         <>
             <GreenButton mobileWidth="100%" onClick={toggle}>Pré-visualiser le Mail</GreenButton>
-            {Display &&
-                <>
-                    <StyledBackgroundModal onClick={(e) => { toggle(e); setSend(false); }} Opacity={Opacity} />
-                    <StyledModal
-                        width={minWidth1000 ? "800px" : undefined}
-                        Opacity={Opacity}
-                        style={{ maxHeight: "90vh" }}
-                    >
+            <DefaultModal
+                style={{ width: "800px" }}
+                Display={Display}
+                toggle={(e) => { toggle(e); setSend(false); }}
+            >
+                <div style={{height: "100%", width: "100%", overflow: "auto"}}>
+                    <AnimatePresence initial={false} exitBeforeEnter>
                         {send ?
-                            <>
+                            <motion.div key="message" {...divProps} layout>
                                 Le Mail d&apos;information pour les utilisateurs a été envoyé <br />
                                 Tu vas en recevoir une copie du mail sur ton adresse de boul&apos;s
-                            </>
+                            </motion.div>
                             :
-                            <>
+                            <motion.div key="mail" {...divProps} layout>
                                 <TitleCard>Pré-visualisation du Mail</TitleCard>
                                 <div
                                     style={{
@@ -82,14 +90,13 @@ export default function MailModal(props: { html: any, subject: string, recipient
                                             height={77}
                                             src="/static/images/template/info.png"
                                             alt="template info"
-                                            layout="fixed"
                                         />
 
                                         <div
                                             style={{
                                                 background: "url(/static/images/template/body.png)",
                                                 backgroundSize: "contain",
-                                                width: "600px",
+                                                width: minWidth740 ? "600px": "100%",
                                                 padding: "0 40px",
                                             }}
                                         >
@@ -118,7 +125,6 @@ export default function MailModal(props: { html: any, subject: string, recipient
                                             height={50}
                                             alt="template bottom"
                                             src="/static/images/template/bottom.png"
-                                            layout="fixed"
                                         />
 
                                         <RectangleLogo />
@@ -151,15 +157,18 @@ export default function MailModal(props: { html: any, subject: string, recipient
                                         <strong>Attention</strong> tu n&apos;as pas rempli l&apos;Objet du mail
                                     </ErrorPNoFixed>
                                 }
-                                
+
                                 <Row style={{ justifyContent: "center" }}>
-                                    <GreenButton onClick={noRecipients ? undefined : sendMail}>Envoyer le Mail</GreenButton>
+                                    <GreenButton onClick={noRecipients || props.subject == "" ? undefined : sendMail}>
+                                        Envoyer le Mail
+                                    </GreenButton>
                                 </Row>
-                            </>
+                            </motion.div>
                         }
-                    </StyledModal>
-                </>
-            }
+                    </AnimatePresence>
+                </div>
+            </DefaultModal>
+
         </>
     )
 }

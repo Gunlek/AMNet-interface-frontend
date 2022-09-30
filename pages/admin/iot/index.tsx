@@ -2,12 +2,11 @@ import React, { useRef, useState } from "react";
 import Head from "next/head";
 import { StyledCard } from "../../../components/Card/style";
 import AdminMenu from "../../../components/Menu/AdminMenu";
-import { Column, DashboardContainer, ResponsiveRow, Row, StyledMain } from "../../../components/Container/style";
+import { DashboardContainer, ResponsiveRow, Row, StyledMain } from "../../../components/Container/style";
 import { BlackTitle } from "../../../components/Text/style";
 import RequestTab from "../../../components/Card/RequestTab";
 import { Footer, InfoAdmin } from "../../../components/Card/Cards";
-import IoTAdminTable from "../../../components/Table/Admin/IoT";
-import useMediaQuery from "../../../components/MediaQueries/MediaQuery";
+import IoTAdminTable from "../../../components/Table/Admin/IoT/IoT";
 import axios from "axios";
 import { adminAccess } from "../../../components/Utils/types";
 import useTransition from "../../../components/Table/Admin/TableTransition";
@@ -49,10 +48,8 @@ export async function getServerSideProps({ req }) {
 }
 
 export default function AdminIoT(props: { access: adminAccess[], fromIndex: boolean }) {
-  const mobileContainerRef = useRef(null)
-  const minWidth1000 = useMediaQuery('(min-width:1000px)');
   const [access, setAccess] = useState(props.access);
-  const { Display, Opacity, Tab, handleTabChange } = useTransition(mobileContainerRef, access);
+  const { Display, Tab, handleTabChange } = useTransition();
   const { roadTo, pageTransition, roadToHome } = usePageTransition('user');
 
   const variants = props.fromIndex ?
@@ -66,7 +63,7 @@ export default function AdminIoT(props: { access: adminAccess[], fromIndex: bool
   return (
     <>
       <Head>
-        <title>Administration &bull; AMNet</title>
+        <title>Accès IoT &bull; AMNet</title>
       </Head>
 
       <StyledMain variants={variants}>
@@ -94,19 +91,19 @@ export default function AdminIoT(props: { access: adminAccess[], fromIndex: bool
             </div>
           </ResponsiveRow>
 
-          <RequestTab status={Tab.new} TabChange={handleTabChange} />
+          <RequestTab status={Tab.new} TabChange={handleTabChange} name="IoT"/>
 
           <StyledCard
             marginBottom="2%"
             mobileMarginBottom="10px"
-            style={{ flex: "1 0 0", minHeight: minWidth1000 ? "0" : "300px" }}
+            minHeight="0"
+            mobileMinHeight="300px"
+            style={{ flex: "1 0 0" }}
           >
             <IoTAdminTable
               status={Tab}
               requests={access}
               display={Display}
-              opacity={Opacity}
-              mobileRef={mobileContainerRef}
               setTab={setAccess}
             />
           </StyledCard>

@@ -32,12 +32,12 @@ export default function LostPassword() {
     <>
       <Head>
         <title>Mot de passe oublié &bull; AMNet</title>
-        <meta name="description" content="Identifiants oubliés : Recevoir son identifiant et reinitialiser son mot de passe" />
+        <meta name="description" content="Identifiants oubliés AMNet : Recevoir son identifiant et reinitialiser son mot de passe" />
       </Head>
       <CampusGlobalStyle />
       <CampusBackground/>
       
-      <Modal show={show} style={{ width: "450px", textAlign: "center", color: error ? "red" : undefined }}>
+      <Modal show={show} style={{ width: error ? "450px" : "350px", textAlign: "center", color: error ? "red" : undefined }}>
         {error ?
           <>
             Cette adresse e-mail n&apos;est associée à aucun compte
@@ -55,7 +55,7 @@ export default function LostPassword() {
         initial="hidden"
         animate="enter"
         exit="exit"
-        transition={{ type: 'linear' }}
+        transition={{ ease: "linear" }}
       >
         <Row
           mobileWidth="90%"

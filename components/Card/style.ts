@@ -30,6 +30,14 @@ export const StyledCardCampus = styled(StyledCard)`
   } 
 `;
 
+export const StyledRequestsContainer = styled(StyledCard)`
+  margin-bottom: 2%;
+  
+  @media screen and (max-width: 1000px){
+    margin-bottom: 30px;
+  } 
+`;
+
 export const StyledGreenCard = styled.div`
   background: #096a09;
   border-radius: 13px 20px 20px 0px;
@@ -39,8 +47,22 @@ export const StyledGreenCard = styled.div`
   font-size: 1.2rem;
   position: relative;
   z-index: 2;
+  
   @media screen and (max-width: 1000px){
     padding: 5px 10px 5px 20px;
+  }
+
+  @media screen and (max-width: 1450px){
+    font-size: 15px;
+  }
+
+  @media screen and (max-width: 1450px) and (min-width: 1000px){
+    font-size: 13px;
+  }
+
+  @media screen and (max-width: 500px){
+    margin-top: 0px;
+    font-size: 12px;
   }
 `;
 
@@ -55,6 +77,18 @@ export const StyledTeamPicture = styled(Column)`
   @media screen and (max-width: 1000px){
     height: 400px;
     aspect-ratio: auto;
+  } 
+
+  @media screen and (max-width: 500px){
+    height: 300px;
+
+    span{
+      img{
+        object-fit: contain;
+        border-top-left-radius: 30px;
+        border-top-right-radius: 30px;
+      }
+    }
   } 
 `;
 
@@ -136,11 +170,9 @@ export const StyledTabColumn = styled(Column)`
 `;
 
 export const StyledActive = styled.div`
-  transform: ${(props) => props.Transform};
-  width: ${(props) => props.Declined ? "7.5rem" : "6.25rem"};
+  width: 6.25rem;
   background-color: #096A09;
   height: 4px;
-  transition: transform 0.75s, width 0.75s;
   position: absolute;
   bottom: -2px;
   left: 0;
@@ -148,6 +180,10 @@ export const StyledActive = styled.div`
   @media screen and (max-width: 365px){
     width: ${(props) => props.Declined ? "125%" : "100%"};
   } 
+`;
+
+export const StyledDeclinedAtive = styled(StyledActive)`
+  width: 7.5rem;
 `;
 
 export const ContainerAdminToolTip = styled.div`
