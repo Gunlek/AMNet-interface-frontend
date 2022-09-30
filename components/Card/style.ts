@@ -30,6 +30,14 @@ export const StyledCardCampus = styled(StyledCard)`
   } 
 `;
 
+export const StyledRequestsContainer = styled(StyledCard)`
+  margin-bottom: 2%;
+  
+  @media screen and (max-width: 1000px){
+    margin-bottom: 30px;
+  } 
+`;
+
 export const StyledGreenCard = styled.div`
   background: #096a09;
   border-radius: 13px 20px 20px 0px;
