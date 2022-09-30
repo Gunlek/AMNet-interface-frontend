@@ -97,7 +97,10 @@ export default function IoTModal(props: { setAccess: Function, userId: Number | 
                         props.setAccess(access.data);
                         toggle();
                     }
-                    if (res.status === 409) {
+
+                })
+                .catch((err) => {
+                    if (err.request.status === 409) {
                         const newError = { ...error };
                         newError.access_mac_exist = true;
                         setError(newError);
