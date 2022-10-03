@@ -23,8 +23,8 @@ export default function LostPassword() {
     e.preventDefault();
     axios.post(`/mail/password-reset`, { user_email: mail })
       .then((res: AxiosResponse) => {
-        if (res.status === 200) setShow(true)
-        if (res.status === 204) { setShow(true); setError(true) }
+        if (res.status === 200) { setShow(!show); setError(false) }
+        if (res.status === 204) { setShow(!show); setError(true) }
       })
   }
 
@@ -35,9 +35,17 @@ export default function LostPassword() {
         <meta name="description" content="Identifiants oubliés AMNet : Recevoir son identifiant et reinitialiser son mot de passe" />
       </Head>
       <CampusGlobalStyle />
-      <CampusBackground/>
-      
-      <Modal show={show} style={{ width: error ? "450px" : "350px", textAlign: "center", color: error ? "red" : undefined }}>
+      <CampusBackground />
+
+      <Modal
+        show={show}
+        style={{
+          width: error ? "350px" : "450px",
+          textAlign: "center",
+          color: error ? "red" : undefined,
+          display: "block"
+        }}
+      >
         {error ?
           <>
             Cette adresse e-mail n&apos;est associée à aucun compte
@@ -45,7 +53,9 @@ export default function LostPassword() {
           :
           <>
             Nous venons de vous envoyer un mail <br />
-            Pour réinitialiser votre mot de passe
+            Pour réinitialiser votre mot de passe <br /><br />
+            Si vous ne l&apos;avez pas reçu <br />
+            Vérifiez vos courriers indésirables
           </>
         }
       </Modal>
