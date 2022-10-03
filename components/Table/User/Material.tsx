@@ -6,8 +6,8 @@ import { SmallRedButton } from "../../Button/Buttons";
 import { MediaContextProvider, Media } from "../../MediaQueries/MediaSSR";
 import { StateRequest } from "../../Status/Status";
 import { hardware } from "../../Utils/types";
-import {UserMotionDiv} from "../MotionDiv";
-import { StyledTr, StyledTd, StyledFlexTd, StyledHeadTr, StyledTh, StyledTable } from "../style";
+import { UserMotionDiv } from "../MotionDiv";
+import { StyledTr, StyledTd, StyledFlexTd, StyledHeadTr, StyledTh, StyledTable, StyledReqTd } from "../style";
 const StyledMaterialToolTip = dynamic(() => import("../../Card/style").then((mod) => mod.StyledMaterialToolTip))
 
 export default function MaterialUserTable(props: { requests: hardware[], setHardware: Function, userId: Number }) {
@@ -42,20 +42,20 @@ export default function MaterialUserTable(props: { requests: hardware[], setHard
                 initial={{ opacity: 0, borderBottom: "2px solid rgba(0,0,0,0)" }}
                 animate={{ opacity: 1, borderBottom: "2px solid rgba(0,0,0,0.1)" }}
                 exit={{ opacity: 0, borderBottom: "2px solid rgba(0,0,0,0)" }}
-                transition={{ ease: "linear" }}
+                transition={{ ease: "linear", duration: 0.3 }}
             >
-                <StyledTd><UserMotionDiv>{index + 1}</UserMotionDiv></StyledTd>
-                <StyledTd><UserMotionDiv>{value['material_description']}</UserMotionDiv></StyledTd>
+                <StyledReqTd><UserMotionDiv>{index + 1}</UserMotionDiv></StyledReqTd>
+                <StyledReqTd><UserMotionDiv>{value['material_description']}</UserMotionDiv></StyledReqTd>
                 <StyledFlexTd style={{ whiteSpace: "normal" }}>
                     <UserMotionDiv style={{ minWidth: "100%", width: "400px", maxWidth: "max-content" }}>
                         {value['material_reason']}
                     </UserMotionDiv>
                 </StyledFlexTd>
-                {declinedExist && <StyledTd><UserMotionDiv>{value.declined_reason}</UserMotionDiv></StyledTd>}
-                <StyledTd>
+                {declinedExist && <StyledReqTd><UserMotionDiv>{value.declined_reason}</UserMotionDiv></StyledReqTd>}
+                <StyledReqTd>
                     <UserMotionDiv><StateRequest state={value['material_state']} /></UserMotionDiv>
-                </StyledTd>
-                <StyledTd style={{ position: "relative" }}>
+                </StyledReqTd>
+                <StyledReqTd style={{ position: "relative" }}>
                     <UserMotionDiv>
                         <SmallRedButton
                             onClick={value['material_state'] !== 'active' ? (e) => deleteMaterial(e, value.material_id) : undefined}
@@ -73,7 +73,7 @@ export default function MaterialUserTable(props: { requests: hardware[], setHard
                             }
                         </SmallRedButton>
                     </UserMotionDiv>
-                </StyledTd>
+                </StyledReqTd>
             </StyledTr>
         );
 
@@ -83,7 +83,7 @@ export default function MaterialUserTable(props: { requests: hardware[], setHard
                 initial={{ opacity: 0, height: 0 }}
                 animate={{ opacity: 1, height: "auto" }}
                 exit={{ opacity: 0, height: 0 }}
-                transition={{ ease: "linear" }}
+                transition={{ ease: "linear", duration: 0.3 }}
             >
                 <StyledTable>
                     <thead>
@@ -140,15 +140,15 @@ export default function MaterialUserTable(props: { requests: hardware[], setHard
             </Media>
 
             <Media greaterThan="sm" style={containerStyle}>
-                <StyledTable>
+                <StyledTable style={{ tableLayout: "fixed" }}>
                     <thead>
                         <StyledHeadTr>
-                            <StyledTh scope="col">#</StyledTh>
+                            <StyledTh scope="col" style={{ width: "50px" }}>#</StyledTh>
                             <StyledTh scope="col">Description</StyledTh>
                             <StyledTh scope="col">Détails</StyledTh>
                             {declinedExist && <StyledTh scope="col">Motif du Refus</StyledTh>}
-                            <StyledTh scope="col"><span style={{ paddingLeft: "5px" }}>Etat</span></StyledTh>
-                            <StyledTh scope="col"><span style={{ paddingLeft: "5px" }}>Action</span></StyledTh>
+                            <StyledTh scope="col" style={{ width: "200px" }}><span style={{ paddingLeft: "5px" }}>Etat</span></StyledTh>
+                            <StyledTh scope="col" style={{ width: "175px" }}><span style={{ paddingLeft: "5px" }}>Action</span></StyledTh>
                         </StyledHeadTr>
                     </thead>
                     <tbody><AnimatePresence initial={false}>{listHTML}</AnimatePresence></tbody>

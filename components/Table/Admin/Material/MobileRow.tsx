@@ -19,23 +19,38 @@ export const MobileMaterialLine = ({ index, value, status, isLast, setTab, virtu
     virtuosoProps: any
 }) => {
     const [scrolled, setScrolled] = useState(false);
+    const [animate, setAnimate] = useState(false);
 
+    const newSetTab = (newAccess) => {
+        setAnimate(true);
+
+        const timer = setTimeout(() => {
+            setTab(newAccess);
+        }, 350)
+
+        return () => clearTimeout(timer)
+    };
+    
     return (
         <motion.div
             key={value.material_id}
-            exit={{ opacity: 0, height: 0 }}
             {...virtuosoProps}
-            style={{ paddingBottom: isLast ? "5px" : "25px", overflowAnchor: "none" }}
+            style={{ overflowAnchor: "none" }}
+            initial={false}
+            transition={{ ease: "linear", duration: 0.3 }}
+            animate={{
+                height: animate ? 0 : "auto",
+                paddingBottom: animate ? 0 : isLast ? "0" : scrolled ? "10px" : "25px",
+                overflow: animate ? "clip" : "auto"
+            }}
         >
             <motion.div
-                layout
+                style={{ overflow: scrolled ? "auto" : "clip" }}
+                initial={false}
+                animate={{ height: scrolled ? "auto" : "53px" }}
                 transition={{ ease: "linear", duration: 0.3 }}
-                style={{
-                    height: scrolled ? `auto` : "53px",
-                    overflow: scrolled ? "auto" : "clip"
-                }}
             >
-                <StyledTable as={motion.table} layout>
+                <StyledTable>
                     <thead>
                         <StyledHeadTr onClick={() => setScrolled(!scrolled)}>
                             <StyledTh style={{ width: "130px" }}>Demande {index}</StyledTh>
@@ -91,15 +106,14 @@ export const MobileMaterialLine = ({ index, value, status, isLast, setTab, virtu
                                         display: "flex",
                                         alignItems: "center",
                                         justifyContent: "space-between",
-                                        flexDirection: "column",
-                                        transition: "height 0s ease-out 0.6s"
+                                        flexDirection: "column"
                                     }}
                                 >
                                     <Buttons
                                         status={value['material_state']}
                                         requestType="hardware"
                                         id={value.material_id}
-                                        setTab={setTab}
+                                        setTab={newSetTab}
                                     />
                                 </div>
                             </StyledTd>

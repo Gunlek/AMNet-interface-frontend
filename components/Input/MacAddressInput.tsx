@@ -2,18 +2,18 @@ import React, { useEffect, useState } from "react";
 import MacAddressVerification from "../Utils/macaddress";
 import { useLongPress } from "react-use";
 import useMediaQuery from "../MediaQueries/MediaQuery";
-import axios from "axios";
+import axios, { AxiosResponse } from "axios";
 import { AnimatePresence, motion } from "framer-motion";
-import { StyledTd } from "../Table/style";
+import { StyledReqTd } from "../Table/style";
 import dynamic from "next/dynamic";
 import { AdminMotionDiv } from "../Table/MotionDiv";
 const MacTooltip = dynamic<any>(() => import("./style").then(mod => mod.MacTooltip));
 
-export default function MacAdressTd(props: { access_mac: string, access_id: number, isScrolling?: boolean }) {
+export default function MacAdressTd(props: { access_mac: string, access_id: number, animate?: boolean }) {
     const minWidth1000 = !useMediaQuery('(min-width:1000px)');
     const [input, setInput] = useState(false)
     const [mac, setMac] = useState(props.access_mac)
-    const [tooltip, setTooltip] = useState({ display: false, opacity: "" })
+    const [tooltip, setTooltip] = useState(false)
     const verifiedMac = MacAddressVerification(mac)
     const longPressEvent = useLongPress(handleDoubleClick, { isPreventDefault: true, delay: 650 });
 
@@ -24,19 +24,20 @@ export default function MacAdressTd(props: { access_mac: string, access_id: numb
     const handleChange = (elmt) => {
         if (!elmt.key || elmt.key === 'Enter') {
             if (verifiedMac === "") {
-                setTooltip({ display: true, opacity: "in" })
+                setTooltip(true)
                 setMac(props.access_mac)
 
-                setTimeout(() => {
-                    setTooltip({ display: true, opacity: "out" })
-                    setTimeout(() => {
-                        setTooltip({ display: false, opacity: "" })
-                    }, 390);
-                }, 3000);
+                const timer = setTimeout(() => {
+                    setTooltip(false)
+                }, 3500);
+
+                return () => clearTimeout(timer);
             }
             else {
-                axios.put(`/access/${props.access_id}`, { access_mac: verifiedMac });
-                setMac(verifiedMac);
+                axios.put(`/access/${props.access_id}`, { access_mac: verifiedMac })
+                    .then((res: AxiosResponse) => {
+                        if (res.status === 200) setMac(verifiedMac);
+                    });
             }
             setInput(false)
         }
@@ -47,12 +48,12 @@ export default function MacAdressTd(props: { access_mac: string, access_id: numb
     }, [input])
 
     return (
-        <StyledTd
+        <StyledReqTd
             style={{
                 textAlign: "center",
                 paddingBottom: "0",
                 paddingTop: "0",
-                position: tooltip.display ? "relative" : undefined
+                position: tooltip ? "relative" : undefined
             }}
             onDoubleClick={handleDoubleClick}
             {...minWidth1000 && { ...longPressEvent }}
@@ -77,11 +78,11 @@ export default function MacAdressTd(props: { access_mac: string, access_id: numb
                     onBlur={handleChange}
                 />
                 :
-                <AdminMotionDiv isScrolling={props.isScrolling}>{mac}</AdminMotionDiv>
+                <AdminMotionDiv animate={props.animate}>{mac}</AdminMotionDiv>
             }
 
             <AnimatePresence>
-                {tooltip.display &&
+                {tooltip &&
                     <MacTooltip
                         as={motion.div}
                         intial={{ opacity: 0 }}
@@ -93,6 +94,6 @@ export default function MacAdressTd(props: { access_mac: string, access_id: numb
                     </MacTooltip>
                 }
             </AnimatePresence>
-        </StyledTd>
+        </StyledReqTd>
     )
 };

@@ -21,7 +21,7 @@ export default function IoTAdminTable(props: {
     display: { active: boolean, declined: boolean, pending: boolean },
     setTab: Function
 }) {
-    const style = { width: "100%", height: "100%"};
+    const style = { width: "100%", height: "100%" };
 
     const list = CreateSplitList(props.requests);
 
@@ -34,8 +34,8 @@ export default function IoTAdminTable(props: {
                 >
                     {props.display.pending &&
                         <MobileAdminTable
+                            state="pending"
                             key="pending"
-                            display={props.display}
                             requests={list.pending}
                             setTab={props.setTab}
                         />
@@ -43,15 +43,15 @@ export default function IoTAdminTable(props: {
                     {props.display.active &&
                         <MobileAdminTable
                             key="active"
-                            display={props.display}
+                            state="active"
                             requests={list.active}
                             setTab={props.setTab}
                         />
                     }
                     {props.display.declined &&
                         <MobileAdminTable
+                            state="declined"
                             key="declined"
-                            display={props.display}
                             requests={list.declined}
                             setTab={props.setTab}
                         />

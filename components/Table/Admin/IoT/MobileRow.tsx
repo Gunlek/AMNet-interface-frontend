@@ -1,5 +1,5 @@
 import { StyledHeadTr, StyledTable, StyledTd, StyledTh, StyledTr } from "../../style";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import Link from "next/link";
 import { StyledLink } from "../../../Text/style";
 import { adminAccess } from "../../../Utils/types";
@@ -14,33 +14,47 @@ const Succes = dynamic(() => import("../../../NavIcons/succes"));
 const Buttons = dynamic(() => import("../Buttons"));
 const StateRequest = dynamic<{ center: boolean, state: string }>(() => import("../../../Status/Status").then((mod) => mod.StateRequest));
 
-export const MobileIoTLine = ({ index, value, status, isLast, setTab, virtuosoProps, isScrolling }: {
+export const MobileIoTLine = ({ index, value, status, isLast, setTab, virtuosoProps }: {
     index: number,
     value: adminAccess,
     status: string,
     setTab: Function,
     isLast: boolean,
-    virtuosoProps: any,
-    isScrolling: boolean
+    virtuosoProps: any
 }) => {
     const [scrolled, setScrolled] = useState(false);
+    const [animate, setAnimate] = useState(false);
+
+    const newSetTab = (newAccess) => {
+        setAnimate(true);
+
+        const timer = setTimeout(() => {
+            setTab(newAccess);
+        }, 350)
+
+        return () => clearTimeout(timer)
+    };
 
     return (
         <motion.div
             key={value.access_id}
-            exit={isScrolling ? null : { opacity: 0, height: 0 }}
             {...virtuosoProps}
-            style={{ paddingBottom: isLast ? "5px" : "25px", overflowAnchor: "none" }}
+            style={{ overflowAnchor: "none" }}
+            initial={false}
+            transition={{ ease: "linear", duration: 0.3 }}
+            animate={{ 
+                height: animate ? 0 : "auto", 
+                paddingBottom: animate ? 0 : isLast ? "0" : scrolled ? "10px" : "25px", 
+                overflow: animate ? "clip" : "auto"
+            }}
         >
             <motion.div
-                layout
+                style={{ overflow: scrolled ? "auto" : "clip" }}
+                initial={false}
+                animate={{ height: scrolled ? "auto" : "53px" }}
                 transition={{ ease: "linear", duration: 0.3 }}
-                style={{
-                    height: scrolled ? `auto` : "53px",
-                    overflow: scrolled ? "auto" : "clip",
-                }}
             >
-                <StyledTable as={motion.table} layout>
+                <StyledTable>
                     <thead>
                         <StyledHeadTr onClick={() => setScrolled(!scrolled)}>
                             <StyledTh style={{ width: "130px" }}>Equipement {index}</StyledTh>
@@ -100,15 +114,14 @@ export const MobileIoTLine = ({ index, value, status, isLast, setTab, virtuosoPr
                                         display: "flex",
                                         alignItems: "center",
                                         justifyContent: "space-between",
-                                        flexDirection: "column",
-                                        transition: "height 0 ease-out 0.6s"
+                                        flexDirection: "column"
                                     }}
                                 >
                                     <Buttons
                                         status={value['access_state']}
                                         requestType="access"
                                         id={value.access_id}
-                                        setTab={setTab}
+                                        setTab={newSetTab}
                                     />
                                 </div>
                             </StyledTd>
