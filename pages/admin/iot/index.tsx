@@ -97,7 +97,7 @@ export default function AdminIoT(props: { access: adminAccess[], fromIndex: bool
             marginBottom="2%"
             mobileMarginBottom="10px"
             minHeight="0"
-            mobileMinHeight="300px"
+            mobileMinHeight="550px"
             style={{ flex: "1 0 0" }}
           >
             <IoTAdminTable
