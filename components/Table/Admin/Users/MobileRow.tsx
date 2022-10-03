@@ -1,5 +1,5 @@
 import { StyledTable, StyledTd, StyledTr } from "../../style";
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import Link from "next/link";
 import { StyledLink } from "../../../Text/style";
 import dynamic from "next/dynamic";
@@ -15,22 +15,22 @@ export const UsersMobileLine = ({ row, virtuosoProps, isLast }: {
     const [scrolled, setScrolled] = useState(false);
 
     return (
-        <div {...virtuosoProps} style={{ paddingBottom: isLast? "0" : "30px", overflowAnchor: "none" }}>
+        <div {...virtuosoProps} style={{ paddingBottom: isLast ? "0" : "30px", overflowAnchor: "none" }}>
             <motion.div
+                initial={false}
+                animate={{height: scrolled ? `auto` : 55 }}
+                transition={{ ease: "linear", duration: 0.3 }}
                 style={{
-                    height: scrolled ? "auto" : "55px",
-                    overflow: "clip",
+                    overflow: scrolled ? "auto" : "clip",
                     borderRadius: "10px",
-                    boxShadow: "inset 0 0 0 2px #096A09",
+                    border: "2px solid #096A09",
                     backgroundColor: "white"
                 }}
-                layout
-                transition={{ ease: "linear", duration: 0.3 }}
             >
-                <StyledTable as={motion.table} layout>
+                <StyledTable>
                     <tbody>
                         {row.cells.map((cell, index) => {
-                            const isUserName = cell.column['id'] == 'user_name'
+                            const isUserName = cell.column['id'] == 'user_name';
 
                             if ((index != 0 && index != 1)) {
                                 return (
