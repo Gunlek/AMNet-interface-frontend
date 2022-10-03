@@ -80,7 +80,7 @@ export default function AdminMaterial(props: { hardware: any, fromIndex: boolean
           <StyledCard
             marginBottom="2%"
             mobileMarginBottom="10px"
-            mobileMinHeight="300px"
+            mobileMinHeight="550px"
             minHeight="0"
             style={{ flex: "1 0 0" }}
           >

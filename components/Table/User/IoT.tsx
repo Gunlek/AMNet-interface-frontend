@@ -12,7 +12,7 @@ import { UserMotionDiv } from "../MotionDiv";
 import {
     StyledTr,
     StyledTd,
-    StyledFlexTd,
+    StyledReqTd,
     StyledTable,
     StyledTh,
     StyledHeadTr
@@ -48,35 +48,34 @@ export default function IoTUserTable(props: { requests: access[], setAccess: Fun
 
         listHTML.push(
             <StyledTr
-                layout
                 key={index}
                 as={motion.tr}
                 initial={{ opacity: 0, borderBottom: "2px solid rgba(0,0,0,0)" }}
                 animate={{ opacity: 1, borderBottom: "2px solid rgba(0,0,0,0.1)" }}
                 exit={{ opacity: 0, borderBottom: "2px solid rgba(0,0,0,0)" }}
-                transition={{ ease: "linear" }}
+                transition={{ ease: "linear", duration: 0.3 }}
             >
-                <StyledTd><UserMotionDiv>{index + 1}</UserMotionDiv></StyledTd>
-                <StyledFlexTd><UserMotionDiv>{value.access_description}</UserMotionDiv></StyledFlexTd>
-                {declinedExist && <StyledTd>{value.declined_reason}</StyledTd>}
+                <StyledReqTd><UserMotionDiv>{index + 1}</UserMotionDiv></StyledReqTd>
+                <StyledReqTd><UserMotionDiv>{value.access_description}</UserMotionDiv></StyledReqTd>
+                {declinedExist && <StyledReqTd>{value.declined_reason}</StyledReqTd>}
                 {props.userId === "aeg" ?
                     <MacAdressTd access_mac={value.access_mac} access_id={value.access_id} />
                     :
-                    <StyledTd style={{ textAlign: "center" }}><UserMotionDiv>{value.access_mac}</UserMotionDiv></StyledTd>
+                    <StyledReqTd style={{ textAlign: "center" }}><UserMotionDiv>{value.access_mac}</UserMotionDiv></StyledReqTd>
                 }
-                <StyledTd style={{ textAlign: "center" }}>
+                <StyledReqTd style={{ textAlign: "center" }}>
                     <UserMotionDiv><UserProofModal link={value.access_proof} alt={value.access_description} /></UserMotionDiv>
-                </StyledTd>
-                <StyledTd>
+                </StyledReqTd>
+                <StyledReqTd>
                     <UserMotionDiv><StateRequest state={value.access_state} /></UserMotionDiv>
-                </StyledTd>
-                <StyledTd>
+                </StyledReqTd>
+                <StyledReqTd>
                     <UserMotionDiv>
                         <SmallRedButton onClick={(e) => deleteAccess(e, value.access_id)}>
                             Supprimer
                         </SmallRedButton>
                     </UserMotionDiv>
-                </StyledTd>
+                </StyledReqTd>
             </StyledTr>
         );
 
@@ -86,7 +85,7 @@ export default function IoTUserTable(props: { requests: access[], setAccess: Fun
                 initial={{ opacity: 0, height: 0 }}
                 animate={{ opacity: 1, height: "auto" }}
                 exit={{ opacity: 0, height: 0 }}
-                transition={{ ease: "linear" }}
+                transition={{ ease: "linear", duration: 0.3 }}
             >
                 <StyledTable>
                     <thead>
@@ -140,16 +139,16 @@ export default function IoTUserTable(props: { requests: access[], setAccess: Fun
             </Media>
 
             <Media greaterThan="sm" style={containerStyle}>
-                <StyledTable>
+                <StyledTable style={{ tableLayout: "fixed" }}>
                     <thead>
                         <StyledHeadTr>
-                            <StyledTh scope="col">#</StyledTh>
+                            <StyledTh scope="col" style={{ width: "50px" }}>#</StyledTh>
                             <StyledTh scope="col">Description</StyledTh>
                             {declinedExist && <StyledTh scope="col">Motif du Refus</StyledTh>}
                             <StyledTh style={{ width: "230px", textAlign: "center" }} scope="col">Adresse Mac</StyledTh>
-                            <StyledTh scope="col">Preuve</StyledTh>
-                            <StyledTh scope="col"><span style={{ paddingLeft: "5px" }}>Etat</span></StyledTh>
-                            <StyledTh scope="col"><span style={{ paddingLeft: "5px" }}>Action</span></StyledTh>
+                            <StyledTh scope="col" style={{ width: "125px" }}>Preuve</StyledTh>
+                            <StyledTh scope="col" style={{ width: "200px" }}><span style={{ paddingLeft: "5px" }}>Etat</span></StyledTh>
+                            <StyledTh scope="col" style={{ width: "175px" }}><span style={{ paddingLeft: "5px" }}>Action</span></StyledTh>
                         </StyledHeadTr>
                     </thead>
                     <tbody><AnimatePresence initial={false}>{listHTML}</AnimatePresence></tbody>

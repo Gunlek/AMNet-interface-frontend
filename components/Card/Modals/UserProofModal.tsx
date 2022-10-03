@@ -29,7 +29,7 @@ export default function UserProofModal(props: { link: string, alt: string }) {
                     }}
                 >
                     <TitleCard>Photo de votre equipement</TitleCard>
-                    <div style={{ position: "relative" }}>
+                    <div>
                         <Image
                             style={{ borderRadius: "30px" }}
                             src={`${process.env.NEXT_PUBLIC_API_HOST}/proof/${props.link}`}

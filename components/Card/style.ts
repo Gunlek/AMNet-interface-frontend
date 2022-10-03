@@ -212,7 +212,7 @@ export const StyledAdminToolTip = styled(StyledCardCampus)`
 
   ${ContainerAdminToolTip}:hover &{
     opacity: 1;
-    z-index: 2;
+    z-index: 10;
   }
 `;
 

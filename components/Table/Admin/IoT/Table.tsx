@@ -7,12 +7,11 @@ import DesktopIoTRow from "./DesktopRow";
 import IoTMobileLine from "./MobileRow";
 
 export function AdminTable({ requests, status, display, setTab }: {
-    requests: any,
+    requests: any[],
     status: { new: string },
     display: { declined: boolean },
     setTab: Function
 }) {
-    const [isScrolling, setIsScrolling] = useState(false);
     const tBodyProps = {
         initial: { opacity: 0 },
         animate: { opacity: 1 },
@@ -25,9 +24,8 @@ export function AdminTable({ requests, status, display, setTab }: {
             <TableVirtuoso
                 style={{ height: "100%" }}
                 totalCount={requests.length}
-                isScrolling={setIsScrolling}
                 initialItemCount={requests.length > 10 ? 10 : requests.length}
-                increaseViewportBy={{ bottom: 200, top: 200 }}
+                increaseViewportBy={200}
                 components={{
                     // eslint-disable-next-line react/display-name
                     TableHead: forwardRef(({ style, ...props }, ref) => <thead ref={ref} {...props} style={{ ...style, zIndex: "2" }} />),
@@ -39,7 +37,6 @@ export function AdminTable({ requests, status, display, setTab }: {
                             value={requests[index]}
                             setTab={setTab}
                             index={index + 1}
-                            isScrolling={isScrolling}
                         />
                     }
                 }}
@@ -52,8 +49,8 @@ export function AdminTable({ requests, status, display, setTab }: {
                         {display.declined && <StyledTh scope="col" style={{ width: "300px" }}>Motif du Refus</StyledTh>}
                         <StyledTh style={{ width: "230px", textAlign: "center" }} scope="col">Adresse Mac</StyledTh>
                         <StyledTh scope="col" style={{ width: "125px" }}>Preuve</StyledTh>
-                        <StyledTh scope="col" style={{ width: "190px", paddingLeft: "30px" }}>Etat</StyledTh>
-                        <StyledTh scope="col" style={{ width: (status.new == "pending") ? "520px" : "350px", paddingLeft: "30px" }}>
+                        <StyledTh scope="col" style={{ width: "210px", paddingLeft: "30px" }}>Etat</StyledTh>
+                        <StyledTh scope="col" style={{ width: (status.new == "pending") ? "520px" : "340px", paddingLeft: "30px" }}>
                             Actions
                         </StyledTh>
                     </StyledHeadTr>
@@ -63,47 +60,38 @@ export function AdminTable({ requests, status, display, setTab }: {
     )
 };
 
-export function MobileAdminTable({ requests, display, setTab }: { requests: adminAccess[], display: any, setTab: Function }) {
-    const [isScrolling, setIsScrolling] = useState(false);
+export function MobileAdminTable({ requests, setTab, state }: { requests: adminAccess[], setTab: Function, state: string }) {
     const tBodyProps = {
         initial: { opacity: 0 },
         animate: { opacity: 1 },
         exit: { opacity: 0 },
-        transition: { ease: "linear", duration: 0.5 },
+        transition: { ease: "linear", duration: requests.length == 0 ? 0 : 0.5 },
         style: { width: "100%", height: "100%", overflow: 'scroll hidden', fontSize: "1.2rem" }
     };
 
-    return (requests.length === 0 ?
-        null
-        :
-        <motion.div {...tBodyProps}>
-            <LayoutGroup>
-                <AnimatePresence initial={false}>
-                    <Virtuoso
-                        isScrolling={setIsScrolling}
-                        style={{ height: "100%" }}
-                        increaseViewportBy={{ bottom: 400, top: 0 }}
-                        totalCount={requests.length}
-                        initialItemCount={requests.length > 10 ? 10 : requests.length}
-                        components={{
-                            Item: (props) => {
-                                return (
-                                    <IoTMobileLine
-                                        virtuosoProps={props}
-                                        key={props['data-index']}
-                                        index={props['data-index'] + 1}
-                                        value={requests[props['data-index']]}
-                                        status={requests[0]?.access_state}
-                                        setTab={setTab}
-                                        isLast={props['data-index'] + 1 == requests.length}
-                                        isScrolling={isScrolling}
-                                    />
-                                )
-                            },
-                        }}
-                    />
-                </AnimatePresence>
-            </LayoutGroup>
+    return (
+        <motion.div {...tBodyProps} key={state}>
+            <Virtuoso
+                style={{ height: "100%" }}
+                totalCount={requests.length}
+                initialItemCount={requests.length > 10 ? 10 : requests.length}
+                increaseViewportBy={{ bottom: 0, top: 200 }}
+                components={{
+                    Item: (props) => {
+                        return (
+                            <IoTMobileLine
+                                virtuosoProps={props}
+                                key={props['data-index']}
+                                index={props['data-index'] + 1}
+                                value={requests[props['data-index']]}
+                                status={requests[0]?.access_state}
+                                setTab={setTab}
+                                isLast={props['data-index'] + 1 == requests.length}
+                            />
+                        )
+                    },
+                }}
+            />
         </motion.div>
     )
 };

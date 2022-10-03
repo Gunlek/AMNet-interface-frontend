@@ -9,23 +9,24 @@ export const UserMotionDiv = ({ children, style, isScrolling }: {
     style={style}
     variants={{
         initial: { height: 0, overflowY: "clip" },
-        animate: { height: "auto", overflowY: "visible", transition: { overflowY: { delay: 0.2 } } },
+        animate: { height: "auto", overflowY: "visible", padding: "15px 0", transition: { overflowY: { delay: 0.2 } } },
         exit: { height: 0, overflowY: "clip" }
     }}
     initial="initial" animate="animate" exit="exit"
-    transition={{ ease: "linear", duration: 0.2 }}
+    transition={{ ease: "linear", duration: 0.3 }}
 >
         {children}
     </motion.div>
 
-export const AdminMotionDiv = ({ children, style, isScrolling }: {
+export const AdminMotionDiv = ({ children, style, animate }: {
     children: ReactNode,
     style?: React.CSSProperties,
-    isScrolling?: boolean
+    animate?: boolean
 }) => <motion.div
     style={style}
-    exit={isScrolling ? null : { height: 0, overflowY: "clip" }}
-    transition={{ ease: "linear", duration: 0.2 }}
+    initial={false}
+    animate={{ height: animate ? 0 : "auto", padding: animate ? 0 : "15px 0", overflow: "clip" }}
+    transition={{ ease: "linear", duration: 0.3 }}
 >
         {children}
     </motion.div>
