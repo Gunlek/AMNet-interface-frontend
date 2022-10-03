@@ -86,6 +86,7 @@ export default function IoTUserTable(props: { requests: access[], setAccess: Fun
                 animate={{ opacity: 1, height: "auto" }}
                 exit={{ opacity: 0, height: 0 }}
                 transition={{ ease: "linear", duration: 0.3 }}
+                style={{ overflow: "auto" }}
             >
                 <StyledTable>
                     <thead>
