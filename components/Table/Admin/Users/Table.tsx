@@ -1,4 +1,4 @@
-import { LayoutGroup } from "framer-motion";
+import { AnimatePresence, LayoutGroup } from "framer-motion";
 import React, { forwardRef } from "react";
 import { TableVirtuoso, Virtuoso } from "react-virtuoso";
 import { Row } from "../../../Container/style";
@@ -7,11 +7,11 @@ import { StyledHeadTr, StyledTable, StyledTh } from "../../style";
 import UsersDesktopRow from "./DesktopRow";
 import UsersMobileLine from "./MobileRow";
 
-export function UserDeskopTable({ headerGroups, selectedRowIds, rows, prepareRow, count }) {
+export function UserDeskopTable({ headerGroups, selectedRowIds, rows, prepareRow }) {
     return (
         <TableVirtuoso
             style={{ height: "100%" }}
-            totalCount={count}
+            totalCount={rows.length}
             initialItemCount={10}
             fixedHeaderContent={() => (
                 <StyledHeadTr {...headerGroups[0].getHeaderGroupProps()}>
@@ -52,6 +52,7 @@ export function UserDeskopTable({ headerGroups, selectedRowIds, rows, prepareRow
                 // eslint-disable-next-line react/display-name
                 TableHead: forwardRef(({ style, ...props }, ref) => <thead ref={ref} {...props} style={{ ...style, zIndex: "2" }} />),
                 Table: ({ style, ...props }) => <StyledTable {...props} style={{ ...style, tableLayout: 'fixed' }} />,
+                
                 TableRow: (props) => {
                     const row = rows[props['data-index']];
 
@@ -75,9 +76,9 @@ export function UserDeskopTable({ headerGroups, selectedRowIds, rows, prepareRow
 };
 
 
-export function UserMobileTable({ headerGroups, selectedRowIds, rows, prepareRow, count }) {
+export function UserMobileTable({ headerGroups, selectedRowIds, rows, prepareRow }) {
     return (
-        <LayoutGroup>
+        <>
             <Row
                 style={{
                     marginBottom: "20px",
@@ -107,8 +108,8 @@ export function UserMobileTable({ headerGroups, selectedRowIds, rows, prepareRow
 
             <Virtuoso
                 style={{ flex: "1" }}
-                increaseViewportBy={{ bottom: 300, top: 0 }}
-                totalCount={count}
+                increaseViewportBy={{ bottom: 0, top: 200 }}
+                totalCount={rows.length}
                 initialItemCount={10}
                 fixedItemHeight={85}
                 components={{
@@ -131,6 +132,6 @@ export function UserMobileTable({ headerGroups, selectedRowIds, rows, prepareRow
                     },
                 }}
             />
-        </LayoutGroup>
+        </>
     );
 };
