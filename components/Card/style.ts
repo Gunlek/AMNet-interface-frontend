@@ -201,19 +201,14 @@ export const StyledAdminToolTip = styled(StyledCardCampus)`
   width: max-content;
   font-size: 1.2rem;
   opacity: 0;
-  z-index: -1;
-  transition: opacity 0.3s, z-index 0.3s;
+  z-index: 10;
+  pointer-events: none;
   background: white;
 
   @media screen and (max-width: 1000px){
     width: 90vw;
     left: 50%;
   } 
-
-  ${ContainerAdminToolTip}:hover &{
-    opacity: 1;
-    z-index: 10;
-  }
 `;
 
 export const StyledGuestToolTip = styled(StyledAdminToolTip)`
@@ -253,6 +248,6 @@ export const StyledMaterialToolTip = styled(StyledCardCampus)`
 
   ${SmallStyledRedButton}:hover &{
     opacity: 1;
-    z-index: 2;
+    z-index: 10;
   }
 `;
