@@ -41,6 +41,10 @@ export const StyledReqTd = styled(StyledTd)`
   padding : 0 25px;
 `;
 
+export const StyledUsersTd = styled(StyledTd)`
+  white-space: nowrap;
+`;
+
 export const StyledTeamTr = styled(StyledTr)`
   &:hover{
     ${StyledTd} {

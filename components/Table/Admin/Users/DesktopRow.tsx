@@ -3,7 +3,7 @@ import React from "react";
 import Fail from "../../../NavIcons/fail";
 import Succes from "../../../NavIcons/succes";
 import { StyledLink } from "../../../Text/style";
-import { StyledTd, StyledUsersTr } from "../../style";
+import { StyledUsersTd, StyledUsersTr } from "../../style";
 
 const UsersDesktopRow = ({
     remainder,
@@ -16,7 +16,7 @@ const UsersDesktopRow = ({
             {row.cells.map((cell, index) => {
                 const replaceBySvg = (cell.column['id'] == 'user_pay_status' || cell.column['id'] == 'user_is_gadz' || cell.column['id'] == 'user_notification')
                 return (
-                    <StyledTd
+                    <StyledUsersTd
                         key={index}
                         textAlign={replaceBySvg ? "center" : undefined}
                         BackgroundColor={remainder ? "rgba(0, 0, 0, 0.075)" : undefined}
@@ -41,7 +41,7 @@ const UsersDesktopRow = ({
                                 :
                                 cell.render('Cell')
                         }
-                    </StyledTd>
+                    </StyledUsersTd>
                 )
             })}
         </StyledUsersTr>
