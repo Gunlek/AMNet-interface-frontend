@@ -253,7 +253,7 @@ export default function Edition(props: { accutalTeam: { pseudo: string, id: stri
                     <StyledLink
                       color="black"
                       target="_blank"
-                      href={`${process.env.NEXT_PUBLIC_API_HOST}/team.jpeg`}
+                      href={`${process.env.NEXT_PUBLIC_API_HOST}/team.webp`}
                     >
                       Voir la photo actuelle
                     </StyledLink>
