@@ -8,9 +8,9 @@ import { HTML5Backend } from "react-dnd-html5-backend";
 import { MediaContextProvider, Media } from '../MediaQueries/MediaSSR';
 
 const Row = ({ row, index, moveRow, deleteTeamMember }) => {
-  const dropRef = useRef(null)
-  const dragRef = useRef(null)
-  const DND_ITEM_TYPE = 'row'
+  const dropRef = useRef(null);
+  const dragRef = useRef(null);
+  const DND_ITEM_TYPE = 'row';
 
   const [, drop] = useDrop({
     accept: DND_ITEM_TYPE,
@@ -40,7 +40,7 @@ const Row = ({ row, index, moveRow, deleteTeamMember }) => {
       moveRow(dragIndex, hoverIndex)
       item.index = hoverIndex
     },
-  })
+  });
 
   const [{ isDragging }, drag, preview] = useDrag({
     type: DND_ITEM_TYPE,
@@ -50,13 +50,12 @@ const Row = ({ row, index, moveRow, deleteTeamMember }) => {
     collect: (monitor: any) => ({
       isDragging: monitor.isDragging(),
     }),
-  })
+  });
 
-  const opacity = isDragging ? 0 : 1
+  const opacity = isDragging ? 0 : 1;
 
-  preview(drop(dropRef))
-  drag(dragRef)
-
+  preview(drop(dropRef));
+  drag(dragRef);
 
   return (
     <StyledTeamTr ref={dropRef} style={{ opacity }}>
@@ -76,7 +75,6 @@ const Row = ({ row, index, moveRow, deleteTeamMember }) => {
             width: "50%",
             display: "inline-block",
             paddingLeft: "20px",
-            marginRight: "15px"
           }}
         >
           {row.cells[0].render('Cell')}
@@ -87,7 +85,7 @@ const Row = ({ row, index, moveRow, deleteTeamMember }) => {
           style={{
             width: "50%",
             display: "inline-block",
-            paddingLeft: "20px"
+            paddingLeft: "35px"
           }}
         >
           {row.cells[1].render('Cell')}
