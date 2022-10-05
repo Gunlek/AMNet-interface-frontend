@@ -14,8 +14,11 @@ import {
 } from "../Text/style";
 import GitHub from "../NavIcons/github";
 import dynamic from "next/dynamic";
-const StyledAdminToolTip = dynamic(() => import("./style").then((mod) => mod.StyledAdminToolTip));
-const StyledGuestToolTip = dynamic(() => import("./style").then((mod) => mod.StyledGuestToolTip));
+import { useState } from "react";
+const StyledAdminToolTip = dynamic<any>(() => import("./style").then((mod) => mod.StyledAdminToolTip));
+const StyledGuestToolTip = dynamic<any>(() => import("./style").then((mod) => mod.StyledGuestToolTip));
+const AnimatePresence = dynamic<any>(() => import("framer-motion").then((mod) => mod.AnimatePresence));
+const MotionDiv = dynamic<any>(() => import("framer-motion").then((mod) => mod.motion.div));
 
 export function HelpSection(props: { color?: string, marginBottom?: string, mobileMarginBottom?: string, padding?: string }) {
   return (
@@ -80,8 +83,13 @@ export function Footer(props: { page?: string, marginTop?: string }) {
 }
 
 export function InfoAdmin() {
+  const [display, setDisplay] = useState(false);
+
   return (
-    <ContainerAdminToolTip>
+    <ContainerAdminToolTip
+      onMouseEnter={() => setDisplay(true)}
+      onMouseLeave={() => setDisplay(false)}
+    >
       <StyledInfoSVG xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink"
         viewBox="0 0 496.304 496.303" >
         <path d="M248.146,0C111.314,0,0,111.321,0,248.152c0,136.829,111.314,248.151,248.146,248.151
@@ -93,18 +101,34 @@ export function InfoAdmin() {
 		h36.186C318.413,380.938,319.536,382.048,319.536,383.42z M209.93,105.927c0-20.895,16.929-37.829,37.829-37.829
 		c20.886,0,37.826,16.935,37.826,37.829s-16.94,37.829-37.826,37.829C226.853,143.756,209.93,126.822,209.93,105.927z"/>
       </StyledInfoSVG>
-      <StyledAdminToolTip>
-        Petite thuysse pour éditer l&apos;adresse MAC d&apos;une personne : <br />
-        &bull; sur PC tu fais un double-clic dessus<br />
-        &bull; sur Téléphone tu fais un appui long
-      </StyledAdminToolTip>
+
+      <AnimatePresence>
+        {display &&
+          <StyledAdminToolTip
+            as={MotionDiv}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ ease: "linear", duration: 0.3 }}
+          >
+            Petite thuysse pour éditer l&apos;adresse MAC d&apos;une personne : <br />
+            &bull; sur PC tu fais un double-clic dessus<br />
+            &bull; sur Téléphone tu fais un appui long
+          </StyledAdminToolTip>
+        }
+      </AnimatePresence>
     </ContainerAdminToolTip>
   )
 }
 
 export function GuestLogin() {
+  const [display, setDisplay] = useState(false);
+
   return (
-    <ContainerAdminToolTip>
+    <ContainerAdminToolTip
+      onMouseEnter={() => setDisplay(true)}
+      onMouseLeave={() => setDisplay(false)}
+    >
       <StyledInfoSVG xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink"
         viewBox="0 0 496.304 496.303"  >
         <path d="M248.146,0C111.314,0,0,111.321,0,248.152c0,136.829,111.314,248.151,248.146,248.151
@@ -116,11 +140,22 @@ export function GuestLogin() {
 		h36.186C318.413,380.938,319.536,382.048,319.536,383.42z M209.93,105.927c0-20.895,16.929-37.829,37.829-37.829
 		c20.886,0,37.826,16.935,37.826,37.829s-16.94,37.829-37.826,37.829C226.853,143.756,209.93,126.822,209.93,105.927z"/>
       </StyledInfoSVG>
-      <StyledGuestToolTip>
-        Les identifiants du compte invité pour AMNet Wi-Fi :<br />
-        &bull; Identifiant : {process.env.NEXT_PUBLIC_GUEST_LOGIN}<br />
-        &bull; Mot de passe : {process.env.NEXT_PUBLIC_GUEST_PASSWORD}
-      </StyledGuestToolTip>
+
+      <AnimatePresence>
+        {display &&
+          <StyledGuestToolTip
+            as={MotionDiv}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ ease: "linear", duration: 0.3 }}
+          >
+            Les identifiants du compte invité pour AMNet Wi-Fi :<br />
+            &bull; Identifiant : {process.env.NEXT_PUBLIC_GUEST_LOGIN}<br />
+            &bull; Mot de passe : {process.env.NEXT_PUBLIC_GUEST_PASSWORD}
+          </StyledGuestToolTip>
+        }
+      </AnimatePresence>
     </ContainerAdminToolTip>
   )
 }
