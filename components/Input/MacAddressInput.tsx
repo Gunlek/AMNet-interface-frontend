@@ -10,12 +10,12 @@ import { AdminMotionDiv } from "../Table/MotionDiv";
 const MacTooltip = dynamic<any>(() => import("./style").then(mod => mod.MacTooltip));
 
 export default function MacAdressTd(props: { access_mac: string, access_id: number, animate?: boolean }) {
-    const minWidth1000 = !useMediaQuery('(min-width:1000px)');
+    const minWidth1000 = !useMediaQuery('(min-width:1000px)');  
     const [input, setInput] = useState(false)
     const [mac, setMac] = useState(props.access_mac)
     const [tooltip, setTooltip] = useState(false)
     const verifiedMac = MacAddressVerification(mac)
-    const longPressEvent = useLongPress(handleDoubleClick, { isPreventDefault: true, delay: 650 });
+    const longPressEvent = useLongPress(handleDoubleClick, { isPreventDefault: true, delay: 550 });
 
     function handleDoubleClick() {
         setInput(true)
