@@ -59,7 +59,7 @@ export function AdminTable({ requests, status, display, setTab }: {
     )
 };
 
-export function MobileAdminTable({ requests, setTab }: { requests: adminHardware[], setTab: Function }) {
+export function MobileAdminTable({ requests, setTab, state }: { requests: adminHardware[], setTab: Function, state: string }) {
     const tBodyProps = {
         initial: { opacity: 0 },
         animate: { opacity: 1 },
@@ -69,7 +69,7 @@ export function MobileAdminTable({ requests, setTab }: { requests: adminHardware
     };
 
     return (
-        <motion.div {...tBodyProps} key={requests[0].material_state}>
+        <motion.div {...tBodyProps} key={state}>
             <Virtuoso
                 style={{ height: "100%" }}
                 totalCount={requests.length}

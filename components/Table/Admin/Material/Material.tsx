@@ -34,6 +34,7 @@ export default function IoTAdminTable(props: {
                 >
                     {props.display.pending &&
                         <MobileAdminTable
+                            state="pending"
                             key="pending"
                             requests={list.pending}
                             setTab={props.setTab}
@@ -41,6 +42,7 @@ export default function IoTAdminTable(props: {
                     }
                     {props.display.active &&
                         <MobileAdminTable
+                            state="active"
                             key="active"
                             requests={list.active}
                             setTab={props.setTab}
@@ -48,6 +50,7 @@ export default function IoTAdminTable(props: {
                     }
                     {props.display.declined &&
                         <MobileAdminTable
+                            state="declined"
                             key="declined"
                             requests={list.declined}
                             setTab={props.setTab}
