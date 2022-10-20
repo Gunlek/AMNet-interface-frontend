@@ -62,6 +62,8 @@ export const SmallStyledLinkButton = styled(SmallStyledButton)`
   background: linear-gradient(90deg, var(--c1, #f6d365), var(--c2, #fda085) 51%, var(--c1, #f6d365)) var(--x, 0)/ 200%;
   transition: 0.3s linear, box-shadow 0.3s;
   font-size: 19px;
+  margin-right: ${(props) => props.MarginRight && "15px"};
+  margin-left: ${(props) => !props.MarginRight && "15px"};;
   --c1: #67bc45;
   --c2: #096a09;
 
