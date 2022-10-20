@@ -50,7 +50,7 @@ export function AdminTable({ requests, status, display, setTab }: {
                         <StyledTh style={{ width: "230px", textAlign: "center" }} scope="col">Adresse Mac</StyledTh>
                         <StyledTh scope="col" style={{ width: "125px" }}>Preuve</StyledTh>
                         <StyledTh scope="col" style={{ width: "210px", paddingLeft: "30px" }}>Etat</StyledTh>
-                        <StyledTh scope="col" style={{ width: (status.new == "pending") ? "520px" : "340px", paddingLeft: "30px" }}>
+                        <StyledTh scope="col" style={{ width: (status.new == "pending") ? "520px" : "350px", paddingLeft: "30px" }}>
                             Actions
                         </StyledTh>
                     </StyledHeadTr>
