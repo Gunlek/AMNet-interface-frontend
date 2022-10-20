@@ -7,10 +7,11 @@ import "../styles/globals.css";
 import NProgressStyle from "../styles/nprogress";
 import Router from "next/router";
 import nProgress from "nprogress";
-import GoogleScript from "../components/Script/GoogleScript";
+import dynamic from "next/dynamic";
 Router.events.on("routeChangeStart", nProgress.start);
 Router.events.on("routeChangeError", nProgress.done);
 Router.events.on("routeChangeComplete", nProgress.done);
+const GoogleScript = dynamic(() => import("../components/Script/GoogleScript"));
 
 function MyApp({ Component, pageProps, router }) {
   axios.defaults.baseURL = '/api';
@@ -22,8 +23,8 @@ function MyApp({ Component, pageProps, router }) {
       </Head>
       <GlobalStyle />
       <NProgressStyle />
-      <GoogleScript/>
-      
+      <GoogleScript />
+
       <AnimatePresence
         exitBeforeEnter
         initial={false}
