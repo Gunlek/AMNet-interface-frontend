@@ -1,5 +1,4 @@
 import { Row } from "../Container/style";
-import FAQIcon from "../NavIcons/faq";
 import GadzflixIcon from "../NavIcons/gadzflix";
 import IndexIcon from "../NavIcons";
 import LogOutIcon from "../NavIcons/log_out";
@@ -43,7 +42,6 @@ export default function UserMenu(props: {
   if (!isGadz) NumHiddenIcon++;
   if (props.user.rank === "user") NumHiddenIcon++;
   if (!props.user.pay_status) NumHiddenIcon = NumHiddenIcon + 2;
-  if (inactiveFaq) NumHiddenIcon++;
 
   const mobileHeight = (Math.ceil((7 - NumHiddenIcon) / 3) * 95 + 95).toString()
 
@@ -79,7 +77,7 @@ export default function UserMenu(props: {
         exit="exit"
         transition={{ ease: "linear" }}
       >
-        <StyledIconContener as="nav" maxHeight={(690 - NumHiddenIcon * 70).toString() + "px"} mobileHeight={open ? mobileHeight : "95"}>
+        <StyledIconContener as="nav" maxHeight={(620 - NumHiddenIcon * 70).toString() + "px"} mobileHeight={open ? mobileHeight : "95"}>
           <Row
             Display="none"
             mobileDisplay="flex"
@@ -89,6 +87,7 @@ export default function UserMenu(props: {
           >
             <BurgerMenu open={open} />
           </Row>
+          
           <StyledDivLogo>
             <SmallLogo setTransition={props.setHomeTransition} />
           </StyledDivLogo>
@@ -127,13 +126,6 @@ export default function UserMenu(props: {
             undefined
           }
 
-          {!inactiveFaq &&
-            <Row style={positionning}>
-              <FAQIcon />
-            </Row>
-          }
-
-
           {isAdmin &&
             <Row style={positionning}>
               <AdminIcon page={props.page} setTransition={props.setTransition} />
@@ -143,7 +135,7 @@ export default function UserMenu(props: {
           <StyledDivLogOut
             Display="flex"
             mobileDisplay="none"
-            flex={NumHiddenIcon + 2}
+            flex={NumHiddenIcon + 3}
           >
             <LogOutIcon id="2" setTransition={props.setHomeTransition} />
           </StyledDivLogOut>

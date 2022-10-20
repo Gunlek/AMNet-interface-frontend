@@ -13,7 +13,6 @@ export default function CampusBackground() {
           layout="fill"
           objectPosition="50% 50%"
           sizes="100vw"
-          priority={true}
         />
       </Media>
 
@@ -25,7 +24,6 @@ export default function CampusBackground() {
           layout="fill"
           objectPosition="50% 50%"
           sizes="100vw"
-          priority={true}
         />
       </Media>
     </MediaContextProvider>

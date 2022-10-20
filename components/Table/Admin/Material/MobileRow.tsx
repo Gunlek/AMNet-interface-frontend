@@ -1,5 +1,5 @@
 import { StyledHeadTr, StyledTable, StyledTd, StyledTh, StyledTr } from "../../style";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import { StyledLink } from "../../../Text/style";
 import { adminHardware } from "../../../Utils/types";
@@ -30,7 +30,7 @@ export const MobileMaterialLine = ({ index, value, status, isLast, setTab, virtu
 
         return () => clearTimeout(timer)
     };
-    
+
     return (
         <motion.div
             key={value.material_id}
@@ -81,9 +81,10 @@ export const MobileMaterialLine = ({ index, value, status, isLast, setTab, virtu
                         </StyledTr>
                         <StyledTr>
                             <StyledTd>Détails</StyledTd>
-                            <StyledTd style={{ textAlign: "center", whiteSpace: "normal" }}>
-                                {value['material_reason']}
-                            </StyledTd>
+                            <StyledTd
+                                style={{ textAlign: "center", whiteSpace: "normal" }}
+                                dangerouslySetInnerHTML={{ __html: value['material_reason'] || "" }}
+                            />
                         </StyledTr>
                         {value.material_state === "declined" &&
                             <StyledTr>

@@ -58,7 +58,7 @@ export default function MailModal(props: { html: any, subject: string, recipient
                 Display={Display}
                 toggle={(e) => { toggle(e); setSend(false); }}
             >
-                <div style={{height: "100%", width: "100%", overflow: "auto"}}>
+                <div style={{ height: "100%", width: "100%", overflow: "auto" }}>
                     <AnimatePresence initial={false} exitBeforeEnter>
                         {send ?
                             <motion.div key="message" {...divProps} layout>
@@ -96,7 +96,7 @@ export default function MailModal(props: { html: any, subject: string, recipient
                                             style={{
                                                 background: "url(/static/images/template/body.png)",
                                                 backgroundSize: "contain",
-                                                width: minWidth740 ? "600px": "100%",
+                                                width: minWidth740 ? "600px" : "100%",
                                                 padding: "0 40px",
                                             }}
                                         >
@@ -109,11 +109,12 @@ export default function MailModal(props: { html: any, subject: string, recipient
                                                 }}
                                             />
 
-                                            <div style={{ textAlign: "center" }}>
+                                            <div style={{ textAlign: "center", color: "#096A09", fontSize: "18px" }}>
                                                 Besoin d&apos;assistance ?{" "}
                                                 <StyledLink
                                                     color="#096A09"
                                                     href="mailto:contact@amnet.fr"
+                                                    style={{ fontSize: "18px" }}
                                                 >
                                                     contact@amnet.fr
                                                 </StyledLink>

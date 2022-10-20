@@ -6,7 +6,7 @@ import { SmallRedButton } from "../../Button/Buttons";
 import { MediaContextProvider, Media } from "../../MediaQueries/MediaSSR";
 import { StateRequest } from "../../Status/Status";
 import { hardware } from "../../Utils/types";
-import { UserMotionDiv } from "../MotionDiv";
+import { UserInnerHTMLDiv, UserMotionDiv } from "../MotionDiv";
 import { StyledTr, StyledTd, StyledFlexTd, StyledHeadTr, StyledTh, StyledTable, StyledReqTd } from "../style";
 const StyledMaterialToolTip = dynamic(() => import("../../Card/style").then((mod) => mod.StyledMaterialToolTip))
 
@@ -46,11 +46,9 @@ export default function MaterialUserTable(props: { requests: hardware[], setHard
             >
                 <StyledReqTd><UserMotionDiv>{index + 1}</UserMotionDiv></StyledReqTd>
                 <StyledReqTd><UserMotionDiv>{value['material_description']}</UserMotionDiv></StyledReqTd>
-                <StyledFlexTd style={{ whiteSpace: "normal" }}>
-                    <UserMotionDiv style={{ minWidth: "100%", width: "400px", maxWidth: "max-content" }}>
-                        {value['material_reason']}
-                    </UserMotionDiv>
-                </StyledFlexTd>
+                <StyledReqTd style={{ whiteSpace: "normal" }}>
+                    <UserInnerHTMLDiv dangerouslySetInnerHTML={value['material_reason']} />
+                </StyledReqTd>
                 {declinedExist && <StyledReqTd><UserMotionDiv>{value.declined_reason}</UserMotionDiv></StyledReqTd>}
                 <StyledReqTd>
                     <UserMotionDiv><StateRequest state={value['material_state']} /></UserMotionDiv>
@@ -96,7 +94,10 @@ export default function MaterialUserTable(props: { requests: hardware[], setHard
                     <tbody>
                         <StyledTr>
                             <StyledTd>Détails</StyledTd>
-                            <StyledTd style={{ textAlign: "center", whiteSpace: "normal" }}>{value['material_reason']}</StyledTd>
+                            <StyledTd
+                                style={{ textAlign: "center", whiteSpace: "normal" }}
+                                dangerouslySetInnerHTML={{ __html: value['material_reason'] || "" }}
+                            />
                         </StyledTr>
                         {value.material_state === "declined" &&
                             <StyledTr>

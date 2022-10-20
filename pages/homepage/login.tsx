@@ -44,7 +44,7 @@ export default function Login(props: { modal: boolean, from: string }) {
   const [login, setLogin] = useState(false);
   const [variant, setVariant] = useState(variants(
     props.from === "/homepage" ? "left" : "right",
-    "left"
+    "left", null, "#E8EFEA"
   ));
 
   const handleCheckboxChange = (elmt) => {
@@ -169,7 +169,7 @@ export default function Login(props: { modal: boolean, from: string }) {
                   alignItems: "center"
                 }}
               >
-                <SmallButtonLink href="/homepage/signup" mobileMarginBottom="30px">Inscription</SmallButtonLink>
+                <SmallButtonLink href="/homepage/signup" mobileMarginBottom="30px" left>Inscription</SmallButtonLink>
                 <SmallButtonLink width="220px" href="/homepage/lostpassword">Identifiants oubliés</SmallButtonLink>
               </ResponsiveRow>
             </StyledCardCampus>
