@@ -20,7 +20,7 @@ export default function RectangleLogo(props: { onClick?: any, color?: string, he
     else {
       return (
         <Link href="/homepage" passHref>
-          <a style={{ width: "fit-content" }}>
+          <a style={{ width: "fit-content" }} onClick={props.onClick}>
             <svg style={{ height: "100px", aspectRatio: "19 / 8.5", pointerEvents: "none" }} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 479.506 214.834" aria-labelledby="LogoTittle LogoDesc" role="img">
               <title id="LogoTittle">Logo AMNet</title>
               <desc id="LogoDesc">Un A en forme d&apos;antenne avec le mot Net</desc>
