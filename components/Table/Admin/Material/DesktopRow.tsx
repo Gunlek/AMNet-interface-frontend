@@ -8,7 +8,7 @@ import Succes from "../../../NavIcons/succes";
 import { StateRequest } from "../../../Status/Status";
 import { StyledLink } from "../../../Text/style";
 import { hardware } from "../../../Utils/types";
-import { AdminMotionDiv } from "../../MotionDiv";
+import { AdminInnerHTMLDiv, AdminMotionDiv } from "../../MotionDiv";
 import { StyledTr, StyledReqTd } from "../../style";
 import Buttons from "../Buttons";
 
@@ -60,7 +60,7 @@ export const DesktopMaterialRow = (props: {
             </StyledReqTd>
             <StyledReqTd><AdminMotionDiv animate={animate}>{props.value['material_description']}</AdminMotionDiv></StyledReqTd>
             <StyledReqTd style={{ whiteSpace: "normal" }}>
-                <AdminMotionDiv animate={animate}>{props.value['material_reason']}</AdminMotionDiv>
+                <AdminInnerHTMLDiv animate={animate} dangerouslySetInnerHTML={props.value['material_reason']}/>
             </StyledReqTd>
             {props.value.material_state === "declined" && <StyledReqTd><AdminMotionDiv animate={animate}>{props.value.declined_reason}</AdminMotionDiv></StyledReqTd>}
             <StyledReqTd>
