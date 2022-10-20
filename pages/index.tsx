@@ -14,6 +14,7 @@ import getConfig from "../components/Utils/req-config";
 import DOMPurify from 'isomorphic-dompurify';
 import oldURL from "../components/Utils/oldURL";
 import dynamic from "next/dynamic";
+import { StyledGreenButton } from "../components/Button/style";
 const Modal = dynamic(() => import("../components/Card/Modals/Modal"));
 
 export async function getServerSideProps({ req, query }) {
@@ -221,7 +222,17 @@ export default function Index(
                     marginTop: "20px",
                   }}
                 >
-                  <ButtonLink style={{ position: "relative", zIndex: "3" }} href="/homepage/faq">Accéder</ButtonLink>
+                  <StyledGreenButton
+                    as="a"
+                    target="_blank"
+                    rel="noreferrer"
+                    lineHeight="60px"
+                    mobileWidth="100%"
+                    style={{ position: "relative", zIndex: "3" }}
+                    href="/homepage/faq"
+                  >
+                    Accéder
+                  </StyledGreenButton>
                 </Row>
               </StyledCard>
             </Col6>
