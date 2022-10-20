@@ -168,7 +168,8 @@ export function SmallButtonLink(props: {
   children: React.ReactNode;
   width?: string,
   href: string,
-  mobileMarginBottom?: string
+  mobileMarginBottom?: string,
+  left?: boolean
 }) {
   return (
     <Link href={props.href} passHref scroll={false}>
@@ -177,6 +178,7 @@ export function SmallButtonLink(props: {
         width={props.width}
         lineHeight="40px"
         MobileMarginBottom={props.mobileMarginBottom}
+        MarginRight={props.left}
       >
         {props.children}
       </SmallStyledLinkButton>
