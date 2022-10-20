@@ -46,7 +46,7 @@ export const StyledDivLogo = styled(Row)`
   flex: 1;
   align-items: start; 
   justify-content: center; 
-  margin-bottom: 10px;
+  margin-bottom: 25px;
 
   @media screen and (max-width: 1000px){
     margin-bottom: 0;
