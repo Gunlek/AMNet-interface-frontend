@@ -43,7 +43,7 @@ export default function UserMenu(props: {
   if (props.user.rank === "user") NumHiddenIcon++;
   if (!props.user.pay_status) NumHiddenIcon = NumHiddenIcon + 2;
 
-  const mobileHeight = (Math.ceil((7 - NumHiddenIcon) / 3) * 95 + 95).toString()
+  const mobileHeight = (Math.ceil((6 - NumHiddenIcon) / 3) * 95 + 95).toString()
 
   function handleChange() {
     SetOpen(!open);
