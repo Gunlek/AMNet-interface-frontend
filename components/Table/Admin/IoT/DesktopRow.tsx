@@ -59,7 +59,7 @@ const DesktopIoTRow = (props: {
             </StyledReqTd>
             <StyledReqTd style={{ textAlign: "center" }}>
                 <AdminMotionDiv animate={animate}>
-                    {props.value['user_pay_status'] ? <Succes marginRight="15px" /> : <Fail marginRight="15px" />}
+                    {props.value['user_pay_status'] ? <Succes /> : <Fail />}
                 </AdminMotionDiv>
             </StyledReqTd>
             <StyledReqTd ><AdminMotionDiv animate={animate}>{props.value['access_description']}</AdminMotionDiv></StyledReqTd>
