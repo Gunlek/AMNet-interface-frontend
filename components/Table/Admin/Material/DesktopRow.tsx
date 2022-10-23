@@ -55,16 +55,16 @@ export const DesktopMaterialRow = (props: {
             </StyledReqTd>
             <StyledReqTd style={{ textAlign: "center" }}>
                 <AdminMotionDiv animate={animate}>
-                    {props.value['user_pay_status'] ? <Succes marginRight="15px" /> : <Fail marginRight="15px" />}
+                    {props.value['user_pay_status'] ? <Succes /> : <Fail />}
                 </AdminMotionDiv>
             </StyledReqTd>
             <StyledReqTd><AdminMotionDiv animate={animate}>{props.value['material_description']}</AdminMotionDiv></StyledReqTd>
             <StyledReqTd style={{ whiteSpace: "normal" }}>
-                <AdminInnerHTMLDiv animate={animate} dangerouslySetInnerHTML={props.value['material_reason']}/>
+                <AdminInnerHTMLDiv animate={animate} dangerouslySetInnerHTML={props.value['material_reason']} />
             </StyledReqTd>
             {props.value.material_state === "declined" && <StyledReqTd><AdminMotionDiv animate={animate}>{props.value.declined_reason}</AdminMotionDiv></StyledReqTd>}
             <StyledReqTd>
-                <AdminMotionDiv animate={animate}><StateRequest state={props.value['material_state']} center={true}/></AdminMotionDiv>
+                <AdminMotionDiv animate={animate}><StateRequest state={props.value['material_state']} center={true} /></AdminMotionDiv>
             </StyledReqTd>
             <StyledReqTd style={{ paddingRight: "5px" }}>
                 <AdminMotionDiv
