@@ -70,6 +70,8 @@ export const SmallStyledLinkButton = styled(SmallStyledButton)`
   @media screen and (max-width: 500px){
     width: 230px;
     margin-bottom: ${(props) => props.MobileMarginBottom};
+    margin-right: 0;
+    margin-left: 0;
   }
 `;
 
