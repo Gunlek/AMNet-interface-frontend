@@ -44,7 +44,7 @@ export default function Login(props: { modal: boolean, from: string }) {
   const [login, setLogin] = useState(false);
   const [variant, setVariant] = useState(variants(
     props.from === "/homepage" ? "left" : "right",
-    "left", null, "#E8EFEA"
+    "left", null, (/\/homepage(\/\w*)?/).test(props.from) ? null : "#E8EFEA"
   ));
 
   const handleCheckboxChange = (elmt) => {
