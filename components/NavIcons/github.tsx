@@ -3,7 +3,7 @@ import { StyledGitHub, StyledLinkGitHub } from "./style";
 
 export default function GitHub (props: {height?: string, margin?: string}) {
     return(
-        <StyledLinkGitHub href="https://github.com/Gunlek/AMNet-interface" target="_blank" name="GitHub de l'AMNet">
+        <StyledLinkGitHub href="https://github.com/Gunlek/AMNet-interface" target="_blank" description="Lien vers le GitHub de l'AMNet">
             <svg 
                 style={{
                     height: props.height? props.height : "20px", 
