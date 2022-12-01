@@ -80,7 +80,7 @@ export default function useForm(
             if (isOther) newForm.user_campus = "";
         }
         else if (elmt.currentTarget.id == "user_proms") {
-            newForm.user_is_gadz = (elmt.target.value == promotion.old || elmt.target.value == promotion.active || (elmt.target.value == promotion.new && usins_state));
+            newForm.user_is_gadz = (elmt.target.value == promotion.old || elmt.target.value == promotion.active || (elmt.target.value == promotion.new && !usins_state));
             setOther(elmt.target.value == "Other");
             if (elmt.target.value == "Other") elmt.target.value = promotion.new;
             newForm[elmt.currentTarget.id] = elmt.target.value;
