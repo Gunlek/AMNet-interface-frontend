@@ -49,7 +49,7 @@ export default function useForm(
             user_campus: "Li",
             user_password: "",
             user_password2: "",
-            user_is_gadz: false,
+            user_is_gadz: !usins_state,
             user_pay_status: false,
             user_rank: "user"
         }
@@ -79,7 +79,7 @@ export default function useForm(
             if (isOther) newForm.user_campus = "";
         }
         else if (elmt.currentTarget.id == "user_proms") {
-            newForm.user_is_gadz = (elmt.target.value == promotion.old || elmt.target.value == promotion.active);
+            newForm.user_is_gadz = (elmt.target.value == promotion.old || elmt.target.value == promotion.active || (elmt.target.value == promotion.new && usins_state));
             setOther(elmt.target.value == "Other");
             if (elmt.target.value == "Other") elmt.target.value = promotion.new;
             newForm[elmt.currentTarget.id] = elmt.target.value;
