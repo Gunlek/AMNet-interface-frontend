@@ -68,6 +68,7 @@ export default function useForm(
         const newForm = { ...form };
         newForm.user_proms = promotion.new;
         newForm.user_campus = "Li";
+        newForm.user_is_gadz =  !usins_state;
         setForm(newForm);
     };
 
