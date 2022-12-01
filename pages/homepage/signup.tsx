@@ -26,7 +26,7 @@ import useForm from "../../components/Input/useForm";
 import { useRouter } from "next/router";
 import axios, { AxiosResponse } from 'axios';
 import getToken from "../../components/Utils/auth-token";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { variants } from "../../components/Utils/animation-variants";
 import CampusBackground from "../../components/Background/CampusBackground";
 import dynamic from "next/dynamic";
@@ -34,7 +34,6 @@ const ErrorPNoFixed = dynamic<any>(() => import("../../components/Text/style").t
 const PasswordInput = dynamic(() => import("../../components/Input/PasswordInput"), {
   loading: () => <StyledInput />
 });
-const AnimatePresence = dynamic(() => import("framer-motion").then((mod) => mod.AnimatePresence));
 
 export async function getServerSideProps({ req }) {
   const { access_token } = getToken(req)
