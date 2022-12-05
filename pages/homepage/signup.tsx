@@ -94,11 +94,9 @@ export default function SignUp(props: { active_proms: number, usins_state: boole
     blurPhone();
     blurPassword2();
 
-    if (acceptRules && !error.user_password && !error.user_name_format && !error.phone) {
-      console.log("test")
+    if (acceptRules.state && !error.user_password && !error.user_name_format && !error.phone) {
       axios.post("/user", form, { validateStatus: () => true })
         .then(async (res: AxiosResponse) => {
-          console.log(res)
           if (res.status == 200) {
             await axios.post(
               '/login',
