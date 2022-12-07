@@ -156,7 +156,7 @@ export default function Login(props: { modal: boolean, from: string }) {
                   <BlackText style={{ marginLeft: "10px" }}>Rester connecté</BlackText>
                 </label>
 
-                <Row style={{ justifyContent: "center" }}>
+                <Row style={{ justifyContent: "center" }} mobileMarginBottom="30px" marginBottom="20px">
                   <GreenButton width="300px" type="submit">Connexion</GreenButton>
                 </Row>
               </form>
@@ -165,7 +165,6 @@ export default function Login(props: { modal: boolean, from: string }) {
                 mediaWidth="500px"
                 style={{
                   justifyContent: "space-around",
-                  marginTop: "30px",
                   alignItems: "center"
                 }}
               >
