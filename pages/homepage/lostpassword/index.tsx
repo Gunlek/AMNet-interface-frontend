@@ -17,7 +17,7 @@ const Modal = dynamic(() => import("../../../components/Card/Modals/Modal"));
 export default function LostPassword() {
   const [mail, setMail] = useState("");
   const [show, setShow] = useState(false);
-  const [error, setError] = useState(false);
+  const [error, setError] = useState(true);
 
   const resetPassword = (e) => {
     e.preventDefault();
@@ -86,7 +86,7 @@ export default function LostPassword() {
             <form onSubmit={resetPassword}>
               <div style={{ marginBottom: "20px" }}>
                 <StyledInputLabel htmlFor="user_mail">Adresse e-mail associée au compte</StyledInputLabel>
-                <StyledInput id="user_mail" type="email" onChange={(e) => setMail(e.target.value)} />
+                <StyledInput id="user_mail" type="email" onChange={(e) => setMail(e.target.value)} required/>
               </div>
 
               <Row style={{ justifyContent: "center" }}>
