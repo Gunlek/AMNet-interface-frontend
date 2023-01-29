@@ -19,7 +19,7 @@ import CampusBackground from "../../components/Background/CampusBackground";
 import dynamic from "next/dynamic";
 const ErrorP = dynamic(() => import("../../components/Text/style").then((mod) => mod.ErrorP));
 const PasswordInput = dynamic(() => import("../../components/Input/PasswordInput"), {
-  loading: () => <StyledInput/>
+  loading: () => <StyledInput />
 });
 const Modal = dynamic(() => import("../../components/Card/Modals/Modal"));
 
@@ -35,10 +35,10 @@ export async function getServerSideProps({ req, query }) {
     }
   }
 
-  return { props: { modal: query.modal === "true", from: oldURL(req) } }
+  return { props: { from: oldURL(req) } }
 }
 
-export default function Login(props: { modal: boolean, from: string }) {
+export default function Login(props: { from: string }) {
   const [form, setForm] = useState({ name: "", password: "", checked: false });
   const [error, setError] = useState(false);
   const [login, setLogin] = useState(false);
@@ -62,8 +62,7 @@ export default function Login(props: { modal: boolean, from: string }) {
   const router = useRouter();
 
   useEffect(() => {
-    if (props.modal) router.prefetch('/homepage/unsubscribe');
-    else router.prefetch('/');
+    router.prefetch('/');
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
@@ -72,15 +71,11 @@ export default function Login(props: { modal: boolean, from: string }) {
     try {
       await axios.post('/login', form);
 
-      if (!props.modal) {
-        const newVariant = { ...variant };
-        newVariant.exit = { opacity: 1, x: 0, backgroundColor: "#E8EFEA" };
-        setVariant(newVariant);
-        setLogin(true);
-      }
-
-      if (props.modal) router.push("/homepage/unsubscribe", null, { scroll: false });
-      else router.push("/", null, { scroll: false });
+      const newVariant = { ...variant };
+      newVariant.exit = { opacity: 1, x: 0, backgroundColor: "#E8EFEA" };
+      setVariant(newVariant);
+      setLogin(true);
+      router.push("/", null, { scroll: false });
 
     } catch (err: any) {
       if (err.response.status === 401) setError(true);
@@ -95,10 +90,6 @@ export default function Login(props: { modal: boolean, from: string }) {
       </Head>
       <CampusGlobalStyle />
       <CampusBackground />
-
-      <Modal show={props.modal} style={{ width: "425px", textAlign: "justify" }}>
-        Vous devez être connecté pour vous désinscrire de la liste de diffusion
-      </Modal>
 
       <motion.main
         variants={variant}
