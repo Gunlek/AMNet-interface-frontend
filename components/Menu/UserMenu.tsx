@@ -119,9 +119,10 @@ export default function UserMenu(props: {
           }
 
           {isGadz ?
-            <Row style={positionning}>
+            /*<Row style={positionning}>
               <GadzflixIcon localNetwork={props.localNetwork} />
-            </Row>
+            </Row>*/
+            undefined
             :
             undefined
           }

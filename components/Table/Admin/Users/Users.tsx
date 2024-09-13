@@ -28,7 +28,7 @@ export function UsersTable(users: any[]) {
       { Header: 'Téléphone', accessor: 'user_phone', width: 200 },
       { Header: 'Bucque', accessor: 'user_bucque', minWidth: 250 },
       { Header: 'Fam\'s', accessor: 'user_fams', width: 150 },
-      { Header: 'TBK', accessor: 'user_campus', width: 150 },
+      { Header: 'TBK', accessor: 'user_campus', width: 75 },
       { Header: 'Prom\'s', accessor: 'user_proms', width: 100 },
       { Header: 'Rank', accessor: 'user_rank', width: 100 },
       { Header: 'Gadz', accessor: 'user_is_gadz', width: 100 },

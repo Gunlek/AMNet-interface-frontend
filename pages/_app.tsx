@@ -17,7 +17,7 @@ function MyApp({ Component, pageProps, router }) {
   return (
     <>
       <Head>
-        <meta name="viewport" content="width=device-width, user-scalable=yes, maximum-scale=5" />
+        <meta name="viewport" content="width=device-width, user-scalable=no" />
       </Head>
       <GlobalStyle />
       <NProgressStyle />
