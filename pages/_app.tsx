@@ -1,7 +1,6 @@
 import axios from "axios";
 import { AnimatePresence } from "framer-motion";
 import Head from "next/head";
-import 'regenerator-runtime/runtime'
 import { GlobalStyle } from "../styles/global";
 import "../styles/globals.css";
 import NProgressStyle from "../styles/nprogress";

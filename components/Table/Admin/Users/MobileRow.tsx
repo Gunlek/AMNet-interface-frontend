@@ -1,5 +1,5 @@
 import { StyledTable, StyledTd, StyledTr } from "../../style";
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import { StyledLink } from "../../../Text/style";
 import dynamic from "next/dynamic";
@@ -34,7 +34,7 @@ export const UsersMobileLine = ({ row, virtuosoProps, isLast }: {
 
                             if ((index != 0 && index != 1)) {
                                 return (
-                                    <StyledTr {...cell.getCellProps()} onClick={() => setScrolled(!scrolled)}>
+                                    <StyledTr key={index} {...cell.getCellProps()} onClick={() => setScrolled(!scrolled)}>
                                         <StyledTd>
                                             {isUserName ? cell.column['id'] == 'user_name' &&
                                                 <div style={{ width: "60px", display: "flex", justifyContent: "space-between" }}>

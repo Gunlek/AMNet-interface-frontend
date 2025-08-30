@@ -165,6 +165,7 @@ export const TeamList = (props: { list: any[], setter?: Function }) => {
             {rows.map((row, index: number) =>
               prepareRow(row) || (
                 <MobileRow
+                  key={index}
                   deleteTeamMember={deleteTeamMember}
                   index={index}
                   row={row}
@@ -185,6 +186,7 @@ export const TeamList = (props: { list: any[], setter?: Function }) => {
               {rows.map((row, index: number) =>
                 prepareRow(row) || (
                   <Row
+                    key={index}
                     deleteTeamMember={deleteTeamMember}
                     index={index}
                     row={row}
