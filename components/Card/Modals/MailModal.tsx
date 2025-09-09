@@ -147,9 +147,9 @@ export default function MailModal(props: { html: any, subject: string, recipient
 
                                 {noRecipients &&
                                     <ErrorPNoFixed style={{ marginBottom: "30px" }}>
-                                        Tu n&apos;as pas sélectionné assez des casses pour créer une liste de diffusion<br />
-                                        C&apos;est au moins une casse dans <strong>Cotisation payée</strong><br />
-                                        Et au moins une casse dans <strong>Prom&apos;s</strong>
+                                        Tu n&apos;as pas sélectionné assez des cases pour créer une liste de diffusion<br />
+                                        C&apos;est au moins une case dans <strong>Cotisation payée</strong><br />
+                                        Et au moins une case dans <strong>Prom&apos;s</strong>
                                     </ErrorPNoFixed>
                                 }
 
