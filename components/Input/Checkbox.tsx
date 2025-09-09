@@ -32,7 +32,7 @@ const StyledCheckbox = styled.div`
   height: 25px;
   border-radius: 9px;
   border: solid #096A09 2.5px;
-  z-index: 1;
+  // z-index: 1;
   position: relative;
   transition: box-shadow 0.2s;
 

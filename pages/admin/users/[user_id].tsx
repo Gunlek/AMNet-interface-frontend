@@ -17,6 +17,7 @@ import { useRouter } from "next/router";
 import usePageTransition from "../../../components/Utils/usePageTransition";
 import dynamic from "next/dynamic";
 import { AnimatePresence, motion } from "framer-motion";
+import { AMNetToast } from "../../../components/Toast/AMNetToast";
 const PasswordInput = dynamic(() => import("../../../components/Input/PasswordInput"), {
     loading: () => <StyledInput />
 });
@@ -78,9 +79,13 @@ export default function User(props: {
         blurPassword2,
         blurPhone
     } = useForm(props.active_proms, props.usins_state, props.user);
-    const [show, setShow] = useState(false);
+    
     const router = useRouter();
     const { roadTo, pageTransition, roadToHome } = usePageTransition('user');
+
+    const [toasts, setToasts] = useState({
+        userUpdated: false
+    });
 
     useEffect(() => {
         router.prefetch('/admin/users');
@@ -102,7 +107,10 @@ export default function User(props: {
             axios.put(`/user/${props.user.user_id}`, form)
                 .then((res: AxiosResponse) => {
                     if (res.status === 409) handleFormErrors(res.data['user_name'], res.data['user_email']);
-                    if (res.status === 200) setShow(!show)
+                    if (res.status === 200) {
+                        setToasts(prev => ({...prev, userUpdated: true}));
+                        setTimeout(() => setToasts(prev => ({...prev, userUpdated: false})), 5000);
+                    }
                 });
         }
     };
@@ -121,10 +129,6 @@ export default function User(props: {
             <Head>
                 <title>Profil {props.user.user_name} &bull; AMNet</title>
             </Head>
-
-            <Modal show={show} style={{ width: "350px" }}>
-                Le Profil a été mis à jour
-            </Modal>
 
             <StyledMain variants={pageTransition} >
                 <AdminMenu setTranstion={roadTo} setHomeTransition={roadToHome} />
@@ -332,6 +336,8 @@ export default function User(props: {
 
                     <Footer marginTop="0" />
                 </DashboardContainer>
+
+                <AMNetToast description="L'utilisateur a été mis à jour" open={toasts.userUpdated} onOpenChange={(open) => setToasts(prev => ({...prev, userUpdated: open}))}/>
             </StyledMain>
         </>
     );

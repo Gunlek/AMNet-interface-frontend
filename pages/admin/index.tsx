@@ -26,6 +26,7 @@ import getToken from "../../components/Utils/auth-token";
 import oldURL from "../../components/Utils/oldURL";
 import dynamic from "next/dynamic";
 import { StyledGreenButton } from "../../components/Button/style";
+import { AMNetToast } from "../../components/Toast/AMNetToast";
 const Modal = dynamic(() => import("../../components/Card/Modals/Modal"));
 const MailModal = dynamic(() => import("../../components/Card/Modals/MailModal"), {
   loading: () =><StyledGreenButton mobileWidth="100%">Pré-visualiser le Mail</StyledGreenButton>
@@ -115,7 +116,11 @@ export default function Admin(props: {
     "AllSelect": false
   });
 
-  const [show, setShow] = useState(false);
+  const [toasts, setToasts] = useState({
+    parametersUpdated: false,
+    newsMessageUpdated: false,
+  })
+
   const [roadToIndex, setRoadToIndex] = useState(false);
   const [roadToHomePage, setRoadToHomePage] = useState(false);
 
@@ -195,13 +200,15 @@ export default function Admin(props: {
     e.preventDefault();
     axios.put(`/settings/news_message`, { value: WelcomeMessageHTML })
       .then((res: AxiosResponse) => {
-        if (res.status == 200) setShow(!show)
+        if (res.status == 200) {
+          setToasts(prev => ({...prev, newsMessageUpdated: true}));
+          setTimeout(() => setToasts(prev => ({...prev, newsMessageUpdated: false})), 5000);
+        }
       });
   }
 
   return (
     <>
-      <Modal show={show} style={{ width: "450px" }}>Le Message d&apos;actualité a été mis à jour</Modal>
       <EditorStyle />
       <Head>
         <title>Administration &bull; AMNet</title>
@@ -368,6 +375,9 @@ export default function Admin(props: {
 
           <Footer marginTop="0" />
         </DashboardContainer>
+
+        <AMNetToast description="Les paramètres ont été mis à jour" open={toasts.parametersUpdated} onOpenChange={(open) => setToasts(prev => ({...prev, parametersUpdated: open}))}/>
+        <AMNetToast description="Le message d'actualité a été mis à jour" open={toasts.newsMessageUpdated} onOpenChange={(open) => setToasts(prev => ({...prev, newsMessageUpdated: open}))}/>
       </StyledMain>
     </>
   );
