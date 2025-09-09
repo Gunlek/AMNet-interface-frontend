@@ -8,9 +8,6 @@ export default function Editor(id: string, html?: string) {
     const [value, setValue] = useState(html || "");
     const [focus, setFocus] = useState(false)
     const modules = {
-        toolbar: {
-            container: "#toolbar" + id,
-        },
         history: {
             delay: 500,
             maxStack: 100,
@@ -36,18 +33,16 @@ export default function Editor(id: string, html?: string) {
 
     return [
         <>
-            {ReactQuill && < QuillToolbar id={id} />}
-            {QuillToolbar &&
-                <ReactQuill
-                    id={"Editor" + id}
-                    className={focus ? "focused" : undefined}
-                    onBlur={() => { setFocus(false) }}
-                    onFocus={() => { setFocus(true) }}
-                    modules={modules}
-                    formats={formats}
-                    value={value}
-                    onChange={setValue}
-                />
+            {QuillToolbar && <ReactQuill 
+                id={"Editor" + id}
+                modules={modules}
+                className={focus ? "focused" : undefined}
+                onBlur={() => { setFocus(false) }}
+                onFocus={() => { setFocus(true) }}
+                formats={formats}
+                value={value} 
+                onChange={setValue}
+            />
             }
         </>
         ,
